@@ -6,12 +6,12 @@
     "animxyz",
     "animation",
     "sass",
-    "css",
+    "css"
   ],
   "homepage": "https://animxyz.com",
   "contributors": [
     "Miles Ingram <milesingrams@gmail.com> (https://milesingram.me/)",
-    "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)",
+    "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)"
   ],
   "repository": {
     "type": "git",
@@ -33,7 +33,9 @@
     "exports": "eyeglass-exports.js"
   },
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
   "peerDependencies": {},
   "devDependencies": {}
 }
