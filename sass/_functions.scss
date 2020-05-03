@@ -1,0 +1,100 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+@function xyz-mode-name($name, $mode: 'all') {
+  @if $mode == 'all' {
+    @return $name;
+  }
+  @return $mode + '-' + $name;
+}
+
+@function xyz-fallback-var($name, $mode: 'all', $fallback: 'default') {
+  @if $fallback == 'default' {
+    $fallback: var(--xyz-#{$name}-default);
+  }
+  @return var(--xyz-#{xyz-mode-name($name, $mode)}, var(--xyz-#{$name}, #{$fallback}));
+}
+
+@function xyz-utility-ease($level: 'ease') {
+  @return map.get($xyz-utility-eases, $level);
+}
+
+@function xyz-utility-time($level: '0') {
+  @return map.get($xyz-utility-times, $level);
+}
+
+@function xyz-utility-fade($level: '0') {
+  @return map.get($xyz-utility-fades, $level);
+}
+
+@function xyz-utility-translation($level: '0') {
+  @return map.get($xyz-utility-translations, $level);
+}
+
+@function xyz-utility-rotation($level: '0') {
+  @return map.get($xyz-utility-rotations, $level);
+}
+
+@function xyz-utility-scale($level: '0') {
+  @return map.get($xyz-utility-scales, $level);
+}
+
+@mixin xyz-set-all($val: initial) {
+  @each $mode in $xyz-modes-all {
+    --xyz-#{xyz-mode-name('ease', $mode)}: #{$val};
+
+    --xyz-#{xyz-mode-name('duration', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('delay', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('stagger', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('iterations', $mode)}: #{$val};
+
+    --xyz-#{xyz-mode-name('fade', $mode)}: #{$val};
+
+    --xyz-#{xyz-mode-name('transform', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('translate-x', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('translate-y', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('translate-z', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('rotate', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('scale', $mode)}: #{$val};
+
+    --xyz-#{xyz-mode-name('keyframes', $mode)}: #{$val};
+  }
+}
+
+@mixin xyz-make-keyframe-utilities($name, $mode) {
+  $mode-name: xyz-mode-name($name, $mode);
+  [xyz~=#{$name}], [xyz~=#{$mode-name}] {
+    --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
+  }
+}
+
+@mixin xyz-make-keyframes($name, $mode: 'all') {
+  @keyframes xyz-#{xyz-mode-name($name, $mode)} {
+    @content;
+  }
+}
+
+@mixin xyz-animation($mode) {
+  $keyframes: xyz-fallback-var('keyframes', $mode, xyz-#{xyz-mode-name('keyframes', $mode)});
+  $duration: xyz-fallback-var('duration', $mode);
+  $ease: xyz-fallback-var('ease', $mode);
+  $delay: xyz-fallback-var('delay', $mode, 0s);
+  $stagger-delay: xyz-fallback-var('stagger', $mode, 0s);
+  $index: var(--xyz-index, 0);
+  $iterations: xyz-fallback-var('iterations', $mode);
+
+  $direction: normal;
+  @if $mode == 'out' {
+    $direction: reverse;
+  }
+
+  animation:
+    #{$keyframes}
+    #{$duration}
+    #{$ease}
+    calc(#{$delay} + #{$stagger-delay} * #{$index})
+    #{$iterations}
+    #{$direction}
+    both
+    !important;
+}

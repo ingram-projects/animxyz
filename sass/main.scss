@@ -1,0 +1,12 @@
+@use 'core';
+@use 'utilities';
+@use 'keyframes';
+
+@forward 'variables' hide
+  $xyz-modes,
+  $xyz-modes-all;
+
+@forward 'functions' hide
+  xyz-mode-name,
+  xyz-fallback-var,
+  xyz-animation;

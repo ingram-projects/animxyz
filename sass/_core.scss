@@ -1,0 +1,47 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
+:root {
+  --xyz-ease-default: #{xyz-utility-ease('ease')};
+
+  --xyz-duration-default: #{xyz-utility-time('3')};
+  --xyz-delay-default: #{xyz-utility-time('3')};
+  --xyz-stagger-default: #{xyz-utility-time('3')};
+  --xyz-iterations-default: 1;
+
+  --xyz-fade-default: #{xyz-utility-fade('10')};
+
+  --xyz-translate-default: #{xyz-utility-translation('3')};
+  --xyz-rotate-default: #{xyz-utility-rotation('3')};
+  --xyz-scale-default: #{xyz-utility-scale('3')};
+}
+
+.xyz-appear, .xyz-in, .xyz-out, .xyz-nested {
+  @for $i from 1 through $xyz-index-levels {
+    &:nth-child(#{$i}) {
+      --xyz-index: #{$i - 1};
+    }
+  }
+}
+
+@each $mode in $xyz-modes {
+  .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+    @include xyz-animation($mode);
+
+    &.xyz-absolute, &.xyz-#{$mode}-absolute {
+      position: absolute !important;
+    }
+
+    &.xyz-none, &.xyz-#{$mode}-none {
+      animation: initial !important;
+    }
+  }
+}
+
+[xyz] {
+  @include xyz-set-all();
+}
+
+[xyz~=inherit] {
+  @include xyz-set-all(inherit);
+}
