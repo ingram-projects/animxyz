@@ -6,36 +6,50 @@
     "animxyz",
     "animation",
     "sass",
-    "css"
+    "css",
+    "front-end",
+    "web"
   ],
   "homepage": "https://animxyz.com",
+  "author": "The Ingram Brothers (https://github.com/milesingrams/animxyz/graphs/contributors)",
   "contributors": [
     "Miles Ingram <milesingrams@gmail.com> (https://milesingram.me/)",
     "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/milesingrams/animxyz"
+    "url": "git+https://github.com/milesingrams/animxyz.git"
   },
   "bugs": {
     "url": "https://github.com/milesingrams/animxyz/issues"
   },
   "license": "MIT",
-  "style": "scss",
-  "sass": "scss",
+  "sass": "animxyz.scss",
+  "style": "css/animxyz.min.css",
+  "unpkg": "css/animxyz.css",
   "files": [
+    "css",
     "sass",
-    "eyeglass-exports.js",
+    "animxyz.scss",
     "LICENSE",
     "README.md"
   ],
-  "eyeglass": {
-    "exports": "eyeglass-exports.js"
+  "scripts": {
+    "build": "run-s build:clean build:sass build:autoprefix build:cleancss",
+    "build:autoprefix": "postcss --use autoprefixer --map false --output css/animxyz.css css/animxyz.css",
+    "build:cleancss": "cleancss -o css/animxyz.min.css css/animxyz.css",
+    "build:clean": "rimraf css",
+    "build:sass": "node-sass --output-style expanded --source-map true animxyz.scss css/animxyz.css",
+    "deploy": "npm run build",
+    "start": "npm run build:sass -- --watch"
   },
-  "scripts": {},
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
-  "peerDependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "autoprefixer": "^9.7.6",
+    "clean-css-cli": "^4.3.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.14.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "rimraf": "^3.0.2"
+  }
 }
