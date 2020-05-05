@@ -1,5 +1,6 @@
 import XyzTransition from './components/XyzTransition.vue'
 import XyzTransitionGroup from './components/XyzTransitionGroup.vue'
+import '@animxyz/core'
 
 const VueAnimXyz = {
 	install(Vue) {
@@ -7,7 +8,6 @@ const VueAnimXyz = {
 		Vue.component('xyz-transition-group', XyzTransitionGroup)
 	},
 }
-
 
 export default VueAnimXyz
 
