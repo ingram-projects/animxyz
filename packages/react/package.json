@@ -17,6 +17,6 @@
   "style": "build/animxyz.min.css",
   "scripts": {},
   "dependencies": {
-    "@animxyz/core": "^0.0.0"
+    "@animxyz/core": "*"
   }
 }

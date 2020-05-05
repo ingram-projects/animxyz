@@ -114,9 +114,9 @@
 }
 
 @mixin xyz($context: '') {
-  @extend [xyz];
-
   $words: str-split($context);
+
+  @extend [xyz];
   @each $word in $words {
     @extend [xyz~=#{$word}];
   }
