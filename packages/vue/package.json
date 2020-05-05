@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -41,7 +41,7 @@
     "build:js": "bili"
   },
   "dependencies": {
-    "@animxyz/core": "*",
+    "@animxyz/core": "^0.0.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
