@@ -40,7 +40,7 @@
     "build:autoprefix": "postcss --use autoprefixer --map false --output dist/animxyz.css dist/animxyz.css",
     "build:cleancss": "cleancss -o dist/animxyz.min.css dist/animxyz.css",
     "build:clean": "rimraf dist",
-    "build:sass": "sass animxyz.scss dist/animxyz.css",
+    "build:sass": "sass animxyz.scss dist/animxyz.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",
