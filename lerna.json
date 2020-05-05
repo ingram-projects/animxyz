@@ -4,5 +4,8 @@
   ],
   "version": "0.0.0",
   "npmClient": "yarn",
+  "npmClientArgs": [
+    "--no-lockfile"
+  ],
   "useWorkspaces": true
 }

@@ -1,6 +1,9 @@
 {
   "name": "@animxyz/vue",
   "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "AnimXYZ is a composable animation library that makes your site shine",
   "keywords": [
     "animxyz",
@@ -26,6 +29,7 @@
   },
   "license": "MIT",
   "files": [
+    "animxyz.scss",
     "dist"
   ],
   "main": "dist/VueAnimXyz.js",
@@ -35,7 +39,6 @@
     "build": "run-s build:clean build:js",
     "build:js": "bili",
     "build:clean": "rimraf dist",
-    "deploy": "npm run build"
   },
   "dependencies": {
     "@animxyz/core": "*",

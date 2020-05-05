@@ -1,6 +1,9 @@
 {
   "name": "@animxyz/core",
   "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "AnimXYZ is a composable animation library that makes your site shine",
   "keywords": [
     "animxyz",
@@ -26,6 +29,7 @@
   },
   "license": "MIT",
   "files": [
+    "animxyz.scss",
     "dist"
   ],
   "main": "animxyz.scss",
@@ -37,8 +41,6 @@
     "build:cleancss": "cleancss -o dist/animxyz.min.css dist/animxyz.css",
     "build:clean": "rimraf dist",
     "build:sass": "sass animxyz.scss dist/animxyz.css",
-    "deploy": "npm run build",
-    "start": "npm run build:sass -- --watch"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",

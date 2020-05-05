@@ -3,14 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "description": "AnimXYZ is a composable animation library that makes your site shine",
-  "keywords": [
-    "animxyz",
-    "animation",
-    "sass",
-    "css",
-    "front-end",
-    "web"
-  ],
   "homepage": "https://animxyz.com",
   "author": "Ingram Projects (https://github.com/milesingrams/animxyz/graphs/contributors)",
   "contributors": [
@@ -21,15 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/milesingrams/animxyz.git"
   },
-  "bugs": {
-    "url": "https://github.com/milesingrams/animxyz/issues"
-  },
   "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "publish": "yarn run build && lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.20.2"
