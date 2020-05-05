@@ -1,0 +1,25 @@
+{
+  "name": "@animxyz/core",
+  "files": [
+    "build"
+  ],
+  "sass": "animxyz.scss",
+  "style": "build/animxyz.min.css",
+  "scripts": {
+    "build": "run-s build:clean build:sass build:autoprefix build:cleancss",
+    "build:autoprefix": "postcss --use autoprefixer --map false --output build/animxyz.css build/animxyz.css",
+    "build:cleancss": "cleancss -o build/animxyz.min.css build/animxyz.css",
+    "build:clean": "rimraf css",
+    "build:sass": "sass animxyz.scss build/animxyz.css",
+    "deploy": "npm run build",
+    "start": "npm run build:sass -- --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.7.6",
+    "clean-css-cli": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.26.5"
+  }
+}

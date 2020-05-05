@@ -11,7 +11,7 @@
     "web"
   ],
   "homepage": "https://animxyz.com",
-  "author": "The Ingram Brothers (https://github.com/milesingrams/animxyz/graphs/contributors)",
+  "author": "Ingram Projects (https://github.com/milesingrams/animxyz/graphs/contributors)",
   "contributors": [
     "Miles Ingram <milesingrams@gmail.com> (https://milesingram.me/)",
     "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)"
@@ -24,32 +24,7 @@
     "url": "https://github.com/milesingrams/animxyz/issues"
   },
   "license": "MIT",
-  "sass": "animxyz.scss",
-  "style": "css/animxyz.min.css",
-  "unpkg": "css/animxyz.css",
-  "files": [
-    "css",
-    "sass",
-    "animxyz.scss",
-    "LICENSE",
-    "README.md"
-  ],
-  "scripts": {
-    "build": "run-s build:clean build:sass build:autoprefix build:cleancss",
-    "build:autoprefix": "postcss --use autoprefixer --map false --output css/animxyz.css css/animxyz.css",
-    "build:cleancss": "cleancss -o css/animxyz.min.css css/animxyz.css",
-    "build:clean": "rimraf css",
-    "build:sass": "sass animxyz.scss css/animxyz.css",
-    "deploy": "npm run build",
-    "start": "npm run build:sass -- --watch"
-  },
   "devDependencies": {
-    "autoprefixer": "^9.7.6",
-    "clean-css-cli": "^4.3.0",
-    "lodash": "^4.17.15",
-    "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.1",
-    "rimraf": "^3.0.2",
-    "sass": "^1.26.5"
+    "lerna": "^3.20.2",
   }
 }
