@@ -1,5 +1,6 @@
 {
   "name": "@animxyz/vue",
+  "version": "0.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/milesingrams/animxyz.git",
@@ -17,5 +18,8 @@
   "scripts": {},
   "devDependencies": {
     "lodash": "^4.17.15"
+  },
+  "dependencies": {
+    "@animxyz/core": "^0.0.0"
   }
 }

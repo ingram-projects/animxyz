@@ -1,8 +1,10 @@
 {
   "name": "@animxyz/core",
+  "version": "0.0.0",
   "files": [
     "build"
   ],
+  "main": "animxyz.scss",
   "sass": "animxyz.scss",
   "style": "build/animxyz.min.css",
   "scripts": {
