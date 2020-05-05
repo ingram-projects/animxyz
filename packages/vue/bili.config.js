@@ -1,11 +1,35 @@
-export default {
-  input: 'src',
+const { version, homepage, licence } = require('./package')
+
+const banner = `/**
+ * vue-animxyz v${version}
+ * Copyright (c) 2020-present Ingram Projects
+ * ${homepage}
+ * Released under the ${licence} License.
+ */
+`
+
+module.exports = {
+  banner,
   output: {
-    format: 'esm',
-    fileName: 'VueAnimXyz.js',
-    sourceMap: true,
+    fileName: (context) => {
+      if (context.format === 'umd' || context.format === 'umd-min') {
+        return 'vue-animxyz[min].js';
+      }
+      return 'vue-animxyz.[format].js';
+    },
+    moduleName: 'vue-animxyz',
+    format: [
+      'cjs',
+      'es',
+      'umd',
+      'umd-min',
+    ],
   },
   plugins: {
-    vue: true,
+    commonjs: true,
+    vue: {
+      css: false,
+    },
   },
+  bundleNodeModules: true,
 }

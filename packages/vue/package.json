@@ -32,9 +32,10 @@
     "animxyz.scss",
     "dist"
   ],
-  "main": "dist/VueAnimXyz.js",
+  "main": "dist/vue-animxyz.cjs.js",
+  "module": "dist/vue-animxyz.esm.js",
   "sass": "animxyz.scss",
-  "style": "dist/VueAnimXyz.css",
+  "style": "dist/vue-animxyz.css",
   "scripts": {
     "build": "run-s build:clean build:js",
     "build:clean": "rimraf dist",
@@ -48,7 +49,8 @@
     "bili": "^4.9.4",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "rollup-plugin-vue": "^6.0.0-alpha.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-vue": "^5.1.6",
     "vue-template-compiler": "^2.6.11"
   }
 }
