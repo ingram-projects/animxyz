@@ -1,5 +1,5 @@
-import XyzTransition from './components/XyzTransition'
-import XyzTransitionGroup from './components/XyzTransitionGroup'
+import XyzTransition from './components/XyzTransition.vue'
+import XyzTransitionGroup from './components/XyzTransitionGroup.vue'
 
 const VueAnimXyz = {
 	install(Vue) {

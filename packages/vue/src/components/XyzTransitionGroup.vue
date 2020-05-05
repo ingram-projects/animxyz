@@ -4,7 +4,7 @@ import { xyzTransitionProps } from './xyzTransitionUtils'
 export default {
 	name: 'XyzTransitionGroup',
 	functional: true,
-	render(h, context) {
+	render(createElement, context) {
 		const data = {
 			...context.data,
 			attrs: {
@@ -14,7 +14,7 @@ export default {
 			},
 		}
 
-		return <transition-group {...data}>{context.children}</transition-group>
+		return createElement('transition-group', data, context.children)
 	},
 }
 </script>

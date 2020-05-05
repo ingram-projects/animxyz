@@ -5,7 +5,7 @@ import defaultsDeep from 'lodash/defaultsDeep'
 export default {
 	name: 'XyzTransition',
 	functional: true,
-	render(h, context) {
+	render(createElement, context) {
 		const data = {
 			...context.data,
 			attrs: {
@@ -25,7 +25,7 @@ export default {
 			})
 		}
 
-		return <transition {...data}>{context.children}</transition>
+		return createElement('transition', data, context.children)
 	},
 }
 </script>

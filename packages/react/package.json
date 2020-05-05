@@ -10,13 +10,23 @@
     "react"
   ],
   "files": [
-    "build"
+    "dist"
   ],
-  "main": "build/react-animxyz.js",
+  "main": "dist/ReactAnimXyz.js",
   "sass": "animxyz.scss",
-  "style": "build/animxyz.min.css",
-  "scripts": {},
+  "style": "dist/animxyz.min.css",
+  "scripts": {
+    "build": "run-s build:clean build:js",
+    "build:js": "bili",
+    "build:clean": "rimraf dist",
+    "deploy": "npm run build"
+  },
   "dependencies": {
     "@animxyz/core": "*"
+  },
+  "devDependencies": {
+    "bili": "^4.9.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
