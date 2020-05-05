@@ -1,6 +1,20 @@
 @use 'sass:map';
 @use 'variables' as *;
 
+@function str-split($string, $separator: ' ') {
+  $split-arr: ();
+  $index : str-index($string, $separator);
+  @while $index != null {
+      $item: str-slice($string, 1, $index - 1);
+      $split-arr: append($split-arr, $item);
+      $string: str-slice($string, $index + 1);
+      $index : str-index($string, $separator);
+  }
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
 @function xyz-mode-name($name, $mode: 'all') {
   @if $mode == 'all' {
     @return $name;
@@ -97,4 +111,13 @@
     #{$direction}
     both
     !important;
+}
+
+@mixin xyz($context: '') {
+  @extend [xyz];
+
+  $words: str-split($context);
+  @each $word in $words {
+    @extend [xyz~=#{$word}];
+  }
 }
