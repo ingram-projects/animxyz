@@ -30,17 +30,18 @@
   "license": "MIT",
   "files": [
     "animxyz.scss",
-    "dist"
+    "dist",
+    "src"
   ],
   "main": "animxyz.scss",
   "sass": "animxyz.scss",
   "style": "dist/animxyz.min.css",
   "scripts": {
-    "build": "run-s build:clean build:sass build:autoprefix build:cleancss",
+    "build": "run-s build:clean build:main build:autoprefix build:cleancss",
     "build:autoprefix": "postcss --use autoprefixer --map false --output dist/animxyz.css dist/animxyz.css",
     "build:cleancss": "cleancss -o dist/animxyz.min.css dist/animxyz.css",
     "build:clean": "rimraf dist",
-    "build:sass": "sass animxyz.scss dist/animxyz.css"
+    "build:main": "sass animxyz.scss dist/animxyz.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",
