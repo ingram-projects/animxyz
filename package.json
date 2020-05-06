@@ -19,9 +19,13 @@
   ],
   "scripts": {
     "build": "lerna run build",
+    "lint": "lerna run lint",
     "publish": "yarn run build && lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.20.2"
+  },
+  "gitHooks": {
+    "pre-commit": "lerna run precommit"
   }
 }

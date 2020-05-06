@@ -40,7 +40,9 @@
   "sass": "animxyz.scss",
   "style": "dist/VueAnimXyz.css",
   "scripts": {
-    "build": "bili"
+    "build": "bili",
+    "lint": "vue-cli-service lint",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@animxyz/core": "^0.0.4",
@@ -65,12 +67,9 @@
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "lint-staged": {
     "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
+      "yarn run lint",
       "git add"
     ]
   }

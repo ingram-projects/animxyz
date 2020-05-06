@@ -15,7 +15,7 @@ export default {
 
 		const xyzAttrs = getXyzAttrs(data.attrs)
 		if (Object.keys(xyzAttrs).length) {
-			context.children.forEach(child => {
+			context.children.forEach((child) => {
 				defaultsDeep(child, {
 					data: {
 						attrs: xyzAttrs,

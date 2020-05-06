@@ -4,10 +4,10 @@ import '@animxyz/core'
 
 // Create module definition for Vue.use()
 const VueAnimXyz = {
-	install (Vue) {
+	install(Vue) {
 		Vue.component('xyz-transition', XyzTransition)
 		Vue.component('xyz-transition-group', XyzTransitionGroup)
-	}
+	},
 }
 
 // Auto-install when vue is found (eg. in browser via <script> tag)
