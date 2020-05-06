@@ -1,18 +1,13 @@
-import XyzTransition from './components/XyzTransition.vue'
-import XyzTransitionGroup from './components/XyzTransitionGroup.vue'
+import XyzTransition from './components/XyzTransition'
+import XyzTransitionGroup from './components/XyzTransitionGroup'
 import '@animxyz/core'
-
-// Declare install function executed by Vue.use()
-export function install(Vue) {
-	if (install.installed) return
-	install.installed = true;
-	Vue.component('xyz-transition', XyzTransition)
-	Vue.component('xyz-transition-group', XyzTransitionGroup)
-}
 
 // Create module definition for Vue.use()
 const VueAnimXyz = {
-	install,
+	install () {
+		Vue.component('xyz-transition', XyzTransition)
+		Vue.component('xyz-transition-group', XyzTransitionGroup)
+	}
 }
 
 // Auto-install when vue is found (eg. in browser via <script> tag)
@@ -23,7 +18,7 @@ if (typeof window !== 'undefined') {
 	GlobalVue = global.Vue
 }
 if (GlobalVue) {
-	GlobalVue.use(plugin)
+	GlobalVue.use(VueAnimXyz)
 }
 
 export default VueAnimXyz

@@ -1,4 +1,3 @@
-<script>
 import { xyzTransitionProps } from './xyzTransitionUtils'
 
 export default {
@@ -17,4 +16,3 @@ export default {
 		return createElement('transition-group', data, context.children)
 	},
 }
-</script>

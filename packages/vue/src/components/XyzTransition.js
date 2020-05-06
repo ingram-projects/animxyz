@@ -1,4 +1,3 @@
-<script>
 import { xyzTransitionProps, getXyzAttrs } from './xyzTransitionUtils'
 import defaultsDeep from 'lodash/defaultsDeep'
 
@@ -10,7 +9,7 @@ export default {
 			...context.data,
 			attrs: {
 				...xyzTransitionProps,
-				...context.data?.attrs,
+				...(context.data || {}).attrs,
 			},
 		}
 
@@ -28,4 +27,3 @@ export default {
 		return createElement('transition', data, context.children)
 	},
 }
-</script>
