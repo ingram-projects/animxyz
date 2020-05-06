@@ -1,6 +1,5 @@
 import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
-import '@animxyz/core'
 
 // Create module definition for Vue.use()
 const VueAnimXyz = {
