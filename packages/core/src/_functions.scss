@@ -75,16 +75,19 @@
   }
 }
 
-@mixin xyz-make-keyframe-utilities($name, $mode) {
-  $mode-name: xyz-mode-name($name, $mode);
-  [xyz~=#{$name}], [xyz~=#{$mode-name}] {
-    --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
-  }
-}
+@mixin xyz-make-keyframes($name, $includeUtilities: true) {
+  @each $mode in $xyz-modes {
+    $mode-name: xyz-mode-name($name, $mode);
 
-@mixin xyz-make-keyframes($name, $mode: 'all') {
-  @keyframes xyz-#{xyz-mode-name($name, $mode)} {
-    @content;
+    @keyframes xyz-#{$mode-name} {
+      @content($mode);
+    }
+
+    @if $includeUtilities {
+      [xyz~=#{$name}], [xyz~=#{$mode-name}] {
+        --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
+      }
+    }
   }
 }
 
