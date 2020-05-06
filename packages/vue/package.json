@@ -37,7 +37,7 @@
   "unpkg": "dist/VueAnimXyz.js",
   "jsdelivr": "dist/VueAnimXyz.js",
   "cdn": "dist/VueAnimXyz.js",
-  "sass": "@animxyz/core",
+  "sass": "animxyz.scss",
   "style": "dist/VueAnimXyz.css",
   "scripts": {
     "build": "run-s build:clean build:main",
