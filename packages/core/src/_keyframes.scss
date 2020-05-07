@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@if $xyz-include-utilities {
+@if $xyz-include-css and $xyz-include-utilities {
   @include xyz-make-keyframes('expand-width') using ($mode) {
     from {
       max-width: 0;

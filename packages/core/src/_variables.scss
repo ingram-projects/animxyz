@@ -4,6 +4,7 @@
 $xyz-modes: ['appear', 'in', 'out'];
 $xyz-modes-all: list.join(['all'], $xyz-modes);
 
+$xyz-include-css: true !default;
 $xyz-include-core: true !default;
 $xyz-include-utilities: true !default;
 

@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@if $xyz-include-core {
+@if $xyz-include-css and $xyz-include-core {
   @include xyz-make-keyframes('keyframes', false) using ($mode) {
     from {
       $fade: xyz-fallback-var('fade', $mode, 1);

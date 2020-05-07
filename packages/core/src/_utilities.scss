@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@if $xyz-include-utilities {
+@if $xyz-include-css and $xyz-include-utilities {
   @each $mode in $xyz-modes-all {
     $class-name: xyz-mode-name('ease', $mode);
     $var-name: xyz-mode-name('ease', $mode);
