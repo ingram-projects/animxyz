@@ -1,11 +1,17 @@
 import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
 
+import XyzContext from './directives/XyzContext'
+import XyzVisible from './directives/XyzVisible'
+
 // Create module definition for Vue.use()
 const VueAnimXyz = {
 	install(Vue) {
 		Vue.component('xyz-transition', XyzTransition)
 		Vue.component('xyz-transition-group', XyzTransitionGroup)
+
+		Vue.directive('xyz', XyzContext)
+		Vue.directive('xyz-visible', XyzVisible)
 	},
 }
 

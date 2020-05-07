@@ -1,7 +1,7 @@
 @use 'sass:list';
 @use 'sass:map';
 
-$xyz-modes: ['appear', 'in', 'out'];
+$xyz-modes: ['in', 'out', 'appear']; // Appear must come last for specificity
 $xyz-modes-all: list.join(['all'], $xyz-modes);
 
 $xyz-include-css: true !default;

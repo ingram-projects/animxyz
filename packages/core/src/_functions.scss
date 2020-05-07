@@ -5,10 +5,10 @@
   $split-arr: ();
   $index : str-index($string, $separator);
   @while $index != null {
-      $item: str-slice($string, 1, $index - 1);
-      $split-arr: append($split-arr, $item);
-      $string: str-slice($string, $index + 1);
-      $index : str-index($string, $separator);
+    $item: str-slice($string, 1, $index - 1);
+    $split-arr: append($split-arr, $item);
+    $string: str-slice($string, $index + 1);
+    $index : str-index($string, $separator);
   }
   $split-arr: append($split-arr, $string);
 
@@ -79,7 +79,7 @@
   --xyz-#{xyz-mode-name('delay', 'move')}: #{$val};
 }
 
-@mixin xyz-make-keyframes($name, $includeUtilities: true) {
+@mixin xyz-make-keyframes($name, $make-utilities: true) {
   @each $mode in $xyz-modes {
     $mode-name: xyz-mode-name($name, $mode);
 
@@ -87,7 +87,7 @@
       @content($mode);
     }
 
-    @if $includeUtilities {
+    @if $make-utilities {
       [xyz~=#{$name}], [xyz~=#{$mode-name}] {
         --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
       }

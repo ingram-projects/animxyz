@@ -1,8 +1,8 @@
 export const xyzTransitionProps = {
 	name: 'xyz',
-	appearClass: 'xyz-appear-from',
-	appearActiveClass: 'xyz-appear',
-	appearToClass: 'xyz-appear-to',
+	appearClass: 'xyz-in-from xyz-appear-from',
+	appearActiveClass: 'xyz-in xyz-appear',
+	appearToClass: 'xyz-in-to xyz-appear-to',
 	enterClass: 'xyz-in-from',
 	enterActiveClass: 'xyz-in',
 	enterToClass: 'xyz-in-to',
