@@ -60,6 +60,13 @@
     }
   }
 
+  .xyz-move {
+    $duration: var(--xyz-#{xyz-mode-name('duration', 'move')}, var(--xyz-duration-default));
+    $ease: var(--xyz-#{xyz-mode-name('ease', 'move')}, var(--xyz-ease-default));
+    $delay: var(--xyz-#{xyz-mode-name('delay', 'move')}, 0s);
+    transition: transform #{$duration} #{$ease} #{$delay};
+  }
+
   [xyz] {
     @include xyz-set-all();
   }

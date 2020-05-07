@@ -2,7 +2,7 @@
 @use 'functions' as *;
 
 @if $xyz-include-css and $xyz-include-utilities {
-  @each $mode in $xyz-modes-all {
+  @each $mode in append($xyz-modes-all, 'move') {
     $class-name: xyz-mode-name('ease', $mode);
     $var-name: xyz-mode-name('ease', $mode);
     [xyz~=#{$class-name}] {
@@ -16,7 +16,7 @@
     }
   }
 
-  @each $mode in $xyz-modes-all {
+  @each $mode in append($xyz-modes-all, 'move') {
     $class-name: xyz-mode-name('duration', $mode);
     $var-name: xyz-mode-name('duration', $mode);
     [xyz~=#{$class-name}] {
@@ -30,7 +30,7 @@
     }
   }
 
-  @each $mode in $xyz-modes-all {
+  @each $mode in append($xyz-modes-all, 'move') {
     $class-name: xyz-mode-name('delay', $mode);
     $var-name: xyz-mode-name('delay', $mode);
     [xyz~=#{$class-name}] {

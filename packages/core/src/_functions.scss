@@ -73,6 +73,10 @@
 
     --xyz-#{xyz-mode-name('keyframes', $mode)}: #{$val};
   }
+
+  --xyz-#{xyz-mode-name('ease', 'move')}: #{$val};
+  --xyz-#{xyz-mode-name('duration', 'move')}: #{$val};
+  --xyz-#{xyz-mode-name('delay', 'move')}: #{$val};
 }
 
 @mixin xyz-make-keyframes($name, $includeUtilities: true) {

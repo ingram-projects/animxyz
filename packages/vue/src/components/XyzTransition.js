@@ -9,7 +9,7 @@ export default {
 			...context.data,
 			attrs: {
 				...xyzTransitionProps,
-				...(context.data || {}).attrs,
+				...context.data?.attrs,
 			},
 		}
 
