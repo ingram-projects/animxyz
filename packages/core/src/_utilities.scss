@@ -1,212 +1,214 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('ease', $mode);
-  $var-name: xyz-mode-name('ease', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-ease-default);
-  }
-  @each $level, $val in $xyz-utility-eases {
-    $val: xyz-utility-ease($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+@if $xyz-include-utilities {
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('ease', $mode);
+    $var-name: xyz-mode-name('ease', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-ease-default);
+    }
+    @each $level, $val in $xyz-utility-eases {
+      $val: xyz-utility-ease($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('duration', $mode);
-  $var-name: xyz-mode-name('duration', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-duration-default);
-  }
-  @each $level, $val in $xyz-utility-times {
-    $val: xyz-utility-time($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('duration', $mode);
+    $var-name: xyz-mode-name('duration', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-duration-default);
+    }
+    @each $level, $val in $xyz-utility-times {
+      $val: xyz-utility-time($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('delay', $mode);
-  $var-name: xyz-mode-name('delay', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-delay-default);
-  }
-  @each $level, $val in $xyz-utility-times {
-    $val: xyz-utility-time($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('delay', $mode);
+    $var-name: xyz-mode-name('delay', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-delay-default);
+    }
+    @each $level, $val in $xyz-utility-times {
+      $val: xyz-utility-time($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('stagger', $mode);
-  $var-name: xyz-mode-name('stagger', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-stagger-default);
-  }
-  @each $level, $val in $xyz-utility-times {
-    $val: xyz-utility-time($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('stagger', $mode);
+    $var-name: xyz-mode-name('stagger', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-stagger-default);
+    }
+    @each $level, $val in $xyz-utility-times {
+      $val: xyz-utility-time($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('fade', $mode);
-  $var-name: xyz-mode-name('fade', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(1 - var(--xyz-fade-default));
-  }
-  @each $level, $val in $xyz-utility-fades {
-    $val: xyz-utility-fade($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{1 - $val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('fade', $mode);
+    $var-name: xyz-mode-name('fade', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(1 - var(--xyz-fade-default));
+    }
+    @each $level, $val in $xyz-utility-fades {
+      $val: xyz-utility-fade($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{1 - $val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('right', $mode);
-  $var-name: xyz-mode-name('translate-x', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-translate-default);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('right', $mode);
+    $var-name: xyz-mode-name('translate-x', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-translate-default);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('left', $mode);
-  $var-name: xyz-mode-name('translate-x', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val * -1};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('left', $mode);
+    $var-name: xyz-mode-name('translate-x', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val * -1};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('down', $mode);
-  $var-name: xyz-mode-name('translate-y', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-translate-default);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('down', $mode);
+    $var-name: xyz-mode-name('translate-y', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-translate-default);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('up', $mode);
-  $var-name: xyz-mode-name('translate-y', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val * -1};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('up', $mode);
+    $var-name: xyz-mode-name('translate-y', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val * -1};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('front', $mode);
-  $var-name: xyz-mode-name('translate-z', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-translate-default);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('front', $mode);
+    $var-name: xyz-mode-name('translate-z', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-translate-default);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('back', $mode);
-  $var-name: xyz-mode-name('translate-z', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
-  }
-  @each $level, $val in $xyz-utility-translations {
-    $val: xyz-utility-translation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val * -1};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('back', $mode);
+    $var-name: xyz-mode-name('translate-z', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(var(--xyz-translate-default) * -1);
+    }
+    @each $level, $val in $xyz-utility-translations {
+      $val: xyz-utility-translation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val * -1};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('turn-cw', $mode);
-  $var-name: xyz-mode-name('rotate', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: var(--xyz-rotate-default);
-  }
-  @each $level, $val in $xyz-utility-rotations {
-    $val: xyz-utility-rotation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('turn-cw', $mode);
+    $var-name: xyz-mode-name('rotate', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: var(--xyz-rotate-default);
+    }
+    @each $level, $val in $xyz-utility-rotations {
+      $val: xyz-utility-rotation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('turn-ccw', $mode);
-  $var-name: xyz-mode-name('rotate', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(var(--xyz-rotate-default) * -1);
-  }
-  @each $level, $val in $xyz-utility-rotations {
-    $val: xyz-utility-rotation($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{$val * -1};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('turn-ccw', $mode);
+    $var-name: xyz-mode-name('rotate', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(var(--xyz-rotate-default) * -1);
+    }
+    @each $level, $val in $xyz-utility-rotations {
+      $val: xyz-utility-rotation($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{$val * -1};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('small', $mode);
-  $var-name: xyz-mode-name('scale', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(1 - var(--xyz-scale-default));
-  }
-  @each $level, $val in $xyz-utility-scales {
-    $val: xyz-utility-scale($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{1 - $val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('small', $mode);
+    $var-name: xyz-mode-name('scale', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(1 - var(--xyz-scale-default));
+    }
+    @each $level, $val in $xyz-utility-scales {
+      $val: xyz-utility-scale($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{1 - $val};
+      }
     }
   }
-}
 
-@each $mode in $xyz-modes-all {
-  $class-name: xyz-mode-name('big', $mode);
-  $var-name: xyz-mode-name('scale', $mode);
-  [xyz~=#{$class-name}] {
-    --xyz-#{$var-name}: calc(1 + var(--xyz-scale-default));
-  }
-  @each $level, $val in $xyz-utility-scales {
-    $val: xyz-utility-scale($level);
-    [xyz~=#{$class-name}-#{$level}] {
-      --xyz-#{$var-name}: #{1 + $val};
+  @each $mode in $xyz-modes-all {
+    $class-name: xyz-mode-name('big', $mode);
+    $var-name: xyz-mode-name('scale', $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: calc(1 + var(--xyz-scale-default));
+    }
+    @each $level, $val in $xyz-utility-scales {
+      $val: xyz-utility-scale($level);
+      [xyz~=#{$class-name}-#{$level}] {
+        --xyz-#{$var-name}: #{1 + $val};
+      }
     }
   }
 }

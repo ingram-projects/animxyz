@@ -1,68 +1,70 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@include xyz-make-keyframes('keyframes', false) using ($mode) {
-  from {
-    $fade: xyz-fallback-var('fade', $mode, 1);
+@if $xyz-include-core {
+  @include xyz-make-keyframes('keyframes', false) using ($mode) {
+    from {
+      $fade: xyz-fallback-var('fade', $mode, 1);
 
-    $translate-x: xyz-fallback-var('translate-x', $mode, 0);
-    $translate-y: xyz-fallback-var('translate-y', $mode, 0);
-    $translate-z: xyz-fallback-var('translate-z', $mode, 0);
-    $rotate: xyz-fallback-var('rotate', $mode, 0);
-    $scale: xyz-fallback-var('scale', $mode, 1);
+      $translate-x: xyz-fallback-var('translate-x', $mode, 0);
+      $translate-y: xyz-fallback-var('translate-y', $mode, 0);
+      $translate-z: xyz-fallback-var('translate-z', $mode, 0);
+      $rotate: xyz-fallback-var('rotate', $mode, 0);
+      $scale: xyz-fallback-var('scale', $mode, 1);
 
-    $transform: xyz-fallback-var('transform', $mode,
-      translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
-      rotate(#{$rotate})
-      scale(#{$scale})
-    );
+      $transform: xyz-fallback-var('transform', $mode,
+        translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
+        rotate(#{$rotate})
+        scale(#{$scale})
+      );
 
-    opacity: $fade;
-    transform: $transform;
-  }
-}
-
-:root {
-  --xyz-ease-default: #{xyz-utility-ease('ease')};
-
-  --xyz-duration-default: #{xyz-utility-time('3')};
-  --xyz-delay-default: #{xyz-utility-time('3')};
-  --xyz-stagger-default: #{xyz-utility-time('3')};
-  --xyz-iterations-default: 1;
-
-  --xyz-fade-default: #{xyz-utility-fade('10')};
-
-  --xyz-translate-default: #{xyz-utility-translation('3')};
-  --xyz-rotate-default: #{xyz-utility-rotation('3')};
-  --xyz-scale-default: #{xyz-utility-scale('3')};
-}
-
-.xyz-appear, .xyz-in, .xyz-out, .xyz-nested {
-  @for $i from 1 through $xyz-index-levels {
-    &:nth-child(#{$i}) {
-      --xyz-index: #{$i - 1};
+      opacity: $fade;
+      transform: $transform;
     }
   }
-}
 
-@each $mode in $xyz-modes {
-  .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-    @include xyz-animation($mode);
+  :root {
+    --xyz-ease-default: #{xyz-utility-ease('ease')};
 
-    &.xyz-absolute, &.xyz-#{$mode}-absolute {
-      position: absolute !important;
-    }
+    --xyz-duration-default: #{xyz-utility-time('3')};
+    --xyz-delay-default: #{xyz-utility-time('3')};
+    --xyz-stagger-default: #{xyz-utility-time('3')};
+    --xyz-iterations-default: 1;
 
-    &.xyz-none, &.xyz-#{$mode}-none {
-      animation: initial !important;
+    --xyz-fade-default: #{xyz-utility-fade('10')};
+
+    --xyz-translate-default: #{xyz-utility-translation('3')};
+    --xyz-rotate-default: #{xyz-utility-rotation('3')};
+    --xyz-scale-default: #{xyz-utility-scale('3')};
+  }
+
+  .xyz-appear, .xyz-in, .xyz-out, .xyz-nested {
+    @for $i from 1 through $xyz-index-levels {
+      &:nth-child(#{$i}) {
+        --xyz-index: #{$i - 1};
+      }
     }
   }
-}
 
-[xyz] {
-  @include xyz-set-all();
-}
+  @each $mode in $xyz-modes {
+    .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+      @include xyz-animation($mode);
 
-[xyz~=inherit] {
-  @include xyz-set-all(inherit);
+      &.xyz-absolute, &.xyz-#{$mode}-absolute {
+        position: absolute !important;
+      }
+
+      &.xyz-none, &.xyz-#{$mode}-none {
+        animation: initial !important;
+      }
+    }
+  }
+
+  [xyz] {
+    @include xyz-set-all();
+  }
+
+  [xyz~=inherit] {
+    @include xyz-set-all(inherit);
+  }
 }

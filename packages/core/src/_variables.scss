@@ -4,6 +4,9 @@
 $xyz-modes: ['appear', 'in', 'out'];
 $xyz-modes-all: list.join(['all'], $xyz-modes);
 
+$xyz-include-core: true !default;
+$xyz-include-utilities: true !default;
+
 $xyz-index-levels: 20 !default;
 
 $xyz-utility-eases: (
