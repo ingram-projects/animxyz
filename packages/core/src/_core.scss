@@ -2,7 +2,7 @@
 @use 'functions' as *;
 
 @mixin xyz-core() {
-  @include include-once('core') {
+  @include xyz-include-once('core') {
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
         $fade: xyz-fallback-var('fade', $mode, 1);
@@ -28,14 +28,14 @@
       --xyz-ease-default: #{xyz-utility-ease('ease')};
 
       --xyz-duration-default: #{xyz-utility-time('3')};
-      --xyz-delay-default: #{xyz-utility-time('3')};
+      --xyz-delay-default: 0s;
       --xyz-stagger-default: #{xyz-utility-time('3')};
       --xyz-iterations-default: 1;
 
       --xyz-fade-default: #{xyz-utility-fade('100')};
 
       --xyz-translate-default: #{xyz-utility-translation('3')};
-      --xyz-rotate-default: #{xyz-utility-rotation('3')};
+      --xyz-rotate-default: #{xyz-utility-rotation('25')};
       --xyz-scale-default: #{xyz-utility-scale('50')};
     }
 

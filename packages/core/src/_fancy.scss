@@ -2,7 +2,7 @@
 @use 'functions' as *;
 
 @mixin xyz-fancy () {
-  @include include-once('fancy') {
+  @include xyz-include-once('fancy') {
     @include xyz-make-keyframes('expand-w') using ($mode) {
       from {
         max-width: 0;

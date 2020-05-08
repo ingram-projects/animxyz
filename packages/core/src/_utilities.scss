@@ -2,7 +2,7 @@
 @use 'functions' as *;
 
 @mixin xyz-utilities () {
-  @include include-once('utilities') {
+  @include xyz-include-once('utilities') {
     @each $mode in append($xyz-modes-all, 'move') {
       $class-name: xyz-mode-name('ease', $mode);
       $var-name: xyz-mode-name('ease', $mode);
@@ -53,6 +53,20 @@
       }
       @each $level, $val in $xyz-utility-times {
         $val: xyz-utility-time($level);
+        [xyz~=#{$class-name}-#{$level}] {
+          --xyz-#{$var-name}: #{$val};
+        }
+      }
+    }
+
+    @each $mode in $xyz-modes-all {
+      $class-name: xyz-mode-name('iterations', $mode);
+      $var-name: xyz-mode-name('iterations', $mode);
+      [xyz~=#{$class-name}] {
+        --xyz-#{$var-name}: var(--xyz-iterations-default);
+      }
+      @each $level, $val in $xyz-utility-iterations {
+        $val: xyz-utility-iteration($level);
         [xyz~=#{$class-name}-#{$level}] {
           --xyz-#{$var-name}: #{$val};
         }

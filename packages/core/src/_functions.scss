@@ -2,7 +2,7 @@
 @use 'sass:list';
 @use 'variables' as *;
 
-@function str-split($string, $separator: ' ') {
+@function xyz-str-split($string, $separator: ' ') {
   $split-arr: ();
   $index : str-index($string, $separator);
   @while $index != null {
@@ -38,6 +38,10 @@
   @return map.get($xyz-utility-times, $level);
 }
 
+@function xyz-utility-iteration($level: '0') {
+  @return map.get($xyz-utility-iterations, $level);
+}
+
 @function xyz-utility-fade($level: '0') {
   @return map.get($xyz-utility-fades, $level);
 }
@@ -54,7 +58,7 @@
   @return map.get($xyz-utility-scales, $level);
 }
 
-@mixin include-once($name) {
+@mixin xyz-include-once($name) {
   @if (list.index($xyz-included, $name) == null) {
     $xyz-included: append($xyz-included, $name) !global;
     @content;
@@ -110,7 +114,7 @@
   $delay: xyz-fallback-var('delay', $mode, 0s);
   $stagger-delay: xyz-fallback-var('stagger', $mode, 0s);
   $index: var(--xyz-index, 0);
-  $iterations: xyz-fallback-var('iterations', $mode);
+  $iterations: xyz-fallback-var('iterations', $mode, 1);
 
   $direction: normal;
   @if $mode == 'out' {
@@ -128,8 +132,20 @@
     !important;
 }
 
+@mixin xyz-in() {
+  @include xyz-animation('in')
+}
+
+@mixin xyz-out() {
+  @include xyz-animation('out')
+}
+
+@mixin xyz-appear() {
+  @include xyz-animation('appear')
+}
+
 @mixin xyz($context: '') {
-  $words: str-split($context);
+  $words: xyz-str-split($context);
 
   @extend [xyz];
   @each $word in $words {
