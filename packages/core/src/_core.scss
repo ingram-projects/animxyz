@@ -39,7 +39,7 @@
       --xyz-scale-default: #{xyz-utility-scale('50')};
     }
 
-    .xyz-appear, .xyz-in, .xyz-out, .xyz-nested {
+    .xyz-appear, .xyz-in, .xyz-out, .xyz-nested, .xyz-appear-nested, .xyz-in-nested, .xyz-out-nested {
       @for $i from 1 through $xyz-index-levels {
         &:nth-child(#{$i}) {
           --xyz-index: #{$i - 1};
