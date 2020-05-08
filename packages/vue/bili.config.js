@@ -3,8 +3,8 @@ import pkg from './package.json'
 const banner = `/**
  * VueAnimXyz v${pkg.version}
  * Copyright (c) 2020-present Ingram Projects
- * ${pkg.homepage}
  * Released under the ${pkg.license} License.
+ * ${pkg.homepage}
  */
 `
 
