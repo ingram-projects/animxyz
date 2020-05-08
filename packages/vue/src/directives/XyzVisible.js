@@ -6,14 +6,15 @@ function clearIntersectionObserver(el) {
 }
 
 function updateDirective(el, binding) {
-	const { container = null, threshold = 0.5, margin = '0', once = true } = binding.value
+	const options = binding.value || {}
+	const { threshold = 0.5, once = true, margin, container } = options
 
 	const thresholds = [0, threshold]
 
 	const intersectionObserverOptions = {
 		root: container,
 		rootMargin: margin,
-		thresholds,
+		threshold: thresholds,
 	}
 
 	clearIntersectionObserver(el)
@@ -21,7 +22,6 @@ function updateDirective(el, binding) {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				if (entry.intersectionRatio >= threshold) {
-					el.classList.add('xyz-in', 'xyz-appear')
 					if (once) {
 						clearIntersectionObserver(el)
 					}
