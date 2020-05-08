@@ -38,9 +38,9 @@
       }
     }
 
-    @include xyz-make-keyframes('greyscale') using ($mode) {
+    @include xyz-make-keyframes('grayscale') using ($mode) {
       from {
-        filter: greyscale(#{xyz-fallback-var('greyscale', $mode, 100%)});
+        filter: grayscale(#{xyz-fallback-var('grayscale', $mode, 100%)});
       }
     }
   }
