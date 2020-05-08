@@ -32,11 +32,11 @@
       --xyz-stagger-default: #{xyz-utility-time('3')};
       --xyz-iterations-default: 1;
 
-      --xyz-fade-default: #{xyz-utility-fade('10')};
+      --xyz-fade-default: #{xyz-utility-fade('100')};
 
       --xyz-translate-default: #{xyz-utility-translation('3')};
       --xyz-rotate-default: #{xyz-utility-rotation('3')};
-      --xyz-scale-default: #{xyz-utility-scale('3')};
+      --xyz-scale-default: #{xyz-utility-scale('50')};
     }
 
     .xyz-appear, .xyz-in, .xyz-out, .xyz-nested {
