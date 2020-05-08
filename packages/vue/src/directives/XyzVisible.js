@@ -7,14 +7,22 @@ function clearIntersectionObserver(el) {
 
 function updateDirective(el, binding) {
 	const options = binding.value || {}
-	const { threshold = 0.5, once = true, margin, container } = options
+	const { appear = true, once = true, threshold = 1, margin, container } = options
 
-	const thresholds = [0, threshold]
+	function resetClasses() {
+		el.classList.remove('xyz-in', 'xyz-appear')
+		el.classList.add('xyz-paused', 'xyz-in')
+		if (appear) {
+			el.classList.add('xyz-appear')
+		}
+	}
+
+	resetClasses()
 
 	const intersectionObserverOptions = {
 		root: container,
 		rootMargin: margin,
-		threshold: thresholds,
+		threshold: [0, threshold],
 	}
 
 	clearIntersectionObserver(el)
@@ -22,12 +30,13 @@ function updateDirective(el, binding) {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				if (entry.intersectionRatio >= threshold) {
+					el.classList.remove('xyz-paused')
 					if (once) {
 						clearIntersectionObserver(el)
 					}
 				}
 			} else {
-				el.classList.remove('xyz-in', 'xyz-appear')
+				resetClasses()
 			}
 		})
 	}, intersectionObserverOptions)

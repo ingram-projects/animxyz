@@ -54,6 +54,10 @@
         position: absolute !important;
       }
 
+      &.xyz-paused, &.xyz-#{$mode}-paused {
+        animation-play-state: paused !important;
+      }
+
       &.xyz-none, &.xyz-#{$mode}-none {
         animation: initial !important;
       }
