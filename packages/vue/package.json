@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "publishConfig": {
     "access": "public"
   },
@@ -45,7 +45,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@animxyz/core": "^0.0.8",
+    "@animxyz/core": "^0.0.9",
     "clsx": "^1.1.0",
     "lodash": "^4.17.15"
   },
