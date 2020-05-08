@@ -1,12 +1,10 @@
 @use 'sass:list';
 @use 'sass:map';
 
-$xyz-modes: ['in', 'out', 'appear']; // Appear must come last for specificity
+$xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
 $xyz-modes-all: list.join(['all'], $xyz-modes);
 
-$xyz-include-css: true !default;
-$xyz-include-core: true !default;
-$xyz-include-utilities: true !default;
+$xyz-included: ();
 
 $xyz-index-levels: 20 !default;
 
@@ -15,39 +13,39 @@ $xyz-utility-eases: (
   'linear': linear,
 
   'in': ease-in,
-  'in-quad': cubic-bezier(0.550, 0.085, 0.680, 0.530),
-  'in-cubic': cubic-bezier(0.550, 0.055, 0.675, 0.190),
-  'in-quart': cubic-bezier(0.895, 0.030, 0.685, 0.220),
-  'in-quint': cubic-bezier(0.755, 0.050, 0.855, 0.060),
-  'in-sine': cubic-bezier(0.470, 0.000, 0.745, 0.715),
-  'in-expo': cubic-bezier(0.950, 0.050, 0.795, 0.035),
-  'in-circ': cubic-bezier(0.600, 0.040, 0.980, 0.335),
+  // 'in-quad': cubic-bezier(0.550, 0.085, 0.680, 0.530),
+  // 'in-cubic': cubic-bezier(0.550, 0.055, 0.675, 0.190),
+  // 'in-quart': cubic-bezier(0.895, 0.030, 0.685, 0.220),
+  // 'in-quint': cubic-bezier(0.755, 0.050, 0.855, 0.060),
+  // 'in-sine': cubic-bezier(0.470, 0.000, 0.745, 0.715),
+  // 'in-expo': cubic-bezier(0.950, 0.050, 0.795, 0.035),
+  // 'in-circ': cubic-bezier(0.600, 0.040, 0.980, 0.335),
   'in-back': cubic-bezier(0.600, -0.280, 0.735, 0.045),
 
   'out': ease-out,
-  'out-quad': cubic-bezier(0.250, 0.460, 0.450, 0.940),
-  'out-cubic': cubic-bezier(0.215, 0.610, 0.355, 1.000),
-  'out-quart': cubic-bezier(0.165, 0.840, 0.440, 1.000),
-  'out-quint': cubic-bezier(0.230, 1.000, 0.320, 1.000),
-  'out-sine': cubic-bezier(0.390, 0.575, 0.565, 1.000),
-  'out-expo': cubic-bezier(0.190, 1.000, 0.220, 1.000),
-  'out-circ': cubic-bezier(0.075, 0.820, 0.165, 1.000),
+  // 'out-quad': cubic-bezier(0.250, 0.460, 0.450, 0.940),
+  // 'out-cubic': cubic-bezier(0.215, 0.610, 0.355, 1.000),
+  // 'out-quart': cubic-bezier(0.165, 0.840, 0.440, 1.000),
+  // 'out-quint': cubic-bezier(0.230, 1.000, 0.320, 1.000),
+  // 'out-sine': cubic-bezier(0.390, 0.575, 0.565, 1.000),
+  // 'out-expo': cubic-bezier(0.190, 1.000, 0.220, 1.000),
+  // 'out-circ': cubic-bezier(0.075, 0.820, 0.165, 1.000),
   'out-back': cubic-bezier(0.175, 0.885, 0.320, 1.275),
 
   'in-out': ease-in-out,
-  'in-out-quad': cubic-bezier(0.455, 0.030, 0.515, 0.955),
-  'in-out-cubic': cubic-bezier(0.645, 0.045, 0.355, 1.000),
-  'in-out-quart': cubic-bezier(0.770, 0.000, 0.175, 1.000),
-  'in-out-quint': cubic-bezier(0.860, 0.000, 0.070, 1.000),
-  'in-out-sine': cubic-bezier(0.445, 0.050, 0.550, 0.950),
-  'in-out-expo': cubic-bezier(1.000, 0.000, 0.000, 1.000),
-  'in-out-circ': cubic-bezier(0.785, 0.135, 0.150, 0.860),
-  'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550)
+  // 'in-out-quad': cubic-bezier(0.455, 0.030, 0.515, 0.955),
+  // 'in-out-cubic': cubic-bezier(0.645, 0.045, 0.355, 1.000),
+  // 'in-out-quart': cubic-bezier(0.770, 0.000, 0.175, 1.000),
+  // 'in-out-quint': cubic-bezier(0.860, 0.000, 0.070, 1.000),
+  // 'in-out-sine': cubic-bezier(0.445, 0.050, 0.550, 0.950),
+  // 'in-out-expo': cubic-bezier(1.000, 0.000, 0.000, 1.000),
+  // 'in-out-circ': cubic-bezier(0.785, 0.135, 0.150, 0.860),
+  'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550),
 ) !default;
 
 $xyz-utility-times: (
   '0': 0s,
-  '1': .15s,
+  '1': .1s,
   '2': .2s,
   '3': .3s,
   '4': .5s,
@@ -55,63 +53,44 @@ $xyz-utility-times: (
   '6': 1s,
   '7': 1.5s,
   '8': 2s,
-  '9': 3s,
-  '10': 5s
 ) !default;
 
 $xyz-utility-fades: (
-  '0': 0,
-  '1': .1,
-  '2': .2,
-  '3': .3,
-  '4': .4,
-  '5': .5,
-  '6': .6,
-  '7': .7,
-  '8': .8,
-  '9': .9,
-  '10': 1
+'0': 0,
+'25': .25,
+'50': .5,
+'75': .75,
+'100': 1,
 ) !default;
 
 $xyz-utility-translations: (
   '0': 0px,
-  '1': 15px,
+  '1': 10px,
   '2': 20px,
   '3': 30px,
-  '4': 50px,
-  '5': 75px,
-  '6': 100px,
-  '7': 150px,
-  '8': 200px,
-  '9': 300px,
-  '10': 500px,
-  '100': 100%
+  '4': 40px,
+  '25': 25%,
+  '50': 50%,
+  '75': 75%,
+  '100': 100%,
 ) !default;
 
 $xyz-utility-rotations: (
   '0': 0turn,
-  '1': .03turn,
-  '2': .05turn,
-  '3': .075turn,
-  '4': .1turn,
-  '5': .15turn,
-  '6': .2turn,
-  '7': .3turn,
-  '8': .5turn,
-  '9': .75turn,
-  '10': 1turn
+  '1': .05turn,
+  '2': .1turn,
+  '3': .15turn,
+  '4': .2turn,
+  '25': .25turn,
+  '50': .50turn,
+  '75': .75turn,
+  '100': 1turn,
 ) !default;
 
 $xyz-utility-scales: (
   '0': 0,
-  '1': .1,
-  '2': .2,
-  '3': .3,
-  '4': .4,
-  '5': .5,
-  '6': .6,
-  '7': .7,
-  '8': .8,
-  '9': .9,
-  '10': 1
+  '25': .25,
+  '50': .5,
+  '75': .75,
+  '100': 1,
 ) !default;

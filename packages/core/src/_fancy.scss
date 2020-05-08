@@ -1,0 +1,47 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
+@mixin xyz-fancy () {
+  @include include-once('fancy') {
+    @include xyz-make-keyframes('expand-w') using ($mode) {
+      from {
+        max-width: 0;
+        overflow: hidden;
+      }
+      to {
+        max-width: xyz-fallback-var('max-width', $mode, 100vw);
+        overflow: hidden;
+      }
+    }
+
+    @include xyz-make-keyframes('expand-h') using ($mode) {
+      from {
+        max-height: 0;
+        overflow: hidden;
+      }
+      to {
+        max-height: xyz-fallback-var('max-height', $mode, 100vh);
+        overflow: hidden;
+      }
+    }
+
+    @include xyz-make-keyframes('stroke') using ($mode) {
+      from {
+        stroke-dashoffset: xyz-fallback-var('stroke-length', $mode, 100);
+        stroke-dasharray: xyz-fallback-var('stroke-length', $mode, 100);
+      }
+    }
+
+    @include xyz-make-keyframes('blur') using ($mode) {
+      from {
+        filter: blur(#{xyz-fallback-var('blur', $mode, 10px)});
+      }
+    }
+
+    @include xyz-make-keyframes('greyscale') using ($mode) {
+      from {
+        filter: greyscale(#{xyz-fallback-var('greyscale', $mode, 100%)});
+      }
+    }
+  }
+}

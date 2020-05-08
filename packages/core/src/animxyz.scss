@@ -7,6 +7,16 @@
   xyz-mode-name,
   xyz-fallback-var;
 
-@use 'core';
-@use 'utilities';
-@use 'keyframes';
+@forward 'core';
+@forward 'utilities';
+@forward 'fancy';
+
+@use 'core' as *;
+@use 'utilities' as *;
+@use 'fancy' as *;
+
+@mixin xyz-all() {
+  @include xyz-core;
+  @include xyz-utilities;
+  @include xyz-fancy;
+}

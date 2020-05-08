@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:list';
 @use 'variables' as *;
 
 @function str-split($string, $separator: ' ') {
@@ -51,6 +52,13 @@
 
 @function xyz-utility-scale($level: '0') {
   @return map.get($xyz-utility-scales, $level);
+}
+
+@mixin include-once($name) {
+  @if (list.index($xyz-included, $name) == null) {
+    $xyz-included: append($xyz-included, $name) !global;
+    @content;
+  }
 }
 
 @mixin xyz-set-all($val: initial) {
