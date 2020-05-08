@@ -34,13 +34,13 @@
 
     @include xyz-make-keyframes('blur') using ($mode) {
       from {
-        filter: blur(#{xyz-fallback-var('blur', $mode, 10px)});
+        filter: #{'blur'}(#{xyz-fallback-var('blur', $mode, 10px)});
       }
     }
 
     @include xyz-make-keyframes('grayscale') using ($mode) {
       from {
-        filter: grayscale(#{xyz-fallback-var('grayscale', $mode, 100%)});
+        filter: #{'grayscale'}(#{xyz-fallback-var('grayscale', $mode, 100%)});
       }
     }
   }
