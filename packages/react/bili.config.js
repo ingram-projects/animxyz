@@ -1,6 +1,6 @@
 import pkg from './package.json'
 
-const moduleName = 'VueAnimXyz'
+const moduleName = 'ReactAnimXyz'
 
 const banner = `/**
  * ${moduleName} v${pkg.version}

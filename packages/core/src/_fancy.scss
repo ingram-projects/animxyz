@@ -5,6 +5,7 @@
   @include xyz-include-once('fancy') {
     @include xyz-make-keyframes('expand-w') using ($mode) {
       from {
+        opacity: xyz-fallback-var('fade', $mode, 1);
         max-width: 0;
         overflow: hidden;
       }
@@ -16,6 +17,7 @@
 
     @include xyz-make-keyframes('expand-h') using ($mode) {
       from {
+        opacity: xyz-fallback-var('fade', $mode, 1);
         max-height: 0;
         overflow: hidden;
       }
@@ -27,6 +29,7 @@
 
     @include xyz-make-keyframes('stroke') using ($mode) {
       from {
+        opacity: xyz-fallback-var('fade', $mode, 1);
         stroke-dashoffset: xyz-fallback-var('stroke-length', $mode, 100);
         stroke-dasharray: xyz-fallback-var('stroke-length', $mode, 100);
       }
@@ -34,12 +37,14 @@
 
     @include xyz-make-keyframes('blur') using ($mode) {
       from {
+        opacity: xyz-fallback-var('fade', $mode, 1);
         filter: #{'blur'}(#{xyz-fallback-var('blur', $mode, 10px)});
       }
     }
 
     @include xyz-make-keyframes('grayscale') using ($mode) {
       from {
+        opacity: xyz-fallback-var('fade', $mode, 1);
         filter: #{'grayscale'}(#{xyz-fallback-var('grayscale', $mode, 100%)});
       }
     }
