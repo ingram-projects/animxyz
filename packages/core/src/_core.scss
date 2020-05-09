@@ -44,6 +44,9 @@
         &:nth-child(#{$i}) {
           --xyz-index: #{$i - 1};
         }
+        &:nth-last-child(#{$i}) {
+          --xyz-index-rev: #{$i - 1};
+        }
       }
     }
 

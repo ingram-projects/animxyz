@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use "sass:meta";
 @use 'sass:list';
 @use 'variables' as *;
 
@@ -72,6 +73,7 @@
     --xyz-#{xyz-mode-name('duration', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('delay', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('stagger', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('stagger-rev', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('iterations', $mode)}: #{$val};
 
     --xyz-#{xyz-mode-name('fade', $mode)}: #{$val};
@@ -91,6 +93,36 @@
   --xyz-#{xyz-mode-name('delay', 'move')}: #{$val};
 }
 
+@mixin xyz-make-variable-utilities($name, $var, $default-val, $utility-map, $transform-func: null, $modes: $xyz-modes-all) {
+  @each $mode in $modes {
+    $class-name: xyz-mode-name($name, $mode);
+    $var-name: xyz-mode-name($var, $mode);
+    [xyz~=#{$class-name}] {
+      --xyz-#{$var-name}: #{$default-val};
+    }
+    @each $level, $val in $utility-map {
+      $val: map.get($utility-map, $level);
+      [xyz~=#{$class-name}-#{$level}] {
+        @if $transform-func {
+          --xyz-#{$var-name}: #{meta.call($transform-func, $val)};
+        } @else {
+          --xyz-#{$var-name}: #{$val};
+        }
+      }
+    }
+  }
+}
+
+@mixin xyz-make-keyframes-utilities($name) {
+  @each $mode in $xyz-modes {
+    $mode-name: xyz-mode-name($name, $mode);
+
+    [xyz~=#{$name}], [xyz~=#{$mode-name}] {
+      --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
+    }
+  }
+}
+
 @mixin xyz-make-keyframes($name, $make-utilities: true) {
   @each $mode in $xyz-modes {
     $mode-name: xyz-mode-name($name, $mode);
@@ -98,12 +130,10 @@
     @keyframes xyz-#{$mode-name} {
       @content($mode);
     }
+  }
 
-    @if $make-utilities {
-      [xyz~=#{$name}], [xyz~=#{$mode-name}] {
-        --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
-      }
-    }
+  @if $make-utilities {
+    @include xyz-make-keyframes-utilities($name);
   }
 }
 
@@ -112,9 +142,12 @@
   $duration: xyz-fallback-var('duration', $mode);
   $ease: xyz-fallback-var('ease', $mode);
   $delay: xyz-fallback-var('delay', $mode, 0s);
-  $stagger-delay: xyz-fallback-var('stagger', $mode, 0s);
-  $index: var(--xyz-index, 0);
+  $stagger: xyz-fallback-var('stagger', $mode, 0s);
+  $stagger-rev: xyz-fallback-var('stagger-rev', $mode, 0s);
   $iterations: xyz-fallback-var('iterations', $mode, 1);
+
+  $index: var(--xyz-index, 0);
+  $index-rev: var(--xyz-index-rev, 0);
 
   $direction: normal;
   @if $mode == 'out' {
@@ -125,7 +158,7 @@
     #{$keyframes}
     #{$duration}
     #{$ease}
-    calc(#{$delay} + #{$stagger-delay} * #{$index})
+    calc(#{$delay} + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev})
     #{$iterations}
     #{$direction}
     both

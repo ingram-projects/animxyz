@@ -10,7 +10,12 @@
   xyz-include-once;
 
 @forward 'core';
-@forward 'utilities';
+
+@forward 'utilities' hide
+  xyz-negative-val,
+  xyz-one-minus-val,
+  xyz-one-plus-val;
+
 @forward 'fancy';
 
 @use 'core' as *;
