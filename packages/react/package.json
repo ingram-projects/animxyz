@@ -47,7 +47,8 @@
   "dependencies": {
     "@animxyz/core": "^0.0.16",
     "clsx": "^1.1.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
     "react": "^2.0.0"

@@ -1,4 +1,4 @@
-import { xyzTransitionProps } from './xyzTransitionUtils'
+import xyzTransitionProps from './xyzTransitionProps'
 
 export default {
 	name: 'XyzTransitionGroup',

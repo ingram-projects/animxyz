@@ -1,4 +1,4 @@
-export const xyzTransitionProps = {
+export default {
 	name: 'xyz',
 	appearClass: 'xyz-in-from xyz-appear-from',
 	appearActiveClass: 'xyz-in xyz-appear',
@@ -9,16 +9,4 @@ export const xyzTransitionProps = {
 	leaveClass: 'xyz-out-from',
 	leaveActiveClass: 'xyz-out',
 	leaveToClass: 'xyz-out-to',
-}
-
-export function getXyzAttrs(attrs) {
-	const xyzAttrs = {}
-	if (attrs) {
-		for (const [attrKey, attrValue] of Object.entries(attrs)) {
-			if (attrKey === 'xyz' || attrKey.startsWith('xyz-')) {
-				xyzAttrs[attrKey] = attrValue
-			}
-		}
-	}
-	return xyzAttrs
 }

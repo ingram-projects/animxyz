@@ -1,4 +1,4 @@
-import { xyzTransitionProps, getXyzAttrs } from './xyzTransitionUtils'
+import xyzTransitionProps from './xyzTransitionProps'
 import defaultsDeep from 'lodash/defaultsDeep'
 
 export default {
@@ -13,16 +13,15 @@ export default {
 			},
 		}
 
-		const xyzAttrs = getXyzAttrs(data.attrs)
-		if (Object.keys(xyzAttrs).length) {
-			context.children.forEach((child) => {
-				defaultsDeep(child, {
-					data: {
-						attrs: xyzAttrs,
+		context.children.forEach((child) => {
+			defaultsDeep(child, {
+				data: {
+					attrs: {
+						xyz: data.attrs?.xyz,
 					},
-				})
+				},
 			})
-		}
+		})
 
 		return createElement('transition', data, context.children)
 	},

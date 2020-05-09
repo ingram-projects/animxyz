@@ -1,5 +1,5 @@
-export XyzTransition from './components/XyzTransition'
-export XyzTransitionGroup from './components/XyzTransitionGroup'
+export { default as XyzTransition } from './components/XyzTransition'
+export { default as XyzTransitionGroup } from './components/XyzTransitionGroup'
 
-export XyzContext from './components/XyzContext'
-export XyzVisible from './components/XyzVisible'
+export { default as xyz } from './components/XyzContext'
+export { default as XyzVisible } from './components/XyzVisible'
