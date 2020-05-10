@@ -3,7 +3,8 @@ module.exports = {
 	env: {
 		node: true,
 	},
-	extends: ['plugin:react/recommended', 'eslint:recommended'],
+	extends: ['react-app', 'eslint:recommended', 'prettier'],
+	plugins: ['react', 'prettier'],
 	parserOptions: {
 		parser: 'babel-eslint',
 	},

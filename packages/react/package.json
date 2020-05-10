@@ -38,11 +38,11 @@
   "jsdelivr": "dist/ReactAnimXyz.js",
   "cdn": "dist/ReactAnimXyz.js",
   "scripts": {
-    "//build": "run-s build:clean build:main",
-    "//build:clean": "rimraf dist",
-    "//build:main": "bili",
-    "//lint": "",
-    "//precommit": "lint-staged"
+    "build": "run-s build:clean build:main",
+    "build:clean": "rimraf dist",
+    "build:main": "bili",
+    "lint": "eslint src --fix",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "@animxyz/core": "^0.0.16",
@@ -51,17 +51,18 @@
     "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
-    "react": "^2.0.0"
+    "react": "^16.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
     "bili": "^4.10.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.19.0",
     "lint-staged": "^10.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
     "rimraf": "^3.0.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2"

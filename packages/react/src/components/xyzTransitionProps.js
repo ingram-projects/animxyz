@@ -8,7 +8,7 @@ export default {
 	exit: 'xyz-out-from',
 	exitActive: 'xyz-out',
 	exitDone: 'xyz-out-to',
-	addEndListener (node, done) {
+	addEndListener(node, done) {
 		node.addEventListener('animationend', done, false)
 	},
 }
