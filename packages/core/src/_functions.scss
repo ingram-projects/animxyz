@@ -43,6 +43,10 @@
   @return map.get($xyz-utility-iterations, $level);
 }
 
+@function xyz-utility-origin($level: 'center') {
+  @return map.get($xyz-utility-origins, $level);
+}
+
 @function xyz-utility-fade($level: '0') {
   @return map.get($xyz-utility-fades, $level);
 }
@@ -68,13 +72,16 @@
 
 @mixin xyz-set-all($val: initial) {
   @each $mode in $xyz-modes-all {
-    --xyz-#{xyz-mode-name('ease', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('keyframes', $mode)}: #{$val};
 
+    --xyz-#{xyz-mode-name('ease', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('duration', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('delay', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('stagger', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('stagger-rev', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('iterations', $mode)}: #{$val};
+
+    --xyz-#{xyz-mode-name('origin', $mode)}: #{$val};
 
     --xyz-#{xyz-mode-name('fade', $mode)}: #{$val};
 
@@ -82,10 +89,12 @@
     --xyz-#{xyz-mode-name('translate-x', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('translate-y', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('translate-z', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('rotate', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('scale', $mode)}: #{$val};
-
-    --xyz-#{xyz-mode-name('keyframes', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('rotate-x', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('rotate-y', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('rotate-z', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('scale-x', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('scale-y', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('scale-z', $mode)}: #{$val};
   }
 
   --xyz-#{xyz-mode-name('ease', 'move')}: #{$val};
@@ -93,20 +102,22 @@
   --xyz-#{xyz-mode-name('delay', 'move')}: #{$val};
 }
 
-@mixin xyz-make-variable-utilities($name, $var, $default-val, $utility-map, $transform-func: null, $modes: $xyz-modes-all) {
+@mixin xyz-make-variable-utilities($name, $vars, $default-val, $utility-map, $transform-func: null, $modes: $xyz-modes-all) {
   @each $mode in $modes {
     $class-name: xyz-mode-name($name, $mode);
-    $var-name: xyz-mode-name($var, $mode);
     [xyz~=#{$class-name}] {
-      --xyz-#{$var-name}: #{$default-val};
+      @each $var in $vars {
+        --xyz-#{xyz-mode-name($var, $mode)}: #{$default-val};
+      }
     }
     @each $level, $val in $utility-map {
       $val: map.get($utility-map, $level);
+      @if $transform-func {
+        $val: meta.call($transform-func, $val);
+      }
       [xyz~=#{$class-name}-#{$level}] {
-        @if $transform-func {
-          --xyz-#{$var-name}: #{meta.call($transform-func, $val)};
-        } @else {
-          --xyz-#{$var-name}: #{$val};
+        @each $var in $vars {
+          --xyz-#{xyz-mode-name($var, $mode)}: #{$val};
         }
       }
     }
@@ -145,6 +156,7 @@
   $stagger: xyz-fallback-var('stagger', $mode, 0s);
   $stagger-rev: xyz-fallback-var('stagger-rev', $mode, 0s);
   $iterations: xyz-fallback-var('iterations', $mode, 1);
+  $origin: xyz-fallback-var('origin', $mode, center);
 
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
@@ -153,6 +165,10 @@
   @if $mode == 'out' {
     $direction: reverse;
   }
+
+  transform-origin: #{$origin};
+  transform-style: preserve-3d;
+  backface-visibility: visible;
 
   animation:
     #{$keyframes}

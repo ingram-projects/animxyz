@@ -108,3 +108,15 @@ $xyz-utility-scales: (
   '75': .75,
   '100': 1,
 ) !default;
+
+$xyz-utility-origins: (
+ 'center': 'center',
+ 'top': 'top',
+ 'bottom': 'bottom',
+ 'left': 'left',
+ 'right': 'right',
+ 'top-left': 'top left',
+ 'top-right': 'top right',
+ 'bottom-left': 'bottom left',
+ 'bottom-right': 'bottom right',
+) !default;

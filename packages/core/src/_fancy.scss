@@ -3,7 +3,7 @@
 
 @mixin xyz-fancy () {
   @include xyz-include-once('fancy') {
-    @include xyz-make-keyframes('expand-w') using ($mode) {
+    @include xyz-make-keyframes('expand-width') using ($mode) {
       from {
         opacity: xyz-fallback-var('fade', $mode, 1);
         max-width: 0;
@@ -15,7 +15,7 @@
       }
     }
 
-    @include xyz-make-keyframes('expand-h') using ($mode) {
+    @include xyz-make-keyframes('expand-height') using ($mode) {
       from {
         opacity: xyz-fallback-var('fade', $mode, 1);
         max-height: 0;
