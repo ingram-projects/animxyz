@@ -4,15 +4,16 @@ import xyzTransitionProps from './xyzTransitionProps'
 
 export default function (props) {
 	const { component, childFactory, xyz, children, ...rest } = props
-	const childrenArray = Children.toArray(children)
+
+	const newChildren = Children.toArray(children).map((child) => (
+		<CSSTransition {...xyzTransitionProps} key={child.key} {...rest}>
+			{child}
+		</CSSTransition>
+	))
 
 	return (
 		<TransitionGroup component={component} childFactory={childFactory} xyz={xyz}>
-			{childrenArray.map((child) => (
-				<CSSTransition {...xyzTransitionProps} key={child.key} {...rest}>
-					{child}
-				</CSSTransition>
-			))}
+			{newChildren}
 		</TransitionGroup>
 	)
 }
