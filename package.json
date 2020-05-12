@@ -19,7 +19,9 @@
       "packages/*",
       "examples/*"
     ],
-    "nohoist": ["**/react"]
+    "nohoist": [
+      "**/react"
+    ]
   },
   "scripts": {
     "build": "lerna run build",

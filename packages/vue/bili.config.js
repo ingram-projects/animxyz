@@ -43,4 +43,5 @@ module.exports = {
 		}
 		return config
 	},
+	external: ['vue'],
 }

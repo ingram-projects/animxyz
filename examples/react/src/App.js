@@ -1,5 +1,5 @@
 import React from 'react'
-import { XyzTransitionGroup } from '../../src'
+import { XyzTransitionGroup } from '@animxyz/react'
 
 function App() {
 	return (
