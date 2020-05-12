@@ -14,9 +14,13 @@
     "url": "git+https://github.com/milesingrams/animxyz.git"
   },
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*"
+    ],
+    "nohoist": ["**/react"]
+  },
   "scripts": {
     "build": "lerna run build",
     "lint": "lerna run lint",

@@ -1,0 +1,30 @@
+{
+  "name": "@animxyz/react-examples",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint src --fix",
+    "precommit": "lint-staged",
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "@animxyz/react": "^0.0.18",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "lint-staged": "^10.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.5",
+    "react-scripts": "^3.4.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "yarn run lint",
+      "git add"
+    ]
+  }
+}
