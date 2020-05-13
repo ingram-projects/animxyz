@@ -11,6 +11,7 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "react-scripts": "^3.4.1"
   }
 }

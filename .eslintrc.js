@@ -6,11 +6,10 @@ module.exports = {
 	extends: ['eslint:recommended', 'prettier'],
 	plugins: ['prettier'],
 	parserOptions: {
-		parser: 'babel-eslint',
+		ecmaVersion: 9,
+		sourceType: 'module',
 	},
 	rules: {
-		'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'prettier/prettier': [
 			'warn',
 			{

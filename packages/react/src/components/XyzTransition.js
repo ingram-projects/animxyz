@@ -1,8 +1,9 @@
 import React, { Children, cloneElement } from 'react'
+import PropTypes from 'prop-types'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import xyzTransitionProps from './xyzTransitionProps'
 
-export default function (props) {
+function XyzTransition(props) {
 	const { state, mode, xyz, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
@@ -19,3 +20,12 @@ export default function (props) {
 
 	return <SwitchTransition mode={mode}>{newChildren}</SwitchTransition>
 }
+
+XyzTransition.propTypes = {
+	state: PropTypes.string.isRequired,
+	xyz: PropTypes.string,
+	...SwitchTransition.propTypes,
+	...CSSTransition.propTypes,
+}
+
+export default XyzTransition

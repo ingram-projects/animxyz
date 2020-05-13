@@ -1,8 +1,9 @@
 import React, { Children } from 'react'
+import PropTypes from 'prop-types'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import xyzTransitionProps from './xyzTransitionProps'
 
-export default function (props) {
+function XyzTransitionGroup(props) {
 	const { component, childFactory, xyz, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
@@ -18,3 +19,11 @@ export default function (props) {
 		</TransitionGroup>
 	)
 }
+
+XyzTransitionGroup.propTypes = {
+	xyz: PropTypes.string,
+	...TransitionGroup.propTypes,
+	...CSSTransition.propTypes,
+}
+
+export default XyzTransitionGroup
