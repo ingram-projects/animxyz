@@ -4,7 +4,7 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import xyzTransitionProps from './xyzTransitionProps'
 
 function XyzTransition(props) {
-	const { state, mode, xyz, children, ...rest } = props
+	const { xyz, state, mode, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
@@ -22,10 +22,12 @@ function XyzTransition(props) {
 }
 
 XyzTransition.propTypes = {
-	state: PropTypes.string.isRequired,
-	xyz: PropTypes.string,
-	...SwitchTransition.propTypes,
 	...CSSTransition.propTypes,
+	...SwitchTransition.propTypes,
+	state: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
+	children: PropTypes.node,
+	timeout: PropTypes.number,
+	xyz: PropTypes.string,
 }
 
 export default XyzTransition
