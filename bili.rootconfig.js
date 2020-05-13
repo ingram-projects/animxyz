@@ -1,5 +1,3 @@
-/*eslint-env es6*/
-
 module.exports = function (pkg) {
   const banner = `/**
    * ${pkg.moduleName} v${pkg.version}
