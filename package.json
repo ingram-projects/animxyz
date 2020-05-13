@@ -35,16 +35,22 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.5",
     "lerna": "^3.20.2",
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
+    "*.{js,jsx,ts,tsx,vue}": [
       "yarn run lint"
+    ],
+    "*.{json,md,css,scss}": [
+      "prettier --write"
     ]
   }
 }
