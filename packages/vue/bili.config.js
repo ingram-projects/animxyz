@@ -43,5 +43,5 @@ module.exports = {
 		}
 		return config
 	},
-	external: ['vue'],
+	external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
 }

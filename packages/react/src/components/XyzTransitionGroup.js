@@ -5,7 +5,8 @@ import xyzTransitionProps from './xyzTransitionProps'
 export default function (props) {
 	const { component, childFactory, xyz, children, ...rest } = props
 
-	const newChildren = Children.toArray(children).map((child) => (
+	const childArray = Children.toArray(children).filter(Boolean)
+	const newChildren = childArray.map((child) => (
 		<CSSTransition {...xyzTransitionProps} key={child.key} {...rest}>
 			{child}
 		</CSSTransition>

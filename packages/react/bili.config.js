@@ -43,5 +43,5 @@ module.exports = {
 		}
 		return config
 	},
-	external: ['react', 'react-dom'],
+	external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
 }
