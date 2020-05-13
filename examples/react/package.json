@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "@animxyz/react": "^0.0.18",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "sass": "^1.26.5"
   }
 }
