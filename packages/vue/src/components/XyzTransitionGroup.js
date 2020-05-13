@@ -9,7 +9,7 @@ export default {
 			attrs: {
 				...xyzTransitionProps,
 				moveClass: 'xyz-move',
-				...context.data.attrs,
+				...context.data?.attrs,
 			},
 		}
 

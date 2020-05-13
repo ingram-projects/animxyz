@@ -45,8 +45,7 @@
   },
   "dependencies": {
     "@animxyz/core": "^0.0.18",
-    "clsx": "^1.1.0",
-    "lodash": "^4.17.15"
+    "clsx": "^1.1.0"
   },
   "peerDependencies": {
     "vue": ">=2.0.0"

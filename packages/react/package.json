@@ -46,7 +46,6 @@
   "dependencies": {
     "@animxyz/core": "^0.0.18",
     "clsx": "^1.1.0",
-    "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.1"
   },
