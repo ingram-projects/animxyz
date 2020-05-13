@@ -32,6 +32,7 @@
     "dist",
     "src"
   ],
+  "moduleName": "ReactAnimXyz",
   "main": "dist/ReactAnimXyz.cjs.js",
   "module": "dist/ReactAnimXyz.esm.js",
   "unpkg": "dist/ReactAnimXyz.js",
