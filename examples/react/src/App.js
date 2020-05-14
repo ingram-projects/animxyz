@@ -21,10 +21,10 @@ function App() {
 				{toggled && <button onClick={toggle}>Untoggle</button>}
 			</XyzTransition>
 
-			{[...Array(500)].map((e, index) => {
+			{[...Array(100)].map((e, index) => {
 				return (
 					<XyzVisible key={index} xyz="fade turn-ccw duration-10">
-						<div>hasdsadhasd</div>
+						<div>Visible</div>
 					</XyzVisible>
 				)
 			})}

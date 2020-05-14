@@ -37,7 +37,7 @@ function updateDirective(el, binding) {
 				if (entry.intersectionRatio >= threshold) {
 					show(entry.target)
 					if (once) {
-						clearIntersectionObserver()
+						clearIntersectionObserver(entry.target)
 					}
 				}
 			} else {

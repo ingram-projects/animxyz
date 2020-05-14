@@ -8,6 +8,8 @@
 			<button v-if="!toggled" @click="toggle" key="untoggle">Toggle</button>
 			<button v-if="toggled" @click="toggle" key="toggle">Untoggle</button>
 		</xyz-transition>
+
+		<div v-for="index in 100" v-xyz-visible xyz="fade turn-ccw duration-10" :key="index">Visible</div>
 	</div>
 </template>
 
