@@ -9,14 +9,20 @@ function updateDirective(el, binding) {
 	const options = binding.value || {}
 	const { appear = true, once = true, threshold = 1, margin, container } = options
 
-	function addXyzClasses() {
-		el.classList.add('xyz-paused', 'xyz-in')
+	function show(el) {
+		el.style.visibility = 'visible'
+		el.classList.add('xyz-in')
 		if (appear) {
 			el.classList.add('xyz-appear')
 		}
 	}
 
-	addXyzClasses()
+	function hide(el) {
+		el.style.visibility = 'hidden'
+		el.classList.remove('xyz-in', 'xyz-appear')
+	}
+
+	hide(el)
 
 	const intersectionObserverOptions = {
 		root: container,
@@ -29,18 +35,17 @@ function updateDirective(el, binding) {
 		entries.forEach((entry) => {
 			if (entry.isIntersecting) {
 				if (entry.intersectionRatio >= threshold) {
-					el.classList.remove('xyz-paused')
+					show(entry.target)
 					if (once) {
-						clearIntersectionObserver(el)
+						clearIntersectionObserver()
 					}
 				}
 			} else {
-				el.classList.remove('xyz-in', 'xyz-appear')
-				el.offsetWidth
-				addXyzClasses()
+				hide(entry.target)
 			}
 		})
 	}, intersectionObserverOptions)
+
 	el.intersectionObserver.observe(el)
 }
 

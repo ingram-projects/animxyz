@@ -1,26 +1,4 @@
-import xyzTransitionProps from './xyzTransitionProps'
-
-function getXyzAttr(vNode) {
-	return vNode.data?.attrs?.xyz
-}
-
-function getXyzDirective(vNode) {
-	return vNode.data?.directives?.find((directive) => {
-		return directive.name === 'xyz'
-	})
-}
-
-function setXyzAttr(vNode, xyzAttr) {
-	if (!vNode.data) vNode.data = {}
-	if (!vNode.data.attrs) vNode.data.attrs = {}
-	vNode.data.attrs.xyz = xyzAttr
-}
-
-function setXyzDirective(vNode, xyzDirective) {
-	if (!vNode.data) vNode.data = {}
-	if (!vNode.data.directives) vNode.data.directives = []
-	vNode.data.directives.push(xyzDirective)
-}
+import { xyzTransitionProps, getVNodeAttr, getVNodeDirective, setVNodeAttr, setVNodeDirective } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransition',
@@ -34,17 +12,15 @@ export default {
 			},
 		}
 
-		const xyzAttr = getXyzAttr(context)
-		const xyzDirective = getXyzDirective(context)
+		const xyzAttr = getVNodeAttr(context, 'xyz')
+		const xyzDirective = getVNodeDirective(context, 'xyz')
 
 		context.children.forEach((child) => {
-			const childXyzAttr = getXyzAttr(child)
-			if (xyzAttr && !childXyzAttr) {
-				setXyzAttr(child, xyzAttr)
+			if (xyzAttr) {
+				setVNodeAttr(child, 'xyz', xyzAttr)
 			}
-			const childXyzDirective = getXyzDirective(child)
-			if (xyzDirective && !childXyzDirective) {
-				setXyzDirective(child, xyzDirective)
+			if (xyzDirective) {
+				setVNodeDirective(child, 'xyz', xyzDirective)
 			}
 		})
 

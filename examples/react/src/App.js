@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { XyzTransition, XyzTransitionGroup } from '@animxyz/react'
+import { XyzTransition, XyzTransitionGroup, XyzVisible } from '@animxyz/react'
 
 function App() {
 	const [toggled, setToggled] = useState(false)
@@ -20,6 +20,14 @@ function App() {
 				{!toggled && <button onClick={toggle}>Toggle</button>}
 				{toggled && <button onClick={toggle}>Untoggle</button>}
 			</XyzTransition>
+
+			{[...Array(500)].map((e, index) => {
+				return (
+					<XyzVisible key={index} xyz="fade turn-ccw duration-10">
+						<div>hasdsadhasd</div>
+					</XyzVisible>
+				)
+			})}
 		</div>
 	)
 }

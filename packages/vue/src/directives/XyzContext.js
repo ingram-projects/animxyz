@@ -1,13 +1,13 @@
-import clsx from 'clsx'
+import { xyz } from '../xyzUtils'
 
 function updateDirective(el, binding) {
-	const xyz = clsx(el.staticXyz?.split(' '), binding.value)
-	el.setAttribute('xyz', xyz)
+	const xyzAttr = xyz(el.xyzStatic?.split(' '), binding.value)
+	el.setAttribute('xyz', xyzAttr)
 }
 
 export default {
 	bind(el, binding) {
-		el.staticXyz = el.getAttribute('xyz')
+		el.xyzStatic = el.getAttribute('xyz')
 		updateDirective(el, binding)
 	},
 	update(el, binding) {

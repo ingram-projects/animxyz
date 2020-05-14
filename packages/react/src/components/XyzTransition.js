@@ -1,7 +1,7 @@
 import React, { Children, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import xyzTransitionProps from './xyzTransitionProps'
+import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzTransition(props) {
 	const { xyz, state, mode, children, ...rest } = props

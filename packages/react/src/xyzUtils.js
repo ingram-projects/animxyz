@@ -1,4 +1,6 @@
-export default {
+export { default as xyz } from 'clsx'
+
+export const xyzTransitionProps = {
 	classNames: {
 		appear: 'xyz-appear-from',
 		appearActive: 'xyz-appear',

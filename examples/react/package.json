@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start"
+    "start": "PORT=8080 SKIP_PREFLIGHT_CHECK=true react-scripts start"
   },
   "dependencies": {
     "@animxyz/react": "^0.0.18",
