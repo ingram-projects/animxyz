@@ -17,7 +17,7 @@ function App() {
 			</XyzTransitionGroup>
 
 			<XyzTransition appear state={toggled} mode="out-in" xyz="fade down duration-10">
-				{!toggled && <button onClick={toggle}>Toggle</button>}
+				{!toggled && <button onClick={toggle} xyz="fade flip-left">Toggle</button>}
 				{toggled && <button onClick={toggle}>Untoggle</button>}
 			</XyzTransition>
 

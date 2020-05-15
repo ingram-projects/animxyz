@@ -12,9 +12,11 @@ function XyzTransition(props) {
 		throw new Error('XyzTransition must have a single truthy child at all times')
 	}
 
+	const child = childArray[0]
+
 	const newChildren = (
 		<CSSTransition {...xyzTransitionProps} key={state}>
-			{cloneElement(childArray[0], { xyz })}
+			{cloneElement(child, { xyz, ...child.props })}
 		</CSSTransition>
 	)
 

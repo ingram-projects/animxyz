@@ -1,41 +1,40 @@
 import { Children, useRef, useEffect, createElement, cloneElement } from 'react'
 import PropTypes from 'prop-types'
+import { xyzTransitionClasses } from '../xyzUtils'
 
 function XyzTransitionVisible(props) {
-	const {
-		xyz,
-		appear = true,
-		once = true,
-		container,
-		margin,
-		threshold = 1,
-		component = 'div',
-		children,
-		...rest
-	} = props
+	const { xyz, once = true, container, margin, threshold = 1, component = 'div', children, ...rest } = props
 
 	const intersectionObserverRef = useRef(null)
 	const childrenRefs = useRef(new Set())
 
 	function showElem(el) {
 		el.style.visibility = 'visible'
-		el.classList.add('xyz-in')
-		if (appear) {
-			el.classList.add('xyz-appear')
-		}
+		el.classList.add(xyzTransitionClasses.enterActive)
 	}
 
 	function hideElem(el) {
 		el.style.visibility = 'hidden'
-		el.classList.remove('xyz-in', 'xyz-appear')
+		el.classList.remove(xyzTransitionClasses.enterActive)
+	}
+
+	function addElemRef(el) {
+		childrenRefs.current.add(el)
+		if (intersectionObserverRef.current) {
+			intersectionObserverRef.current.observe(el)
+		}
+	}
+
+	function removeElemRef(el) {
+		childrenRefs.current.remove(el)
+		if (intersectionObserverRef.current) {
+			intersectionObserverRef.current.unobserve(el)
+		}
 	}
 
 	function elemCallbackRef(el) {
 		if (el) {
-			childrenRefs.current.add(el)
-			if (intersectionObserverRef.current) {
-				intersectionObserverRef.current.observe(el)
-			}
+			addElemRef(el)
 		}
 	}
 
@@ -59,7 +58,7 @@ function XyzTransitionVisible(props) {
 					if (entry.intersectionRatio >= threshold) {
 						showElem(entry.target)
 						if (once) {
-							intersectionObserverRef.current.unobserve(entry.target)
+							removeElemRef(entry.target)
 						}
 					}
 				} else {
@@ -88,7 +87,6 @@ function XyzTransitionVisible(props) {
 
 XyzTransitionVisible.propTypes = {
 	xyz: PropTypes.string,
-	appear: PropTypes.bool,
 	once: PropTypes.bool,
 	threshold: PropTypes.number,
 	margin: PropTypes.string,
