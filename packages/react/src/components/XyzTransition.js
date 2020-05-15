@@ -1,10 +1,14 @@
 import React, { Children, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import useXyzAppearVisible from '../hooks/xyzAppearVisible'
 import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzTransition(props) {
-	const { xyz, state, mode, children } = props
+	const { xyz, appear, appearVisible, state, mode, children, ...rest } = props
+
+	const computedAppear = appearVisible ? false : appear
+	const appearVisibleChildProps = useXyzAppearVisible(appearVisible)
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
@@ -15,8 +19,8 @@ function XyzTransition(props) {
 	const child = childArray[0]
 
 	const newChildren = (
-		<CSSTransition {...xyzTransitionProps} key={state}>
-			{cloneElement(child, { xyz, ...child.props })}
+		<CSSTransition appear={computedAppear} {...xyzTransitionProps} {...rest} key={state}>
+			{cloneElement(child, { xyz, ...appearVisibleChildProps, ...child.props })}
 		</CSSTransition>
 	)
 
