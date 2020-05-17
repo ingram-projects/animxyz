@@ -1,12 +1,16 @@
-import { Children, cloneElement } from 'react'
+import React, { Children, useRef, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
 import useXyzVisible from '../hooks/useXyzVisible'
+import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzVisible(props) {
 	const { xyz, once, container, margin, threshold, children, ...rest } = props
 
-	const xyzVisibleChildProps = useXyzVisible({
+	const ref = useRef(null)
+
+	const visible = useXyzVisible({
+		ref,
 		once,
 		container,
 		margin,
@@ -15,12 +19,22 @@ function XyzVisible(props) {
 
 	const child = Children.only(children)
 
-	return cloneElement(child, { xyz, ...xyzVisibleChildProps, ...rest, ...child.props })
+	const style = {
+		...child.props.style,
+		visibility: visible || 'hidden',
+	}
+
+	return (
+		<CSSTransition in={visible} {...xyzTransitionProps} {...rest}>
+			{cloneElement(child, { xyz, ref, style, ...child.props })}
+		</CSSTransition>
+	)
 }
 
 XyzVisible.propTypes = {
 	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
+	timeout: PropTypes.number,
 	once: PropTypes.bool,
 	container: PropTypes.node,
 	margin: PropTypes.string,

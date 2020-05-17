@@ -1,21 +1,10 @@
-import { useRef, useEffect } from 'react'
-import { xyzTransitionClasses } from '../xyzUtils'
+import { useState, useRef, useEffect } from 'react'
 
 function useXyzVisible(props) {
-	const { once = true, container, margin, threshold = 1 } = props
+	const { ref, once = true, container, margin, threshold = 1 } = props
 
+	const [visible, setVisible] = useState(false)
 	const intersectionObserverRef = useRef(null)
-	const elemRef = useRef(null)
-
-	function showElem(el) {
-		el.style.visibility = 'visible'
-		el.classList.add(xyzTransitionClasses.enterActive, xyzTransitionClasses.appearActive)
-	}
-
-	function hideElem(el) {
-		el.style.visibility = 'hidden'
-		el.classList.remove(xyzTransitionClasses.enterActive, xyzTransitionClasses.appearActive)
-	}
 
 	function clearIntersectionObserver() {
 		if (intersectionObserverRef.current) {
@@ -35,13 +24,13 @@ function useXyzVisible(props) {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					if (entry.intersectionRatio >= threshold) {
-						showElem(entry.target)
+						setVisible(true)
 						if (once) {
 							clearIntersectionObserver()
 						}
 					}
-				} else {
-					hideElem(entry.target)
+				} else if (!once) {
+					setVisible(false)
 				}
 			})
 		}, intersectionObserverOptions)
@@ -52,12 +41,12 @@ function useXyzVisible(props) {
 	}, [once, container, margin, threshold])
 
 	useEffect(() => {
-		if (elemRef.current) {
-			intersectionObserverRef.current.observe(elemRef.current)
+		if (ref.current && intersectionObserverRef.current) {
+			intersectionObserverRef.current.observe(ref.current)
 		}
-	}, [elemRef.current, intersectionObserverRef.current])
+	}, [ref.current, intersectionObserverRef.current])
 
-	return { ref: elemRef, style: { visibility: 'hidden' } }
+	return visible
 }
 
 export default useXyzVisible

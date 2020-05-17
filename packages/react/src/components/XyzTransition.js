@@ -14,21 +14,21 @@ function XyzTransition(props) {
 
 	const child = childArray[0]
 
-	const newChildren = (
-		<CSSTransition {...xyzTransitionProps} {...rest} key={state}>
-			{cloneElement(child, { xyz, ...child.props })}
-		</CSSTransition>
+	return (
+		<SwitchTransition mode={mode}>
+			<CSSTransition {...xyzTransitionProps} {...rest} key={state}>
+				{cloneElement(child, { xyz, ...child.props })}
+			</CSSTransition>
+		</SwitchTransition>
 	)
-
-	return <SwitchTransition mode={mode}>{newChildren}</SwitchTransition>
 }
 
 XyzTransition.propTypes = {
-	...CSSTransition.propTypes,
 	...SwitchTransition.propTypes,
+	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
-	state: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 	timeout: PropTypes.number,
+	state: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 	children: PropTypes.node,
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { XyzTransition, XyzTransitionGroup, XyzVisible } from '@animxyz/react'
+import { XyzTransition, XyzTransitionGroup, XyzTransitionVisible } from '@animxyz/react'
 
 function App() {
 	const [toggled, setToggled] = useState(false)
@@ -23,9 +23,9 @@ function App() {
 
 			{[...Array(100)].map((e, index) => {
 				return (
-					<XyzVisible xyz="fade down duration-10" key={index}>
+					<XyzTransitionVisible xyz="fade down duration-10" key={index}>
 						<div>Visible</div>
-					</XyzVisible>
+					</XyzTransitionVisible>
 				)
 			})}
 		</div>

@@ -8,22 +8,20 @@ function XyzTransitionGroup(props) {
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
-	const newChildren = childArray.map((child) => (
-		<CSSTransition {...xyzTransitionProps} key={child.key}>
-			{child}
-		</CSSTransition>
-	))
-
 	return (
 		<TransitionGroup xyz={xyz} {...rest}>
-			{newChildren}
+			{childArray.map((child) => (
+				<CSSTransition {...xyzTransitionProps} key={child.key}>
+					{child}
+				</CSSTransition>
+			))}
 		</TransitionGroup>
 	)
 }
 
 XyzTransitionGroup.propTypes = {
-	...CSSTransition.propTypes,
 	...TransitionGroup.propTypes,
+	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
 	timeout: PropTypes.number,
 	children: PropTypes.node,
