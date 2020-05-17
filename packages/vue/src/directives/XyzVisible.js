@@ -6,8 +6,7 @@ function clearIntersectionObserver(el) {
 }
 
 function updateDirective(el, binding) {
-	const options = binding.value || {}
-	const { appear = true, once = true, threshold = 1, margin, container } = options
+	const { appear = true, once = true, threshold = 1, margin, container } = binding.value
 
 	function show(el) {
 		el.style.visibility = 'visible'

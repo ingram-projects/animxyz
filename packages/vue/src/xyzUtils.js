@@ -1,16 +1,29 @@
 export { default as xyz } from 'clsx'
 
+export const xyzTransitionClasses = {
+	appearFrom: 'xyz-appear-from',
+	appearActive: 'xyz-appear',
+	appearTo: 'xyz-appear-to',
+	enterFrom: 'xyz-in-from',
+	enterActive: 'xyz-in',
+	enterTo: 'xyz-in-to',
+	leaveFrom: 'xyz-out-from',
+	leaveActive: 'xyz-out',
+	leaveTo: 'xyz-out-to',
+	move: 'xyz-move',
+}
+
 export const xyzTransitionProps = {
 	name: 'xyz',
-	appearClass: 'xyz-in-from xyz-appear-from',
-	appearActiveClass: 'xyz-in xyz-appear',
-	appearToClass: 'xyz-in-to xyz-appear-to',
-	enterClass: 'xyz-in-from',
-	enterActiveClass: 'xyz-in',
-	enterToClass: 'xyz-in-to',
-	leaveClass: 'xyz-out-from',
-	leaveActiveClass: 'xyz-out',
-	leaveToClass: 'xyz-out-to',
+	appearClass: `${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
+	appearActiveClass: `${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
+	appearToClass: `${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
+	enterClass: xyzTransitionClasses.enterFrom,
+	enterActiveClass: xyzTransitionClasses.enterActive,
+	enterToClass: xyzTransitionClasses.enterTo,
+	leaveClass: xyzTransitionClasses.leaveFrom,
+	leaveActiveClass: xyzTransitionClasses.leaveActive,
+	leaveToClass: xyzTransitionClasses.leaveTo,
 }
 
 export function getVNodeAttr(vNode, name) {

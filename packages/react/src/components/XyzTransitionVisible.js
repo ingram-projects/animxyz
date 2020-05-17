@@ -1,21 +1,54 @@
-import React, { Children, useRef, cloneElement } from 'react'
+import React, { Children, useState, useRef, useEffect, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
-import useXyzVisible from '../hooks/useXyzVisible'
 import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzVisible(props) {
-	const { xyz, once, container, margin, threshold, children, ...rest } = props
+	const { xyz, once = true, container, margin, threshold = 1, children, ...rest } = props
 
+	const [visible, setVisible] = useState(false)
 	const ref = useRef(null)
+	const intersectionObserverRef = useRef(null)
 
-	const visible = useXyzVisible({
-		ref,
-		once,
-		container,
-		margin,
-		threshold,
-	})
+	function clearIntersectionObserver() {
+		if (intersectionObserverRef.current) {
+			intersectionObserverRef.current.disconnect()
+			intersectionObserverRef.current = null
+		}
+	}
+
+	useEffect(() => {
+		const intersectionObserverOptions = {
+			root: container,
+			rootMargin: margin,
+			threshold: [0, threshold],
+		}
+
+		intersectionObserverRef.current = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					if (entry.intersectionRatio >= threshold) {
+						setVisible(true)
+						if (once) {
+							clearIntersectionObserver()
+						}
+					}
+				} else if (!once) {
+					setVisible(false)
+				}
+			})
+		}, intersectionObserverOptions)
+
+		return () => {
+			clearIntersectionObserver()
+		}
+	}, [once, container, margin, threshold])
+
+	useEffect(() => {
+		if (ref.current && intersectionObserverRef.current) {
+			intersectionObserverRef.current.observe(ref.current)
+		}
+	}, [ref.current, intersectionObserverRef.current])
 
 	const childArray = Children.toArray(children).filter(Boolean)
 

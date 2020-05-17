@@ -1,4 +1,4 @@
-import { xyzTransitionProps } from '../xyzUtils'
+import { xyzTransitionClasses, xyzTransitionProps } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransitionGroup',
@@ -8,7 +8,7 @@ export default {
 			...context.data,
 			attrs: {
 				...xyzTransitionProps,
-				moveClass: 'xyz-move',
+				moveClass: xyzTransitionClasses.move,
 				...context.data?.attrs,
 			},
 		}
