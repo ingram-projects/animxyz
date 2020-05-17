@@ -17,7 +17,13 @@ function XyzVisible(props) {
 		threshold,
 	})
 
-	const child = Children.only(children)
+	const childArray = Children.toArray(children).filter(Boolean)
+
+	if (childArray.length !== 1) {
+		throw new Error('XyzTransitionVisible must have a single truthy child at all times')
+	}
+
+	const child = childArray[0]
 
 	const style = {
 		...child.props.style,
