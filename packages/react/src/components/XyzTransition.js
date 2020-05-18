@@ -1,10 +1,10 @@
 import React, { Children, cloneElement } from 'react'
 import PropTypes from 'prop-types'
-import { CSSTransition, SwitchTransition } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzTransition(props) {
-	const { xyz, state, mode, children, ...rest } = props
+	const { xyz, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
@@ -15,20 +15,16 @@ function XyzTransition(props) {
 	const child = childArray[0]
 
 	return (
-		<SwitchTransition mode={mode}>
-			<CSSTransition {...xyzTransitionProps} {...rest} key={state}>
-				{cloneElement(child, { xyz, ...child.props })}
-			</CSSTransition>
-		</SwitchTransition>
+		<CSSTransition {...xyzTransitionProps} {...rest}>
+			{cloneElement(child, { xyz, ...child.props })}
+		</CSSTransition>
 	)
 }
 
 XyzTransition.propTypes = {
-	...SwitchTransition.propTypes,
 	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
 	timeout: PropTypes.number,
-	state: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 	children: PropTypes.node,
 }
 

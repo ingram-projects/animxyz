@@ -1,25 +1,30 @@
 import React, { useState } from 'react'
-import { XyzTransition, XyzTransitionGroup, XyzTransitionVisible } from '@animxyz/react'
+import { XyzTransition, XyzTransitionGroup, XyzTransitionSwitch, XyzTransitionVisible } from '@animxyz/react'
+
+const switchStates = ['one', 'two', 'three', 'four', 'five']
 
 function App() {
-	const [toggled, setToggled] = useState(false)
+	const [switchState, setSwitchState] = useState(switchStates[0])
 
-	function toggle () {
-		setToggled(!toggled)
+	function randomState () {
+		setSwitchState(switchStates[Math.floor(Math.random() * switchStates.length)])
 	}
 
 	return (
 		<div>
+			<XyzTransition appear in={true} xyz="fade down duration-10">
+				<div>Appear</div>
+			</XyzTransition>
+
 			<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
 				{[...Array(5)].map((e, index) => {
 					return <div key={index}>Hello</div>
 				})}
 			</XyzTransitionGroup>
 
-			<XyzTransition appear state={toggled} mode="out-in" xyz="fade down duration-10">
-				{!toggled && <button onClick={toggle} xyz="fade flip-left">Toggle</button>}
-				{toggled && <button onClick={toggle}>Untoggle</button>}
-			</XyzTransition>
+			<XyzTransitionSwitch appear state={switchState} mode="out-in" xyz="fade down duration-10">
+				<button onClick={randomState} xyz="fade flip-left">State {switchState}</button>
+			</XyzTransitionSwitch>
 
 			{[...Array(100)].map((e, index) => {
 				return (

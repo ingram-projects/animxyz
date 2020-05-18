@@ -1,7 +1,6 @@
 import React, { Children } from 'react'
-import PropTypes from 'prop-types'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { xyzTransitionProps } from '../xyzUtils'
+import { TransitionGroup } from 'react-transition-group'
+import XyzTransition from './XyzTransition'
 
 function XyzTransitionGroup(props) {
 	const { xyz, children, ...rest } = props
@@ -11,9 +10,7 @@ function XyzTransitionGroup(props) {
 	return (
 		<TransitionGroup xyz={xyz} {...rest}>
 			{childArray.map((child) => (
-				<CSSTransition {...xyzTransitionProps} key={child.key}>
-					{child}
-				</CSSTransition>
+				<XyzTransition key={child.key}>{child}</XyzTransition>
 			))}
 		</TransitionGroup>
 	)
@@ -21,10 +18,7 @@ function XyzTransitionGroup(props) {
 
 XyzTransitionGroup.propTypes = {
 	...TransitionGroup.propTypes,
-	...CSSTransition.propTypes,
-	xyz: PropTypes.string,
-	timeout: PropTypes.number,
-	children: PropTypes.node,
+	...XyzTransition.propTypes,
 }
 
 export default XyzTransitionGroup
