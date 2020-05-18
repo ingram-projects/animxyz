@@ -25,7 +25,4 @@ export const xyzTransitionProps = {
 		exitActive: xyzTransitionClasses.leaveActive,
 		exitDone: xyzTransitionClasses.leaveTo,
 	},
-	addEndListener(node, done) {
-		node.addEventListener('animationend', done, false)
-	},
 }

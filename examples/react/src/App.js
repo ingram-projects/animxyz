@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { XyzTransition, XyzTransitionGroup, XyzTransitionSwitch, XyzTransitionVisible } from '@animxyz/react'
+import { XyzTransitionGroup, XyzTransitionSwitch, XyzTransitionVisible } from '@animxyz/react'
 
 const switchStates = ['one', 'two', 'three', 'four', 'five']
 
@@ -12,18 +12,14 @@ function App() {
 
 	return (
 		<div>
-			<XyzTransition appear in={true} xyz="fade down duration-10">
-				<div>Appear</div>
-			</XyzTransition>
-
 			<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
 				{[...Array(5)].map((e, index) => {
 					return <div key={index}>Hello</div>
 				})}
 			</XyzTransitionGroup>
 
-			<XyzTransitionSwitch appear state={switchState} mode="out-in" xyz="fade down duration-10">
-				<button onClick={randomState} xyz="fade flip-left">State {switchState}</button>
+			<XyzTransitionSwitch appear mode="out-in" xyz="fade down duration-10">
+				<button onClick={randomState} xyz="fade flip-left" key={switchState}>State {switchState}</button>
 			</XyzTransitionSwitch>
 
 			{[...Array(100)].map((e, index) => {

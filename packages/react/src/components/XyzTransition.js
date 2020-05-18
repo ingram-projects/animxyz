@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group'
 import { xyzTransitionProps } from '../xyzUtils'
 
 function XyzTransition(props) {
-	const { xyz, children, ...rest } = props
+	const { xyz, timeout, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
@@ -14,8 +14,15 @@ function XyzTransition(props) {
 
 	const child = childArray[0]
 
+	let addEndListener
+	if (timeout === undefined) {
+		addEndListener = (node, done) => {
+			node.addEventListener('animationend', done, false)
+		}
+	}
+
 	return (
-		<CSSTransition {...xyzTransitionProps} {...rest}>
+		<CSSTransition timeout={timeout} addEndListener={addEndListener} {...xyzTransitionProps} {...rest}>
 			{cloneElement(child, { xyz, ...child.props })}
 		</CSSTransition>
 	)

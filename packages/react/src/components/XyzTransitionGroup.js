@@ -3,22 +3,24 @@ import { TransitionGroup } from 'react-transition-group'
 import XyzTransition from './XyzTransition'
 
 function XyzTransitionGroup(props) {
-	const { xyz, children, ...rest } = props
+	const { xyz, component, childFactory, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
 	return (
-		<TransitionGroup xyz={xyz} {...rest}>
+		<TransitionGroup xyz={xyz} component={component} childFactory={childFactory}>
 			{childArray.map((child) => (
-				<XyzTransition key={child.key}>{child}</XyzTransition>
+				<XyzTransition {...rest} key={child.key}>
+					{child}
+				</XyzTransition>
 			))}
 		</TransitionGroup>
 	)
 }
 
 XyzTransitionGroup.propTypes = {
-	...TransitionGroup.propTypes,
 	...XyzTransition.propTypes,
+	...TransitionGroup.propTypes,
 }
 
 export default XyzTransitionGroup
