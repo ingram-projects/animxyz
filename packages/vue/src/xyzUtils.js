@@ -26,26 +26,33 @@ export const xyzTransitionProps = {
 	leaveToClass: xyzTransitionClasses.leaveTo,
 }
 
-export function getVNodeAttr(vNode, name) {
-	return vNode.data?.attrs?.[name]
-}
+export function mergeData(data1 = {}, data2 = {}) {
+	const merged = {
+		...data1,
+		...data2,
+	}
 
-export function getVNodeDirective(vNode, name) {
-	return vNode.data?.directives?.find((directive) => {
-		return directive.name === name
-	})
-}
+	if (data1.attrs || data2.attrs) {
+		merged.attrs = {
+			...data1.attrs,
+			...data2.attrs,
+		}
+	}
 
-export function setVNodeAttr(vNode, name, value) {
-	if (getVNodeAttr(vNode, name)) return
-	if (!vNode.data) vNode.data = {}
-	if (!vNode.data.attrs) vNode.data.attrs = {}
-	vNode.data.attrs[name] = value
-}
+	if (data1.style || data2.style) {
+		merged.style = {
+			...data1.style,
+			...data2.style,
+		}
+	}
 
-export function setVNodeDirective(vNode, name, value) {
-	if (getVNodeDirective(vNode, name)) return
-	if (!vNode.data) vNode.data = {}
-	if (!vNode.data.directives) vNode.data.directives = []
-	vNode.data.directives.push(value)
+	if (data1.directives || data2.directives) {
+		merged.directives = [...(data1.directives || []), ...(data2.directives || [])]
+	}
+
+	if (data1.key || data2.key) {
+		merged.key = data1.key || '' + data2.key || ''
+	}
+
+	return merged
 }

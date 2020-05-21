@@ -1,29 +1,31 @@
-import { xyzTransitionProps, getVNodeAttr, getVNodeDirective, setVNodeAttr, setVNodeDirective } from '../xyzUtils'
+import { xyzTransitionProps, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransition',
-	functional: true,
-	render(createElement, context) {
-		const data = {
-			...context.data,
-			attrs: {
-				...xyzTransitionProps,
-				...context.data?.attrs,
+	render(createElement) {
+		const data = mergeData(
+			{
+				attrs: {
+					...xyzTransitionProps,
+					mode: 'out-in',
+				},
 			},
-		}
+			this.$vnode.data
+		)
 
-		const xyzAttr = getVNodeAttr(context, 'xyz')
-		const xyzDirective = getVNodeDirective(context, 'xyz')
-
-		context.children.forEach((child) => {
-			if (xyzAttr) {
-				setVNodeAttr(child, 'xyz', xyzAttr)
-			}
-			if (xyzDirective) {
-				setVNodeDirective(child, 'xyz', xyzDirective)
-			}
+		const children = this.$slots.default.map((child) => {
+			const childData = mergeData(
+				{
+					attrs: {
+						xyz: data.attrs.xyz,
+					},
+					directives: data.directives,
+				},
+				child.data
+			)
+			return createElement(child.tag, childData, child.children)
 		})
 
-		return createElement('transition', data, context.children)
+		return createElement('transition', data, children)
 	},
 }

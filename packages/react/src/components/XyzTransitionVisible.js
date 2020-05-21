@@ -9,6 +9,12 @@ function XyzVisible(props) {
 	const ref = useRef(null)
 	const intersectionObserverRef = useRef(null)
 
+	function updateElem() {
+		if (intersectionObserverRef.current && ref.current) {
+			intersectionObserverRef.current.observe(ref.current)
+		}
+	}
+
 	function clearIntersectionObserver() {
 		if (intersectionObserverRef.current) {
 			intersectionObserverRef.current.disconnect()
@@ -38,16 +44,16 @@ function XyzVisible(props) {
 			})
 		}, intersectionObserverOptions)
 
+		updateElem()
+
 		return () => {
 			clearIntersectionObserver()
 		}
 	}, [once, container, margin, threshold])
 
 	useEffect(() => {
-		if (ref.current && intersectionObserverRef.current) {
-			intersectionObserverRef.current.observe(ref.current)
-		}
-	}, [ref.current, intersectionObserverRef.current])
+		updateElem()
+	}, [ref.current])
 
 	const childArray = Children.toArray(children).filter(Boolean)
 

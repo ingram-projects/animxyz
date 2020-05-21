@@ -1,18 +1,18 @@
-import { xyzTransitionClasses, xyzTransitionProps } from '../xyzUtils'
+import { xyzTransitionClasses, xyzTransitionProps, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransitionGroup',
-	functional: true,
-	render(createElement, context) {
-		const data = {
-			...context.data,
-			attrs: {
-				...xyzTransitionProps,
-				moveClass: xyzTransitionClasses.move,
-				...context.data?.attrs,
+	render(createElement) {
+		const data = mergeData(
+			{
+				attrs: {
+					...xyzTransitionProps,
+					moveClass: xyzTransitionClasses.move,
+				},
 			},
-		}
+			this.$vnode.data
+		)
 
-		return createElement('transition-group', data, context.children)
+		return createElement('transition-group', data, this.$slots.default)
 	},
 }
