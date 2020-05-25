@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/core",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "publishConfig": {
     "access": "public"
   },
