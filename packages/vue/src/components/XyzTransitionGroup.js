@@ -2,7 +2,8 @@ import { xyzTransitionClasses, xyzTransitionProps, mergeData } from '../xyzUtils
 
 export default {
 	name: 'XyzTransitionGroup',
-	render(createElement) {
+	functional: true,
+	render(createElement, context) {
 		const data = mergeData(
 			{
 				attrs: {
@@ -10,9 +11,9 @@ export default {
 					moveClass: xyzTransitionClasses.move,
 				},
 			},
-			this.$vnode.data
+			context.data
 		)
 
-		return createElement('transition-group', data, this.$slots.default)
+		return createElement('transition-group', data, context.children)
 	},
 }

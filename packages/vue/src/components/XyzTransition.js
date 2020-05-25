@@ -2,7 +2,8 @@ import { xyzTransitionProps, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransition',
-	render(createElement) {
+	functional: true,
+	render(createElement, context) {
 		const data = mergeData(
 			{
 				attrs: {
@@ -10,10 +11,10 @@ export default {
 					mode: 'out-in',
 				},
 			},
-			this.$vnode.data
+			context.data
 		)
 
-		const children = this.$slots.default.map((child) => {
+		const children = context.children.map((child) => {
 			const childData = mergeData(
 				{
 					attrs: {
