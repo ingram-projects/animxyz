@@ -14,8 +14,8 @@ export default {
 			context.data
 		)
 
-		const children = context.children.map((child) => {
-			const childData = mergeData(
+		context.children.forEach((child) => {
+			child.data = mergeData(
 				{
 					attrs: {
 						xyz: data.attrs.xyz,
@@ -24,9 +24,8 @@ export default {
 				},
 				child.data
 			)
-			return createElement(child.tag, childData, child.children)
 		})
 
-		return createElement('transition', data, children)
+		return createElement('transition', data, context.children)
 	},
 }
