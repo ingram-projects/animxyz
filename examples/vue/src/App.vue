@@ -4,28 +4,25 @@
 			<div v-for="index in 5" :key="index">Hello</div>
 		</xyz-transition-group>
 
-		<xyz-transition appear mode="out-in" xyz="fade turn-ccw duration-10" v-xyz="['big-100']">
-			<button v-if="!toggled" @click="toggle" key="untoggle">Toggle</button>
-			<button v-if="toggled" @click="toggle" key="toggle">Untoggle</button>
+		<xyz-transition appear mode="out-in" xyz="fade turn-cw duration-10" v-xyz="['big-100']">
+			<button @click="randomState" :key="switchState">State {{ switchState }}</button>
 		</xyz-transition>
-
-		<xyz-transition-visible v-for="index in 100" xyz="fade turn-ccw duration-10" v-xyz="['big-100']" :key="index">
-			<div>Visible</div>
-		</xyz-transition-visible>
 	</div>
 </template>
 
 <script>
+const switchStates = ['one', 'two', 'three', 'four', 'five']
+
 export default {
 	name: 'App',
 	data() {
 		return {
-			toggled: false,
+			switchState: switchStates[0],
 		}
 	},
 	methods: {
-		toggle() {
-			this.toggled = !this.toggled
+		randomState() {
+			this.switchState = switchStates[Math.floor(Math.random() * switchStates.length)]
 		},
 	},
 }

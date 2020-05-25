@@ -1,6 +1,5 @@
 import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
-import XyzTransitionVisible from './components/XyzTransitionVisible'
 
 import XyzContext from './directives/XyzContext'
 
@@ -9,7 +8,6 @@ const VueAnimXyz = {
 	install(Vue) {
 		Vue.component('xyz-transition', XyzTransition)
 		Vue.component('xyz-transition-group', XyzTransitionGroup)
-		Vue.component('xyz-transition-visible', XyzTransitionVisible)
 
 		Vue.directive('xyz', XyzContext)
 	},

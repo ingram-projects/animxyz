@@ -31,7 +31,7 @@
       from {
         opacity: xyz-fallback-var('fade', $mode, 1);
         stroke-dashoffset: xyz-fallback-var('stroke-length', $mode, 100);
-        stroke-dasharray: xyz-fallback-var('stroke-length', $mode, 100);
+        stroke-dasharray: xyz-fallback-var('stroke-length', $mode, 100) xyz-fallback-var('stroke-length', $mode, 100);
       }
     }
 
