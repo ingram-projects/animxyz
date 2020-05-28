@@ -1,0 +1,85 @@
+html, body {
+  font-family: $font-stack;
+  color: $textGray;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+}
+
+p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
+  margin: 0;
+  transition: color .3s $ease-in-out;
+}
+
+textarea {
+  display: block;
+}
+
+label {
+  line-height: 1.25rem;
+}
+
+.list--no-style {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.text--white {
+  color: white !important;
+}
+
+.text--xsmall {
+  font-size: $fs-xsmall !important;
+}
+
+.text--small {
+  font-size: $fs-small !important;
+}
+
+.text--normal {
+  font-size: $fs-normal !important;
+}
+
+.text--medium {
+  font-size: $fs-medium !important;
+}
+
+.text--large {
+  font-size: $fs-large !important;
+}
+
+.text--xlarge {
+  font-size: $fs-xlarge !important;
+}
+
+.text--xxlarge {
+  font-size: $fs-xxlarge !important;
+}
+
+.fw--normal {
+  font-weight: $fw-normal !important;
+}
+
+.fw--medium {
+  font-weight: $fw-medium !important;
+}
+
+.fw--bold {
+  font-weight: $fw-bold !important;
+}
+
+.fw--boldest {
+  font-weight: $fw-boldest !important;
+}
+
+.td-underline {
+  text-decoration: underline !important;
+}
+
+.text--nowrap {
+  white-space: nowrap !important;
+}

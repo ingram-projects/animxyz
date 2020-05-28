@@ -1,0 +1,106 @@
+// BREAKPOINTS -------------------------------------
+
+$breakpoints: (
+  'small': 375px,
+  'phone': 540px,
+  'tablet': 768px,
+  'laptop': 1024px,
+  'desktop': 1248px,
+  'large': 1440px,
+  'x-large': 2000px
+);
+
+// FONT SIZE -------------------------------------
+
+$fs-xsmall: .75rem;
+$fs-small: .875rem;
+$fs-normal: 1rem;
+$fs-medium: 1.25rem;
+$fs-large: 1.5rem;
+$fs-xlarge: 2rem;
+$fs-xxlarge: 3rem;
+
+// FONT WEIGHTS -------------------------------------
+
+$fw-normal: 500;
+$fw-medium: 600;
+$fw-bold: 700;
+$fw-boldest: 800;
+
+// BORDER RADIUS -------------------------------------
+
+$br-s: 2px;
+$br-m: 4px;
+$br-l: 6px;
+$br-xl: 8px;
+
+// SPACING -------------------------------------
+
+$spacing-xxxs: .25rem;
+$spacing-xxs: .5rem;
+$spacing-xs: .75rem;
+$spacing-s: 1rem;
+$spacing-m: 1.5rem;
+$spacing-l: 2rem;
+$spacing-xl: 3rem;
+$spacing-xxl: 4rem;
+$spacing-xxxl: 6rem;
+
+// Z-INDEX -------------------------------------
+
+$z-back: -6;
+$z-backward-5: -5;
+$z-backward-4: -4;
+$z-backward-3: -3;
+$z-backward-2: -2;
+$z-backward-1: -1;
+$z-none: 0;
+$z-forward-1: 1;
+$z-forward-2: 2;
+$z-forward-3: 3;
+$z-forward-4: 4;
+$z-forward-5: 5;
+$z-front: 6;
+
+$z-nav: 7;
+$z-dropdown: 8;
+$z-poppers: 9;
+$z-floaters: 10;
+$z-modals: 11;
+
+// EASING -------------------------------------
+
+$ease-in: cubic-bezier(0.420, 0.000, 1.000, 1.000);
+$ease-out: cubic-bezier(0.000, 0.000, 0.580, 1.000);
+$ease-in-out: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+
+$ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$ease-in-cubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+$ease-in-quart: cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$ease-in-sine: cubic-bezier(0.470, 0.000, 0.745, 0.715);
+$ease-in-expo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
+$ease-in-circ: cubic-bezier(0.600, 0.040, 0.980, 0.335);
+$ease-in-back: cubic-bezier(0.600, -0.280, 0.735, 0.045);
+
+$ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$ease-out-quart: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$ease-out-expo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$ease-out-circ: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+$ease-in-out-quad: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$ease-in-out-quart: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$ease-in-out-quint: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+$ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$ease-in-out-expo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+$ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+// TYPOGRAPHY -------------------------------------
+
+$font-stack: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

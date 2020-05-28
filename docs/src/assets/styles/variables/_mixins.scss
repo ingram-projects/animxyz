@@ -1,0 +1,86 @@
+// SHAPE -------------------------------------
+
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+}
+
+// BORDERS -------------------------------------
+
+@mixin curved-top($size: $br-m) {
+  border-top-left-radius: $size;
+  border-top-right-radius: $size;
+}
+
+@mixin curved-bottom($size: $br-m) {
+  border-bottom-left-radius: $size;
+  border-bottom-right-radius: $size;
+}
+
+// COLORS -------------------------------------
+
+@function hexToRGB($colorHex) {
+  @return #{red($colorHex)}, #{green($colorHex)}, #{blue($colorHex)};
+}
+
+// Add percentage of white to a color
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+@function theme-color($value: 500, $opacity: null) {
+  @if $opacity != null {
+    @return rgba(var(--current-color-#{$value}-rgb), #{$opacity});
+  }
+  @return var(--current-color-#{$value});
+}
+
+// TYPOGRAPHY -------------------------------------
+
+@mixin text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// UTILITIES -------------------------------------
+
+@mixin scroll-mobile {
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin hide-scrollbar {
+  scrollbar-width: none; // Firefox
+  overflow-style: none; // IE
+  &::-webkit-scrollbar {
+    display: none;  // Safari and Chrome
+  }
+}
+
+@mixin screen-reader-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@mixin optimize3d {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  * {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+}

@@ -1,0 +1,27 @@
+// THEME COLORS -------------------------------------
+
+// GRAYSCALE -------------------------------------
+
+$textGray: #323232; $textGray-RGB: hexToRGB($textGray);
+
+$white: #ffffff; $white-RGB: hexToRGB($white);
+$black: #000000; $black-RGB: hexToRGB($black);
+
+$gray50:  darken($white, 3%);
+$gray100: darken($white, 6%);
+$gray200: darken($white, 17%);
+$gray300: darken($white, 28%);
+$gray400: darken($white, 39%);
+$gray500: darken($white, 50%);
+$gray600: darken($white, 61%);
+$gray700: darken($white, 72%);
+$gray800: darken($white, 83%);
+$gray900: darken($white, 94%);
+
+// UTILITY COLORS -------------------------------------
+
+$red: rgb(240, 61, 61);
+$red-RGB: 240, 61, 61;
+
+$green: rgb(53, 185, 86);
+$green-RGB: 59, 237, 103;

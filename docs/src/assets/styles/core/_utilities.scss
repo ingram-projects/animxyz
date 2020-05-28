@@ -1,0 +1,11 @@
+.screen-reader-only {
+  @include screen-reader-only;
+}
+
+.pe-none {
+  pointer-events: none !important;
+}
+
+.c-pointer {
+  cursor: pointer !important;
+}
