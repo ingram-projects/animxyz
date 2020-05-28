@@ -180,7 +180,7 @@
 
     @include xyz-make-variable-utilities(
       $name: 'small',
-      $vars: ['scale-x', 'scale-y'],
+      $vars: ['scale-x', 'scale-y', 'scale-z'],
       $default-val: calc(1 - var(--xyz-scale-default)),
       $utility-map: $xyz-utility-scales,
       $transform-func: meta.get-function('xyz-one-minus-val'),
@@ -188,14 +188,14 @@
 
     @include xyz-make-variable-utilities(
       $name: 'big',
-      $vars: ['scale-x', 'scale-y'],
+      $vars: ['scale-x', 'scale-y', 'scale-z'],
       $default-val: calc(1 + var(--xyz-scale-default)),
       $utility-map: $xyz-utility-scales,
       $transform-func: meta.get-function('xyz-one-plus-val'),
     );
 
     @include xyz-make-variable-utilities(
-      $name: 'thin',
+      $name: 'narrow',
       $vars: ['scale-x'],
       $default-val: calc(1 - var(--xyz-scale-default)),
       $utility-map: $xyz-utility-scales,
@@ -221,6 +221,22 @@
     @include xyz-make-variable-utilities(
       $name: 'tall',
       $vars: ['scale-y'],
+      $default-val: calc(1 + var(--xyz-scale-default)),
+      $utility-map: $xyz-utility-scales,
+      $transform-func: meta.get-function('xyz-one-plus-val'),
+    );
+
+    @include xyz-make-variable-utilities(
+      $name: 'thin',
+      $vars: ['scale-z'],
+      $default-val: calc(1 - var(--xyz-scale-default)),
+      $utility-map: $xyz-utility-scales,
+      $transform-func: meta.get-function('xyz-one-minus-val'),
+    );
+
+    @include xyz-make-variable-utilities(
+      $name: 'thick',
+      $vars: ['scale-z'],
       $default-val: calc(1 + var(--xyz-scale-default)),
       $utility-map: $xyz-utility-scales,
       $transform-func: meta.get-function('xyz-one-plus-val'),
