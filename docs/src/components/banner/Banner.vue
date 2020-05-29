@@ -42,12 +42,42 @@ export default {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3);
+	grid-template-rows: repeat(3, 1fr);
 	perspective: 500px;
 
 	@include media('<phone') {
 		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(4);
+		grid-template-rows: repeat(4, 1fr);
+		grid-auto-flow: column;
 	}
+}
+
+%banner-square-letter {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 10vw;
+}
+
+@mixin banner-square-letter($n, $letter, $color: $blue900) {
+	&:nth-child(#{$n}) {
+		&::before {
+			@extend %banner-square-letter;
+			content: $letter;
+			color: $color;
+		}
+	}
+}
+
+.banner-square {
+	@include banner-square-letter(1, 'A');
+	@include banner-square-letter(2, 'n');
+	@include banner-square-letter(3, 'i');
+	@include banner-square-letter(4, 'm');
+
+	@include banner-square-letter(6, 'X', #eb5757);
+	@include banner-square-letter(7, 'Y', #f2c94c);
+	@include banner-square-letter(8, 'Z', #6fcf97);
 }
 </style>
