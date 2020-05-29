@@ -1,10 +1,10 @@
 <template>
-	<div class="banner-square" xyz="duration-10" v-xyz="xyzModes">
+	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzModes">
 		<xyz-transition :duration="2000">
 			<div class="square-anim" v-if="show">
 				<p
 					class="square-anim-mode xyz-nested"
-					xyz="fade in-down in-delay-5 in-stagger"
+					xyz="fade in-left in-delay-5 in-stagger"
 					v-for="xyzMode in xyzModes"
 					:key="xyzMode"
 				>
@@ -74,7 +74,6 @@ export default {
 	position: relative;
 	width: 100%;
 	padding-top: 100%;
-	box-shadow: inset -2px -2px 1px rgba(255, 255, 255, 0.5), inset 2px 2px 1px rgba(23, 28, 51, 0.05);
 }
 
 .square-anim {

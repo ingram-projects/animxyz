@@ -1,7 +1,7 @@
 <template>
-	<div class="banner-wrap">
+	<xyz-transition-group appear class="banner-wrap">
 		<banner-square v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></banner-square>
-	</div>
+	</xyz-transition-group>
 </template>
 
 <script>
@@ -14,11 +14,23 @@ export default {
 	},
 	data() {
 		return {
-			numSquares: 12,
+			numSquares: 8,
 			activeSquare: null,
 		}
 	},
 	methods: {
+		initMediaQuery() {
+			const mediaQuery = window.matchMedia('(min-width: 540px)')
+			const onMediaQuery = (mq) => {
+				if (mq.matches) {
+					this.numSquares = 8
+				} else {
+					this.numSquares = 12
+				}
+			}
+			onMediaQuery(mediaQuery)
+			mediaQuery.addListener(onMediaQuery)
+		},
 		randomizeSquare() {
 			const oldActiveSquare = this.activeSquare
 			while (this.activeSquare === oldActiveSquare) {
@@ -27,7 +39,7 @@ export default {
 		},
 	},
 	created() {
-		this.randomizeSquare()
+		this.initMediaQuery()
 		setInterval(() => {
 			this.randomizeSquare()
 		}, 3000)
@@ -42,8 +54,8 @@ export default {
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	perspective: 500px;
+	grid-template-rows: repeat(2, 1fr);
+	perspective: 300px;
 
 	@include media('<phone') {
 		grid-template-columns: repeat(3, 1fr);
@@ -57,11 +69,11 @@ export default {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	font-size: 10vw;
+	font-size: 11vw;
 	font-family: $font-stack-mono;
 
 	@include media('>=laptop') {
-		font-size: 6.5rem;
+		font-size: 7rem;
 	}
 }
 
