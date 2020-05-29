@@ -39,11 +39,11 @@
   @return mix(black, $color, $percent);
 }
 
-@function theme-color($value: 500, $opacity: null) {
+@function primary-color($value: 500, $opacity: null) {
   @if $opacity != null {
-    @return rgba(var(--current-color-#{$value}-rgb), #{$opacity});
+    @return rgba(var(--primary-#{$value}-rgb), #{$opacity});
   }
-  @return var(--current-color-#{$value});
+  @return var(--primary-#{$value});
 }
 
 // TYPOGRAPHY -------------------------------------

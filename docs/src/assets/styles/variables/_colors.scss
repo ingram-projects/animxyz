@@ -2,23 +2,27 @@
 
 $siteBG: #e9ebef;
 
-$blue50: #EFF4FF; $blue100-RGB: hexToRGB($blue50);
-$blue100: #DBE3F8; $blue100-RGB: hexToRGB($blue100);
-$blue200: #C8D3F0; $blue200-RGB: hexToRGB($blue200);
-$blue300: #B0BEE4; $blue300-RGB: hexToRGB($blue300);
-$blue400: #98A7D4; $blue400-RGB: hexToRGB($blue400);
-$blue500: #7E8DC0; $blue500-RGB: hexToRGB($blue500);
-$blue600: #6372A5; $blue600-RGB: hexToRGB($blue600);
-$blue700: #485584; $blue700-RGB: hexToRGB($blue700);
-$blue800: #2E375C; $blue800-RGB: hexToRGB($blue800);
-$blue900: #171C33; $blue900-RGB: hexToRGB(#171C33);
+$primary50: #EFF4FF; $primary50-rgb: hexToRGB($primary50);
+$primary100: #DBE3F8; $primary100-rgb: hexToRGB($primary100);
+$primary200: #C8D3F0; $primary200-rgb: hexToRGB($primary200);
+$primary300: #B0BEE4; $primary300-rgb: hexToRGB($primary300);
+$primary400: #98A7D4; $primary400-rgb: hexToRGB($primary400);
+$primary500: #7E8DC0; $primary500-rgb: hexToRGB($primary500);
+$primary600: #6372A5; $primary600-rgb: hexToRGB($primary600);
+$primary700: #485584; $primary700-rgb: hexToRGB($primary700);
+$primary800: #2E375C; $primary800-rgb: hexToRGB($primary800);
+$primary900: #171C33; $primary900-rgb: hexToRGB($primary900);
+
+$red: #eb5757;
+$yellow: #f2c94c;
+$green: #6fcf97;
 
 // GRAYSCALE -------------------------------------
 
-$textGray: #323232; $textGray-RGB: hexToRGB($textGray);
+$textGray: #323232; $textGray-rgb: hexToRGB($textGray);
 
-$white: #ffffff; $white-RGB: hexToRGB($white);
-$black: #000000; $black-RGB: hexToRGB($black);
+$white: #ffffff; $white-rgb: hexToRGB($white);
+$black: #000000; $black-rgb: hexToRGB($black);
 
 $gray50:  darken($white, 3%);
 $gray100: darken($white, 6%);
@@ -30,11 +34,3 @@ $gray600: darken($white, 61%);
 $gray700: darken($white, 72%);
 $gray800: darken($white, 83%);
 $gray900: darken($white, 94%);
-
-// UTILITY COLORS -------------------------------------
-
-$red: rgb(240, 61, 61);
-$red-RGB: 240, 61, 61;
-
-$green: rgb(53, 185, 86);
-$green-RGB: 59, 237, 103;

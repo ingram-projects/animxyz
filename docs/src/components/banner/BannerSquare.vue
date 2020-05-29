@@ -4,6 +4,7 @@
 			<div class="square-anim" v-if="show">
 				<p
 					class="square-anim-mode xyz-nested"
+					:class="[`mode-${getModeType(xyzMode)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
 					v-for="xyzMode in xyzModes"
 					:key="xyzMode"
@@ -22,7 +23,30 @@ const absoluteValues = ['3', '4', '5']
 const percentValues = ['25', '50', '75', '100']
 const allValues = [...absoluteValues, ...percentValues]
 
-function generateMode(modeList, valueList) {
+const fadeModes = {
+	misc: 'fade',
+}
+
+const translateModes = {
+	x: ['left', 'right'],
+	y: ['up', 'down'],
+	z: ['front', 'back'],
+}
+
+const scaleModes = {
+	misc: ['small', 'big'],
+	x: ['narrow', 'wide'],
+	y: ['short', 'tall'],
+	z: ['thin', 'thick'],
+}
+
+const rotationModes = {
+	x: ['flip-up', 'flip-down'],
+	y: ['flip-left', 'flip-right'],
+	z: ['turn-cw', 'turn-ccw'],
+}
+
+function getRandomMode(modeList, valueList) {
 	return `${randomArrayItem(modeList)}-${randomArrayItem(valueList)}`
 }
 
@@ -43,17 +67,17 @@ export default {
 		},
 	},
 	methods: {
+		getModeType(mode) {
+			return mode
+		},
 		randomizeXyz() {
-			this.xyzModes = ['fade']
+			this.xyzModes = [fadeModes.misc]
 
-			const txMode = generateMode(['left', 'right'], allValues)
-			const tyMode = generateMode(['up', 'down'], allValues)
-			const tzMode = generateMode(['front', 'back'], absoluteValues)
-			const scaleMode = generateMode(['big', 'small', 'wide', 'narrow', 'tall', 'short'], allValues)
-			const rotationMode = generateMode(
-				['turn-cw', 'turn-ccw', 'flip-left', 'flip-right', 'flip-up', 'flip-down'],
-				allValues
-			)
+			const txMode = getRandomMode(translateModes.x, allValues)
+			const tyMode = getRandomMode(translateModes.y, allValues)
+			const tzMode = getRandomMode(translateModes.z, absoluteValues)
+			const scaleMode = getRandomMode([...scaleModes.misc, ...scaleModes.x, ...scaleModes.y], allValues)
+			const rotationMode = getRandomMode([...rotationModes.x, ...rotationModes.y, ...rotationModes.z], allValues)
 
 			const modes = [txMode, tyMode, tzMode, scaleMode, rotationMode]
 			for (let i = 0; i < this.numXyzModes; i++) {
@@ -81,11 +105,12 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: $blue900;
+	background-color: primary-color(900);
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
-	color: $white;
+	color: primary-color(50);
+	border-radius: $br-l;
 	font-family: $font-stack-mono;
 
 	font-size: 2.5vw;

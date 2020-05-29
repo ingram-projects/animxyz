@@ -81,7 +81,7 @@ export default {
 	}
 }
 
-@mixin banner-square-letter($n, $letter, $color: $blue700) {
+@mixin banner-square-letter($n, $letter, $color: primary-color(700)) {
 	&:nth-child(#{$n}) {
 		&::before {
 			@extend %banner-square-letter;
@@ -96,13 +96,8 @@ export default {
 	@include banner-square-letter(2, 'n');
 	@include banner-square-letter(3, 'i');
 	@include banner-square-letter(4, 'm');
-	// @include banner-square-letter(5, '·', $blue200);
-	@include banner-square-letter(6, 'X', #eb5757);
-	@include banner-square-letter(7, 'Y', #f2c94c);
-	@include banner-square-letter(8, 'Z', #6fcf97);
-	// @include banner-square-letter(9, '·', $blue200);
-	// @include banner-square-letter(10, '·', $blue200);
-	// @include banner-square-letter(11, '·', $blue200);
-	// @include banner-square-letter(12, '·', $blue200);
+	@include banner-square-letter(6, 'X', $red);
+	@include banner-square-letter(7, 'Y', $yellow);
+	@include banner-square-letter(8, 'Z', $green);
 }
 </style>
