@@ -99,5 +99,9 @@ export default {
 	@include media('<phone') {
 		font-size: 3.5vw;
 	}
+
+	@include media('>=laptop') {
+		font-size: 1.5rem;
+	}
 }
 </style>
