@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 .banner-wrap {
 	position: relative;
-	max-width: 1000px;
+	max-width: 60rem;
 	width: 100%;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -59,9 +59,13 @@ export default {
 	transform: translate(-50%, -50%);
 	font-size: 10vw;
 	font-family: $font-stack-mono;
+
+	@include media('>=laptop') {
+		font-size: 6.5rem;
+	}
 }
 
-@mixin banner-square-letter($n, $letter, $color: $blue900) {
+@mixin banner-square-letter($n, $letter, $color: $blue700) {
 	&:nth-child(#{$n}) {
 		&::before {
 			@extend %banner-square-letter;
