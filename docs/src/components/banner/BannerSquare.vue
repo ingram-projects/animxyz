@@ -93,15 +93,16 @@ export default {
 
 .square-anim-mode {
 	color: #fff;
+	font-family: $font-stack-mono;
 	margin: $spacing-xxxs 0;
-	font-size: 2.5vw;
+	font-size: 3vw;
 
 	@include media('<phone') {
-		font-size: 3.5vw;
+		font-size: 4vw;
 	}
 
 	@include media('>=laptop') {
-		font-size: 1.5rem;
+		font-size: 2rem;
 	}
 }
 </style>

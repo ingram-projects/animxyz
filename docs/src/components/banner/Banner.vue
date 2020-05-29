@@ -58,6 +58,7 @@ export default {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 10vw;
+	font-family: $font-stack-mono;
 }
 
 @mixin banner-square-letter($n, $letter, $color: $blue900) {
