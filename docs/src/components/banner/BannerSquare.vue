@@ -18,7 +18,7 @@
 <script>
 import { randomArrayItem } from '~/utils'
 
-const absoluteValues = ['1', '2', '3', '4', '5']
+const absoluteValues = ['3', '4', '5']
 const percentValues = ['25', '50', '75', '100']
 const allValues = [...absoluteValues, ...percentValues]
 
