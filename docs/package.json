@@ -11,7 +11,7 @@
   "dependencies": {
     "@animxyz/vue": "^0.0.21",
     "gridsome": "^0.7.15",
-    "normalize.css": "^8.0.1"
+    "ress": "^2.0.4"
   },
   "devDependencies": {
     "@gridsome/source-filesystem": "^0.6.2",

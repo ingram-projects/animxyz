@@ -1,13 +1,16 @@
 <template>
 	<Layout>
-		<div>
-			Hello World
-		</div>
+		<banner></banner>
 	</Layout>
 </template>
 
 <script>
+import Banner from '~/components/banner/Banner'
+
 export default {
+	components: {
+		Banner,
+	},
 	metaInfo() {
 		return {
 			title: 'AnimXYZ',
