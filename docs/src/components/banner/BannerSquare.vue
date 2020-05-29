@@ -18,16 +18,13 @@
 <script>
 import { randomArrayItem } from '~/utils'
 
-const translationXYValues = ['25', '50', '75', '100']
-const translationZValues = ['3', '4', '5']
-const scaleValues = ['25', '50', '75', '100']
-const rotationValues = ['25', '50', '75', '100']
+const absoluteValues = ['1', '2', '3', '4', '5']
+const percentValues = ['25', '50', '75', '100']
+const allValues = [...absoluteValues, ...percentValues]
 
-const xModes = ['left', 'right']
-const yModes = ['up', 'down']
-const zModes = ['front', 'back']
-const scaleModes = ['big', 'small', 'wide', 'narrow', 'tall', 'short']
-const rotationModes = ['turn-cw', 'turn-ccw', 'flip-left', 'flip-right', 'flip-up', 'flip-down']
+function generateMode(modeList, valueList) {
+	return `${randomArrayItem(modeList)}-${randomArrayItem(valueList)}`
+}
 
 export default {
 	name: 'BannerSquare',
@@ -49,13 +46,16 @@ export default {
 		randomizeXyz() {
 			this.xyzModes = ['fade']
 
-			const xMode = `${randomArrayItem(xModes)}-${randomArrayItem(translationXYValues)}`
-			const yMode = `${randomArrayItem(yModes)}-${randomArrayItem(translationXYValues)}`
-			const zMode = `${randomArrayItem(zModes)}-${randomArrayItem(translationZValues)}`
-			const scaleMode = `${randomArrayItem(scaleModes)}-${randomArrayItem(scaleValues)}`
-			const rotationMode = `${randomArrayItem(rotationModes)}-${randomArrayItem(rotationValues)}`
+			const txMode = generateMode(['left', 'right'], allValues)
+			const tyMode = generateMode(['up', 'down'], allValues)
+			const tzMode = generateMode(['front', 'back'], absoluteValues)
+			const scaleMode = generateMode(['big', 'small', 'wide', 'narrow', 'tall', 'short'], allValues)
+			const rotationMode = generateMode(
+				['turn-cw', 'turn-ccw', 'flip-left', 'flip-right', 'flip-up', 'flip-down'],
+				allValues
+			)
 
-			const modes = [xMode, yMode, zMode, scaleMode, rotationMode]
+			const modes = [txMode, tyMode, tzMode, scaleMode, rotationMode]
 			for (let i = 0; i < this.numXyzModes; i++) {
 				const modeIndex = Math.floor(Math.random() * modes.length)
 				const mode = modes.splice(modeIndex, 1)
