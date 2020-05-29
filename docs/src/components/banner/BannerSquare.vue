@@ -72,17 +72,17 @@ export default {
 <style lang="scss" scoped>
 .banner-square {
 	position: relative;
-	width: 20vw;
-	height: 20vw;
-	flex-shrink: 0;
+	width: 100%;
+	padding-top: 100%;
 	box-shadow: inset -2px -2px 1px rgba(255, 255, 255, 0.5), inset 2px 2px 1px rgba(23, 28, 51, 0.05);
 }
 
 .square-anim {
+	@include size(100%);
 	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 0.5rem;
+	top: 0;
+	left: 0;
+	padding: $spacing-xxs;
 	background-color: $blue900;
 	z-index: 1;
 	display: flex;
@@ -93,7 +93,11 @@ export default {
 
 .square-anim-mode {
 	color: #fff;
-	margin: 0.25rem 0;
+	margin: $spacing-xxxs 0;
 	font-size: 2.5vw;
+
+	@include media('<phone') {
+		font-size: 3.5vw;
+	}
 }
 </style>

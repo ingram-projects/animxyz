@@ -15,6 +15,10 @@ export default {}
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 2rem;
+	padding: $spacing-l;
+
+	@include media('<phone') {
+		padding: $spacing-s;
+	}
 }
 </style>

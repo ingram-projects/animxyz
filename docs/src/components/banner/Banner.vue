@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper">
+	<div class="banner-wrap">
 		<banner-square v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></banner-square>
 	</div>
 </template>
@@ -36,9 +36,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-	display: flex;
-	flex-wrap: wrap;
+.banner-wrap {
+	position: relative;
+	max-width: 1000px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3);
 	perspective: 500px;
+
+	@include media('<phone') {
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(4);
+	}
 }
 </style>
