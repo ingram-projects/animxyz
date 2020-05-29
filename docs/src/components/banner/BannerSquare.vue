@@ -82,27 +82,26 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: $spacing-xxs;
 	background-color: $blue900;
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.square-anim-mode {
-	color: #fff;
+	color: $white;
 	font-family: $font-stack-mono;
-	margin: $spacing-xxxs 0;
-	font-size: 3vw;
+
+	font-size: 2.5vw;
+	padding: 1em;
+
+	.square-anim-mode + .square-anim-mode {
+		margin-top: 0.75em;
+	}
 
 	@include media('<phone') {
 		font-size: 4vw;
 	}
 
 	@include media('>=laptop') {
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
 }
 </style>
