@@ -2,6 +2,15 @@
 
 $siteBG: #e9ebef;
 
+$blue50: #EFF4FF; $blue100-RGB: hexToRGB($blue50);
+$blue100: #DBE3F8; $blue100-RGB: hexToRGB($blue100);
+$blue200: #C8D3F0; $blue200-RGB: hexToRGB($blue200);
+$blue300: #B0BEE4; $blue300-RGB: hexToRGB($blue300);
+$blue400: #98A7D4; $blue400-RGB: hexToRGB($blue400);
+$blue500: #7E8DC0; $blue500-RGB: hexToRGB($blue500);
+$blue600: #6372A5; $blue600-RGB: hexToRGB($blue600);
+$blue700: #485584; $blue700-RGB: hexToRGB($blue700);
+$blue800: #2E375C; $blue800-RGB: hexToRGB($blue800);
 $blue900: #171C33; $blue900-RGB: hexToRGB(#171C33);
 
 // GRAYSCALE -------------------------------------
