@@ -119,14 +119,14 @@
       $name: 'front',
       $vars: ['translate-z'],
       $default-val: var(--xyz-translate-default),
-      $utility-map: $xyz-utility-translations,
+      $utility-map: $xyz-utility-translations-z,
     );
 
     @include xyz-make-variable-utilities(
       $name: 'back',
       $vars: ['translate-z'],
       $default-val: calc(var(--xyz-translate-default) * -1),
-      $utility-map: $xyz-utility-translations,
+      $utility-map: $xyz-utility-translations-z,
       $transform-func: meta.get-function('xyz-negative-val'),
     );
 

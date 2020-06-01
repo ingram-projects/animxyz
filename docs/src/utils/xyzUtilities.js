@@ -54,13 +54,22 @@ export const xyzUtilityTranslations = {
   '100': '100%',
 }
 
+export const xyzUtilityTranslationsZ = {
+  '0': '0px',
+  '1': '10px',
+  '2': '20px',
+  '3': '30px',
+  '4': '40px',
+  '5': '50px',
+}
+
 export const utilityRotations = {
   '0': '0deg',
-  '1': '5deg',
-  '2': '10deg',
-  '3': '15deg',
-  '4': '20deg',
-  '5': '25deg',
+  '1': '10deg',
+  '2': '20deg',
+  '3': '30deg',
+  '4': '40deg',
+  '5': '50deg',
   '25': '.25turn',
   '50': '.50turn',
   '75': '.75turn',
@@ -181,14 +190,14 @@ export const xyzUtilityClassesMap = {
     axis: 'z',
     vars: ['translate-z'],
     default: 'translate',
-		utilityMap: xyzUtilityTranslations,
+		utilityMap: xyzUtilityTranslationsZ,
 	},
 	'back': {
 		type: 'translate',
     axis: 'z',
     vars: ['translate-z'],
     default: 'translate',
-		utilityMap: xyzUtilityTranslations,
+		utilityMap: xyzUtilityTranslationsZ,
 	},
 
   // Scales

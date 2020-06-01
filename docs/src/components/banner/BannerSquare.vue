@@ -32,7 +32,7 @@ const translateZClasses = xyzUtilityClasses.filter((xyzClass) => {
 })
 
 const scaleClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'scale'
+	return xyzClass.type === 'scale' && xyzClass.axis !== 'z'
 })
 
 const rotateClasses = xyzUtilityClasses.filter((xyzClass) => {
@@ -78,7 +78,7 @@ export default {
 			for (let i = 0; i < this.numXyzClasses; i++) {
 				const xyzClassIndex = Math.floor(Math.random() * xyzTranslateClassSelection.length)
 				const [xyzClass] = xyzTranslateClassSelection.splice(xyzClassIndex, 1)
-				const xyzClassLevel = randomArrayItem(Object.keys(xyzClass.utilityMap))
+				const xyzClassLevel = randomArrayItem(Object.keys(xyzClass.utilityMap).filter((level) => level !== '0'))
 				this.xyzClasses.push(getXyzUtilityClass(xyzClass.name, xyzClassLevel))
 			}
 		},
