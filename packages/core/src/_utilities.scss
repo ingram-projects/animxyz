@@ -58,9 +58,9 @@
     );
 
     @include xyz-make-variable-utilities(
-      $name: 'iterations',
-      $vars: ['iterations'],
-      $default-val: var(--xyz-iterations-default),
+      $name: 'iterate',
+      $vars: ['iterate'],
+      $default-val: var(--xyz-iterate-default),
       $utility-map: $xyz-utility-iterations,
     );
 

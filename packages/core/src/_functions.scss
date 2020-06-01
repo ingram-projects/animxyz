@@ -79,7 +79,7 @@
     --xyz-#{xyz-mode-name('delay', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('stagger', $mode)}: #{$val};
     --xyz-#{xyz-mode-name('stagger-rev', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('iterations', $mode)}: #{$val};
+    --xyz-#{xyz-mode-name('iterate', $mode)}: #{$val};
 
     --xyz-#{xyz-mode-name('origin', $mode)}: #{$val};
 
@@ -155,7 +155,7 @@
   $delay: xyz-fallback-var('delay', $mode, 0s);
   $stagger: xyz-fallback-var('stagger', $mode, 0s);
   $stagger-rev: xyz-fallback-var('stagger-rev', $mode, 0s);
-  $iterations: xyz-fallback-var('iterations', $mode, 1);
+  $iterate: xyz-fallback-var('iterate', $mode, 1);
   $origin: xyz-fallback-var('origin', $mode, center);
 
   $index: var(--xyz-index, 0);
@@ -174,7 +174,7 @@
     #{$duration}
     #{$ease}
     calc(#{$delay} + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev})
-    #{$iterations}
+    #{$iterate}
     #{$direction}
     both
     !important;

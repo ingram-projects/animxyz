@@ -1,15 +1,15 @@
 <template>
-	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzModes">
+	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzClassStrings">
 		<xyz-transition :duration="2000">
 			<div class="square-anim" v-if="show">
 				<p
-					class="square-anim-mode xyz-nested"
-					:class="[`mode-${getModeType(xyzMode)}`]"
+					class="anim-name xyz-nested"
+					:class="[`anim-type-${getClassType(xyzClass)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
-					v-for="xyzMode in xyzModes"
-					:key="xyzMode"
+					v-for="xyzClass in xyzClasses"
+					:key="xyzClass"
 				>
-					{{ xyzMode }}
+					{{ xyzClass.string }}
 				</p>
 			</div>
 		</xyz-transition>
@@ -17,46 +17,40 @@
 </template>
 
 <script>
-import { randomArrayItem } from '~/utils'
+import { xyzUtilityClasses, getXyzUtilityClass, randomArrayItem } from '~/utils'
 
-const absoluteValues = ['3', '4', '5']
-const percentValues = ['25', '50', '75', '100']
-const allValues = [...absoluteValues, ...percentValues]
+const translateXClasses = xyzUtilityClasses.filter((xyzClass) => {
+	return xyzClass.type === 'translate' &&  xyzClass.axis === 'x'
+})
 
-const fadeModes = {
-	misc: 'fade',
-}
+const translateYClasses = xyzUtilityClasses.filter((xyzClass) => {
+	return xyzClass.type === 'translate' &&  xyzClass.axis === 'y'
+})
 
-const translateModes = {
-	x: ['left', 'right'],
-	y: ['up', 'down'],
-	z: ['front', 'back'],
-}
+const translateZClasses = xyzUtilityClasses.filter((xyzClass) => {
+	return xyzClass.type === 'translate' &&  xyzClass.axis === 'z'
+})
 
-const scaleModes = {
-	misc: ['small', 'big'],
-	x: ['narrow', 'wide'],
-	y: ['short', 'tall'],
-	z: ['thin', 'thick'],
-}
+const scaleClasses = xyzUtilityClasses.filter((xyzClass) => {
+	return xyzClass.type === 'scale'
+})
 
-const rotationModes = {
-	x: ['flip-up', 'flip-down'],
-	y: ['flip-left', 'flip-right'],
-	z: ['turn-cw', 'turn-ccw'],
-}
-
-function getRandomMode(modeList, valueList) {
-	return `${randomArrayItem(modeList)}-${randomArrayItem(valueList)}`
-}
+const rotateClasses = xyzUtilityClasses.filter((xyzClass) => {
+	return xyzClass.type === 'rotate'
+})
 
 export default {
 	name: 'BannerSquare',
 	props: ['show'],
 	data() {
 		return {
-			numXyzModes: 2,
-			xyzModes: null,
+			numXyzClasses: 2,
+			xyzClasses: [],
+		}
+	},
+	computed: {
+		xyzClassStrings() {
+			return this.xyzClasses.map((xyzClass) => xyzClass.string)
 		}
 	},
 	watch: {
@@ -67,23 +61,25 @@ export default {
 		},
 	},
 	methods: {
-		getModeType(mode) {
-			return mode
+		getClassType(mode) {
+			return 'misc'
 		},
 		randomizeXyz() {
-			this.xyzModes = [fadeModes.misc]
+			this.xyzClasses = [getXyzUtilityClass('fade')]
 
-			const txMode = getRandomMode(translateModes.x, allValues)
-			const tyMode = getRandomMode(translateModes.y, allValues)
-			const tzMode = getRandomMode(translateModes.z, absoluteValues)
-			const scaleMode = getRandomMode([...scaleModes.misc, ...scaleModes.x, ...scaleModes.y], allValues)
-			const rotationMode = getRandomMode([...rotationModes.x, ...rotationModes.y, ...rotationModes.z], allValues)
+			const xyzTranslateClassSelection = [
+				randomArrayItem(translateXClasses),
+				randomArrayItem(translateYClasses),
+				randomArrayItem(translateZClasses),
+				randomArrayItem(scaleClasses),
+				randomArrayItem(rotateClasses)
+			]
 
-			const modes = [txMode, tyMode, tzMode, scaleMode, rotationMode]
-			for (let i = 0; i < this.numXyzModes; i++) {
-				const modeIndex = Math.floor(Math.random() * modes.length)
-				const mode = modes.splice(modeIndex, 1)
-				this.xyzModes.push(...mode)
+			for (let i = 0; i < this.numXyzClasses; i++) {
+				const xyzClassIndex = Math.floor(Math.random() * xyzTranslateClassSelection.length)
+				const [xyzClass] = xyzTranslateClassSelection.splice(xyzClassIndex, 1)
+				const xyzClassLevel = randomArrayItem(Object.keys(xyzClass.utilityMap))
+				this.xyzClasses.push(getXyzUtilityClass(xyzClass.name, xyzClassLevel))
 			}
 		},
 	},
@@ -116,7 +112,7 @@ export default {
 	font-size: 2.5vw;
 	padding: 1em;
 
-	.square-anim-mode + .square-anim-mode {
+	.anim-name + .anim-name {
 		margin-top: 0.75em;
 	}
 
@@ -127,5 +123,17 @@ export default {
 	@include media('>=laptop') {
 		font-size: 1.5rem;
 	}
+}
+
+.anim-name-x {
+	color: $red;
+}
+
+.anim-name-y {
+	color: $yellow;
+}
+
+.anim-name-z {
+	color: $green;
 }
 </style>
