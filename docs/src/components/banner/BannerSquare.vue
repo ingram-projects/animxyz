@@ -4,7 +4,7 @@
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"
-					:class="[`anim-type-${getClassType(xyzClass)}`]"
+					:class="[`anim-axis-${getClassAxis(xyzClass)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
 					v-for="xyzClass in xyzClasses"
 					:key="xyzClass"
@@ -61,8 +61,11 @@ export default {
 		},
 	},
 	methods: {
-		getClassType(mode) {
-			return 'misc'
+		getClassAxis(xyzClass) {
+			if (xyzClass.axis) {
+				return xyzClass.axis
+			}
+			return 'none'
 		},
 		randomizeXyz() {
 			this.xyzClasses = [getXyzUtilityClass('fade')]
@@ -125,15 +128,19 @@ export default {
 	}
 }
 
-.anim-name-x {
+.anim-axis-x {
 	color: $red;
 }
 
-.anim-name-y {
+.anim-axis-y {
 	color: $yellow;
 }
 
-.anim-name-z {
+.anim-axis-z {
 	color: $green;
+}
+
+.anim-axis-all, .anim-axis-none {
+	color: $cyan;
 }
 </style>
