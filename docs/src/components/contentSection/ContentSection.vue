@@ -92,5 +92,6 @@ export default {
 
 p {
 	margin-bottom: $spacing-m;
+	font-size: 1.125rem;
 }
 </style>

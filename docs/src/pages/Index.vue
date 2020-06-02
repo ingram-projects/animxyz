@@ -4,6 +4,7 @@
 			<banner></banner>
 		</div>
 		<content-section></content-section>
+		<content-section></content-section>
 	</Layout>
 </template>
 
