@@ -10,15 +10,4 @@
 export default {}
 </script>
 
-<style lang="scss" scoped>
-.page-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: $spacing-l;
-
-	@include media('<phone') {
-		padding: $spacing-s;
-	}
-}
-</style>
+<style lang="scss" scoped></style>

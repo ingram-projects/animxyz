@@ -6,12 +6,17 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-900);
   line-height: 1.25;
 }
 
 p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
-  margin: 0;
   transition: color .3s $ease-in-out;
+}
+
+p {
+  color: var(--text-color);
+  line-height: 1.5;
 }
 
 textarea {

@@ -1,5 +1,5 @@
 <template>
-	<xyz-transition-group appear class="banner-wrap">
+	<xyz-transition-group appear class="banner" tag="div">
 		<banner-square v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></banner-square>
 	</xyz-transition-group>
 </template>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.banner-wrap {
+.banner {
 	position: relative;
 	max-width: 60rem;
 	width: 100%;
