@@ -16,11 +16,13 @@
     "typeface-inter": "^3.12.0"
   },
   "devDependencies": {
+    "@gridsome/remark-prismjs": "^0.3.0",
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.6.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2",
+    "gridsome-plugin-svg": "^0.0.13",
     "http-server": "^0.12.3",
     "include-media": "^1.4.9",
     "sass": "^1.26.7",

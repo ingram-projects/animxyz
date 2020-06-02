@@ -2,27 +2,15 @@
 	<section class="section">
 		<div class="section-column example-column">
 			<div class="column-content example-content">
-				<h1 class="section-title">Rotate</h1>
-				<div class="example">
+				<h1 class="section-title">{{section.title}}</h1>
+				<div class="example" v-if="section.examples.length">
 					<div class="example-item"></div>
+					<!-- {{section.examples[activeExample]}} -->
 				</div>
 			</div>
 		</div>
 		<div class="section-column text-column">
-			<div class="column-content text-content">
-				<p>
-					Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis
-					mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem
-					malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna
-					mollis ornare vel eu leo.
-				</p>
-				<p>
-					Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis
-					mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem
-					malesuada magna mollis euismod. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna
-					mollis ornare vel eu leo.
-				</p>
-			</div>
+			<div class="column-content text-content" v-html="section.content"></div>
 		</div>
 	</section>
 </template>
@@ -30,6 +18,12 @@
 <script>
 export default {
 	name: 'ContentSection',
+	props: ['section'],
+	data () {
+		return {
+			activeExample: 0,
+		}
+	},
 }
 </script>
 

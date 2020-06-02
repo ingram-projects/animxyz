@@ -3,8 +3,7 @@
 		<div class="banner__wrap">
 			<banner></banner>
 		</div>
-		<content-section></content-section>
-		<content-section></content-section>
+		<content-section :section="section.node" v-for="(section, index) in $page.sections.edges" :key="index"></content-section>
 	</Layout>
 </template>
 
@@ -15,6 +14,7 @@
       node {
 				order
         title
+				content
 				examples {
 					file
 				}

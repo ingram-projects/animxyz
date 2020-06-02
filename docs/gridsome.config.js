@@ -19,14 +19,6 @@ module.exports = {
 	siteName: 'AnimXYZ',
 	siteDescription: 'AnimXYZ Documentation',
 	host: '0.0.0.0',
-	transformers: {
-		remark: {
-			externalLinksTarget: '_blank',
-			externalLinksRel: ['nofollow', 'noopener', 'noreferrer'],
-			anchorClassName: 'icon icon-link',
-			plugins: [],
-		},
-	},
 	plugins: [
 	  {
 	    use: '@gridsome/source-filesystem',
@@ -36,7 +28,24 @@ module.exports = {
 	      path: '**/*.md',
 	    },
 	  },
+		{
+	    use: 'gridsome-plugin-svg',
+	    options: {
+		    svgo: [
+		      {
+		        removeViewBox: false
+		      },
+		    ],
+		  }
+	  }
 	],
+	transformers: {
+		remark: {
+			plugins: [
+				'@gridsome/remark-prismjs',
+			],
+		},
+	},
 	chainWebpack: (config) => {
 		const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 		types.forEach((type) => addStyleResource(config.module.rule('scss').oneOf(type)))
