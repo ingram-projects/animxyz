@@ -4,6 +4,22 @@
 	</Layout>
 </template>
 
+<page-query>
+{
+  sections: allSection (sortBy: "order", order: ASC) {
+    edges {
+      node {
+				order
+        title
+				examples {
+					file
+				}
+      }
+    }
+  }
+}
+</page-query>
+
 <script>
 import Banner from '~/components/banner/Banner'
 
