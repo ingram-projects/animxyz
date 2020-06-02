@@ -27,19 +27,16 @@ module.exports = {
 			plugins: [],
 		},
 	},
-	// plugins: [
-	//   {
-	//     use: '@gridsome/source-filesystem',
-	//     options: {
-	//       typeName: 'Example',
-	//       baseDir: 'content/examples',
-	//       path: '*.md'
-	//     }
-	//   },
-	// ],
-	// templates: {
-	//   Example: '/example/:slug',
-	// },
+	plugins: [
+	  {
+	    use: '@gridsome/source-filesystem',
+	    options: {
+	      typeName: 'Section',
+	      baseDir: 'content/sections',
+	      path: '**/*.md',
+	    },
+	  },
+	],
 	chainWebpack: (config) => {
 		const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 		types.forEach((type) => addStyleResource(config.module.rule('scss').oneOf(type)))

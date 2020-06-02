@@ -7,7 +7,7 @@
 					:class="[`anim-axis-${getClassAxis(xyzClass)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
 					v-for="xyzClass in xyzClasses"
-					:key="xyzClass"
+					:key="xyzClass.string"
 				>
 					{{ xyzClass.string }}
 				</p>
