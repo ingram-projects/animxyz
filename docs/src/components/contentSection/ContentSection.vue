@@ -1,16 +1,15 @@
 <template>
 	<section class="section">
-		<div class="section-example">
-			<div class="example-content">
+		<div class="section-column example-column">
+			<div class="column-content example-content">
 				<h1 class="section-title">Rotate</h1>
 				<div class="example">
 					<div class="example-item"></div>
 				</div>
-				<div class="code"></div>
 			</div>
 		</div>
-		<div class="section-content">
-			<div class="content">
+		<div class="section-column text-column">
+			<div class="column-content text-content">
 				<p>
 					Vestibulum id ligula porta felis euismod semper. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis
 					mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem
@@ -38,22 +37,29 @@ export default {
 .section {
 	display: flex;
 	align-items: flex-start;
-	width: 80%;
+	max-width: 80rem;
 	margin: $spacing-xxxl auto;
 }
 
+.section-column {
+	width: 50%;
+	padding: $spacing-xs;
+}
+
+.column-content {
+	margin: 0 auto;
+	max-width: 36rem;
+}
+
 .section-title {
-	text-align: right;
+	text-align: center;
 	font-size: $fs-xlarge;
 }
 
-.section-example {
+.example-column {
 	display: flex;
-	width: 50%;
-	flex-shrink: 0;
 	position: sticky;
 	top: 0;
-	padding-top: $spacing-m;
 }
 
 .example-content {
@@ -62,7 +68,13 @@ export default {
 
 .example {
 	display: flex;
-	height: 24rem;
+	min-height: 14rem;
+}
+
+.text-column {
+	p {
+		font-size: 1.125rem;
+	}
 }
 
 .example-item {
@@ -77,21 +89,5 @@ export default {
 .code {
 	background-color: var(--primary-900);
 	border-radius: $br-l;
-	height: 24rem;
-}
-
-.section-content {
-	flex-grow: 1;
-	padding-top: $spacing-m;
-}
-
-.content {
-	margin: 0 auto;
-	max-width: 36rem;
-}
-
-p {
-	margin-bottom: $spacing-m;
-	font-size: 1.125rem;
 }
 </style>
