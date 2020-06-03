@@ -19,6 +19,7 @@ module.exports = {
 	siteName: 'AnimXYZ',
 	siteDescription: 'AnimXYZ Documentation',
 	host: '0.0.0.0',
+	runtimeCompiler: true,
 	plugins: [
 	  {
 	    use: '@gridsome/source-filesystem',

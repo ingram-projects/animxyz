@@ -3,7 +3,7 @@
 		<div class="banner__wrap">
 			<banner></banner>
 		</div>
-		<content-section :section="section.node" v-for="(section, index) in $page.sections.edges" :key="index"></content-section>
+		<docs-section :section="section.node" v-for="(section, index) in $page.sections.edges" :key="index"></docs-section>
 	</Layout>
 </template>
 
@@ -16,7 +16,12 @@
         title
 				content
 				examples {
-					file
+					name
+					template
+					code {
+						lang
+						content
+					}
 				}
       }
     }
@@ -26,12 +31,12 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
-import ContentSection from '~/components/contentSection/ContentSection'
+import DocsSection from '~/components/docsSection/DocsSection'
 
 export default {
 	components: {
 		Banner,
-		ContentSection,
+		DocsSection,
 	},
 	metaInfo() {
 		return {
