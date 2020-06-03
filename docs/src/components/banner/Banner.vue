@@ -55,7 +55,7 @@ export default {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	perspective: 300px;
+	perspective: 400px;
 
 	@include media('<phone') {
 		grid-template-columns: repeat(3, 1fr);

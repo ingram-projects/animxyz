@@ -6,7 +6,7 @@
   transition: fill .2s $ease-out-quad, stroke .2s $ease-out-quad;
 }
 
-.example-square {
+.square {
 	@include size(6rem);
 	background-color: white;
 	border: 4px solid $cyan;

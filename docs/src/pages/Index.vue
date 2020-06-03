@@ -25,6 +25,11 @@
 						content
 					}
 				}
+				utilities {
+					names
+					multiple
+					defaults
+				}
       }
     }
   }
