@@ -310,11 +310,15 @@ export const xyzUtilityClasses = Object.entries(xyzUtilityClassesMap).map(([name
 	}
 })
 
-export function getXyzUtilityClass(name, level) {
-	const classObj = {
+export function getXyzUtilityClass(name) {
+	return {
 		name: name,
 		...xyzUtilityClassesMap[name],
 	}
+}
+
+export function getXyzUtilityClassLevel(name, level) {
+	const classObj = getXyzUtilityClass(name)
 
 	if (level !== undefined) {
 		classObj.level = level

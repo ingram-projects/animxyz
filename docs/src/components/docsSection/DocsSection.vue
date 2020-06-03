@@ -3,7 +3,7 @@
 		<div class="section-column examples-column">
 			<div class="column-content examples-content">
 				<h1 class="section-title">{{section.title}}</h1>
-				<section-examples v-if="section.examples.length" :examples="section.examples"></section-examples>
+				<section-examples v-if="section.examples.length" :examples="section.examples" :utilities="section.utilities"></section-examples>
 			</div>
 		</div>
 		<div class="section-column text-column">

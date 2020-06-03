@@ -1,7 +1,5 @@
 <template>
-  <div class="code-block">
-    <prism :language="activeCode.language">{{ activeCode.content }}</prism>
-  </div>
+  <prism :language="activeCode.language">{{ activeCode.content }}</prism>
 </template>
 
 <script>
