@@ -6,13 +6,14 @@ title: Fade
 examples:
   - name: Fade
     template: |
-      <xyz-transition appear>
-        <div class="example-square" xyz="fade"></div>
-      </xyz-transition>
+      <div class="example-square" xyz="fade"></div>
     code:
-      - lang: html
+      - language: html
         content: |
           <div class="example-square xyz-in" xyz="fade"></div>
+
+utilityClasses:
+  type: fade
 ---
 
 This is the fade section

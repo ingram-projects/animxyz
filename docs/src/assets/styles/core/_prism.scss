@@ -8,8 +8,9 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: primary-color(50);
   background: none;
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-family: $font-stack-mono;
   font-size: 1em;
+  font-weight: 600;
   text-align: left;
   white-space: pre;
   word-spacing: normal;

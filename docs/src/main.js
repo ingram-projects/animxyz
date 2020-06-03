@@ -10,6 +10,7 @@ import 'ress'
 import '@/assets/styles/core/_index.scss'
 
 // Plugins
+import 'prismjs'
 import VueAnimXyz from '@animxyz/vue'
 
 // Layouts

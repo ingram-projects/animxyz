@@ -5,7 +5,10 @@ export default {
   render(createElement) {
     return createElement({
       template: this.template,
-      methods: {
+      props: ['data'],
+    }, {
+      props: {
+        data: this.$attrs,
       }
     })
   }

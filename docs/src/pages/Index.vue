@@ -3,7 +3,9 @@
 		<div class="banner__wrap">
 			<banner></banner>
 		</div>
-		<docs-section :section="section.node" v-for="(section, index) in $page.sections.edges" :key="index"></docs-section>
+		<xyz-transition-group appear xyz="fade down stagger">
+			<docs-section :section="section.node" v-for="(section, index) in $page.sections.edges" :key="index"></docs-section>
+		</xyz-transition-group>
 	</Layout>
 </template>
 
@@ -19,7 +21,7 @@
 					name
 					template
 					code {
-						lang
+						language
 						content
 					}
 				}
