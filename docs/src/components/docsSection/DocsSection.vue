@@ -2,8 +2,12 @@
 	<section class="docs-section">
 		<div class="section-column examples-column">
 			<div class="column-content examples-content">
-				<h1 class="section-title">{{section.title}}</h1>
-				<section-examples v-if="section.examples.length" :examples="section.examples" :utilities="section.utilities"></section-examples>
+				<h1 class="section-title">{{ section.title }}</h1>
+				<section-examples
+					v-if="section.examples.length"
+					:examples="section.examples"
+					:utilities="section.utilities"
+				></section-examples>
 			</div>
 		</div>
 		<div class="section-column text-column">
@@ -43,7 +47,6 @@ export default {
 }
 
 .section-title {
-	text-align: center;
 	font-size: $fs-xlarge;
 }
 
@@ -58,8 +61,10 @@ export default {
 }
 
 .text-column {
-	p {
-		font-size: 1.125rem;
+	::v-deep {
+		p {
+			font-size: 1.125rem;
+		}
 	}
 }
 </style>

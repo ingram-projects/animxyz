@@ -4,4 +4,4 @@ order: 1
 title: About
 ---
 
-This is the about section
+AnimXYZ is a composable and customizable animation library for transitioning elements in and out. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
