@@ -15,7 +15,7 @@ examples:
 utilities:
   classes: [fade]
   multiple: false
-  default: fade-50
+  default: fade
 ---
 
 This is the fade section

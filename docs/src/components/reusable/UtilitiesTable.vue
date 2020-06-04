@@ -12,7 +12,7 @@
           {{row.name}}
         </th>
         <td class="utility-level" v-for="cell in row.cells" :key="cell.id">
-          <input class="toggle-input" type="radio" :id="cell.id" :value="cell.value" v-model="toggled[row.identifier]" @click="toggleCell(row.identifier, cell)">
+          <input class="toggle-input" type="radio" :id="cell.id" :value="cell.value" v-model="selectedObj[row.model]" @click="onCellClick(cell, row.model)">
           <label class="utility-level__toggle" :for="cell.id">
             <div class="toggle-indicator"></div>
           </label>
@@ -30,7 +30,7 @@ export default {
   props: ['value', 'classes', 'multiple'],
   data () {
     return {
-      toggled: {},
+      selectedObj: {},
     }
   },
   computed: {
@@ -50,22 +50,13 @@ export default {
     },
     rows () {
       return this.utilityClasses.map((utilityClass) => {
-        let identifier = this._uid
-
-        if (this.multiple) {
-          identifier += `_${utilityClass.type}`
-          if (utilityClass.axis) {
-            identifier += `_${utilityClass.axis}`
-          }
-        }
-
         return {
           name: utilityClass.name,
-          identifier,
+          model: this.getUtilityClassModel(utilityClass),
           cells: this.utilityLevels.map((utilityLevel) => {
             const utilityClassLevel = getXyzUtilityClassLevel(utilityClass.name, utilityLevel)
             return {
-              id: `${identifier}_${utilityClassLevel.string}`,
+              id: `${this._uid}_${utilityClassLevel.string}`,
               value: utilityClassLevel.string,
             }
           }),
@@ -77,20 +68,41 @@ export default {
     value: {
       immediate: true,
       handler () {
-        console.log(this.value)
+        this.selectedObj = {}
+        const selectedUtilities = this.value.split(' ')
+        selectedUtilities.forEach((selectedUtility) => {
+          const match = selectedUtility.match(/^([a-zA-Z\-]+)(?:\-(\d+))?$/)
+          if (match) {
+            const name = match[1]
+            const utilityClass = getXyzUtilityClass(name)
+            const model = this.getUtilityClassModel(utilityClass)
+            this.$set(this.selectedObj, model, selectedUtility)
+          }
+        })
       }
     },
-    toggled: {
+    selectedObj: {
       deep: true,
       handler() {
-        console.log(this.toggled)
+        const selected = Object.values(this.selectedObj).join(' ')
+        this.$emit('input', selected)
       }
     }
   },
   methods: {
-    toggleCell (identifier, cell) {
-      if (this.multiple && this.toggled[identifier] === cell.value) {
-        this.toggled[identifier] = {}
+    getUtilityClassModel (utilityClass) {
+      let model = 'utility'
+      if (this.multiple) {
+        model += `_${utilityClass.type}`
+        if (utilityClass.axis) {
+          model += `_${utilityClass.axis}`
+        }
+      }
+      return model
+    },
+    onCellClick (cell, model) {
+      if (this.multiple && this.selectedObj[model] === cell.value) {
+        this.$delete(this.selectedObj, model)
       }
     },
   },
