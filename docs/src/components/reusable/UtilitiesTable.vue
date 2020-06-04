@@ -79,9 +79,10 @@ export default {
 
 <style lang="scss" scoped>
 .utilities-table__wrap {
-  overflow-x: auto;
+  padding: $spacing-xxs;
   border-radius: $br-l;
   font-family: $font-stack-mono;
+  overflow-x: auto;
 }
 
 .utilities-table {
@@ -95,12 +96,13 @@ export default {
     vertical-align: middle;
   }
 
-  .utility-class-header {
+  .utility-class__header {
     text-align: right;
+    width: 0.1%;
   }
 
-  .utility-level-header {
-    min-width: 2rem;
+  .utility-level__header {
+    min-width: 2.5rem;
   }
 
   .utility-level {
