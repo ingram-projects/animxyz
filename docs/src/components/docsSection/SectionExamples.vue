@@ -1,13 +1,15 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<utilities-table class="example-utilities" v-model="utilitiesToggled" v-if="utilities" :names="utilities.names" :multiple="utilities.multiple" ></utilities-table>
+			<utilities-table class="example-utilities" v-model="toggledUtilities" v-if="utilities" :names="utilities.names" :multiple="utilities.multiple" ></utilities-table>
+
 			<div class="example-template">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
-					<compiled-template :template="activeExample.template" v-if="exampleToggled"></compiled-template>
+					<compiled-template v-if="exampleToggled" :template="activeExample.template" :data="injectedData"></compiled-template>
 				</xyz-transition>
 			</div>
-			<code-block class="example-code" :code="activeExample.code"></code-block>
+
+			<code-block class="example-code" :code="activeExample.code" :data="injectedData"></code-block>
 		</div>
 	</div>
 </template>
@@ -29,7 +31,7 @@ export default {
 		return {
 			activeExampleIndex: null,
 			exampleToggled: true,
-			utilitiesToggled: null,
+			toggledUtilities: null,
 		}
 	},
 	computed: {
@@ -42,6 +44,12 @@ export default {
 		compiledTemplate() {
 			return this.activeExample.template
 		},
+		injectedData() {
+			return {
+				exampleToggled: this.exampleToggled,
+				toggledUtilities: this.toggledUtilities,
+			}
+		}
 	},
 	methods: {
 		setActiveExample(index) {
@@ -56,7 +64,7 @@ export default {
 	},
 	created() {
 		if (this.utilities) {
-			this.utilitiesToggled = this.utilities.default || ''
+			this.toggledUtilities = this.utilities.default || ''
 		}
 		this.setActiveExample(0)
 	},
@@ -71,9 +79,9 @@ export default {
 }
 
 .example-template {
+	--xyz-duration-default: 1s;
 	min-height: 12rem;
 	display: flex;
-	--xyz-duration-default: 1s;
 	border-bottom: 1px solid;
 	border-top: 1px solid;
 	border-color: primary-color(800);

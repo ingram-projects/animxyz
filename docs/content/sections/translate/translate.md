@@ -6,11 +6,11 @@ title: Translate
 examples:
   - name: Translate
     template: |
-      <div class="square" xyz="fade" v-xyz="xyzClasses"></div>
+      <div class="square" v-xyz="['fade', data.toggledUtilities]"></div>
     code:
       - language: html
         content: |
-          <div class="square xyz-in" xyz="fade {{xyzClasses}}"></div>
+          <div class="square xyz-in" xyz="fade ${data.toggledUtilities}"></div>
 
 utilities:
   names: [left, right, up, down]

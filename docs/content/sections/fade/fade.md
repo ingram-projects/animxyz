@@ -6,11 +6,11 @@ title: Fade
 examples:
   - name: Fade
     template: |
-      <div class="square" v-xyz="xyzClasses"></div>
+      <div class="square" v-xyz="data.toggledUtilities"></div>
     code:
       - language: html
         content: |
-          <div class="square xyz-in" xyz="{{xyzClasses}}"></div>
+          <div class="square xyz-in" xyz="${data.toggledUtilities}"></div>
 
 utilities:
   names: [fade]

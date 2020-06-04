@@ -7,7 +7,7 @@ import Prism from 'vue-prism-component'
 
 export default {
 	name: 'CodeBlock',
-	props: ['code'],
+	props: ['code', 'data'],
   components: {
     Prism,
   },
