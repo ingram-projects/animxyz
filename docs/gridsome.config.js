@@ -10,36 +10,34 @@ module.exports = {
 	host: '0.0.0.0',
 	runtimeCompiler: true,
 	plugins: [
-	  {
-	    use: '@gridsome/source-filesystem',
-	    options: {
-	      typeName: 'Section',
-	      baseDir: 'content/sections',
-	      path: '**/*.md',
-	    },
-	  },
 		{
-      use: 'gridsome-plugin-sass-resources-loader',
-      options: {
-        resources: '~/assets/styles/variables/_index.scss',
-      }
-    },
+			use: '@gridsome/source-filesystem',
+			options: {
+				typeName: 'Section',
+				baseDir: 'content/sections',
+				path: '**/*.md',
+			},
+		},
 		{
-	    use: 'gridsome-plugin-svg',
-	    options: {
-		    svgo: [
-		      {
-		        removeViewBox: false
-		      },
-		    ],
-		  }
-	  }
+			use: 'gridsome-plugin-sass-resources-loader',
+			options: {
+				resources: '~/assets/styles/variables/_index.scss',
+			},
+		},
+		{
+			use: 'gridsome-plugin-svg',
+			options: {
+				svgo: [
+					{
+						removeViewBox: false,
+					},
+				],
+			},
+		},
 	],
 	transformers: {
 		remark: {
-			plugins: [
-				'@gridsome/remark-prismjs',
-			],
+			plugins: ['@gridsome/remark-prismjs'],
 		},
 	},
 }
