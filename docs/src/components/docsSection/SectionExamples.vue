@@ -1,7 +1,7 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<utilities-table class="example-utilities" v-model="toggledUtilities" v-if="utilities" :names="utilities.names" :multiple="utilities.multiple" ></utilities-table>
+			<utilities-table class="example-utilities" v-model="toggledUtilities" v-if="utilities" :classes="utilities.classes" :multiple="utilities.multiple" ></utilities-table>
 
 			<div class="example-template">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">

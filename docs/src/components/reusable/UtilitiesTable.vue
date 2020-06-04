@@ -7,14 +7,15 @@
           {{utilityLevel}}
         </th>
       </tr>
-      <tr v-for="utilityClass in utilityClasses" :key="utilityClass.name">
+      <tr v-for="row in rows" :key="row.name">
         <th class="utility-class__header">
-          {{utilityClass.name}}
+          {{row.name}}
         </th>
-        <td class="utility-level" v-for="utilityLevel in utilityLevels" :key="utilityLevel">
-          <button class="utility-level__toggle" :class="{ 'toggled': isToggled(utilityClass.name, utilityLevel) }" @click="toggle(utilityClass.name, utilityLevel)">
+        <td class="utility-level" v-for="cell in row.cells" :key="cell.id">
+          <input class="toggle-input" type="radio" :id="cell.id" :value="cell.value" v-model="toggled[row.identifier]" @click="toggleCell(row.identifier, cell)">
+          <label class="utility-level__toggle" :for="cell.id">
             <div class="toggle-indicator"></div>
-          </button>
+          </label>
         </td>
       </tr>
     </table>
@@ -26,17 +27,15 @@ import { getXyzUtilityClass, getXyzUtilityClassLevel } from '~/utils'
 
 export default {
   name: 'UtilitiesTable',
-  props: ['value', 'names', 'multiple'],
+  props: ['value', 'classes', 'multiple'],
+  data () {
+    return {
+      toggled: {},
+    }
+  },
   computed: {
-    toggled () {
-      const toggled = {}
-      this.value.split(' ').forEach((utilityClass) => {
-        toggled[utilityClass] = true
-      })
-      return toggled
-    },
     utilityClasses () {
-      return this.names.map((name) => {
+      return this.classes.map((name) => {
         return getXyzUtilityClass(name)
       })
     },
@@ -48,31 +47,52 @@ export default {
         })
       })
       return ['default', ...Object.keys(utilityLevelsMap)]
+    },
+    rows () {
+      return this.utilityClasses.map((utilityClass) => {
+        let identifier = this._uid
+
+        if (this.multiple) {
+          identifier += `_${utilityClass.type}`
+          if (utilityClass.axis) {
+            identifier += `_${utilityClass.axis}`
+          }
+        }
+
+        return {
+          name: utilityClass.name,
+          identifier,
+          cells: this.utilityLevels.map((utilityLevel) => {
+            const utilityClassLevel = getXyzUtilityClassLevel(utilityClass.name, utilityLevel)
+            return {
+              id: `${identifier}_${utilityClassLevel.string}`,
+              value: utilityClassLevel.string,
+            }
+          }),
+        }
+      })
+    }
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler () {
+        console.log(this.value)
+      }
+    },
+    toggled: {
+      deep: true,
+      handler() {
+        console.log(this.toggled)
+      }
     }
   },
   methods: {
-    isToggled(name, level) {
-      const utilityClassLevel = getXyzUtilityClassLevel(name, level)
-      return this.toggled[utilityClassLevel.string]
+    toggleCell (identifier, cell) {
+      if (this.multiple && this.toggled[identifier] === cell.value) {
+        this.toggled[identifier] = {}
+      }
     },
-    toggle(name, level) {
-      const utilityClassLevel = getXyzUtilityClassLevel(name, level)
-      let newToggled
-      if (this.multiple) {
-        newToggled = {
-          ...this.toggled
-        }
-      } else {
-        newToggled = {}
-      }
-      if (this.toggled[utilityClassLevel.string] && this.multiple) {
-        delete newToggled[utilityClassLevel.string]
-      } else {
-        newToggled[utilityClassLevel.string] = true
-      }
-      const newValue = Object.keys(newToggled).join(' ')
-      this.$emit('input', newValue)
-    }
   },
 }
 </script>
@@ -109,6 +129,17 @@ export default {
     position: relative;
   }
 
+
+  .toggle-input {
+    display: none;
+
+    &:checked + .utility-level__toggle .toggle-indicator {
+      @include size(1.5rem);
+      border-radius: $br-m;
+      opacity: 1;
+    }
+  }
+
   .utility-level__toggle {
     width: 100%;
     height: 2rem;
@@ -126,14 +157,6 @@ export default {
       .toggle-indicator {
         @include circle(.5rem);
         opacity: 0.5;
-      }
-    }
-
-    &.toggled {
-      .toggle-indicator {
-        @include size(1.5rem);
-        border-radius: $br-m;
-        opacity: 1;
       }
     }
   }

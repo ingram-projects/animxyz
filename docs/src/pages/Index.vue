@@ -45,7 +45,7 @@
 					}
 				}
 				utilities {
-					names
+					classes
 					multiple
 					default
 				}

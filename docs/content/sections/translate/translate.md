@@ -13,9 +13,9 @@ examples:
           <div class="square xyz-in" xyz="fade ${data.toggledUtilities}"></div>
 
 utilities:
-  names: [right, left, down, up, front, back]
-  multiple: false
-  default: left
+  classes: [right, left, down, up, front, back]
+  multiple: true
+  default: left-5 up-2
 ---
 
 This is the translate section

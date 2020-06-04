@@ -13,9 +13,9 @@ examples:
           <div class="square xyz-in" xyz="${data.toggledUtilities}"></div>
 
 utilities:
-  names: [fade]
+  classes: [fade]
   multiple: false
-  default: fade
+  default: fade-50
 ---
 
 This is the fade section
