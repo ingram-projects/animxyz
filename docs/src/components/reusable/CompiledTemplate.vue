@@ -1,14 +1,14 @@
 <script>
 export default {
   name: 'CompiledTemplate',
-  props: ['template'],
+  props: ['template', 'data'],
   render(createElement) {
     return createElement({
       template: this.template,
       props: ['data'],
     }, {
       props: {
-        data: this.$attrs,
+        data: this.data,
       }
     })
   }
