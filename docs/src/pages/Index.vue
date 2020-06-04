@@ -121,8 +121,4 @@ export default {
 .banner {
 	margin: 0 auto;
 }
-
-.docs-sections__wrap {
-	--xyz-stagger: 0.1s;
-}
 </style>
