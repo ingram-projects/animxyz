@@ -28,7 +28,7 @@
 				utilities {
 					names
 					multiple
-					defaults
+					default
 				}
       }
     }

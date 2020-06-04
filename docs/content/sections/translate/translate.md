@@ -15,8 +15,7 @@ examples:
 utilities:
   names: [left, right, up, down]
   multiple: false
-  defaults:
-    - left
+  default: left
 ---
 
 This is the translate section

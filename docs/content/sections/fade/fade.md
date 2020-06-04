@@ -15,8 +15,7 @@ examples:
 utilities:
   names: [fade]
   multiple: false
-  defaults:
-    - fade
+  default: fade
 ---
 
 This is the fade section

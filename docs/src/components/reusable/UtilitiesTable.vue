@@ -26,15 +26,17 @@ import { getXyzUtilityClass, getXyzUtilityClassLevel } from '~/utils'
 
 export default {
   name: 'UtilitiesTable',
-  props: ['utilities'],
-  data () {
-    return {
-      toggled: {},
-    }
-  },
+  props: ['value', 'names', 'multiple'],
   computed: {
+    toggled () {
+      const toggled = {}
+      this.value.split(' ').forEach((utilityClass) => {
+        toggled[utilityClass] = true
+      })
+      return toggled
+    },
     utilityClasses () {
-      return this.utilities.names.map((name) => {
+      return this.names.map((name) => {
         return getXyzUtilityClass(name)
       })
     },
@@ -55,23 +57,23 @@ export default {
     },
     toggle(name, level) {
       const utilityClassLevel = getXyzUtilityClassLevel(name, level)
-      if (!this.utilities.multiple) {
-        this.toggled = {}
-      }
-      if (this.toggled[utilityClassLevel.string]) {
-        delete this.toggled[utilityClassLevel.string]
+      let newToggled
+      if (this.multiple) {
+        newToggled = {
+          ...this.toggled
+        }
       } else {
-        this.toggled[utilityClassLevel.string] = true
+        newToggled = {}
       }
+      if (this.toggled[utilityClassLevel.string] && this.multiple) {
+        delete newToggled[utilityClassLevel.string]
+      } else {
+        newToggled[utilityClassLevel.string] = true
+      }
+      const newValue = Object.keys(newToggled).join(' ')
+      this.$emit('input', newValue)
     }
   },
-  created () {
-    if (this.utilities.defaults) {
-      this.utilities.defaults.forEach((defaultClass) => {
-        this.toggle(defaultClass)
-      })
-    }
-  }
 }
 </script>
 

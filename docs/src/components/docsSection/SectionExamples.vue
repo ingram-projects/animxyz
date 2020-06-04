@@ -1,7 +1,7 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<utilities-table class="example-utilities" :utilities="utilities"></utilities-table>
+			<utilities-table class="example-utilities" v-model="utilitiesToggled" v-if="utilities" :names="utilities.names" :multiple="utilities.multiple" ></utilities-table>
 			<div class="example-template">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
 					<compiled-template :template="activeExample.template" v-if="exampleToggled"></compiled-template>
@@ -29,6 +29,7 @@ export default {
 		return {
 			activeExampleIndex: null,
 			exampleToggled: true,
+			utilitiesToggled: null,
 		}
 	},
 	computed: {
@@ -54,6 +55,9 @@ export default {
 		},
 	},
 	created() {
+		if (this.utilities) {
+			this.utilitiesToggled = this.utilities.default || ''
+		}
 		this.setActiveExample(0)
 	},
 }
