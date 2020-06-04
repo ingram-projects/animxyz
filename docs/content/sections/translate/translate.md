@@ -14,8 +14,8 @@ examples:
 
 utilities:
   classes: [right, left, down, up, front, back]
-  multiple: true
-  default: left-5 up-2
+  multiple: false
+  default: right
 ---
 
 This is the translate section
