@@ -106,37 +106,37 @@ export const xyzUtilityClassesMap = {
 	ease: {
 		type: 'ease',
 		vars: ['ease'],
-		default: 'ease',
+		defaultVal: 'var(--xyz-ease-default)',
 		utilityMap: xyzUtilityEases,
 	},
 	duration: {
 		type: 'time',
 		vars: ['duration'],
-		default: 'duration',
+		defaultVal: 'var(--xyz-duration-default)',
 		utilityMap: xyzUtilityTimes,
 	},
 	delay: {
 		type: 'time',
 		vars: ['delay'],
-		default: 'delay',
+		defaultVal: 'var(--xyz-delay-default)',
 		utilityMap: xyzUtilityTimes,
 	},
 	stagger: {
 		type: 'time',
 		vars: ['stagger'],
-		default: 'stagger',
+		defaultVal: 'var(--xyz-stagger-default)',
 		utilityMap: xyzUtilityTimes,
 	},
 	'stagger-rev': {
 		type: 'time',
 		vars: ['stagger-rev'],
-		default: 'stagger',
+		defaultVal: 'var(--xyz-stagger-default)',
 		utilityMap: xyzUtilityTimes,
 	},
 	iterate: {
 		type: 'iterate',
 		vars: ['iterate'],
-		default: 'iterate',
+		defaultVal: 'var(--xyz-iterate-default)',
 		utilityMap: xyzUtilityIterations,
 	},
 
@@ -144,7 +144,7 @@ export const xyzUtilityClassesMap = {
 	origin: {
 		type: 'origin',
 		vars: ['origin'],
-		default: 'origin',
+		defaultVal: 'var(--xyz-origin-default)',
 		utilityMap: xyzUtilityOrigins,
 	},
 
@@ -152,110 +152,52 @@ export const xyzUtilityClassesMap = {
 	fade: {
 		type: 'fade',
 		vars: ['fade'],
-		default: 'fade',
+		defaultVal: 'calc(1 - var(--xyz-fade-default))',
 		utilityMap: xyzUtilityFades,
 	},
 
 	// Translations
-	left: {
-		type: 'translate',
-		axis: 'x',
-		vars: ['translate-x'],
-		default: 'translate',
-		utilityMap: xyzUtilityTranslations,
-	},
 	right: {
 		type: 'translate',
 		axis: 'x',
 		vars: ['translate-x'],
-		default: 'translate',
+		defaultVal: 'var(--xyz-translate-default)',
 		utilityMap: xyzUtilityTranslations,
 	},
-	up: {
+	left: {
 		type: 'translate',
-		axis: 'y',
-		vars: ['translate-y'],
-		default: 'translate',
+		axis: 'x',
+		vars: ['translate-x'],
+		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslations,
 	},
 	down: {
 		type: 'translate',
 		axis: 'y',
 		vars: ['translate-y'],
-		default: 'translate',
+		defaultVal: 'var(--xyz-translate-default)',
+		utilityMap: xyzUtilityTranslations,
+	},
+	up: {
+		type: 'translate',
+		axis: 'y',
+		vars: ['translate-y'],
+		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslations,
 	},
 	front: {
 		type: 'translate',
 		axis: 'z',
 		vars: ['translate-z'],
-		default: 'translate',
+		defaultVal: 'var(--xyz-translate-default)',
 		utilityMap: xyzUtilityTranslationsZ,
 	},
 	back: {
 		type: 'translate',
 		axis: 'z',
 		vars: ['translate-z'],
-		default: 'translate',
+		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslationsZ,
-	},
-
-	// Scales
-	small: {
-		type: 'scale',
-		axis: 'all',
-		vars: ['scale-x', 'scale-y', 'scale-z'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	big: {
-		type: 'scale',
-		axis: 'all',
-		vars: ['scale-x', 'scale-y', 'scale-z'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	narrow: {
-		type: 'scale',
-		axis: 'x',
-		vars: ['scale-x'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	wide: {
-		type: 'scale',
-		axis: 'x',
-		vars: ['scale-x'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	short: {
-		type: 'scale',
-		axis: 'y',
-		vars: ['scale-y'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	tall: {
-		type: 'scale',
-		axis: 'y',
-		vars: ['scale-y'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	thin: {
-		type: 'scale',
-		axis: 'z',
-		vars: ['scale-z'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
-	},
-	thick: {
-		type: 'scale',
-		axis: 'z',
-		vars: ['scale-z'],
-		default: 'scale',
-		utilityMap: xyzUtilityScales,
 	},
 
 	// Rotations
@@ -263,43 +205,101 @@ export const xyzUtilityClassesMap = {
 		type: 'rotate',
 		axis: 'x',
 		vars: ['rotate-x'],
-		default: 'rotate',
+		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
 	},
 	'flip-down': {
 		type: 'rotate',
 		axis: 'x',
 		vars: ['rotate-x'],
-		default: 'rotate',
+		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
 	},
 	'flip-left': {
 		type: 'rotate',
 		axis: 'y',
 		vars: ['rotate-y'],
-		default: 'rotate',
+		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
 	},
 	'flip-right': {
 		type: 'rotate',
 		axis: 'y',
 		vars: ['rotate-y'],
-		default: 'rotate',
+		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
 	},
 	'turn-cw': {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],
-		default: 'rotate',
+		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
 	},
 	'turn-ccw': {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],
-		default: 'rotate',
+		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
+	},
+
+	// Scales
+	small: {
+		type: 'scale',
+		axis: 'all',
+		vars: ['scale-x', 'scale-y', 'scale-z'],
+		defaultVal: 'calc(1 - var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	big: {
+		type: 'scale',
+		axis: 'all',
+		vars: ['scale-x', 'scale-y', 'scale-z'],
+		defaultVal: 'calc(1 + var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	narrow: {
+		type: 'scale',
+		axis: 'x',
+		vars: ['scale-x'],
+		defaultVal: 'calc(1 - var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	wide: {
+		type: 'scale',
+		axis: 'x',
+		vars: ['scale-x'],
+		defaultVal: 'calc(1 + var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	short: {
+		type: 'scale',
+		axis: 'y',
+		vars: ['scale-y'],
+		defaultVal: 'calc(1 - var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	tall: {
+		type: 'scale',
+		axis: 'y',
+		vars: ['scale-y'],
+		defaultVal: 'calc(1 + var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	thin: {
+		type: 'scale',
+		axis: 'z',
+		vars: ['scale-z'],
+		defaultVal: 'calc(1 - var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
+	},
+	thick: {
+		type: 'scale',
+		axis: 'z',
+		vars: ['scale-z'],
+		defaultVal: 'calc(1 + var(--xyz-scale-default))',
+		utilityMap: xyzUtilityScales,
 	},
 }
 
@@ -317,14 +317,14 @@ export function getXyzUtilityClass(name) {
 	}
 }
 
-export function getXyzUtilityClassLevel(name, level) {
+export function getXyzUtilityClassLevel(name, level = 'default') {
 	const classObj = getXyzUtilityClass(name)
 
-	if (level !== undefined) {
-		classObj.level = level
-		classObj.string = `${name}-${level}`
-	} else {
+	classObj.level = level
+	if (level === 'default') {
 		classObj.string = name
+	} else {
+		classObj.string = `${name}-${level}`
 	}
 
 	return classObj
