@@ -2,7 +2,7 @@
 	<Layout>
 		<a
 			class="github-link xyz-in"
-			xyz="fade small up duration-4 delay-5 turn-ccw ease-out-back"
+			xyz="fade small up turn-ccw duration-4 ease-out-back"
 			href="https://github.com/ingram-projects/animxyz"
 			target="_blank"
 		>
@@ -12,7 +12,13 @@
 		<div class="banner__wrap">
 			<banner></banner>
 		</div>
-		<xyz-transition-group appear xyz="fade down stagger">
+		<div class="intro-wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
+			<p class="intro-text">
+				The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
+				website to life.
+			</p>
+		</div>
+		<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
 			<docs-section
 				:section="section.node"
 				v-for="(section, index) in $page.sections.edges"
@@ -70,6 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .github-link {
+	--xyz-delay: 1.4s;
 	@include size(2.5rem);
 	display: block;
 	position: fixed;
@@ -88,6 +95,21 @@ export default {
 	}
 }
 
+.intro-wrap {
+	--xyz-duration: 0.7s;
+	--xyz-delay: 1.2s;
+	margin: 0 auto;
+	margin-bottom: $spacing-xxl;
+	width: 80ch;
+	text-align: center;
+}
+
+.intro-text {
+	font-size: $fs-large;
+	font-weight: 500;
+	line-height: 1.75;
+}
+
 .banner__wrap {
 	padding: 10vh $spacing-l;
 
@@ -98,5 +120,9 @@ export default {
 
 .banner {
 	margin: 0 auto;
+}
+
+.docs-sections__wrap {
+	--xyz-stagger: 0.1s;
 }
 </style>
