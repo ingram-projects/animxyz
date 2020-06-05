@@ -13,7 +13,7 @@ examples:
           <div class="square xyz-in" xyz="fade ${data.toggledUtilities}"></div>
 
 utilities:
-  classes: [right, left, down, up, front, back]
+  names: [right, left, down, up, front, back]
   multiple: false
   default: right
 ---

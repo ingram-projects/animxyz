@@ -1,7 +1,7 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<utilities-table class="example-utilities" v-model="toggledUtilities" v-if="utilities" :classes="utilities.classes" :multiple="utilities.multiple" ></utilities-table>
+			<xyz-utilities-input class="example-utilities" v-model="toggledUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple" ></xyz-utilities-input>
 
 			<div class="example-template">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
@@ -17,7 +17,7 @@
 <script>
 import CodeBlock from '~/components/reusable/CodeBlock'
 import CompiledTemplate from '~/components/reusable/CompiledTemplate'
-import UtilitiesTable from '~/components/reusable/UtilitiesTable'
+import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 
 export default {
 	name: 'SectionExamples',
@@ -25,7 +25,7 @@ export default {
 	components: {
 		CodeBlock,
 		CompiledTemplate,
-		UtilitiesTable,
+		XyzUtilitiesInput,
 	},
 	data() {
 		return {

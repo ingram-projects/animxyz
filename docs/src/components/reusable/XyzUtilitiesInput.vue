@@ -1,5 +1,5 @@
 <template>
-  <div class="utilities-table__wrap">
+  <div class="utilties-input">
     <table class="utilities-table">
       <tr>
         <th></th>
@@ -28,8 +28,8 @@
 import { getXyzUtilityClass, getXyzUtilityClassLevel } from '~/utils'
 
 export default {
-  name: 'UtilitiesTable',
-  props: ['value', 'classes', 'multiple'],
+  name: 'XyzUtilitiesInput',
+  props: ['value', 'utilities', 'multiple'],
   data () {
     return {
       selectedObj: {},
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     utilityClasses () {
-      return this.classes.map((name) => {
+      return this.utilities.map((name) => {
         return getXyzUtilityClass(name)
       })
     },
@@ -113,7 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.utilities-table__wrap {
+.utilties-input {
   padding: $spacing-xxs;
   border-radius: $br-l;
   font-family: $font-stack-mono;

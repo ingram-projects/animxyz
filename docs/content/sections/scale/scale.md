@@ -13,7 +13,7 @@ examples:
           <div class="square xyz-in" xyz="fade ${data.toggledUtilities}"></div>
 
 utilities:
-  classes: [small, big, narrow, wide, short, tall, thin, thick]
+  names: [small, big, narrow, wide, short, tall, thin, thick]
   multiple: false
   default: small
 ---
