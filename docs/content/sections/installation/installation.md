@@ -1,6 +1,4 @@
 ---
-order: 1
-
 title: Installation
 ---
 

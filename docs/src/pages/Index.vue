@@ -21,9 +21,9 @@
 
 		<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
 			<docs-section
-				:section="section.node"
-				v-for="(section, index) in $page.sections.edges"
-				:key="index"
+				:section="section"
+				v-for="(section, index) in sections"
+				:key="section.title"
 			></docs-section>
 		</xyz-transition-group>
 	</Layout>
@@ -31,10 +31,9 @@
 
 <page-query>
 {
-  sections: allSection (sortBy: "order", order: ASC) {
+  sections: allSection {
     edges {
       node {
-				order
         title
 				content
 				examples {
@@ -67,6 +66,29 @@ export default {
 		Banner,
 		DocsSection,
 		IconGithub,
+	},
+	data () {
+		return {
+			sectionNames: [
+				'Installation',
+				'Fade',
+				'Translate',
+				'Rotate',
+				'Scale',
+			],
+		}
+	},
+	computed: {
+		sections () {
+			const sectionsObj = {}
+			this.$page.sections.edges.forEach((sectionEdge) => {
+				sectionsObj[sectionEdge.node.title] = sectionEdge.node
+			})
+
+			return this.sectionNames.map((sectionName) => {
+				return sectionsObj[sectionName]
+			})
+		},
 	},
 	metaInfo() {
 		return {

@@ -1,6 +1,4 @@
 ---
-order: 5
-
 title: Scale
 
 examples:

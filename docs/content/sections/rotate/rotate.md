@@ -1,6 +1,4 @@
 ---
-order: 4
-
 title: Rotate
 
 examples:
