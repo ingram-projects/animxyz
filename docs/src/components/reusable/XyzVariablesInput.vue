@@ -1,7 +1,10 @@
 <template>
   <div class="variables-input">
     <div class="variables-content">
-      <div class="variable" v-for="variable in computedVariables" :key="variable.string">{{variable.string}}</div>
+      <div class="variable" v-for="variable in computedVariables" :key="variable.string">
+        <label class="variable-label" :for="variable.id">{{variable.string}}:</label>
+        <input class="variable-input" type="text" :id="variable.id" />
+      </div>
     </div>
   </div>
 </template>
@@ -15,7 +18,11 @@ export default {
   computed: {
     computedVariables () {
       return this.variables.map((variable) => {
-        return getXyzVariableMode(variable)
+        const xyzVariableMode = getXyzVariableMode(variable)
+        return {
+          ...xyzVariableMode,
+          id: `${this._uid}_${xyzVariableMode.string}`,
+        }
       })
     },
   },
@@ -24,18 +31,29 @@ export default {
 
 <style lang="scss" scoped>
 .variables-input {
-  padding: $spacing-xs;
   border-radius: $br-l;
   font-family: $font-stack-mono;
+  padding: $spacing-xs;
   overflow-x: auto;
 }
 
 .variables-content {
-  color: primary-color(100);
   background-color: primary-color(900);
 }
 
 .variable {
+  padding: $spacing-xxxs;
+  display: flex;
+  align-items: center;
 
+  .variable-label {
+    font-weight: bold;
+  }
+
+  .variable-input {
+    flex-grow: 1;
+    color: primary-color(100);
+    margin-left: $spacing-xxs;
+  }
 }
 </style>

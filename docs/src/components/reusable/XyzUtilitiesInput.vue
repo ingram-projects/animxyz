@@ -114,7 +114,7 @@ export default {
 
 <style lang="scss" scoped>
 .utilities-input {
-  padding: $spacing-xxs;
+  padding: $spacing-xs;
   border-radius: $br-l;
   font-family: $font-stack-mono;
   overflow-x: auto;
@@ -127,7 +127,7 @@ export default {
   background-color: primary-color(900);
 
   th {
-    padding: $spacing-xxs;
+    padding: $spacing-xxxs;
     vertical-align: middle;
   }
 
@@ -176,7 +176,7 @@ export default {
   .toggle-indicator {
     @include circle(.25rem);
     margin: auto;
-    opacity: 0.25;
+    opacity: 0.2;
     background-color: primary-color(100);
     transition: all .15s $ease-in-out;
   }

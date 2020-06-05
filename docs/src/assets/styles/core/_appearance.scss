@@ -47,3 +47,19 @@
   --primary-900-rgb: #{$primary900-rgb};
   --primary-900: #{$primary900};
 }
+
+.color-axis-x {
+	color: $red;
+}
+
+.color-axis-y {
+	color: $yellow;
+}
+
+.color-axis-z {
+	color: $green;
+}
+
+.color-axis-all, .color-axis-none {
+	color: $cyan;
+}

@@ -4,7 +4,7 @@
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"
-					:class="[`anim-axis-${getClassAxis(xyzUtility)}`]"
+					:class="[`color-axis-${getUtilityAxis(xyzUtility)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
 					v-for="xyzUtility in xyzUtilities"
 					:key="xyzUtility.string"
@@ -61,7 +61,7 @@ export default {
 		},
 	},
 	methods: {
-		getClassAxis(xyzUtility) {
+		getUtilityAxis(xyzUtility) {
 			if (xyzUtility.axis) {
 				return xyzUtility.axis
 			}
@@ -126,21 +126,5 @@ export default {
 	@include media('>=laptop') {
 		font-size: 1.5rem;
 	}
-}
-
-.anim-axis-x {
-	color: $red;
-}
-
-.anim-axis-y {
-	color: $yellow;
-}
-
-.anim-axis-z {
-	color: $green;
-}
-
-.anim-axis-all, .anim-axis-none {
-	color: $cyan;
 }
 </style>
