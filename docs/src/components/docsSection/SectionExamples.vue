@@ -2,13 +2,14 @@
 	<div class="section-examples">
 		<div class="section-example">
 			<xyz-utilities-input class="example-utilities example-row" v-model="xyzUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple"></xyz-utilities-input>
-			<xyz-variables-input class="example-variables example-row" v-model="xyzVariables" v-if="variables" :variables="variables"></xyz-variables-input>
 
 			<div class="example-template example-row">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
 					<compiled-template v-if="exampleToggled" :template="activeExample.template" :data="injectedData"></compiled-template>
 				</xyz-transition>
 			</div>
+
+			<xyz-variables-input class="example-variables example-row" v-model="xyzVariables" v-if="variables" :variables="variables"></xyz-variables-input>
 
 			<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
 		</div>
