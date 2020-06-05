@@ -1,13 +1,33 @@
 <template>
-	<div class="page-content-wrap">
-		<main class="page-content">
-			<slot />
-		</main>
-	</div>
+	<main class="page-content" :style="{ 'perspective-origin': `50% ${this.scrollCenter}px`}">
+		<slot />
+	</main>
 </template>
 
 <script>
-export default {}
+export default {
+	data () {
+		return {
+			scrollCenter: 0,
+		}
+	},
+	methods: {
+		onWindowScroll () {
+			this.scrollCenter = window.scrollY + window.innerHeight / 2
+		},
+	},
+	mounted() {
+		this.onWindowScroll()
+		window.addEventListener('scroll', this.onWindowScroll)
+	},
+	beforeDestroy () {
+		window.removeEventListener('scroll', this.onWindowScroll)
+	},
+}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-content {
+	perspective: 1000px;
+}
+</style>
