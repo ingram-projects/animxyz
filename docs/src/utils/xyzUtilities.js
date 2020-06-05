@@ -320,12 +320,10 @@ export function getXyzUtilityClass(name) {
 export function getXyzUtilityClassLevel(name, level = 'default') {
 	const classObj = getXyzUtilityClass(name)
 
-	classObj.level = level
-	if (level === 'default') {
-		classObj.string = name
-	} else {
-		classObj.string = `${name}-${level}`
+	return {
+		...classObj,
+		level,
+		valid: level === 'default' || classObj.utilityMap[level],
+		string: level === 'default' ? name : `${name}-${level}`,
 	}
-
-	return classObj
 }

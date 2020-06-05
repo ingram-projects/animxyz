@@ -12,10 +12,12 @@
           {{row.name}}
         </th>
         <td class="utility-level" v-for="cell in row.cells" :key="cell.id">
-          <input class="toggle-input" type="radio" :id="cell.id" :value="cell.value" v-model="selectedObj[row.model]" @click="onCellClick(cell, row.model)">
-          <label class="utility-level__toggle" :for="cell.id">
-            <div class="toggle-indicator"></div>
-          </label>
+          <div class="utility-level__content" v-if="cell.valid">
+            <input class="toggle-input" type="radio" :id="cell.id" :value="cell.value" v-model="selectedObj[row.model]" @click="onCellClick(cell, row.model)">
+            <label class="toggle-label" :for="cell.id">
+              <div class="toggle-indicator"></div>
+            </label>
+          </div>
         </td>
       </tr>
     </table>
@@ -58,6 +60,7 @@ export default {
             return {
               id: `${this._uid}_${utilityClassLevel.string}`,
               value: utilityClassLevel.string,
+              valid: utilityClassLevel.valid,
             }
           }),
         }
@@ -129,8 +132,9 @@ export default {
   }
 
   .utility-class__header {
-    text-align: right;
     width: 0.1%;
+    text-align: right;
+    white-space: nowrap;
   }
 
   .utility-level__header {
@@ -141,29 +145,25 @@ export default {
     position: relative;
   }
 
+  .utility-level__content {
+    width: 100%;
+    height: 2rem;
+  }
 
   .toggle-input {
     display: none;
 
-    &:checked + .utility-level__toggle .toggle-indicator {
+    &:checked + .toggle-label .toggle-indicator {
       @include size(1.5rem);
       border-radius: $br-m;
       opacity: 1;
     }
   }
 
-  .utility-level__toggle {
+  .toggle-label {
     width: 100%;
-    height: 2rem;
+    height: 100%;
     display: flex;
-
-    .toggle-indicator {
-      @include circle(.25rem);
-      margin: auto;
-      opacity: 0.25;
-      background-color: primary-color(100);
-      transition: all .15s $ease-in-out;
-    }
 
     &:hover {
       .toggle-indicator {
@@ -171,6 +171,14 @@ export default {
         opacity: 0.5;
       }
     }
+  }
+
+  .toggle-indicator {
+    @include circle(.25rem);
+    margin: auto;
+    opacity: 0.25;
+    background-color: primary-color(100);
+    transition: all .15s $ease-in-out;
   }
 }
 </style>
