@@ -101,7 +101,7 @@ export const xyzUtilityOrigins = {
 	'bottom-right': 'bottom right',
 }
 
-export const xyzUtilityClassesMap = {
+export const xyzUtilitiesMap = {
 	// Timings
 	ease: {
 		type: 'ease',
@@ -303,22 +303,22 @@ export const xyzUtilityClassesMap = {
 	},
 }
 
-export const xyzUtilityClasses = Object.entries(xyzUtilityClassesMap).map(([name, mode]) => {
+export const xyzUtilities = Object.entries(xyzUtilitiesMap).map(([name, mode]) => {
 	return {
 		name: name,
 		...mode,
 	}
 })
 
-export function getXyzUtilityClass(name) {
+export function getXyzUtility(name) {
 	return {
 		name: name,
-		...xyzUtilityClassesMap[name],
+		...xyzUtilitiesMap[name],
 	}
 }
 
-export function getXyzUtilityClassLevel(name, level = 'default') {
-	const classObj = getXyzUtilityClass(name)
+export function getXyzUtilityLevel(name, level = 'default') {
+	const classObj = getXyzUtility(name)
 
 	return {
 		...classObj,

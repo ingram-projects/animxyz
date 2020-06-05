@@ -18,6 +18,7 @@
 				website to life.
 			</p>
 		</div>
+
 		<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
 			<docs-section
 				:section="section.node"
@@ -49,6 +50,7 @@
 					multiple
 					default
 				}
+				variables
       }
     }
   }

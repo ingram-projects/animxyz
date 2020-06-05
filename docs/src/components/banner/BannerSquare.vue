@@ -1,15 +1,15 @@
 <template>
-	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzClassStrings">
+	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
 		<xyz-transition :duration="2000">
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"
-					:class="[`anim-axis-${getClassAxis(xyzClass)}`]"
+					:class="[`anim-axis-${getClassAxis(xyzUtility)}`]"
 					xyz="fade in-left in-delay-5 in-stagger"
-					v-for="xyzClass in xyzClasses"
-					:key="xyzClass.string"
+					v-for="xyzUtility in xyzUtilities"
+					:key="xyzUtility.string"
 				>
-					{{ xyzClass.string }}
+					{{ xyzUtility.string }}
 				</p>
 			</div>
 		</xyz-transition>
@@ -17,26 +17,26 @@
 </template>
 
 <script>
-import { xyzUtilityClasses, getXyzUtilityClassLevel, randomArrayItem } from '~/utils'
+import { xyzUtilities, getXyzUtilityLevel, randomArrayItem } from '~/utils'
 
-const translateXClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'translate' &&  xyzClass.axis === 'x'
+const translateXClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'x'
 })
 
-const translateYClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'translate' &&  xyzClass.axis === 'y'
+const translateYClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'y'
 })
 
-const translateZClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'translate' &&  xyzClass.axis === 'z'
+const translateZClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'z'
 })
 
-const scaleClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'scale' && xyzClass.axis !== 'z'
+const scaleClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'scale' && xyzUtility.axis !== 'z'
 })
 
-const rotateClasses = xyzUtilityClasses.filter((xyzClass) => {
-	return xyzClass.type === 'rotate'
+const rotateClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'rotate'
 })
 
 export default {
@@ -45,12 +45,12 @@ export default {
 	data() {
 		return {
 			numXyzClasses: 2,
-			xyzClasses: [],
+			xyzUtilities: [],
 		}
 	},
 	computed: {
-		xyzClassStrings() {
-			return this.xyzClasses.map((xyzClass) => xyzClass.string)
+		xyzUtilityStrings() {
+			return this.xyzUtilities.map((xyzUtility) => xyzUtility.string)
 		}
 	},
 	watch: {
@@ -61,16 +61,16 @@ export default {
 		},
 	},
 	methods: {
-		getClassAxis(xyzClass) {
-			if (xyzClass.axis) {
-				return xyzClass.axis
+		getClassAxis(xyzUtility) {
+			if (xyzUtility.axis) {
+				return xyzUtility.axis
 			}
 			return 'none'
 		},
 		randomizeXyz() {
-			this.xyzClasses = [getXyzUtilityClassLevel('fade')]
+			this.xyzUtilities = [getXyzUtilityLevel('fade')]
 
-			const xyzTranslateClassSelection = [
+			const xyzUtilitySelection = [
 				randomArrayItem(translateXClasses),
 				randomArrayItem(translateYClasses),
 				randomArrayItem(translateZClasses),
@@ -79,10 +79,10 @@ export default {
 			]
 
 			for (let i = 0; i < this.numXyzClasses; i++) {
-				const xyzClassIndex = Math.floor(Math.random() * xyzTranslateClassSelection.length)
-				const [xyzClass] = xyzTranslateClassSelection.splice(xyzClassIndex, 1)
-				const xyzClassLevel = randomArrayItem(Object.keys(xyzClass.utilityMap).filter((level) => level !== '0'))
-				this.xyzClasses.push(getXyzUtilityClassLevel(xyzClass.name, xyzClassLevel))
+				const xyzUtilityIndex = Math.floor(Math.random() * xyzUtilitySelection.length)
+				const [xyzUtility] = xyzUtilitySelection.splice(xyzUtilityIndex, 1)
+				const xyzUtilityLevel = randomArrayItem(Object.keys(xyzUtility.utilityMap).filter((level) => level !== '0'))
+				this.xyzUtilities.push(getXyzUtilityLevel(xyzUtility.name, xyzUtilityLevel))
 			}
 		},
 	},

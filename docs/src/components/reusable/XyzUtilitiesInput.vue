@@ -1,5 +1,5 @@
 <template>
-  <div class="utilties-input">
+  <div class="utilities-input">
     <table class="utilities-table">
       <tr>
         <th></th>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { getXyzUtilityClass, getXyzUtilityClassLevel } from '~/utils'
+import { getXyzUtility, getXyzUtilityLevel } from '~/utils'
 
 export default {
   name: 'XyzUtilitiesInput',
@@ -38,7 +38,7 @@ export default {
   computed: {
     utilityClasses () {
       return this.utilities.map((name) => {
-        return getXyzUtilityClass(name)
+        return getXyzUtility(name)
       })
     },
     utilityLevels () {
@@ -56,7 +56,7 @@ export default {
           name: utilityClass.name,
           model: this.getUtilityClassModel(utilityClass),
           cells: this.utilityLevels.map((utilityLevel) => {
-            const utilityClassLevel = getXyzUtilityClassLevel(utilityClass.name, utilityLevel)
+            const utilityClassLevel = getXyzUtilityLevel(utilityClass.name, utilityLevel)
             return {
               id: `${this._uid}_${utilityClassLevel.string}`,
               value: utilityClassLevel.string,
@@ -77,7 +77,7 @@ export default {
           const match = selectedUtility.match(/^([a-zA-Z\-]+)(?:\-(\d+))?$/)
           if (match) {
             const name = match[1]
-            const utilityClass = getXyzUtilityClass(name)
+            const utilityClass = getXyzUtility(name)
             const model = this.getUtilityClassModel(utilityClass)
             this.$set(this.selectedObj, model, selectedUtility)
           }
@@ -113,7 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.utilties-input {
+.utilities-input {
   padding: $spacing-xxs;
   border-radius: $br-l;
   font-family: $font-stack-mono;

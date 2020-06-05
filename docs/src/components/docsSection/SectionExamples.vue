@@ -1,15 +1,16 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<xyz-utilities-input class="example-utilities" v-model="toggledUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple" ></xyz-utilities-input>
+			<xyz-utilities-input class="example-utilities example-row" v-model="xyzUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple"></xyz-utilities-input>
+			<xyz-variables-input class="example-variables example-row" v-model="xyzVariables" v-if="variables" :variables="variables"></xyz-variables-input>
 
-			<div class="example-template">
+			<div class="example-template example-row">
 				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
 					<compiled-template v-if="exampleToggled" :template="activeExample.template" :data="injectedData"></compiled-template>
 				</xyz-transition>
 			</div>
 
-			<code-block class="example-code" :code="activeExample.code" :data="injectedData"></code-block>
+			<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
 		</div>
 	</div>
 </template>
@@ -18,20 +19,23 @@
 import CodeBlock from '~/components/reusable/CodeBlock'
 import CompiledTemplate from '~/components/reusable/CompiledTemplate'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
+import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
 
 export default {
 	name: 'SectionExamples',
-	props: ['examples', 'utilities'],
+	props: ['examples', 'utilities', 'variables'],
 	components: {
 		CodeBlock,
 		CompiledTemplate,
 		XyzUtilitiesInput,
+		XyzVariablesInput,
 	},
 	data() {
 		return {
 			activeExampleIndex: null,
 			exampleToggled: true,
-			toggledUtilities: null,
+			xyzUtilities: null,
+			xyzVariables: null,
 		}
 	},
 	computed: {
@@ -47,7 +51,8 @@ export default {
 		injectedData() {
 			return {
 				exampleToggled: this.exampleToggled,
-				toggledUtilities: this.toggledUtilities,
+				xyzUtilities: this.xyzUtilities,
+				xyzVariables: this.xyzVariables,
 			}
 		}
 	},
@@ -64,7 +69,7 @@ export default {
 	},
 	created() {
 		if (this.utilities) {
-			this.toggledUtilities = this.utilities.default || ''
+			this.xyzUtilities = this.utilities.default || ''
 		}
 		this.setActiveExample(0)
 	},
@@ -78,19 +83,27 @@ export default {
 	border-radius: $br-l;
 }
 
+.example-row {
+	&:not(:last-child) {
+		border-bottom: 1px solid;
+		border-color: primary-color(800);
+	}
+}
+
 .example-template {
 	--xyz-duration-default: 1s;
 	min-height: 12rem;
 	display: flex;
-	border-bottom: 1px solid;
-	border-top: 1px solid;
-	border-color: primary-color(800);
 	perspective: 200px;
 }
 
 .example-utilities {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+}
+
+.example-variables {
+	border-radius: 0;
 }
 
 .example-code {

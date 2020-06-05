@@ -7,6 +7,7 @@
 					v-if="section.examples.length"
 					:examples="section.examples"
 					:utilities="section.utilities"
+					:variables="section.variables"
 				></section-examples>
 			</div>
 		</div>
