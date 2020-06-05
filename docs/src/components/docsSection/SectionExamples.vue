@@ -85,6 +85,7 @@ export default {
 	border-bottom: 1px solid;
 	border-top: 1px solid;
 	border-color: primary-color(800);
+	perspective: 200px;
 }
 
 .example-utilities {
