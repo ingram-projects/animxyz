@@ -1,5 +1,5 @@
 <template>
-  <prism :language="activeCode.language">{{ activeCode.content }}</prism>
+  <prism :language="activeCode.language">{{ activeCodeContent }}</prism>
 </template>
 
 <script>
@@ -22,7 +22,11 @@ export default {
 				return this.code[this.activeCodeIndex]
 			}
 			return null
-    }
+    },
+    activeCodeContent () {
+      const data = this.data
+      return eval(`\`${this.activeCode.content}\``)
+    },
   },
   methods: {
     setActiveLang(index) {
