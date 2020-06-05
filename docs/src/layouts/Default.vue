@@ -28,6 +28,6 @@ export default {
 
 <style lang="scss" scoped>
 .page-content {
-	perspective: 1000px;
+	perspective: 400px;
 }
 </style>

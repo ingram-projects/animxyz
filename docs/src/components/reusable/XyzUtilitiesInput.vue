@@ -58,6 +58,7 @@ export default {
           cells: this.utilityLevels.map((utilityLevel) => {
             const utilityClassLevel = getXyzUtilityLevel(utilityClass.name, utilityLevel)
             return {
+              ...utilityClassLevel,
               id: `${this._uid}_${utilityClassLevel.string}`,
               value: utilityClassLevel.string,
               valid: utilityClassLevel.valid,

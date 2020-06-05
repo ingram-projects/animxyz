@@ -69,10 +69,11 @@ export default {
 		},
 	},
 	created() {
+		this.setActiveExample(0)
 		if (this.utilities) {
 			this.xyzUtilities = this.utilities.default || ''
 		}
-		this.setActiveExample(0)
+		this.xyzVariables = {}
 	},
 }
 </script>
