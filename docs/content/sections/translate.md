@@ -4,7 +4,9 @@ title: Translate
 examples:
   - name: Translate
     template: |
-      <div class="square" v-xyz="['fade', data.xyzUtilities]"></div>
+      <xyz-transition appear v-xyz="['fade', data.xyzUtilities]" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
+        <div class="square" v-if="data.exampleToggled"></div>
+      </xyz-transition>
     code:
       - language: html
         content: |

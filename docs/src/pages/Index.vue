@@ -75,6 +75,7 @@ export default {
 				'Translate',
 				'Rotate',
 				'Scale',
+				'Stagger',
 			],
 		}
 	},

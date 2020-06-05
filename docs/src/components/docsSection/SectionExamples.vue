@@ -4,9 +4,7 @@
 			<xyz-utilities-input class="example-utilities example-row" v-model="xyzUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple"></xyz-utilities-input>
 
 			<div class="example-template example-row">
-				<xyz-transition appear @after-enter="afterEnter" @after-leave="afterLeave">
-					<compiled-template v-if="exampleToggled" :template="activeExample.template" :data="injectedData"></compiled-template>
-				</xyz-transition>
+				<compiled-template :template="activeExample.template" :data="injectedData"></compiled-template>
 			</div>
 
 			<xyz-variables-input class="example-variables example-row" v-model="xyzVariables" v-if="variables" :variables="variables"></xyz-variables-input>
@@ -51,6 +49,7 @@ export default {
 		},
 		injectedData() {
 			return {
+				toggleExample: this.toggleExample,
 				exampleToggled: this.exampleToggled,
 				xyzUtilities: this.xyzUtilities,
 				xyzVariables: this.xyzVariables,
@@ -61,12 +60,9 @@ export default {
 		setActiveExample(index) {
 			this.activeExampleIndex = index
 		},
-		afterEnter() {
-			this.exampleToggled = false
-		},
-		afterLeave() {
-			this.exampleToggled = true
-		},
+		toggleExample() {
+			this.exampleToggled = !this.exampleToggled
+		}
 	},
 	created() {
 		this.setActiveExample(0)
@@ -93,10 +89,12 @@ export default {
 }
 
 .example-template {
-	--xyz-duration-default: 1s;
 	min-height: 12rem;
 	display: flex;
+  align-items: center;
+  justify-content: center;
 	perspective: 200px;
+	--xyz-duration-default: 1s;
 }
 
 .example-utilities {
