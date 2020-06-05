@@ -1,17 +1,22 @@
 <template>
   <div class="variables-input">
     <div class="variables-content">
-      <div class="variable" v-for="variable in variables">{{variable}}</div>
+      <div class="variable" v-for="variable in computedVariables" :key="variable.string">{{variable.string}}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { getXyzVariableMode } from '~/utils/xyzVariables'
+
 export default {
 	name: 'XyzVariablesInput',
 	props: ['value', 'variables'],
   computed: {
-    variableObjs () {
+    computedVariables () {
+      return this.variables.map((variable) => {
+        return getXyzVariableMode(variable)
+      })
     },
   },
 }

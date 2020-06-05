@@ -1,3 +1,5 @@
+import { xyzModesAll, xyzModeMove } from '~/utils/xyzVariables'
+
 export const xyzUtilityEases = {
 	ease: 'ease',
 	linear: 'linear',
@@ -108,36 +110,42 @@ export const xyzUtilitiesMap = {
 		vars: ['ease'],
 		defaultVal: 'var(--xyz-ease-default)',
 		utilityMap: xyzUtilityEases,
+		modes: [...xyzModesAll, xyzModeMove],
 	},
 	duration: {
 		type: 'duration',
 		vars: ['duration'],
 		defaultVal: 'var(--xyz-duration-default)',
 		utilityMap: xyzUtilityTimes,
+		modes: [...xyzModesAll, xyzModeMove],
 	},
 	delay: {
 		type: 'delay',
 		vars: ['delay'],
 		defaultVal: 'var(--xyz-delay-default)',
 		utilityMap: xyzUtilityTimes,
+		modes: [...xyzModesAll, xyzModeMove],
 	},
 	stagger: {
 		type: 'stagger',
 		vars: ['stagger'],
 		defaultVal: 'var(--xyz-stagger-default)',
 		utilityMap: xyzUtilityTimes,
+		modes: xyzModesAll,
 	},
 	'stagger-rev': {
 		type: 'stagger',
 		vars: ['stagger-rev'],
 		defaultVal: 'var(--xyz-stagger-default)',
 		utilityMap: xyzUtilityTimes,
+		modes: xyzModesAll,
 	},
 	iterate: {
 		type: 'iterate',
 		vars: ['iterate'],
 		defaultVal: 'var(--xyz-iterate-default)',
 		utilityMap: xyzUtilityIterations,
+		modes: xyzModesAll,
 	},
 
 	// Origins
@@ -146,6 +154,7 @@ export const xyzUtilitiesMap = {
 		vars: ['origin'],
 		defaultVal: 'var(--xyz-origin-default)',
 		utilityMap: xyzUtilityOrigins,
+		modes: xyzModesAll,
 	},
 
 	// Fades
@@ -154,6 +163,7 @@ export const xyzUtilitiesMap = {
 		vars: ['fade'],
 		defaultVal: 'calc(1 - var(--xyz-fade-default))',
 		utilityMap: xyzUtilityFades,
+		modes: xyzModesAll,
 	},
 
 	// Translations
@@ -163,6 +173,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-x'],
 		defaultVal: 'var(--xyz-translate-default)',
 		utilityMap: xyzUtilityTranslations,
+		modes: xyzModesAll,
 	},
 	left: {
 		type: 'translate',
@@ -170,6 +181,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-x'],
 		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslations,
+		modes: xyzModesAll,
 	},
 	down: {
 		type: 'translate',
@@ -177,6 +189,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-y'],
 		defaultVal: 'var(--xyz-translate-default)',
 		utilityMap: xyzUtilityTranslations,
+		modes: xyzModesAll,
 	},
 	up: {
 		type: 'translate',
@@ -184,6 +197,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-y'],
 		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslations,
+		modes: xyzModesAll,
 	},
 	front: {
 		type: 'translate',
@@ -191,6 +205,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-z'],
 		defaultVal: 'var(--xyz-translate-default)',
 		utilityMap: xyzUtilityTranslationsZ,
+		modes: xyzModesAll,
 	},
 	back: {
 		type: 'translate',
@@ -198,6 +213,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-z'],
 		defaultVal: 'calc(var(--xyz-translate-default) * -1)',
 		utilityMap: xyzUtilityTranslationsZ,
+		modes: xyzModesAll,
 	},
 
 	// Rotations
@@ -207,6 +223,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-x'],
 		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 	'flip-down': {
 		type: 'rotate',
@@ -214,6 +231,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-x'],
 		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 	'flip-left': {
 		type: 'rotate',
@@ -221,6 +239,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-y'],
 		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 	'flip-right': {
 		type: 'rotate',
@@ -228,6 +247,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-y'],
 		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 	'turn-cw': {
 		type: 'rotate',
@@ -235,6 +255,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-z'],
 		defaultVal: 'var(--xyz-rotate-default)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 	'turn-ccw': {
 		type: 'rotate',
@@ -242,6 +263,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-z'],
 		defaultVal: 'calc(var(--xyz-rotate-default) * -1)',
 		utilityMap: utilityRotations,
+		modes: xyzModesAll,
 	},
 
 	// Scales
@@ -251,6 +273,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x', 'scale-y', 'scale-z'],
 		defaultVal: 'calc(1 - var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	big: {
 		type: 'scale',
@@ -258,6 +281,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x', 'scale-y', 'scale-z'],
 		defaultVal: 'calc(1 + var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	narrow: {
 		type: 'scale',
@@ -265,6 +289,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x'],
 		defaultVal: 'calc(1 - var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	wide: {
 		type: 'scale',
@@ -272,6 +297,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x'],
 		defaultVal: 'calc(1 + var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	short: {
 		type: 'scale',
@@ -279,6 +305,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-y'],
 		defaultVal: 'calc(1 - var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	tall: {
 		type: 'scale',
@@ -286,6 +313,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-y'],
 		defaultVal: 'calc(1 + var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	thin: {
 		type: 'scale',
@@ -293,6 +321,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-z'],
 		defaultVal: 'calc(1 - var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 	thick: {
 		type: 'scale',
@@ -300,13 +329,14 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-z'],
 		defaultVal: 'calc(1 + var(--xyz-scale-default))',
 		utilityMap: xyzUtilityScales,
+		modes: xyzModesAll,
 	},
 }
 
-export const xyzUtilities = Object.entries(xyzUtilitiesMap).map(([name, mode]) => {
+export const xyzUtilities = Object.entries(xyzUtilitiesMap).map(([name, utility]) => {
 	return {
 		name: name,
-		...mode,
+		...utility,
 	}
 })
 
@@ -318,12 +348,12 @@ export function getXyzUtility(name) {
 }
 
 export function getXyzUtilityLevel(name, level = 'default') {
-	const classObj = getXyzUtility(name)
+	const utilityObj = getXyzUtility(name)
 
 	return {
-		...classObj,
+		...utilityObj,
 		level,
-		valid: level === 'default' || classObj.utilityMap[level],
+		valid: level === 'default' || utilityObj.utilityMap[level],
 		string: level === 'default' ? name : `${name}-${level}`,
 	}
 }
