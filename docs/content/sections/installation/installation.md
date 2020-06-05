@@ -3,4 +3,10 @@ title: Installation
 ---
 
 This is the installation section
-`npm install anim-xyz`
+```bash
+# For npm
+npm install @animxyz/core
+
+# For yarn
+yarn install @animxyz/core
+```
