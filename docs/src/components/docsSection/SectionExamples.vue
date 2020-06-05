@@ -32,7 +32,7 @@ export default {
 	data() {
 		return {
 			activeExampleIndex: null,
-			exampleToggled: true,
+			exampleToggled: false,
 			xyzUtilities: null,
 			xyzVariables: null,
 		}
@@ -71,6 +71,9 @@ export default {
 		}
 		this.xyzVariables = {}
 	},
+	mounted() {
+		this.toggleExample()
+	}
 }
 </script>
 
@@ -89,6 +92,7 @@ export default {
 }
 
 .example-template {
+	position: relative;
 	min-height: 12rem;
 	display: flex;
   align-items: center;

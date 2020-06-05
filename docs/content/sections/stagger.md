@@ -4,9 +4,9 @@ title: Stagger
 examples:
   - name: Stagger
     template: |
-      <xyz-transition-group appear tag="div" class="square-group" v-xyz="['fade', 'small', data.xyzUtilities]" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
+      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.xyzUtilities" :duration="2000" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
         <div class="square" v-for="index in 3" v-if="data.exampleToggled" :key="index"></div>
-      </xyz-transition>
+      </xyz-transition-group>
     code:
       - language: html
         content: |

@@ -4,7 +4,7 @@ title: Fade
 examples:
   - name: Fade
     template: |
-      <xyz-transition appear v-xyz="data.xyzUtilities" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
+      <xyz-transition v-xyz="data.xyzUtilities" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
         <div class="square" v-if="data.exampleToggled"></div>
       </xyz-transition>
     code:
