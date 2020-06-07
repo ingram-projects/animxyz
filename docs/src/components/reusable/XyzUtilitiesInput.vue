@@ -116,6 +116,7 @@ export default {
 <style lang="scss" scoped>
 .utilities-input {
   padding: $spacing-xs;
+  padding-left: 0;
   border-radius: $br-l;
   font-family: $font-stack-mono;
   overflow-x: auto;
@@ -133,9 +134,14 @@ export default {
   }
 
   .utility-class__header {
+    position: sticky;
+    padding-left: $spacing-xs;
+    left: 0;
     width: 0.1%;
     text-align: right;
     white-space: nowrap;
+    background-color: primary-color(900, 0.75);
+    z-index: 1;
   }
 
   .utility-level__header {
