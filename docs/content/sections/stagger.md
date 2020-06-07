@@ -4,13 +4,13 @@ title: Stagger
 examples:
   - name: Stagger
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.xyzUtilities" :duration="2000" @after-enter="data.toggleExample" @after-leave="data.toggleExample">
-        <div class="square" v-for="index in 3" v-if="data.exampleToggled" :key="index"></div>
+      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.utilities" @before-enter="data.before" @before-leave="data.before" @after-enter="data.after" @after-leave="data.after">
+        <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade small ${data.xyzUtilities}">
+          <div class="square-group" xyz="fade small ${data.utilities}">
             <div class="square xyz-in"></div>
             <div class="square xyz-in"></div>
             <div class="square xyz-in"></div>

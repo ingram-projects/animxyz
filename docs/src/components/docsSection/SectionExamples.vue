@@ -33,6 +33,7 @@ export default {
 		return {
 			activeExampleIndex: null,
 			exampleToggled: false,
+			animCount: 0,
 			xyzUtilities: null,
 			xyzVariables: null,
 		}
@@ -49,10 +50,11 @@ export default {
 		},
 		injectedData() {
 			return {
-				toggleExample: this.toggleExample,
-				exampleToggled: this.exampleToggled,
-				xyzUtilities: this.xyzUtilities,
-				xyzVariables: this.xyzVariables,
+				toggled: this.exampleToggled,
+				before: this.beforeAnim,
+				after: this.afterAnim,
+				utilities: this.xyzUtilities,
+				vairables: this.xyzVariables,
 			}
 		}
 	},
@@ -61,7 +63,17 @@ export default {
 			this.activeExampleIndex = index
 		},
 		toggleExample() {
+			this.animCount = 0;
 			this.exampleToggled = !this.exampleToggled
+		},
+		beforeAnim() {
+			this.animCount++
+		},
+		afterAnim() {
+			this.animCount--
+			if (this.animCount === 0) {
+				this.toggleExample()
+			}
 		}
 	},
 	created() {
