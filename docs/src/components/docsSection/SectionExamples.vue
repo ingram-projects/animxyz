@@ -33,9 +33,10 @@ export default {
 		return {
 			activeExampleIndex: null,
 			exampleToggled: false,
-			animCount: 0,
 			xyzUtilities: null,
 			xyzVariables: null,
+			animCount: 0,
+			toggleTimeout: null,
 		}
 	},
 	computed: {
@@ -72,7 +73,9 @@ export default {
 		afterAnim() {
 			this.animCount--
 			if (this.animCount === 0) {
-				this.toggleExample()
+				this.toggleTimeout = setTimeout(() => {
+					this.toggleExample()
+				}, 500)
 			}
 		}
 	},
@@ -85,6 +88,9 @@ export default {
 	},
 	mounted() {
 		this.toggleExample()
+	},
+	beforeDestroy() {
+		clearTimeout(this.toggleTimeout)
 	}
 }
 </script>

@@ -5,7 +5,7 @@ examples:
   - name: Scale
     template: |
       <xyz-transition xyz="fade" v-xyz="data.utilities" @before-enter="data.before" @before-leave="data.before" @after-enter="data.after" @after-leave="data.after">
-        <div class="square" v-show="data.toggled"></div>
+        <div class="square" v-if="data.toggled"></div>
       </xyz-transition>
     code:
       - language: html
