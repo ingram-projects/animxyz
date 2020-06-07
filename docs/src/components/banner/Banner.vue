@@ -52,6 +52,7 @@ export default {
 	position: relative;
 	max-width: 60rem;
 	width: 100%;
+	perspective: 400px;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(2, 1fr);

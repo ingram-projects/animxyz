@@ -56,6 +56,7 @@ export default {
 
   .variable-label {
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .variable-input {

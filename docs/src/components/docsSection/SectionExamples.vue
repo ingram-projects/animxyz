@@ -55,7 +55,7 @@ export default {
 				before: this.beforeAnim,
 				after: this.afterAnim,
 				utilities: this.xyzUtilities,
-				vairables: this.xyzVariables,
+				variables: this.xyzVariables,
 			}
 		}
 	},
