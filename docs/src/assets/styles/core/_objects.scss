@@ -9,8 +9,6 @@
 .square {
 	@include size(5rem);
 	background-color: $cyan;
-	border: 4px solid $cyan;
-	box-shadow: 0 0 1rem transparentize($cyan, 0.25), 0 0 2rem transparentize($cyan, 0.5);
 	border-radius: $br-l;
 }
 
