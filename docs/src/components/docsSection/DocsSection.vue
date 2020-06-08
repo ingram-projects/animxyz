@@ -1,14 +1,13 @@
 <template>
 	<section class="docs-section">
 		<h1 class="section-title">{{ section.title }}</h1>
-		<div class="docs-section__content">
-			<div class="section-column text-column">
+		<div class="section-content">
+			<div class="section-column text-column" v-if="!mobile || column === 'text'">
 				<div class="column-content text-content" v-html="section.content"></div>
 			</div>
-			<div class="section-column examples-column">
+			<div class="section-column examples-column" v-if="section.examples.length && (!mobile || column === 'examples')">
 				<div class="column-content examples-content">
 					<section-examples
-						v-if="section.examples.length"
 						:examples="section.examples"
 						:utilities="section.utilities"
 						:variables="section.variables"
@@ -24,7 +23,7 @@ import SectionExamples from '~/components/docsSection/SectionExamples'
 
 export default {
 	name: 'DocsSection',
-	props: ['section'],
+	props: ['section', 'mobile', 'column'],
 	components: {
 		SectionExamples,
 	},
@@ -37,14 +36,20 @@ export default {
 	margin: $spacing-xxxl auto;
 }
 
-.docs-section__content {
+.section-content {
 	display: flex;
 	align-items: flex-start;
+	justify-content: center;
 }
 
 .section-column {
 	width: 50%;
-	padding: $spacing-xs;
+	flex-shrink: 0;
+
+	@include media('<tablet') {
+		width: 100%;
+		margin: 0 auto;
+	}
 }
 
 .column-content {
@@ -53,16 +58,20 @@ export default {
 }
 
 .section-title {
-	font-size: 8rem;
+	font-size: 6rem;
 	font-family: $font-stack-mono;
-	width: 100%;
 	margin-bottom: $spacing-m;
 	color: primary-color(600, 0.4);
+}
+
+.text-column {
+	padding: 0 $spacing-m;
 }
 
 .examples-column {
 	display: flex;
 	position: sticky;
+	padding: 0 $spacing-xs;
 	top: 0;
 }
 
@@ -70,7 +79,7 @@ export default {
 	width: 100%;
 }
 
-.text-column {
+.text-content {
 	::v-deep {
 		p {
 			font-size: 1.125rem;

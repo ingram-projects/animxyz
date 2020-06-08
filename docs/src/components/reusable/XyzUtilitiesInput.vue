@@ -174,7 +174,8 @@ export default {
 
     &:hover {
       .toggle-indicator {
-        @include circle(.5rem);
+        @include size(1rem);
+        border-radius: $br-m;
         opacity: 0.5;
       }
     }

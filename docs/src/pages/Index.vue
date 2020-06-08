@@ -22,6 +22,8 @@
 		<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
 			<docs-section
 				:section="section"
+				:mobile="mobile"
+				:column="column"
 				v-for="(section, index) in sections"
 				:key="section.title"
 			></docs-section>
@@ -69,6 +71,8 @@ export default {
 	},
 	data () {
 		return {
+			mobile: true,
+			column: 'text',
 			sectionNames: [
 				'Installation',
 				'Fade',
@@ -90,6 +94,23 @@ export default {
 				return sectionsObj[sectionName]
 			})
 		},
+	},
+	methods: {
+		initMediaQuery() {
+			const mediaQuery = window.matchMedia('(max-width: 1024px)')
+			const onMediaQuery = (mq) => {
+				if (mq.matches) {
+					this.mobile = true
+				} else {
+					this.mobile = false
+				}
+			}
+			onMediaQuery(mediaQuery)
+			mediaQuery.addListener(onMediaQuery)
+		},
+	},
+	mounted() {
+		this.initMediaQuery()
 	},
 	metaInfo() {
 		return {
