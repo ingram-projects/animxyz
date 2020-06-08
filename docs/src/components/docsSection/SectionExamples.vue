@@ -1,13 +1,24 @@
 <template>
 	<div class="section-examples">
 		<div class="section-example">
-			<xyz-utilities-input class="example-utilities example-row" v-model="xyzUtilities" v-if="utilities" :utilities="utilities.names" :multiple="utilities.multiple"></xyz-utilities-input>
+			<xyz-utilities-input
+				class="example-utilities example-row"
+				v-model="xyzUtilities"
+				v-if="utilities"
+				:utilities="utilities.names"
+				:multiple="utilities.multiple"
+			></xyz-utilities-input>
 
 			<div class="example-template example-row">
 				<compiled-template :template="activeExample.template" :data="injectedData"></compiled-template>
 			</div>
 
-			<xyz-variables-input class="example-variables example-row" v-model="xyzVariables" v-if="variables" :variables="variables"></xyz-variables-input>
+			<xyz-variables-input
+				class="example-variables example-row"
+				v-model="xyzVariables"
+				v-if="variables"
+				:variables="variables"
+			></xyz-variables-input>
 
 			<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
 		</div>
@@ -59,16 +70,16 @@ export default {
 					afterEnter: this.afterAnim,
 					beforeLeave: this.beforeAnim,
 					afterLeave: this.afterAnim,
-				}
+				},
 			}
-		}
+		},
 	},
 	methods: {
 		setActiveExample(index) {
 			this.activeExampleIndex = index
 		},
 		toggleExample() {
-			this.animCount = 0;
+			this.animCount = 0
 			this.exampleToggled = !this.exampleToggled
 		},
 		beforeAnim() {
@@ -81,7 +92,7 @@ export default {
 					this.toggleExample()
 				}, 500)
 			}
-		}
+		},
 	},
 	created() {
 		this.setActiveExample(0)
@@ -95,13 +106,13 @@ export default {
 	},
 	beforeDestroy() {
 		clearTimeout(this.toggleTimeout)
-	}
+	},
 }
 </script>
 
 <style lang="scss" scoped>
 .section-example {
-	margin-top: $spacing-m;
+	// margin-top: $spacing-m;
 	background: primary-color(900);
 	border-radius: $br-l;
 }
@@ -117,8 +128,8 @@ export default {
 	position: relative;
 	min-height: 12rem;
 	display: flex;
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 	perspective: 200px;
 	--xyz-duration-default: 1s;
 }
