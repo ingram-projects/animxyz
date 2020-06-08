@@ -4,8 +4,8 @@ title: Stagger
 examples:
   - name: Stagger
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.utilities" @before-enter="data.before" @before-leave="data.before" @after-enter="data.after" @after-leave="data.after">
-        <div class="square" v-for="index in 3" v-if="data.toggled" :key="index"></div>
+      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.utilities" v-on="data.listeners">
+        <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html

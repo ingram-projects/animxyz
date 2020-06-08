@@ -52,10 +52,14 @@ export default {
 		injectedData() {
 			return {
 				toggled: this.exampleToggled,
-				before: this.beforeAnim,
-				after: this.afterAnim,
 				utilities: this.xyzUtilities,
 				variables: this.xyzVariables,
+				listeners: {
+					beforeEnter: this.beforeAnim,
+					afterEnter: this.afterAnim,
+					beforeLeave: this.beforeAnim,
+					afterLeave: this.afterAnim,
+				}
 			}
 		}
 	},
