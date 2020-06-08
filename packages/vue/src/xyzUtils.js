@@ -15,6 +15,7 @@ export const xyzTransitionClasses = {
 
 export const xyzTransitionProps = {
 	name: 'xyz',
+	css: true,
 	appearClass: `${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
 	appearActiveClass: `${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
 	appearToClass: `${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
