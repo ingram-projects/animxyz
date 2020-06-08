@@ -125,12 +125,12 @@ export default {
 .utilities-table {
   width: 100%;
   border-collapse: collapse;
-  color: primary-color(100);
   background-color: primary-color(900);
 
   th {
     padding: $spacing-xxxs;
     vertical-align: middle;
+    color: primary-color(100);
   }
 
   .utility-class__header {
