@@ -2,7 +2,7 @@
   <div class="variables-input">
     <div class="variables-content">
       <div class="variable" v-for="variable in computedVariables" :key="variable.string">
-        <label class="variable-label" :class="[`color-axis-${getVariableAxis(variable)}`]" :for="variable.id">{{variable.string}}:</label>
+        <label class="variable-label" :for="variable.id">{{variable.string}}:</label>
         <input class="variable-input" type="text" :id="variable.id" v-model="value[variable.name]" />
       </div>
     </div>
@@ -57,6 +57,7 @@ export default {
   .variable-label {
     font-weight: bold;
     white-space: nowrap;
+    color: primary-color(100);
   }
 
   .variable-input {

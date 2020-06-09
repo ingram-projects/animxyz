@@ -64,7 +64,7 @@ export default {
 }
 
 .banner-square {
-	font-size: 11vw;
+	font-size: 12vw;
 	font-family: $font-stack-mono;
 
 	@include banner-square-letter(1, 'A');
@@ -76,20 +76,11 @@ export default {
 	@include banner-square-letter(8, 'Z', $green);
 
 	@include media('>=laptop') {
-		font-size: 7rem;
-	}
-
-	@include media('>=phone') {
-		// @include banner-square-letter(6, 'X', $red);
-		// @include banner-square-letter(7, 'Y', $yellow);
-		// @include banner-square-letter(8, 'Z', $green);
+		font-size: 8rem;
 	}
 
 	@include media('<phone') {
-		font-size: 14vw;
-		// @include banner-square-letter(10, 'X', $red);
-		// @include banner-square-letter(11, 'Y', $yellow);
-		// @include banner-square-letter(12, 'Z', $green);
+		font-size: 16vw;
 	}
 }
 </style>

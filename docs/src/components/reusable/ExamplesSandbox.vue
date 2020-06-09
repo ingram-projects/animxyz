@@ -8,16 +8,16 @@
 			:multiple="utilities.multiple"
 		></xyz-utilities-input>
 
-		<div class="example-template example-row">
-			<dynamic-template :template="activeExample.template" :data="injectedData"></dynamic-template>
-		</div>
-
 		<xyz-variables-input
 			class="example-variables example-row"
 			v-model="xyzVariables"
 			v-if="variables"
 			:variables="variables"
 		></xyz-variables-input>
+
+		<div class="example-template example-row">
+			<dynamic-template :template="activeExample.template" :data="injectedData"></dynamic-template>
+		</div>
 
 		<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
 	</div>
