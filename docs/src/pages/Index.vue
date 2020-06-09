@@ -159,19 +159,21 @@ export default {
 	font-weight: 500;
 	line-height: 1.75;
 	max-width: 66ch;
+
+	@include media('<phone') {
+		font-size: $fs-medium;
+	}
 }
 
 .banner__wrap {
-	margin: 0 auto;
+	margin: $spacing-xxl auto;
+	padding: 0 $spacing-m;
 	width: 100%;
 	max-width: 80rem;
-}
-
-.banner {
-	padding: 10vh $spacing-l;
 
 	@include media('<phone') {
-		padding: $spacing-s;
+		margin: $spacing-l auto;
+		max-width: 80vw;
 	}
 }
 
