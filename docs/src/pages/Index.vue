@@ -150,14 +150,15 @@ export default {
 	--xyz-delay: 1.2s;
 	margin: 0 auto;
 	margin-bottom: $spacing-xxl;
-	width: 80ch;
 	text-align: center;
 }
 
 .intro-text {
+	padding: 0 $spacing-l;
 	font-size: $fs-large;
 	font-weight: 500;
 	line-height: 1.75;
+	max-width: 66ch;
 }
 
 .banner__wrap {
@@ -177,6 +178,6 @@ export default {
 .sections__wrap {
 	margin: 0 auto;
 	width: 100%;
-	max-width: 100rem;
+	max-width: 80rem;
 }
 </style>
