@@ -27,7 +27,7 @@
 					:section="section"
 					:mobile="mobile"
 					:column="column"
-					v-for="(section, index) in sections"
+					v-for="section in sections"
 					:key="section.title"
 				></docs-section>
 			</xyz-transition-group>
@@ -73,22 +73,15 @@ export default {
 		DocsSection,
 		IconGithub,
 	},
-	data () {
+	data() {
 		return {
 			mobile: true,
 			column: 'text',
-			sectionNames: [
-				'Installation',
-				'Fade',
-				'Translate',
-				'Rotate',
-				'Scale',
-				'Stagger',
-			],
+			sectionNames: ['Installation', 'Fade', 'Translate', 'Rotate', 'Scale', 'Stagger'],
 		}
 	},
 	computed: {
-		sections () {
+		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
 				sectionsObj[sectionEdge.node.title] = sectionEdge.node
@@ -158,7 +151,7 @@ export default {
 	font-size: $fs-large;
 	font-weight: 500;
 	line-height: 1.75;
-	max-width: 66ch;
+	max-width: 56ch;
 
 	@include media('<phone') {
 		font-size: $fs-medium;

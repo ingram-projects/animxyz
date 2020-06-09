@@ -1,7 +1,7 @@
 <template>
 	<section class="docs-section">
 		<h1 class="section-title">{{ section.title }}</h1>
-		<div class="section-columns">
+		<div class="section-columns__wrap">
 			<div class="section-column section-text" v-if="!mobile || column === 'text'">
 				<div class="section-column__content">
 					<markdown-content :content="section.content"></markdown-content>
@@ -41,7 +41,7 @@ export default {
 }
 
 .section-title {
-	padding-left: $spacing-m;
+	padding: 0 $spacing-m;
 	margin-bottom: $spacing-m;
 	font-size: 6rem;
 	font-family: $font-stack-mono;
@@ -52,28 +52,34 @@ export default {
 	}
 }
 
-.section-columns {
+.section-columns__wrap {
 	display: flex;
 }
 
 .section-column {
-	width: 100%;
-}
+	width: 50%;
 
-.section-text {
-	padding: 0 $spacing-m;
-}
-
-.section-examples {
-	display: flex;
-	position: sticky;
-	padding: 0 $spacing-xs;
-	top: 0;
+	&:only-child {
+		width: 100%;
+	}
 }
 
 .section-column__content {
 	margin: 0 auto;
 	width: 100%;
-	max-width: 66ch; // Ideal line width
+}
+
+.section-text {
+	padding: 0 $spacing-m;
+
+	.section-column__content {
+		max-width: 66ch;
+	}
+}
+
+.section-examples {
+	position: sticky;
+	padding: 0 $spacing-xs;
+	top: 0;
 }
 </style>
