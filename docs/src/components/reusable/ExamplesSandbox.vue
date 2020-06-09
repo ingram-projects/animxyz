@@ -58,11 +58,15 @@ export default {
 		compiledTemplate() {
 			return this.activeExample.template
 		},
+		xyzMode() {
+			return this.exampleToggled ? 'xyz-in' : 'xyz-out'
+		},
 		injectedData() {
 			return {
 				toggled: this.exampleToggled,
 				utilities: this.xyzUtilities,
 				variables: this.xyzVariables,
+				mode: this.xyzMode,
 				listeners: {
 					beforeEnter: this.beforeAnim,
 					afterEnter: this.afterAnim,
@@ -88,7 +92,7 @@ export default {
 			if (this.animCount === 0) {
 				this.toggleTimeout = setTimeout(() => {
 					this.toggleExample()
-				}, 500)
+				}, 1000)
 			}
 		},
 	},

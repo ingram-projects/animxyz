@@ -10,7 +10,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square xyz-in" xyz="${data.utilities}"></div>
+          <div class="square ${data.mode}" xyz="${data.utilities}"></div>
 
 utilities:
   names: [fade]

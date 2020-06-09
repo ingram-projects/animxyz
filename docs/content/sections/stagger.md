@@ -11,9 +11,9 @@ examples:
       - language: html
         content: |
           <div class="square-group" xyz="fade small ${data.utilities}">
-            <div class="square xyz-in"></div>
-            <div class="square xyz-in"></div>
-            <div class="square xyz-in"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
           </div>
 
 utilities:
