@@ -1,9 +1,9 @@
 <template>
 	<section class="docs-section">
-		<h1 class="section-title">{{ section.title }}</h1>
 		<div class="section-columns__wrap">
 			<div class="section-column section-text" v-if="!mobile || column === 'text'">
 				<div class="section-column__content">
+					<h1 class="section-title">{{ section.title }}</h1>
 					<markdown-content :content="section.content"></markdown-content>
 				</div>
 			</div>
@@ -37,13 +37,16 @@ export default {
 <style lang="scss" scoped>
 .docs-section {
 	margin: 0 auto;
-	margin-bottom: $spacing-xxl;
+	margin-bottom: 10vw;
+
+	@include media('>desktop') {
+		margin-bottom: 8rem;
+	}
 }
 
 .section-title {
-	padding: 0 $spacing-m;
 	margin-bottom: $spacing-m;
-	font-size: 6rem;
+	font-size: 4rem;
 	font-family: $font-stack-mono;
 	color: primary-color(600, 0.4);
 
@@ -53,6 +56,7 @@ export default {
 }
 
 .section-columns__wrap {
+	align-items: flex-start;
 	display: flex;
 }
 
@@ -79,7 +83,7 @@ export default {
 
 .section-examples {
 	position: sticky;
-	padding: 0 $spacing-xs;
-	top: 0;
+	padding: 0 $spacing-m;
+	top: $spacing-m;
 }
 </style>
