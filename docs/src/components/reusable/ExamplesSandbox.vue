@@ -30,7 +30,7 @@ import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
 
 export default {
-	name: 'SectionExamples',
+	name: 'ExamplesSandbox',
 	props: ['examples', 'utilities', 'variables'],
 	components: {
 		CodeBlock,

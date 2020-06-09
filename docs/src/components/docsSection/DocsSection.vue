@@ -36,11 +36,11 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
-	max-width: 80rem;
 	margin: $spacing-xxxl auto;
 }
 
 .section-title {
+	padding-left: $spacing-m;
 	font-size: 6rem;
 	font-family: $font-stack-mono;
 	margin-bottom: $spacing-m;
@@ -49,8 +49,6 @@ export default {
 
 .section-columns {
 	display: flex;
-	align-items: flex-start;
-	justify-content: center;
 }
 
 .section-column {

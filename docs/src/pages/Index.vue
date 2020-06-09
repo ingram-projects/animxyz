@@ -9,25 +9,29 @@
 			<span class="screen-reader-only">View on GitHub</span>
 			<icon-github></icon-github>
 		</a>
+
 		<div class="banner__wrap">
 			<banner></banner>
 		</div>
-		<div class="intro-wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
+
+		<div class="intro__wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
 			<p class="intro-text">
 				The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
 				website to life.
 			</p>
 		</div>
 
-		<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
-			<docs-section
-				:section="section"
-				:mobile="mobile"
-				:column="column"
-				v-for="(section, index) in sections"
-				:key="section.title"
-			></docs-section>
-		</xyz-transition-group>
+		<div class="sections__wrap">
+			<xyz-transition-group appear xyz="fade left stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
+				<docs-section
+					:section="section"
+					:mobile="mobile"
+					:column="column"
+					v-for="(section, index) in sections"
+					:key="section.title"
+				></docs-section>
+			</xyz-transition-group>
+		</div>
 	</Layout>
 </template>
 
@@ -141,7 +145,7 @@ export default {
 	}
 }
 
-.intro-wrap {
+.intro__wrap {
 	--xyz-duration: 0.7s;
 	--xyz-delay: 1.2s;
 	margin: 0 auto;
@@ -157,6 +161,12 @@ export default {
 }
 
 .banner__wrap {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 80rem;
+}
+
+.banner {
 	padding: 10vh $spacing-l;
 
 	@include media('<phone') {
@@ -164,7 +174,9 @@ export default {
 	}
 }
 
-.banner {
+.sections__wrap {
 	margin: 0 auto;
+	width: 100%;
+	max-width: 100rem;
 }
 </style>
