@@ -36,15 +36,20 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
-	margin: $spacing-xxxl auto;
+	margin: 0 auto;
+	margin-bottom: $spacing-xxl;
 }
 
 .section-title {
 	padding-left: $spacing-m;
+	margin-bottom: $spacing-m;
 	font-size: 6rem;
 	font-family: $font-stack-mono;
-	margin-bottom: $spacing-m;
 	color: primary-color(600, 0.4);
+
+	@include media('<phone') {
+		font-size: 3rem;
+	}
 }
 
 .section-columns {
