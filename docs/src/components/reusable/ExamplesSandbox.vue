@@ -1,33 +1,31 @@
 <template>
-	<div class="section-examples">
-		<div class="section-example">
-			<xyz-utilities-input
-				class="example-utilities example-row"
-				v-model="xyzUtilities"
-				v-if="utilities"
-				:utilities="utilities.names"
-				:multiple="utilities.multiple"
-			></xyz-utilities-input>
+	<div class="examples-sandbox">
+		<xyz-utilities-input
+			class="example-utilities example-row"
+			v-model="xyzUtilities"
+			v-if="utilities"
+			:utilities="utilities.names"
+			:multiple="utilities.multiple"
+		></xyz-utilities-input>
 
-			<div class="example-template example-row">
-				<compiled-template :template="activeExample.template" :data="injectedData"></compiled-template>
-			</div>
-
-			<xyz-variables-input
-				class="example-variables example-row"
-				v-model="xyzVariables"
-				v-if="variables"
-				:variables="variables"
-			></xyz-variables-input>
-
-			<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
+		<div class="example-template example-row">
+			<dynamic-template :template="activeExample.template" :data="injectedData"></dynamic-template>
 		</div>
+
+		<xyz-variables-input
+			class="example-variables example-row"
+			v-model="xyzVariables"
+			v-if="variables"
+			:variables="variables"
+		></xyz-variables-input>
+
+		<code-block class="example-code example-row" :code="activeExample.code" :data="injectedData"></code-block>
 	</div>
 </template>
 
 <script>
 import CodeBlock from '~/components/reusable/CodeBlock'
-import CompiledTemplate from '~/components/reusable/CompiledTemplate'
+import DynamicTemplate from '~/components/reusable/DynamicTemplate'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
 
@@ -36,7 +34,7 @@ export default {
 	props: ['examples', 'utilities', 'variables'],
 	components: {
 		CodeBlock,
-		CompiledTemplate,
+		DynamicTemplate,
 		XyzUtilitiesInput,
 		XyzVariablesInput,
 	},
@@ -111,8 +109,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.section-example {
-	// margin-top: $spacing-m;
+.examples-sandbox {
 	background: primary-color(900);
 	border-radius: $br-l;
 }

@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'CompiledTemplate',
+  name: 'DynamicTemplate',
   props: ['template', 'data'],
   computed: {
     component () {
