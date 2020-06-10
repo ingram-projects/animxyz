@@ -1,32 +1,34 @@
 <template>
 	<div class="utilities-input">
-		<table class="utilities-group" v-for="group in groups" :key="group.name">
-			<tr>
-				<th></th>
-				<th class="group-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
-					{{ groupLevel }}
-				</th>
-			</tr>
-			<tr v-for="utility in group.utilities" :key="utility.name">
-				<th class="group-utility__header">
-					{{ utility.name }}
-				</th>
-				<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
-					<div class="utility-level__content" v-if="utilityLevel.valid">
-						<input
-							class="toggle-input"
-							type="radio"
-							:id="utilityLevel.id"
-							:value="utilityLevel.value"
-							v-model="selectedObj[utility.model]"
-							@click="onCellClick(utilityLevel, utility.model)"
-						/>
-						<label class="toggle-label" :for="utilityLevel.id">
-							<div class="toggle-indicator"></div>
-						</label>
-					</div>
-				</td>
-			</tr>
+		<table class="utilities-table">
+			<tbody class="utilities-group" v-for="group in groups" :key="group.name">
+				<tr>
+					<th></th>
+					<th class="group-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
+						{{ groupLevel }}
+					</th>
+				</tr>
+				<tr v-for="utility in group.utilities" :key="utility.name">
+					<th class="group-utility__header">
+						{{ utility.name }}
+					</th>
+					<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+						<div class="utility-level__content" v-if="utilityLevel.valid">
+							<input
+								class="toggle-input"
+								type="radio"
+								:id="utilityLevel.id"
+								:value="utilityLevel.value"
+								v-model="selectedObj[utility.model]"
+								@click="onCellClick(utilityLevel, utility.model)"
+							/>
+							<label class="toggle-label" :for="utilityLevel.id">
+								<div class="toggle-indicator"></div>
+							</label>
+						</div>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </template>
@@ -148,17 +150,14 @@ export default {
 
 <style lang="scss" scoped>
 .utilities-input {
-	padding: $spacing-xs;
-	padding-left: 0;
+	padding: $spacing-xs 0;
 	border-radius: $br-l;
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }
 
-.utilities-group {
-	width: 100%;
+.utilities-table {
 	border-collapse: collapse;
-	background-color: primary-color(900);
 
 	th {
 		padding: $spacing-xxxs;
@@ -166,9 +165,21 @@ export default {
 		color: primary-color(100);
 	}
 
+	td, th {
+		&:first-child {
+			padding-left: $spacing-xs;
+		}
+		&:last-child {
+			padding-right: $spacing-xs;
+		}
+	}
+}
+
+.utilities-group {
+	background-color: primary-color(900);
+
 	.group-utility__header {
 		position: sticky;
-		padding-left: $spacing-xs;
 		left: 0;
 		width: 0.1%;
 		text-align: right;
