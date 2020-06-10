@@ -1,27 +1,35 @@
 <template>
   <div class="variables-input">
     <div class="variables-content">
-      <div class="variable" v-for="variable in computedVariables" :key="variable.string">
-        <label class="variable-label" :for="variable.id">{{variable.string}}:</label>
-        <input class="variable-input" type="text" :id="variable.id" v-model="value[variable.name]" />
+      <div class="variable" v-for="row in rows" :key="row.string">
+        <label class="variable-label" :for="row.id">{{row.string}}:</label>
+        <input class="variable-input" type="text" :id="row.id" v-model="value[row.name]" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { getXyzVariableMode } from '~/utils/xyzVariables'
+import { xyzVariables, getXyzVariable, getXyzVariableMode } from '~/utils/xyzVariables'
 
 export default {
 	name: 'XyzVariablesInput',
 	props: ['value', 'variables'],
   computed: {
     computedVariables () {
-      return this.variables.map((variable) => {
-        const xyzVariableMode = getXyzVariableMode(variable)
+      if (this.variables === 'all') {
+        return xyzVariables
+      }
+      return this.variables.map((name) => {
+        return getXyzVariable(name)
+      })
+    },
+    rows () {
+      return this.computedVariables.map((variable) => {
+        const variableMode = getXyzVariableMode(variable.name)
         return {
-          ...xyzVariableMode,
-          id: `${this._uid}_${xyzVariableMode.string}`,
+          ...variableMode,
+          id: `${this._uid}_${variableMode.string}`,
         }
       })
     },

@@ -14,10 +14,10 @@ examples:
 
 utilities:
   names: [right, left, down, up, front, back]
-  multiple: false
   default: right
 
-variables: [translate-x, translate-y, translate-z]
+variables:
+  names: [translate-x, translate-y, translate-z]
 ---
 
 This is the translate section

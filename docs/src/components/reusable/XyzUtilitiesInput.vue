@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { getXyzUtility, getXyzUtilityLevel } from '~/utils'
+import { xyzUtilities, getXyzUtility, getXyzUtilityLevel } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
@@ -43,32 +43,35 @@ export default {
 		}
 	},
 	computed: {
-		utilityClasses() {
+		computedUtilities() {
+			if (this.utilities === 'all') {
+				return xyzUtilities
+			}
 			return this.utilities.map((name) => {
 				return getXyzUtility(name)
 			})
 		},
 		utilityLevels() {
 			const utilityLevelsMap = {}
-			this.utilityClasses.forEach((utilityClass) => {
-				Object.keys(utilityClass.utilityMap).forEach((utilityLevel) => {
+			this.computedUtilities.forEach((utility) => {
+				Object.keys(utility.utilityMap).forEach((utilityLevel) => {
 					utilityLevelsMap[utilityLevel] = true
 				})
 			})
 			return ['default', ...Object.keys(utilityLevelsMap)]
 		},
 		rows() {
-			return this.utilityClasses.map((utilityClass) => {
+			return this.computedUtilities.map((utility) => {
 				return {
-					name: utilityClass.name,
-					model: this.getUtilityClassModel(utilityClass),
-					cells: this.utilityLevels.map((utilityLevel) => {
-						const utilityClassLevel = getXyzUtilityLevel(utilityClass.name, utilityLevel)
+					name: utility.name,
+					model: this.getUtilityClassModel(utility),
+					cells: this.utilityLevels.map((level) => {
+						const utilityLevel = getXyzUtilityLevel(utility.name, level)
 						return {
-							...utilityClassLevel,
-							id: `${this._uid}_${utilityClassLevel.string}`,
-							value: utilityClassLevel.string,
-							valid: utilityClassLevel.valid,
+							...utilityLevel,
+							id: `${this._uid}_${utilityLevel.string}`,
+							value: utilityLevel.string,
+							valid: utilityLevel.valid,
 						}
 					}),
 				}
@@ -85,8 +88,8 @@ export default {
 					const match = selectedUtility.match(/^([a-zA-Z-]+)(?:-(\d+))?$/)
 					if (match) {
 						const name = match[1]
-						const utilityClass = getXyzUtility(name)
-						const model = this.getUtilityClassModel(utilityClass)
+						const utility = getXyzUtility(name)
+						const model = this.getUtilityClassModel(utility)
 						this.$set(this.selectedObj, model, selectedUtility)
 					}
 				})
@@ -101,12 +104,12 @@ export default {
 		},
 	},
 	methods: {
-		getUtilityClassModel(utilityClass) {
+		getUtilityClassModel(utility) {
 			let model = 'utility'
 			if (this.multiple) {
-				model += `_${utilityClass.type}`
-				if (utilityClass.axis) {
-					model += `_${utilityClass.axis}`
+				model += `_${utility.type}`
+				if (utility.axis) {
+					model += `_${utility.axis}`
 				}
 			}
 			return model

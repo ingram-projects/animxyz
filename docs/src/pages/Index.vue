@@ -52,10 +52,14 @@
 				}
 				utilities {
 					names
+					all
 					multiple
 					default
 				}
-				variables
+				variables {
+					names
+					all
+				}
       }
     }
   }
@@ -77,7 +81,15 @@ export default {
 		return {
 			mobile: true,
 			column: 'text',
-			sectionNames: ['Installation', 'Fade', 'Translate', 'Rotate', 'Scale', 'Stagger'],
+			sectionNames: [
+				'Installation',
+				'Fade',
+				'Translate',
+				'Rotate',
+				'Scale',
+				'Stagger',
+				'Composition',
+			],
 		}
 	},
 	computed: {

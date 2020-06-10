@@ -4,7 +4,7 @@
 			class="example-utilities example-row"
 			v-model="xyzUtilities"
 			v-if="utilities"
-			:utilities="utilities.names"
+			:utilities="utilities.all ? 'all' : utilities.names"
 			:multiple="utilities.multiple"
 		></xyz-utilities-input>
 
@@ -12,7 +12,7 @@
 			class="example-variables example-row"
 			v-model="xyzVariables"
 			v-if="variables"
-			:variables="variables"
+			:variables="variables.all ? 'all' : variables.names"
 		></xyz-variables-input>
 
 		<div class="example-template example-row">
@@ -101,7 +101,9 @@ export default {
 		if (this.utilities) {
 			this.xyzUtilities = this.utilities.default || ''
 		}
-		this.xyzVariables = {}
+		if (this.variables) {
+			this.xyzVariables = {}
+		}
 	},
 	mounted() {
 		this.toggleExample()

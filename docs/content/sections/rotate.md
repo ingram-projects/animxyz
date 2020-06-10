@@ -14,10 +14,10 @@ examples:
 
 utilities:
   names: [flip-up, flip-down, flip-left, flip-right, turn-cw, turn-ccw]
-  multiple: false
   default: flip-up
 
-variables: [rotate-x, rotate-y, rotate-z]
+variables:
+  names: [rotate-x, rotate-y, rotate-z]
 ---
 
 This is the rotate section

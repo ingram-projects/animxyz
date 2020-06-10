@@ -14,10 +14,10 @@ examples:
 
 utilities:
   names: [fade]
-  multiple: false
   default: fade
 
-variables: [fade]
+variables:
+  names: [fade]
 ---
 
 This is the fade section

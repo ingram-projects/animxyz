@@ -14,10 +14,10 @@ examples:
 
 utilities:
   names: [small, big, narrow, wide, short, tall, thin, thick]
-  multiple: false
   default: small
 
-variables: [scale-x, scale-y, scale-z]
+variables:
+  names: [scale-x, scale-y, scale-z]
 ---
 
 This is the scale section
