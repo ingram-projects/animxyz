@@ -14,6 +14,6 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "react-scripts": "^3.4.1",
-    "sass": "^1.26.5"
+    "sass": "^1.26.8"
   }
 }

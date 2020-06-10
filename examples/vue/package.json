@@ -7,17 +7,17 @@
   },
   "dependencies": {
     "@animxyz/vue": "^0.0.21",
-    "core-js": "^3.6.4",
+    "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@vue/cli-plugin-babel": "~4.4.1",
+    "@vue/cli-service": "~4.4.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.26.3",
+    "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   }
