@@ -53,12 +53,14 @@
 				utilities {
 					names
 					all
+					groupBy
 					multiple
 					default
 				}
 				variables {
 					names
 					all
+					groupBy
 				}
       }
     }
@@ -89,6 +91,7 @@ export default {
 				'Scale',
 				'Stagger',
 				'Composition',
+				'Variables',
 			],
 		}
 	},

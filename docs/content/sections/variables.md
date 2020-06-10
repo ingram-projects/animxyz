@@ -1,8 +1,8 @@
 ---
-title: Composition
+title: Variables
 
 examples:
-  - name: Composition
+  - name: Variables
     template: |
       <xyz-transition-group tag="div" class="square-group" v-xyz="data.utilities" v-on="data.listeners">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
@@ -16,11 +16,9 @@ examples:
             <div class="square ${data.mode}"></div>
           </div>
 
-utilities:
+variables:
   all: true
-  multiple: true
   groupBy: type
-  default: fade
 ---
 
-This is the composition section
+This is the variables section

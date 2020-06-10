@@ -6,6 +6,7 @@
 			v-if="utilities"
 			:utilities="utilities.all ? 'all' : utilities.names"
 			:multiple="utilities.multiple"
+			:group-by="utilities.groupBy"
 		></xyz-utilities-input>
 
 		<xyz-variables-input
@@ -13,6 +14,7 @@
 			v-model="xyzVariables"
 			v-if="variables"
 			:variables="variables.all ? 'all' : variables.names"
+			:group-by="variables.groupBy"
 		></xyz-variables-input>
 
 		<div class="example-template example-row">

@@ -36,7 +36,7 @@ import { xyzUtilities, getXyzUtility, getXyzUtilityLevel } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
-	props: ['value', 'utilities', 'multiple'],
+	props: ['value', 'utilities', 'multiple', 'groupBy'],
 	data() {
 		return {
 			selectedObj: {},

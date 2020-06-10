@@ -14,7 +14,7 @@ import { xyzVariables, getXyzVariable, getXyzVariableMode } from '~/utils/xyzVar
 
 export default {
 	name: 'XyzVariablesInput',
-	props: ['value', 'variables'],
+	props: ['value', 'variables', 'groupBy'],
   computed: {
     computedVariables () {
       if (this.variables === 'all') {
