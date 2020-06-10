@@ -1,27 +1,27 @@
 <template>
 	<div class="utilities-input">
-		<table class="utilities-table">
+		<table class="utilities-table" v-for="group in groups" :key="group.name">
 			<tr>
 				<th></th>
-				<th class="utility-level__header" v-for="utilityLevel in utilityLevels" :key="utilityLevel">
-					{{ utilityLevel }}
+				<th class="utility-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
+					{{ groupLevel }}
 				</th>
 			</tr>
-			<tr v-for="row in rows" :key="row.name">
+			<tr v-for="utility in group.utilities" :key="utility.name">
 				<th class="utility-class__header">
-					{{ row.name }}
+					{{ utility.name }}
 				</th>
-				<td class="utility-level" v-for="cell in row.cells" :key="cell.id">
-					<div class="utility-level__content" v-if="cell.valid">
+				<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+					<div class="utility-level__content" v-if="utilityLevel.valid">
 						<input
 							class="toggle-input"
 							type="radio"
-							:id="cell.id"
-							:value="cell.value"
-							v-model="selectedObj[row.model]"
-							@click="onCellClick(cell, row.model)"
+							:id="utilityLevel.id"
+							:value="utilityLevel.value"
+							v-model="selectedObj[utility.model]"
+							@click="onCellClick(utilityLevel, utility.model)"
 						/>
-						<label class="toggle-label" :for="cell.id">
+						<label class="toggle-label" :for="utilityLevel.id">
 							<div class="toggle-indicator"></div>
 						</label>
 					</div>
@@ -51,36 +51,53 @@ export default {
 				return getXyzUtility(name)
 			})
 		},
-		utilitiesGroups() {
-			const utilityGroups = {}
-			this.computedUtilities.forEach((utility) => {
-				
-			})
-		},
-		utilityLevels() {
-			const utilityLevelsMap = {}
-			this.computedUtilities.forEach((utility) => {
-				Object.keys(utility.utilityMap).forEach((utilityLevel) => {
-					utilityLevelsMap[utilityLevel] = true
+		groups() {
+			// Compute groups
+			const groupsMap = {}
+			if (!this.groupBy) {
+				groupsMap.all = this.computedUtilities
+			} else {
+				this.computedUtilities.forEach((utility) => {
+					const groupName = utility[this.groupBy]
+					if (!groupsMap[groupName]) {
+						groupsMap[groupName] = []
+					}
+					groupsMap[groupName].push(utility)
 				})
-			})
-			return ['default', ...Object.keys(utilityLevelsMap)]
-		},
-		rows() {
-			return this.computedUtilities.map((utility) => {
-				return {
-					name: utility.name,
-					model: this.getUtilityClassModel(utility),
-					cells: this.utilityLevels.map((level) => {
-						const utilityLevel = getXyzUtilityLevel(utility.name, level)
-						return {
-							...utilityLevel,
-							id: `${this._uid}_${utilityLevel.string}`,
-							value: utilityLevel.string,
-							valid: utilityLevel.valid,
-						}
-					}),
+			}
+
+			return Object.entries(groupsMap).map(([name, group]) => {
+				const groupObj = {
+					name,
 				}
+
+				// Compute utility levels
+				const groupLevelsMap = {}
+				group.forEach((utility) => {
+					Object.keys(utility.utilityMap).forEach((level) => {
+						groupLevelsMap[level] = true
+					})
+				})
+				groupObj.levels = ['default', ...Object.keys(groupLevelsMap)]
+
+				// Compute rows
+				groupObj.utilities = group.map((utility) => {
+					return {
+						name: utility.name,
+						model: this.getUtilityModel(utility),
+						levels: groupObj.levels.map((level) => {
+							const utilityLevel = getXyzUtilityLevel(utility.name, level)
+							return {
+								...utilityLevel,
+								id: `${this._uid}_${utilityLevel.string}`,
+								value: utilityLevel.string,
+								valid: utilityLevel.valid,
+							}
+						}),
+					}
+				})
+
+				return groupObj
 			})
 		},
 	},
@@ -95,7 +112,7 @@ export default {
 					if (match) {
 						const name = match[1]
 						const utility = getXyzUtility(name)
-						const model = this.getUtilityClassModel(utility)
+						const model = this.getUtilityModel(utility)
 						this.$set(this.selectedObj, model, selectedUtility)
 					}
 				})
@@ -110,7 +127,7 @@ export default {
 		},
 	},
 	methods: {
-		getUtilityClassModel(utility) {
+		getUtilityModel(utility) {
 			let model = 'utility'
 			if (this.multiple) {
 				model += `_${utility.type}`
