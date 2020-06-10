@@ -1,9 +1,9 @@
 <template>
   <div class="variables-input">
-    <div class="variables-content">
-      <div class="variable" v-for="row in rows" :key="row.string">
-        <label class="variable-label" :for="row.id">{{row.string}}:</label>
-        <input class="variable-input" type="text" :id="row.id" v-model="value[row.name]" />
+    <div class="variables-group" v-for="group in groups" :key="group.name">
+      <div class="variable" v-for="variable in group.variables" :key="variable.string">
+        <label class="variable-label" :for="variable.id">{{variable.string}}:</label>
+        <input class="variable-input" type="text" :id="variable.id" v-model="value[variable.name]" />
       </div>
     </div>
   </div>
@@ -24,15 +24,38 @@ export default {
         return getXyzVariable(name)
       })
     },
-    rows () {
-      return this.computedVariables.map((variable) => {
-        const variableMode = getXyzVariableMode(variable.name)
-        return {
-          ...variableMode,
-          id: `${this._uid}_${variableMode.string}`,
-        }
-      })
-    },
+    groups() {
+			// Compute groups
+			const groupsMap = {}
+			if (!this.groupBy) {
+				groupsMap.all = this.computedVariables
+			} else {
+				this.computedVariables.forEach((variable) => {
+					const groupName = variable[this.groupBy]
+					if (!groupsMap[groupName]) {
+						groupsMap[groupName] = []
+					}
+					groupsMap[groupName].push(variable)
+				})
+			}
+
+			return Object.entries(groupsMap).map(([name, group]) => {
+				const groupObj = {
+					name,
+				}
+
+				// Compute group variables
+				groupObj.variables = group.map((variable) => {
+          const variableMode = getXyzVariableMode(variable.name)
+					return {
+            ...variableMode,
+            id: `${this._uid}_${variableMode.string}`,
+					}
+				})
+
+				return groupObj
+			})
+		},
   },
   methods: {
     getVariableAxis(xyzVariable) {
@@ -53,7 +76,7 @@ export default {
   overflow-x: auto;
 }
 
-.variables-content {
+.variables-group {
   background-color: primary-color(900);
 }
 

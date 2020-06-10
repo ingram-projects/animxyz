@@ -1,14 +1,14 @@
 <template>
 	<div class="utilities-input">
-		<table class="utilities-table" v-for="group in groups" :key="group.name">
+		<table class="utilities-group" v-for="group in groups" :key="group.name">
 			<tr>
 				<th></th>
-				<th class="utility-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
+				<th class="group-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
 					{{ groupLevel }}
 				</th>
 			</tr>
 			<tr v-for="utility in group.utilities" :key="utility.name">
-				<th class="utility-class__header">
+				<th class="group-utility__header">
 					{{ utility.name }}
 				</th>
 				<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
@@ -71,7 +71,7 @@ export default {
 					name,
 				}
 
-				// Compute utility levels
+				// Compute group levels
 				const groupLevelsMap = {}
 				group.forEach((utility) => {
 					Object.keys(utility.utilityMap).forEach((level) => {
@@ -80,7 +80,7 @@ export default {
 				})
 				groupObj.levels = ['default', ...Object.keys(groupLevelsMap)]
 
-				// Compute rows
+				// Compute group utilities
 				groupObj.utilities = group.map((utility) => {
 					return {
 						name: utility.name,
@@ -155,7 +155,7 @@ export default {
 	overflow-x: auto;
 }
 
-.utilities-table {
+.utilities-group {
 	width: 100%;
 	border-collapse: collapse;
 	background-color: primary-color(900);
@@ -166,7 +166,7 @@ export default {
 		color: primary-color(100);
 	}
 
-	.utility-class__header {
+	.group-utility__header {
 		position: sticky;
 		padding-left: $spacing-xs;
 		left: 0;
@@ -177,7 +177,7 @@ export default {
 		z-index: 1;
 	}
 
-	.utility-level__header {
+	.group-level__header {
 		min-width: 2.5rem;
 	}
 
