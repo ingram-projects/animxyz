@@ -2,22 +2,23 @@
 title: Rotate
 
 examples:
-  - name: Rotate
+  - name: rotate
+    title: Rotate
     template: |
-      <xyz-transition xyz="fade" v-xyz="data.utilities" v-on="data.listeners">
+      <xyz-transition xyz="fade" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade ${data.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
-utilities:
-  names: [flip-up, flip-down, flip-left, flip-right, turn-cw, turn-ccw]
-  default: flip-up
-
-variables:
-  names: [rotate-x, rotate-y, rotate-z]
+modifiers:
+  defaultUtilities: flip-up
+  groups:
+    - name: rotate
+      title: Rotate
+      types: [rotate]
 ---
 
 This is the rotate section

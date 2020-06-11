@@ -1,8 +1,4 @@
-export const xyzModes = ['in', 'out', 'appear']
-
-export const xyzModesAll = ['all', ...xyzModes]
-
-export const xyzModeMove = 'move'
+import { xyzModesAll, xyzModeMove } from '~/utils/xyzModes'
 
 export const xyzVariablesMap = {
 	keyframes: {

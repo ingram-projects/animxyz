@@ -44,23 +44,22 @@
 				content
 				examples {
 					name
+					title
 					template
 					code {
 						language
 						content
 					}
 				}
-				utilities {
-					names
-					all
-					groupBy
-					multiple
-					default
-				}
-				variables {
-					names
-					all
-					groupBy
+				modifiers {
+					hideUtilities
+					hideVariables
+					defaultUtilities
+					groups {
+						name
+						title
+						types
+					}
 				}
       }
     }
@@ -83,16 +82,7 @@ export default {
 		return {
 			mobile: true,
 			column: 'text',
-			sectionNames: [
-				'Installation',
-				'Fade',
-				'Translate',
-				'Rotate',
-				'Scale',
-				'Stagger',
-				'Composition',
-				'Variables',
-			],
+			sectionNames: ['Installation', 'Fade', 'Translate', 'Rotate', 'Scale', 'Stagger', 'Composition', 'Variables'],
 		}
 	},
 	computed: {

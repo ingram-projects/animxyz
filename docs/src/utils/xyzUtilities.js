@@ -1,4 +1,4 @@
-import { xyzModesAll, xyzModeMove } from '~/utils/xyzVariables'
+import { xyzModesAll, xyzModeMove } from '~/utils/xyzModes'
 
 export const xyzUtilityEases = {
 	ease: 'ease',

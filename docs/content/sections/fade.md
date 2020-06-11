@@ -2,22 +2,24 @@
 title: Fade
 
 examples:
-  - name: Fade
+  - name: fade
+    title: Fade
     template: |
-      <xyz-transition v-xyz="data.utilities" v-on="data.listeners">
+      <xyz-transition v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="${data.utilities}"></div>
+          <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
 
-utilities:
-  names: [fade]
-  default: fade
+modifiers:
+  defaultUtilities: fade
+  groups:
+    - name: fade
+      title: Fade
+      types: [fade]
 
-variables:
-  names: [fade]
 ---
 
 This is the fade section

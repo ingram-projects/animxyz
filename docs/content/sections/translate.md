@@ -2,22 +2,23 @@
 title: Translate
 
 examples:
-  - name: Translate
+  - name: translate
+    title: Translate
     template: |
-      <xyz-transition xyz="fade" v-xyz="data.utilities" v-on="data.listeners">
+      <xyz-transition xyz="fade" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade ${data.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
-utilities:
-  names: [right, left, down, up, front, back]
-  default: right
-
-variables:
-  names: [translate-x, translate-y, translate-z]
+modifiers:
+  defaultUtilities: right
+  groups:
+    - name: translate
+      title: Translate
+      types: [translate]
 ---
 
 This is the translate section

@@ -7,13 +7,9 @@
 					<markdown-content :content="section.content"></markdown-content>
 				</div>
 			</div>
-			<div class="section-column section-examples" v-if="section.examples.length && (!mobile || column === 'examples')">
+			<div class="section-column section-sandbox" v-if="section.examples.length && (!mobile || column === 'sandbox')">
 				<div class="section-column__content">
-					<examples-sandbox
-						:examples="section.examples"
-						:utilities="section.utilities"
-						:variables="section.variables"
-					></examples-sandbox>
+					<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 				</div>
 			</div>
 		</div>
@@ -22,14 +18,14 @@
 
 <script>
 import MarkdownContent from '~/components/reusable/MarkdownContent'
-import ExamplesSandbox from '~/components/reusable/ExamplesSandbox'
+import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	name: 'DocsSection',
 	props: ['section', 'mobile', 'column'],
 	components: {
 		MarkdownContent,
-		ExamplesSandbox,
+		Sandbox,
 	},
 }
 </script>
@@ -81,7 +77,7 @@ export default {
 	}
 }
 
-.section-examples {
+.section-sandbox {
 	position: sticky;
 	padding: 0 $spacing-m;
 	top: $spacing-m;

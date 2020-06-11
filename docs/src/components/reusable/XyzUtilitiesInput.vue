@@ -1,34 +1,32 @@
 <template>
 	<div class="utilities-input">
 		<table class="utilities-table">
-			<tbody class="utilities-group" v-for="group in groups" :key="group.name">
-				<tr>
-					<th></th>
-					<th class="group-level__header" v-for="groupLevel in group.levels" :key="groupLevel">
-						{{ groupLevel }}
-					</th>
-				</tr>
-				<tr v-for="utility in group.utilities" :key="utility.name">
-					<th class="group-utility__header">
-						{{ utility.name }}
-					</th>
-					<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
-						<div class="utility-level__content" v-if="utilityLevel.valid">
-							<input
-								class="toggle-input"
-								type="radio"
-								:id="utilityLevel.id"
-								:value="utilityLevel.value"
-								v-model="selectedObj[utility.model]"
-								@click="onCellClick(utilityLevel, utility.model)"
-							/>
-							<label class="toggle-label" :for="utilityLevel.id">
-								<div class="toggle-indicator"></div>
-							</label>
-						</div>
-					</td>
-				</tr>
-			</tbody>
+			<tr>
+				<th></th>
+				<th class="level__header" v-for="level in levels" :key="level">
+					{{ level }}
+				</th>
+			</tr>
+			<tr v-for="utility in utilities" :key="utility.name">
+				<th class="utility__header">
+					{{ utility.name }}
+				</th>
+				<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+					<div class="utility-level__content" v-if="utilityLevel.valid">
+						<input
+							class="toggle-input"
+							type="radio"
+							:id="utilityLevel.id"
+							:value="utilityLevel.string"
+							v-model="selectedObj[utility.model]"
+							@click="onCellClick(utilityLevel, utility.model)"
+						/>
+						<label class="toggle-label" :for="utilityLevel.id">
+							<div class="toggle-indicator"></div>
+						</label>
+					</div>
+				</td>
+			</tr>
 		</table>
 	</div>
 </template>
@@ -38,68 +36,46 @@ import { xyzUtilities, getXyzUtility, getXyzUtilityLevel } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
-	props: ['value', 'utilities', 'multiple', 'groupBy'],
+	props: ['value', 'types'],
 	data() {
 		return {
 			selectedObj: {},
 		}
 	},
 	computed: {
-		computedUtilities() {
-			if (this.utilities === 'all') {
-				return xyzUtilities
-			}
-			return this.utilities.map((name) => {
-				return getXyzUtility(name)
-			})
-		},
-		groups() {
-			// Compute groups
-			const groupsMap = {}
-			if (!this.groupBy) {
-				groupsMap.all = this.computedUtilities
-			} else {
-				this.computedUtilities.forEach((utility) => {
-					const groupName = utility[this.groupBy]
-					if (!groupsMap[groupName]) {
-						groupsMap[groupName] = []
-					}
-					groupsMap[groupName].push(utility)
-				})
-			}
-
-			return Object.entries(groupsMap).map(([name, group]) => {
-				const groupObj = {
-					name,
-				}
-
-				// Compute group levels
-				const groupLevelsMap = {}
-				group.forEach((utility) => {
-					Object.keys(utility.utilityMap).forEach((level) => {
-						groupLevelsMap[level] = true
+		typeUtilities() {
+			const typeUtilities = []
+			this.types.forEach((type) => {
+				typeUtilities.push(
+					...xyzUtilities.filter((utility) => {
+						return utility.type === type
 					})
+				)
+			})
+			return typeUtilities
+		},
+		levels() {
+			const levelsMap = {}
+			this.typeUtilities.forEach((utility) => {
+				Object.keys(utility.utilityMap).forEach((level) => {
+					levelsMap[level] = true
 				})
-				groupObj.levels = ['default', ...Object.keys(groupLevelsMap)]
-
-				// Compute group utilities
-				groupObj.utilities = group.map((utility) => {
-					return {
-						name: utility.name,
-						model: this.getUtilityModel(utility),
-						levels: groupObj.levels.map((level) => {
-							const utilityLevel = getXyzUtilityLevel(utility.name, level)
-							return {
-								...utilityLevel,
-								id: `${this._uid}_${utilityLevel.string}`,
-								value: utilityLevel.string,
-								valid: utilityLevel.valid,
-							}
-						}),
-					}
-				})
-
-				return groupObj
+			})
+			return ['default', ...Object.keys(levelsMap)]
+		},
+		utilities() {
+			return this.typeUtilities.map((utility) => {
+				return {
+					name: utility.name,
+					model: this.getUtilityModel(utility),
+					levels: this.levels.map((level) => {
+						const utilityLevel = getXyzUtilityLevel(utility.name, level)
+						return {
+							...utilityLevel,
+							id: `${this._uid}_${utilityLevel.string}`,
+						}
+					}),
+				}
 			})
 		},
 	},
@@ -165,7 +141,8 @@ export default {
 		color: primary-color(100);
 	}
 
-	td, th {
+	td,
+	th {
 		&:first-child {
 			padding-left: $spacing-xs;
 		}
@@ -175,63 +152,59 @@ export default {
 	}
 }
 
-.utilities-group {
-	background-color: primary-color(900);
+.utility__header {
+	position: sticky;
+	left: 0;
+	width: 0.1%;
+	text-align: right;
+	white-space: nowrap;
+	background-color: primary-color(900, 0.75);
+	z-index: 1;
+}
 
-	.group-utility__header {
-		position: sticky;
-		left: 0;
-		width: 0.1%;
-		text-align: right;
-		white-space: nowrap;
-		background-color: primary-color(900, 0.75);
-		z-index: 1;
+.level__header {
+	min-width: 2.5rem;
+}
+
+.utility-level {
+	position: relative;
+}
+
+.utility-level__content {
+	width: 100%;
+	height: 2rem;
+}
+
+.toggle-input {
+	display: none;
+
+	&:checked + .toggle-label .toggle-indicator {
+		@include size(1.5rem);
+		border-radius: $br-m;
+		opacity: 1;
 	}
+}
 
-	.group-level__header {
-		min-width: 2.5rem;
-	}
+.toggle-label {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	cursor: pointer;
 
-	.utility-level {
-		position: relative;
-	}
-
-	.utility-level__content {
-		width: 100%;
-		height: 2rem;
-	}
-
-	.toggle-input {
-		display: none;
-
-		&:checked + .toggle-label .toggle-indicator {
-			@include size(1.5rem);
+	&:hover {
+		.toggle-indicator {
+			@include size(1rem);
 			border-radius: $br-m;
-			opacity: 1;
+			opacity: 0.5;
 		}
 	}
+}
 
-	.toggle-label {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		cursor: pointer;
-
-		&:hover {
-			.toggle-indicator {
-				@include size(1rem);
-				border-radius: $br-m;
-				opacity: 0.5;
-			}
-		}
-	}
-
-	.toggle-indicator {
-		@include circle(0.25rem);
-		margin: auto;
-		opacity: 0.2;
-		background-color: primary-color(100);
-		transition: all 0.15s $ease-in-out;
-	}
+.toggle-indicator {
+	@include circle(0.25rem);
+	margin: auto;
+	opacity: 0.2;
+	background-color: primary-color(100);
+	transition: all 0.15s $ease-in-out;
 }
 </style>

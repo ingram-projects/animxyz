@@ -2,26 +2,27 @@
 title: Stagger
 
 examples:
-  - name: Stagger
+  - name: stagger
+    Title: Stagger
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.utilities" v-on="data.listeners">
+      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade small ${data.utilities}">
+          <div class="square-group" xyz="fade small ${data.modifiers.utilities}">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
           </div>
 
-utilities:
-  names: [stagger, stagger-rev]
-  default: stagger
-
-variables:
-  names: [stagger, stagger-rev]
+modifiers:
+  defaultUtilities: stagger
+  groups:
+    - name: stagger
+      title: Stagger
+      types: [stagger]
 ---
 
 This is the stagger section
