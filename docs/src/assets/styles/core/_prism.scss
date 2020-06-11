@@ -3,33 +3,27 @@ pre[class*="language-"] {
 	color: primary-color(50);
 	background: none;
 	font-family: $font-stack-mono;
-	font-weight: 600;
+	font-weight: bold;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	line-height: 1.5;
+	line-height: 1.25;
+	font-size: 1.125rem;
 	tab-size: 4;
 	hyphens: none;
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 1em;
-	margin: .5em 0;
-	border-radius: $br-l;
+	padding: $spacing-s;
 	overflow: auto;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: primary-color(900);
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em;
+	padding: $spacing-xxxs;
 	white-space: normal;
 }
 

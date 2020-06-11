@@ -22,6 +22,7 @@ export default {
 		}
 
 		pre[class*='language-'] {
+			background: primary-color(900);
 			margin: 0 (-$spacing-s);
 		}
 	}

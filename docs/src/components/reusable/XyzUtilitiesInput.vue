@@ -127,7 +127,6 @@ export default {
 <style lang="scss" scoped>
 .utilities-input {
 	padding: $spacing-xs 0;
-	border-radius: $br-l;
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }
@@ -144,10 +143,10 @@ export default {
 	td,
 	th {
 		&:first-child {
-			padding-left: $spacing-xs;
+			padding-left: $spacing-s;
 		}
 		&:last-child {
-			padding-right: $spacing-xs;
+			padding-right: $spacing-s;
 		}
 	}
 }

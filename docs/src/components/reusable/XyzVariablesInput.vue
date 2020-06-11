@@ -40,14 +40,13 @@ export default {
 
 <style lang="scss" scoped>
 .variables-input {
-	border-radius: $br-l;
 	font-family: $font-stack-mono;
-	padding: $spacing-xs;
+	padding: $spacing-s;
 	overflow-x: auto;
 }
 
 .variable {
-	padding: $spacing-xxxs;
+	padding: $spacing-xxxs 0;
 	display: flex;
 	align-items: center;
 
