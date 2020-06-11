@@ -38,10 +38,10 @@ export default {
 			return this.modifiers.utilities && this.modifiers.utilities.multiple
 		},
 		hideUtilities() {
-			return !this.modifiers.utilities || !this.modifiers.utilities.hide
+			return this.modifiers.utilities && this.modifiers.utilities.hide
 		},
 		hideVariables() {
-			return !this.modifiers.variables || !this.modifiers.variables.hide
+			return this.modifiers.variables && this.modifiers.variables.hide
 		},
 	},
 	watch: {
