@@ -36,7 +36,7 @@ import { xyzUtilities, getXyzUtility, getXyzUtilityLevel } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
-	props: ['value', 'types'],
+	props: ['value', 'types', 'multiple'],
 	data() {
 		return {
 			selectedObj: {},
@@ -116,7 +116,7 @@ export default {
 			return model
 		},
 		onCellClick(cell, model) {
-			if (this.multiple && this.selectedObj[model] === cell.value) {
+			if (this.multiple && this.selectedObj[model] === cell.string) {
 				this.$delete(this.selectedObj, model)
 			}
 		},

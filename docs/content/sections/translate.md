@@ -14,7 +14,8 @@ examples:
           <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
 modifiers:
-  defaultUtilities: right
+  utilities:
+    default: right
   groups:
     - name: translate
       title: Translate

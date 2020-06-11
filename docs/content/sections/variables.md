@@ -18,7 +18,8 @@ examples:
           </div>
 
 modifiers:
-  hideUtilities: true
+  utilities:
+    hide: true
   groups:
     - name: timing
       title: Timing

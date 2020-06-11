@@ -18,7 +18,8 @@ examples:
           </div>
 
 modifiers:
-  defaultUtilities: stagger
+  utilities:
+    default: stagger
   groups:
     - name: stagger
       title: Stagger

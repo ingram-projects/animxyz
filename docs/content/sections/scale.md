@@ -14,7 +14,8 @@ examples:
           <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
 modifiers:
-  defaultUtilities: small
+  utilities:
+    default: small
   groups:
     - name: scale
       title: Scale

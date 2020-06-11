@@ -14,7 +14,8 @@ examples:
           <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
 
 modifiers:
-  defaultUtilities: fade
+  utilities:
+    default: fade
   groups:
     - name: fade
       title: Fade

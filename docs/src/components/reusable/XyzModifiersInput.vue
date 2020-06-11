@@ -3,6 +3,7 @@
 		<xyz-utilities-input
 			class="modifiers-utilities"
 			:types="activeGroup.types"
+			:multiple="this.modifiers.utilities && this.modifiers.utilities.multiple"
 			v-model="value.utilities"
 			v-if="!this.modifiers.hideUtilities"
 		></xyz-utilities-input>

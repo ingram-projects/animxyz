@@ -14,7 +14,8 @@ examples:
           <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
 modifiers:
-  defaultUtilities: flip-up
+  utilities:
+    default: flip-up
   groups:
     - name: rotate
       title: Rotate

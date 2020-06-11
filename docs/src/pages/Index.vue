@@ -52,9 +52,14 @@
 					}
 				}
 				modifiers {
-					hideUtilities
-					hideVariables
-					defaultUtilities
+					utilities {
+						hide
+						multiple
+						default
+					}
+					variables {
+						hide
+					}
 					groups {
 						name
 						title

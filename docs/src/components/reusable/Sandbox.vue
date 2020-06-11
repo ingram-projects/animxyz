@@ -45,8 +45,14 @@ export default {
 			handler() {
 				if (this.modifiers) {
 					this.xyzModifiers = {
-						utilities: this.modifiers.defaultUtilities || '',
-						variables: this.modifiers.defaultVariables || {},
+						utilities: '',
+						variables: {},
+					}
+					if (this.modifiers.utilities && this.modifiers.utilities.default) {
+						this.xyzModifiers.utilities = this.modifiers.utilities.default
+					}
+					if (this.modifiers.variables && this.modifiers.variables.default) {
+						this.xyzModifiers.variables = this.modifiers.variables.default
 					}
 				} else {
 					this.xyzModifiers = null
