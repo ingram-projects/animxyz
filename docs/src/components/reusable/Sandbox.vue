@@ -92,6 +92,10 @@ export default {
 	border-radius: $br-l;
 }
 
+.modifiers-input {
+	border-bottom: 1px solid primary-color(800);
+}
+
 .sandbox-row {
 	&:not(:last-child) {
 		border-bottom: 1px solid;

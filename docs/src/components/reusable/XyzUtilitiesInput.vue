@@ -126,7 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 .utilities-input {
-	padding: $spacing-xs 0;
+	padding: $spacing-s 0;
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }

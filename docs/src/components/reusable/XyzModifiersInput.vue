@@ -1,7 +1,7 @@
 <template>
 	<div class="modifiers-input">
 		<xyz-utilities-input
-			class="modifiers-utilities"
+			class="modifiers-utilities modifier-row"
 			:types="activeGroup.types"
 			:multiple="multipleUtilities"
 			v-model="value.utilities"
@@ -9,7 +9,7 @@
 		></xyz-utilities-input>
 
 		<xyz-variables-input
-			class="modifiers-variables"
+			class="modifiers-variables modifier-row"
 			:types="activeGroup.types"
 			v-model="value.variables"
 			v-if="!hideVariables"
@@ -66,4 +66,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modifier-row {
+	&:not(:last-child) {
+		padding-bottom: 0;
+	}
+}
+</style>

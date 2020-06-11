@@ -49,7 +49,8 @@ export default {
 <style lang="scss" scoped>
 .example-template {
 	position: relative;
-	min-height: 12rem;
+	min-height: 10rem;
+	padding: $spacing-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;

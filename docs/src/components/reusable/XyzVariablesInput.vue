@@ -59,7 +59,7 @@ export default {
 	.variable-input {
 		flex-grow: 1;
 		font-weight: bold;
-		margin-left: $spacing-xxs;
+		margin-left: $spacing-xxxs;
 		color: primary-color(100);
 	}
 }
