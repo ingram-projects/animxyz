@@ -20,6 +20,7 @@ examples:
 modifiers:
   utilities:
     multiple: true
+    default: fade
   variables:
     hide: true
   groups:

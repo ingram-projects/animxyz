@@ -3,16 +3,16 @@
 		<xyz-utilities-input
 			class="modifiers-utilities"
 			:types="activeGroup.types"
-			:multiple="this.modifiers.utilities && this.modifiers.utilities.multiple"
+			:multiple="multipleUtilities"
 			v-model="value.utilities"
-			v-if="!this.modifiers.hideUtilities"
+			v-if="!hideUtilities"
 		></xyz-utilities-input>
 
 		<xyz-variables-input
 			class="modifiers-variables"
 			:types="activeGroup.types"
 			v-model="value.variables"
-			v-if="!this.modifiers.hideVariables"
+			v-if="!hideVariables"
 		></xyz-variables-input>
 	</div>
 </template>
@@ -32,6 +32,17 @@ export default {
 		return {
 			activeGroup: null,
 		}
+	},
+	computed: {
+		multipleUtilities() {
+			return this.modifiers.utilities && this.modifiers.utilities.multiple
+		},
+		hideUtilities() {
+			return !this.modifiers.utilities || !this.modifiers.utilities.hide
+		},
+		hideVariables() {
+			return !this.modifiers.variables || !this.modifiers.variables.hide
+		},
 	},
 	watch: {
 		'modifiers.groups': {
