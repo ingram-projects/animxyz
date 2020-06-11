@@ -17,13 +17,13 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: $spacing-s;
+	padding: 1em;
 	overflow: auto;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: $spacing-xxxs;
+	padding: .25em .5em;
 	white-space: normal;
 }
 

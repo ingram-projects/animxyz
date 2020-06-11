@@ -27,7 +27,7 @@ code:not([class*="language-"]) {
   font-family: $font-stack-mono;
   font-size: inherit;
   font-weight: bold;
-  background-color: primary-color(800, .075);
+  background-color: primary-color(800, .1);
   padding: .25em .5em;
   border-radius: $br-s;
 }

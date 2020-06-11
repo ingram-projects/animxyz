@@ -11,19 +11,21 @@ export default {
 
 <style lang="scss" scoped>
 .markdown-content {
+	font-size: 1.125rem;
+
+	@include media('<phone') {
+		font-size: $fs-normal;
+	}
+
 	::v-deep {
 		p {
-			font-size: 1.125rem;
 			margin-bottom: $spacing-m;
-
-			@include media('<phone') {
-				font-size: $fs-normal;
-			}
 		}
 
 		pre[class*='language-'] {
 			background: primary-color(900);
 			margin: 0 (-$spacing-s);
+			border-radius: $br-l;
 		}
 	}
 }

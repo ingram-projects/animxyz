@@ -56,4 +56,8 @@ export default {
 	perspective: 200px;
 	--xyz-duration-default: 1s;
 }
+
+.example-code {
+	font-size: 1.125rem;
+}
 </style>
