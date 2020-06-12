@@ -1,16 +1,23 @@
 <template>
 	<div class="code-examples">
-		<div class="example-template">
-			<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
-		</div>
+		<tab-bar class="modifiers-tabs" :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
 
-		<code-block class="example-code" :code="activeExample.code" :data="data"></code-block>
+		<xyz-transition xyz="fade">
+			<div class="examples-sections" :key="activeExample.name">
+				<div class="example-template">
+					<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
+				</div>
+
+				<code-block class="example-code" :code="activeExample.code" :data="data"></code-block>
+			</div>
+		</xyz-transition>
 	</div>
 </template>
 
 <script>
 import CodeBlock from '~/components/reusable/CodeBlock'
 import DynamicTemplate from '~/components/reusable/DynamicTemplate'
+import TabBar from '~/components/reusable/TabBar'
 
 export default {
 	name: 'CodeExamples',
@@ -18,6 +25,7 @@ export default {
 	components: {
 		CodeBlock,
 		DynamicTemplate,
+		TabBar,
 	},
 	data() {
 		return {

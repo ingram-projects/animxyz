@@ -137,6 +137,7 @@ export default {
 	th {
 		padding: $spacing-xxxs;
 		vertical-align: middle;
+		white-space: nowrap;
 		color: primary-color(100);
 	}
 
@@ -156,7 +157,6 @@ export default {
 	left: 0;
 	width: 0.1%;
 	text-align: right;
-	white-space: nowrap;
 	background-color: primary-color(900, 0.75);
 	z-index: 1;
 }

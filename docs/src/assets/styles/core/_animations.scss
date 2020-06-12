@@ -1,9 +1,3 @@
 // ANIMXYZ -------------------------------------
 @import '@animxyz/core';
 @include xyz-all;
-
-:root {
-  --xyz-appear-ease-default: #{xyz-utility-ease('out')};
-  --xyz-in-ease-default: #{xyz-utility-ease('out')};
-  --xyz-out-ease-default: #{xyz-utility-ease('in')};
-}

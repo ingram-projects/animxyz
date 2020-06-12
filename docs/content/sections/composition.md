@@ -24,12 +24,27 @@ modifiers:
   variables:
     hide: true
   groups:
+    - ease: ease
+      title: Ease
+      types: [ease]
     - name: timing
       title: Timing
-      types: [ease, duration, delay, stagger]
-    - name: transform
-      title: Transform
-      types: [fade, origin, translate, rotate, scale]
+      types: [duration, delay, stagger]
+    - name: fade
+      title: Fade
+      types: [fade]
+    - name: origin
+      title: Origin
+      types: [origin]
+    - name: translate
+      title: Translate
+      types: [translate]
+    - name: rotate
+      title: Rotate
+      types: [rotate]
+    - name: scale
+      title: Scale
+      types: [scale]
 ---
 
 This is the composition section
