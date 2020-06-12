@@ -67,6 +67,9 @@ export default {
 		},
 	},
 	watch: {
+		activeGroup() {
+			this.$emit('group-changed', this.activeGroup)
+		},
 		activeGroupIndex(newValue, oldValue) {
 			if (newValue > oldValue) {
 				this.tabDirectionXyz = 'out-left-100 in-right-100'

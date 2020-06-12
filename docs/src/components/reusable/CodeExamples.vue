@@ -33,6 +33,9 @@ export default {
 		}
 	},
 	watch: {
+		activeExample() {
+			this.$emit('example-changed', this.activeExample)
+		},
 		examples: {
 			immediate: true,
 			handler() {
