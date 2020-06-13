@@ -46,21 +46,33 @@ export default {
 }
 
 .variable {
-	padding: $spacing-xxxs 0;
 	display: flex;
 	align-items: center;
+}
 
-	.variable-label {
-		font-weight: bold;
-		white-space: nowrap;
-		color: primary-color(100);
+.variable-label {
+	font-weight: bold;
+	white-space: nowrap;
+	color: primary-color(100);
+}
+
+.variable-input {
+	height: 2rem;
+	flex-grow: 1;
+	font-weight: bold;
+	padding: $spacing-xxxs $spacing-xxs;
+	margin-left: $spacing-xxxs;
+	color: $cyan;
+	font-size: $fs-medium;
+	border-radius: $br-s;
+	transition: background 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
+
+	&:hover {
+		background-color: primary-color(100, 0.1);
 	}
 
-	.variable-input {
-		flex-grow: 1;
-		font-weight: bold;
-		margin-left: $spacing-xxxs;
-		color: primary-color(100);
+	&:focus {
+		box-shadow: inset 0 0 0 1px primary-color(100, 0.75);
 	}
 }
 </style>

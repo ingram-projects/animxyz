@@ -178,9 +178,13 @@ export default {
 	display: none;
 
 	&:checked + .toggle-label .toggle-indicator {
-		@include size(1.5rem);
-		border-radius: $br-m;
+		@include size(1.25rem);
+		transform: rotate(0.125turn);
+		background-color: $cyan;
+		// border: 4px solid $cyan;
 		opacity: 1;
+		border-radius: $br-m;
+		transition: all 0.25s $ease-out-back;
 	}
 }
 
@@ -192,9 +196,10 @@ export default {
 
 	&:hover {
 		.toggle-indicator {
-			@include size(1rem);
-			border-radius: $br-m;
+			@include size(1.25rem);
 			opacity: 0.5;
+			border-radius: $br-m;
+			transition-duration: 0.2s;
 		}
 	}
 }
@@ -204,6 +209,6 @@ export default {
 	margin: auto;
 	opacity: 0.2;
 	background-color: primary-color(100);
-	transition: all 0.15s $ease-in-out;
+	transition: all 0.25s $ease-in-out;
 }
 </style>
