@@ -9,7 +9,7 @@
 			:key="tab.name"
 			@click="setTab(tab)"
 		>
-			{{ tab.title }}
+			<span class="tab-text">{{ tab.title }}</span>
 		</button>
 	</div>
 </template>
@@ -28,27 +28,59 @@ export default {
 
 <style lang="scss" scoped>
 .tab-bar {
-	padding: $spacing-s;
-	padding-bottom: 0;
 	font-family: $font-stack-mono;
 	font-weight: bold;
 	display: flex;
-	justify-content: space-around;
 }
 
 .tab-bar__tab {
-	padding: $spacing-xxxs 0;
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	height: 3rem;
+	padding: 0 $spacing-xxs;
 	color: primary-color(50);
-	transition: color 0.2s $ease-in-out;
+	transition: background 0.2s $ease-in-out, color 0.2s $ease-in-out;
 
-	&:not(:last-child) {
-		margin-right: $spacing-xs;
+	&:hover,
+	&:focus {
+		background-color: primary-color(100, 0.15);
 	}
 
 	&.active {
 		color: $cyan;
-		margin-bottom: -2px;
-		border-bottom: 2px solid $cyan;
+
+		&:hover,
+		&:focus {
+			background-color: transparent;
+		}
+
+		.tab-text {
+			&::after {
+				background-color: $cyan;
+				transform: scale(1);
+			}
+		}
+	}
+}
+
+.tab-text {
+	display: flex;
+	align-items: center;
+	font-size: 1.125rem;
+	height: 2rem;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		height: 2px;
+		transform: scale(0);
+		transition: background 0.2s $ease-in-out, transform 0.3s $ease-out-back;
 	}
 }
 </style>
