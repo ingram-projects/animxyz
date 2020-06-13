@@ -21,18 +21,9 @@ modifiers:
   utilities:
     hide: true
   groups:
-    - ease: ease
-      title: Ease
-      types: [ease]
-    - name: timing
-      title: Timing
-      types: [duration, delay, stagger]
     - name: fade
       title: Fade
       types: [fade]
-    - name: origin
-      title: Origin
-      types: [origin]
     - name: translate
       title: Translate
       types: [translate]
@@ -42,6 +33,15 @@ modifiers:
     - name: scale
       title: Scale
       types: [scale]
+    - name: origin
+      title: Origin
+      types: [origin]
+    - name: timing
+      title: Timing
+      types: [duration, delay, stagger]
+    - name: ease
+      title: Ease
+      types: [ease]
 ---
 
 This is the variables section
