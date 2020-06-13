@@ -179,11 +179,10 @@ export default {
 
 	&:checked + .toggle-label .toggle-indicator {
 		@include size(1.25rem);
-		transform: rotate(0.125turn);
-		background-color: $cyan;
-		// border: 4px solid $cyan;
 		opacity: 1;
+		background-color: $cyan;
 		border-radius: $br-m;
+		transform: none;
 		transition: all 0.25s $ease-out-back;
 	}
 }
@@ -209,6 +208,7 @@ export default {
 	margin: auto;
 	opacity: 0.2;
 	background-color: primary-color(100);
+	transform: rotate(-0.125turn);
 	transition: all 0.25s $ease-in-out;
 }
 </style>
