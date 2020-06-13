@@ -87,7 +87,7 @@ export default {
 		return {
 			mobile: true,
 			column: 'text',
-			sectionNames: ['Installation', 'Fade', 'Translate', 'Rotate', 'Scale', 'Stagger', 'Composition', 'Variables'],
+			sectionNames: ['Installation', 'Fade', 'Transform', 'Origin', 'Timing', 'Stagger', 'Composition', 'Variables'],
 		}
 	},
 	computed: {
