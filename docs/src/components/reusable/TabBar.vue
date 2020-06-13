@@ -29,7 +29,6 @@ export default {
 <style lang="scss" scoped>
 .tab-bar {
 	font-family: $font-stack-mono;
-	font-weight: bold;
 	display: flex;
 }
 
@@ -41,11 +40,12 @@ export default {
 	height: 3rem;
 	padding: 0 $spacing-xxs;
 	color: primary-color(50);
-	transition: background 0.2s $ease-in-out, color 0.2s $ease-in-out;
+	transition: background-color 0.2s $ease-in-out, color 0.2s $ease-in-out;
 
 	&:hover,
 	&:focus {
-		background-color: primary-color(100, 0.15);
+		font-weight: bold;
+		background-color: primary-color(100, 0.1);
 
 		.tab-text {
 			opacity: 1;
@@ -54,6 +54,7 @@ export default {
 
 	&.active {
 		color: $cyan;
+		font-weight: bold;
 
 		&:hover,
 		&:focus {
@@ -76,7 +77,7 @@ export default {
 	align-items: center;
 	height: 2rem;
 	position: relative;
-	opacity: 0.75;
+	opacity: 0.85;
 	transition: opacity 0.2s $ease-in-out;
 
 	&::after {
@@ -85,9 +86,9 @@ export default {
 		top: 100%;
 		left: 0;
 		right: 0;
-		height: 2px;
+		height: 3px;
 		transform: scale(0);
-		transition: background 0.2s $ease-in-out, transform 0.3s $ease-out-back;
+		transition: background-color 0.2s $ease-in-out, transform 0.3s $ease-out-back;
 	}
 }
 </style>
