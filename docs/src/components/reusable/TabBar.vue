@@ -46,6 +46,10 @@ export default {
 	&:hover,
 	&:focus {
 		background-color: primary-color(100, 0.15);
+
+		.tab-text {
+			opacity: 1;
+		}
 	}
 
 	&.active {
@@ -57,6 +61,8 @@ export default {
 		}
 
 		.tab-text {
+			opacity: 1;
+
 			&::after {
 				background-color: $cyan;
 				transform: scale(1);
@@ -70,6 +76,8 @@ export default {
 	align-items: center;
 	height: 2rem;
 	position: relative;
+	opacity: 0.75;
+	transition: opacity 0.2s $ease-in-out;
 
 	&::after {
 		content: '';

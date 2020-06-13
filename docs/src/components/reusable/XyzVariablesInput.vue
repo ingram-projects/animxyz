@@ -63,8 +63,8 @@ export default {
 	padding: $spacing-xxxs $spacing-xxs;
 	margin-left: $spacing-xxxs;
 	color: $cyan;
-	font-size: $fs-medium;
-	border-radius: $br-s;
+	font-size: 1.125rem;
+	border-radius: $br-m;
 	transition: background 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
 
 	&:hover {
