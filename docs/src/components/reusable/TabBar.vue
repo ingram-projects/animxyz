@@ -35,7 +35,7 @@ export default {
 
 .tab-bar__tab {
 	display: flex;
-	flex: 1;
+	flex-grow: 1;
 	align-items: center;
 	justify-content: center;
 	height: 3rem;
@@ -68,7 +68,6 @@ export default {
 .tab-text {
 	display: flex;
 	align-items: center;
-	font-size: 1.125rem;
 	height: 2rem;
 	position: relative;
 
