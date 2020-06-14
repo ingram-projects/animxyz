@@ -1,13 +1,17 @@
 <template>
 	<section class="docs-section">
 		<div class="section-columns__wrap">
-			<div class="section-column section-text" v-if="!mobile || column === 'text'">
+			<div class="section-column section-text xyz-nested" xyz="inherit fade left" v-if="!mobile || column === 'text'">
 				<div class="section-column__content">
 					<h1 class="section-title">{{ section.title }}</h1>
 					<markdown-content :content="section.content"></markdown-content>
 				</div>
 			</div>
-			<div class="section-column section-sandbox" v-if="section.examples.length && (!mobile || column === 'sandbox')">
+			<div
+				class="section-column section-sandbox xyz-nested"
+				xyz="inherit fade up"
+				v-if="section.examples.length && (!mobile || column === 'sandbox')"
+			>
 				<div class="section-column__content">
 					<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 				</div>
