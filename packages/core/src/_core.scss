@@ -73,6 +73,16 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .xyz,
+      .xyz .xyz-nested,
+      .xyz .xyz-in-nested,
+      .xyz .xyz-out-nested,
+      .xyz .xyz-appear-nested {
+        animation: none !important;
+      }
+    }
+
     .xyz-move {
       $duration: var(--xyz-#{xyz-mode-name('duration', 'move')}, 0s);
       $ease: var(--xyz-#{xyz-mode-name('ease', 'move')}, var(--xyz-ease-default));
