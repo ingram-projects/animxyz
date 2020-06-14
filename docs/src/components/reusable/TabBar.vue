@@ -45,7 +45,7 @@ export default {
 	&:hover,
 	&:focus {
 		font-weight: bold;
-		background-color: primary-color(100, 0.1);
+		background-color: primary-color(800, 0.5);
 
 		.tab-text {
 			opacity: 1;
