@@ -1,6 +1,7 @@
 export { default as xyz } from 'clsx'
 
 export const xyzTransitionClasses = {
+	active: 'xyz-active',
 	appearFrom: 'xyz-appear-from',
 	appearActive: 'xyz-appear',
 	appearTo: 'xyz-appear-to',
@@ -16,15 +17,15 @@ export const xyzTransitionClasses = {
 export const xyzTransitionProps = {
 	name: 'xyz',
 	css: true,
-	appearClass: `${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
-	appearActiveClass: `${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
-	appearToClass: `${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
-	enterClass: xyzTransitionClasses.enterFrom,
-	enterActiveClass: xyzTransitionClasses.enterActive,
-	enterToClass: xyzTransitionClasses.enterTo,
-	leaveClass: xyzTransitionClasses.leaveFrom,
-	leaveActiveClass: xyzTransitionClasses.leaveActive,
-	leaveToClass: xyzTransitionClasses.leaveTo,
+	appearClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
+	appearActiveClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
+	appearToClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
+	enterClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterFrom}`,
+	enterActiveClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterActive}`,
+	enterToClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.enterTo}`,
+	leaveClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.leaveFrom}`,
+	leaveActiveClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.leaveActive}`,
+	leaveToClass: `${xyzTransitionClasses.active} ${xyzTransitionClasses.leaveTo}`,
 }
 
 export function mergeData(data1 = {}, data2 = {}) {

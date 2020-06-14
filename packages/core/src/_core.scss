@@ -73,16 +73,6 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .xyz,
-      .xyz .xyz-nested,
-      .xyz .xyz-in-nested,
-      .xyz .xyz-out-nested,
-      .xyz .xyz-appear-nested {
-        animation: none !important;
-      }
-    }
-
     .xyz-move {
       $duration: var(--xyz-#{xyz-mode-name('duration', 'move')}, 0s);
       $ease: var(--xyz-#{xyz-mode-name('ease', 'move')}, var(--xyz-ease-default));
@@ -96,6 +86,26 @@
 
     [xyz~=inherit] {
       @include xyz-set-all(inherit);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .xyz-active,
+      .xyz-in,
+      .xyz-out,
+      .xyz-appear,
+      .xyz-active .xyz-nested,
+      .xyz-active .xyz-in-nested,
+      .xyz-in .xyz-in-nested,
+      .xyz-active .xyz-out-nested,
+      .xyz-out .xyz-out-nested,
+      .xyz-active .xyz-appear-nested,
+      .xyz-appear .xyz-appear-nested {
+        animation: none !important;
+      }
+
+      .xyz-move {
+        transition: none !important;
+      }
     }
   }
 }
