@@ -21,18 +21,15 @@
 			</p>
 		</div>
 
-		<div class="sections__wrap">
-			<xyz-transition-group appear xyz="stagger duration-5 delay-20" tag="div" class="docs-sections__wrap">
-				<docs-section
-					:section="section"
-					:mobile="mobile"
-					:column="column"
-					v-for="(section, index) in sections"
-					:key="section.title"
-					:style="`--xyz-index: ${index};`"
-				></docs-section>
-			</xyz-transition-group>
-		</div>
+		<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
+			<docs-section
+				:section="section"
+				:mobile="mobile"
+				:column="column"
+				v-for="section in sections"
+				:key="section.title"
+			></docs-section>
+		</xyz-transition-group>
 	</Layout>
 </template>
 
