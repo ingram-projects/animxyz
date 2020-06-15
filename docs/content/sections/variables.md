@@ -38,10 +38,13 @@ modifiers:
       types: [origin]
     - name: timing
       title: Timing
-      types: [duration, delay, stagger]
+      types: [duration, delay]
     - name: ease
       title: Ease
       types: [ease]
+    - name: stagger
+      title: Stagger
+      types: [stagger]
 ---
 
 This is the variables section
