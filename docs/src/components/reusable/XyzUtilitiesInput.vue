@@ -19,7 +19,6 @@
 							:id="utilityLevel.id"
 							:value="utilityLevel.string"
 							v-model="selectedObj[utility.model]"
-							:name="utilityLevel.name"
 							@click="onCellClick(utilityLevel, utility.model)"
 						/>
 						<label class="toggle-label" :for="utilityLevel.id">
