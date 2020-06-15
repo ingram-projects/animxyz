@@ -55,18 +55,6 @@
       }
     }
 
-    %xyz-pos-absolute {
-      position: absolute !important;
-    }
-
-    %xyz-play-paused {
-      animation-play-state: paused !important;
-    }
-
-    %xyz-anim-initial {
-      animation: initial !important;
-    }
-
     @each $mode in $xyz-modes {
       .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
         @include xyz-animation($mode);
@@ -92,32 +80,30 @@
       transition: transform #{$duration} #{$ease} #{$delay};
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .xyz-move {
+        transition: none !important;
+      }
+    }
+
+    %xyz-pos-absolute {
+      position: absolute !important;
+    }
+
+    %xyz-play-paused {
+      animation-play-state: paused !important;
+    }
+
+    %xyz-anim-initial {
+      animation: initial !important;
+    }
+
     [xyz] {
       @include xyz-set-all();
     }
 
     [xyz~=inherit] {
       @include xyz-set-all(inherit);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .xyz-active,
-      .xyz-in,
-      .xyz-out,
-      .xyz-appear,
-      .xyz-active .xyz-nested,
-      .xyz-active .xyz-in-nested,
-      .xyz-in .xyz-in-nested,
-      .xyz-active .xyz-out-nested,
-      .xyz-out .xyz-out-nested,
-      .xyz-active .xyz-appear-nested,
-      .xyz-appear .xyz-appear-nested {
-        animation: none !important;
-      }
-
-      .xyz-move {
-        transition: none !important;
-      }
-    }
+    }  
   }
 }

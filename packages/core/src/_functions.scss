@@ -182,6 +182,10 @@
     #{$direction}
     both
     !important;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+  }
 }
 
 @mixin xyz-in() {
