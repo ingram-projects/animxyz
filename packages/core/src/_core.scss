@@ -6,19 +6,19 @@
   @include xyz-include-once('core') {
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
-        $fade: xyz-fallback-var('fade', $mode, 1);
+        $fade: xyz-var('fade', $mode, 1);
 
-        $translate-x: xyz-fallback-var('translate-x', $mode, 0);
-        $translate-y: xyz-fallback-var('translate-y', $mode, 0);
-        $translate-z: xyz-fallback-var('translate-z', $mode, 0);
-        $rotate-x: xyz-fallback-var('rotate-x', $mode, 0);
-        $rotate-y: xyz-fallback-var('rotate-y', $mode, 0);
-        $rotate-z: xyz-fallback-var('rotate-z', $mode, 0);
-        $scale-x: xyz-fallback-var('scale-x', $mode, 1);
-        $scale-y: xyz-fallback-var('scale-y', $mode, 1);
-        $scale-z: xyz-fallback-var('scale-z', $mode, 1);
+        $translate-x: xyz-var('translate-x', $mode, 0);
+        $translate-y: xyz-var('translate-y', $mode, 0);
+        $translate-z: xyz-var('translate-z', $mode, 0);
+        $rotate-x: xyz-var('rotate-x', $mode, 0);
+        $rotate-y: xyz-var('rotate-y', $mode, 0);
+        $rotate-z: xyz-var('rotate-z', $mode, 0);
+        $scale-x: xyz-var('scale-x', $mode, 1);
+        $scale-y: xyz-var('scale-y', $mode, 1);
+        $scale-z: xyz-var('scale-z', $mode, 1);
 
-        $transform: xyz-fallback-var('transform', $mode,
+        $transform: xyz-var('transform', $mode,
           translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
           rotateX(#{$rotate-x}) rotateY(#{$rotate-y}) rotateZ(#{$rotate-z})
           scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})

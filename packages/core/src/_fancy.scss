@@ -6,47 +6,47 @@
   @include xyz-include-once('fancy') {
     @include xyz-make-keyframes('expand-width') using ($mode) {
       from {
-        opacity: xyz-fallback-var('fade', $mode, 1);
+        opacity: xyz-var('fade', $mode, 1);
         max-width: 0;
         overflow: hidden;
       }
       to {
-        max-width: xyz-fallback-var('max-width', $mode, 100vw);
+        max-width: xyz-var('max-width', $mode, 100vw);
         overflow: hidden;
       }
     }
 
     @include xyz-make-keyframes('expand-height') using ($mode) {
       from {
-        opacity: xyz-fallback-var('fade', $mode, 1);
+        opacity: xyz-var('fade', $mode, 1);
         max-height: 0;
         overflow: hidden;
       }
       to {
-        max-height: xyz-fallback-var('max-height', $mode, 100vh);
+        max-height: xyz-var('max-height', $mode, 100vh);
         overflow: hidden;
       }
     }
 
     @include xyz-make-keyframes('stroke') using ($mode) {
       from {
-        opacity: xyz-fallback-var('fade', $mode, 1);
-        stroke-dashoffset: xyz-fallback-var('stroke-length', $mode, 100);
-        stroke-dasharray: xyz-fallback-var('stroke-length', $mode, 100) xyz-fallback-var('stroke-length', $mode, 100);
+        opacity: xyz-var('fade', $mode, 1);
+        stroke-dashoffset: xyz-var('stroke-length', $mode, 100);
+        stroke-dasharray: xyz-var('stroke-length', $mode, 100) xyz-var('stroke-length', $mode, 100);
       }
     }
 
     @include xyz-make-keyframes('blur') using ($mode) {
       from {
-        opacity: xyz-fallback-var('fade', $mode, 1);
-        filter: #{'blur'}(#{xyz-fallback-var('blur', $mode, 10px)});
+        opacity: xyz-var('fade', $mode, 1);
+        filter: #{'blur'}(#{xyz-var('blur', $mode, 10px)});
       }
     }
 
     @include xyz-make-keyframes('grayscale') using ($mode) {
       from {
-        opacity: xyz-fallback-var('fade', $mode, 1);
-        filter: #{'grayscale'}(#{xyz-fallback-var('grayscale', $mode, 100%)});
+        opacity: xyz-var('fade', $mode, 1);
+        filter: #{'grayscale'}(#{xyz-var('grayscale', $mode, 100%)});
       }
     }
   }
