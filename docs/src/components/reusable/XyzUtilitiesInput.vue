@@ -19,6 +19,7 @@
 							:id="utilityLevel.id"
 							:value="utilityLevel.string"
 							v-model="selectedObj[utility.model]"
+							:name="utilityLevel.name"
 							@click="onCellClick(utilityLevel, utility.model)"
 						/>
 						<label class="toggle-label" :for="utilityLevel.id">
@@ -175,7 +176,16 @@ export default {
 }
 
 .toggle-input {
-	display: none;
+	@include screen-reader-only;
+
+	&:focus {
+		.toggle-indicator {
+			@include size(1.25rem);
+			opacity: 0.5;
+			border-radius: $br-m;
+			transition-duration: 0.2s;
+		}
+	}
 
 	&:checked + .toggle-label .toggle-indicator {
 		@include size(1.25rem);
