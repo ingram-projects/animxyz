@@ -2,6 +2,7 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:string';
+@use 'internal' as *;
 @use 'variables' as *;
 
 
@@ -107,6 +108,11 @@
     $val: $default-val;
   } @else {
     $val: map.get($utility-map, $level);
+
+    @if $val == null {
+      @error '#{$level} is not a valid level for the #{$name} utility.';
+    }
+
     @if $transform-func {
       $val: meta.call($transform-func, $val);
     }
@@ -118,7 +124,7 @@
 }
 
 @mixin xyz($utilities) {
-  $utilites-list: xyz-str-split($utility);
+  $utilities-list: xyz-str-split($utilities);
 
   @each $utility in $utilities-list {
     $utility-mode: null;
@@ -131,7 +137,11 @@
       }
     }
 
-    $utility-level: string.slice(string.index($utility-name, $utility-name));
+    @if $utility-name == null {
+      @error '#{$utility} is not a valid xyz utility.';
+    }
+
+    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
     @if string.length($utility-level) == 0 {
       $utility-level: 'default';
     }
