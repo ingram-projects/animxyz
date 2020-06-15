@@ -1,0 +1,45 @@
+@use 'sass:list';
+@use 'sass:string';
+
+// INCLUDES
+
+$xyz-included: ();
+
+@mixin xyz-include-once($name) {
+  @if (list.index($xyz-included, $name) == null) {
+    $xyz-included: list.append($xyz-included, $name) !global;
+    @content;
+  }
+}
+
+
+// UTILITIES
+
+@function xyz-str-split($string, $separator: ' ') {
+  $split-list: ();
+  $index : string.index($string, $separator);
+  @while $index != null {
+    $item: string.slice($string, 1, $index - 1);
+    $split-list: list.append($split-list, $item);
+    $string: string.slice($string, $index + 1);
+    $index : string.index($string, $separator);
+  }
+  $split-list: list.append($split-list, $string);
+
+  @return $split-list;
+}
+
+
+// TRANSFORMERS
+
+@function xyz-negative-val($val) {
+  @return $val * -1;
+}
+
+@function xyz-one-minus-val($val) {
+  @return 1 - $val;
+}
+
+@function xyz-one-plus-val($val) {
+  @return 1 + $val;
+}

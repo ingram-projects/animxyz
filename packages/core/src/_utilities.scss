@@ -1,245 +1,26 @@
-@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:map';
+@use 'internal' as *;
 @use 'variables' as *;
 @use 'functions' as *;
 
-@function xyz-negative-val($val) {
-  @return $val * -1;
-}
-
-@function xyz-one-minus-val($val) {
-  @return 1 - $val;
-}
-
-@function xyz-one-plus-val($val) {
-  @return 1 + $val;
-}
-
 @mixin xyz-utilities () {
   @include xyz-include-once('utilities') {
+    @each $name, $utility in $xyz-utilities {
+      $utility-modes: map.get($utility, 'modes');
+      @if $utility-modes == null {
+        $utility-modes: $xyz-modes-all;
+      }
 
-    // TIMINGS
+      $utility-map: map.get($utility, 'utility-map');
 
-    @include xyz-make-variable-utilities(
-      $name: 'ease',
-      $vars: ['ease'],
-      $default-val: var(--xyz-ease-default),
-      $utility-map: $xyz-utility-eases,
-      $modes: append($xyz-modes-all, 'move'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'duration',
-      $vars: ['duration'],
-      $default-val: var(--xyz-duration-default),
-      $utility-map: $xyz-utility-times,
-      $modes: append($xyz-modes-all, 'move'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'delay',
-      $vars: ['delay'],
-      $default-val: var(--xyz-delay-default),
-      $utility-map: $xyz-utility-times,
-      $modes: append($xyz-modes-all, 'move'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'stagger',
-      $vars: ['stagger'],
-      $default-val: var(--xyz-stagger-default),
-      $utility-map: $xyz-utility-times,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'stagger-rev',
-      $vars: ['stagger-rev'],
-      $default-val: var(--xyz-stagger-default),
-      $utility-map: $xyz-utility-times,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'iterate',
-      $vars: ['iterate'],
-      $default-val: var(--xyz-iterate-default),
-      $utility-map: $xyz-utility-iterations,
-    );
-
-    // ORIGINS
-
-    @include xyz-make-variable-utilities(
-      $name: 'origin',
-      $vars: ['origin'],
-      $default-val: var(--xyz-origin-default),
-      $utility-map: $xyz-utility-origins,
-    );
-
-    // FADES
-
-    @include xyz-make-variable-utilities(
-      $name: 'fade',
-      $vars: ['fade'],
-      $default-val: calc(1 - var(--xyz-fade-default)),
-      $utility-map: $xyz-utility-fades,
-      $transform-func: meta.get-function('xyz-one-minus-val'),
-    );
-
-    // TRANSLATIONS
-
-    @include xyz-make-variable-utilities(
-      $name: 'right',
-      $vars: ['translate-x'],
-      $default-val: var(--xyz-translate-default),
-      $utility-map: $xyz-utility-translations,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'left',
-      $vars: ['translate-x'],
-      $default-val: calc(var(--xyz-translate-default) * -1),
-      $utility-map: $xyz-utility-translations,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'down',
-      $vars: ['translate-y'],
-      $default-val: var(--xyz-translate-default),
-      $utility-map: $xyz-utility-translations,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'up',
-      $vars: ['translate-y'],
-      $default-val: calc(var(--xyz-translate-default) * -1),
-      $utility-map: $xyz-utility-translations,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'front',
-      $vars: ['translate-z'],
-      $default-val: var(--xyz-translate-default),
-      $utility-map: $xyz-utility-translations-z,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'back',
-      $vars: ['translate-z'],
-      $default-val: calc(var(--xyz-translate-default) * -1),
-      $utility-map: $xyz-utility-translations-z,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    // ROTATIONS
-    @include xyz-make-variable-utilities(
-      $name: 'flip-up',
-      $vars: ['rotate-x'],
-      $default-val: var(--xyz-rotate-default),
-      $utility-map: $xyz-utility-rotations,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'flip-down',
-      $vars: ['rotate-x'],
-      $default-val: calc(var(--xyz-rotate-default) * -1),
-      $utility-map: $xyz-utility-rotations,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'flip-right',
-      $vars: ['rotate-y'],
-      $default-val: var(--xyz-rotate-default),
-      $utility-map: $xyz-utility-rotations,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'flip-left',
-      $vars: ['rotate-y'],
-      $default-val: calc(var(--xyz-rotate-default) * -1),
-      $utility-map: $xyz-utility-rotations,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'turn-cw',
-      $vars: ['rotate-z'],
-      $default-val: var(--xyz-rotate-default),
-      $utility-map: $xyz-utility-rotations,
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'turn-ccw',
-      $vars: ['rotate-z'],
-      $default-val: calc(var(--xyz-rotate-default) * -1),
-      $utility-map: $xyz-utility-rotations,
-      $transform-func: meta.get-function('xyz-negative-val'),
-    );
-
-    // SCALES
-
-    @include xyz-make-variable-utilities(
-      $name: 'small',
-      $vars: ['scale-x', 'scale-y', 'scale-z'],
-      $default-val: calc(1 - var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-minus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'big',
-      $vars: ['scale-x', 'scale-y', 'scale-z'],
-      $default-val: calc(1 + var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-plus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'narrow',
-      $vars: ['scale-x'],
-      $default-val: calc(1 - var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-minus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'wide',
-      $vars: ['scale-x'],
-      $default-val: calc(1 + var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-plus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'short',
-      $vars: ['scale-y'],
-      $default-val: calc(1 - var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-minus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'tall',
-      $vars: ['scale-y'],
-      $default-val: calc(1 + var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-plus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'thin',
-      $vars: ['scale-z'],
-      $default-val: calc(1 - var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-minus-val'),
-    );
-
-    @include xyz-make-variable-utilities(
-      $name: 'thick',
-      $vars: ['scale-z'],
-      $default-val: calc(1 + var(--xyz-scale-default)),
-      $utility-map: $xyz-utility-scales,
-      $transform-func: meta.get-function('xyz-one-plus-val'),
-    );
+      @each $mode in $utility-modes {
+        @each $level in list.join('default', map.keys($utility-map)) {
+          @include xyz-make-utility($name, $level, $mode) {
+            @include xyz-utility($name, $level, $mode);
+          }
+        }
+      }
+    }
   }
 }
