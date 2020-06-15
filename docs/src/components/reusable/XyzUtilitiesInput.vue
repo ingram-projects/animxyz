@@ -175,7 +175,16 @@ export default {
 }
 
 .toggle-input {
-	display: none;
+	@include screen-reader-only;
+
+	&:focus {
+		.toggle-indicator {
+			@include size(1.25rem);
+			opacity: 0.5;
+			border-radius: $br-m;
+			transition-duration: 0.2s;
+		}
+	}
 
 	&:checked + .toggle-label .toggle-indicator {
 		@include size(1.25rem);

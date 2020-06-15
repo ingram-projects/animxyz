@@ -61,15 +61,15 @@
         @include xyz-animation($mode);
 
         &.xyz-absolute, &.xyz-#{$mode}-absolute {
-          position: absolute !important;
+          @extend %xyz-pos-absolute;
         }
 
         &.xyz-paused, &.xyz-#{$mode}-paused {
-          animation-play-state: paused !important;
+          @extend %xyz-play-paused;
         }
 
         &.xyz-none, &.xyz-#{$mode}-none {
-          animation: initial !important;
+          @extend %xyz-anim-initial;
         }
       }
     }
@@ -81,12 +81,30 @@
       transition: transform #{$duration} #{$ease} #{$delay};
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .xyz-move {
+        transition: none !important;
+      }
+    }
+
+    %xyz-pos-absolute {
+      position: absolute !important;
+    }
+
+    %xyz-play-paused {
+      animation-play-state: paused !important;
+    }
+
+    %xyz-anim-initial {
+      animation: initial !important;
+    }
+
     [xyz] {
       @include xyz-set-all();
     }
 
     [xyz~=inherit] {
       @include xyz-set-all(inherit);
-    }
+    }  
   }
 }

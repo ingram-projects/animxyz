@@ -30,6 +30,7 @@ export default {
 .tab-bar {
 	font-family: $font-stack-mono;
 	display: flex;
+	overflow-x: auto;
 }
 
 .tab-bar__tab {
