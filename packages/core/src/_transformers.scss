@@ -1,0 +1,11 @@
+@function xyz-negative-val($val) {
+  @return $val * -1;
+}
+
+@function xyz-one-minus-val($val) {
+  @return 1 - $val;
+}
+
+@function xyz-one-plus-val($val) {
+  @return 1 + $val;
+}

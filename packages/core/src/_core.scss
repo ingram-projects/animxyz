@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'internal' as *;
 @use 'variables' as *;
 @use 'functions' as *;
@@ -29,16 +30,16 @@
     }
 
     :root {
-      --xyz-ease-default: #{xyz-utility-ease('ease')};
-      --xyz-duration-default: #{xyz-utility-time('3')};
-      --xyz-delay-default: #{xyz-utility-time('0')};
-      --xyz-stagger-default: #{xyz-utility-time('3')};
-      --xyz-iterate-default: #{xyz-utility-iteration('1')};
-      --xyz-origin-default: #{xyz-utility-origin('center')};
-      --xyz-fade-default: #{xyz-utility-fade('100')};
-      --xyz-translate-default: #{xyz-utility-translation('3')};
-      --xyz-rotate-default: #{xyz-utility-rotation('25')};
-      --xyz-scale-default: #{xyz-utility-scale('50')};
+      --xyz-ease-default: #{map.get($xyz-ease-levels, 'ease')};
+      --xyz-duration-default: #{map.get($xyz-time-levels, '3')};
+      --xyz-delay-default: #{map.get($xyz-time-levels, '0')};
+      --xyz-stagger-default: #{map.get($xyz-time-levels, '3')};
+      --xyz-iterate-default: #{map.get($xyz-iterate-levels, '1')};
+      --xyz-origin-default: #{map.get($xyz-origin-levels, 'center')};
+      --xyz-fade-default: #{map.get($xyz-fade-levels, '100')};
+      --xyz-translate-default: #{map.get($xyz-translate-levels, '3')};
+      --xyz-rotate-default: #{map.get($xyz-rotate-levels, '25')};
+      --xyz-scale-default: #{map.get($xyz-scale-levels, '50')};
     }
 
     .xyz-in, .xyz-out, .xyz-appear, .xyz-nested, .xyz-in-nested, .xyz-out-nested, .xyz-appear-nested {

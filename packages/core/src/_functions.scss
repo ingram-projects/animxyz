@@ -2,11 +2,24 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:string';
-@use 'internal' as *;
+@use 'transformers' as *;
 @use 'variables' as *;
 
+// HELPERS
 
-// CORE
+@function xyz-str-split($string, $separator: ' ') {
+  $split-list: ();
+  $index : string.index($string, $separator);
+  @while $index != null {
+    $item: string.slice($string, 1, $index - 1);
+    $split-list: list.append($split-list, $item);
+    $string: string.slice($string, $index + 1);
+    $index : string.index($string, $separator);
+  }
+  $split-list: list.append($split-list, $string);
+
+  @return $split-list;
+}
 
 @function xyz-name($name, $mode: 'all') {
   @if $mode == 'all' {
@@ -38,61 +51,26 @@
 
 // UTILITIES
 
-@function xyz-utility-ease($level: 'ease') {
-  @return map.get($xyz-utility-eases, $level);
-}
-
-@function xyz-utility-time($level: '0') {
-  @return map.get($xyz-utility-times, $level);
-}
-
-@function xyz-utility-iteration($level: '0') {
-  @return map.get($xyz-utility-iterations, $level);
-}
-
-@function xyz-utility-origin($level: 'center') {
-  @return map.get($xyz-utility-origins, $level);
-}
-
-@function xyz-utility-fade($level: '0') {
-  @return map.get($xyz-utility-fades, $level);
-}
-
-@function xyz-utility-translation($level: '0') {
-  @return map.get($xyz-utility-translations, $level);
-}
-
-@function xyz-utility-translation-z($level: '0') {
-  @return map.get($xyz-utility-translations-z, $level);
-}
-
-@function xyz-utility-rotation($level: '0') {
-  @return map.get($xyz-utility-rotations, $level);
-}
-
-@function xyz-utility-scale($level: '0') {
-  @return map.get($xyz-utility-scales, $level);
-}
-
 @mixin xyz-utility($name, $level: 'default', $mode: 'all') {
   $utility: map.get($xyz-utilities-map, $name);
   $vars: map.get($utility, 'vars');
-  $default-val: map.get($utility, 'default-val');
-  $utility-map: map.get($utility, 'utility-map');
-  $transform-func: map.get($utility, 'transform-func');
+  $default: map.get($utility, 'default');
+  $levels: map.get($utility, 'levels');
+  $transformer: map.get($utility, 'transformer');
 
   $val: null;
   @if $level == 'default' {
-    $val: $default-val;
+    $val: $default;
   } @else {
-    $val: map.get($utility-map, $level);
+    $val: map.get($levels, $level);
 
     @if $val == null {
       @error '#{$level} is not a valid level for the #{$name} utility.';
     }
 
-    @if $transform-func {
-      $val: meta.call($transform-func, $val);
+    @if $transformer {
+      $transformer-func: meta.get-function($transformer);
+      $val: meta.call($transformer-func, $val);
     }
   }
 
@@ -103,10 +81,10 @@
 
 @mixin xyz-make-utilities($name, $utility) {
   $utility-modes: map.get($utility, 'modes');
-  $utility-map: map.get($utility, 'utility-map');
+  $levels: map.get($utility, 'levels');
 
   @each $mode in $utility-modes {
-    @each $level in list.join('default', map.keys($utility-map)) {
+    @each $level in list.join('default', map.keys($levels)) {
       $mode-name: xyz-name($name, $mode);
 
       @if $level == 'default' {
