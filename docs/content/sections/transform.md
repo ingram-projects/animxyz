@@ -11,7 +11,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
 
 modifiers:
   utilities:
