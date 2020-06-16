@@ -1,2 +1,2 @@
 export { default as randomArrayItem } from './randomArrayItem'
-export * from './xyzUtilities'
+export * from './xyzVariables'

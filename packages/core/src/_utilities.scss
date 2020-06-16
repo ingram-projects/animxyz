@@ -6,21 +6,8 @@
 
 @mixin xyz-utilities () {
   @include xyz-include-once('utilities') {
-    @each $name, $utility in $xyz-utilities {
-      $utility-modes: map.get($utility, 'modes');
-      @if $utility-modes == null {
-        $utility-modes: $xyz-modes-all;
-      }
-
-      $utility-map: map.get($utility, 'utility-map');
-
-      @each $mode in $utility-modes {
-        @each $level in list.join('default', map.keys($utility-map)) {
-          @include xyz-make-utility($name, $level, $mode) {
-            @include xyz-utility($name, $level, $mode);
-          }
-        }
-      }
+    @each $name, $utility in $xyz-utilities-map {
+      @include xyz-make-utilities($name, $utility);
     }
   }
 }

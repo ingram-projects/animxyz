@@ -3,10 +3,16 @@
 @use 'sass:meta';
 @use 'internal' as *;
 
+// CORE
+
 $xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
-$xyz-modes-all: list.join(['all'], $xyz-modes);
+$xyz-modes-all: list.join('all', $xyz-modes);
+$xyz-mode-move: 'move';
 
 $xyz-index-levels: 20 !default;
+
+
+// UTILITIES
 
 $xyz-utility-eases: (
   'ease': ease,
@@ -111,163 +117,302 @@ $xyz-utility-origins: (
  'bottom-right': bottom right,
 ) !default;
 
-$xyz-utilities: (
+$xyz-utilities-map: (
   'ease': (
+    'type': 'ease',
     'vars': ['ease'],
     'default-val': var(--xyz-ease-default),
     'utility-map': $xyz-utility-eases,
-    modes: list.append($xyz-modes-all, 'move'),
+    'modes': list.append($xyz-modes-all, 'move'),
   ),
   'duration': (
+    'type': 'duration',
     'vars': ['duration'],
     'default-val': var(--xyz-duration-default),
     'utility-map': $xyz-utility-times,
-    modes: list.append($xyz-modes-all, 'move'),
+    'modes': list.append($xyz-modes-all, 'move'),
   ),
   'delay': (
+    'type': 'delay',
     'vars': ['delay'],
     'default-val': var(--xyz-delay-default),
     'utility-map': $xyz-utility-times,
-    modes: list.append($xyz-modes-all, 'move'),
+    'modes': list.append($xyz-modes-all, 'move'),
   ),
   'stagger': (
+    'type': 'stagger',
     'vars': ['stagger'],
     'default-val': var(--xyz-stagger-default),
     'utility-map': $xyz-utility-times,
   ),
   'stagger-rev': (
+    'type': 'stagger',
     'vars': ['stagger-rev'],
     'default-val': var(--xyz-stagger-default),
     'utility-map': $xyz-utility-times,
   ),
   'iterate': (
+    'type': 'iterate',
     'vars': ['iterate'],
     'default-val': var(--xyz-iterate-default),
     'utility-map': $xyz-utility-iterations,
   ),
   'origin': (
+    'type': 'origin',
     'vars': ['origin'],
     'default-val': var(--xyz-origin-default),
     'utility-map': $xyz-utility-origins,
   ),
   'fade': (
+    'type': 'fade',
     'vars': ['fade'],
     'default-val': calc(1 - var(--xyz-fade-default)),
     'utility-map': $xyz-utility-fades,
     'transform-func': meta.get-function('xyz-one-minus-val'),
   ),
   'right': (
+    'type': 'translate',
+    'axis': 'x',
     'vars': ['translate-x'],
     'default-val': var(--xyz-translate-default),
     'utility-map': $xyz-utility-translations,
   ),
   'left': (
+    'type': 'translate',
+    'axis': 'x',
     'vars': ['translate-x'],
     'default-val': calc(var(--xyz-translate-default) * -1),
     'utility-map': $xyz-utility-translations,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'down': (
+    'type': 'translate',
+    'axis': 'y',
     'vars': ['translate-y'],
     'default-val': var(--xyz-translate-default),
     'utility-map': $xyz-utility-translations,
   ),
   'up': (
+    'type': 'translate',
+    'axis': 'y',
     'vars': ['translate-y'],
     'default-val': calc(var(--xyz-translate-default) * -1),
     'utility-map': $xyz-utility-translations,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'front': (
+    'type': 'translate',
+    'axis': 'z',
     'vars': ['translate-z'],
     'default-val': var(--xyz-translate-default),
     'utility-map': $xyz-utility-translations-z,
   ),
   'back': (
+    'type': 'translate',
+    'axis': 'z',
     'vars': ['translate-z'],
     'default-val': calc(var(--xyz-translate-default) * -1),
     'utility-map': $xyz-utility-translations-z,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'flip-up': (
+    'type': 'rotate',
+    'axis': 'x',
     'vars': ['rotate-x'],
     'default-val': var(--xyz-rotate-default),
     'utility-map': $xyz-utility-rotations,
   ),
   'flip-down': (
+    'type': 'rotate',
+    'axis': 'x',
     'vars': ['rotate-x'],
     'default-val': calc(var(--xyz-rotate-default) * -1),
     'utility-map': $xyz-utility-rotations,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'flip-right': (
+    'type': 'rotate',
+    'axis': 'y',
     'vars': ['rotate-y'],
     'default-val': var(--xyz-rotate-default),
     'utility-map': $xyz-utility-rotations,
   ),
   'flip-left': (
+    'type': 'rotate',
+    'axis': 'y',
     'vars': ['rotate-y'],
     'default-val': calc(var(--xyz-rotate-default) * -1),
     'utility-map': $xyz-utility-rotations,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'turn-cw': (
+    'type': 'rotate',
+    'axis': 'z',
     'vars': ['rotate-z'],
     'default-val': var(--xyz-rotate-default),
     'utility-map': $xyz-utility-rotations,
   ),
   'turn-ccw': (
+    'type': 'rotate',
+    'axis': 'z',
     'vars': ['rotate-z'],
     'default-val': calc(var(--xyz-rotate-default) * -1),
     'utility-map': $xyz-utility-rotations,
     'transform-func': meta.get-function('xyz-negative-val'),
   ),
   'small': (
+    'type': 'scale',
+    'axis': 'all',
     'vars': ['scale-x', 'scale-y', 'scale-z'],
     'default-val': calc(1 - var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-minus-val'),
   ),
   'big': (
+    'type': 'scale',
+    'axis': 'all',
     'vars': ['scale-x', 'scale-y', 'scale-z'],
     'default-val': calc(1 + var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-plus-val'),
   ),
   'narrow': (
+    'type': 'scale',
+    'axis': 'x',
     'vars': ['scale-x'],
     'default-val': calc(1 - var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-minus-val'),
   ),
   'wide': (
+    'type': 'scale',
+    'axis': 'x',
     'vars': ['scale-x'],
     'default-val': calc(1 + var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-plus-val'),
   ),
   'short': (
+    'type': 'scale',
+    'axis': 'y',
     'vars': ['scale-y'],
     'default-val': calc(1 - var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-minus-val'),
   ),
   'tall': (
+    'type': 'scale',
+    'axis': 'y',
     'vars': ['scale-y'],
     'default-val': calc(1 + var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-plus-val'),
   ),
   'thin': (
+    'type': 'scale',
+    'axis': 'z',
     'vars': ['scale-z'],
     'default-val': calc(1 - var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-minus-val'),
   ),
   'thick': (
+    'type': 'scale',
+    'axis': 'z',
     'vars': ['scale-z'],
     'default-val': calc(1 + var(--xyz-scale-default)),
     'utility-map': $xyz-utility-scales,
     'transform-func': meta.get-function('xyz-one-plus-val'),
+  ),
+);
+
+
+// VARIABLES
+
+$xyz-variables-map: (
+  'keyframes': (
+    'type': 'keyframes',
+    'modes': $xyz-modes-all,
+  ),
+  'ease': (
+    'type': 'ease',
+    'modes': list.append($xyz-modes-all, 'move'),
+  ),
+  'duration': (
+    'type': 'duration',
+    'modes': list.append($xyz-modes-all, 'move'),
+  ),
+  'delay': (
+    'type': 'delay',
+    'modes': list.append($xyz-modes-all, 'move'),
+  ),
+  'stagger': (
+    'type': 'stagger',
+    'modes': $xyz-modes-all,
+  ),
+  'stagger-rev': (
+    'type': 'stagger',
+    'modes': $xyz-modes-all,
+  ),
+  'iterate': (
+    'type': 'iterate',
+    'modes': $xyz-modes-all,
+  ),
+  'origin': (
+    'type': 'origin',
+    'modes': $xyz-modes-all,
+  ),
+  'fade': (
+    'type': 'fade',
+    'modes': $xyz-modes-all,
+  ),
+  'transform': (
+    'type': 'transform',
+    'modes': $xyz-modes-all,
+  ),
+  'translate-x': (
+    'type': 'translate',
+    'axis': 'x',
+    'modes': $xyz-modes-all,
+  ),
+  'translate-y': (
+    'type': 'translate',
+    'axis': 'y',
+    'modes': $xyz-modes-all,
+  ),
+  'translate-z': (
+    'type': 'translate',
+    'axis': 'z',
+    'modes': $xyz-modes-all,
+  ),
+  'rotate-x': (
+    'type': 'rotate',
+    'axis': 'x',
+    'modes': $xyz-modes-all,
+  ),
+  'rotate-y': (
+    'type': 'rotate',
+    'axis': 'y',
+    'modes': $xyz-modes-all,
+  ),
+  'rotate-z': (
+    'type': 'rotate',
+    'axis': 'z',
+    'modes': $xyz-modes-all,
+  ),
+  'scale-x': (
+    'type': 'scale',
+    'axis': 'x',
+    'modes': $xyz-modes-all,
+  ),
+  'scale-y': (
+    'type': 'scale',
+    'axis': 'y',
+    'modes': $xyz-modes-all,
+  ),
+  'scale-z': (
+    'type': 'scale',
+    'axis': 'z',
+    'modes': $xyz-modes-all,
   ),
 );

@@ -7,7 +7,6 @@
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
         $fade: xyz-var('fade', $mode, 1);
-
         $translate-x: xyz-var('translate-x', $mode, 0);
         $translate-y: xyz-var('translate-y', $mode, 0);
         $translate-z: xyz-var('translate-z', $mode, 0);
@@ -32,14 +31,11 @@
     :root {
       --xyz-ease-default: #{xyz-utility-ease('ease')};
       --xyz-duration-default: #{xyz-utility-time('3')};
-      --xyz-delay-default: 0s;
+      --xyz-delay-default: #{xyz-utility-time('0')};
       --xyz-stagger-default: #{xyz-utility-time('3')};
-      --xyz-iterate-default: 1;
-
+      --xyz-iterate-default: #{xyz-utility-iteration('1')};
       --xyz-origin-default: #{xyz-utility-origin('center')};
-
       --xyz-fade-default: #{xyz-utility-fade('100')};
-
       --xyz-translate-default: #{xyz-utility-translation('3')};
       --xyz-rotate-default: #{xyz-utility-rotation('25')};
       --xyz-scale-default: #{xyz-utility-scale('50')};
@@ -75,9 +71,9 @@
     }
 
     .xyz-move {
-      $duration: var(--xyz-#{xyz-name('duration', 'move')}, 0s);
-      $ease: var(--xyz-#{xyz-name('ease', 'move')}, var(--xyz-ease-default));
-      $delay: var(--xyz-#{xyz-name('delay', 'move')}, 0s);
+      $duration: var(--xyz-#{xyz-name('duration', $xyz-mode-move)}, 0s);
+      $ease: var(--xyz-#{xyz-name('ease', $xyz-mode-move)}, var(--xyz-ease-default));
+      $delay: var(--xyz-#{xyz-name('delay', $xyz-mode-move)}, 0s);
       transition: transform #{$duration} #{$ease} #{$delay};
     }
 

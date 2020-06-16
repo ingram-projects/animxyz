@@ -6,7 +6,7 @@
 @use 'variables' as *;
 
 
-// MODE FUNCTIONS
+// CORE
 
 @function xyz-name($name, $mode: 'all') {
   @if $mode == 'all' {
@@ -16,7 +16,7 @@
 }
 
 
-// VARIABLE FUNCTIONS
+// VARIABLES
 
 @function xyz-var($name, $mode: 'all', $fallback: 'default') {
   @if $fallback == 'default' {
@@ -26,35 +26,13 @@
 }
 
 @mixin xyz-set-all($val: initial) {
-  @each $mode in $xyz-modes-all {
-    --xyz-#{xyz-name('keyframes', $mode)}: #{$val};
+  @each $name, $variable in $xyz-variables-map {
+    $variable-modes: map.get($variable, 'modes');
 
-    --xyz-#{xyz-name('ease', $mode)}: #{$val};
-    --xyz-#{xyz-name('duration', $mode)}: #{$val};
-    --xyz-#{xyz-name('delay', $mode)}: #{$val};
-    --xyz-#{xyz-name('stagger', $mode)}: #{$val};
-    --xyz-#{xyz-name('stagger-rev', $mode)}: #{$val};
-    --xyz-#{xyz-name('iterate', $mode)}: #{$val};
-
-    --xyz-#{xyz-name('origin', $mode)}: #{$val};
-
-    --xyz-#{xyz-name('fade', $mode)}: #{$val};
-
-    --xyz-#{xyz-name('transform', $mode)}: #{$val};
-    --xyz-#{xyz-name('translate-x', $mode)}: #{$val};
-    --xyz-#{xyz-name('translate-y', $mode)}: #{$val};
-    --xyz-#{xyz-name('translate-z', $mode)}: #{$val};
-    --xyz-#{xyz-name('rotate-x', $mode)}: #{$val};
-    --xyz-#{xyz-name('rotate-y', $mode)}: #{$val};
-    --xyz-#{xyz-name('rotate-z', $mode)}: #{$val};
-    --xyz-#{xyz-name('scale-x', $mode)}: #{$val};
-    --xyz-#{xyz-name('scale-y', $mode)}: #{$val};
-    --xyz-#{xyz-name('scale-z', $mode)}: #{$val};
+    @each $mode in $variable-modes {
+      --xyz-#{xyz-name($name, $mode)}: #{$val};
+    }
   }
-
-  --xyz-#{xyz-name('ease', 'move')}: #{$val};
-  --xyz-#{xyz-name('duration', 'move')}: #{$val};
-  --xyz-#{xyz-name('delay', 'move')}: #{$val};
 }
 
 
@@ -97,7 +75,7 @@
 }
 
 @mixin xyz-utility($name, $level: 'default', $mode: 'all') {
-  $utility: map.get($xyz-utilities, $name);
+  $utility: map.get($xyz-utilities-map, $name);
   $vars: map.get($utility, 'vars');
   $default-val: map.get($utility, 'default-val');
   $utility-map: map.get($utility, 'utility-map');
@@ -123,56 +101,26 @@
   }
 }
 
-@mixin xyz($utilities) {
-  $utilities-list: xyz-str-split($utilities);
+@mixin xyz-make-utilities($name, $utility) {
+  $utility-modes: map.get($utility, 'modes');
+  $utility-map: map.get($utility, 'utility-map');
 
-  @each $utility in $utilities-list {
-    $utility-mode: null;
-    $utility-name: null;
-    $utility-level: null;
+  @each $mode in $utility-modes {
+    @each $level in list.join('default', map.keys($utility-map)) {
+      $mode-name: xyz-name($name, $mode);
 
-    @each $name in map.keys($xyz-utilities) {
-      @if string.index($utility, $name) {
-        $utility-name: $name;
+      @if $level == 'default' {
+        [xyz~=#{$mode-name}] {
+          @include xyz-utility($name, $level, $mode);
+        }
+      } @else {
+        [xyz~=#{$mode-name}-#{$level}] {
+          @include xyz-utility($name, $level, $mode);
+        }
       }
-    }
-
-    @if $utility-name == null {
-      @error '#{$utility} is not a valid xyz utility.';
-    }
-
-    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
-    @if string.length($utility-level) == 0 {
-      $utility-level: 'default';
-    }
-
-    @each $mode in list.append($xyz-modes-all, 'move') {
-      @if string.index($utility, $mode) {
-        $utility-mode: $mode;
-      }
-    }
-    @if $utility-mode == null {
-      $utility-mode: 'all';
-    }
-
-    @include xyz-utility($utility-name, $utility-level, $utility-mode);
-  }
-}
-
-@mixin xyz-make-utility($name, $level: 'default', $mode: 'all') {
-  $mode-name: xyz-name($name, $mode);
-
-  @if $level == 'default' {
-    [xyz~=#{$mode-name}] {
-      @content;
-    }
-  } @else {
-    [xyz~=#{$mode-name}-#{$level}] {
-      @content;
     }
   }
 }
-
 
 @mixin xyz-make-keyframes($name, $make-utilities: true) {
   @each $mode in $xyz-modes {
@@ -194,8 +142,43 @@
   }
 }
 
+@mixin xyz($utilities) {
+  $utilities-list: xyz-str-split($utilities);
 
-// ANIMATION FUNCTIONS
+  @each $utility in $utilities-list {
+    $utility-mode: null;
+    $utility-name: null;
+    $utility-level: null;
+
+    @each $name in map.keys($xyz-utilities-map) {
+      @if string.index($utility, $name) {
+        $utility-name: $name;
+      }
+    }
+
+    @if $utility-name == null {
+      @error '#{$utility} is not a valid xyz utility.';
+    }
+
+    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
+    @if string.length($utility-level) == 0 {
+      $utility-level: 'default';
+    }
+
+    @each $mode in list.append($xyz-modes-all, $xyz-mode-move) {
+      @if string.index($utility, $mode) {
+        $utility-mode: $mode;
+      }
+    }
+    @if $utility-mode == null {
+      $utility-mode: 'all';
+    }
+
+    @include xyz-utility($utility-name, $utility-level, $utility-mode);
+  }
+}
+
+// ANIMATIONS
 
 @mixin xyz-animation($mode) {
   $keyframes: xyz-var('keyframes', $mode, xyz-#{xyz-name('keyframes', $mode)});
@@ -206,7 +189,6 @@
   $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
   $iterate: xyz-var('iterate', $mode, 1);
   $origin: xyz-var('origin', $mode, center);
-
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
