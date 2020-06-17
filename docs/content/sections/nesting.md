@@ -8,7 +8,7 @@ examples:
         <div class="square-block" v-show="data.toggled">
           <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
         </div>
-      </xyz-transition-group>
+      </xyz-transition>
     code:
       - language: html
         content: |

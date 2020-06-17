@@ -1,7 +1,7 @@
 <template>
 	<div class="sandbox">
 		<xyz-modifiers-input v-if="modifiers" v-model="xyzModifiers" :modifiers="modifiers"></xyz-modifiers-input>
-		<code-examples v-if="examples" :examples="examples" :data="injectedData"></code-examples>
+		<code-examples v-if="examples" :examples="examples" :data="injectedData" @example-changed="onExampleChanged"></code-examples>
 	</div>
 </template>
 
@@ -21,6 +21,7 @@ export default {
 			exampleToggled: false,
 			xyzModifiers: null,
 			animCount: 0,
+			toggleInterval: 1000,
 			toggleTimeout: null,
 		}
 	},
@@ -61,9 +62,9 @@ export default {
 		},
 	},
 	methods: {
-		toggleExample() {
+		toggleExample(toggled) {
 			this.animCount = 0
-			this.exampleToggled = !this.exampleToggled
+			this.exampleToggled = toggled
 		},
 		beforeAnim() {
 			this.animCount++
@@ -71,14 +72,19 @@ export default {
 		afterAnim() {
 			this.animCount--
 			if (this.animCount === 0) {
+				clearTimeout(this.toggleTimeout)
 				this.toggleTimeout = setTimeout(() => {
-					this.toggleExample()
-				}, 1000)
+					this.toggleExample(!this.exampleToggled)
+				}, this.toggleInterval)
 			}
 		},
-	},
-	mounted() {
-		this.toggleExample()
+		onExampleChanged() {
+			clearTimeout(this.toggleTimeout)
+			this.toggleExample(false)
+			this.toggleTimeout = setTimeout(() => {
+				this.toggleExample(true)
+			}, this.toggleInterval)
+		}
 	},
 	beforeDestroy() {
 		clearTimeout(this.toggleTimeout)
