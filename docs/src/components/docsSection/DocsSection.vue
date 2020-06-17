@@ -30,10 +30,11 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
 	margin: 0 auto;
 	margin-bottom: 12vw;
-	align-items: flex-start;
-	display: flex;
 
 	@include media('<laptop') {
 		flex-direction: column;
