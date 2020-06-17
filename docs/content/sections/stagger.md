@@ -2,8 +2,7 @@
 title: Stagger
 
 examples:
-  - name: stagger
-    Title: Stagger
+  - name: Stagger
     template: |
       <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
@@ -21,8 +20,7 @@ modifiers:
   utilities:
     default: stagger
   groups:
-    - name: stagger
-      title: Stagger
+    - name: Stagger
       types: [stagger]
 ---
 

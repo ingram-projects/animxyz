@@ -156,25 +156,28 @@
   }
 }
 
+
 // ANIMATIONS
 
 @mixin xyz-animation($mode) {
   $keyframes: xyz-var('keyframes', $mode, xyz-#{xyz-name('keyframes', $mode)});
-  $duration: xyz-var('duration', $mode);
   $ease: xyz-var('ease', $mode);
+  $duration: xyz-var('duration', $mode);
   $delay: xyz-var('delay', $mode, 0s);
   $stagger: xyz-var('stagger', $mode, 0s);
   $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
-  $iterate: xyz-var('iterate', $mode, 1);
-  $origin: xyz-var('origin', $mode, center);
-  $index: var(--xyz-index, 0);
-  $index-rev: var(--xyz-index-rev, 0);
+  $iterate: xyz-var('iterate', $mode);
+  $origin: xyz-var('origin', $mode);
 
   $direction: normal;
   @if $mode == 'out' {
     $direction: reverse;
   }
 
+  $index: var(--xyz-index, 0);
+  $index-rev: var(--xyz-index-rev, 0);
+
+  --xyz-computed-delay: calc(#{$delay} + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
   transform-origin: #{$origin};
   backface-visibility: visible;
 
@@ -182,7 +185,7 @@
     #{$keyframes}
     #{$duration}
     #{$ease}
-    calc(#{$delay} + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev})
+    #{calc(var(--xyz-root-delay, 0s) + var(--xyz-computed-delay, 0s))}
     #{$iterate}
     #{$direction}
     both
@@ -191,16 +194,4 @@
   @media (prefers-reduced-motion: reduce) {
     animation: none !important;
   }
-}
-
-@mixin xyz-in() {
-  @include xyz-animation('in')
-}
-
-@mixin xyz-out() {
-  @include xyz-animation('out')
-}
-
-@mixin xyz-appear() {
-  @include xyz-animation('appear')
 }

@@ -2,8 +2,7 @@
 title: Variables
 
 examples:
-  - name: variables
-    title: Variables
+  - name: Variables
     template: |
       <xyz-transition-group tag="div" class="square-group" xyz="fade" v-on="data.listeners">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
@@ -21,29 +20,21 @@ modifiers:
   utilities:
     hide: true
   groups:
-    - name: fade
-      title: Fade
+    - name: Fade
       types: [fade]
-    - name: translate
-      title: Translate
+    - name: Translate
       types: [translate]
-    - name: rotate
-      title: Rotate
+    - name: Rotate
       types: [rotate]
-    - name: scale
-      title: Scale
+    - name: Scale
       types: [scale]
-    - name: origin
-      title: Origin
+    - name: Origin
       types: [origin]
-    - name: timing
-      title: Timing
+    - name: Timing
       types: [duration, delay]
-    - name: ease
-      title: Ease
+    - name: Ease
       types: [ease]
-    - name: stagger
-      title: Stagger
+    - name: Stagger
       types: [stagger]
 ---
 

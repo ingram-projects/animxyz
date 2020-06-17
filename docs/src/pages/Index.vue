@@ -42,7 +42,6 @@
 				content
 				examples {
 					name
-					title
 					template
 					code {
 						language
@@ -60,7 +59,6 @@
 					}
 					groups {
 						name
-						title
 						types
 					}
 				}
@@ -85,7 +83,7 @@ export default {
 		return {
 			mobile: true,
 			column: 'text',
-			sectionNames: ['Installation', 'Fade', 'Transform', 'Origin', 'Timing', 'Stagger', 'Composition', 'Variables'],
+			sectionNames: ['Installation', 'Fade', 'Transform', 'Origin', 'Timing', 'Stagger', 'Composition', 'Variables', 'Nesting'],
 		}
 	},
 	computed: {

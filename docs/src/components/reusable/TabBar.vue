@@ -9,7 +9,7 @@
 			:key="tab.name"
 			@click="setTab(tab)"
 		>
-			<span class="tab-text">{{ tab.title }}</span>
+			<span class="tab-text">{{ tab.name }}</span>
 		</button>
 	</div>
 </template>

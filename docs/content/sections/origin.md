@@ -2,8 +2,7 @@
 title: Origin
 
 examples:
-  - name: origin
-    title: Origin
+  - name: Origin
     template: |
       <xyz-transition xyz="fade small-100" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
@@ -17,8 +16,7 @@ modifiers:
   utilities:
     default: origin-top
   groups:
-    - name: origin
-      title: Origin
+    - name: Origin
       types: [origin]
 
 ---

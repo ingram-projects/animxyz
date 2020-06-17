@@ -2,8 +2,7 @@
 title: Transform
 
 examples:
-  - name: transform
-    title: Transform
+  - name: Transform
     template: |
       <xyz-transition xyz="fade" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
@@ -17,14 +16,11 @@ modifiers:
   utilities:
     default: down
   groups:
-    - name: translate
-      title: Translate
+    - name: Translate
       types: [translate]
-    - name: rotate
-      title: Rotate
+    - name: Rotate
       types: [rotate]
-    - name: scale
-      title: Scale
+    - name: Scale
       types: [scale]
 
 ---

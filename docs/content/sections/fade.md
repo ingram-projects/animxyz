@@ -2,8 +2,7 @@
 title: Fade
 
 examples:
-  - name: fade
-    title: Fade
+  - name: Fade
     template: |
       <xyz-transition v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
@@ -17,8 +16,7 @@ modifiers:
   utilities:
     default: fade
   groups:
-    - name: fade
-      title: Fade
+    - name: Fade
       types: [fade]
 
 ---

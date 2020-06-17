@@ -71,6 +71,10 @@
       }
     }
 
+    .xyz-in, .xyz-out, .xyz-appear {
+      --xyz-root-delay: var(--xyz-computed-delay, 0s);
+    }
+
     .xyz-move {
       $duration: var(--xyz-#{xyz-name('duration', $xyz-mode-move)}, 0s);
       $ease: var(--xyz-#{xyz-name('ease', $xyz-mode-move)}, var(--xyz-ease-default));

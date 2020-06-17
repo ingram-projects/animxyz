@@ -2,8 +2,7 @@
 title: Timing
 
 examples:
-  - name: timing
-    title: Timing
+  - name: Timing
     template: |
       <xyz-transition xyz="fade turn-cw-50" v-xyz="data.modifiers.utilities" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
@@ -17,11 +16,9 @@ modifiers:
   utilities:
     default: duration-20
   groups:
-    - name: timing
-      title: Timing
+    - name: Timing
       types: [duration, delay]
-    - name: ease
-      title: Ease
+    - name: Ease
       types: [ease]
 
 ---
