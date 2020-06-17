@@ -13,11 +13,6 @@ import '@/assets/styles/core/_index.scss'
 import 'prismjs'
 import VueAnimXyz from '@animxyz/vue'
 
-// Layouts
-import DefaultLayout from '~/layouts/Default.vue'
-
 export default function (Vue) {
 	Vue.use(VueAnimXyz)
-	// Set default layout as a global component
-	Vue.component('Layout', DefaultLayout)
 }

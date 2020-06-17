@@ -1,30 +1,38 @@
 <template>
-	<Layout>
-		<a
-			class="github-link xyz-in"
-			xyz="fade small up turn-ccw duration-4 ease-out-back"
-			href="https://github.com/ingram-projects/animxyz"
-			target="_blank"
-		>
-			<span class="screen-reader-only">View on GitHub</span>
-			<icon-github></icon-github>
-		</a>
+	<div>
+		<page-nav :sections="sections"></page-nav>
+		<main class="page-content">
+			<a
+				class="github-link xyz-in"
+				xyz="fade small up turn-ccw duration-4 ease-out-back"
+				href="https://github.com/ingram-projects/animxyz"
+				target="_blank"
+			>
+				<span class="screen-reader-only">View on GitHub</span>
+				<icon-github></icon-github>
+			</a>
 
-		<div class="banner__wrap">
-			<banner></banner>
-		</div>
+			<div class="banner__wrap">
+				<banner></banner>
+			</div>
 
-		<div class="intro__wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
-			<p class="intro-text">
-				The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
-				website to life.
-			</p>
-		</div>
+			<div class="intro__wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
+				<p class="intro-text">
+					The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
+					website to life.
+				</p>
+			</div>
 
-		<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
-			<docs-section :section="section" :mobile="mobile" v-for="section in sections" :key="section.title"></docs-section>
-		</xyz-transition-group>
-	</Layout>
+			<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
+				<docs-section
+					:section="section"
+					:mobile="mobile"
+					v-for="section in sections"
+					:key="section.title"
+				></docs-section>
+			</xyz-transition-group>
+		</main>
+	</div>
 </template>
 
 <page-query>
@@ -66,17 +74,29 @@
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
 import IconGithub from '@/components/icons/IconGithub.svg'
+import PageNav from '~/components/reusable/PageNav'
 
 export default {
 	components: {
 		Banner,
 		DocsSection,
 		IconGithub,
+		PageNav,
 	},
 	data() {
 		return {
 			mobile: true,
-			sectionNames: ['Installation', 'Fade', 'Transform', 'Origin', 'Timing', 'Stagger', 'Composition', 'Variables', 'Nesting'],
+			sectionNames: [
+				'Installation',
+				'Fade',
+				'Transform',
+				'Origin',
+				'Timing',
+				'Stagger',
+				'Composition',
+				'Variables',
+				'Nesting',
+			],
 		}
 	},
 	computed: {
@@ -117,6 +137,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 .github-link {
 	--xyz-delay: 1.4s;
 	@include size(2.5rem);
