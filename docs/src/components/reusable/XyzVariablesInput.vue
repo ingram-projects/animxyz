@@ -49,6 +49,7 @@ export default {
 	padding: 0 $spacing-s;
 	display: flex;
 	align-items: center;
+	transition: background-color 0.2s $ease-in-out;
 
 	&:focus-within {
 		background-color: primary-color(100, 0.075);
@@ -63,6 +64,7 @@ export default {
 	font-weight: bold;
 	white-space: nowrap;
 	color: primary-color(300);
+	transition: color 0.2s $ease-in-out;
 }
 
 .variable-input {
@@ -73,6 +75,5 @@ export default {
 	margin-left: $spacing-xxxs;
 	color: $cyan;
 	font-size: 1.125rem;
-	transition: background 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
 }
 </style>
