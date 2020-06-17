@@ -41,19 +41,30 @@ export default {
 <style lang="scss" scoped>
 .variables-input {
 	font-family: $font-stack-mono;
-	padding: $spacing-s;
+	padding: $spacing-s 0;
 	overflow-x: auto;
 }
 
 .variable {
+	padding: 0 $spacing-s;
 	display: flex;
 	align-items: center;
+	transition: background-color 0.2s $ease-in-out;
+
+	&:focus-within {
+		background-color: primary-color(100, 0.075);
+
+		.variable-label {
+			color: primary-color(50);
+		}
+	}
 }
 
 .variable-label {
 	font-weight: bold;
 	white-space: nowrap;
-	color: primary-color(100);
+	color: primary-color(300);
+	transition: color 0.2s $ease-in-out;
 }
 
 .variable-input {
@@ -64,15 +75,5 @@ export default {
 	margin-left: $spacing-xxxs;
 	color: $cyan;
 	font-size: 1.125rem;
-	border-radius: $br-m;
-	transition: background 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
-
-	&:hover {
-		background-color: primary-color(100, 0.1);
-	}
-
-	&:focus {
-		box-shadow: inset 0 0 0 1px primary-color(100, 0.75);
-	}
 }
 </style>

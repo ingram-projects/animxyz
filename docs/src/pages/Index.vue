@@ -22,13 +22,7 @@
 		</div>
 
 		<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
-			<docs-section
-				:section="section"
-				:mobile="mobile"
-				:column="column"
-				v-for="section in sections"
-				:key="section.title"
-			></docs-section>
+			<docs-section :section="section" :mobile="mobile" v-for="section in sections" :key="section.title"></docs-section>
 		</xyz-transition-group>
 	</Layout>
 </template>
@@ -82,7 +76,6 @@ export default {
 	data() {
 		return {
 			mobile: true,
-			column: 'text',
 			sectionNames: ['Installation', 'Fade', 'Transform', 'Origin', 'Timing', 'Stagger', 'Composition', 'Variables', 'Nesting'],
 		}
 	},

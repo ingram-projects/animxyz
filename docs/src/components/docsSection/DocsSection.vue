@@ -1,20 +1,14 @@
 <template>
 	<section class="docs-section">
-		<div class="section-columns__wrap">
-			<div class="section-column section-text xyz-nested" xyz="inherit fade left" v-if="!mobile || column === 'text'">
-				<div class="section-column__content">
-					<h1 class="section-title">{{ section.title }}</h1>
-					<markdown-content :content="section.content"></markdown-content>
-				</div>
+		<div class="section-column section-text xyz-nested" xyz="inherit fade left">
+			<div class="section-column__content">
+				<h1 class="section-title">{{ section.title }}</h1>
+				<markdown-content :content="section.content"></markdown-content>
 			</div>
-			<div
-				class="section-column section-sandbox xyz-nested"
-				xyz="inherit fade up"
-				v-if="section.examples.length && (!mobile || column === 'sandbox')"
-			>
-				<div class="section-column__content">
-					<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
-				</div>
+		</div>
+		<div class="section-column section-sandbox xyz-nested" xyz="inherit fade up" v-if="section.examples.length">
+			<div class="section-column__content">
+				<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 			</div>
 		</div>
 	</section>
@@ -26,7 +20,7 @@ import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	name: 'DocsSection',
-	props: ['section', 'mobile', 'column'],
+	props: ['section', 'mobile'],
 	components: {
 		MarkdownContent,
 		Sandbox,
@@ -37,9 +31,16 @@ export default {
 <style lang="scss" scoped>
 .docs-section {
 	margin: 0 auto;
-	margin-bottom: 10vw;
+	margin-bottom: 12vw;
+	align-items: flex-start;
+	display: flex;
 
-	@include media('>desktop') {
+	@include media('<laptop') {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	@include media('>=desktop') {
 		margin-bottom: 8rem;
 	}
 }
@@ -55,15 +56,15 @@ export default {
 	}
 }
 
-.section-columns__wrap {
-	align-items: flex-start;
-	display: flex;
-}
-
 .section-column {
 	width: 50%;
+	max-width: 40rem;
 
 	&:only-child {
+		width: 100%;
+	}
+
+	@include media('<laptop') {
 		width: 100%;
 	}
 }
@@ -75,15 +76,27 @@ export default {
 
 .section-text {
 	padding: 0 $spacing-m;
-
-	.section-column__content {
-		max-width: 66ch;
-	}
 }
 
 .section-sandbox {
 	position: sticky;
 	padding: 0 $spacing-m;
 	top: $spacing-m;
+
+	@include media('<phone') {
+		width: 100vw;
+		padding: 0;
+	}
+}
+
+.sandbox {
+	@include media('<laptop') {
+		margin: 0 (-$spacing-s);
+	}
+
+	@include media('<phone') {
+		border-radius: 0;
+		margin: 0;
+	}
 }
 </style>
