@@ -31,11 +31,11 @@ export default {
 <style lang="scss" scoped>
 .docs-section {
 	margin: 0 auto;
-	margin-bottom: 10vw;
+	margin-bottom: 12vw;
 	align-items: flex-start;
 	display: flex;
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		display: block;
 	}
 
@@ -57,12 +57,13 @@ export default {
 
 .section-column {
 	width: 50%;
+	max-width: 40rem;
 
 	&:only-child {
 		width: 100%;
 	}
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		width: 100%;
 	}
 }
@@ -74,10 +75,6 @@ export default {
 
 .section-text {
 	padding: 0 $spacing-m;
-
-	.section-column__content {
-		max-width: 66ch;
-	}
 }
 
 .section-sandbox {
@@ -85,7 +82,11 @@ export default {
 	padding: 0 $spacing-m;
 	top: $spacing-m;
 
-	@include media('<tablet') {
+	@include media('<laptop') {
+		margin: 0 (-$spacing-s);
+	}
+
+	@include media('<phone') {
 		width: 100vw;
 		padding: 0;
 
