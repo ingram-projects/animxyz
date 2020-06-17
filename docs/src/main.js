@@ -7,7 +7,7 @@ import 'typeface-inconsolata'
 
 // Styles
 import 'ress'
-import '@/assets/styles/core/_index.scss'
+import '~/assets/styles/core/_index.scss'
 
 // Plugins
 import 'prismjs'

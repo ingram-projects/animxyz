@@ -73,7 +73,7 @@
 <script>
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
-import IconGithub from '@/components/icons/IconGithub.svg'
+import IconGithub from '~/assets/icons/IconGithub.svg'
 import PageNav from '~/components/reusable/PageNav'
 
 export default {
