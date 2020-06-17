@@ -36,7 +36,8 @@ export default {
 	display: flex;
 
 	@include media('<laptop') {
-		display: block;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	@include media('>=desktop') {
@@ -82,17 +83,20 @@ export default {
 	padding: 0 $spacing-m;
 	top: $spacing-m;
 
+	@include media('<phone') {
+		width: 100vw;
+		padding: 0;
+	}
+}
+
+.sandbox {
 	@include media('<laptop') {
 		margin: 0 (-$spacing-s);
 	}
 
 	@include media('<phone') {
-		width: 100vw;
-		padding: 0;
-
-		.sandbox {
-			border-radius: 0;
-		}
+		border-radius: 0;
+		margin: 0;
 	}
 }
 </style>
