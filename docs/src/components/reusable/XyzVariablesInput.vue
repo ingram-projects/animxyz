@@ -46,13 +46,15 @@ export default {
 }
 
 .variable {
-	padding: 0 $spacing-s;
 	display: flex;
-	align-items: center;
 	transition: background-color 0.2s $ease-in-out;
 
+	&:hover {
+		background-color: primary-color(800, 0.2);
+	}
+
 	&:focus-within {
-		background-color: primary-color(100, 0.075);
+		background-color: primary-color(800, 0.35);
 
 		.variable-label {
 			color: primary-color(50);
@@ -61,9 +63,13 @@ export default {
 }
 
 .variable-label {
+	display: flex;
+	align-items: center;
 	font-weight: bold;
 	white-space: nowrap;
 	color: primary-color(300);
+	padding-left: $spacing-s;
+	padding-right: 1ch;
 	transition: color 0.2s $ease-in-out;
 }
 
@@ -71,8 +77,7 @@ export default {
 	height: 2rem;
 	flex-grow: 1;
 	font-weight: bold;
-	padding: $spacing-xxxs $spacing-xxs;
-	margin-left: $spacing-xxxs;
+	padding-right: $spacing-s;
 	color: $cyan;
 	font-size: 1.125rem;
 }
