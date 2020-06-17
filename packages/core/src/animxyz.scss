@@ -1,21 +1,7 @@
-@forward 'variables' hide
-  $xyz-included,
-  $xyz-modes,
-  $xyz-modes-all;
-
-@forward 'functions' hide
-  xyz-str-split,
-  xyz-mode-name,
-  xyz-fallback-var,
-  xyz-include-once;
-
+@forward 'variables';
+@forward 'functions';
 @forward 'core';
-
-@forward 'utilities' hide
-  xyz-negative-val,
-  xyz-one-minus-val,
-  xyz-one-plus-val;
-
+@forward 'utilities';
 @forward 'fancy';
 
 @use 'core' as *;

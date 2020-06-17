@@ -57,7 +57,7 @@ export default {
 		levels() {
 			const levelsMap = {}
 			this.typeUtilities.forEach((utility) => {
-				Object.keys(utility.utilityMap).forEach((level) => {
+				Object.keys(utility.levels).forEach((level) => {
 					levelsMap[level] = true
 				})
 			})

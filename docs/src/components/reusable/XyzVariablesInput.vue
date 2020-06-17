@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { xyzVariables, getXyzVariableMode } from '~/utils/xyzVariables'
+import { xyzVariables, getXyzVariableMode } from '~/utils'
 
 export default {
 	name: 'XyzVariablesInput',

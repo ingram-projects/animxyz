@@ -1,146 +1,108 @@
-@use 'sass:map';
-@use "sass:meta";
 @use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:string';
+@use 'transformers' as *;
 @use 'variables' as *;
 
-@function xyz-str-split($string, $separator: ' ') {
-  $split-arr: ();
-  $index : str-index($string, $separator);
-  @while $index != null {
-    $item: str-slice($string, 1, $index - 1);
-    $split-arr: append($split-arr, $item);
-    $string: str-slice($string, $index + 1);
-    $index : str-index($string, $separator);
-  }
-  $split-arr: append($split-arr, $string);
+// HELPERS
 
-  @return $split-arr;
+@function xyz-str-split($string, $separator: ' ') {
+  $split-list: ();
+  $index : string.index($string, $separator);
+  @while $index != null {
+    $item: string.slice($string, 1, $index - 1);
+    $split-list: list.append($split-list, $item);
+    $string: string.slice($string, $index + 1);
+    $index : string.index($string, $separator);
+  }
+  $split-list: list.append($split-list, $string);
+
+  @return $split-list;
 }
 
-@function xyz-mode-name($name, $mode: 'all') {
+@function xyz-name($name, $mode: 'all') {
   @if $mode == 'all' {
     @return $name;
   }
   @return $mode + '-' + $name;
 }
 
-@function xyz-fallback-var($name, $mode: 'all', $fallback: 'default') {
+
+// VARIABLES
+
+@function xyz-var($name, $mode: 'all', $fallback: 'default') {
   @if $fallback == 'default' {
     $fallback: var(--xyz-#{$name}-default);
   }
-  @return var(--xyz-#{xyz-mode-name($name, $mode)}, var(--xyz-#{$name}, #{$fallback}));
-}
-
-@function xyz-utility-ease($level: 'ease') {
-  @return map.get($xyz-utility-eases, $level);
-}
-
-@function xyz-utility-time($level: '0') {
-  @return map.get($xyz-utility-times, $level);
-}
-
-@function xyz-utility-iteration($level: '0') {
-  @return map.get($xyz-utility-iterations, $level);
-}
-
-@function xyz-utility-origin($level: 'center') {
-  @return map.get($xyz-utility-origins, $level);
-}
-
-@function xyz-utility-fade($level: '0') {
-  @return map.get($xyz-utility-fades, $level);
-}
-
-@function xyz-utility-translation($level: '0') {
-  @return map.get($xyz-utility-translations, $level);
-}
-
-@function xyz-utility-translation-z($level: '0') {
-  @return map.get($xyz-utility-translations-z, $level);
-}
-
-@function xyz-utility-rotation($level: '0') {
-  @return map.get($xyz-utility-rotations, $level);
-}
-
-@function xyz-utility-scale($level: '0') {
-  @return map.get($xyz-utility-scales, $level);
-}
-
-@mixin xyz-include-once($name) {
-  @if (list.index($xyz-included, $name) == null) {
-    $xyz-included: append($xyz-included, $name) !global;
-    @content;
-  }
+  @return var(--xyz-#{xyz-name($name, $mode)}, var(--xyz-#{$name}, #{$fallback}));
 }
 
 @mixin xyz-set-all($val: initial) {
-  @each $mode in $xyz-modes-all {
-    --xyz-#{xyz-mode-name('keyframes', $mode)}: #{$val};
+  @each $name, $variable in $xyz-variables-map {
+    $variable-modes: map.get($variable, 'modes');
 
-    --xyz-#{xyz-mode-name('ease', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('duration', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('delay', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('stagger', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('stagger-rev', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('iterate', $mode)}: #{$val};
-
-    --xyz-#{xyz-mode-name('origin', $mode)}: #{$val};
-
-    --xyz-#{xyz-mode-name('fade', $mode)}: #{$val};
-
-    --xyz-#{xyz-mode-name('transform', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('translate-x', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('translate-y', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('translate-z', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('rotate-x', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('rotate-y', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('rotate-z', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('scale-x', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('scale-y', $mode)}: #{$val};
-    --xyz-#{xyz-mode-name('scale-z', $mode)}: #{$val};
+    @each $mode in $variable-modes {
+      --xyz-#{xyz-name($name, $mode)}: #{$val};
+    }
   }
-
-  --xyz-#{xyz-mode-name('ease', 'move')}: #{$val};
-  --xyz-#{xyz-mode-name('duration', 'move')}: #{$val};
-  --xyz-#{xyz-mode-name('delay', 'move')}: #{$val};
 }
 
-@mixin xyz-make-variable-utilities($name, $vars, $default-val, $utility-map, $transform-func: null, $modes: $xyz-modes-all) {
-  @each $mode in $modes {
-    $class-name: xyz-mode-name($name, $mode);
-    [xyz~=#{$class-name}] {
-      @each $var in $vars {
-        --xyz-#{xyz-mode-name($var, $mode)}: #{$default-val};
-      }
+
+// UTILITIES
+
+@mixin xyz-utility($name, $level: 'default', $mode: 'all') {
+  $utility: map.get($xyz-utilities-map, $name);
+  $vars: map.get($utility, 'vars');
+  $default: map.get($utility, 'default');
+  $levels: map.get($utility, 'levels');
+  $transformer: map.get($utility, 'transformer');
+
+  $val: null;
+  @if $level == 'default' {
+    $val: $default;
+  } @else {
+    $val: map.get($levels, $level);
+
+    @if $val == null {
+      @error '#{$level} is not a valid level for the #{$name} utility.';
     }
-    @each $level, $val in $utility-map {
-      $val: map.get($utility-map, $level);
-      @if $transform-func {
-        $val: meta.call($transform-func, $val);
-      }
-      [xyz~=#{$class-name}-#{$level}] {
-        @each $var in $vars {
-          --xyz-#{xyz-mode-name($var, $mode)}: #{$val};
+
+    @if $transformer {
+      $transformer-func: meta.get-function($transformer);
+      $val: meta.call($transformer-func, $val);
+    }
+  }
+
+  @each $var in $vars {
+    --xyz-#{xyz-name($var, $mode)}: #{$val};
+  }
+}
+
+@mixin xyz-make-utilities($name, $utility) {
+  $utility-modes: map.get($utility, 'modes');
+  $levels: map.get($utility, 'levels');
+
+  @each $mode in $utility-modes {
+    @each $level in list.join('default', map.keys($levels)) {
+      $mode-name: xyz-name($name, $mode);
+
+      @if $level == 'default' {
+        [xyz~=#{$mode-name}] {
+          @include xyz-utility($name, $level, $mode);
+        }
+      } @else {
+        [xyz~=#{$mode-name}-#{$level}] {
+          @include xyz-utility($name, $level, $mode);
         }
       }
     }
   }
 }
 
-@mixin xyz-make-keyframes-utilities($name) {
-  @each $mode in $xyz-modes {
-    $mode-name: xyz-mode-name($name, $mode);
-
-    [xyz~=#{$name}], [xyz~=#{$mode-name}] {
-      --xyz-#{xyz-mode-name('keyframes', $mode)}: xyz-#{$mode-name};
-    }
-  }
-}
-
 @mixin xyz-make-keyframes($name, $make-utilities: true) {
   @each $mode in $xyz-modes {
-    $mode-name: xyz-mode-name($name, $mode);
+    $mode-name: xyz-name($name, $mode);
 
     @keyframes xyz-#{$mode-name} {
       @content($mode);
@@ -148,20 +110,63 @@
   }
 
   @if $make-utilities {
-    @include xyz-make-keyframes-utilities($name);
+    @each $mode in $xyz-modes {
+      $mode-name: xyz-name($name, $mode);
+
+      [xyz~=#{$name}], [xyz~=#{$mode-name}] {
+        --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{$mode-name};
+      }
+    }
   }
 }
 
-@mixin xyz-animation($mode) {
-  $keyframes: xyz-fallback-var('keyframes', $mode, xyz-#{xyz-mode-name('keyframes', $mode)});
-  $duration: xyz-fallback-var('duration', $mode);
-  $ease: xyz-fallback-var('ease', $mode);
-  $delay: xyz-fallback-var('delay', $mode, 0s);
-  $stagger: xyz-fallback-var('stagger', $mode, 0s);
-  $stagger-rev: xyz-fallback-var('stagger-rev', $mode, 0s);
-  $iterate: xyz-fallback-var('iterate', $mode, 1);
-  $origin: xyz-fallback-var('origin', $mode, center);
+@mixin xyz($utilities) {
+  $utilities-list: xyz-str-split($utilities);
 
+  @each $utility in $utilities-list {
+    $utility-mode: null;
+    $utility-name: null;
+    $utility-level: null;
+
+    @each $name in map.keys($xyz-utilities-map) {
+      @if string.index($utility, $name) {
+        $utility-name: $name;
+      }
+    }
+
+    @if $utility-name == null {
+      @error '#{$utility} is not a valid xyz utility.';
+    }
+
+    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
+    @if string.length($utility-level) == 0 {
+      $utility-level: 'default';
+    }
+
+    @each $mode in list.append($xyz-modes-all, $xyz-mode-move) {
+      @if string.index($utility, $mode) {
+        $utility-mode: $mode;
+      }
+    }
+    @if $utility-mode == null {
+      $utility-mode: 'all';
+    }
+
+    @include xyz-utility($utility-name, $utility-level, $utility-mode);
+  }
+}
+
+// ANIMATIONS
+
+@mixin xyz-animation($mode) {
+  $keyframes: xyz-var('keyframes', $mode, xyz-#{xyz-name('keyframes', $mode)});
+  $duration: xyz-var('duration', $mode);
+  $ease: xyz-var('ease', $mode);
+  $delay: xyz-var('delay', $mode, 0s);
+  $stagger: xyz-var('stagger', $mode, 0s);
+  $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
+  $iterate: xyz-var('iterate', $mode, 1);
+  $origin: xyz-var('origin', $mode, center);
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
@@ -198,13 +203,4 @@
 
 @mixin xyz-appear() {
   @include xyz-animation('appear')
-}
-
-@mixin xyz($context: '') {
-  $words: xyz-str-split($context);
-
-  @extend [xyz];
-  @each $word in $words {
-    @extend [xyz~=#{$word}];
-  }
 }

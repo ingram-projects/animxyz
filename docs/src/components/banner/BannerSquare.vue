@@ -20,15 +20,15 @@
 import { xyzUtilities, getXyzUtilityLevel, randomArrayItem } from '~/utils'
 
 const translateXClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'x'
+	return xyzUtility.type === 'translate' && xyzUtility.axis === 'x'
 })
 
 const translateYClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'y'
+	return xyzUtility.type === 'translate' && xyzUtility.axis === 'y'
 })
 
 const translateZClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'translate' &&  xyzUtility.axis === 'z'
+	return xyzUtility.type === 'translate' && xyzUtility.axis === 'z'
 })
 
 const scaleClasses = xyzUtilities.filter((xyzUtility) => {
@@ -51,7 +51,7 @@ export default {
 	computed: {
 		xyzUtilityStrings() {
 			return this.xyzUtilities.map((xyzUtility) => xyzUtility.string)
-		}
+		},
 	},
 	watch: {
 		show() {
@@ -75,13 +75,13 @@ export default {
 				randomArrayItem(translateYClasses),
 				randomArrayItem(translateZClasses),
 				randomArrayItem(scaleClasses),
-				randomArrayItem(rotateClasses)
+				randomArrayItem(rotateClasses),
 			]
 
 			for (let i = 0; i < this.numXyzClasses; i++) {
 				const xyzUtilityIndex = Math.floor(Math.random() * xyzUtilitySelection.length)
 				const [xyzUtility] = xyzUtilitySelection.splice(xyzUtilityIndex, 1)
-				const xyzUtilityLevel = randomArrayItem(Object.keys(xyzUtility.utilityMap).filter((level) => level !== '0'))
+				const xyzUtilityLevel = randomArrayItem(Object.keys(xyzUtility.levels).filter((level) => level !== '0'))
 				this.xyzUtilities.push(getXyzUtilityLevel(xyzUtility.name, xyzUtilityLevel))
 			}
 		},

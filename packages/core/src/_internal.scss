@@ -1,0 +1,12 @@
+@use 'sass:list';
+
+// INCLUDES
+
+$xyz-included: ();
+
+@mixin xyz-include-once($name) {
+  @if (list.index($xyz-included, $name) == null) {
+    $xyz-included: list.append($xyz-included, $name) !global;
+    @content;
+  }
+}
