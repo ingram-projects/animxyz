@@ -46,7 +46,8 @@ export default {
 	position: absolute;
 	left: 100%;
 	top: 50%;
-	transform: translateY(-50%) rotate(90deg);
+	transform: translate(-50%, -50%) rotate(90deg);
+	padding-bottom: 2.5rem;
 	color: primary-color(800);
 	font-family: $font-stack-mono;
 	font-size: $fs-xlarge;
