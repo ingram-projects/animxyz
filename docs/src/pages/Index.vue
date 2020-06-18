@@ -150,6 +150,8 @@ export default {
 	position: fixed;
 	top: $spacing-m;
 	right: $spacing-m;
+	--icon-color: #{primary-color(800)};
+	z-index: 1;
 
 	svg {
 		@include size(100%);

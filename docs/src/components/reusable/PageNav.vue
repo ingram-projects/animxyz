@@ -24,13 +24,14 @@ export default {
 <style lang="scss" scoped>
 .page-nav {
 	position: fixed;
-	// left: $spacing-l;
 	top: 50%;
 	left: -24rem;
+	// left: $spacing-l;
 	transform: translateY(-50%);
 	width: 24rem;
 	border-radius: $br-xl;
 	background-color: primary-color(900);
+	z-index: 1;
 }
 
 .nav-toggle {
@@ -38,7 +39,7 @@ export default {
 	left: 100%;
 	top: 50%;
 	transform: translateY(-50%) rotate(90deg);
-	color: primary-color(700);
+	color: primary-color(800);
 	font-family: $font-stack-mono;
 	font-size: $fs-xlarge;
 	font-weight: bold;
