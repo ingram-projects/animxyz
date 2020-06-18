@@ -1,8 +1,8 @@
 <template>
 	<nav class="page-nav" :class="{ open: value }">
 		<button class="nav-toggle" @click="toggleNav(!value)">{{ value ? 'Close' : 'Menu'}}</button>
-		<ul class="nav-sections">
-			<li v-for="section in sections" class="nav-section__item" :key="section.title">
+		<ul class="nav-sections" xyz="fade left">
+			<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
 				<a href="/" class="nav-section__link">
 					<div class="link-dot__wrap">
 						<span class="link-dot"></span>
@@ -29,17 +29,16 @@ export default {
 <style lang="scss" scoped>
 .page-nav {
 	position: fixed;
-	top: 50%;
-	left: -24rem;
-	transform: translateY(-50%);
-	width: 24rem;
-	border-radius: $br-xl;
+	width: 20rem;
+	left: -20rem;
+	top: 0;
+	height: 100vh;
 	background-color: primary-color(900);
 	z-index: 1;
 	transition: left .3s $ease-in-out;
 
 	&.open {
-		left: $spacing-l;
+		left: 0;
 	}
 }
 
@@ -57,6 +56,7 @@ export default {
 .nav-sections {
 	padding: $spacing-l 0;
 	list-style: none;
+	--xyz-stagger: .075s;
 }
 
 .nav-section__item {
