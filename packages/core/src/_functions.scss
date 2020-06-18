@@ -185,7 +185,7 @@
     #{$keyframes}
     #{$duration}
     #{$ease}
-    #{calc(var(--xyz-root-delay, 0s) + var(--xyz-computed-delay, 0s))}
+    #{var(--xyz-active-delay, 0s)}
     #{$iterate}
     #{$direction}
     both

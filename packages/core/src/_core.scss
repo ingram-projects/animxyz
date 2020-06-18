@@ -53,6 +53,15 @@
       }
     }
 
+    .xyz-in, .xyz-out, .xyz-appear {
+      --xyz-root-delay: var(--xyz-computed-delay, 0s);
+      --xyz-active-delay: var(--xyz-computed-delay, 0s);
+    }
+
+    .xyz-nested, .xyz-in-nested, .xyz-out-nested, .xyz-appear-nested {
+      --xyz-active-delay: calc(var(--xyz-root-delay, 0s) + var(--xyz-computed-delay, 0s));
+    }
+
     @each $mode in $xyz-modes {
       .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
         @include xyz-animation($mode);
@@ -69,10 +78,6 @@
           @extend %xyz-anim-initial;
         }
       }
-    }
-
-    .xyz-in, .xyz-out, .xyz-appear {
-      --xyz-root-delay: var(--xyz-computed-delay, 0s);
     }
 
     .xyz-move {
