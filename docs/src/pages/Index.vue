@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<page-nav :sections="sections"></page-nav>
+		<page-nav :sections="sections" v-model="navOpen"></page-nav>
+
 		<main class="page-content">
 			<a
 				class="github-link xyz-in"
@@ -86,6 +87,7 @@ export default {
 	data() {
 		return {
 			mobile: true,
+			navOpen: false,
 			sectionNames: [
 				'Installation',
 				'Fade',

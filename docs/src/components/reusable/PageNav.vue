@@ -1,6 +1,6 @@
 <template>
-	<nav class="page-nav">
-		<button class="nav-toggle">Menu</button>
+	<nav class="page-nav" :class="{ open: value }">
+		<button class="nav-toggle" @click="toggleNav(!value)">{{ value ? 'Close' : 'Menu'}}</button>
 		<ul class="nav-sections">
 			<li v-for="section in sections" class="nav-section__item" :key="section.title">
 				<a href="/" class="nav-section__link">
@@ -17,7 +17,12 @@
 <script>
 export default {
 	name: 'PageNav',
-	props: ['sections'],
+	props: ['value', 'sections'],
+	methods: {
+		toggleNav(toggled) {
+			this.$emit('input', toggled)
+		},
+	},
 }
 </script>
 
@@ -26,12 +31,16 @@ export default {
 	position: fixed;
 	top: 50%;
 	left: -24rem;
-	// left: $spacing-l;
 	transform: translateY(-50%);
 	width: 24rem;
 	border-radius: $br-xl;
 	background-color: primary-color(900);
 	z-index: 1;
+	transition: left .3s $ease-in-out;
+
+	&.open {
+		left: $spacing-l;
+	}
 }
 
 .nav-toggle {
