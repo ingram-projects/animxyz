@@ -188,10 +188,5 @@
     #{var(--xyz-active-delay, 0s)}
     #{$iterate}
     #{$direction}
-    both
-    !important;
-
-  @media (prefers-reduced-motion: reduce) {
-    animation: none !important;
-  }
+    both;
 }

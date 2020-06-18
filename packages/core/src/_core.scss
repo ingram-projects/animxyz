@@ -70,14 +70,18 @@
           @extend %xyz-pos-absolute;
         }
 
-        &.xyz-paused, &.xyz-#{$mode}-paused {
-          @extend %xyz-play-paused;
-        }
-
         &.xyz-none, &.xyz-#{$mode}-none {
-          @extend %xyz-anim-initial;
+          @extend %xyz-anim-none;
         }
       }
+    }
+
+    %xyz-anim-none {
+      animation: none;
+    }
+
+    %xyz-pos-absolute {
+      position: absolute;
     }
 
     .xyz-move {
@@ -87,30 +91,24 @@
       transition: transform #{$duration} #{$ease} #{$delay};
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .xyz-move {
-        transition: none !important;
-      }
-    }
-
-    %xyz-pos-absolute {
-      position: absolute !important;
-    }
-
-    %xyz-play-paused {
-      animation-play-state: paused !important;
-    }
-
-    %xyz-anim-initial {
-      animation: initial !important;
-    }
-
     [xyz] {
       @include xyz-set-all();
     }
 
     [xyz~=inherit] {
       @include xyz-set-all(inherit);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      @each $mode in $xyz-modes {
+        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+          animation: none;
+        }
+      }
+
+      .xyz-move {
+        transition: none;
+      }
     }
   }
 }
