@@ -12,7 +12,7 @@
 			<icon-github></icon-github>
 		</a>
 
-		<main class="page-content" :class="{ 'nav-open': navOpen }">
+		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
 			<div class="banner__wrap">
 				<banner></banner>
 			</div>
@@ -130,6 +130,9 @@ export default {
 			onMediaQuery(mediaQuery)
 			mediaQuery.addListener(onMediaQuery)
 		},
+		closeNav() {
+			this.navOpen = false
+		}
 	},
 	mounted() {
 		this.initMediaQuery()
