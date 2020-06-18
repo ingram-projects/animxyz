@@ -289,6 +289,7 @@ export const xyzUtilitiesMap = {
 		vars: ['fade'],
 		default: 'calc(1 - var(--xyz-fade-default))',
 		levels: xyzFadeLevels,
+		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},
 
@@ -307,6 +308,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-x'],
 		default: 'calc(var(--xyz-translate-default) * -1)',
 		levels: xyzTranslateLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 	down: {
@@ -323,6 +325,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-y'],
 		default: 'calc(var(--xyz-translate-default) * -1)',
 		levels: xyzTranslateLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 	front: {
@@ -339,6 +342,7 @@ export const xyzUtilitiesMap = {
 		vars: ['translate-z'],
 		default: 'calc(var(--xyz-translate-default) * -1)',
 		levels: xyzTranslateZLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 
@@ -357,6 +361,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-x'],
 		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 	'flip-left': {
@@ -373,6 +378,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-y'],
 		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 	'turn-cw': {
@@ -389,6 +395,7 @@ export const xyzUtilitiesMap = {
 		vars: ['rotate-z'],
 		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 
@@ -399,6 +406,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x', 'scale-y', 'scale-z'],
 		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},
 	big: {
@@ -407,6 +415,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x', 'scale-y', 'scale-z'],
 		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-plus-val',
 		modes: xyzModesAll,
 	},
 	narrow: {
@@ -415,6 +424,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x'],
 		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},
 	wide: {
@@ -423,6 +433,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-x'],
 		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-plus-val',
 		modes: xyzModesAll,
 	},
 	short: {
@@ -431,6 +442,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-y'],
 		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},
 	tall: {
@@ -439,6 +451,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-y'],
 		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-plus-val',
 		modes: xyzModesAll,
 	},
 	thin: {
@@ -447,6 +460,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-z'],
 		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},
 	thick: {
@@ -455,6 +469,7 @@ export const xyzUtilitiesMap = {
 		vars: ['scale-z'],
 		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
+		transformer: 'xyz-one-plus-val',
 		modes: xyzModesAll,
 	},
 }

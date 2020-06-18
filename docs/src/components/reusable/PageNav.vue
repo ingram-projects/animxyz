@@ -24,8 +24,9 @@ export default {
 <style lang="scss" scoped>
 .page-nav {
 	position: fixed;
-	left: $spacing-l;
+	// left: $spacing-l;
 	top: 50%;
+	left: -24rem;
 	transform: translateY(-50%);
 	width: 24rem;
 	border-radius: $br-xl;
