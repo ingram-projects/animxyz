@@ -14,7 +14,8 @@
     "ress": "^2.0.4",
     "typeface-inconsolata": "^0.0.72",
     "typeface-inter": "^3.12.0",
-    "vue-prism-component": "^1.2.0"
+    "vue-prism-component": "^1.2.0",
+    "vue-scrollactive": "^0.9.3"
   },
   "devDependencies": {
     "@gridsome/remark-prismjs": "^0.3.0",

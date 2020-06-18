@@ -1,5 +1,5 @@
 <template>
-	<section class="docs-section">
+	<section class="docs-section" :id="section.anchor">
 		<div class="section-column section-text xyz-nested" xyz="inherit fade left">
 			<div class="section-column__content">
 				<h1 class="section-title">{{ section.title }}</h1>

@@ -1,16 +1,16 @@
 <template>
 	<nav class="page-nav" :class="{ open: value }">
 		<button class="nav-toggle" @click="toggleNav(!value)">{{ value ? 'Close' : 'Menu'}}</button>
-		<ul class="nav-sections" xyz="fade left">
+		<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
 			<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
-				<a href="/" class="nav-section__link">
+				<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
 					<div class="link-dot__wrap">
 						<span class="link-dot"></span>
 					</div>
 					<span class="link-title">{{ section.title }}</span>
 				</a>
 			</li>
-		</ul>
+		</scrollactive>
 	</nav>
 </template>
 

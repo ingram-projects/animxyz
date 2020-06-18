@@ -12,7 +12,9 @@ import '~/assets/styles/core/_index.scss'
 // Plugins
 import 'prismjs'
 import VueAnimXyz from '@animxyz/vue'
+import VueScrollactive from 'vue-scrollactive'
 
 export default function (Vue) {
 	Vue.use(VueAnimXyz)
+	Vue.use(VueScrollactive)
 }

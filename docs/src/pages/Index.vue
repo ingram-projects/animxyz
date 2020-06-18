@@ -109,7 +109,11 @@ export default {
 			})
 
 			return this.sectionNames.map((sectionName) => {
-				return sectionsObj[sectionName]
+				const section = sectionsObj[sectionName]
+				return {
+					...section,
+					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-')
+				}
 			})
 		},
 	},
