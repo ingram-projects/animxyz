@@ -3,9 +3,9 @@
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
-			<a class="animxyz-logo xyz-in" xyz="fade duration-4 ease-out" href="/">
+			<a class="animxyz-logo xyz-in" xyz="fade duration-5 ease-out" href="/">
 				<span class="screen-reader-only">AnimXYZ Logo</span>
-				<icon-logo></icon-logo>
+				<anim-xyz-logo></anim-xyz-logo>
 			</a>
 			<a
 				class="github-link xyz-in"
@@ -76,18 +76,18 @@
 </page-query>
 
 <script>
+import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
 import IconGithub from '~/assets/icons/IconGithub.svg'
-import IconLogo from '~/assets/icons/IconLogo.svg'
 import PageNav from '~/components/reusable/PageNav'
 
 export default {
 	components: {
+		AnimXyzLogo,
 		Banner,
 		DocsSection,
 		IconGithub,
-		IconLogo,
 		PageNav,
 	},
 	data() {
@@ -165,16 +165,11 @@ export default {
 
 .animxyz-logo {
 	--xyz-delay: 0.4s;
-	@include size(3rem);
 	display: block;
 	position: fixed;
-	top: $spacing-m;
-	left: $spacing-m;
+	top: 4rem;
+	left: 4rem;
 	z-index: 1;
-
-	svg {
-		@include size(100%);
-	}
 }
 
 .github-link {
