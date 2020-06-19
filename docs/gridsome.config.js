@@ -31,6 +31,9 @@ module.exports = {
 					{
 						removeViewBox: false,
 					},
+					{
+						prefixIds: false,
+					},
 				],
 			},
 		},
