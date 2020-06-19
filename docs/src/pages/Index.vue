@@ -2,17 +2,17 @@
 	<div>
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
 
-		<a
-			class="github-link xyz-in"
-			xyz="fade small up turn-ccw duration-4 ease-out-back"
-			href="https://github.com/ingram-projects/animxyz"
-			target="_blank"
-		>
-			<span class="screen-reader-only">View on GitHub</span>
-			<icon-github></icon-github>
-		</a>
-
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
+			<a
+				class="github-link xyz-in"
+				xyz="fade small up turn-ccw duration-4 ease-out-back"
+				href="https://github.com/ingram-projects/animxyz"
+				target="_blank"
+			>
+				<span class="screen-reader-only">View on GitHub</span>
+				<icon-github></icon-github>
+			</a>
+
 			<div class="banner__wrap">
 				<banner></banner>
 			</div>
@@ -112,7 +112,7 @@ export default {
 				const section = sectionsObj[sectionName]
 				return {
 					...section,
-					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-')
+					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-'),
 				}
 			})
 		},
@@ -132,7 +132,7 @@ export default {
 		},
 		closeNav() {
 			this.navOpen = false
-		}
+		},
 	},
 	mounted() {
 		this.initMediaQuery()
@@ -150,7 +150,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	transition: transform .3s $ease-in-out;
+	transition: transform 0.3s $ease-in-out;
 
 	&.nav-open {
 		transform: translateX(20rem);

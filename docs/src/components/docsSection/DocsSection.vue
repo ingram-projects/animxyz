@@ -50,7 +50,7 @@ export default {
 	margin-bottom: $spacing-m;
 	font-size: 4rem;
 	font-family: $font-stack-mono;
-	color: primary-color(600, 0.4);
+	color: primary-color(600, 0.7);
 
 	@include media('<phone') {
 		font-size: 3rem;

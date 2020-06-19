@@ -23,6 +23,7 @@
 						/>
 						<label class="toggle-label" :for="utilityLevel.id">
 							<div class="toggle-indicator"></div>
+							<span class="screen-reader-only">{{ utilityLevel.string }}</span>
 						</label>
 					</div>
 				</td>
