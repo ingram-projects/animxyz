@@ -18,7 +18,7 @@
 							type="radio"
 							:id="utilityLevel.id"
 							:value="utilityLevel.string"
-							v-model="selectedObj[utility.model]"
+							v-model="toggledUtilities[utility.model]"
 							@click="onCellClick(utilityLevel, utility.model)"
 						/>
 						<label class="toggle-label" :for="utilityLevel.id">
@@ -39,7 +39,7 @@ export default {
 	props: ['value', 'types', 'multiple'],
 	data() {
 		return {
-			selectedObj: {},
+			toggledUtilities: {},
 		}
 	},
 	computed: {
@@ -83,24 +83,25 @@ export default {
 		value: {
 			immediate: true,
 			handler() {
-				this.selectedObj = {}
-				const selectedUtilities = this.value.split(' ')
-				selectedUtilities.forEach((selectedUtility) => {
-					const match = selectedUtility.match(/^([a-zA-Z-]+)(?:-(\d+))?$/)
-					if (match) {
-						const name = match[1]
-						const utility = getXyzUtility(name)
+				this.toggledUtilities = {}
+				const toggledUtilities = this.value.split(' ')
+				toggledUtilities.forEach((toggledUtility) => {
+					const utility = xyzUtilities.find((xyzUtility) => {
+						return toggledUtility.includes(xyzUtility.name)
+					})
+
+					if (utility) {
 						const model = this.getUtilityModel(utility)
-						this.$set(this.selectedObj, model, selectedUtility)
+						this.$set(this.toggledUtilities, model, toggledUtility)
 					}
 				})
 			},
 		},
-		selectedObj: {
+		toggledUtilities: {
 			deep: true,
 			handler() {
-				const selected = Object.values(this.selectedObj).join(' ')
-				this.$emit('input', selected)
+				const toggled = Object.values(this.toggledUtilities).join(' ')
+				this.$emit('input', toggled)
 			},
 		},
 	},
@@ -116,8 +117,8 @@ export default {
 			return model
 		},
 		onCellClick(cell, model) {
-			if (this.multiple && this.selectedObj[model] === cell.string) {
-				this.$delete(this.selectedObj, model)
+			if (this.multiple && this.toggledUtilities[model] === cell.string) {
+				this.$delete(this.toggledUtilities, model)
 			}
 		},
 	},
