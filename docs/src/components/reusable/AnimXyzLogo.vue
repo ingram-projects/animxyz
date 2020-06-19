@@ -1,9 +1,11 @@
 <template>
 	<div class="logo-scene">
-		<div class="logo-wrap">
-			<div class="cube-side side--left"></div>
-			<div class="cube-side side--right"></div>
-			<div class="cube-side side--bottom"></div>
+		<div class="logo-wrap xyz-nested" xyz="fade ease-out-back turn-ccw-50 duration-10">
+			<div class="cube-wrap">
+				<div class="cube-side side--left"></div>
+				<div class="cube-side side--right"></div>
+				<div class="cube-side side--bottom"></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -21,7 +23,10 @@ export default {
 }
 
 .logo-wrap {
-	margin: auto;
+	transform-style: preserve-3d;
+}
+
+.cube-wrap {
 	transform: rotateX(60deg) rotateZ(45deg);
 	transform-style: preserve-3d;
 }
@@ -33,14 +38,12 @@ export default {
 }
 
 .side--right {
-	--xyz-rotate-x: 90deg;
 	background-image: linear-gradient(to bottom, $red, transparent);
 	transform-origin: top;
 	transform: rotateX(90deg);
 }
 
 .side--left {
-	--xyz-rotate-y: -90deg;
 	background-image: linear-gradient(to bottom, $green, transparent);
 	transform-origin: left;
 	transform: rotateY(-90deg);
