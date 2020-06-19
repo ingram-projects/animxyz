@@ -167,8 +167,8 @@ export default {
 	--xyz-delay: 0.4s;
 	display: block;
 	position: fixed;
-	top: 4rem;
-	left: 4rem;
+	top: calc(#{$spacing-m} + 1.25rem);
+	left: calc(#{$spacing-m} + 1.25rem);
 	z-index: 1;
 }
 

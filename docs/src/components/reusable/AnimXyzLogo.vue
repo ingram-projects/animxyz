@@ -22,13 +22,13 @@ export default {
 
 .logo-wrap {
 	margin: auto;
-	transform: rotateX(60deg) rotateZ(45deg) translate(50%, 50%);
+	transform: rotateX(60deg) rotateZ(45deg);
 	transform-style: preserve-3d;
 }
 
 .cube-side {
 	position: absolute;
-	@include size(3rem);
+	@include size(2.25rem);
 	border: 3px solid transparent;
 }
 
