@@ -3,20 +3,6 @@
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
-			<a class="animxyz-logo xyz-in" xyz="fade duration-5 ease-out" href="/">
-				<span class="screen-reader-only">AnimXYZ Logo</span>
-				<anim-xyz-logo></anim-xyz-logo>
-			</a>
-			<a
-				class="github-link xyz-in"
-				xyz="fade small up turn-ccw duration-4 ease-out-back"
-				href="https://github.com/ingram-projects/animxyz"
-				target="_blank"
-			>
-				<span class="screen-reader-only">View on GitHub</span>
-				<icon-github></icon-github>
-			</a>
-
 			<div class="banner__wrap">
 				<banner></banner>
 			</div>
@@ -76,18 +62,14 @@
 </page-query>
 
 <script>
-import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
-import IconGithub from '~/assets/icons/IconGithub.svg'
 import PageNav from '~/components/reusable/PageNav'
 
 export default {
 	components: {
-		AnimXyzLogo,
 		Banner,
 		DocsSection,
-		IconGithub,
 		PageNav,
 	},
 	data() {
@@ -160,37 +142,6 @@ export default {
 
 	&.nav-open {
 		transform: translateX(20rem);
-	}
-}
-
-.animxyz-logo {
-	--xyz-delay: 0.4s;
-	display: block;
-	position: fixed;
-	top: calc(#{$spacing-m} + 1.25rem);
-	left: calc(#{$spacing-m} + 1.25rem);
-	z-index: 1;
-}
-
-.github-link {
-	--xyz-delay: 1.4s;
-	@include size(2.5rem);
-	display: block;
-	position: fixed;
-	top: $spacing-m;
-	right: $spacing-m;
-	--icon-color: #{primary-color(800)};
-	z-index: 1;
-
-	svg {
-		@include size(100%);
-		transition: transform 0.3s $ease-out-back;
-	}
-
-	&:hover {
-		svg {
-			transform: scale(1.2);
-		}
 	}
 }
 

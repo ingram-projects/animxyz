@@ -1,5 +1,5 @@
 <template>
-	<div class="logo-scene">
+	<div class="animxyz-logo logo-scene">
 		<div class="cube-wrap">
 			<div class="cube-side side--left"></div>
 			<div class="cube-side side--right"></div>
@@ -16,18 +16,22 @@ export default {
 
 <style lang="scss" scoped>
 .logo-scene {
+	@include size(3rem);
 	display: flex;
 	perspective: 1000px;
 }
 
 .cube-wrap {
+	margin: auto;
+	position: relative;
+	top: 2px;
 	transform: rotateX(60deg) rotateZ(45deg);
 	transform-style: preserve-3d;
 }
 
 .cube-side {
-	position: absolute;
 	@include size(2rem);
+	position: absolute;
 	border: 3px solid transparent;
 }
 
