@@ -498,3 +498,21 @@ export function getXyzUtilityLevel(name, level = 'default') {
 		string: level === 'default' ? name : `${name}-${level}`,
 	}
 }
+
+export const xyzUtilityRegex = new RegExp(`^(?:(in|out|appear|move)-)?(${Object.keys(xyzUtilitiesMap).join('|')})(?:-(\\w+))?$`)
+
+export function getXyzUtilityLevelRegex(string) {
+	const match = string.match(xyzUtilityRegex)
+	if (!match) {
+		return null
+	}
+
+	const mode = match[1]
+	const name = match[2]
+	const level = match[3] || 'default'
+	if (!name) {
+		return null
+	}
+
+	return getXyzUtilityLevel(name, level)
+}

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { xyzUtilities, getXyzUtility, getXyzUtilityLevel } from '~/utils'
+import { xyzUtilities, getXyzUtilityLevel, getXyzUtilityLevelRegex } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
@@ -87,9 +87,7 @@ export default {
 				this.toggledUtilities = {}
 				const toggledUtilities = this.value.split(' ')
 				toggledUtilities.forEach((toggledUtility) => {
-					const utility = xyzUtilities.find((xyzUtility) => {
-						return toggledUtility.includes(xyzUtility.name)
-					})
+					const utility = getXyzUtilityLevelRegex(toggledUtility)
 
 					if (utility) {
 						const model = this.getUtilityModel(utility)
