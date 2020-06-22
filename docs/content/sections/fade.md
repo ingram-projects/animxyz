@@ -12,6 +12,10 @@ examples:
         content: |
           <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
 
+          <style>
+            .square { --xyz-fade: 0.5; }
+          </style>
+
 modifiers:
   utilities:
     default: fade
