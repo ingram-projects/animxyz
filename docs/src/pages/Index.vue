@@ -142,6 +142,10 @@ export default {
 
 	&.nav-open {
 		transform: translateX(20rem);
+
+		@include media('<tablet') {
+			transform: initial;
+		}
 	}
 }
 

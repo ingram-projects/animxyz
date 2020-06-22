@@ -5,16 +5,6 @@
 			<span class="nav-button__text">{{ value ? 'Close' : 'Menu' }}</span>
 		</button>
 
-		<a
-			class="github-link xyz-in"
-			xyz="fade small up turn-ccw duration-4 ease-out-back"
-			href="https://github.com/ingram-projects/animxyz"
-			target="_blank"
-		>
-			<span class="screen-reader-only">View on GitHub</span>
-			<icon-github></icon-github>
-		</a>
-
 		<nav class="page-nav">
 			<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
 				<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
@@ -26,6 +16,15 @@
 					</a>
 				</li>
 			</scrollactive>
+			<a
+				class="github-link xyz-in"
+				xyz="fade small up turn-ccw duration-4 ease-out-back"
+				href="https://github.com/ingram-projects/animxyz"
+				target="_blank"
+			>
+				<span class="screen-reader-only">View on GitHub</span>
+				<icon-github></icon-github>
+			</a>
 		</nav>
 	</div>
 </template>
@@ -62,6 +61,18 @@ export default {
 
 	.open & {
 		transform: translateX(0);
+		@include media('<tablet') {
+			top: 100vh;
+			transform: translateY(-100vh);
+		}
+	}
+
+	@include media('<tablet') {
+		top: 100vh;
+		left: 0;
+		right: 0;
+		width: auto;
+		transform: initial;
 	}
 }
 
@@ -70,6 +81,10 @@ export default {
 	padding-top: $spacing-xxxl;
 	list-style: none;
 	--xyz-stagger: 0.075s;
+
+	@include media('<tablet') {
+		padding-top: $spacing-l;
+	}
 }
 
 .nav-section__item {
@@ -143,6 +158,13 @@ export default {
 	top: $spacing-s;
 	left: $spacing-s;
 	z-index: 2;
+
+	@include media('<tablet') {
+		top: initial;
+		left: 50%;
+		bottom: $spacing-s;
+		transform: translateX(-50%);
+	}
 }
 
 .nav-button__text {
@@ -155,6 +177,10 @@ export default {
 	.open & {
 		color: primary-color(100);
 	}
+
+	@include media('<tablet') {
+		display: none;
+	}
 }
 
 .github-link {
@@ -164,7 +190,7 @@ export default {
 	position: fixed;
 	bottom: $spacing-m;
 	left: $spacing-m;
-	--icon-color: #{primary-color(800)};
+	--icon-color: #{$white};
 	z-index: 2;
 
 	svg {
@@ -178,8 +204,9 @@ export default {
 		}
 	}
 
-	.open & {
-		--icon-color: #{$white};
+	@include media('<tablet') {
+		position: relative;
+		bottom: initial;
 	}
 }
 </style>
