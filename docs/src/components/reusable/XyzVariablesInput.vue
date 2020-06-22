@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { xyzVariables, getXyzVariableMode } from '~/utils'
+import { xyzVariables, getXyzVariable } from '~/utils'
 
 export default {
 	name: 'XyzVariablesInput',
@@ -27,7 +27,7 @@ export default {
 		},
 		variables() {
 			return this.typeVariables.map((variable) => {
-				const variableMode = getXyzVariableMode(variable.name)
+				const variableMode = getXyzVariable(variable.name)
 				return {
 					...variableMode,
 					id: `${this._uid}_${variableMode.string}`,

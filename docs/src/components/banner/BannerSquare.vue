@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { xyzUtilities, getXyzUtilityLevel, randomArrayItem } from '~/utils'
+import { xyzUtilities, getXyzUtility, randomArrayItem } from '~/utils'
 
 const translateXClasses = xyzUtilities.filter((xyzUtility) => {
 	return xyzUtility.type === 'translate' && xyzUtility.axis === 'x'
@@ -68,7 +68,7 @@ export default {
 			return 'none'
 		},
 		randomizeXyz() {
-			this.xyzUtilities = [getXyzUtilityLevel('fade')]
+			this.xyzUtilities = [getXyzUtility('fade')]
 
 			const xyzUtilitySelection = [
 				randomArrayItem(translateXClasses),
@@ -82,7 +82,7 @@ export default {
 				const xyzUtilityIndex = Math.floor(Math.random() * xyzUtilitySelection.length)
 				const [xyzUtility] = xyzUtilitySelection.splice(xyzUtilityIndex, 1)
 				const xyzUtilityLevel = randomArrayItem(Object.keys(xyzUtility.levels).filter((level) => level !== '0'))
-				this.xyzUtilities.push(getXyzUtilityLevel(xyzUtility.name, xyzUtilityLevel))
+				this.xyzUtilities.push(getXyzUtility(xyzUtility.name, xyzUtilityLevel))
 			}
 		},
 	},

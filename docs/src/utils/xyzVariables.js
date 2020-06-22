@@ -209,22 +209,37 @@ export const xyzVariables = Object.entries(xyzVariablesMap).map(([name, variable
 	}
 })
 
-export function getXyzVariable(name) {
+export function getXyzVariable(name, mode = 'all') {
+	const variableObj = xyzVariablesMap[name]
+
+	const components = ['--xyz-']
+	if (mode !== 'all') components.push(mode)
+	components.push(name)
+
 	return {
-		name: name,
-		...xyzVariablesMap[name],
+		name,
+		mode,
+		valid: variableObj.modes.includes(mode),
+		string: components.join('-'),
+		...variableObj,
 	}
 }
 
-export function getXyzVariableMode(name, mode = 'all') {
-	const variableObj = getXyzVariable(name)
+export const xyzVariableRegex = new RegExp(`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')})`)
 
-	return {
-		...variableObj,
-		mode,
-		valid: variableObj.modes.includes(mode),
-		string: mode === 'all' ? `--xyz-${name}` : `--xyz-${mode}-${name}`,
+export function getXyzVariableRegex(string) {
+	const match = string.match(xyzVariableRegex)
+	if (!match) {
+		return null
 	}
+
+	const mode = match[1]
+	const name = match[2]
+	if (!name) {
+		return null
+	}
+
+	return getXyzVariable(name, mode)
 }
 
 // UTILITIES
@@ -481,27 +496,27 @@ export const xyzUtilities = Object.entries(xyzUtilitiesMap).map(([name, utility]
 	}
 })
 
-export function getXyzUtility(name) {
-	return {
-		name: name,
-		...xyzUtilitiesMap[name],
-	}
-}
+export function getXyzUtility(name, level = 'default', mode = 'all') {
+	const utilityObj = xyzUtilitiesMap[name]
 
-export function getXyzUtilityLevel(name, level = 'default') {
-	const utilityObj = getXyzUtility(name)
+	const components = []
+	if (mode !== 'all') components.push(mode)
+	components.push(name)
+	if (level !== 'default') components.push(level)
 
 	return {
-		...utilityObj,
+		name,
 		level,
-		valid: level === 'default' || utilityObj.levels[level],
-		string: level === 'default' ? name : `${name}-${level}`,
+		mode,
+		valid: utilityObj.modes.includes(mode) && (level === 'default' || utilityObj.levels[level]),
+		string: components.join('-'),
+		...utilityObj,
 	}
 }
 
 export const xyzUtilityRegex = new RegExp(`^(?:(in|out|appear|move)-)?(${Object.keys(xyzUtilitiesMap).join('|')})(?:-(\\w+))?$`)
 
-export function getXyzUtilityLevelRegex(string) {
+export function getXyzUtilityRegex(string) {
 	const match = string.match(xyzUtilityRegex)
 	if (!match) {
 		return null
@@ -509,10 +524,10 @@ export function getXyzUtilityLevelRegex(string) {
 
 	const mode = match[1]
 	const name = match[2]
-	const level = match[3] || 'default'
+	const level = match[3]
 	if (!name) {
 		return null
 	}
 
-	return getXyzUtilityLevel(name, level)
+	return getXyzUtility(name, level, mode)
 }
