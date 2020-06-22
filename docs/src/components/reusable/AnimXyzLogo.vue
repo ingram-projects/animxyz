@@ -1,11 +1,9 @@
 <template>
 	<div class="logo-scene">
-		<div class="logo-wrap xyz-nested" xyz="fade ease-out-back turn-ccw-50 duration-10">
-			<div class="cube-wrap">
-				<div class="cube-side side--left"></div>
-				<div class="cube-side side--right"></div>
-				<div class="cube-side side--bottom"></div>
-			</div>
+		<div class="cube-wrap">
+			<div class="cube-side side--left"></div>
+			<div class="cube-side side--right"></div>
+			<div class="cube-side side--bottom"></div>
 		</div>
 	</div>
 </template>
@@ -18,12 +16,8 @@ export default {
 
 <style lang="scss" scoped>
 .logo-scene {
-	perspective: 10000px;
 	display: flex;
-}
-
-.logo-wrap {
-	transform-style: preserve-3d;
+	perspective: 1000px;
 }
 
 .cube-wrap {
@@ -33,7 +27,7 @@ export default {
 
 .cube-side {
 	position: absolute;
-	@include size(2.25rem);
+	@include size(2rem);
 	border: 3px solid transparent;
 }
 
