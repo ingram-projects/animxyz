@@ -1,7 +1,9 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open: value }">
 		<button class="nav-button xyz-in" xyz="fade duration-5 ease-out" @click="toggleNav(!value)">
-			<anim-xyz-logo></anim-xyz-logo>
+			<div class="logo-wrap">
+				<anim-xyz-logo></anim-xyz-logo>
+			</div>
 			<span class="nav-button__text">{{ value ? 'Close' : 'Menu' }}</span>
 		</button>
 
@@ -155,8 +157,8 @@ export default {
 	display: flex;
 	align-items: center;
 	position: fixed;
-	top: $spacing-s;
-	left: $spacing-s;
+	top: $spacing-m;
+	left: $spacing-m;
 	z-index: 2;
 
 	@include media('<tablet') {
@@ -167,12 +169,17 @@ export default {
 	}
 }
 
+.logo-wrap {
+	@include size(2.5rem);
+}
+
 .nav-button__text {
 	color: primary-color(800);
 	font-family: $font-stack-mono;
 	font-size: $fs-large;
 	font-weight: bold;
-	margin-left: $spacing-xs;
+	margin-left: $spacing-s;
+	transition: color 0.2s $ease-in-out;
 
 	.open & {
 		color: primary-color(100);

@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss" scoped>
 .logo-scene {
-	@include size(3rem);
+	@include size(100%);
 	display: flex;
 	perspective: 1000px;
 }
