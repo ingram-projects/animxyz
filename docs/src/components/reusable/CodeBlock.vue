@@ -3,7 +3,21 @@
 </template>
 
 <script>
+import prettier from 'prettier/standalone'
+import parserBabel from 'prettier/parser-babel'
+import parserHtml from 'prettier/parser-html'
 import Prism from 'vue-prism-component'
+
+const langParsers = {
+  html: {
+    name: 'html',
+    parser: parserHtml,
+  },
+  javascript: {
+    name: 'javascript',
+    parser: parserBabel,
+  },
+}
 
 export default {
 	name: 'CodeBlock',
@@ -25,7 +39,17 @@ export default {
     },
     activeCodeContent () {
       const data = this.data
-      return eval(`\`${this.activeCode.content}\``)
+      const evalData = eval(`\`${this.activeCode.content}\``)
+      const parser = langParsers[this.activeCode.language]
+      const prettierData = prettier.format(evalData, {
+        parser: parser.name,
+        plugins: [parser.parser],
+        printWidth: 80,
+				semi: false,
+				singleQuote: true,
+				trailingComma: 'es5',
+      })
+      return prettierData
     },
   },
   methods: {

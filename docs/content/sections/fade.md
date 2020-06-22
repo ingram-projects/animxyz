@@ -12,6 +12,12 @@ examples:
         content: |
           <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
 
+          ${data.modifiers.variables && `
+          <style>
+            .square { ${data.modifiers.variables} }
+          </style>
+          `}
+
 modifiers:
   utilities:
     default: fade
