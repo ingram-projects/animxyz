@@ -1,23 +1,45 @@
 <template>
-	<nav class="page-nav" :class="{ open: value }">
-		<button class="nav-toggle" @click="toggleNav(!value)">{{ value ? 'Close' : 'Menu'}}</button>
-		<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
-			<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
-				<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
-					<div class="link-dot__wrap">
-						<span class="link-dot"></span>
-					</div>
-					<span class="link-title">{{ section.title }}</span>
-				</a>
-			</li>
-		</scrollactive>
-	</nav>
+	<div class="page-nav__wrap" :class="{ open: value }">
+		<button class="nav-button xyz-in" xyz="fade duration-5 ease-out" @click="toggleNav(!value)">
+			<anim-xyz-logo></anim-xyz-logo>
+			<span class="nav-button__text">{{ value ? 'Close' : 'Menu' }}</span>
+		</button>
+
+		<nav class="page-nav">
+			<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
+				<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
+					<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+						<div class="link-dot__wrap">
+							<span class="link-dot"></span>
+						</div>
+						<span class="link-title">{{ section.title }}</span>
+					</a>
+				</li>
+			</scrollactive>
+			<a
+				class="github-link xyz-in"
+				xyz="fade small up turn-ccw duration-4 ease-out-back"
+				href="https://github.com/ingram-projects/animxyz"
+				target="_blank"
+			>
+				<span class="screen-reader-only">View on GitHub</span>
+				<icon-github></icon-github>
+			</a>
+		</nav>
+	</div>
 </template>
 
 <script>
+import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
+import IconGithub from '~/assets/icons/IconGithub.svg'
+
 export default {
 	name: 'PageNav',
 	props: ['value', 'sections'],
+	components: {
+		AnimXyzLogo,
+		IconGithub,
+	},
 	methods: {
 		toggleNav(toggled) {
 			this.$emit('input', toggled)
@@ -30,34 +52,39 @@ export default {
 .page-nav {
 	position: fixed;
 	width: 20rem;
-	left: -20rem;
 	top: 0;
 	height: 100vh;
 	background-color: primary-color(900);
 	z-index: 1;
-	transition: left .3s $ease-in-out;
+	transform: translateX(-100%);
+	transition: transform 0.3s $ease-in-out;
 
-	&.open {
-		left: 0;
+	.open & {
+		transform: translateX(0);
+		@include media('<tablet') {
+			top: 100vh;
+			transform: translateY(-100vh);
+		}
 	}
-}
 
-.nav-toggle {
-	position: absolute;
-	left: 100%;
-	top: 50%;
-	transform: translate(-50%, -50%) rotate(90deg);
-	padding-bottom: 2.5rem;
-	color: primary-color(800);
-	font-family: $font-stack-mono;
-	font-size: $fs-xlarge;
-	font-weight: bold;
+	@include media('<tablet') {
+		top: 100vh;
+		left: 0;
+		right: 0;
+		width: auto;
+		transform: initial;
+	}
 }
 
 .nav-sections {
 	padding: $spacing-l 0;
+	padding-top: $spacing-xxxl;
 	list-style: none;
-	--xyz-stagger: .075s;
+	--xyz-stagger: 0.075s;
+
+	@include media('<tablet') {
+		padding-top: $spacing-l;
+	}
 }
 
 .nav-section__item {
@@ -121,5 +148,65 @@ export default {
 	background-color: primary-color(100);
 	transform: rotate(-0.125turn);
 	transition: all 0.25s $ease-in-out;
+}
+
+.nav-button {
+	--xyz-delay: 0.4s;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	top: $spacing-s;
+	left: $spacing-s;
+	z-index: 2;
+
+	@include media('<tablet') {
+		top: initial;
+		left: 50%;
+		bottom: $spacing-s;
+		transform: translateX(-50%);
+	}
+}
+
+.nav-button__text {
+	color: primary-color(800);
+	font-family: $font-stack-mono;
+	font-size: $fs-large;
+	font-weight: bold;
+	margin-left: $spacing-xs;
+
+	.open & {
+		color: primary-color(100);
+	}
+
+	@include media('<tablet') {
+		display: none;
+	}
+}
+
+.github-link {
+	--xyz-delay: 1.4s;
+	@include size(2.5rem);
+	display: block;
+	position: fixed;
+	bottom: $spacing-m;
+	left: $spacing-m;
+	--icon-color: #{$white};
+	z-index: 2;
+
+	svg {
+		@include size(100%);
+		transition: transform 0.3s $ease-out-back;
+	}
+
+	&:hover {
+		svg {
+			transform: scale(1.2);
+		}
+	}
+
+	@include media('<tablet') {
+		position: relative;
+		bottom: initial;
+	}
 }
 </style>
