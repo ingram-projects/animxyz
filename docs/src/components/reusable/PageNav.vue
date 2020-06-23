@@ -9,19 +9,21 @@
 
 		<xyz-transition xyz="left-100 ease-in-out">
 			<nav class="page-nav" v-if="value">
-				<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
-					<li v-for="section in sections" class="nav-section__item xyz-in" :key="section.title">
-						<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
-							<div class="link-dot__wrap">
-								<span class="link-dot"></span>
-							</div>
-							<span class="link-title">{{ section.title }}</span>
-						</a>
-					</li>
-				</scrollactive>
+				<div class="nav-sections__wrap">
+					<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
+						<li v-for="section in sections" class="nav-section__item xyz-in" :key="section.title">
+							<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+								<div class="link-dot__wrap">
+									<span class="link-dot"></span>
+								</div>
+								<span class="link-title">{{ section.title }}</span>
+							</a>
+						</li>
+					</scrollactive>
+				</div>
 				<a
 					class="github-link xyz-in"
-					xyz="fade small ease-out-back"
+					xyz="fade delay-3 small ease-out-back"
 					href="https://github.com/ingram-projects/animxyz"
 					target="_blank"
 				>
@@ -75,17 +77,26 @@ export default {
 	}
 }
 
-.nav-sections {
-	padding: $spacing-l 0;
+.nav-sections__wrap {
+	display: flex;
 	margin-top: 5.5rem;
-	list-style: none;
 	flex-grow: 1;
 	overflow-y: auto;
-	--xyz-stagger: 0.075s;
 
 	@include media('<tablet') {
 		margin-top: 0;
 		order: 2;
+	}
+}
+
+.nav-sections {
+	width: 100%;
+	margin: auto 0;
+	list-style: none;
+	--xyz-stagger: 0.075s;
+
+	@include media('<tablet') {
+		margin: 0;
 	}
 }
 
@@ -193,14 +204,13 @@ export default {
 .github-link {
 	--icon-color: #{primary-color(200)};
 	height: 3rem;
-	width: 100%;
-	padding: 0 $spacing-xxs;
+	border-radius: $br-l;
+	padding: 0 $spacing-s;
+	margin: $spacing-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	bottom: $spacing-m;
-	left: $spacing-m;
 	z-index: 2;
 	background-color: primary-color(500, 0.2);
 	color: var(--icon-color);
