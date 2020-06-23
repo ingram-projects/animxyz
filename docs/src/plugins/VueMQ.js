@@ -9,10 +9,12 @@ const VueMQ = {
       return val
     }
 
-    const mq = {}
+    let data = {
+      mq: {},
+    }
 
     const updateMqObj = () => {
-      mq.media = (options) => {
+      const media = (options) => {
         const {
           min,
           max,
@@ -31,15 +33,26 @@ const VueMQ = {
         return matchMedia(mediaQuery).matches
       }
 
-      mq.below = (max, direction) => mq.media({ max, direction })
-      mq.above = (min, direction) => mq.media({ min, direction })
-      mq.between = (min, max, direction) => mq.media({ min, max, direction })
+      const below = (max, direction) => media({ max, direction })
+      const above = (min, direction) => media({ min, direction })
+      const between = (min, max, direction) => media({ min, max, direction })
+
+      data.mq = {
+        media,
+        below,
+        above,
+        between,
+      }
     }
 
     updateMqObj()
     window.addEventListener('resize', updateMqObj)
 
-    Vue.prototype.$mq = Vue.observable(mq);
+    Vue.observable(data);
+
+    Object.defineProperty(Vue.prototype, '$mq', {
+      get () { return data.mq }
+    })
 	},
 }
 
