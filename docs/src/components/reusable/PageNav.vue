@@ -1,42 +1,45 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open: value }">
-		<button class="nav-button xyz-in" xyz="fade duration-5 ease-out" @click="toggleNav(!value)">
-			<div class="logo-wrap">
-				<anim-xyz-logo></anim-xyz-logo>
-			</div>
-			<span class="nav-button__text logo-text">AnimXYZ</span>
-			<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
-		</button>
+		<focus-lock :disabled="!value">
+			<button class="nav-button xyz-in" xyz="fade duration-5 ease-out" @click="toggleNav(!value)">
+				<div class="logo-wrap">
+					<anim-xyz-logo></anim-xyz-logo>
+				</div>
+				<span class="nav-button__text logo-text">AnimXYZ</span>
+				<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
+			</button>
 
-		<nav class="page-nav">
-			<div class="nav-sections__wrap">
-				<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
-					<li v-for="section in sections" class="nav-section__item"  :class="{ 'xyz-in': value }" :key="section.title">
-						<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
-							<div class="link-dot__wrap">
-								<span class="link-dot"></span>
-							</div>
-							<span class="link-title">{{ section.title }}</span>
-						</a>
-					</li>
-				</scrollactive>
-			</div>
-			<a
-				class="github-link"
-				:class="{ 'xyz-in': value }"
-				xyz="fade delay-3 small ease-out-back"
-				href="https://github.com/ingram-projects/animxyz"
-				target="_blank"
-			>
-				<icon-github></icon-github>
-				<span>View on GitHub</span>
-			</a>
-		</nav>
+			<nav class="page-nav">
+				<div class="nav-sections__wrap">
+					<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
+						<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" @click="onSectionClick" :key="section.title">
+							<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+								<div class="link-dot__wrap">
+									<span class="link-dot"></span>
+								</div>
+								<span class="link-title">{{ section.title }}</span>
+							</a>
+						</li>
+					</scrollactive>
+				</div>
+				<a
+					class="github-link"
+					:class="{ 'xyz-in': value }"
+					xyz="fade delay-3 small ease-out-back"
+					href="https://github.com/ingram-projects/animxyz"
+					target="_blank"
+				>
+					<icon-github></icon-github>
+					<span>View on GitHub</span>
+				</a>
+			</nav>
+		</focus-lock>
 	</div>
 </template>
 
 <script>
 import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
+import FocusLock from 'vue-focus-lock'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
@@ -44,12 +47,18 @@ export default {
 	props: ['value', 'sections'],
 	components: {
 		AnimXyzLogo,
+		FocusLock,
 		IconGithub,
 	},
 	methods: {
 		toggleNav(toggled) {
 			this.$emit('input', toggled)
 		},
+		onSectionClick() {
+			if (this.$mq.below('large')) {
+				this.$emit('input', false)
+			}
+		}
 	},
 }
 </script>
