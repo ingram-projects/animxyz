@@ -226,7 +226,7 @@ export function getXyzVariable(name, mode = 'all', value = 'initial') {
 }
 
 export const xyzVariableRegex = new RegExp(
-	`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')}):\s*(.+)$`
+	`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')}):\\s*(.+)$`
 )
 
 export function getXyzVariableRegex(string) {

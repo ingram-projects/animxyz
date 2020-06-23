@@ -170,7 +170,7 @@ export default {
 		top: initial;
 		left: 50%;
 		bottom: $spacing-s;
-		transform: translateX(-50%);
+		margin-left: -1.25rem;
 	}
 }
 
