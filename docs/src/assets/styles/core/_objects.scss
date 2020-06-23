@@ -10,13 +10,15 @@
 	@include size(5rem);
 	background-color: $cyan;
 	border-radius: $br-l;
-  margin: $spacing-m;
+  // margin: $spacing-m;
 }
 
 .square-group {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  width: 24rem;
+  max-width: 100%;
 }
 
 .square-block {

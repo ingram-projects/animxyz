@@ -24,8 +24,8 @@
 				href="https://github.com/ingram-projects/animxyz"
 				target="_blank"
 			>
-				<span class="screen-reader-only">View on GitHub</span>
 				<icon-github></icon-github>
+				<span>View on GitHub</span>
 			</a>
 		</nav>
 	</div>
@@ -53,6 +53,8 @@ export default {
 <style lang="scss" scoped>
 .page-nav {
 	position: fixed;
+	display: flex;
+	flex-direction: column;
 	width: 20rem;
 	top: 0;
 	height: 100vh;
@@ -80,12 +82,15 @@ export default {
 
 .nav-sections {
 	padding: $spacing-l 0;
-	padding-top: $spacing-xxxl;
+	margin-top: 5.5rem;
 	list-style: none;
+	flex-grow: 1;
+	overflow-y: auto;
 	--xyz-stagger: 0.075s;
 
 	@include media('<tablet') {
-		padding-top: $spacing-l;
+		margin-top: 0;
+		order: 2;
 	}
 }
 
@@ -192,28 +197,40 @@ export default {
 
 .github-link {
 	--xyz-delay: 1.4s;
-	@include size(2.5rem);
-	display: block;
-	position: fixed;
+	--icon-color: #{primary-color(200)};
+	height: 3rem;
+	width: 100%;
+	padding: 0 $spacing-xxs;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 	bottom: $spacing-m;
 	left: $spacing-m;
-	--icon-color: #{$white};
 	z-index: 2;
+	background-color: primary-color(500, 0.2);
+	color: var(--icon-color);
+	text-decoration: none;
+	transition: background-color 0.2s $ease-in-out;
 
 	svg {
-		@include size(100%);
+		@include size(1.5rem);
 		transition: transform 0.3s $ease-out-back;
+		margin-right: $spacing-xs;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
+		--icon-color: #{primary-color(50)};
+		background-color: primary-color(500, 0.3);
+
 		svg {
-			transform: scale(1.2);
+			transform: scale(1.15);
 		}
 	}
 
 	@include media('<tablet') {
-		position: relative;
-		bottom: initial;
+		order: 1;
 	}
 }
 </style>

@@ -34,7 +34,10 @@ export default {
 	align-items: flex-start;
 	justify-content: center;
 	margin: 0 auto;
-	margin-bottom: 12vw;
+
+	& + & {
+		margin-top: 12vw;
+	}
 
 	@include media('<laptop') {
 		flex-direction: column;
