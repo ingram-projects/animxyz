@@ -64,8 +64,18 @@
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
+import VueMQ from '~/mixins/VueMQ'
 
 export default {
+	mixins: [VueMQ({
+		small: '375px',
+		phone: '540px',
+		tablet: '768px',
+		laptop: '1024px',
+		desktop: '1248px',
+		large: '1440px',
+		'x-large': '2000px',
+	})],
 	components: {
 		Banner,
 		DocsSection,
@@ -73,7 +83,6 @@ export default {
 	},
 	data() {
 		return {
-			mobile: true,
 			navOpen: false,
 			sectionNames: [
 				'Installation',
@@ -105,24 +114,9 @@ export default {
 		},
 	},
 	methods: {
-		initMediaQuery() {
-			const mediaQuery = window.matchMedia('(max-width: 1024px)')
-			const onMediaQuery = (mq) => {
-				if (mq.matches) {
-					this.mobile = true
-				} else {
-					this.mobile = false
-				}
-			}
-			onMediaQuery(mediaQuery)
-			mediaQuery.addListener(onMediaQuery)
-		},
 		closeNav() {
 			this.navOpen = false
 		},
-	},
-	mounted() {
-		this.initMediaQuery()
 	},
 	metaInfo() {
 		return {
@@ -148,6 +142,7 @@ export default {
 	}
 
 	@include media('>=large') {
+		transform: initial !important;
 		padding-left: 20rem;
 	}
 }
