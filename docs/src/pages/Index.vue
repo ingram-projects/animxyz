@@ -183,6 +183,7 @@ export default {
 
 .sections__wrap {
 	margin: 0 auto;
+	margin-bottom: $spacing-xxxl;
 	width: 100%;
 	max-width: 80rem;
 }

@@ -4,16 +4,16 @@
   <path class="xyz-nested" style="--xyz-translate-y: 0" d="M53.5 2.53293L12 26.493C9.52479 27.922 8 30.563 8 33.4212V84.1836C8 84.2413 8.00062 84.2989 8.00186 84.3565L53.5 57.9203V2.53293Z" fill="url(#paint2_linear)"/>
   <defs>
     <linearGradient id="paint0_linear" x1="83.5" y1="72.54" x2="114.5" y2="18.54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#EB5757"/>
-      <stop offset="1" stop-color="var(--primary-50)"/>
+      <stop stop-color="rgba(var(--red-rgb), 1)"/>
+      <stop offset="1" stop-color="rgba(var(--red-rgb), 0)"/>
     </linearGradient>
     <linearGradient id="paint1_linear" x1="38" y1="71.04" x2="72" y2="128.54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F2C94C"/>
-      <stop offset="1" stop-color="var(--primary-50)"/>
+      <stop stop-color="rgba(var(--yellow-rgb), 0)"/>
+      <stop offset="1" stop-color="rgba(var(--yellow-rgb), 1)"/>
     </linearGradient>
     <linearGradient id="paint2_linear" x1="60" y1="31.54" x2="-2.5" y2="33.54" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#6FCF97"/>
-      <stop offset="1" stop-color="var(--primary-50)"/>
+      <stop stop-color="rgba(var(--green-rgb), 0)"/>
+      <stop offset="1" stop-color="rgba(var(--green-rgb), 1)"/>
     </linearGradient>
   </defs>
 </svg>
