@@ -36,18 +36,18 @@ export default {
 }
 
 .side--right {
-	background-image: linear-gradient(to bottom, $red, transparent);
+	background-image: linear-gradient(to bottom, rgba(var(--red-rgb), 1), rgba(var(--red-rgb), 0));
 	transform-origin: top;
 	transform: rotateX(90deg);
 }
 
 .side--left {
-	background-image: linear-gradient(to bottom, $green, transparent);
+	background-image: linear-gradient(to bottom, rgba(var(--yellow-rgb), 1), rgba(var(--yellow-rgb), 0));
 	transform-origin: left;
 	transform: rotateY(-90deg);
 }
 
 .side--bottom {
-	background-image: linear-gradient(to right, $yellow, transparent);
+	background-image: linear-gradient(to right, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), 0));
 }
 </style>

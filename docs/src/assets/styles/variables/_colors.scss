@@ -13,10 +13,10 @@ $primary700: #485584; $primary700-rgb: hexToRGB($primary700);
 $primary800: #2E375C; $primary800-rgb: hexToRGB($primary800);
 $primary900: #171C33; $primary900-rgb: hexToRGB($primary900);
 
-$red: #EB5757;
-$yellow: #F2C94C;
-$green: #6FCF97;
-$cyan: #56CCF2;
+$red: #EB5757; $red-rgb: hexToRGB($red);
+$yellow: #F2C94C; $yellow-rgb: hexToRGB($yellow);
+$green: #6FCF97; $green-rgb: hexToRGB($green);
+$cyan: #56CCF2; $cyan-rgb: hexToRGB($cyan);
 
 // GRAYSCALE -------------------------------------
 
