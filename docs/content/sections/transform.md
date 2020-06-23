@@ -5,12 +5,18 @@ examples:
   - name: Transform
     template: |
       <xyz-transition xyz="fade" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled"></div>
+        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
+
+          ${data.modifiers.variables && `
+          <style>
+            .square { ${data.modifiers.variables} }
+          </style>
+          `}
 
 modifiers:
   utilities:

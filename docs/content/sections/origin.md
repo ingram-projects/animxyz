@@ -5,12 +5,18 @@ examples:
   - name: Origin
     template: |
       <xyz-transition xyz="fade small-100" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled"></div>
+        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade small-100 ${data.modifiers.utilities}"></div>
+
+          ${data.modifiers.variables && `
+          <style>
+            .square { ${data.modifiers.variables} }
+          </style>
+          `}
 
 modifiers:
   utilities:
