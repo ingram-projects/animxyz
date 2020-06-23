@@ -9,11 +9,11 @@ const VueMQ = {
       return val
     }
 
-    let data = {
-      mq: {},
-    }
+    let data = {}
 
     const updateMqObj = () => {
+      data.cached = {}
+
       const media = (options) => {
         const {
           min,
@@ -29,8 +29,13 @@ const VueMQ = {
           components.push(`(max-${direction}: ${getBreakpoint(max)})`)
         }
 
+        if (!components.length) return false
+
         const mediaQuery = components.join(' and ')
-        return matchMedia(mediaQuery).matches
+        if (!data.cached[mediaQuery]) {
+          data.cached[mediaQuery] = matchMedia(mediaQuery).matches
+        }
+        return data.cached[mediaQuery]
       }
 
       const below = (max, direction) => media({ max, direction })
