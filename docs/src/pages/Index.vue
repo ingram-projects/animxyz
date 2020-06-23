@@ -64,18 +64,8 @@
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
-import VueMQ from '~/mixins/VueMQ'
 
 export default {
-	mixins: [VueMQ({
-		small: '375px',
-		phone: '540px',
-		tablet: '768px',
-		laptop: '1024px',
-		desktop: '1248px',
-		large: '1440px',
-		'x-large': '2000px',
-	})],
 	components: {
 		Banner,
 		DocsSection,
