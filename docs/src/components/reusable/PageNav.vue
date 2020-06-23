@@ -55,9 +55,7 @@ export default {
 			this.$emit('input', toggled)
 		},
 		onSectionClick() {
-			if (this.$mq.below('large')) {
-				this.$emit('input', false)
-			}
+			this.$emit('input', false)
 		}
 	},
 }
