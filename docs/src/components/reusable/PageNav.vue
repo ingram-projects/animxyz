@@ -59,7 +59,6 @@ export default {
 	top: 0;
 	height: 100vh;
 	background-color: primary-color(900, 0.95);
-	backdrop-filter: blur(4px);
 	z-index: 1;
 	transform: translateX(-100%);
 	transition: transform 0.3s $ease-in-out;
@@ -78,6 +77,7 @@ export default {
 		right: 0;
 		width: auto;
 		transform: initial;
+		backdrop-filter: blur(4px);
 	}
 }
 
