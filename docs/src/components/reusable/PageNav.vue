@@ -7,27 +7,29 @@
 			<span class="nav-button__text">{{ value ? 'Close' : 'Menu' }}</span>
 		</button>
 
-		<nav class="page-nav">
-			<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
-				<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" :key="section.title">
-					<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
-						<div class="link-dot__wrap">
-							<span class="link-dot"></span>
-						</div>
-						<span class="link-title">{{ section.title }}</span>
-					</a>
-				</li>
-			</scrollactive>
-			<a
-				class="github-link xyz-in"
-				xyz="fade small up turn-ccw duration-4 ease-out-back"
-				href="https://github.com/ingram-projects/animxyz"
-				target="_blank"
-			>
-				<icon-github></icon-github>
-				<span>View on GitHub</span>
-			</a>
-		</nav>
+		<xyz-transition xyz="left-100 ease-in-out">
+			<nav class="page-nav" v-if="value">
+				<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
+					<li v-for="section in sections" class="nav-section__item xyz-in" :key="section.title">
+						<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+							<div class="link-dot__wrap">
+								<span class="link-dot"></span>
+							</div>
+							<span class="link-title">{{ section.title }}</span>
+						</a>
+					</li>
+				</scrollactive>
+				<a
+					class="github-link xyz-in"
+					xyz="fade small ease-out-back"
+					href="https://github.com/ingram-projects/animxyz"
+					target="_blank"
+				>
+					<icon-github></icon-github>
+					<span>View on GitHub</span>
+				</a>
+			</nav>
+		</xyz-transition>
 	</div>
 </template>
 
@@ -60,19 +62,11 @@ export default {
 	height: 100vh;
 	background-color: primary-color(900, 0.95);
 	z-index: 1;
-	transform: translateX(-100%);
-	transition: transform 0.3s $ease-in-out;
-
-	.open & {
-		transform: translateX(0);
-		@include media('<tablet') {
-			top: 100vh;
-			transform: translateY(-100vh);
-		}
-	}
+	--xyz-translate-x: -100%;
 
 	@include media('<tablet') {
-		top: 100vh;
+		--xyz-translate-x: initial;
+		--xyz-translate-y: 100vh;
 		left: 0;
 		right: 0;
 		width: auto;
@@ -197,7 +191,6 @@ export default {
 }
 
 .github-link {
-	--xyz-delay: 1.4s;
 	--icon-color: #{primary-color(200)};
 	height: 3rem;
 	width: 100%;
