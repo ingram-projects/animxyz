@@ -116,86 +116,105 @@ export const xyzScaleLevels = {
 export const xyzVariablesMap = {
 	keyframes: {
 		type: 'keyframes',
+		syntax: '<time>',
 		modes: xyzModesAll,
 	},
 	ease: {
 		type: 'ease',
+		syntax: '<easing-function>',
 		modes: [...xyzModesAll, xyzModeMove],
 	},
 	duration: {
 		type: 'duration',
+		syntax: '<time>',
 		modes: [...xyzModesAll, xyzModeMove],
 	},
 	delay: {
 		type: 'delay',
+		syntax: '<time>',
 		modes: [...xyzModesAll, xyzModeMove],
 	},
 	stagger: {
 		type: 'stagger',
+		syntax: '<time>',
 		modes: xyzModesAll,
 	},
 	'stagger-rev': {
 		type: 'stagger',
+		syntax: '<time>',
 		modes: xyzModesAll,
 	},
 	iterate: {
 		type: 'iterate',
+		syntax: '<integer> | infinite',
 		modes: xyzModesAll,
 	},
 	origin: {
 		type: 'origin',
+		syntax: '<position> | <length>',
 		modes: xyzModesAll,
 	},
 	fade: {
 		type: 'fade',
+		syntax: '<number>',
 		modes: xyzModesAll,
 	},
 	transform: {
 		type: 'transform',
+		syntax: '<transform-function>',
 		modes: xyzModesAll,
 	},
 	'translate-x': {
 		type: 'translate',
+		syntax: '<length> | <percentage>',
 		axis: 'x',
 		modes: xyzModesAll,
 	},
 	'translate-y': {
 		type: 'translate',
+		syntax: '<length> | <percentage>',
 		axis: 'y',
 		modes: xyzModesAll,
 	},
 	'translate-z': {
 		type: 'translate',
+		syntax: '<length> | <percentage>',
 		axis: 'z',
 		modes: xyzModesAll,
 	},
 	'rotate-x': {
 		type: 'rotate',
+		syntax: '<angle>',
 		axis: 'x',
 		modes: xyzModesAll,
 	},
 	'rotate-y': {
 		type: 'rotate',
+		syntax: '<angle>',
 		axis: 'y',
 		modes: xyzModesAll,
 	},
 	'rotate-z': {
 		type: 'rotate',
+		syntax: '<angle>',
 		axis: 'z',
 		modes: xyzModesAll,
 	},
 	'scale-x': {
 		type: 'scale',
+		syntax: '<number>',
 		axis: 'x',
 		modes: xyzModesAll,
 	},
 	'scale-y': {
 		type: 'scale',
+		syntax: '<number>',
 		axis: 'y',
 		modes: xyzModesAll,
 	},
 	'scale-z': {
 		type: 'scale',
+		syntax: '<number>',
 		axis: 'z',
 		modes: xyzModesAll,
 	},
