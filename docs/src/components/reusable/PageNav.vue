@@ -180,7 +180,7 @@ export default {
 	@include media('<tablet') {
 		top: initial;
 		left: 50%;
-		bottom: $spacing-s;
+		bottom: $spacing-l;
 		margin-left: -1.25rem;
 	}
 }
