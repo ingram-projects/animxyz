@@ -17,7 +17,6 @@
 			<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
 				<docs-section
 					:section="section"
-					:mobile="mobile"
 					v-for="section in sections"
 					:key="section.title"
 				></docs-section>

@@ -20,7 +20,7 @@ import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	name: 'DocsSection',
-	props: ['section', 'mobile'],
+	props: ['section'],
 	components: {
 		MarkdownContent,
 		Sandbox,
