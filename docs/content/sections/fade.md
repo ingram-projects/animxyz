@@ -5,7 +5,7 @@ examples:
   - name: Fade
     template: |
       <xyz-transition v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled"></div>
+        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
       </xyz-transition>
     code:
       - language: html

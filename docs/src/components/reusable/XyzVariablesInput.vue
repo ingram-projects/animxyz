@@ -2,17 +2,22 @@
 	<div class="variables-input">
 		<div class="variable" v-for="variable in variables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
-			<input class="variable-input" type="text" :id="variable.id" v-model="value[variable.name]" />
+			<input class="variable-input" type="text" :id="variable.id" v-model="toggledVariables[variable.string]" placeholder="initial"/>
 		</div>
 	</div>
 </template>
 
 <script>
-import { xyzVariables, getXyzVariable } from '~/utils'
+import { xyzVariables, getXyzVariable, getXyzVariableRegex } from '~/utils'
 
 export default {
 	name: 'XyzVariablesInput',
 	props: ['value', 'types'],
+	data() {
+		return {
+			toggledVariables: {},
+		}
+	},
 	computed: {
 		typeVariables() {
 			const typeVariables = []
@@ -33,6 +38,37 @@ export default {
 					id: `${this._uid}_${variableMode.string}`,
 				}
 			})
+		},
+	},
+	watch: {
+		value: {
+			immediate: true,
+			handler() {
+				this.toggledVariables = {}
+				if (this.value) {
+					const toggledVariables = this.value.split('; ')
+					toggledVariables.forEach((toggledVariable) => {
+						const variable = getXyzVariableRegex(toggledVariable)
+
+						if (variable) {
+							this.$set(this.toggledVariables, variable.string, variable.value)
+						}
+					})
+				}
+			},
+		},
+		toggledVariables: {
+			deep: true,
+			handler() {
+				let toggled = []
+				Object.entries(this.toggledVariables).forEach(([name, value]) => {
+					const trimmedValue = value.trim()
+					if (trimmedValue.length) {
+						toggled.push(`${name}: ${trimmedValue}`)
+					}
+				})
+				this.$emit('input', toggled.join('; '))
+			},
 		},
 	},
 }
@@ -80,5 +116,9 @@ export default {
 	padding-right: $spacing-s;
 	color: $cyan;
 	font-size: 1.125rem;
+
+	&::placeholder {
+		color: primary-color(100, 0.2);
+	}
 }
 </style>

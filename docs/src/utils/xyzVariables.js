@@ -205,28 +205,28 @@ export const xyzVariables = Object.entries(xyzVariablesMap).map(([name, variable
 	return {
 		name: name,
 		...variable,
-		string: `--xyz-${name}`,
 	}
 })
 
-export function getXyzVariable(name, mode = 'all') {
+export function getXyzVariable(name, mode = 'all', value = 'initial') {
 	const variableObj = xyzVariablesMap[name]
 
-	const components = ['--xyz-']
+	const components = ['--xyz']
 	if (mode !== 'all') components.push(mode)
 	components.push(name)
 
 	return {
 		name,
+		value,
 		mode,
 		valid: variableObj.modes.includes(mode),
-		string: components.join('-'),
+		string: `${components.join('-')}`,
 		...variableObj,
 	}
 }
 
 export const xyzVariableRegex = new RegExp(
-	`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')})`
+	`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')}):\s*(.+)$`
 )
 
 export function getXyzVariableRegex(string) {
@@ -237,11 +237,12 @@ export function getXyzVariableRegex(string) {
 
 	const mode = match[1]
 	const name = match[2]
+	const value = match[3]
 	if (!name) {
 		return null
 	}
 
-	return getXyzVariable(name, mode)
+	return getXyzVariable(name, mode, value)
 }
 
 // UTILITIES

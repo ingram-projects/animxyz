@@ -47,7 +47,7 @@ export default {
 				if (this.modifiers) {
 					this.xyzModifiers = {
 						utilities: '',
-						variables: {},
+						variables: '',
 					}
 					if (this.modifiers.utilities && this.modifiers.utilities.default) {
 						this.xyzModifiers.utilities = this.modifiers.utilities.default

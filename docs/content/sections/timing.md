@@ -5,12 +5,18 @@ examples:
   - name: Timing
     template: |
       <xyz-transition xyz="fade turn-cw-50" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled"></div>
+        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade turn-cw-50 ${data.modifiers.utilities}"></div>
+
+          ${data.modifiers.variables && `
+          <style>
+            .square { ${data.modifiers.variables} }
+          </style>
+          `}
 
 modifiers:
   utilities:
