@@ -4,7 +4,8 @@
 			<div class="logo-wrap">
 				<anim-xyz-logo></anim-xyz-logo>
 			</div>
-			<span class="nav-button__text">{{ value ? 'Close' : 'Menu' }}</span>
+			<span class="nav-button__text logo-text">AnimXYZ</span>
+			<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
 		</button>
 
 		<nav class="page-nav">
@@ -79,6 +80,12 @@ export default {
 		width: auto;
 		transform: translateY(100vh);
 		backdrop-filter: blur(4px);
+	}
+
+	@include media('>=large') {
+		opacity: 1;
+		transform: initial;
+		transition: transform .3s $ease-in-out;
 	}
 }
 
@@ -183,6 +190,10 @@ export default {
 		bottom: $spacing-l;
 		margin-left: -1.25rem;
 	}
+
+	@include media('>=large') {
+		pointer-events: none;
+	}
 }
 
 .logo-wrap {
@@ -190,18 +201,33 @@ export default {
 }
 
 .nav-button__text {
-	color: primary-color(800);
 	font-family: $font-stack-mono;
 	font-size: $fs-large;
 	font-weight: bold;
 	margin-left: $spacing-s;
 	transition: color 0.2s $ease-in-out;
 
+	@include media('<tablet') {
+		display: none;
+	}
+}
+
+.logo-text {
+	color: primary-color(100);
+
+	@include media('<large') {
+		display: none;
+	}
+}
+
+.toggle-text {
+	color: primary-color(800);
+
 	.open & {
 		color: primary-color(100);
 	}
 
-	@include media('<tablet') {
+	@include media('>=large') {
 		display: none;
 	}
 }

@@ -146,6 +146,10 @@ export default {
 			transform: initial;
 		}
 	}
+
+	@include media('>=large') {
+		padding-left: 20rem;
+	}
 }
 
 .intro__wrap {
