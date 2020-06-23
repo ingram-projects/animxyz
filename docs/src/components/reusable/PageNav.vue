@@ -85,10 +85,14 @@ export default {
 
 .nav-sections__wrap {
 	display: flex;
-	align-items: center;
 	margin-top: 5.5rem;
 	flex-grow: 1;
 	overflow-y: auto;
+
+	@include media('<tablet') {
+		margin-top: 0;
+		order: 2;
+	}
 }
 
 .nav-sections {
@@ -98,8 +102,7 @@ export default {
 	--xyz-stagger: 0.075s;
 
 	@include media('<tablet') {
-		margin-top: 0;
-		order: 2;
+		margin: 0;
 	}
 }
 
