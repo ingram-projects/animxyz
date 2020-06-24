@@ -11,10 +11,10 @@
 				</button>
 			</xyz-transition>
 
-			<xyz-transition appear xyz="ease-in-out" :duration="2000">
+			<xyz-transition appear xyz="ease-in-out" v-xyz="{'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet')}" :duration="2000">
 				<nav class="page-nav" v-if="value">
 					<div class="nav-sections__wrap">
-						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">
+						<scrollactive tag="ul" class="nav-sections" xyz="fade left stagger-1" active-class="active" :modify-url="false">
 							<li v-for="section in sections" class="nav-section__item xyz-in-nested" @click="onSectionClick" :key="section.title">
 								<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
 									<div class="link-dot__wrap">
@@ -76,15 +76,12 @@ export default {
 	height: 100vh;
 	background-color: primary-color(900, 0.95);
 	z-index: 1;
-	--xyz-translate-x: -100%;
 
 	@include media('<tablet') {
 		left: 0;
 		right: 0;
 		width: auto;
 		backdrop-filter: blur(4px);
-		--xyz-translate-x: initial;
-		--xyz-translate-y: 100%;
 	}
 }
 
@@ -104,7 +101,6 @@ export default {
 	width: 100%;
 	margin: auto 0;
 	list-style: none;
-	--xyz-stagger: 0.075s;
 
 	@include media('<tablet') {
 		margin: 0;

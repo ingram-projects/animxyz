@@ -4,38 +4,69 @@
 @include xyz-all;
 
 $mode-colors: (
-  'in': rgba(var(--green-rgb), 0.5),
-  'out': rgba(var(--red-rgb), 0.5),
-  'appear': rgba(var(--yellow-rgb), 0.5),
+  'in': rgba(var(--green-rgb), 0.75),
+  'out': rgba(var(--red-rgb), 0.75),
+  'appear': rgba(var(--yellow-rgb), 0.75),
 );
+
+@keyframes xyz-xray-box-mode {
+  0% {
+    background-color: transparent;
+  }
+  25% {
+    background-color: var(--xyz-xray-color);
+  }
+  75% {
+    background-color: var(--xyz-xray-color);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+%xyz-xray-box {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: $sp-xxs;
+  font-size: $fs-m;
+  font-weight: 600;
+  font-family: $font-stack-mono;
+  pointer-events: none;
+  z-index: 99999;
+}
 
 .xyz-xray {
   @each $mode in $xyz-modes {
     .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-      box-shadow: inset 0 0 0 99999px map.get($mode-colors, $mode) !important;
+      $duration: xyz-var('duration', $mode);
+      $delay: var(--xyz-active-delay, 0s);
+      position: relative;
+      --xyz-xray-color: #{map.get($mode-colors, $mode)};
+      &::after {
+        @extend %xyz-xray-box;
+        animation: xyz-xray-box-mode $duration $ease-in-out $delay both;
+      }
     }
   }
 
   [xyz] {
     position: relative;
-  }
 
-  [xyz]:hover {
     &::after {
+      @extend %xyz-xray-box;
       content: attr(xyz);
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      padding: $sp-xxs;
       color: $cyan;
-      box-shadow: inset 0 0 0 3px $cyan !important;
-      font-size: $fs-m;
-      font-weight: 600;
-      font-family: $font-stack-mono;
-      pointer-events: none;
-      z-index: 99999;
+      box-shadow: inset 0 0 0 3px $cyan;
+      opacity: 0;
+      transition: opacity .15s $ease-in-out;
+    }
+
+    &:hover::after {
+      opacity: 1;
     }
   }
 }
