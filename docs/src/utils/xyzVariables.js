@@ -537,7 +537,7 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 }
 
 export const xyzUtilityRegex = new RegExp(
-	`^(?:(in|out|appear|move)-)?(${Object.keys(xyzUtilitiesMap).join('|')})(?:-(\\w+))?$`
+	`^(?:(in|out|appear|move)-)?(${Object.keys(xyzUtilitiesMap).join('|')})(?:-([\\w-]+))?$`
 )
 
 export function getXyzUtilityRegex(string) {

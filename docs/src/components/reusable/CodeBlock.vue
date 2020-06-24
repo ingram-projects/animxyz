@@ -1,5 +1,5 @@
 <template>
-  <prism :language="activeCode.language">{{ activeCodeContent }}</prism>
+  <prism :language="activeLangOptions.language">{{ activeCodeContent }}</prism>
 </template>
 
 <script>
@@ -8,14 +8,42 @@ import parserBabel from 'prettier/parser-babel'
 import parserHtml from 'prettier/parser-html'
 import Prism from 'vue-prism-component'
 
-const langParsers = {
+const langOptions = {
   html: {
-    name: 'html',
-    parser: parserHtml,
+    prettier: {
+      parser: 'html',
+      plugins: [parserHtml],
+    },
+    prism: {
+      language: 'html',
+    },
   },
   javascript: {
-    name: 'javascript',
-    parser: parserBabel,
+    prettier: {
+      parser: 'babel',
+      plugins: [parserBabel],
+    },
+    prism: {
+      language: 'javascript',
+    },
+  },
+  vue: {
+    prettier: {
+      parser: 'vue',
+      plugins: [parserHtml],
+    },
+    prism: {
+      language: 'html',
+    },
+  },
+  react: {
+    prettier: {
+      parser: 'babel',
+      plugins: [parserBabel],
+    },
+    prism: {
+      language: 'javascript',
+    },
   },
 }
 
@@ -37,13 +65,14 @@ export default {
 			}
 			return null
     },
+    activeLangOptions () {
+      return langOptions[this.activeCode.language]
+    },
     activeCodeContent () {
       const data = this.data
       const evalData = eval(`\`${this.activeCode.content}\``)
-      const parser = langParsers[this.activeCode.language]
       const prettierData = prettier.format(evalData, {
-        parser: parser.name,
-        plugins: [parser.parser],
+        ...this.activeLangOptions.prettier,
         printWidth: 80,
 				semi: false,
 				singleQuote: true,
