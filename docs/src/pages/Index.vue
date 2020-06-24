@@ -75,6 +75,7 @@ export default {
 		return {
 			navOpen: false,
 			sectionNames: [
+				'About',
 				'Installation',
 				'Fade',
 				'Transform',
@@ -83,7 +84,13 @@ export default {
 				'Stagger',
 				'Composition',
 				'Variables',
+				'Contexts',
+				'Inheritance',
 				'Nesting',
+				'Modes',
+				'Vue',
+				'React',
+				'Customization',
 			],
 		}
 	},
