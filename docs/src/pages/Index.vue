@@ -20,7 +20,7 @@
 				</div>
 			</xyz-transition>
 
-			<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
+			<xyz-transition-group appear xyz="stagger duration-5" tag="div" class="sections__wrap">
 				<docs-section
 					:section="section"
 					v-for="section in sections"
@@ -121,11 +121,14 @@ export default {
 		},
 	},
 	watch: {
-		isMediaLarge() {
-			if (this.isMediaLarge) {
-				this.navOpen = true
-			} else {
-				this.navOpen = false
+		isMediaLarge: {
+			immediate: true,
+			handler () {
+				if (this.isMediaLarge) {
+					this.navOpen = true
+				} else {
+					this.navOpen = false
+				}
 			}
 		},
 	},

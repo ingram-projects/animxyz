@@ -60,7 +60,7 @@ export default {
 			}
 		},
 		onSectionClick() {
-			this.$emit('input', false)
+			this.toggleNav(false)
 		}
 	},
 }

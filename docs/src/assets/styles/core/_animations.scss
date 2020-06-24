@@ -13,14 +13,6 @@ $mode-colors: (
   @each $mode in $xyz-modes {
     .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
       box-shadow: inset 0 0 0 99999px map.get($mode-colors, $mode) !important;
-
-      &[xyz] {
-
-      }
-
-      &[xyz]:hover {
-        box-shadow: inset 0 0 0 99999px map.get($mode-colors, $mode), inset 0 0 0 3px $cyan !important;
-      }
     }
   }
 
@@ -29,19 +21,21 @@ $mode-colors: (
   }
 
   [xyz]:hover {
-    box-shadow: inset 0 0 0 3px $cyan !important;
-
     &::after {
       content: attr(xyz);
       position: absolute;
-      bottom: 100%;
       left: 0;
-      padding-bottom: $sp-xxs;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      padding: $sp-xxs;
       color: $cyan;
+      box-shadow: inset 0 0 0 3px $cyan !important;
       font-size: $fs-m;
       font-weight: 600;
       font-family: $font-stack-mono;
       pointer-events: none;
+      z-index: 99999;
     }
   }
 }
