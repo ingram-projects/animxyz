@@ -121,7 +121,7 @@ export const xyzVariablesMap = {
 	},
 	ease: {
 		type: 'ease',
-		syntax: '<easing-function>',
+		syntax: '<timing-function>',
 		modes: [...xyzModesAll, xyzModeMove],
 	},
 	duration: {
@@ -146,12 +146,12 @@ export const xyzVariablesMap = {
 	},
 	iterate: {
 		type: 'iterate',
-		syntax: '<integer> | infinite',
+		syntax: '<single-animation-iteration-count>',
 		modes: xyzModesAll,
 	},
 	origin: {
 		type: 'origin',
-		syntax: '<position> | <length>',
+		syntax: '<transform-origin>',
 		modes: xyzModesAll,
 	},
 	fade: {
@@ -161,24 +161,24 @@ export const xyzVariablesMap = {
 	},
 	transform: {
 		type: 'transform',
-		syntax: '<transform-function>',
+		syntax: '<transform-list>',
 		modes: xyzModesAll,
 	},
 	'translate-x': {
 		type: 'translate',
-		syntax: '<length> | <percentage>',
+		syntax: '<length-percentage>',
 		axis: 'x',
 		modes: xyzModesAll,
 	},
 	'translate-y': {
 		type: 'translate',
-		syntax: '<length> | <percentage>',
+		syntax: '<length-percentage>',
 		axis: 'y',
 		modes: xyzModesAll,
 	},
 	'translate-z': {
 		type: 'translate',
-		syntax: '<length> | <percentage>',
+		syntax: '<length>',
 		axis: 'z',
 		modes: xyzModesAll,
 	},
