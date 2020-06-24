@@ -7,11 +7,11 @@
 					{{ level }}
 				</th>
 			</tr>
-			<tr v-for="utility in utilities" :key="utility.name">
+			<tr v-for="utility in utilities" class="xyz-in" xyz="stagger-1" :key="utility.name">
 				<th class="utility__header">
 					{{ utility.name }}
 				</th>
-				<td class="utility-level" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+				<td class="utility-level xyz-nested" xyz="fade down stagger-1" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
 					<div class="utility-level__content" v-if="utilityLevel.valid">
 						<input
 							class="toggle-input"
