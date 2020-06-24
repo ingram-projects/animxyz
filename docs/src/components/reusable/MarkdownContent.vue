@@ -14,17 +14,17 @@ export default {
 	font-size: 1.125rem;
 
 	@include media('<phone') {
-		font-size: $fs-normal;
+		font-size: $fs-m;
 	}
 
 	::v-deep {
 		p {
-			margin-bottom: $spacing-m;
+			margin-bottom: $sp-m;
 		}
 
 		pre[class*='language-'] {
 			background: primary-color(900);
-			margin: 0 (-$spacing-s);
+			margin: 0 (-$sp-s);
 			border-radius: $br-l;
 		}
 	}

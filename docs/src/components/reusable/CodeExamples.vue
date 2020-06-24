@@ -61,7 +61,7 @@ export default {
 .example-template {
 	position: relative;
 	min-height: 10rem;
-	padding: $spacing-s;
+	padding: $sp-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;

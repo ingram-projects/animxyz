@@ -12,16 +12,19 @@ $breakpoints: (
 
 // FONT SIZE -------------------------------------
 
-$fs-xsmall: .75rem;
-$fs-small: .875rem;
-$fs-normal: 1rem;
-$fs-medium: 1.25rem;
-$fs-large: 1.5rem;
-$fs-xlarge: 2rem;
-$fs-xxlarge: 3rem;
+$fs-xxxs: .375rem;
+$fs-xxs: .5rem;
+$fs-xs: .75rem;
+$fs-s: .875rem;
+$fs-m: 1rem;
+$fs-l: 1.25rem;
+$fs-xl: 1.5rem;
+$fs-xxl: 2rem;
+$fs-xxxl: 3rem;
 
 // FONT WEIGHTS -------------------------------------
 
+$fw-light: 400;
 $fw-normal: 500;
 $fw-medium: 600;
 $fw-bold: 700;
@@ -38,37 +41,16 @@ $br-xxxl: 1rem;
 
 // SPACING -------------------------------------
 
-$spacing-xxxs: .25rem;
-$spacing-xxs: .5rem;
-$spacing-xs: .75rem;
-$spacing-s: 1rem;
-$spacing-m: 1.5rem;
-$spacing-l: 2rem;
-$spacing-xl: 3rem;
-$spacing-xxl: 4rem;
-$spacing-xxxl: 6rem;
+$sp-xxxs: .25rem;
+$sp-xxs: .5rem;
+$sp-xs: .75rem;
+$sp-s: 1rem;
+$sp-m: 1.5rem;
+$sp-l: 2rem;
+$sp-xl: 3rem;
+$sp-xxl: 4rem;
+$sp-xxxl: 6rem;
 
-// Z-INDEX -------------------------------------
-
-$z-back: -6;
-$z-backward-5: -5;
-$z-backward-4: -4;
-$z-backward-3: -3;
-$z-backward-2: -2;
-$z-backward-1: -1;
-$z-none: 0;
-$z-forward-1: 1;
-$z-forward-2: 2;
-$z-forward-3: 3;
-$z-forward-4: 4;
-$z-forward-5: 5;
-$z-front: 6;
-
-$z-nav: 7;
-$z-dropdown: 8;
-$z-poppers: 9;
-$z-floaters: 10;
-$z-modals: 11;
 
 // EASING -------------------------------------
 

@@ -50,7 +50,7 @@ export default {
 }
 
 .section-title {
-	margin-bottom: $spacing-m;
+	margin-bottom: $sp-m;
 	font-size: 4rem;
 	font-family: $font-stack-mono;
 	color: primary-color(600, 0.7);
@@ -79,13 +79,13 @@ export default {
 }
 
 .section-text {
-	padding: 0 $spacing-m;
+	padding: 0 $sp-m;
 }
 
 .section-sandbox {
 	position: sticky;
-	padding: 0 $spacing-m;
-	top: $spacing-m;
+	padding: 0 $sp-m;
+	top: $sp-m;
 
 	@include media('<phone') {
 		width: 100vw;
@@ -95,7 +95,7 @@ export default {
 
 .sandbox {
 	@include media('<laptop') {
-		margin: 0 (-$spacing-s);
+		margin: 0 (-$sp-s);
 	}
 
 	@include media('<phone') {

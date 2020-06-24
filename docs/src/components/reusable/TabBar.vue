@@ -39,7 +39,7 @@ export default {
 	align-items: center;
 	justify-content: center;
 	height: 3rem;
-	padding: 0 $spacing-xxs;
+	padding: 0 $sp-xxs;
 	color: primary-color(50);
 	transition: background-color 0.2s $ease-in-out, color 0.2s $ease-in-out;
 

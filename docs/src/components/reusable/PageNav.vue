@@ -121,14 +121,14 @@ export default {
 
 .nav-section__item {
 	font-family: $font-stack-mono;
-	font-size: $fs-large;
+	font-size: $fs-l;
 }
 
 .nav-section__link {
 	display: flex;
 	align-items: center;
-	height: 3rem;
-	padding: 0 $spacing-l;
+	height: 2.5rem;
+	padding: 0 $sp-l;
 	color: primary-color(300);
 	text-decoration: none;
 
@@ -141,7 +141,7 @@ export default {
 		}
 
 		.link-title {
-			transform: translateX($spacing-xxs);
+			transform: translateX($sp-xxs);
 		}
 	}
 
@@ -158,7 +158,7 @@ export default {
 		.link-title {
 			font-weight: bold;
 			color: primary-color(100);
-			transform: translateX($spacing-s);
+			transform: translateX($sp-s);
 		}
 	}
 }
@@ -170,7 +170,7 @@ export default {
 .link-dot__wrap {
 	@include size(1.25rem);
 	display: flex;
-	margin-right: $spacing-m;
+	margin-right: $sp-m;
 }
 
 .link-dot {
@@ -187,14 +187,14 @@ export default {
 	display: flex;
 	align-items: center;
 	position: fixed;
-	top: $spacing-m;
-	left: $spacing-m;
+	top: $sp-m;
+	left: $sp-m;
 	z-index: 2;
 
 	@include media('<tablet') {
 		top: initial;
 		left: 50%;
-		bottom: $spacing-l;
+		bottom: $sp-l;
 		margin-left: -1.25rem;
 	}
 
@@ -209,9 +209,9 @@ export default {
 
 .nav-button__text {
 	font-family: $font-stack-mono;
-	font-size: $fs-large;
+	font-size: $fs-xl;
 	font-weight: bold;
-	margin-left: $spacing-s;
+	margin-left: $sp-s;
 	transition: color 0.2s $ease-in-out;
 
 	@include media('<tablet') {
@@ -243,8 +243,8 @@ export default {
 	--icon-color: #{primary-color(200)};
 	height: 3rem;
 	border-radius: $br-l;
-	padding: 0 $spacing-s;
-	margin: $spacing-s;
+	padding: 0 $sp-s;
+	margin: $sp-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -258,7 +258,7 @@ export default {
 	svg {
 		@include size(1.5rem);
 		transition: transform 0.3s $ease-out-back;
-		margin-right: $spacing-xs;
+		margin-right: $sp-xs;
 	}
 
 	&:hover,

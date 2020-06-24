@@ -10,7 +10,6 @@
 	@include size(5rem);
 	background-color: $cyan;
 	border-radius: $br-l;
-  // margin: $spacing-m;
 }
 
 .square-group {
@@ -25,7 +24,7 @@
   @include size(5rem);
   border: 2px solid $cyan;
 	border-radius: $br-l;
-  margin: $spacing-s;
+  margin: $sp-s;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;

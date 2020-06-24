@@ -77,7 +77,7 @@ export default {
 <style lang="scss" scoped>
 .variables-input {
 	font-family: $font-stack-mono;
-	padding: $spacing-s 0;
+	padding: $sp-s 0;
 	overflow-x: auto;
 }
 
@@ -104,7 +104,7 @@ export default {
 	font-weight: bold;
 	white-space: nowrap;
 	color: primary-color(300);
-	padding-left: $spacing-s;
+	padding-left: $sp-s;
 	padding-right: 1ch;
 	transition: color 0.2s $ease-in-out;
 }
@@ -113,7 +113,7 @@ export default {
 	height: 2rem;
 	flex-grow: 1;
 	font-weight: bold;
-	padding-right: $spacing-s;
+	padding-right: $sp-s;
 	color: $cyan;
 	font-size: 1.125rem;
 

@@ -126,7 +126,7 @@ export default {
 
 <style lang="scss" scoped>
 .utilities-input {
-	padding: $spacing-s 0;
+	padding: $sp-s 0;
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }
@@ -135,7 +135,7 @@ export default {
 	border-collapse: collapse;
 
 	th {
-		padding: $spacing-xxxs;
+		padding: $sp-xxxs;
 		vertical-align: middle;
 		white-space: nowrap;
 		color: primary-color(100);
@@ -144,10 +144,10 @@ export default {
 	td,
 	th {
 		&:first-child {
-			padding-left: $spacing-s;
+			padding-left: $sp-s;
 		}
 		&:last-child {
-			padding-right: $spacing-s;
+			padding-right: $sp-s;
 		}
 	}
 }
