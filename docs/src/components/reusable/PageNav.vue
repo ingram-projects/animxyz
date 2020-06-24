@@ -1,15 +1,17 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open: value }">
 		<focus-lock :disabled="!value">
-			<button class="nav-button xyz-in" xyz="fade delay-4 duration-5" @click="toggleNav(!value)">
-				<div class="logo-wrap">
-					<anim-xyz-logo></anim-xyz-logo>
-				</div>
-				<span class="nav-button__text logo-text">AnimXYZ</span>
-				<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
-			</button>
+			<xyz-transition appear>
+				<button class="nav-button" xyz="fade delay-4 duration-5" @click="toggleNav(!value)">
+					<div class="logo-wrap">
+						<anim-xyz-logo></anim-xyz-logo>
+					</div>
+					<span class="nav-button__text logo-text">AnimXYZ</span>
+					<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
+				</button>
+			</xyz-transition>
 
-			<xyz-transition appear xyz="ease-in-out" :duration="3000">
+			<xyz-transition appear xyz="ease-in-out" :duration="2000">
 				<nav class="page-nav" v-if="value">
 					<div class="nav-sections__wrap">
 						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">

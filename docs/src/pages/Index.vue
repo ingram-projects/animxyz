@@ -1,18 +1,24 @@
 <template>
-	<div>
+	<div :class="{ 'xyz-xray': xRayToggled }">
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
+
+		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
+			<span class="xray-toggle__text">XYZ-Ray</span>
+		</button>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
 			<div class="banner__wrap">
 				<banner></banner>
 			</div>
 
-			<div class="intro__wrap xyz-in" xyz="fade small-2 duration-7 ease-out-back">
-				<p class="intro-text">
-					The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
-					website to life.
-				</p>
-			</div>
+			<xyz-transition appear>
+				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+					<p class="intro-text">
+						The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
+						website to life.
+					</p>
+				</div>
+			</xyz-transition>
 
 			<xyz-transition-group appear xyz="duration-5" tag="div" class="sections__wrap">
 				<docs-section
@@ -74,6 +80,7 @@ export default {
 	data() {
 		return {
 			navOpen: false,
+			xRayToggled: false,
 			sectionNames: [
 				'About',
 				'Installation',
@@ -128,6 +135,9 @@ export default {
 				this.navOpen = false
 			}
 		},
+		toggleXRay(toggled) {
+			this.xRayToggled = toggled
+		}
 	},
 	metaInfo() {
 		return {
@@ -155,6 +165,20 @@ export default {
 			transform: initial;
 			padding-left: 20rem;
 		}
+	}
+}
+
+.xray-toggle {
+	position: fixed;
+	top: $sp-m;
+	right: $sp-m;
+	z-index: 2;
+
+	.xray-toggle__text {
+		font-family: $font-stack-mono;
+		font-size: $fs-xl;
+		font-weight: bold;
+		margin-left: $sp-s;
 	}
 }
 
