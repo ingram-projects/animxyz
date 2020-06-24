@@ -2,45 +2,52 @@ const VueMQ = {
 	install(Vue, options) {
     const breakpoints = options.breakpoints || {}
 
-    const getBreakpoint = (val) => {
+    function getBreakpoint (val) {
       if (breakpoints[val]) {
         return breakpoints[val]
       }
       return val
     }
 
+		function media (options) {
+			const {
+				min,
+				max,
+				direction = 'width',
+			} = options
+
+			const components = []
+			if (min) {
+				components.push(`(min-${direction}: ${getBreakpoint(min)})`)
+			}
+			if (max) {
+				components.push(`(max-${direction}: ${getBreakpoint(max)})`)
+			}
+			if (!components.length) return false
+
+			const mediaQuery = components.join(' and ')
+			if (!data.cached[mediaQuery]) {
+				data.cached[mediaQuery] = matchMedia(mediaQuery).matches
+			}
+			return data.cached[mediaQuery]
+		}
+
+		function below (max, direction) {
+			return media({ max, direction })
+		}
+
+		function above (min, direction) {
+			return media({ min, direction })
+		}
+
+		function between (min, max, direction) {
+			return media({ min, max, direction })
+		}
+
     let data = {}
 
     const updateMqObj = () => {
       data.cached = {}
-
-      const media = (options) => {
-        const {
-          min,
-          max,
-          direction = 'width',
-        } = options
-
-        const components = []
-        if (min) {
-          components.push(`(min-${direction}: ${getBreakpoint(min)})`)
-        }
-        if (max) {
-          components.push(`(max-${direction}: ${getBreakpoint(max)})`)
-        }
-
-        if (!components.length) return false
-
-        const mediaQuery = components.join(' and ')
-        if (!data.cached[mediaQuery]) {
-          data.cached[mediaQuery] = matchMedia(mediaQuery).matches
-        }
-        return data.cached[mediaQuery]
-      }
-
-      const below = (max, direction) => media({ max, direction })
-      const above = (min, direction) => media({ min, direction })
-      const between = (min, max, direction) => media({ min, max, direction })
 
       data.mq = {
         media,

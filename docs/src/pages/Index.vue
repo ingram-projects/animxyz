@@ -95,6 +95,9 @@ export default {
 		}
 	},
 	computed: {
+		isMediaLarge() {
+			return this.$mq.above('large')
+		},
 		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
@@ -110,9 +113,20 @@ export default {
 			})
 		},
 	},
+	watch: {
+		isMediaLarge() {
+			if (this.isMediaLarge) {
+				this.navOpen = true
+			} else {
+				this.navOpen = false
+			}
+		},
+	},
 	methods: {
 		closeNav() {
-			this.navOpen = false
+			if (this.$mq.below('large')) {
+				this.navOpen = false
+			}
 		},
 	},
 	metaInfo() {
@@ -136,11 +150,11 @@ export default {
 		@include media('<tablet') {
 			transform: initial;
 		}
-	}
 
-	@include media('>=large') {
-		transform: initial !important;
-		padding-left: 20rem;
+		@include media('>=large') {
+			transform: initial;
+			padding-left: 20rem;
+		}
 	}
 }
 

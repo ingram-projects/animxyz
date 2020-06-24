@@ -1,7 +1,7 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open: value }">
 		<focus-lock :disabled="!value">
-			<button class="nav-button xyz-in" xyz="fade duration-5 ease-out" @click="toggleNav(!value)">
+			<button class="nav-button xyz-in" xyz="fade delay-4 duration-5" @click="toggleNav(!value)">
 				<div class="logo-wrap">
 					<anim-xyz-logo></anim-xyz-logo>
 				</div>
@@ -9,30 +9,31 @@
 				<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
 			</button>
 
-			<nav class="page-nav">
-				<div class="nav-sections__wrap">
-					<scrollactive tag="ul" class="nav-sections" active-class="active" :modify-url="false" xyz="fade left">
-						<li v-for="section in sections" class="nav-section__item" :class="{ 'xyz-in': value }" @click="onSectionClick" :key="section.title">
-							<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
-								<div class="link-dot__wrap">
-									<span class="link-dot"></span>
-								</div>
-								<span class="link-title">{{ section.title }}</span>
-							</a>
-						</li>
-					</scrollactive>
-				</div>
-				<a
-					class="github-link"
-					:class="{ 'xyz-in': value }"
-					xyz="fade delay-3 small ease-out-back"
-					href="https://github.com/ingram-projects/animxyz"
-					target="_blank"
-				>
-					<icon-github></icon-github>
-					<span>View on GitHub</span>
-				</a>
-			</nav>
+			<xyz-transition appear xyz="ease-in-out" :duration="3000">
+				<nav class="page-nav" v-if="value">
+					<div class="nav-sections__wrap">
+						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">
+							<li v-for="section in sections" class="nav-section__item xyz-in-nested" @click="onSectionClick" :key="section.title">
+								<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+									<div class="link-dot__wrap">
+										<span class="link-dot"></span>
+									</div>
+									<span class="link-title">{{ section.title }}</span>
+								</a>
+							</li>
+						</scrollactive>
+					</div>
+					<a
+						class="github-link xyz-in-nested"
+						xyz="fade delay-3 small ease-out-back"
+						href="https://github.com/ingram-projects/animxyz"
+						target="_blank"
+					>
+						<icon-github></icon-github>
+						<span>View on GitHub</span>
+					</a>
+				</nav>
+			</xyz-transition>
 		</focus-lock>
 	</div>
 </template>
@@ -52,7 +53,9 @@ export default {
 	},
 	methods: {
 		toggleNav(toggled) {
-			this.$emit('input', toggled)
+			if (this.$mq.below('large')) {
+				this.$emit('input', toggled)
+			}
 		},
 		onSectionClick() {
 			this.$emit('input', false)
@@ -71,28 +74,15 @@ export default {
 	height: 100vh;
 	background-color: primary-color(900, 0.95);
 	z-index: 1;
-	opacity: 0;
-	transform: translateX(-100%);
-	transition: transform .3s $ease-in-out, opacity 0s $ease-in-out .3s;
-
-	.open & {
-		opacity: 1;
-		transform: initial;
-		transition: transform .3s $ease-in-out;
-	}
+	--xyz-translate-x: -100%;
 
 	@include media('<tablet') {
 		left: 0;
 		right: 0;
 		width: auto;
-		transform: translateY(100vh);
 		backdrop-filter: blur(4px);
-	}
-
-	@include media('>=large') {
-		opacity: 1;
-		transform: initial;
-		transition: transform .3s $ease-in-out;
+		--xyz-translate-x: initial;
+		--xyz-translate-y: 100%;
 	}
 }
 
@@ -183,7 +173,6 @@ export default {
 }
 
 .nav-button {
-	--xyz-delay: 0.4s;
 	display: flex;
 	align-items: center;
 	position: fixed;
