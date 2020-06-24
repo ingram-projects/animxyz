@@ -32,10 +32,11 @@ $mode-colors: (
   top: 0;
   bottom: 0;
   padding: $sp-xxs;
+  font-family: $font-stack-mono;
   font-size: $fs-m;
   font-weight: 600;
-  font-family: $font-stack-mono;
   pointer-events: none;
+  overflow: hidden;
   z-index: 99999;
 }
 
@@ -48,7 +49,7 @@ $mode-colors: (
       --xyz-xray-color: #{map.get($mode-colors, $mode)};
       &::after {
         @extend %xyz-xray-box;
-        animation: xyz-xray-box-mode $duration $ease-in-out $delay both;
+        animation: xyz-xray-box-mode $duration $ease-out $delay both;
       }
     }
   }
@@ -56,17 +57,11 @@ $mode-colors: (
   [xyz] {
     position: relative;
 
-    &::after {
+    &:hover::after {
       @extend %xyz-xray-box;
       content: attr(xyz);
-      color: $cyan;
-      box-shadow: inset 0 0 0 3px $cyan;
-      opacity: 0;
-      transition: opacity .15s $ease-in-out;
-    }
-
-    &:hover::after {
-      opacity: 1;
+      color: var(--cyan);
+      box-shadow: inset 0 0 0 3px rgba(var(--cyan-rgb), 0.75);
     }
   }
 }
