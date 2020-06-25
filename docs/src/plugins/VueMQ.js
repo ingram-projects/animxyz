@@ -10,6 +10,8 @@ const VueMQ = {
 		}
 
 		function media(options) {
+			if (typeof window === 'undefined') return true
+
 			const { min, max, direction = 'width' } = options
 
 			const components = []
@@ -54,7 +56,10 @@ const VueMQ = {
 		}
 
 		updateMqObj()
-		window.addEventListener('resize', updateMqObj)
+
+		if (typeof window !== 'undefined') {
+			window.addEventListener('resize', updateMqObj)
+		}
 
 		Vue.observable(data)
 
