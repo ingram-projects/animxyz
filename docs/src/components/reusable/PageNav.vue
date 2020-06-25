@@ -195,7 +195,16 @@ export default {
 	z-index: 2;
 
 	&:hover {
-		--logo-side-z: -3px;
+		.nav-button__text {
+			transform: translateX($sp-xxxs);
+			opacity: 1;
+		}
+
+		::v-deep {
+			.cube-wrap {
+				transform: scale(1.25) rotateX(60deg) rotateZ(45deg);
+			}
+		}
 	}
 
 	@include media('<tablet') {
@@ -211,9 +220,6 @@ export default {
 
 	.open & {
 		--logo-side-z: -3px;
-		&:hover {
-			--logo-side-z: 0;
-		}
 	}
 }
 
@@ -226,7 +232,8 @@ export default {
 	font-size: $fs-xl;
 	font-weight: bold;
 	margin-left: $sp-s;
-	transition: color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
+	opacity: 0.85;
+	transition: color 0.2s $ease-in-out, opacity 0.2s $ease-in-out, transform 0.3s $ease-out-back;
 
 	@include media('<tablet') {
 		display: none;

@@ -27,7 +27,7 @@ export default {
 	top: 2px;
 	transform: rotateX(60deg) rotateZ(45deg);
 	transform-style: preserve-3d;
-	transition: transform 0.3s $ease-in-out;
+	transition: transform 0.3s $ease-out-back;
 }
 
 .cube-side {
