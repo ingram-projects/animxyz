@@ -18,8 +18,11 @@ export default {
 	}
 
 	::v-deep {
-		p:not(:last-child) {
-			margin-bottom: $sp-m;
+		p,
+		blockquote {
+			&:not(:last-child) {
+				margin-bottom: $sp-m;
+			}
 		}
 
 		pre[class*='language-'] {
