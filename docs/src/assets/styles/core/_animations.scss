@@ -4,26 +4,10 @@
 @include xyz-all;
 
 $mode-colors: (
-  'in': rgba(var(--green-rgb), 0.75),
-  'out': rgba(var(--red-rgb), 0.75),
-  'appear': rgba(var(--yellow-rgb), 0.75),
+  'in': transparentize(invert($green), 0.25),
+  'out': transparentize(invert($red), 0.25),
+  'appear': transparentize(invert($yellow), 0.25),
 );
-
-@keyframes xray-scan {
-  0% {
-    left: 0;
-    right: 100vw;
-    backdrop-filter: invert(1);
-  }
-  50% {
-    left: 0;
-    right: 0;
-  }
-  100% {
-    left: 100vw;
-    backdrop-filter: invert(1);
-  }
-}
 
 @keyframes xyz-xray-mode {
   0% {
