@@ -27,10 +27,10 @@ modifiers:
 
 ---
 
-This is the fade section
+Beam me up Scotty!
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+Fade is one of the most common animations, and combines well with other utilities.
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+Fade animates between the value of the CSS variable `--xyz-fade` and the opacity of the element. Apply `xyz="fade"` to an element to use the default variable value of 0, or use one of the utilities like `xyz="fade-50"` to set the variable to a predefined value.
 
-Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+You can also override `--xyz-fade` with a custom value in your CSS or with inline styling for more granular control.

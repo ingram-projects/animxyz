@@ -18,7 +18,7 @@ export default {
 	}
 
 	::v-deep {
-		p {
+		p:not(:last-child) {
 			margin-bottom: $sp-m;
 		}
 
@@ -26,6 +26,13 @@ export default {
 			background: primary-color(900);
 			margin: 0 (-$sp-s);
 			border-radius: $br-l;
+		}
+
+		blockquote {
+			background-color: primary-color(600, 0.05);
+			border-left: 8px solid primary-color(500);
+			padding: $sp-s;
+			border-radius: $br-m;
 		}
 	}
 }

@@ -31,10 +31,12 @@ modifiers:
 
 ---
 
-This is the transform section
+Roll out, roll in, fly away!
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+Translate, rotate, and scale your elements along any axis. We call it AnimXYZ for a reason!
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+Transform utilities animate between the value of the relevant CSS variables and the element's natural position. For example applying `xyz="up"` to an element will translate it on the Y axis between `translateY(30px)` and the element's `translateY` position.
 
-Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+You can also override any of the provided transform variables with a custom value in your CSS or with inline styling for more granular control.
+
+> If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.

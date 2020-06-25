@@ -28,8 +28,9 @@ code:not([class*="language-"]) {
   font-size: inherit;
   font-weight: bold;
   background-color: primary-color(800, .1);
-  padding: .25em .5em;
+  padding: .125em .25em;
   border-radius: $br-s;
+  white-space: nowrap;
 }
 
 label {

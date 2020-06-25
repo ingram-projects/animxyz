@@ -1,20 +1,16 @@
 const VueMQ = {
 	install(Vue, options) {
-    const breakpoints = options.breakpoints || {}
+		const breakpoints = options.breakpoints || {}
 
-    function getBreakpoint (val) {
-      if (breakpoints[val]) {
-        return breakpoints[val]
-      }
-      return val
-    }
+		function getBreakpoint(val) {
+			if (breakpoints[val]) {
+				return breakpoints[val]
+			}
+			return val
+		}
 
-		function media (options) {
-			const {
-				min,
-				max,
-				direction = 'width',
-			} = options
+		function media(options) {
+			const { min, max, direction = 'width' } = options
 
 			const components = []
 			if (min) {
@@ -32,39 +28,41 @@ const VueMQ = {
 			return data.cached[mediaQuery]
 		}
 
-		function below (max, direction) {
+		function below(max, direction) {
 			return media({ max, direction })
 		}
 
-		function above (min, direction) {
+		function above(min, direction) {
 			return media({ min, direction })
 		}
 
-		function between (min, max, direction) {
+		function between(min, max, direction) {
 			return media({ min, max, direction })
 		}
 
-    let data = {}
+		let data = {}
 
-    const updateMqObj = () => {
-      data.cached = {}
+		const updateMqObj = () => {
+			data.cached = {}
 
-      data.mq = {
-        media,
-        below,
-        above,
-        between,
-      }
-    }
+			data.mq = {
+				media,
+				below,
+				above,
+				between,
+			}
+		}
 
-    updateMqObj()
-    window.addEventListener('resize', updateMqObj)
+		updateMqObj()
+		window.addEventListener('resize', updateMqObj)
 
-    Vue.observable(data);
+		Vue.observable(data)
 
-    Object.defineProperty(Vue.prototype, '$mq', {
-      get () { return data.mq }
-    })
+		Object.defineProperty(Vue.prototype, '$mq', {
+			get() {
+				return data.mq
+			},
+		})
 	},
 }
 
