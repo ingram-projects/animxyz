@@ -7,27 +7,29 @@
 					{{ level }}
 				</th>
 			</tr>
-			<tr v-for="utility in utilities" class="xyz-in" xyz="stagger-1" :key="utility.name">
-				<th class="utility__header">
-					{{ utility.name }}
-				</th>
-				<td class="utility-level xyz-nested" xyz="fade down stagger-1" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
-					<div class="utility-level__content" v-if="utilityLevel.valid">
-						<input
-							class="toggle-input"
-							type="radio"
-							:id="utilityLevel.id"
-							:value="utilityLevel.string"
-							v-model="toggledUtilities[utility.model]"
-							@click="onCellClick(utilityLevel, utility.model)"
-						/>
-						<label class="toggle-label" :for="utilityLevel.id">
-							<div class="toggle-indicator"></div>
-							<span class="screen-reader-only">{{ utilityLevel.string }}</span>
-						</label>
-					</div>
-				</td>
-			</tr>
+			<xyz-transition-group tag="tbody" :duration="1500" appear xyz>
+				<tr class="utility" v-for="utility in utilities" :key="utility.name">
+					<th class="utility__header">
+						{{ utility.name }}
+					</th>
+					<td class="utility-level xyz-nested" xyz="fade down" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+						<div class="utility-level__content" v-if="utilityLevel.valid">
+							<input
+								class="toggle-input"
+								type="radio"
+								:id="utilityLevel.id"
+								:value="utilityLevel.string"
+								v-model="toggledUtilities[utility.model]"
+								@click="onCellClick(utilityLevel, utility.model)"
+							/>
+							<label class="toggle-label" :for="utilityLevel.id">
+								<div class="toggle-indicator"></div>
+								<span class="screen-reader-only">{{ utilityLevel.string }}</span>
+							</label>
+						</div>
+					</td>
+				</tr>
+			</xyz-transition-group>
 		</table>
 	</div>
 </template>
@@ -150,6 +152,10 @@ export default {
 			padding-right: $sp-s;
 		}
 	}
+}
+
+.utility, .utility-level {
+	--xyz-stagger: .05s;
 }
 
 .utility__header {
