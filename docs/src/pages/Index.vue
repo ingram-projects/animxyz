@@ -1,10 +1,15 @@
 <template>
 	<div :class="{ 'xyz-xray': xRayToggled }">
+
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
 
 		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
-			<span class="xray-toggle__text">XYZ-Ray</span>
+			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On'}}</span>
 		</button>
+
+		<xyz-transition xyz="narrow-100 duration-15">
+			<div class="xray-overlay" v-if="xRayToggled"></div>
+		</xyz-transition>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
 			<div class="banner__wrap">
@@ -175,13 +180,29 @@ export default {
 	position: fixed;
 	top: $sp-m;
 	right: $sp-m;
-	z-index: 2;
+	z-index: 1;
 
 	.xray-toggle__text {
 		font-family: $font-stack-mono;
 		font-size: $fs-xl;
 		font-weight: bold;
 		margin-left: $sp-s;
+	}
+}
+
+.xray-overlay {
+  position: fixed;
+	left: 0;
+	right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(var(--cyan-rgb), 0.25);
+	backdrop-filter: invert(1);
+	pointer-events: none;
+	z-index: 99999;
+
+	&::after {
+		display: none !important;
 	}
 }
 
