@@ -37,15 +37,15 @@ export default {
 
 	& + & {
 		margin-top: 12vw;
+
+		@include media('>=desktop') {
+			margin-top: 8rem;
+		}
 	}
 
 	@include media('<laptop') {
 		flex-direction: column;
 		align-items: center;
-	}
-
-	@include media('>=desktop') {
-		margin-bottom: 8rem;
 	}
 }
 
