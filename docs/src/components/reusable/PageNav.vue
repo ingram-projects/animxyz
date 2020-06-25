@@ -11,11 +11,27 @@
 				</button>
 			</xyz-transition>
 
-			<xyz-transition appear xyz="ease-in-out" v-xyz="{'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet')}" :duration="2000">
+			<xyz-transition
+				appear
+				xyz="ease-in-out"
+				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
+				:duration="2000"
+			>
 				<nav class="page-nav" v-if="value">
 					<div class="nav-sections__wrap">
-						<scrollactive tag="ul" class="nav-sections" xyz="fade left stagger-1" active-class="active" :modify-url="false">
-							<li v-for="section in sections" class="nav-section__item xyz-in-nested" @click="onSectionClick" :key="section.title">
+						<scrollactive
+							tag="ul"
+							class="nav-sections"
+							xyz="fade left stagger-1"
+							active-class="active"
+							:modify-url="false"
+						>
+							<li
+								v-for="section in sections"
+								class="nav-section__item xyz-in-nested"
+								@click="onSectionClick"
+								:key="section.title"
+							>
 								<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
@@ -61,7 +77,7 @@ export default {
 		},
 		onSectionClick() {
 			this.toggleNav(false)
-		}
+		},
 	},
 }
 </script>
@@ -178,6 +194,10 @@ export default {
 	left: $sp-m;
 	z-index: 2;
 
+	&:hover {
+		--logo-side-z: -3px;
+	}
+
 	@include media('<tablet') {
 		top: initial;
 		left: 50%;
@@ -187,6 +207,13 @@ export default {
 
 	@include media('>=large') {
 		pointer-events: none;
+	}
+
+	.open & {
+		--logo-side-z: -3px;
+		&:hover {
+			--logo-side-z: 0;
+		}
 	}
 }
 
@@ -199,7 +226,7 @@ export default {
 	font-size: $fs-xl;
 	font-weight: bold;
 	margin-left: $sp-s;
-	transition: color 0.2s $ease-in-out;
+	transition: color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
 
 	@include media('<tablet') {
 		display: none;
