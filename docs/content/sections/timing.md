@@ -20,7 +20,7 @@ examples:
 
 modifiers:
   utilities:
-    default: duration-15
+    default: duration-20
   groups:
     - name: Timing
       types: [duration, delay]

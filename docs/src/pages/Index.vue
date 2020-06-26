@@ -25,7 +25,7 @@
 				</div>
 			</xyz-transition>
 
-			<xyz-transition-group appear xyz="stagger duration-5" tag="div" class="sections__wrap">
+			<xyz-transition-group appear xyz="stagger" tag="div" class="sections__wrap">
 				<docs-section
 					:section="section"
 					v-for="section in sections"

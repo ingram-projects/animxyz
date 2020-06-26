@@ -10,7 +10,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade">
+          <div class="square-group" xyz="fade duration-10">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>

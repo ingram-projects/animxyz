@@ -2,7 +2,7 @@
 	<div class="page-nav__wrap" :class="{ open: value }">
 		<focus-lock :disabled="!value">
 			<xyz-transition appear>
-				<button class="nav-button" xyz="fade delay-4 duration-5" @click="toggleNav(!value)">
+				<button class="nav-button" xyz="fade delay-4" @click="toggleNav(!value)">
 					<div class="logo-wrap">
 						<anim-xyz-logo></anim-xyz-logo>
 					</div>
@@ -13,7 +13,7 @@
 
 			<xyz-transition
 				appear
-				xyz="ease-in-out"
+				xyz="ease-in-out duration-3"
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 				:duration="2000"
 			>

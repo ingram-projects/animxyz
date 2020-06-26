@@ -7,7 +7,7 @@
 			v-model="activeGroup"
 		></tab-bar>
 
-		<xyz-transition-group tag="div" xyz="ease-in-out" v-xyz="tabDirectionXyz">
+		<xyz-transition-group tag="div" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
 			<div class="modifiers-sections" :key="activeGroup.name">
 				<xyz-utilities-input
 					class="modifiers-utilities modifiers-section"
