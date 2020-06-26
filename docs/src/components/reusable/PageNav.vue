@@ -123,6 +123,16 @@ export default {
 	}
 }
 
+.nav-section__header {
+	color: primary-color(200);
+	font-size: $fs-m;
+	font-family: $font-stack-mono;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	padding: 0 $sp-l;
+	margin-top: $sp-m;
+}
+
 .nav-section__item {
 	font-family: $font-stack-mono;
 	font-size: $fs-l;
