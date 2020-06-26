@@ -24,17 +24,8 @@
 				</div>
 			</xyz-transition>
 
-<<<<<<< HEAD
-			<xyz-transition-group appear xyz="stagger" tag="div" class="sections__wrap">
-				<docs-section
-					:section="section"
-					v-for="section in sections"
-					:key="section.title"
-				></docs-section>
-=======
 			<xyz-transition-group appear xyz="stagger duration-5" tag="div" class="sections__wrap">
 				<docs-section :section="section" v-for="section in sections" :key="section.title"></docs-section>
->>>>>>> c7be15bc9a3b361c5f0b04aea35a2795452e9722
 			</xyz-transition-group>
 		</main>
 	</div>
