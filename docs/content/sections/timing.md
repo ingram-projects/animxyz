@@ -20,7 +20,7 @@ examples:
 
 modifiers:
   utilities:
-    default: duration-20
+    default: duration-15
   groups:
     - name: Timing
       types: [duration, delay]
@@ -33,4 +33,4 @@ How did it get so late so soon?
 
 Timing utilities let you set the `animation-duration`, `animation-delay`, and `animation-timing-function` of an animation.
 
-Changing the timing of an animation can have a large impact on how it feels. AnimXYZ animations default to a duration of `.3s`, a delay of `0`, and a timing-function of `ease`.
+Changing the timing of an animation can have a large impact on how it feels. AnimXYZ animations default to a duration of `.5s`, a delay of `0s`, and a timing-function of `ease`.

@@ -66,7 +66,6 @@ export default {
 	align-items: center;
 	justify-content: center;
 	perspective: 200px;
-	--xyz-duration-default: 1s;
 }
 
 .example-code {

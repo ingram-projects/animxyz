@@ -31,7 +31,7 @@
 
     :root {
       --xyz-ease-default: #{map.get($xyz-ease-levels, 'ease')};
-      --xyz-duration-default: #{map.get($xyz-time-levels, '3')};
+      --xyz-duration-default: #{map.get($xyz-time-levels, '5')};
       --xyz-delay-default: #{map.get($xyz-time-levels, '0')};
       --xyz-stagger-default: #{map.get($xyz-time-levels, '3')};
       --xyz-iterate-default: #{map.get($xyz-iterate-levels, '1')};
