@@ -87,6 +87,10 @@ export default {
 	padding: 0 $sp-m;
 	top: $sp-m;
 
+	@include media('<tablet') {
+		margin-top: $sp-l;
+	}
+
 	@include media('<phone') {
 		width: 100vw;
 		padding: 0;
