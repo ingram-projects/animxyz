@@ -31,10 +31,7 @@ $mode-colors: (
   0% {
     background-color: transparent;
   }
-  25% {
-    background-color: var(--xyz-xray-color);
-  }
-  75% {
+  25%, 75% {
     background-color: var(--xyz-xray-color);
   }
   100% {

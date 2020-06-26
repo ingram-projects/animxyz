@@ -36,6 +36,10 @@ export default {
 			border-left: 8px solid primary-color(500);
 			padding: $sp-s;
 			border-radius: $br-m;
+
+			pre[class*='language-'] {
+				margin: 0;
+			}
 		}
 	}
 }

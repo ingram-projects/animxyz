@@ -1,10 +1,9 @@
 <template>
 	<div :class="{ 'xyz-xray': xRayToggled }">
-
 		<page-nav :sections="sections" v-model="navOpen"></page-nav>
 
 		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
-			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On'}}</span>
+			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 		</button>
 
 		<xyz-transition xyz="duration-15">
@@ -19,18 +18,23 @@
 			<xyz-transition appear>
 				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
 					<p class="intro-text">
-						The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your
-						website to life.
+						The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+						your website to life.
 					</p>
 				</div>
 			</xyz-transition>
 
+<<<<<<< HEAD
 			<xyz-transition-group appear xyz="stagger" tag="div" class="sections__wrap">
 				<docs-section
 					:section="section"
 					v-for="section in sections"
 					:key="section.title"
 				></docs-section>
+=======
+			<xyz-transition-group appear xyz="stagger duration-5" tag="div" class="sections__wrap">
+				<docs-section :section="section" v-for="section in sections" :key="section.title"></docs-section>
+>>>>>>> c7be15bc9a3b361c5f0b04aea35a2795452e9722
 			</xyz-transition-group>
 		</main>
 	</div>
@@ -128,13 +132,13 @@ export default {
 	watch: {
 		isMediaLarge: {
 			immediate: true,
-			handler () {
+			handler() {
 				if (this.isMediaLarge) {
 					this.navOpen = true
 				} else {
 					this.navOpen = false
 				}
-			}
+			},
 		},
 	},
 	methods: {
@@ -145,7 +149,7 @@ export default {
 		},
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
-		}
+		},
 	},
 	metaInfo() {
 		return {
@@ -191,11 +195,11 @@ export default {
 }
 
 .xray-overlay {
-  position: fixed;
+	position: fixed;
 	left: 0;
 	right: 0;
-  top: 0;
-  bottom: 0;
+	top: 0;
+	bottom: 0;
 	pointer-events: none;
 	z-index: 99999;
 	--xyz-keyframes: xray-scan;
