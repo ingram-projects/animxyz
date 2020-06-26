@@ -31,6 +31,6 @@ You spin me bottom-right round, baby.
 
 If you want to animate an element like a swinging door, or have it expand from a particular corner, use an origin utility to apply a `transform-origin` during the animation. This should be used along with a rotate or scale animation.
 
-For example setting `xyz="small-100 origin-right"` on an element will expand and shrink it to the right center point of the element.
+For example setting `xyz="small-100 origin-right"` on an element will scale it to its right center edge.
 
 If you want to place the `transform-origin` in a more precise location than the utilities provide, override `--xyz-origin` with a custom value in your CSS or with inline styling for more granular control. For example `--xyz-origin: 50px 50px` will set the origin to a point 50px down and to the right from the top left.
