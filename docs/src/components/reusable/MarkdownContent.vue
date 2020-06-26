@@ -36,6 +36,7 @@ export default {
 			border-left: 8px solid primary-color(500);
 			padding: $sp-s;
 			border-radius: $br-m;
+			font-size: $fs-m;
 
 			pre[class*='language-'] {
 				margin: 0;

@@ -87,7 +87,7 @@ export default {
 	padding: 0 $sp-m;
 	top: $sp-m;
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		margin-top: $sp-l;
 	}
 
