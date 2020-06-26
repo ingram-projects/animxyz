@@ -7,7 +7,7 @@
 			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On'}}</span>
 		</button>
 
-		<xyz-transition xyz="narrow-100 origin-right duration-15">
+		<xyz-transition xyz="duration-15">
 			<div class="xray-overlay" v-if="xRayToggled"></div>
 		</xyz-transition>
 
@@ -196,10 +196,9 @@ export default {
 	right: 0;
   top: 0;
   bottom: 0;
-  background-color: transparentize($cyan, .75);
-	backdrop-filter: invert(1);
 	pointer-events: none;
 	z-index: 99999;
+	--xyz-keyframes: xray-scan;
 
 	&::after {
 		display: none !important;
