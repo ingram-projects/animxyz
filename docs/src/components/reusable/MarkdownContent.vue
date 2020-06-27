@@ -21,7 +21,7 @@ export default {
 		p,
 		blockquote {
 			&:not(:last-child) {
-				margin-bottom: $sp-m;
+				margin-bottom: 1.25rem;
 			}
 		}
 
