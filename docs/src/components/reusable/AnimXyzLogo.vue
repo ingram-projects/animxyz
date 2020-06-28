@@ -1,9 +1,9 @@
 <template>
 	<div class="animxyz-logo logo-scene">
 		<div class="cube-wrap">
-			<div class="cube-side side--left"></div>
-			<div class="cube-side side--right"></div>
-			<div class="cube-side side--bottom"></div>
+			<div class="cube-side side--left"><div class="side-fill"></div></div>
+			<div class="cube-side side--right"><div class="side-fill"></div></div>
+			<div class="cube-side side--bottom"><div class="side-fill"></div></div>
 		</div>
 	</div>
 </template>
@@ -32,25 +32,40 @@ export default {
 
 .cube-side {
 	@include size(2rem);
+	display: flex;
 	position: absolute;
-	border: 3px solid transparent;
+	padding: 3px;
 	transition: transform 0.3s $ease-in-out;
 }
 
+.side-fill {
+	@include size(100%);
+	border-bottom-right-radius: $br-xl;
+
+	.side--right & {
+		background-image: linear-gradient(to bottom, rgba(var(--red-rgb), 1), rgba(var(--red-rgb), 0.15));
+	}
+
+	.side--left & {
+		background-image: linear-gradient(to bottom, rgba(var(--yellow-rgb), 1), rgba(var(--yellow-rgb), 0.15));
+	}
+
+	.side--bottom & {
+		background-image: linear-gradient(to right, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), 0.15));
+	}
+}
+
 .side--right {
-	background-image: linear-gradient(to bottom, rgba(var(--red-rgb), 1), rgba(var(--red-rgb), 0.15));
 	transform-origin: top;
 	transform: rotateX(90deg) translateZ(var(--logo-side-z, 0));
 }
 
 .side--left {
-	background-image: linear-gradient(to bottom, rgba(var(--yellow-rgb), 1), rgba(var(--yellow-rgb), 0.15));
 	transform-origin: left;
 	transform: rotateY(-90deg) translateZ(var(--logo-side-z, 0));
 }
 
 .side--bottom {
-	background-image: linear-gradient(to right, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), 0.15));
 	transform: translateZ(calc(var(--logo-side-z, 0) * -1));
 }
 </style>

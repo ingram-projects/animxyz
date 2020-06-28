@@ -1,6 +1,6 @@
 ---
 title: Origin
-quote: You spin me bottom-right round, baby.
+quote: You spin my bottom-right round, baby.
 
 examples:
   - name: Origin

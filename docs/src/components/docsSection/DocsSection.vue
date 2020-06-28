@@ -3,7 +3,10 @@
 		<div class="section-column section-text xyz-nested" xyz="fade left">
 			<div class="section-column__content">
 				<header class="section-header">
-					<h1 class="section-title">{{ section.title }}</h1>
+					<div class="section-title__wrap">
+						<a :href="`#${section.anchor}`" class="section-anchor"></a>
+						<h1 class="section-title">{{ section.title }}</h1>
+					</div>
 					<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 				</header>
 				<markdown-content :content="section.content"></markdown-content>
