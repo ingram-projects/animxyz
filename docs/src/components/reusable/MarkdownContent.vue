@@ -19,7 +19,8 @@ export default {
 
 	::v-deep {
 		p,
-		blockquote {
+		blockquote,
+		pre[class*='language-'] {
 			&:not(:last-child) {
 				margin-bottom: 1.25rem;
 			}
