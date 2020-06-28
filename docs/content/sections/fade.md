@@ -1,5 +1,6 @@
 ---
 title: Fade
+quote: Beam me up Scotty!
 
 examples:
   - name: Fade
@@ -26,8 +27,6 @@ modifiers:
       types: [fade]
 
 ---
-
-Beam me up Scotty!
 
 Fade is one of the most common animations, and combines well with other utilities.
 

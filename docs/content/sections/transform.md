@@ -1,5 +1,6 @@
 ---
 title: Transform
+quote: Roll out, roll in, fly away!
 
 examples:
   - name: Transform
@@ -30,8 +31,6 @@ modifiers:
       types: [scale]
 
 ---
-
-Roll out, roll in, fly away!
 
 Translate, rotate, and scale your elements along any axis. We call it AnimXYZ for a reason!
 

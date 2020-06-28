@@ -1,5 +1,6 @@
 ---
 title: Stagger
+quote:
 
 examples:
   - name: Stagger
@@ -30,4 +31,4 @@ modifiers:
       types: [stagger]
 ---
 
-This is the stagger section
+Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

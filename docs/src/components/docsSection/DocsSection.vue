@@ -1,8 +1,11 @@
 <template>
-	<section class="docs-section" :id="section.anchor">
+	<article class="docs-section" :id="section.anchor">
 		<div class="section-column section-text xyz-nested" xyz="fade left">
 			<div class="section-column__content">
-				<h1 class="section-title">{{ section.title }}</h1>
+				<header class="section-header">
+					<h1 class="section-title">{{ section.title }}</h1>
+					<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
+				</header>
 				<markdown-content :content="section.content"></markdown-content>
 			</div>
 		</div>
@@ -11,7 +14,7 @@
 				<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 			</div>
 		</div>
-	</section>
+	</article>
 </template>
 
 <script>
@@ -49,15 +52,28 @@ export default {
 	}
 }
 
-.section-title {
+.section-header {
 	margin-bottom: $sp-m;
-	font-size: 4rem;
+}
+
+.section-title {
+	font-size: 3rem;
+	line-height: 1;
 	font-family: $font-stack-mono;
-	color: primary-color(600, 0.7);
+	color: primary-color(600);
 
 	@include media('<phone') {
-		font-size: 3rem;
+		font-size: 2.5rem;
 	}
+}
+
+.section-quote {
+	display: inline-block;
+	font-size: $fs-l;
+	font-weight: 500;
+	color: primary-color(500);
+	margin-top: $sp-s;
+	margin-left: $sp-l;
 }
 
 .section-column {

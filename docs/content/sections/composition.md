@@ -1,5 +1,6 @@
 ---
 title: Composition
+quote:
 
 examples:
   - name: Composition
@@ -41,4 +42,4 @@ modifiers:
       types: [stagger]
 ---
 
-This is the composition section
+Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

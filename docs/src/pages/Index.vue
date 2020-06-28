@@ -37,6 +37,7 @@
     edges {
       node {
         title
+				quote
 				content
 				examples {
 					name

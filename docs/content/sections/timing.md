@@ -1,5 +1,6 @@
 ---
 title: Timing
+quote: How did it get so late so soon?
 
 examples:
   - name: Timing
@@ -28,8 +29,6 @@ modifiers:
       types: [ease]
 
 ---
-
-How did it get so late so soon?
 
 Timing utilities let you set the `animation-duration`, `animation-delay`, and `animation-timing-function` of an animation. AnimXYZ animations default to a duration of `.5s`, a delay of `0s`, and a timing-function of `ease`.
 
