@@ -32,7 +32,9 @@
 								@click="onSectionClick"
 								:key="section.title"
 							>
-								<a :href="`#${section.anchor}`" class="nav-section__link scrollactive-item">
+								<h2 class="nav-section__header" v-if="section.header">{{section.title}}</h2>
+
+								<a class="nav-section__link scrollactive-item" v-if="!section.header" :href="`#${section.anchor}`">
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
 									</div>
@@ -130,7 +132,8 @@ export default {
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	padding: 0 $sp-l;
-	margin-top: $sp-m;
+	margin-top: $sp-s;
+	margin-bottom: $sp-xxs;
 }
 
 .nav-section__item {

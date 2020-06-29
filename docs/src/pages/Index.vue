@@ -24,9 +24,7 @@
 				</div>
 			</xyz-transition>
 
-			<xyz-transition-group appear xyz="stagger duration-5" tag="div" class="sections__wrap">
-				<docs-section :section="section" v-for="section in sections" :key="section.title"></docs-section>
-			</xyz-transition-group>
+			<docs-section v-for="section in sections" v-if="!section.header" :section="section" :key="section.title"></docs-section>
 		</main>
 	</div>
 </template>
@@ -82,9 +80,10 @@ export default {
 		return {
 			navOpen: false,
 			xRayToggled: false,
-			sectionNames: [
+			sectionDefinitions: [
 				'About',
 				'Installation',
+				{ header: true, title: 'Animations' },
 				'Fade',
 				'Transform',
 				'Origin',
@@ -92,13 +91,18 @@ export default {
 				'Stagger',
 				'Composition',
 				'Variables',
+				{ header: true, title: 'Concepts' },
 				'Contexts',
 				'Inheritance',
 				'Nesting',
 				'Modes',
+				{ header: true, title: 'Customizations' },
+				'Defaults',
+				'Utilities',
+				'Keyframes',
+				{ header: true, title: 'Integrations' },
 				'Vue',
 				'React',
-				'Customization',
 			],
 		}
 	},
@@ -112,8 +116,12 @@ export default {
 				sectionsObj[sectionEdge.node.title] = sectionEdge.node
 			})
 
-			return this.sectionNames.map((sectionName) => {
-				const section = sectionsObj[sectionName]
+			return this.sectionDefinitions.map((sectionDefinition) => {
+				if (sectionDefinition.header) {
+					return sectionDefinition
+				}
+
+				const section = sectionsObj[sectionDefinition]
 				return {
 					...section,
 					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-'),
