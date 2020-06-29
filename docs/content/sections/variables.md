@@ -1,6 +1,5 @@
 ---
 title: Variables
-quote:
 
 examples:
   - name: Variables

@@ -1,6 +1,5 @@
 ---
 title: Composition
-quote:
 
 examples:
   - name: Composition

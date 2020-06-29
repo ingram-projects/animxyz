@@ -1,6 +1,5 @@
 ---
 title: Stagger
-quote:
 
 examples:
   - name: Stagger
