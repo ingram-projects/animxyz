@@ -4,8 +4,11 @@
 			<div class="section-column__content">
 				<header class="section-header">
 					<div class="section-title__wrap">
-						<a :href="`#${section.anchor}`" class="section-anchor"></a>
 						<h1 class="section-title">{{ section.title }}</h1>
+						<a :href="`#${section.anchor}`" class="section-anchor">
+							<icon-link></icon-link>
+							<span class="screen-reader-only">Link to {{ section.title }}</span>
+						</a>
 					</div>
 					<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 				</header>
@@ -21,6 +24,7 @@
 </template>
 
 <script>
+import IconLink from '~/assets/icons/IconLink.svg'
 import MarkdownContent from '~/components/reusable/MarkdownContent'
 import Sandbox from '~/components/reusable/Sandbox'
 
@@ -28,6 +32,7 @@ export default {
 	name: 'DocsSection',
 	props: ['section'],
 	components: {
+		IconLink,
 		MarkdownContent,
 		Sandbox,
 	},
@@ -59,6 +64,56 @@ export default {
 	margin-bottom: $sp-m;
 }
 
+.section-title__wrap {
+	display: inline-flex;
+	position: relative;
+	padding: 0 $sp-s;
+	margin-left: -$sp-s;
+
+	&:hover {
+		.section-anchor {
+			background-color: primary-color(700, 0.15);
+			opacity: 1;
+			transform: translate(0, -50%);
+		}
+	}
+
+	.section-anchor {
+		&:hover,
+		&:focus {
+			background-color: primary-color(700);
+
+			svg {
+				--icon-color: #{$white};
+			}
+		}
+	}
+}
+
+.section-anchor {
+	@include circle(1.75rem);
+	display: flex;
+	position: absolute;
+	right: 100%;
+	top: 50%;
+	background-color: primary-color(700, 0);
+	opacity: 0;
+	transform: translate($sp-s, -50%);
+	transition: opacity 0.2s $ease-in-out, background-color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
+
+	svg {
+		--icon-color: #{primary-color(700)};
+		height: 1rem;
+		width: auto;
+		margin: auto;
+	}
+
+	@include media('<tablet') {
+		left: 100%;
+		right: initial;
+	}
+}
+
 .section-title {
 	font-size: 3rem;
 	line-height: 1;
@@ -71,7 +126,7 @@ export default {
 }
 
 .section-quote {
-	display: inline-block;
+	display: block;
 	font-size: $fs-l;
 	font-weight: 500;
 	color: primary-color(500);
