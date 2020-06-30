@@ -58,14 +58,14 @@ $mode-colors: (
 .xyz-xray {
   @each $mode in $xyz-modes {
     .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-      $duration: xyz-var('duration', $mode);
-      $delay: var(--xyz-active-delay, 0s);
-      --xyz-xray-color: #{map.get($mode-colors, $mode)};
       position: relative;
 
       &::after {
+        $duration: xyz-var('duration', $mode);
+        $delay: var(--xyz-active-delay, 0s);
         @extend %xyz-xray-after;
-        animation: xyz-xray-mode $duration $ease-out $delay both;
+        --xyz-xray-color: #{map.get($mode-colors, $mode)};
+        animation: xyz-xray-mode $duration $ease-out $delay;
       }
     }
   }
