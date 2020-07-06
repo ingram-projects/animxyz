@@ -24,7 +24,9 @@
 				</div>
 			</xyz-transition>
 
-			<docs-section v-for="section in sections" v-if="!section.header" :section="section" :key="section.title"></docs-section>
+			<section class="sections__wrap">
+				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+			</section>
 		</main>
 	</div>
 </template>
@@ -127,6 +129,9 @@ export default {
 					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-'),
 				}
 			})
+		},
+		mainSections() {
+			return this.sections.filter((section) => !section.header)
 		},
 	},
 	watch: {

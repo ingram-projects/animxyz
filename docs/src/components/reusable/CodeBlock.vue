@@ -1,5 +1,5 @@
 <template>
-  <prism :language="activeLangOptions.language">{{ activeCodeContent }}</prism>
+	<prism :language="activeLangOptions.language" tabindex="0">{{ activeCodeContent }}</prism>
 </template>
 
 <script>
@@ -9,88 +9,89 @@ import parserHtml from 'prettier/parser-html'
 import Prism from 'vue-prism-component'
 
 const langOptions = {
-  html: {
-    prettier: {
-      parser: 'html',
-      plugins: [parserHtml],
-    },
-    prism: {
-      language: 'html',
-    },
-  },
-  javascript: {
-    prettier: {
-      parser: 'babel',
-      plugins: [parserBabel],
-    },
-    prism: {
-      language: 'javascript',
-    },
-  },
-  vue: {
-    prettier: {
-      parser: 'vue',
-      plugins: [parserHtml],
-    },
-    prism: {
-      language: 'html',
-    },
-  },
-  react: {
-    prettier: {
-      parser: 'babel',
-      plugins: [parserBabel],
-    },
-    prism: {
-      language: 'javascript',
-    },
-  },
+	html: {
+		prettier: {
+			parser: 'html',
+			plugins: [parserHtml],
+		},
+		prism: {
+			language: 'html',
+		},
+	},
+	javascript: {
+		prettier: {
+			parser: 'babel',
+			plugins: [parserBabel],
+		},
+		prism: {
+			language: 'javascript',
+		},
+	},
+	vue: {
+		prettier: {
+			parser: 'vue',
+			plugins: [parserHtml],
+		},
+		prism: {
+			language: 'html',
+		},
+	},
+	react: {
+		prettier: {
+			parser: 'babel',
+			plugins: [parserBabel],
+		},
+		prism: {
+			language: 'javascript',
+		},
+	},
 }
 
 export default {
 	name: 'CodeBlock',
 	props: ['code', 'data'],
-  components: {
-    Prism,
-  },
-  data () {
-    return {
-      activeCodeIndex: null,
-    }
-  },
-  computed: {
-    activeCode () {
-      if (this.code.length) {
+	components: {
+		Prism,
+	},
+	data() {
+		return {
+			activeCodeIndex: null,
+		}
+	},
+	computed: {
+		activeCode() {
+			if (this.code.length) {
 				return this.code[this.activeCodeIndex]
 			}
 			return null
-    },
-    activeLangOptions () {
-      return langOptions[this.activeCode.language]
-    },
-    activeCodeContent () {
-      const data = this.data
-      const evalData = eval(`\`${this.activeCode.content}\``)
-      const prettierData = prettier.format(evalData, {
-        ...this.activeLangOptions.prettier,
-        printWidth: 80,
+		},
+		activeLangOptions() {
+			return langOptions[this.activeCode.language]
+		},
+		activeCodeContent() {
+			/* eslint-disable no-unused-vars */
+			const data = this.data
+			/* eslint-enable no-unused-vars */
+			const evalData = eval(`\`${this.activeCode.content}\``)
+			const prettierData = prettier.format(evalData, {
+				...this.activeLangOptions.prettier,
+				printWidth: 80,
 				semi: false,
 				singleQuote: true,
 				trailingComma: 'es5',
-      })
-      return prettierData
-    },
-  },
-  methods: {
-    setActiveLang(index) {
-      this.activeCodeIndex = index
-    },
-  },
-  created () {
-    this.setActiveLang(0)
-  },
+			})
+			return prettierData
+		},
+	},
+	methods: {
+		setActiveLang(index) {
+			this.activeCodeIndex = index
+		},
+	},
+	created() {
+		this.setActiveLang(0)
+	},
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
