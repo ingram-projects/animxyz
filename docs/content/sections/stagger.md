@@ -32,4 +32,8 @@ modifiers:
 
 Staggering the animation of a series of items can add some panache to their entrance and exit. AnimXYZ stagger utilities calculate the `animation-delay` for each item so that their animation is triggered one following the other.
 
-AnimXYZ will apply this staggered delay to the first 20 (or last 20 if using `stagger-rev`) based on their `nth-child` index. Alternatively you can pass your own index to each item with the `--xyz-index` variable if you want more than 20 items to stagger or want to change the staggering order in other ways.
+AnimXYZ will apply this staggered delay to the first 20 items (or last 20 if using `stagger-rev`) based on their `nth-child` index. Alternatively you can pass your own index to each item with the `--xyz-index` variable if you want more than 20 items to stagger or want to change the staggering order in other ways.
+
+You can also override the `--xyz-stagger` and `--xyz-stagger-rev` variables with a custom value in your CSS or with inline styling for more granular control.
+
+> If you are using the provided Vue/React `xyzTransitionGroup` components, AnimXYZ will automatically add the `--xyz-index` for all items in the group.
