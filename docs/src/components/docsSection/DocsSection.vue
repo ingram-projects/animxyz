@@ -112,6 +112,16 @@ export default {
 		left: 100%;
 		right: initial;
 	}
+
+	@include media('>=large') {
+		left: 100%;
+		right: initial;
+	}
+
+	@include media('>=x-large') {
+		left: initial;
+		right: 100%;
+	}
 }
 
 .section-title {

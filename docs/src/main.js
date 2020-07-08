@@ -25,7 +25,8 @@ export default function (Vue) {
 			laptop: '1024px',
 			desktop: '1248px',
 			large: '1440px',
-			'x-large': '2000px',
+			'x-large': '1600px',
+			huge: '1920px',
 		},
 	})
 	Vue.use(VueScrollactive)
