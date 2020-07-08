@@ -14,6 +14,18 @@ export default {
 			context.data
 		)
 
+		context.children.forEach((child, index) => {
+			child.data = mergeData(
+				{
+					style: {
+						'--xyz-index': index,
+						'--xyz-index-rev': context.children.length - index - 1,
+					},
+				},
+				child.data
+			)
+		})
+
 		return createElement('transition-group', data, context.children)
 	},
 }
