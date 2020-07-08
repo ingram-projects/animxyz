@@ -215,7 +215,7 @@ export default {
 
 		::v-deep {
 			.cube-wrap {
-				transform: scale(1.25) rotateX(60deg) rotateZ(45deg);
+				transform: scale(1.25);
 			}
 		}
 	}
@@ -232,7 +232,7 @@ export default {
 	}
 
 	.open & {
-		--logo-side-z: -3px;
+		--logo-side-z: 0px;
 	}
 }
 
