@@ -48,7 +48,11 @@ $logo-size: 1.75rem;
 .side-fill {
 	@include size(100%);
 	border-bottom-right-radius: $br-xl;
-	background-image: linear-gradient(to bottom, rgba(var(--logo-side-color), 1), rgba(var(--logo-side-color), 0.15));
+	background-image: linear-gradient(
+		var(--logo-gradient-direction, to bottom),
+		rgba(var(--logo-side-color), 1),
+		rgba(var(--logo-side-color), 0.15)
+	);
 }
 
 .side--red {
@@ -63,6 +67,7 @@ $logo-size: 1.75rem;
 
 .side--green {
 	--logo-side-color: var(--green-rgb);
+	--logo-gradient-direction: to right;
 }
 
 .cube-half--back {
