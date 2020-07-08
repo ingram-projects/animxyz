@@ -32,7 +32,7 @@
 								@click="onSectionClick"
 								:key="section.title"
 							>
-								<h2 class="nav-section__header" v-if="section.header">{{section.title}}</h2>
+								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
 
 								<a class="nav-section__link scrollactive-item" v-if="!section.header" :href="`#${section.anchor}`">
 									<div class="link-dot__wrap">
@@ -149,7 +149,11 @@ export default {
 	color: primary-color(300);
 	text-decoration: none;
 
-	&:hover {
+	&:hover,
+	&:focus {
+		outline: none;
+		color: primary-color(200);
+
 		.link-dot {
 			@include size(1.25rem);
 			opacity: 0.5;
@@ -287,7 +291,7 @@ export default {
 	background-color: primary-color(500, 0.2);
 	color: var(--icon-color);
 	text-decoration: none;
-	transition: background-color 0.2s $ease-in-out;
+	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
 
 	svg {
 		@include size(1.5rem);
@@ -298,11 +302,16 @@ export default {
 	&:hover,
 	&:focus {
 		--icon-color: #{primary-color(50)};
+		outline: none;
 		background-color: primary-color(500, 0.3);
 
 		svg {
 			transform: scale(1.15);
 		}
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 4px primary-color(200, 0.5);
 	}
 
 	@include media('<tablet') {

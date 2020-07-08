@@ -30,4 +30,6 @@ modifiers:
       types: [stagger]
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+Staggering the animation of a series of items can add some panache to their entrance and exit. AnimXYZ stagger utilities calculate the `animation-delay` for each item so that their animation is triggered one following the other.
+
+AnimXYZ will apply this staggered delay to the first 20 (or last 20 if using `stagger-rev`) based on their `nth-child` position.

@@ -32,7 +32,7 @@ modifiers:
 
 Timing utilities let you set the `animation-duration`, `animation-delay`, and `animation-timing-function` of an animation. AnimXYZ animations default to a duration of `.5s`, a delay of `0s`, and a timing-function of `ease`.
 
-Changing the timing of an animation can have a large impact on how it feels. For example `xyz="ease-out-back"`
+Changing the timing of an animation can have a large impact on how it feels. For example `xyz="ease-out-back"` will add a slight overshoot at the end of an animation.
 
 You can set your own custom duration and delay with the relevant variables, and you can pass a custom timing function to the `--xyz-ease` variable.
 
