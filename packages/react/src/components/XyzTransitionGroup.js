@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React, { Children, cloneElement } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import XyzTransition from './XyzTransition'
 
@@ -9,9 +9,15 @@ function XyzTransitionGroup(props) {
 
 	return (
 		<TransitionGroup xyz={xyz} component={component} childFactory={childFactory}>
-			{childArray.map((child) => (
+			{childArray.map((child, index) => (
 				<XyzTransition {...rest} key={child.key}>
-					{child}
+					{cloneElement(child, {
+						style: {
+							'--xyz-index': index,
+							'--xyz-index-rev': childArray.length - index - 1,
+							...child.style,
+						},
+					})}
 				</XyzTransition>
 			))}
 		</TransitionGroup>

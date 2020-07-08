@@ -27,9 +27,10 @@
 							:modify-url="false"
 						>
 							<li
-								v-for="section in sections"
+								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
 								@click="onSectionClick"
+								:style="{'--xyz-index': index}"
 								:key="section.title"
 							>
 								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>

@@ -44,5 +44,12 @@ export function mergeData(data1 = {}, data2 = {}) {
 		merged.directives = [...(data1.directives || []), ...(data2.directives || [])]
 	}
 
+	if (data1.style || data2.style) {
+		merged.style = {
+			...data1.style,
+			...data2.style,
+		}
+	}
+
 	return merged
 }
