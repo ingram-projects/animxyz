@@ -32,4 +32,4 @@ modifiers:
 
 Staggering the animation of a series of items can add some panache to their entrance and exit. AnimXYZ stagger utilities calculate the `animation-delay` for each item so that their animation is triggered one following the other.
 
-AnimXYZ will apply this staggered delay to the first 20 (or last 20 if using `stagger-rev`) based on their `nth-child` position.
+AnimXYZ will apply this staggered delay to the first 20 (or last 20 if using `stagger-rev`) based on their `nth-child` index. Alternatively you can pass your own index to each item with the `--xyz-index` variable if you want more than 20 items to stagger or want to change the staggering order in other ways.

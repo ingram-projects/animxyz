@@ -1,5 +1,5 @@
 <template>
-	<prism :language="activeLangOptions.language" tabindex="0">{{ activeCodeContent }}</prism>
+	<prism :language="activeLangOptions.language">{{ activeCodeContent }}</prism>
 </template>
 
 <script>
