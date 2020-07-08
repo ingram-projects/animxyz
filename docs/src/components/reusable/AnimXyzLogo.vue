@@ -1,9 +1,11 @@
 <template>
 	<div class="animxyz-logo logo-scene">
 		<div class="cube-wrap">
-			<div class="cube-side side--left"><div class="side-fill"></div></div>
-			<div class="cube-side side--right"><div class="side-fill"></div></div>
-			<div class="cube-side side--bottom"><div class="side-fill"></div></div>
+			<div class="cube-half cube-half--back">
+				<div class="cube-side side--yellow"><div class="side-fill"></div></div>
+				<div class="cube-side side--red"><div class="side-fill"></div></div>
+				<div class="cube-side side--green"><div class="side-fill"></div></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -15,6 +17,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$logo-size: 1.75rem;
+
 .logo-scene {
 	@include size(100%);
 	display: flex;
@@ -24,48 +28,54 @@ export default {
 .cube-wrap {
 	margin: auto;
 	position: relative;
-	top: 2px;
-	transform: rotateX(60deg) rotateZ(45deg);
+	transition: transform 0.3s $ease-out-back;
 	transform-style: preserve-3d;
+}
+
+.cube-half {
+	transform-style: preserve-3d;
+	transform: rotateX(55deg) rotateZ(45deg);
 	transition: transform 0.3s $ease-out-back;
 }
 
 .cube-side {
-	@include size(2rem);
+	@include size($logo-size);
 	display: flex;
 	position: absolute;
-	padding: 3px;
 	transition: transform 0.3s $ease-in-out;
 }
 
 .side-fill {
 	@include size(100%);
 	border-bottom-right-radius: $br-xl;
-
-	.side--right & {
-		background-image: linear-gradient(to bottom, rgba(var(--red-rgb), 1), rgba(var(--red-rgb), 0.15));
-	}
-
-	.side--left & {
-		background-image: linear-gradient(to bottom, rgba(var(--yellow-rgb), 1), rgba(var(--yellow-rgb), 0.15));
-	}
-
-	.side--bottom & {
-		background-image: linear-gradient(to right, rgba(var(--green-rgb), 1), rgba(var(--green-rgb), 0.15));
-	}
+	background-image: linear-gradient(to bottom, rgba(var(--logo-side-color), 1), rgba(var(--logo-side-color), 0.15));
 }
 
-.side--right {
+.side--red {
 	transform-origin: top;
-	transform: rotateX(90deg) translateZ(var(--logo-side-z, 0));
+	--logo-side-color: var(--red-rgb);
 }
 
-.side--left {
+.side--yellow {
 	transform-origin: left;
-	transform: rotateY(-90deg) translateZ(var(--logo-side-z, 0));
+	--logo-side-color: var(--yellow-rgb);
 }
 
-.side--bottom {
-	transform: translateZ(calc(var(--logo-side-z, 0) * -1));
+.side--green {
+	--logo-side-color: var(--green-rgb);
+}
+
+.cube-half--back {
+	.side--red {
+		transform: rotateX(90deg) translateZ(var(--logo-side-z, 3px));
+	}
+
+	.side--yellow {
+		transform: rotateY(-90deg) translateZ(var(--logo-side-z, 3px));
+	}
+
+	.side--green {
+		transform: translateZ(calc(var(--logo-side-z, 3px) * -1));
+	}
 }
 </style>

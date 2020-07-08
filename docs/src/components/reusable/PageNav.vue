@@ -1,6 +1,6 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open: value }">
-		<focus-lock :disabled="!value">
+		<focus-lock :disabled="$mq.above('large') || !value">
 			<xyz-transition appear>
 				<button class="nav-button" xyz="fade delay-4" @click="toggleNav(!value)">
 					<div class="logo-wrap">
@@ -219,7 +219,7 @@ export default {
 
 		::v-deep {
 			.cube-wrap {
-				transform: scale(1.25) rotateX(60deg) rotateZ(45deg);
+				transform: scale(1.25);
 			}
 		}
 	}
@@ -236,7 +236,7 @@ export default {
 	}
 
 	.open & {
-		--logo-side-z: -3px;
+		--logo-side-z: 0px;
 	}
 }
 
