@@ -37,3 +37,5 @@ AnimXYZ will apply this staggered delay to the first 20 items (or last 20 if usi
 You can also override the `--xyz-stagger` and `--xyz-stagger-rev` variables with a custom value in your CSS or with inline styling for more granular control.
 
 > If you are using the provided Vue/React `xyzTransitionGroup` components, AnimXYZ will automatically add the `--xyz-index` for all items in the group.
+>
+> Since Vue and React remove elements at the end of their animation, staggered elements that are not `position: absolute` may cause the group layout to change as items are added or removed.
