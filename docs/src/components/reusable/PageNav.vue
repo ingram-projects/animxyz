@@ -1,13 +1,13 @@
 <template>
-	<div class="page-nav__wrap" :class="{ open: value }">
-		<focus-lock :disabled="$mq.above('large') || !value">
+	<div class="page-nav__wrap" :class="{ open }">
+		<focus-lock :disabled="$mq.above('large') || !open">
 			<xyz-transition appear>
-				<button class="nav-button" xyz="fade delay-4" @click="toggleNav(!value)">
+				<button class="nav-button" xyz="fade delay-4" @click="toggle(!open)">
 					<div class="logo-wrap">
 						<anim-xyz-logo></anim-xyz-logo>
 					</div>
 					<span class="nav-button__text logo-text">AnimXYZ</span>
-					<span class="nav-button__text toggle-text">{{ value ? 'Close' : 'Menu' }}</span>
+					<span class="nav-button__text toggle-text">{{ open ? 'Close' : 'Menu' }}</span>
 				</button>
 			</xyz-transition>
 
@@ -17,7 +17,7 @@
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 				:duration="2000"
 			>
-				<nav class="page-nav" v-if="value">
+				<nav class="page-nav" v-if="open">
 					<div class="nav-sections__wrap">
 						<scrollactive
 							tag="ul"
@@ -66,20 +66,18 @@ import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	name: 'PageNav',
-	props: ['value', 'sections'],
+	props: ['open', 'sections'],
 	components: {
 		AnimXyzLogo,
 		FocusLock,
 		IconGithub,
 	},
 	methods: {
-		toggleNav(toggled) {
-			if (this.$mq.below('large')) {
-				this.$emit('input', toggled)
-			}
+		toggle(toggled) {
+			this.$emit('toggle', toggled)
 		},
 		onSectionClick() {
-			this.toggleNav(false)
+			this.toggle(false)
 		},
 	},
 }

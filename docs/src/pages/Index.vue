@@ -1,6 +1,6 @@
 <template>
 	<div :class="{ 'xyz-xray': xRayToggled }">
-		<page-nav :sections="sections" v-model="navOpen"></page-nav>
+		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
 			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
@@ -10,7 +10,7 @@
 			<div class="xray-overlay" v-if="xRayToggled"></div>
 		</xyz-transition>
 
-		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="closeNav">
+		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
 			<div class="banner__wrap">
 				<banner></banner>
 			</div>
@@ -139,17 +139,17 @@ export default {
 			immediate: true,
 			handler() {
 				if (this.isMediaLarge) {
-					this.navOpen = true
+					this.toggleNav(true)
 				} else {
-					this.navOpen = false
+					this.toggleNav(false)
 				}
 			},
 		},
 	},
 	methods: {
-		closeNav() {
-			if (this.$mq.below('large')) {
-				this.navOpen = false
+		toggleNav(toggled) {
+			if (toggled || this.$mq.below('large')) {
+				this.navOpen = toggled
 			}
 		},
 		toggleXRay(toggled) {
