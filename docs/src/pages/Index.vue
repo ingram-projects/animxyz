@@ -18,7 +18,7 @@
 			<xyz-transition appear>
 				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
 					<p class="intro-text">
-						The first truly composable CSS animation library. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
 						your website to life.
 					</p>
 				</div>
