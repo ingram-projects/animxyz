@@ -1,6 +1,8 @@
 <template>
 	<div :class="{ 'xyz-xray': xRayToggled }">
-		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+		<client-only>
+			<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+		</client-only>
 
 		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
 			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
@@ -69,12 +71,14 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
+import ClientOnly from 'vue-client-only'
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
 
 export default {
 	components: {
 		Banner,
+		ClientOnly,
 		DocsSection,
 		PageNav,
 	},
@@ -109,9 +113,6 @@ export default {
 		}
 	},
 	computed: {
-		isMediaLarge() {
-			return this.$mq.above('large')
-		},
 		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
@@ -132,18 +133,6 @@ export default {
 		},
 		mainSections() {
 			return this.sections.filter((section) => !section.header)
-		},
-	},
-	watch: {
-		isMediaLarge: {
-			immediate: true,
-			handler() {
-				if (this.isMediaLarge) {
-					this.toggleNav(true)
-				} else {
-					this.toggleNav(false)
-				}
-			},
 		},
 	},
 	methods: {

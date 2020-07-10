@@ -10,9 +10,9 @@ const VueMQ = {
 		}
 
 		function media(options) {
-			if (typeof window === 'undefined') return true
+			const { min, max, direction = 'width', defaultTo = true } = options
 
-			const { min, max, direction = 'width' } = options
+			if (typeof window === 'undefined') return defaultTo
 
 			const components = []
 			if (min) {
@@ -30,16 +30,16 @@ const VueMQ = {
 			return data.cached[mediaQuery]
 		}
 
-		function below(max, direction) {
-			return media({ max, direction })
+		function below(max, options) {
+			return media({ max, ...options })
 		}
 
-		function above(min, direction) {
-			return media({ min, direction })
+		function above(min, options) {
+			return media({ min, ...options })
 		}
 
-		function between(min, max, direction) {
-			return media({ min, max, direction })
+		function between(min, max, options) {
+			return media({ min, max, ...options })
 		}
 
 		let data = {}

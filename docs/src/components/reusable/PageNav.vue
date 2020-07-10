@@ -1,6 +1,6 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open }">
-		<focus-lock :disabled="$mq.above('large') || !open">
+		<focus-lock :disabled="isMediaLarge || !open">
 			<xyz-transition appear>
 				<button class="nav-button" xyz="fade delay-4" @click="toggle(!open)">
 					<div class="logo-wrap">
@@ -71,6 +71,23 @@ export default {
 		AnimXyzLogo,
 		FocusLock,
 		IconGithub,
+	},
+	computed: {
+		isMediaLarge() {
+			return this.$mq.above('large')
+		},
+	},
+	watch: {
+		isMediaLarge: {
+			immediate: true,
+			handler() {
+				if (this.isMediaLarge) {
+					this.toggle(true)
+				} else {
+					this.toggle(false)
+				}
+			},
+		},
 	},
 	methods: {
 		toggle(toggled) {
