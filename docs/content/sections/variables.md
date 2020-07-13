@@ -4,13 +4,13 @@ title: Variables
 examples:
   - name: Variables
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade" v-on="data.listeners" :style="data.variables">
+      <xyz-transition-group tag="div" class="square-group" v-on="data.listeners" :style="data.variables">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade duration-10">
+          <div class="square-group">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -18,13 +18,17 @@ examples:
 
           ${data.variablesString && `
           <style>
-            .square-group { ${data.variables} }
+            .square-group { ${data.variablesString} }
           </style>
           `}
 
 modifiers:
   utilities:
     hide: true
+  variables:
+    default:
+      - name: --xyz-fade
+        value: '0'
   groups:
     - name: Fade
       types: [fade]
