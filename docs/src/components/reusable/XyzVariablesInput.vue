@@ -32,10 +32,10 @@ export default {
 		},
 		variables() {
 			return this.typeVariables.map((variable) => {
-				const variableMode = getXyzVariable(variable.name)
+				const variableObj = getXyzVariable(variable.name)
 				return {
-					...variableMode,
-					id: `${this._uid}_${variableMode.string}`,
+					...variableObj,
+					id: `${this._uid}_${variableObj.string}`,
 				}
 			})
 		},

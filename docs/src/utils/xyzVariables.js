@@ -4,6 +4,7 @@ export const xyzModes = ['in', 'out', 'appear']
 export const xyzModesAll = ['all', ...xyzModes]
 export const xyzModeMove = 'move'
 
+
 // LEVELS
 
 export const xyzIndexLevels = 20
@@ -110,6 +111,7 @@ export const xyzScaleLevels = {
 	'75': '.75',
 	'100': '1',
 }
+
 
 // VARIABLES
 
@@ -227,19 +229,22 @@ export const xyzVariables = Object.entries(xyzVariablesMap).map(([name, variable
 	}
 })
 
-export function getXyzVariable(name, mode = 'all', value = 'initial') {
+export function getXyzVariable(name, value = 'initial', mode = 'all') {
 	const variableObj = xyzVariablesMap[name]
 
 	const components = ['--xyz']
 	if (mode !== 'all') components.push(mode)
 	components.push(name)
+	const string = components.join('-')
+
+	const valid = variableObj.modes.includes(mode)
 
 	return {
 		name,
 		value,
 		mode,
-		valid: variableObj.modes.includes(mode),
-		string: `${components.join('-')}`,
+		string,
+		valid,
 		...variableObj,
 	}
 }
@@ -261,8 +266,9 @@ export function getXyzVariableRegex(string) {
 		return null
 	}
 
-	return getXyzVariable(name, mode, value)
+	return getXyzVariable(name, value, mode)
 }
+
 
 // UTILITIES
 
@@ -525,13 +531,16 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 	if (mode !== 'all') components.push(mode)
 	components.push(name)
 	if (level !== 'default') components.push(level)
+	const string = components.join('-')
+
+	const valid = utilityObj.modes.includes(mode) && (level === 'default' || utilityObj.levels[level])
 
 	return {
 		name,
 		level,
 		mode,
-		valid: utilityObj.modes.includes(mode) && (level === 'default' || utilityObj.levels[level]),
-		string: components.join('-'),
+		string,
+		valid,
 		...utilityObj,
 	}
 }
