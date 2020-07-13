@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import isEqual from 'lodash/isEqual'
 import { xyzUtilities, getXyzUtility, getXyzUtilityRegex } from '~/utils'
 
 export default {
@@ -84,25 +85,30 @@ export default {
 	},
 	watch: {
 		value: {
+			deep: true,
 			immediate: true,
-			handler() {
-				this.toggledUtilities = {}
-				const toggledUtilities = this.value.split(' ')
-				toggledUtilities.forEach((toggledUtility) => {
-					const utility = getXyzUtilityRegex(toggledUtility)
+			handler(val, oldVal) {
+				if (!isEqual(val, oldVal)) {
+					this.toggledUtilities = {}
+					Object.keys(this.value).forEach((utilityString) => {
+						const utility = getXyzUtilityRegex(utilityString)
 
-					if (utility) {
-						const model = this.getUtilityModel(utility)
-						this.$set(this.toggledUtilities, model, toggledUtility)
-					}
-				})
+						if (utility) {
+							const model = this.getUtilityModel(utility)
+							this.$set(this.toggledUtilities, model, utilityString)
+						}
+					})
+				}
 			},
 		},
 		toggledUtilities: {
 			deep: true,
 			handler() {
-				const toggled = Object.values(this.toggledUtilities).join(' ')
-				this.$emit('input', toggled)
+				const newValue = {}
+				Object.values(this.toggledUtilities).forEach((toggledUtility) => {
+					newValue[toggledUtility] = true
+				})
+				this.$emit('input', newValue)
 			},
 		},
 	},

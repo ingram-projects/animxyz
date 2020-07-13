@@ -5,23 +5,23 @@ quote: Beam me up Scotty!
 examples:
   - name: Fade
     template: |
-      <xyz-transition v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
+      <xyz-transition v-xyz="data.utilities" v-on="data.listeners">
+        <div class="square" v-show="data.toggled" :style="data.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="${data.modifiers.utilities}"></div>
+          <div class="square ${data.mode}" xyz="${data.utilitiesString}"></div>
 
-          ${data.modifiers.variables && `
+          ${data.variablesString && `
           <style>
-            .square { ${data.modifiers.variables} }
+            .square { ${data.variablesString} }
           </style>
           `}
 
 modifiers:
   utilities:
-    default: fade
+    default: [fade]
   groups:
     - name: Fade
       types: [fade]

@@ -4,7 +4,7 @@ title: Variables
 examples:
   - name: Variables
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade" v-on="data.listeners" :style="data.modifiers.variables">
+      <xyz-transition-group tag="div" class="square-group" xyz="fade" v-on="data.listeners" :style="data.variables">
         <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
@@ -16,9 +16,9 @@ examples:
             <div class="square ${data.mode}"></div>
           </div>
 
-          ${data.modifiers.variables && `
+          ${data.variablesString && `
           <style>
-            .square-group { ${data.modifiers.variables} }
+            .square-group { ${data.variables} }
           </style>
           `}
 

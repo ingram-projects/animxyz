@@ -5,23 +5,23 @@ quote: You spin my bottom-right round, baby.
 examples:
   - name: Origin
     template: |
-      <xyz-transition xyz="fade small-100" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
+      <xyz-transition xyz="fade small-100" v-xyz="data.utilities" v-on="data.listeners">
+        <div class="square" v-show="data.toggled" :style="data.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade small-100 ${data.modifiers.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade small-100 ${data.utilitiesString}"></div>
 
-          ${data.modifiers.variables && `
+          ${data.variablesString && `
           <style>
-            .square { ${data.modifiers.variables} }
+            .square { ${data.variablesString} }
           </style>
           `}
 
 modifiers:
   utilities:
-    default: origin-top
+    default: [origin-top]
   groups:
     - name: Origin
       types: [origin]

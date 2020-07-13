@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import isEqual from 'lodash/isEqual'
 import { xyzVariables, getXyzVariable, getXyzVariableRegex } from '~/utils'
 
 export default {
@@ -42,16 +43,16 @@ export default {
 	},
 	watch: {
 		value: {
+			deep: true,
 			immediate: true,
-			handler() {
-				this.toggledVariables = {}
-				if (this.value) {
-					const toggledVariables = this.value.split('; ')
-					toggledVariables.forEach((toggledVariable) => {
-						const variable = getXyzVariableRegex(toggledVariable)
+			handler(val, oldVal) {
+				if (!isEqual(val, oldVal)) {
+					this.toggledVariables = {}
+					Object.entries(this.value).forEach(([name, value]) => {
+						const variable = getXyzVariableRegex(name)
 
 						if (variable) {
-							this.$set(this.toggledVariables, variable.string, variable.value)
+							this.$set(this.toggledVariables, variable.string, value)
 						}
 					})
 				}
@@ -60,14 +61,14 @@ export default {
 		toggledVariables: {
 			deep: true,
 			handler() {
-				let toggled = []
+				const newValue = {}
 				Object.entries(this.toggledVariables).forEach(([name, value]) => {
 					const trimmedValue = value.trim()
 					if (trimmedValue.length) {
-						toggled.push(`${name}: ${trimmedValue}`)
+						newValue[name] = trimmedValue
 					}
 				})
-				this.$emit('input', toggled.join('; '))
+				this.$emit('input', newValue)
 			},
 		},
 	},

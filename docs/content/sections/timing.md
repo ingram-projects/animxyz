@@ -5,23 +5,23 @@ quote: How did it get so late so soon?
 examples:
   - name: Timing
     template: |
-      <xyz-transition xyz="fade turn-cw-50" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
+      <xyz-transition xyz="fade turn-cw-50" v-xyz="data.utilities" v-on="data.listeners">
+        <div class="square" v-show="data.toggled" :style="data.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade turn-cw-50 ${data.modifiers.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade turn-cw-50 ${data.utilitiesString}"></div>
 
-          ${data.modifiers.variables && `
+          ${data.variablesString && `
           <style>
-            .square { ${data.modifiers.variables} }
+            .square { ${data.variablesString} }
           </style>
           `}
 
 modifiers:
   utilities:
-    default: duration-20
+    default: [duration-20]
   groups:
     - name: Timing
       types: [duration, delay]

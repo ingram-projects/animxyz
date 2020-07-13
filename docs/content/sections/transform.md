@@ -5,23 +5,23 @@ quote: Roll out, roll in, fly away!
 examples:
   - name: Transform
     template: |
-      <xyz-transition xyz="fade" v-xyz="data.modifiers.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.modifiers.variables"></div>
+      <xyz-transition xyz="fade" v-xyz="data.utilities" v-on="data.listeners">
+        <div class="square" v-show="data.toggled" :style="data.variables"></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade ${data.modifiers.utilities}"></div>
+          <div class="square ${data.mode}" xyz="fade ${data.utilitiesString}"></div>
 
-          ${data.modifiers.variables && `
+          ${data.variablesString && `
           <style>
-            .square { ${data.modifiers.variables} }
+            .square { ${data.variablesString} }
           </style>
           `}
 
 modifiers:
   utilities:
-    default: down
+    default: [down]
   groups:
     - name: Translate
       types: [translate]

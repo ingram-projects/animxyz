@@ -26,11 +26,27 @@ export default {
 		}
 	},
 	computed: {
+		mode() {
+			return this.exampleToggled ? 'xyz-in' : 'xyz-out'
+		},
+		variablesString() {
+			let variablesArray = []
+			Object.entries(this.xyzModifiers.variables).forEach(([name, value]) => {
+				variablesArray.push(`${name}: ${value}`)
+			})
+			return variablesArray.join('; ')
+		},
+		utilitiesString() {
+			return Object.keys(this.xyzModifiers.utilities).join(' ')
+		},
 		injectedData() {
 			return {
 				toggled: this.exampleToggled,
-				mode: this.exampleToggled ? 'xyz-in' : 'xyz-out',
-				modifiers: this.xyzModifiers,
+				mode: this.mode,
+				variables: this.xyzModifiers.variables,
+				variablesString: this.variablesString,
+				utilities: this.xyzModifiers.utilities,
+				utilitiesString: this.utilitiesString,
 				listeners: {
 					beforeEnter: this.beforeAnim,
 					afterEnter: this.afterAnim,
@@ -44,19 +60,21 @@ export default {
 		modifiers: {
 			immediate: true,
 			handler() {
+				this.xyzModifiers = {
+					utilities: {},
+					variables: {},
+				}
 				if (this.modifiers) {
-					this.xyzModifiers = {
-						utilities: '',
-						variables: '',
-					}
 					if (this.modifiers.utilities && this.modifiers.utilities.default) {
-						this.xyzModifiers.utilities = this.modifiers.utilities.default
+						this.modifiers.utilities.default.forEach((defaultUtility) => {
+							this.xyzModifiers.utilities[defaultUtility] = true
+						})
 					}
 					if (this.modifiers.variables && this.modifiers.variables.default) {
-						this.xyzModifiers.variables = this.modifiers.variables.default
+						this.modifiers.variables.default.forEach((defaultVariable) => {
+							this.xyzModifiers.variables[defaultVariable.name] = defaultVariable.value
+						})
 					}
-				} else {
-					this.xyzModifiers = null
 				}
 			},
 		},
