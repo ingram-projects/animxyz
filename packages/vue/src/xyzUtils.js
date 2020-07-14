@@ -30,13 +30,13 @@ export const xyzTransitionProps = {
 export function animationDoneHook (el, done) {
 	let nested;
 	if (el.classList.contains('xyz-in')) {
-		nested = el.querySelectorAll('.xyz-nested', '.xyz-in-nested')
+		nested = el.querySelectorAll('.xyz-nested, .xyz-in-nested')
 	} else
 	if (el.classList.contains('xyz-out')) {
-		nested = el.querySelectorAll('.xyz-nested', '.xyz-out-nested')
+		nested = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
 	} else
 	if (el.classList.contains('xyz-appear')) {
-		nested = el.querySelectorAll('.xyz-nested', '.xyz-appear-nested')
+		nested = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
 	}
 
 	const animatingEls = [el, ... Array.from(nested)]
@@ -47,13 +47,10 @@ export function animationDoneHook (el, done) {
 		incompleteAnimations -= 1
 		if (incompleteAnimations === 0) {
 			el.removeEventListener('animationend', onAnimDone)
-			el.removeEventListener('animationcancel', onAnimDone)
 			done()
 		}
 	}
-
 	el.addEventListener('animationend', onAnimDone)
-	el.addEventListener('animationcancel', onAnimDone)
 }
 
 export const xyzTransitionHooks = {
