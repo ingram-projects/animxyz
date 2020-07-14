@@ -4,13 +4,18 @@ export default {
 	name: 'XyzTransitionGroup',
 	functional: true,
 	render(createElement, context) {
+		let hooks;
+		if (!context.data.attrs || typeof context.data.attrs.duration === 'undefined') {
+			hooks = xyzTransitionHooks
+		}
+
 		const data = mergeData(
 			{
 				attrs: {
 					...xyzTransitionProps,
 					moveClass: xyzTransitionClasses.move,
 				},
-				on: xyzTransitionHooks,
+				on: hooks,
 			},
 			context.data
 		)
