@@ -21,7 +21,7 @@ examples:
 
 modifiers:
   utilities:
-    default: [fade]
+    defaults: [fade]
   groups:
     - name: Fade
       types: [fade]

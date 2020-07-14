@@ -53,11 +53,11 @@
 					utilities {
 						hide
 						multiple
-						default
+						defaults
 					}
 					variables {
 						hide
-						default {
+						defaults {
 							name
 							value
 						}

@@ -65,13 +65,13 @@ export default {
 					variables: {},
 				}
 				if (this.modifiers) {
-					if (this.modifiers.utilities && this.modifiers.utilities.default) {
-						this.modifiers.utilities.default.forEach((defaultUtility) => {
+					if (this.modifiers.utilities && this.modifiers.utilities.defaults) {
+						this.modifiers.utilities.defaults.forEach((defaultUtility) => {
 							this.xyzModifiers.utilities[defaultUtility] = true
 						})
 					}
-					if (this.modifiers.variables && this.modifiers.variables.default) {
-						this.modifiers.variables.default.forEach((defaultVariable) => {
+					if (this.modifiers.variables && this.modifiers.variables.defaults) {
+						this.modifiers.variables.defaults.forEach((defaultVariable) => {
 							this.xyzModifiers.variables[defaultVariable.name] = defaultVariable.value
 						})
 					}

@@ -19,7 +19,7 @@ examples:
 modifiers:
   utilities:
     multiple: true
-    default: [fade]
+    defaults: [fade]
   variables:
     hide: true
   groups:

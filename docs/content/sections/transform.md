@@ -21,7 +21,7 @@ examples:
 
 modifiers:
   utilities:
-    default: [down]
+    defaults: [down]
   groups:
     - name: Translate
       types: [translate]

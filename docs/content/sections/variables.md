@@ -26,7 +26,7 @@ modifiers:
   utilities:
     hide: true
   variables:
-    default:
+    defaults:
       - name: --xyz-fade
         value: '0'
   groups:

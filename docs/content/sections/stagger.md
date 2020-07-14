@@ -25,7 +25,7 @@ examples:
 
 modifiers:
   utilities:
-    default: [stagger]
+    defaults: [stagger]
   groups:
     - name: Stagger
       types: [stagger]

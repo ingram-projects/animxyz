@@ -21,7 +21,7 @@ examples:
 
 modifiers:
   utilities:
-    default: [origin-top]
+    defaults: [origin-top]
   groups:
     - name: Origin
       types: [origin]
