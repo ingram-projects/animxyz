@@ -43,14 +43,12 @@ export function animationDoneHook (el, done) {
 
 	let incompleteAnimations = animatingEls.length
 
-	const onAnimDone = (event) => {
-		if (event.animationName.startsWith('xyz')) {
-			incompleteAnimations -= 1
-			if (incompleteAnimations === 0) {
-				el.removeEventListener('animationend', onAnimDone)
-				el.removeEventListener('animationcancel', onAnimDone)
-				done()
-			}
+	const onAnimDone = () => {
+		incompleteAnimations -= 1
+		if (incompleteAnimations === 0) {
+			el.removeEventListener('animationend', onAnimDone)
+			el.removeEventListener('animationcancel', onAnimDone)
+			done()
 		}
 	}
 
