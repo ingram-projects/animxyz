@@ -29,6 +29,9 @@ export default {
 		mode() {
 			return this.exampleToggled ? 'xyz-in' : 'xyz-out'
 		},
+		utilitiesString() {
+			return Object.keys(this.xyzModifiers.utilities).join(' ')
+		},
 		variablesString() {
 			let variablesArray = []
 			Object.entries(this.xyzModifiers.variables).forEach(([name, value]) => {
@@ -36,17 +39,14 @@ export default {
 			})
 			return variablesArray.join('; ')
 		},
-		utilitiesString() {
-			return Object.keys(this.xyzModifiers.utilities).join(' ')
-		},
 		injectedData() {
 			return {
 				toggled: this.exampleToggled,
 				mode: this.mode,
-				variables: this.xyzModifiers.variables,
-				variablesString: this.variablesString,
 				utilities: this.xyzModifiers.utilities,
 				utilitiesString: this.utilitiesString,
+				variables: this.xyzModifiers.variables,
+				variablesString: this.variablesString,
 				listeners: {
 					beforeEnter: this.beforeAnim,
 					afterEnter: this.afterAnim,
