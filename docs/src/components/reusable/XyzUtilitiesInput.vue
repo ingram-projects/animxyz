@@ -161,7 +161,7 @@ export default {
 }
 
 .utility, .utility-level {
-	--xyz-stagger: .075s;
+	--xyz-stagger: .05s;
 }
 
 .utility__header {

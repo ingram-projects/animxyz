@@ -21,7 +21,7 @@
 						<scrollactive
 							tag="ul"
 							class="nav-sections"
-							xyz="fade left stagger-1"
+							xyz="fade left"
 							active-class="active"
 							:modify-url="false"
 						>
@@ -134,6 +134,7 @@ export default {
 	width: 100%;
 	margin: auto 0;
 	list-style: none;
+	--xyz-stagger: .05s;
 
 	@include media('<tablet') {
 		margin: 0;
