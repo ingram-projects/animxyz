@@ -1,4 +1,4 @@
-import { xyzTransitionProps, mergeData } from '../xyzUtils'
+import { xyzTransitionProps, xyzTransitionHooks, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransition',
@@ -10,6 +10,7 @@ export default {
 					...xyzTransitionProps,
 					mode: 'out-in',
 				},
+				on: xyzTransitionHooks,
 			},
 			context.data
 		)

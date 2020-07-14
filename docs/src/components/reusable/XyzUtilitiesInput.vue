@@ -7,7 +7,7 @@
 					{{ level }}
 				</th>
 			</tr>
-			<xyz-transition-group tag="tbody" :duration="1500" appear xyz>
+			<xyz-transition-group tag="tbody" appear xyz>
 				<tr class="utility" v-for="utility in utilities" :key="utility.name">
 					<th class="utility__header">
 						{{ utility.name }}

@@ -1,4 +1,4 @@
-import { xyzTransitionClasses, xyzTransitionProps, mergeData } from '../xyzUtils'
+import { xyzTransitionClasses, xyzTransitionProps, xyzTransitionHooks, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransitionGroup',
@@ -10,6 +10,7 @@ export default {
 					...xyzTransitionProps,
 					moveClass: xyzTransitionClasses.move,
 				},
+				on: xyzTransitionHooks,
 			},
 			context.data
 		)
