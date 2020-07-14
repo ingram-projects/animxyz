@@ -1,6 +1,6 @@
 <template>
 	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
-		<xyz-transition :duration="2000">
+		<xyz-transition>
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"

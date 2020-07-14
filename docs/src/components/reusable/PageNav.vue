@@ -15,7 +15,6 @@
 				appear
 				xyz="ease-in-out duration-3"
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
-				:duration="2000"
 			>
 				<nav class="page-nav" v-if="open">
 					<div class="nav-sections__wrap">
