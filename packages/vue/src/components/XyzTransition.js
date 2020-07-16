@@ -1,21 +1,16 @@
-import { xyzTransitionProps, xyzTransitionHooks, mergeData } from '../xyzUtils'
+import { xyzTransitionProps, getXyzTransitionHooks, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransition',
 	functional: true,
 	render(createElement, context) {
-		let hooks;
-		if (!context.data.attrs || typeof context.data.attrs.duration === 'undefined') {
-			hooks = xyzTransitionHooks
-		}
-
 		const data = mergeData(
 			{
 				attrs: {
 					...xyzTransitionProps,
 					mode: 'out-in',
 				},
-				on: hooks,
+				on: getXyzTransitionHooks(context.data),
 			},
 			context.data
 		)

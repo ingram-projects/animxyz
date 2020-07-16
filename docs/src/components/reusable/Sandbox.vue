@@ -49,8 +49,8 @@ export default {
 				variablesString: this.variablesString,
 				listeners: {
 					beforeEnter: this.beforeAnim,
-					afterEnter: this.afterAnim,
 					beforeLeave: this.beforeAnim,
+					afterEnter: this.afterAnim,
 					afterLeave: this.afterAnim,
 				},
 			}

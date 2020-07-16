@@ -27,7 +27,7 @@ export const xyzTransitionProps = {
 	leaveToClass: xyzTransitionClasses.leaveTo,
 }
 
-export function animationDoneHook (el, done) {
+export function animationActiveHook (el, done) {
 	let nestedEls;
 	if (el.classList.contains('xyz-appear')) {
 		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
@@ -39,7 +39,11 @@ export function animationDoneHook (el, done) {
 		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
 	}
 
-	const animatingEls = [el, ... Array.from(nestedEls)]
+	const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
+		return nestedEl.offsetParent !== null
+	})
+
+	const animatingEls = [el, ...visibleNestedEls]
 
 	let incompleteAnimations = animatingEls.length
 	el.xyzAnimDone = function () {
@@ -57,13 +61,34 @@ export function animationCancelledHook (el) {
 	delete el.xyzAnimDone
 }
 
-export const xyzTransitionHooks = {
-	appear: animationDoneHook,
-	enter: animationDoneHook,
-	leave: animationDoneHook,
-	appearCancelled: animationCancelledHook,
-	enterCancelled: animationCancelledHook,
-	leaveCancelled: animationCancelledHook,
+export function getXyzTransitionHooks (data) {
+	const {
+		appear,
+		duration,
+	} = data.attrs || {}
+
+	if (!duration) {
+		return
+	}
+
+	const hooks = {}
+
+	if (appear && (duration === 'auto' || duration.appear === 'auto')) {
+		hooks.appear = animationActiveHook
+		hooks.appearCancelled = animationCancelledHook
+	}
+
+	if (duration === 'auto' || duration.enter === 'auto') {
+		hooks.enter = animationActiveHook
+		hooks.enterCancelled = animationCancelledHook
+	}
+
+	if (duration === 'auto' || duration.leave === 'auto') {
+		hooks.leave = animationActiveHook
+		hooks.leaveCancelled = animationCancelledHook
+	}
+
+	return hooks
 }
 
 export function mergeData(data1 = {}, data2 = {}) {
