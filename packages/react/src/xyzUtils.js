@@ -28,27 +28,31 @@ export const xyzTransitionProps = {
 }
 
 export function animationDoneHook (el, done) {
-	let nested;
+	let nestedEls;
+	if (el.classList.contains('xyz-appear')) {
+		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
+	} else
 	if (el.classList.contains('xyz-in')) {
-		nested = el.querySelectorAll('.xyz-nested, .xyz-in-nested')
+		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-in-nested')
 	} else
 	if (el.classList.contains('xyz-out')) {
-		nested = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
-	} else
-	if (el.classList.contains('xyz-appear')) {
-		nested = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
+		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
 	}
 
-	const animatingEls = [el, ... Array.from(nested)]
+	const animatingEls = [el, ... Array.from(nestedEls)]
 
 	let incompleteAnimations = animatingEls.length
-
-	const onAnimDone = () => {
+	el.xyzAnimDone = function () {
 		incompleteAnimations -= 1
 		if (incompleteAnimations === 0) {
-			el.removeEventListener('animationend', onAnimDone)
+			el.removeEventListener('animationend', el.xyzAnimDone)
 			done()
 		}
 	}
-	el.addEventListener('animationend', onAnimDone)
+	el.addEventListener('animationend', el.xyzAnimDone)
+}
+
+export function animationCancelledHook (el) {
+	el.removeEventListener('animationend', el.xyzAnimDone)
+	delete el.xyzAnimDone
 }
