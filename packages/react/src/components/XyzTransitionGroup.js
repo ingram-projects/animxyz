@@ -25,8 +25,8 @@ function XyzTransitionGroup(props) {
 }
 
 XyzTransitionGroup.propTypes = {
-	...XyzTransition.propTypes,
 	...TransitionGroup.propTypes,
+	...XyzTransition.propTypes,
 }
 
 export default XyzTransitionGroup

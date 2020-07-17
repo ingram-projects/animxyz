@@ -23,8 +23,8 @@ function XyzTransitionSwitch(props) {
 }
 
 XyzTransitionSwitch.propTypes = {
-	...XyzTransition.propTypes,
 	...SwitchTransition.propTypes,
+	...XyzTransition.propTypes,
 }
 
 export default XyzTransitionSwitch
