@@ -74,18 +74,15 @@ function getXyzAnimationActiveHook(duration) {
 		if (typeof modeDuration === 'number') {
 			el.xyzAnimTimeout = setTimeout(done, modeDuration)
 		} else if (modeDuration === 'auto') {
-			const animatingEls = [el]
-
 			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
 			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
 				return nestedEl.offsetParent !== null
 			})
-			animatingEls.push(...visibleNestedEls)
 
-			let incompleteAnimations = animatingEls.length
-			el.xyzAnimDone = () => {
-				incompleteAnimations -= 1
-				if (incompleteAnimations === 0) {
+			const animatingElsSet = new Set([el, ...visibleNestedEls])
+			el.xyzAnimDone = (event) => {
+				animatingElsSet.delete(event.target)
+				if (animatingElsSet.size === 0) {
 					done()
 				}
 			}
@@ -119,10 +116,6 @@ export function getXyzTransitionData(data, customData = {}) {
 	const on = {
 		enter: animationActiveHook,
 		leave: animationActiveHook,
-	}
-
-	if (data.attrs && data.attrs.appear) {
-		on.appear = animationActiveHook
 	}
 
 	const mergedData = mergeData(

@@ -54,18 +54,15 @@ function getXyzAnimationActiveHook(timeout) {
 		if (typeof modeTimeout === 'number') {
 			el.xyzAnimTimeout = setTimeout(done, modeTimeout)
 		} else if (modeTimeout === 'auto') {
-			const animatingEls = [el]
-
 			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
 			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
 				return nestedEl.offsetParent !== null
 			})
-			animatingEls.push(...visibleNestedEls)
 
-			let incompleteAnimations = animatingEls.length
-			el.xyzAnimDone = () => {
-				incompleteAnimations -= 1
-				if (incompleteAnimations === 0) {
+			const animatingElsSet = new Set([el, ...visibleNestedEls])
+			el.xyzAnimDone = (event) => {
+				animatingElsSet.delete(event.target)
+				if (animatingElsSet.size === 0) {
 					done()
 				}
 			}
