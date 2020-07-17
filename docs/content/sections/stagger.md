@@ -13,7 +13,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade small duration-10 ${data.utilitiesString}">
+          <div class="square-group" xyz="fade small ${data.utilitiesString}">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
