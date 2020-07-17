@@ -13,34 +13,80 @@ export const xyzTransitionClasses = {
 	move: 'xyz-move',
 }
 
-function xyzAnimationActiveHook (mode, auto = false) {
+function getXyzTimeoutForMode (mode, timeout) {
+	if (typeof timeout !== 'object' || timeout === null) {
+		return timeout
+	}
+	switch (mode) {
+		case 'appear':
+			return timeout.appear
+		case 'in':
+			return timeout.enter
+		case 'out':
+			return timeout.exit
+	}
+	return null
+}
+
+function clearXyzProperties (el) {
+	clearTimeout(el.xyzAnimTimeout)
+	delete el.xyzAnimTimeout
+
+	el.removeEventListener('animationend', el.xyzAnimDone)
+	delete el.xyzAnimDone
+}
+
+function getXyzAnimationActiveHook (timeout) {
 	return (el, done) => {
-		const animatingEls = [el]
+		let mode;
+		if (el.classList.contains('xyz-appear')) {
+			mode = 'appear'
+		} else
+		if (el.classList.contains('xyz-in')) {
+			mode = 'in'
+		} else
+		if (el.classList.contains('xyz-out')) {
+			mode = 'out'
+		}
 
-		if (auto) {
+		const modeTimeout = getXyzTimeoutForMode(mode, timeout)
+
+		if (typeof modeTimeout === 'number') {
+			el.xyzAnimTimeout = setTimeout(() => {
+				clearXyzProperties(el)
+				done()
+			}, modeTimeout)
+		} else
+		if (modeTimeout === 'auto') {
+			const animatingEls = [el]
+
 			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
-
 			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
 				return nestedEl.offsetParent !== null
 			})
 			animatingEls.push(...visibleNestedEls)
-		}
 
-		let incompleteAnimations = animatingEls.length
-		el.xyzAnimDone = function () {
-			incompleteAnimations -= 1
-			if (incompleteAnimations === 0) {
-				el.removeEventListener('animationend', el.xyzAnimDone)
+			let incompleteAnimations = animatingEls.length
+			el.xyzAnimDone = () => {
+				incompleteAnimations -= 1
+				if (incompleteAnimations === 0) {
+					clearXyzProperties(el)
+					done()
+				}
+			}
+			el.addEventListener('animationend', el.xyzAnimDone)
+		} else {
+			el.xyzAnimDone = () => {
+				clearXyzProperties(el)
 				done()
 			}
+			el.addEventListener('animationend', el.xyzAnimDone)
 		}
-		el.addEventListener('animationend', el.xyzAnimDone)
 	}
 }
 
 function xyzAnimationCancelledHook (el) {
-	el.removeEventListener('animationend', el.xyzAnimDone)
-	delete el.xyzAnimDone
+	clearXyzProperties(el)
 }
 
 export function getXyzTransitionProps (props) {
@@ -56,44 +102,18 @@ export function getXyzTransitionProps (props) {
 		exitDone: xyzTransitionClasses.leaveTo,
 	}
 
-	let newTimeout, appearAuto, inAuto, outAuto
-	if (typeof props.timeout !== 'undefined') {
-		if (props.timeout === 'auto') {
-			appearAuto = true
-			inAuto = true
-			outAuto = true
-		} else
-		if (typeof props.timeout === 'number') {
-			newTimeout = props.timeout
-		} else
-		if (typeof props.timeout === 'object') {
-			newTimeout = {
-				...props.timeout
-			}
-			if (newTimeout.appear === 'auto') {
-				appearAuto = true
-				delete newTimeout.appear
-			}
-			if (newTimeout.enter === 'auto') {
-				inAuto = true
-				delete newTimeout.enter
-			}
-			if (newTimeout.exit === 'auto') {
-				outAuto = true
-				delete newTimeout.exit
-			}
-		}
-	}
+	const { timeout } = props
+	const addEndListener = getXyzAnimationActiveHook(timeout)
 
-	let addEndListener
-
-	return {
+	const mergedProps = {
 		...props,
 		classNames: {
 			...classNames,
 			...props.classNames,
 		},
 		addEndListener,
-		timeout: newTimeout,
 	}
+	delete mergedProps.timeout
+
+	return mergedProps
 }

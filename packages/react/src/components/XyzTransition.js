@@ -26,6 +26,24 @@ function XyzTransition(props) {
 XyzTransition.propTypes = {
 	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
+	timeout: PropTypes.oneOfType([
+		PropTypes.number,
+    PropTypes.oneOf('auto'),
+		PropTypes.shape({
+      appear: PropTypes.oneOfType([
+				PropTypes.number,
+				PropTypes.oneOf('auto'),
+			]),
+			enter: PropTypes.oneOfType([
+				PropTypes.number,
+				PropTypes.oneOf('auto'),
+			]),
+			exit: PropTypes.oneOfType([
+				PropTypes.number,
+				PropTypes.oneOf('auto'),
+			]),
+    }),
+  ]),
 	children: PropTypes.node,
 }
 
