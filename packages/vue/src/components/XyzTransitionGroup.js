@@ -1,19 +1,14 @@
-import { xyzTransitionClasses, xyzTransitionProps, getXyzTransitionHooks, mergeData } from '../xyzUtils'
+import { getXyzTransitionData, xyzTransitionClasses, mergeData } from '../xyzUtils'
 
 export default {
 	name: 'XyzTransitionGroup',
 	functional: true,
 	render(createElement, context) {
-		const data = mergeData(
-			{
-				attrs: {
-					...xyzTransitionProps,
-					moveClass: xyzTransitionClasses.move,
-				},
-				on: getXyzTransitionHooks(context.data),
+		const data = getXyzTransitionData(context.data, {
+			attrs: {
+				moveClass: xyzTransitionClasses.move,
 			},
-			context.data
-		)
+		})
 
 		context.children.forEach((child, index) => {
 			child.data = mergeData(

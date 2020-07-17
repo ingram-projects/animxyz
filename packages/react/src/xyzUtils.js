@@ -27,7 +27,7 @@ export const xyzTransitionProps = {
 	},
 }
 
-export function animationDoneHook (el, done) {
+export function animationActiveHook (el, done) {
 	let nestedEls;
 	if (el.classList.contains('xyz-appear')) {
 		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
@@ -39,7 +39,11 @@ export function animationDoneHook (el, done) {
 		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
 	}
 
-	const animatingEls = [el, ... Array.from(nestedEls)]
+	const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
+		return nestedEl.offsetParent !== null
+	})
+
+	const animatingEls = [el, ...visibleNestedEls]
 
 	let incompleteAnimations = animatingEls.length
 	el.xyzAnimDone = function () {
