@@ -88,7 +88,11 @@ function getXyzAnimationActiveHook(duration) {
 			}
 			el.addEventListener('animationend', el.xyzAnimDone, false)
 		} else {
-			el.xyzAnimDone = done
+			el.xyzAnimDone = (event) => {
+				if (event.target === el) {
+					done()
+				}
+			}
 			el.addEventListener('animationend', el.xyzAnimDone, false)
 		}
 	}
