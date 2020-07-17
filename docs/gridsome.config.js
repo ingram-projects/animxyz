@@ -9,6 +9,10 @@ module.exports = {
 	siteDescription: 'AnimXYZ Documentation',
 	host: '0.0.0.0',
 	runtimeCompiler: true,
+	icon: {
+		favicon: '~/assets/images/animxyz-logo.png',
+		touchicon: '~/assets/images/animxyz-logo-touch.png',
+	},
 	plugins: [
 		{
 			use: '@gridsome/source-filesystem',

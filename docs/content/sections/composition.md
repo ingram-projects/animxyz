@@ -1,5 +1,6 @@
 ---
 title: Composition
+quote: With our powers combined...
 
 examples:
   - name: Composition

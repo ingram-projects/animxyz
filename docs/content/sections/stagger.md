@@ -1,6 +1,6 @@
 ---
 title: Stagger
-quote: Stag, you're it!
+quote: For the nth time!
 
 examples:
   - name: Stagger

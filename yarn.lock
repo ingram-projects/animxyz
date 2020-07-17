@@ -8381,10 +8381,10 @@ gridsome-plugin-svg@^0.0.13:
   dependencies:
     vue-svg-loader "^0.12.0"
 
-gridsome@^0.7.15:
-  version "0.7.15"
-  resolved "https://registry.yarnpkg.com/gridsome/-/gridsome-0.7.15.tgz#ea08347ff26da49a846a95ff6e545d3fabbcd508"
-  integrity sha512-F/ZCdTTycBpq+XJEb1A1RYbkkJZc+4aRnusUhYEP9Ep8kSZuRpMfYlHXXbX0MAfDz/L/hs4v4+tqjRJDa7KgLQ==
+gridsome@^0.7.19:
+  version "0.7.19"
+  resolved "https://registry.yarnpkg.com/gridsome/-/gridsome-0.7.19.tgz#3d67fb66c80b53101c750e870b076b3694152ec9"
+  integrity sha512-KjvkcIyooaDyjIx11LvK7TLRIqCjTXV3D1C3MgmX0eEO0VnucAynX88b/IWlHmB3ytt1cUkbFaqqpTbO4a/z0Q==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.0.0"

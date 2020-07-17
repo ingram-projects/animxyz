@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@animxyz/vue": "^0.0.21",
-    "gridsome": "^0.7.15",
+    "gridsome": "^0.7.19",
     "lodash": "^4.17.19",
     "prettier": "^2.0.5",
     "ress": "^2.0.4",
