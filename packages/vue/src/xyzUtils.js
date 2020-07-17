@@ -33,33 +33,29 @@ export const xyzTransitionClasses = {
 	move: 'xyz-move',
 }
 
-function xyzAnimationActiveHook (el, done) {
-	let nestedEls;
-	if (el.classList.contains('xyz-appear')) {
-		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-appear-nested')
-	} else
-	if (el.classList.contains('xyz-in')) {
-		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-in-nested')
-	} else
-	if (el.classList.contains('xyz-out')) {
-		nestedEls = el.querySelectorAll('.xyz-nested, .xyz-out-nested')
-	}
+function xyzAnimationActiveHook (mode, auto = false) {
+	return (el, done) => {
+		const animatingEls = [el]
 
-	const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
-		return nestedEl.offsetParent !== null
-	})
+		if (auto) {
+			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
 
-	const animatingEls = [el, ...visibleNestedEls]
-
-	let incompleteAnimations = animatingEls.length
-	el.xyzAnimDone = function () {
-		incompleteAnimations -= 1
-		if (incompleteAnimations === 0) {
-			el.removeEventListener('animationend', el.xyzAnimDone)
-			done()
+			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
+				return nestedEl.offsetParent !== null
+			})
+			animatingEls.push(...visibleNestedEls)
 		}
+
+		let incompleteAnimations = animatingEls.length
+		el.xyzAnimDone = function () {
+			incompleteAnimations -= 1
+			if (incompleteAnimations === 0) {
+				el.removeEventListener('animationend', el.xyzAnimDone)
+				done()
+			}
+		}
+		el.addEventListener('animationend', el.xyzAnimDone)
 	}
-	el.addEventListener('animationend', el.xyzAnimDone)
 }
 
 function xyzAnimationCancelledHook (el) {
@@ -83,38 +79,48 @@ export function getXyzTransitionData (data, customData = {}) {
 		leaveToClass: xyzTransitionClasses.leaveTo,
 	}
 
-	const on = {}
-	if (data.attrs && data.attrs.duration) {
+	let newDuration, appearAuto, inAuto, outAuto
+	if (data.attrs && typeof data.attrs.duration !== 'undefined') {
 		if (data.attrs.duration === 'auto') {
-			if (data.attrs.appear) {
-				on.appear = xyzAnimationActiveHook
-				on.appearCancelled = xyzAnimationCancelledHook
+			appearAuto = true
+			inAuto = true
+			outAuto = true
+		} else
+		if (typeof data.attrs.duration === 'number') {
+			newDuration = data.attrs.duration
+		} else
+		if (typeof data.attrs.duration === 'object') {
+			newDuration = {
+				...data.attrs.duration
 			}
-			on.enter = xyzAnimationActiveHook
-			on.enterCancelled = xyzAnimationCancelledHook
-			on.leave = xyzAnimationActiveHook
-			on.leaveCancelled = xyzAnimationCancelledHook
-			delete data.attrs.duration
-		} else {
-			if (data.attrs.appear && data.attrs.duration.appear === 'auto') {
-				on.appear = xyzAnimationActiveHook
-				on.appearCancelled = xyzAnimationCancelledHook
-				delete data.attrs.duration.appear
+			if (newDuration.appear === 'auto') {
+				appearAuto = true
+				delete newDuration.appear
 			}
-			if (data.attrs.duration.enter === 'auto') {
-				on.enter = xyzAnimationActiveHook
-				on.enterCancelled = xyzAnimationCancelledHook
-				delete data.attrs.duration.enter
+			if (newDuration.enter === 'auto') {
+				inAuto = true
+				delete newDuration.enter
 			}
-			if (data.attrs.duration.leave === 'auto') {
-				on.leave = xyzAnimationActiveHook
-				on.leaveCancelled = xyzAnimationCancelledHook
-				delete data.attrs.duration.leave
+			if (newDuration.leave === 'auto') {
+				outAuto = true
+				delete newDuration.leave
 			}
 		}
 	}
 
-	return mergeData(
+	const on = {
+		enter: xyzAnimationActiveHook('in', inAuto),
+		leave: xyzAnimationActiveHook('out', outAuto),
+		enterCancelled: xyzAnimationCancelledHook,
+		leaveCancelled: xyzAnimationCancelledHook,
+	}
+
+	if (data.attrs && data.attrs.appear) {
+		on.appear = xyzAnimationActiveHook('appear', appearAuto)
+		on.appearCancelled = xyzAnimationCancelledHook
+	}
+
+	const mergedData = mergeData(
 		{
 			...customData,
 			attrs: {
@@ -128,4 +134,8 @@ export function getXyzTransitionData (data, customData = {}) {
 		},
 		data,
 	)
+
+	mergedData.attrs.duration = newDuration
+
+	return mergedData
 }

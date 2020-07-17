@@ -6,7 +6,7 @@ examples:
   - name: Stagger
     template: |
       <xyz-transition-group tag="div" class="square-group" xyz="fade small duration-10" v-xyz="data.utilities" v-on="data.listeners" :style="data.variables">
-        <div class="square" v-for="index in 3" v-show="data.toggled" :key="index"></div>
+        <div class="square" v-for="index in 3" v-if="data.toggled" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html

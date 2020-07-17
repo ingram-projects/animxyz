@@ -1,10 +1,12 @@
 import React, { Children, cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
-import { xyzTransitionProps, animationDoneHook } from '../xyzUtils'
+import { getXyzTransitionProps } from '../xyzUtils'
 
 function XyzTransition(props) {
-	const { xyz, timeout, children, ...rest } = props
+	const { xyz, children, ...rest } = props
+
+	const xyzTransitionProps = getXyzTransitionProps(rest)
 
 	const childArray = Children.toArray(children).filter(Boolean)
 
@@ -14,13 +16,8 @@ function XyzTransition(props) {
 
 	const child = childArray[0]
 
-	let addEndListener
-	if (typeof timeout === 'undefined') {
-		addEndListener = animationDoneHook
-	}
-
 	return (
-		<CSSTransition timeout={timeout} addEndListener={addEndListener} {...xyzTransitionProps} {...rest}>
+		<CSSTransition {...xyzTransitionProps} {...rest}>
 			{cloneElement(child, { xyz, ...child.props })}
 		</CSSTransition>
 	)
@@ -29,7 +26,6 @@ function XyzTransition(props) {
 XyzTransition.propTypes = {
 	...CSSTransition.propTypes,
 	xyz: PropTypes.string,
-	timeout: PropTypes.number,
 	children: PropTypes.node,
 }
 
