@@ -1,37 +1,23 @@
 export { default as xyz } from 'clsx'
 
 export function mergeData(data1 = {}, data2 = {}) {
-	const merged = {
+	return {
 		...data1,
 		...data2,
-	}
-
-	if (data1.attrs || data2.attrs) {
-		merged.attrs = {
+		attrs: {
 			...data1.attrs,
 			...data2.attrs,
-		}
-	}
-
-	if (data1.directives || data2.directives) {
-		merged.directives = [...(data1.directives || []), ...(data2.directives || [])]
-	}
-
-	if (data1.on || data2.on) {
-		merged.on = {
+		},
+		directives: [...(data1.directives || []), ...(data2.directives || [])],
+		on: {
 			...data1.on,
 			...data2.on,
-		}
-	}
-
-	if (data1.style || data2.style) {
-		merged.style = {
+		},
+		style: {
 			...data1.style,
 			...data2.style,
-		}
+		},
 	}
-
-	return merged
 }
 
 export const xyzTransitionClasses = {
@@ -82,32 +68,47 @@ function xyzAnimationCancelledHook (el) {
 }
 
 export function getXyzTransitionData (data, customData = {}) {
-	const hooks = {}
+	const attrs = {
+		name: 'xyz',
+		css: true,
+		type: 'animation',
+		appearClass: `${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
+		appearActiveClass: `${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
+		appearToClass: `${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
+		enterClass: xyzTransitionClasses.enterFrom,
+		enterActiveClass: xyzTransitionClasses.enterActive,
+		enterToClass: xyzTransitionClasses.enterTo,
+		leaveClass: xyzTransitionClasses.leaveFrom,
+		leaveActiveClass: xyzTransitionClasses.leaveActive,
+		leaveToClass: xyzTransitionClasses.leaveTo,
+	}
+
+	const on = {}
 	if (data.attrs && data.attrs.duration) {
 		if (data.attrs.duration === 'auto') {
 			if (data.attrs.appear) {
-				hooks.appear = xyzAnimationActiveHook
-				hooks.appearCancelled = xyzAnimationCancelledHook
+				on.appear = xyzAnimationActiveHook
+				on.appearCancelled = xyzAnimationCancelledHook
 			}
-			hooks.enter = xyzAnimationActiveHook
-			hooks.enterCancelled = xyzAnimationCancelledHook
-			hooks.leave = xyzAnimationActiveHook
-			hooks.leaveCancelled = xyzAnimationCancelledHook
+			on.enter = xyzAnimationActiveHook
+			on.enterCancelled = xyzAnimationCancelledHook
+			on.leave = xyzAnimationActiveHook
+			on.leaveCancelled = xyzAnimationCancelledHook
 			delete data.attrs.duration
 		} else {
 			if (data.attrs.appear && data.attrs.duration.appear === 'auto') {
-				hooks.appear = xyzAnimationActiveHook
-				hooks.appearCancelled = xyzAnimationCancelledHook
+				on.appear = xyzAnimationActiveHook
+				on.appearCancelled = xyzAnimationCancelledHook
 				delete data.attrs.duration.appear
 			}
 			if (data.attrs.duration.enter === 'auto') {
-				hooks.enter = xyzAnimationActiveHook
-				hooks.enterCancelled = xyzAnimationCancelledHook
+				on.enter = xyzAnimationActiveHook
+				on.enterCancelled = xyzAnimationCancelledHook
 				delete data.attrs.duration.enter
 			}
 			if (data.attrs.duration.leave === 'auto') {
-				hooks.leave = xyzAnimationActiveHook
-				hooks.leaveCancelled = xyzAnimationCancelledHook
+				on.leave = xyzAnimationActiveHook
+				on.leaveCancelled = xyzAnimationCancelledHook
 				delete data.attrs.duration.leave
 			}
 		}
@@ -117,23 +118,12 @@ export function getXyzTransitionData (data, customData = {}) {
 		{
 			...customData,
 			attrs: {
-				name: 'xyz',
-				css: true,
-				type: 'animation',
-				appearClass: `${xyzTransitionClasses.enterFrom} ${xyzTransitionClasses.appearFrom}`,
-				appearActiveClass: `${xyzTransitionClasses.enterActive} ${xyzTransitionClasses.appearActive}`,
-				appearToClass: `${xyzTransitionClasses.enterTo} ${xyzTransitionClasses.appearTo}`,
-				enterClass: xyzTransitionClasses.enterFrom,
-				enterActiveClass: xyzTransitionClasses.enterActive,
-				enterToClass: xyzTransitionClasses.enterTo,
-				leaveClass: xyzTransitionClasses.leaveFrom,
-				leaveActiveClass: xyzTransitionClasses.leaveActive,
-				leaveToClass: xyzTransitionClasses.leaveTo,
+				...attrs,
 				...customData.attrs,
 			},
 			on: {
-				...hooks,
-				...customData.hooks,
+				...on,
+				...customData.on,
 			},
 		},
 		data,
