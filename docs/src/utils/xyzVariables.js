@@ -4,7 +4,6 @@ export const xyzModes = ['in', 'out', 'appear']
 export const xyzModesAll = ['all', ...xyzModes]
 export const xyzModeMove = 'move'
 
-
 // LEVELS
 
 export const xyzIndexLevels = 20
@@ -111,7 +110,6 @@ export const xyzScaleLevels = {
 	'75': '.75',
 	'100': '1',
 }
-
 
 // VARIABLES
 
@@ -268,7 +266,6 @@ export function getXyzVariableRegex(string) {
 
 	return getXyzVariable(name, value, mode)
 }
-
 
 // UTILITIES
 
