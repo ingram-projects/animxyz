@@ -5,9 +5,11 @@ quote: For the nth time!
 examples:
   - name: Stagger
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small duration-10" v-xyz="data.utilities" v-on="data.listeners" :style="data.variables">
-        <div class="square" v-for="index in 3" v-if="data.toggled" :key="index"></div>
-      </xyz-transition-group>
+      <xyz-transition duration="auto" xyz v-on="data.listeners">
+        <div class="square-group" v-if="data.toggled">
+          <div class="square xyz-nested" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-for="index in 3" :key="index"></div>
+        </div>
+      </xyz-transition>
     code:
       - language: html
         content: |

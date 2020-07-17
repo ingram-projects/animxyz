@@ -5,9 +5,11 @@ quote: With our powers combined...
 examples:
   - name: Composition
     template: |
-      <xyz-transition-group tag="div" class="square-group" v-xyz="data.utilities" v-on="data.listeners">
-        <div class="square" v-for="index in 3" v-if="data.toggled" :key="index"></div>
-      </xyz-transition-group>
+      <xyz-transition duration="auto" xyz v-on="data.listeners">
+        <div class="square-group" v-if="data.toggled">
+          <div class="square xyz-nested" v-xyz="data.utilities" :style="data.variables" v-for="index in 3" :key="index"></div>
+        </div>
+      </xyz-transition>
     code:
       - language: html
         content: |
