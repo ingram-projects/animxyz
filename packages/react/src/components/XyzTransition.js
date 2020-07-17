@@ -16,11 +16,7 @@ function XyzTransition(props) {
 
 	const child = childArray[0]
 
-	return (
-		<CSSTransition {...xyzTransitionProps}>
-			{cloneElement(child, { xyz, ...child.props })}
-		</CSSTransition>
-	)
+	return <CSSTransition {...xyzTransitionProps}>{cloneElement(child, { xyz, ...child.props })}</CSSTransition>
 }
 
 XyzTransition.propTypes = {
@@ -28,22 +24,13 @@ XyzTransition.propTypes = {
 	xyz: PropTypes.string,
 	timeout: PropTypes.oneOfType([
 		PropTypes.number,
-    PropTypes.oneOf(['auto']),
+		PropTypes.oneOf(['auto']),
 		PropTypes.shape({
-      appear: PropTypes.oneOfType([
-				PropTypes.number,
-				PropTypes.oneOf(['auto']),
-			]),
-			enter: PropTypes.oneOfType([
-				PropTypes.number,
-				PropTypes.oneOf(['auto']),
-			]),
-			exit: PropTypes.oneOfType([
-				PropTypes.number,
-				PropTypes.oneOf(['auto']),
-			]),
-    }),
-  ]),
+			appear: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+			enter: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+			exit: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
+		}),
+	]),
 	children: PropTypes.node,
 }
 

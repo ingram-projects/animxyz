@@ -13,7 +13,7 @@ export const xyzTransitionClasses = {
 	move: 'xyz-move',
 }
 
-function getXyzTimeoutForMode (mode, timeout) {
+function getXyzTimeoutForMode(mode, timeout) {
 	if (typeof timeout !== 'object' || timeout === null) {
 		return timeout
 	}
@@ -28,7 +28,7 @@ function getXyzTimeoutForMode (mode, timeout) {
 	return null
 }
 
-function clearXyzProperties (el) {
+function clearXyzProperties(el) {
 	clearTimeout(el.xyzAnimTimeout)
 	delete el.xyzAnimTimeout
 
@@ -36,18 +36,16 @@ function clearXyzProperties (el) {
 	delete el.xyzAnimDone
 }
 
-function getXyzAnimationActiveHook (timeout) {
+function getXyzAnimationActiveHook(timeout) {
 	return (el, done) => {
 		clearXyzProperties(el)
 
-		let mode;
+		let mode
 		if (el.classList.contains('xyz-appear')) {
 			mode = 'appear'
-		} else
-		if (el.classList.contains('xyz-in')) {
+		} else if (el.classList.contains('xyz-in')) {
 			mode = 'in'
-		} else
-		if (el.classList.contains('xyz-out')) {
+		} else if (el.classList.contains('xyz-out')) {
 			mode = 'out'
 		}
 
@@ -55,8 +53,7 @@ function getXyzAnimationActiveHook (timeout) {
 
 		if (typeof modeTimeout === 'number') {
 			el.xyzAnimTimeout = setTimeout(done, modeTimeout)
-		} else
-		if (modeTimeout === 'auto') {
+		} else if (modeTimeout === 'auto') {
 			const animatingEls = [el]
 
 			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
@@ -80,7 +77,7 @@ function getXyzAnimationActiveHook (timeout) {
 	}
 }
 
-export function getXyzTransitionProps (props) {
+export function getXyzTransitionProps(props) {
 	const classNames = {
 		appear: xyzTransitionClasses.appearFrom,
 		appearActive: xyzTransitionClasses.appearActive,
