@@ -18,21 +18,22 @@
     "typeface-inter": "^3.12.0",
     "vue-client-only": "^2.0.0",
     "vue-focus-lock": "^1.4.0",
+    "vue-observe-visibility": "^0.4.6",
     "vue-prism-component": "^1.2.0",
     "vue-scrollactive": "^0.9.3"
   },
   "devDependencies": {
     "@gridsome/remark-prismjs": "^0.3.0",
     "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.0",
+    "@gridsome/transformer-remark": "^0.6.1",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2",
     "gridsome-plugin-sass-resources-loader": "^0.0.3",
-    "gridsome-plugin-svg": "^0.0.13",
+    "gridsome-plugin-svg": "^0.0.14",
     "http-server": "^0.12.3",
     "include-media": "^1.4.9",
-    "sass": "^1.26.7",
-    "sass-loader": "^8.0.2"
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2"
   }
 }
