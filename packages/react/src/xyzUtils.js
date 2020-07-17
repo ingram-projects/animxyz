@@ -38,6 +38,8 @@ function clearXyzProperties (el) {
 
 function getXyzAnimationActiveHook (timeout) {
 	return (el, done) => {
+		clearXyzProperties(el)
+
 		let mode;
 		if (el.classList.contains('xyz-appear')) {
 			mode = 'appear'
@@ -52,10 +54,7 @@ function getXyzAnimationActiveHook (timeout) {
 		const modeTimeout = getXyzTimeoutForMode(mode, timeout)
 
 		if (typeof modeTimeout === 'number') {
-			el.xyzAnimTimeout = setTimeout(() => {
-				clearXyzProperties(el)
-				done()
-			}, modeTimeout)
+			el.xyzAnimTimeout = setTimeout(done, modeTimeout)
 		} else
 		if (modeTimeout === 'auto') {
 			const animatingEls = [el]
@@ -70,23 +69,15 @@ function getXyzAnimationActiveHook (timeout) {
 			el.xyzAnimDone = () => {
 				incompleteAnimations -= 1
 				if (incompleteAnimations === 0) {
-					clearXyzProperties(el)
 					done()
 				}
 			}
-			el.addEventListener('animationend', el.xyzAnimDone)
+			el.addEventListener('animationend', el.xyzAnimDone, false)
 		} else {
-			el.xyzAnimDone = () => {
-				clearXyzProperties(el)
-				done()
-			}
-			el.addEventListener('animationend', el.xyzAnimDone)
+			el.xyzAnimDone = done
+			el.addEventListener('animationend', el.xyzAnimDone, false)
 		}
 	}
-}
-
-function xyzAnimationCancelledHook (el) {
-	clearXyzProperties(el)
 }
 
 export function getXyzTransitionProps (props) {

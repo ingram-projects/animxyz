@@ -58,6 +58,8 @@ function clearXyzProperties (el) {
 
 function getXyzAnimationActiveHook (duration) {
 	return (el, done) => {
+		clearXyzProperties(el)
+
 		let mode;
 		if (el.classList.contains('xyz-appear')) {
 			mode = 'appear'
@@ -72,10 +74,7 @@ function getXyzAnimationActiveHook (duration) {
 		const modeDuration = getXyzDurationForMode(mode, duration)
 
 		if (typeof modeDuration === 'number') {
-			el.xyzAnimTimeout = setTimeout(() => {
-				clearXyzProperties(el)
-				done()
-			}, modeDuration)
+			el.xyzAnimTimeout = setTimeout(done, modeDuration)
 		} else
 		if (modeDuration === 'auto') {
 			const animatingEls = [el]
@@ -90,23 +89,15 @@ function getXyzAnimationActiveHook (duration) {
 			el.xyzAnimDone = () => {
 				incompleteAnimations -= 1
 				if (incompleteAnimations === 0) {
-					clearXyzProperties(el)
 					done()
 				}
 			}
-			el.addEventListener('animationend', el.xyzAnimDone)
+			el.addEventListener('animationend', el.xyzAnimDone, false)
 		} else {
-			el.xyzAnimDone = () => {
-				clearXyzProperties(el)
-				done()
-			}
-			el.addEventListener('animationend', el.xyzAnimDone)
+			el.xyzAnimDone = done
+			el.addEventListener('animationend', el.xyzAnimDone, false)
 		}
 	}
-}
-
-function xyzAnimationCancelledHook (el) {
-	clearXyzProperties(el)
 }
 
 export function getXyzTransitionData (data, customData = {}) {
@@ -131,13 +122,10 @@ export function getXyzTransitionData (data, customData = {}) {
 	const on = {
 		enter: animationActiveHook,
 		leave: animationActiveHook,
-		enterCancelled: xyzAnimationCancelledHook,
-		leaveCancelled: xyzAnimationCancelledHook,
 	}
 
 	if (data.attrs && data.attrs.appear) {
 		on.appear = animationActiveHook
-		on.appearCancelled = xyzAnimationCancelledHook
 	}
 
 	const mergedData = mergeData(
