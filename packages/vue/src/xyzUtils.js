@@ -33,34 +33,80 @@ export const xyzTransitionClasses = {
 	move: 'xyz-move',
 }
 
-function xyzAnimationActiveHook (mode, auto = false) {
+function getXyzDurationForMode (mode, duration) {
+	if (typeof duration !== 'object' || duration === null) {
+		return duration
+	}
+	switch (mode) {
+		case 'appear':
+			return duration.appear
+		case 'in':
+			return duration.enter
+		case 'out':
+			return duration.leave
+	}
+	return null
+}
+
+function clearXyzProperties (el) {
+	clearTimeout(el.xyzAnimTimeout)
+	delete el.xyzAnimTimeout
+
+	el.removeEventListener('animationend', el.xyzAnimDone)
+	delete el.xyzAnimDone
+}
+
+function getXyzAnimationActiveHook (duration) {
 	return (el, done) => {
-		const animatingEls = [el]
+		let mode;
+		if (el.classList.contains('xyz-appear')) {
+			mode = 'appear'
+		} else
+		if (el.classList.contains('xyz-in')) {
+			mode = 'in'
+		} else
+		if (el.classList.contains('xyz-out')) {
+			mode = 'out'
+		}
 
-		if (auto) {
+		const modeDuration = getXyzDurationForMode(mode, duration)
+
+		if (typeof modeDuration === 'number') {
+			el.xyzAnimTimeout = setTimeout(() => {
+				clearXyzProperties(el)
+				done()
+			}, modeDuration)
+		} else
+		if (modeDuration === 'auto') {
+			const animatingEls = [el]
+
 			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
-
 			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
 				return nestedEl.offsetParent !== null
 			})
 			animatingEls.push(...visibleNestedEls)
-		}
 
-		let incompleteAnimations = animatingEls.length
-		el.xyzAnimDone = function () {
-			incompleteAnimations -= 1
-			if (incompleteAnimations === 0) {
-				el.removeEventListener('animationend', el.xyzAnimDone)
+			let incompleteAnimations = animatingEls.length
+			el.xyzAnimDone = () => {
+				incompleteAnimations -= 1
+				if (incompleteAnimations === 0) {
+					clearXyzProperties(el)
+					done()
+				}
+			}
+			el.addEventListener('animationend', el.xyzAnimDone)
+		} else {
+			el.xyzAnimDone = () => {
+				clearXyzProperties(el)
 				done()
 			}
+			el.addEventListener('animationend', el.xyzAnimDone)
 		}
-		el.addEventListener('animationend', el.xyzAnimDone)
 	}
 }
 
 function xyzAnimationCancelledHook (el) {
-	el.removeEventListener('animationend', el.xyzAnimDone)
-	delete el.xyzAnimDone
+	clearXyzProperties(el)
 }
 
 export function getXyzTransitionData (data, customData = {}) {
@@ -79,44 +125,18 @@ export function getXyzTransitionData (data, customData = {}) {
 		leaveToClass: xyzTransitionClasses.leaveTo,
 	}
 
-	let newDuration, appearAuto, inAuto, outAuto
-	if (data.attrs && typeof data.attrs.duration !== 'undefined') {
-		if (data.attrs.duration === 'auto') {
-			appearAuto = true
-			inAuto = true
-			outAuto = true
-		} else
-		if (typeof data.attrs.duration === 'number') {
-			newDuration = data.attrs.duration
-		} else
-		if (typeof data.attrs.duration === 'object') {
-			newDuration = {
-				...data.attrs.duration
-			}
-			if (newDuration.appear === 'auto') {
-				appearAuto = true
-				delete newDuration.appear
-			}
-			if (newDuration.enter === 'auto') {
-				inAuto = true
-				delete newDuration.enter
-			}
-			if (newDuration.leave === 'auto') {
-				outAuto = true
-				delete newDuration.leave
-			}
-		}
-	}
+	const { duration } = data.attrs || {}
+	const animationActiveHook = getXyzAnimationActiveHook(duration)
 
 	const on = {
-		enter: xyzAnimationActiveHook('in', inAuto),
-		leave: xyzAnimationActiveHook('out', outAuto),
+		enter: animationActiveHook,
+		leave: animationActiveHook,
 		enterCancelled: xyzAnimationCancelledHook,
 		leaveCancelled: xyzAnimationCancelledHook,
 	}
 
 	if (data.attrs && data.attrs.appear) {
-		on.appear = xyzAnimationActiveHook('appear', appearAuto)
+		on.appear = animationActiveHook
 		on.appearCancelled = xyzAnimationCancelledHook
 	}
 
@@ -134,8 +154,7 @@ export function getXyzTransitionData (data, customData = {}) {
 		},
 		data,
 	)
-
-	mergedData.attrs.duration = newDuration
+	delete mergedData.attrs.duration
 
 	return mergedData
 }
