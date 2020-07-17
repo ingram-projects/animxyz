@@ -1,6 +1,6 @@
 <template>
-	<article class="docs-section" :id="section.anchor">
-		<div class="section-column section-text xyz-nested" xyz="fade left">
+	<article class="docs-section" :class="{ 'xyz-paused': !isVisible }" :id="section.anchor" v-observe-visibility="visibilityChanged">
+		<div class="section-column section-text">
 			<div class="section-column__content">
 				<header class="section-header">
 					<div class="section-title__wrap">
@@ -15,7 +15,7 @@
 				<markdown-content :content="section.content"></markdown-content>
 			</div>
 		</div>
-		<div class="section-column section-sandbox xyz-nested" xyz="fade up" v-if="section.examples.length">
+		<div class="section-column section-sandbox" v-if="section.examples.length">
 			<div class="section-column__content">
 				<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 			</div>
@@ -36,6 +36,16 @@ export default {
 		MarkdownContent,
 		Sandbox,
 	},
+	data () {
+		return {
+			isVisible: false,
+		}
+	},
+	methods: {
+		visibilityChanged(isVisible) {
+			this.isVisible = isVisible
+		}
+	}
 }
 </script>
 

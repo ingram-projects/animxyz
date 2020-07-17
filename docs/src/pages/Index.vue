@@ -26,9 +26,9 @@
 				</div>
 			</xyz-transition>
 
-			<section class="sections__wrap">
+			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
 				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-			</section>
+			</xyz-transition-group>
 		</main>
 	</div>
 </template>

@@ -13,6 +13,7 @@ import '~/assets/styles/core/_index.scss'
 import 'prismjs'
 import VueAnimXyz from '@animxyz/vue'
 import VueMQ from '~/plugins/VueMQ'
+import VueObserveVisibility from 'vue-observe-visibility'
 import VueScrollactive from 'vue-scrollactive'
 
 export default function (Vue) {
@@ -29,5 +30,6 @@ export default function (Vue) {
 			huge: '1920px',
 		},
 	})
+	Vue.use(VueObserveVisibility)
 	Vue.use(VueScrollactive)
 }
