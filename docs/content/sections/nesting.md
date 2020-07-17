@@ -1,5 +1,6 @@
 ---
 title: Nesting
+quote: It's inside the element!
 
 examples:
   - name: Simple

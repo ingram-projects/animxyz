@@ -17,6 +17,33 @@ p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
 p {
   color: var(--text-color);
   line-height: 1.5;
+
+  a {
+    color: primary-color(700);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+  
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -.1em;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: $cyan;
+      transition: left .1s $ease-in-out, right .1s $ease-in-out, height .1s $ease-in-out;
+    }
+  
+    &:hover {
+      &::after {
+        height: 1.25em;
+        left: -.1em;
+        right: -.1em;
+        background-color: primary-color(300, 0.25);
+      }
+    }
+  }
 }
 
 textarea {
@@ -24,10 +51,11 @@ textarea {
 }
 
 code:not([class*="language-"]) {
+  color: #F92672;
   font-family: $font-stack-mono;
   font-size: inherit;
   font-weight: bold;
-  background-color: primary-color(800, .1);
+  background-color: primary-color(800, .06);
   padding: .125em .25em;
   border-radius: $br-s;
   white-space: nowrap;

@@ -1,6 +1,6 @@
 ---
 title: Transform
-quote: Roll out, roll in, fly away!
+quote: Elements, roll out!
 
 examples:
   - name: Transform

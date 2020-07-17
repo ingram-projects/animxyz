@@ -1,5 +1,6 @@
 ---
 title: Modes
+quote: Element goes in, element goes out, you can't explain that.
 ---
 
 Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

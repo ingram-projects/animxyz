@@ -1,5 +1,6 @@
 ---
 title: Variables
+quote: '--xyz-gigawatts: 1.21'
 
 examples:
   - name: Variables

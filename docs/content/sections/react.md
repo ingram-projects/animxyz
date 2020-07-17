@@ -1,5 +1,6 @@
 ---
 title: React
+quote: For every action, there is an equal and opposite React component.
 ---
 
 Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

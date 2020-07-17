@@ -1,5 +1,6 @@
 ---
 title: Installation
+quote: You put it inside the computer!?
 ---
 
 Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

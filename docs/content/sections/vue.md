@@ -1,5 +1,6 @@
 ---
 title: Vue
+quote: May the force be with Vue.
 ---
 
 Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.

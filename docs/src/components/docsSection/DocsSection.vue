@@ -94,11 +94,11 @@ export default {
 	@include circle(1.75rem);
 	display: flex;
 	position: absolute;
-	right: 100%;
+	left: 100%;
 	top: 50%;
 	background-color: primary-color(700, 0);
 	opacity: 0;
-	transform: translate($sp-s, -50%);
+	transform: translate(-$sp-s, -50%);
 	transition: opacity 0.2s $ease-in-out, background-color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
 
 	svg {
@@ -106,21 +106,6 @@ export default {
 		height: 1rem;
 		width: auto;
 		margin: auto;
-	}
-
-	@include media('<tablet') {
-		left: 100%;
-		right: initial;
-	}
-
-	@include media('>=large') {
-		left: 100%;
-		right: initial;
-	}
-
-	@include media('>=x-large') {
-		left: initial;
-		right: 100%;
 	}
 }
 
