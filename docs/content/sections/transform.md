@@ -6,7 +6,7 @@ examples:
   - name: Transform
     template: |
       <xyz-transition xyz="fade" v-xyz="data.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.variables"></div>
+        <div class="square" v-if="data.toggled" :style="data.variables"></div>
       </xyz-transition>
     code:
       - language: html
