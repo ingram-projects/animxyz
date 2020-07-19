@@ -10,8 +10,8 @@ module.exports = {
 	host: '0.0.0.0',
 	runtimeCompiler: true,
 	icon: {
-		favicon: '~/assets/images/animxyz-logo.png',
-		touchicon: '~/assets/images/animxyz-logo-touch.png',
+		favicon: './src/assets/images/animxyz-logo.png',
+		touchicon: './src/assets/images/animxyz-logo-touch.png',
 	},
 	plugins: [
 		{
