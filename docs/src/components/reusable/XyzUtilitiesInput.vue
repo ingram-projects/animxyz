@@ -1,12 +1,14 @@
 <template>
 	<div class="utilities-input">
 		<table class="utilities-table">
-			<tr>
-				<th></th>
-				<th class="level__header" v-for="level in levels" :key="level">
-					{{ level }}
-				</th>
-			</tr>
+			<thead>
+				<tr>
+					<th></th>
+					<th class="level__header" v-for="level in levels" :key="level">
+						{{ level }}
+					</th>
+				</tr>
+			</thead>
 			<xyz-transition-group tag="tbody" appear duration="auto" xyz>
 				<tr class="utility" v-for="utility in utilities" :key="utility.name">
 					<th class="utility__header">

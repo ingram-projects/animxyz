@@ -7,6 +7,10 @@ svg {
   display: block;
 }
 
+[data-server-rendered=true] {
+  opacity: 0;
+}
+
 .h-100 {
   height: 100% !important;
 }

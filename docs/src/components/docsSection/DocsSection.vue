@@ -17,13 +17,16 @@
 		</div>
 		<div class="section-column section-sandbox" v-if="section.examples.length">
 			<div class="section-column__content">
-				<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
+				<client-only>
+					<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
+				</client-only>
 			</div>
 		</div>
 	</article>
 </template>
 
 <script>
+import ClientOnly from 'vue-client-only'
 import IconLink from '~/assets/icons/IconLink.svg'
 import MarkdownContent from '~/components/reusable/MarkdownContent'
 import Sandbox from '~/components/reusable/Sandbox'
@@ -32,6 +35,7 @@ export default {
 	name: 'DocsSection',
 	props: ['section'],
 	components: {
+		ClientOnly,
 		IconLink,
 		MarkdownContent,
 		Sandbox,
