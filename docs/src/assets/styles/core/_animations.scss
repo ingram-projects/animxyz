@@ -72,17 +72,17 @@ $mode-colors: (
         position: absolute;
         top: 0;
         left: 0;
-        text-align: left;
-        z-index: 9999;
-        line-height: 1.25;
-        font-weight: 600;
-        font-family: $font-stack-mono;
-        font-size: $fs-s;
-        pointer-events: none;
         padding: $sp-xxxs;
         margin-right: $sp-xs;
         background-color: $cyan;
         color: darken($cyan, 50%);
+        line-height: 1.25;
+        font-weight: 600;
+        font-family: $font-stack-mono;
+        font-size: $fs-s;
+        text-align: left;
+        z-index: 9999;
+        pointer-events: none;
       }
     }
   }

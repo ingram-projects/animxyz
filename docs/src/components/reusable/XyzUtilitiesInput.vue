@@ -126,7 +126,7 @@ export default {
 			return model
 		},
 		onCellClick(cell, model) {
-			if (this.multiple && this.toggledUtilities[model] === cell.string) {
+			if (this.toggledUtilities[model] === cell.string) {
 				this.$delete(this.toggledUtilities, model)
 			}
 		},

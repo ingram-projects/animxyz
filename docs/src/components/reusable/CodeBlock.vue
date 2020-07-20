@@ -6,16 +6,26 @@
 import prettier from 'prettier/standalone'
 import parserBabel from 'prettier/parser-babel'
 import parserHtml from 'prettier/parser-html'
+import parserPostCSS from 'prettier/parser-postcss'
 import Prism from 'vue-prism-component'
 
 const langOptions = {
 	html: {
 		prettier: {
 			parser: 'html',
-			plugins: [parserHtml],
+			plugins: [parserHtml, parserPostCSS, parserBabel],
 		},
 		prism: {
 			language: 'html',
+		},
+	},
+	css: {
+		prettier: {
+			parser: 'postcss',
+			plugins: [parserPostCSS],
+		},
+		prism: {
+			language: 'scss',
 		},
 	},
 	javascript: {
@@ -30,7 +40,7 @@ const langOptions = {
 	vue: {
 		prettier: {
 			parser: 'vue',
-			plugins: [parserHtml],
+			plugins: [parserHtml, parserPostCSS, parserBabel],
 		},
 		prism: {
 			language: 'html',
@@ -42,7 +52,7 @@ const langOptions = {
 			plugins: [parserBabel],
 		},
 		prism: {
-			language: 'javascript',
+			language: 'jsx',
 		},
 	},
 }
