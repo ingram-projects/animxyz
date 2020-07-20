@@ -45,9 +45,7 @@ $mode-colors: (
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  padding: $sp-xxxs;
-  
+  left: 0;  
   font-family: $font-stack-mono;
   font-size: $fs-s;
   line-height: 1.25;
@@ -83,6 +81,7 @@ $mode-colors: (
         content: attr(xyz);
         bottom: initial;
         right: initial;
+        padding: $sp-xxxs;
         margin-right: $sp-xs;
         background-color: $cyan;
         color: darken($cyan, 50%);
