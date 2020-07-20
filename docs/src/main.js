@@ -9,8 +9,10 @@ import 'typeface-inconsolata'
 import 'ress'
 import '~/assets/styles/core/_index.scss'
 
-// Plugins
+// Packages
 import 'prismjs'
+
+// Plugins
 import VueAnimXyz from '@animxyz/vue'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
