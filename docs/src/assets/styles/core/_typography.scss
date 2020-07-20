@@ -23,7 +23,7 @@ p {
     font-weight: 600;
     text-decoration: none;
     position: relative;
-    transition: color .2s $ease-in-out;
+    transition: color .2s $ease-out;
   
     &::before {
       content: '';
@@ -32,9 +32,8 @@ p {
       left: .2em;
       right: .2em;
       height: .15em;
-      border-radius: .1em;
-      background-color: transparentize($cyan, 0.45);
-      transition: height .2s $ease-out-back, left .2s $ease-out-back, right .2s $ease-out-back, background-color .2s $ease-in-out, transform .2s $ease-out-back;
+      background-color: transparentize($cyan, 0.35);
+      transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
       z-index: -1;
     }
   
@@ -45,7 +44,7 @@ p {
         left: -.1em;
         right: -.1em;
         height: .25em;
-        background-color: transparentize($cyan, 0.15);
+        background-color: $cyan;
       }
     }
   }

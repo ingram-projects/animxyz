@@ -47,3 +47,5 @@ modifiers:
 AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="left up small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilites are endless!
 
 Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [Modes](#modes) section to learn how to use different utilities for animating in and out.
+
+You can also combine a utility and a custom value on an animation variable. For example `xyz="fade tall" style="--xyz-rotate: 33deg"` will make an element fade, change height, and rotate in and out.
