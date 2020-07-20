@@ -151,6 +151,7 @@ export default {
 	},
 	metaInfo() {
 		return {
+			titleTemplate: '%s',
 			title: 'AnimXYZ',
 		}
 	},

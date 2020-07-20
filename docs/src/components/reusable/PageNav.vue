@@ -1,5 +1,5 @@
 <template>
-	<div class="page-nav__wrap" :class="{ open }" v-scroll-lock="$mq.below('tablet') && open">
+	<div class="page-nav__wrap" :class="{ open }">
 		<focus-lock :disabled="isMediaLarge || !open">
 			<xyz-transition appear>
 				<button class="nav-button" xyz="fade delay-4" @click="toggle(!open)">
@@ -18,7 +18,7 @@
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 			>
 				<nav class="page-nav" v-if="open">
-					<div class="nav-sections__wrap">
+					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
 						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">
 							<li
 								v-for="(section, index) in sections"
