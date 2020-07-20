@@ -17,9 +17,9 @@
 				xyz="ease-in-out duration-3"
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 			>
-				<nav class="page-nav" v-if="open">
+				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">
+						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
