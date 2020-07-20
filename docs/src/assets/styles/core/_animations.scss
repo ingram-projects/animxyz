@@ -42,13 +42,15 @@ $mode-colors: (
 %xyz-xray-after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
-  padding: $sp-xxs;
+  left: 0;
+  padding: $sp-xxxs;
+  
   font-family: $font-stack-mono;
-  font-size: $fs-m;
+  font-size: $fs-s;
+  line-height: 1.25;
   font-weight: 600;
   text-align: left;
   pointer-events: none;
@@ -73,12 +75,18 @@ $mode-colors: (
   [xyz] {
     position: relative;
 
-    &:hover::after {
-      @extend %xyz-xray-after;
-      content: attr(xyz);
-      color: $cyan;
-      text-shadow: 1px 1px 0 darken($cyan, 50%);
+    &:hover {
       box-shadow: inset 0 0 0 3px $cyan;
+
+      &::after {
+        @extend %xyz-xray-after;
+        content: attr(xyz);
+        bottom: initial;
+        right: initial;
+        margin-right: $sp-xs;
+        background-color: $cyan;
+        color: darken($cyan, 50%);
+      }
     }
   }
 }
