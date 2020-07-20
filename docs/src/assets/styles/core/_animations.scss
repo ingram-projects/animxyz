@@ -39,31 +39,22 @@ $mode-colors: (
   }
 }
 
-%xyz-xray-after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;  
-  font-family: $font-stack-mono;
-  font-size: $fs-s;
-  line-height: 1.25;
-  font-weight: 600;
-  text-align: left;
-  pointer-events: none;
-  z-index: 9999;
-}
-
 .xyz-xray {
   @each $mode in $xyz-modes {
     .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
       position: relative;
 
-      &::after {
+      &:not(:hover)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
         $duration: xyz-var('duration', $mode);
         $delay: var(--xyz-active-delay, 0s);
-        @extend %xyz-xray-after;
         --xyz-xray-color: #{map.get($mode-colors, $mode)};
         animation: xyz-xray-mode $duration $ease-out $delay;
       }
@@ -77,10 +68,17 @@ $mode-colors: (
       box-shadow: inset 0 0 0 3px $cyan;
 
       &::after {
-        @extend %xyz-xray-after;
         content: attr(xyz);
-        bottom: initial;
-        right: initial;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: left;
+        z-index: 9999;
+        line-height: 1.25;
+        font-weight: 600;
+        font-family: $font-stack-mono;
+        font-size: $fs-s;
+        pointer-events: none;
         padding: $sp-xxxs;
         margin-right: $sp-xs;
         background-color: $cyan;
