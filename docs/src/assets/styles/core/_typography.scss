@@ -24,6 +24,7 @@ p {
     text-decoration: none;
     position: relative;
     transition: color .2s $ease-out;
+    white-space: nowrap;
   
     &::before {
       content: '';

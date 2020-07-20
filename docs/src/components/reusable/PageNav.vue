@@ -19,18 +19,12 @@
 			>
 				<nav class="page-nav" v-if="open">
 					<div class="nav-sections__wrap">
-						<scrollactive
-							tag="ul"
-							class="nav-sections"
-							xyz="fade left"
-							active-class="active"
-							:modify-url="false"
-						>
+						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" :modify-url="false">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
 								@click="onSectionClick"
-								:style="{'--xyz-index': index}"
+								:style="{ '--xyz-index': index }"
 								:key="section.title"
 							>
 								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
@@ -126,8 +120,10 @@ export default {
 	overflow-y: auto;
 
 	@include media('<tablet') {
+		display: block;
 		margin-top: 0;
 		order: 2;
+		padding-bottom: 8rem;
 	}
 }
 
@@ -135,7 +131,7 @@ export default {
 	width: 100%;
 	margin: auto 0;
 	list-style: none;
-	--xyz-stagger: .05s;
+	--xyz-stagger: 0.05s;
 
 	@include media('<tablet') {
 		margin: 0;
