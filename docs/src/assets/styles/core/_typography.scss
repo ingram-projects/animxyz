@@ -20,27 +20,33 @@ p {
 
   a {
     color: primary-color(700);
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
     position: relative;
+    transition: color .2s $ease-in-out;
   
-    &::after {
+    &::before {
       content: '';
       position: absolute;
-      bottom: -.1em;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background-color: $cyan;
-      transition: left .1s $ease-in-out, right .1s $ease-in-out, height .1s $ease-in-out;
+      bottom: -.2em;
+      left: -.2em;
+      height: .2em;
+      width: 95%;
+      border-radius: .05em;
+      background-color: transparentize($cyan, 0.35);
+      transform: skewX(-24deg);
+      transition: height .2s $ease-out-back, width .2s $ease-out-back, background-color .2s $ease-in-out, transform .2s $ease-out-back;
+      z-index: -1;
     }
   
     &:hover {
-      &::after {
-        height: 1.25em;
-        left: -.1em;
-        right: -.1em;
-        background-color: primary-color(300, 0.25);
+      color: primary-color(800);
+
+      &::before {
+        width: calc(100% + .4em);
+        height: calc(100% + .4em);
+        background-color: transparentize($cyan, 0.65);
+        transform: skewX(-12deg);
       }
     }
   }
