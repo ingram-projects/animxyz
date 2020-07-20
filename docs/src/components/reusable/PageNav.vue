@@ -1,5 +1,5 @@
 <template>
-	<div class="page-nav__wrap" :class="{ open }">
+	<div class="page-nav__wrap" :class="{ open }" v-scroll-lock="$mq.below('tablet') && open">
 		<focus-lock :disabled="isMediaLarge || !open">
 			<xyz-transition appear>
 				<button class="nav-button" xyz="fade delay-4" @click="toggle(!open)">

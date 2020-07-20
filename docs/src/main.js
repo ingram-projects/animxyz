@@ -15,6 +15,7 @@ import VueAnimXyz from '@animxyz/vue'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 import VueScrollactive from 'vue-scrollactive'
+import VScrollLock from 'v-scroll-lock'
 
 export default function (Vue) {
 	Vue.use(VueAnimXyz)
@@ -32,4 +33,5 @@ export default function (Vue) {
 	})
 	Vue.use(VueObserveVisibility)
 	Vue.use(VueScrollactive)
+	Vue.use(VScrollLock)
 }

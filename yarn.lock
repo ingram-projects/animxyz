@@ -5152,6 +5152,11 @@ body-parser@1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
+body-scroll-lock@^2.6.4:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/body-scroll-lock/-/body-scroll-lock-2.7.1.tgz#caf3f9c91773af1ffb684cd66ed9137b5b737014"
+  integrity sha512-hS53SQ8RhM0e4DsQ3PKz6Gr2O7Kpdh59TWU98GHjaQznL7y4dFycEPk7pFQAikqBaUSCArkc5E3pe7CWIt2fZA==
+
 bonjour@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bonjour/-/bonjour-3.5.0.tgz#8e890a183d8ee9a2393b3844c691a42bcf7bc9f5"
@@ -18240,6 +18245,13 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+v-scroll-lock@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/v-scroll-lock/-/v-scroll-lock-1.2.0.tgz#4ff919d5d5e32de103efa04496d551d421343053"
+  integrity sha512-SpwHPHV32pipU0HDuOR8rPgrU1vx8bf/aRN+d7NKQfLtEP4+c6IyAXFogYlLwZ9Ml73GsjGb7JH5YiE3iDAWLA==
+  dependencies:
+    body-scroll-lock "^2.6.4"
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"
