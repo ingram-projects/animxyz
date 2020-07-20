@@ -1,6 +1,6 @@
 ---
 title: Nesting
-quote: It's inside the element!
+quote: It's <turtles> all the way down.
 
 examples:
   - name: Simple

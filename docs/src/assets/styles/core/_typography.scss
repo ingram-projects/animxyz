@@ -29,13 +29,12 @@ p {
       content: '';
       position: absolute;
       bottom: -.2em;
-      left: -.2em;
-      height: .2em;
-      width: 95%;
-      border-radius: .05em;
-      background-color: transparentize($cyan, 0.35);
-      transform: skewX(-24deg);
-      transition: height .2s $ease-out-back, width .2s $ease-out-back, background-color .2s $ease-in-out, transform .2s $ease-out-back;
+      left: .2em;
+      right: .2em;
+      height: .15em;
+      border-radius: .1em;
+      background-color: transparentize($cyan, 0.45);
+      transition: height .2s $ease-out-back, left .2s $ease-out-back, right .2s $ease-out-back, background-color .2s $ease-in-out, transform .2s $ease-out-back;
       z-index: -1;
     }
   
@@ -43,10 +42,10 @@ p {
       color: primary-color(800);
 
       &::before {
-        width: calc(100% + .4em);
-        height: calc(100% + .4em);
-        background-color: transparentize($cyan, 0.65);
-        transform: skewX(-12deg);
+        left: -.1em;
+        right: -.1em;
+        height: .25em;
+        background-color: transparentize($cyan, 0.15);
       }
     }
   }
@@ -61,7 +60,7 @@ code:not([class*="language-"]) {
   font-family: $font-stack-mono;
   font-size: inherit;
   font-weight: bold;
-  background-color: primary-color(800, .06);
+  background-color: transparentize(#F92672, .925);
   padding: .125em .25em;
   border-radius: $br-s;
   white-space: nowrap;
