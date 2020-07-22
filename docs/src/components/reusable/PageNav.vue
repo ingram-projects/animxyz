@@ -130,7 +130,7 @@ export default {
 		display: block;
 		margin-top: 0;
 		order: 2;
-		padding-bottom: 8rem;
+		padding-bottom: calc(env(safe-area-inset-bottom, 4rem) + 4rem);
 	}
 }
 
