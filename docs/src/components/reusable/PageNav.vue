@@ -93,6 +93,7 @@ export default {
 		onSectionChanged(event, currentItem) {
 			if (currentItem) {
 				currentItem.scrollIntoView({
+					behavior: 'smooth',
 					block: 'center',
 				})
 			}
