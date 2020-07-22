@@ -1,5 +1,5 @@
 <template>
-	<div :class="{ 'xyz-xray': xRayToggled }">
+	<div class="page__wrap" :class="{ 'xyz-xray': xRayToggled }">
 		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
@@ -155,6 +155,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page__wrap {
+	width: 100vw;
+	overflow-x: hidden;
+}
+
 .page-content {
 	display: flex;
 	flex-direction: column;
