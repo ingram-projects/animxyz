@@ -19,6 +19,9 @@ import VueObserveVisibility from 'vue-observe-visibility'
 import VueScrollactive from 'vue-scrollactive'
 import VScrollLock from 'v-scroll-lock'
 
+// Layouts
+import DefaultLayout from '~/layouts/Default.vue'
+
 export default function (Vue) {
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
@@ -36,4 +39,6 @@ export default function (Vue) {
 	Vue.use(VueObserveVisibility)
 	Vue.use(VueScrollactive)
 	Vue.use(VScrollLock)
+
+	Vue.component('Layout', DefaultLayout)
 }
