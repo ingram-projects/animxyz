@@ -3,7 +3,7 @@
 		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-			<cube class="xray-cube"></cube>
+			<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
 		</button>
 
 		<xyz-transition xyz="duration-15">
@@ -18,6 +18,7 @@
 			<xyz-transition appear>
 				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
 					<p class="intro-text">
+						{{xRayCubeTransform}}
 						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
 						your website to life.
 					</p>
@@ -88,6 +89,7 @@ export default {
 		return {
 			navOpen: false,
 			xRayToggled: false,
+			xRayCubeTransform: null,
 			sectionDefinitions: [
 				'About',
 				'Installation',
@@ -145,7 +147,14 @@ export default {
 		},
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
+			this.randomizeXRayCubeTransform()
 		},
+		randomizeXRayCubeTransform() {
+			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${-0.5 + Math.random()}turn)`
+		},
+	},
+	mounted () {
+		this.randomizeXRayCubeTransform()
 	},
 	metaInfo() {
 		return {
@@ -191,12 +200,8 @@ export default {
 }
 
 .xray-cube {
-	transition: transform 0.3s $ease-in-out;
-	transform: rotateX(20deg) rotateY(20deg);
-
-	.xray-toggle.active & {
-		transform: rotateX(155deg) rotateY(155deg);
-	}
+	--cube-size: 2rem;
+	transition: transform 0.4s $ease-in-out-back;
 
 	::v-deep {
 		.cube__face {

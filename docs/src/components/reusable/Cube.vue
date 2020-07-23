@@ -17,8 +17,6 @@ export default {
 
 <style lang="scss" scoped>
 //Cube code from Ana Tudor based on this article: https://css-tricks.com/simplifying-css-cubes-custom-properties/
-$cube-edge: 2em;
-
 .cube,
 .cube__face {
 	position: absolute;
@@ -29,27 +27,27 @@ $cube-edge: 2em;
 }
 
 .cube__face {
-	margin: -0.5 * $cube-edge;
-	width: $cube-edge;
-	height: $cube-edge;
+	margin: calc(-0.5 * var(--cube-size));
+	width: var(--cube-size);
+	height: var(--cube-size);
 }
 
 .cube__face:nth-child(1) {
-	transform: rotateY(0deg) translateZ(0.5 * $cube-edge);
+	transform: rotateY(0deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 .cube__face:nth-child(2) {
-	transform: rotateY(90deg) translateZ(0.5 * $cube-edge);
+	transform: rotateY(90deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 .cube__face:nth-child(3) {
-	transform: rotateY(180deg) translateZ(0.5 * $cube-edge);
+	transform: rotateY(180deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 .cube__face:nth-child(4) {
-	transform: rotateY(270deg) translateZ(0.5 * $cube-edge);
+	transform: rotateY(270deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 .cube__face:nth-child(5) {
-	transform: rotateX(90deg) translateZ(0.5 * $cube-edge);
+	transform: rotateX(90deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 .cube__face:nth-child(6) {
-	transform: rotateX(-90deg) translateZ(0.5 * $cube-edge);
+	transform: rotateX(-90deg) translateZ(calc(0.5 * var(--cube-size)));
 }
 </style>
