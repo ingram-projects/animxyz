@@ -203,13 +203,12 @@ export default {
 
 .xray-cube {
 	--cube-size: 2rem;
-	transition: transform 0.4s $ease-in-out-back;
+	transition: transform 1s $ease-in-out-back;
 
 	::v-deep {
 		.cube__face {
-			box-shadow: inset 0 0 0 1.5px primary-color(50);
-			background-color: primary-color(400);
-			transition: background-color 0.3s $ease-in-out, box-shadow 0.3s $ease-in-out;
+			box-shadow: inset 0 0 0 1.5px primary-color(50), inset 0 0 0 1rem primary-color(400);
+			transition: background-color 1s $ease-in-out, box-shadow 1s $ease-in-out;
 
 			.xray-toggle.active & {
 				background-color: transparentize($cyan, 0.9);
