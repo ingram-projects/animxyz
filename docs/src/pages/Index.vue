@@ -191,7 +191,7 @@ export default {
 }
 
 .xray-cube {
-	transition: transform 0.3s $ease-in-out;
+	transition: transform 0.4s $ease-in-out-back;
 	transform: rotateX(15deg) rotateY(15deg);
 
 	.xray-toggle.active & {
