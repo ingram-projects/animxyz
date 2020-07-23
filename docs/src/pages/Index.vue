@@ -2,8 +2,8 @@
 	<div class="page__wrap" :class="{ 'xyz-xray': xRayToggled }">
 		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
-		<button class="xray-toggle" @click="toggleXRay(!xRayToggled)">
-			<span class="xray-toggle__text">XYZ-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
+			<cube class="xray-cube"></cube>
 		</button>
 
 		<xyz-transition xyz="duration-15">
@@ -73,12 +73,14 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
+import Cube from '~/components/reusable/Cube'
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
 
 export default {
 	components: {
 		Banner,
+		Cube,
 		DocsSection,
 		PageNav,
 	},
@@ -182,15 +184,30 @@ export default {
 
 .xray-toggle {
 	position: fixed;
-	top: $sp-m;
-	right: $sp-m;
+	top: $sp-xl;
+	right: $sp-xl;
 	z-index: 1;
+	perspective: 10rem;
+}
 
-	.xray-toggle__text {
-		font-family: $font-stack-mono;
-		font-size: $fs-xl;
-		font-weight: bold;
-		margin-left: $sp-s;
+.xray-cube {
+	transition: transform 0.3s $ease-in-out;
+	transform: rotateX(15deg) rotateY(15deg);
+
+	.xray-toggle.active & {
+		transform: rotateX(60deg) rotateY(60deg);
+	}
+
+	::v-deep {
+		.cube__face {
+			box-shadow: inset 0 0 0 1px primary-color(700, 0.5);
+			transition: background-color 0.3s $ease-in-out, box-shadow 0.3s $ease-in-out;
+
+			.xray-toggle.active & {
+				background-color: transparentize($cyan, 0.9);
+				box-shadow: inset 0 0 0 2px $cyan;
+			}
+		}
 	}
 }
 
