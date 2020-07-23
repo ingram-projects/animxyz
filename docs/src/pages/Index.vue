@@ -18,7 +18,7 @@
 			<xyz-transition appear>
 				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
 					<p class="intro-text">
-						{{xRayCubeTransform}}
+						{{ xRayCubeTransform }}
 						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
 						your website to life.
 					</p>
@@ -150,10 +150,12 @@ export default {
 			this.randomizeXRayCubeTransform()
 		},
 		randomizeXRayCubeTransform() {
-			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${-0.5 + Math.random()}turn)`
+			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${
+				-0.5 + Math.random()
+			}turn)`
 		},
 	},
-	mounted () {
+	mounted() {
 		this.randomizeXRayCubeTransform()
 	},
 	metaInfo() {
@@ -201,7 +203,7 @@ export default {
 
 .xray-cube {
 	--cube-size: 2rem;
-	transition: transform 0.4s $ease-in-out-back;
+	transition: transform 1s $ease-in-out;
 
 	::v-deep {
 		.cube__face {
@@ -210,7 +212,7 @@ export default {
 			transition: background-color 0.3s $ease-in-out, box-shadow 0.3s $ease-in-out;
 
 			.xray-toggle.active & {
-				background-color: transparentize($cyan, 0.9);
+				background-color: primary-color(50, 0.5);
 				box-shadow: inset 0 0 0 2px $cyan;
 			}
 		}
