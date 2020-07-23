@@ -109,9 +109,9 @@ export default {
 	flex-direction: column;
 	width: 20rem;
 	top: 0;
-	height: 100vh;
+	bottom: 0;
 	background-color: primary-color(900, 0.95);
-	z-index: 1;
+	z-index: 2;
 
 	@include media('<tablet') {
 		left: 0;
@@ -131,7 +131,7 @@ export default {
 		display: block;
 		margin-top: 0;
 		order: 2;
-		padding-bottom: calc(env(safe-area-inset-bottom, 4rem) + 4rem);
+		padding-bottom: 6rem;
 	}
 }
 
@@ -230,7 +230,7 @@ export default {
 	position: fixed;
 	top: $sp-m;
 	left: $sp-m;
-	z-index: 2;
+	z-index: 3;
 
 	&:hover {
 		.nav-button__text {
