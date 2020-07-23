@@ -192,15 +192,16 @@ export default {
 
 .xray-cube {
 	transition: transform 0.3s $ease-in-out;
-	transform: rotateX(15deg) rotateY(15deg);
+	transform: rotateX(20deg) rotateY(20deg);
 
 	.xray-toggle.active & {
-		transform: rotateX(60deg) rotateY(60deg);
+		transform: rotateX(155deg) rotateY(155deg);
 	}
 
 	::v-deep {
 		.cube__face {
-			box-shadow: inset 0 0 0 1px primary-color(700, 0.5);
+			box-shadow: inset 0 0 0 1.5px primary-color(50);
+			background-color: primary-color(400);
 			transition: background-color 0.3s $ease-in-out, box-shadow 0.3s $ease-in-out;
 
 			.xray-toggle.active & {
