@@ -4,6 +4,7 @@
 
 		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 			<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
+			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 		</button>
 
 		<xyz-transition xyz="duration-15">
@@ -149,10 +150,12 @@ export default {
 			this.randomizeXRayCubeTransform()
 		},
 		randomizeXRayCubeTransform() {
-			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${-0.5 + Math.random()}turn)`
+			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${
+				-0.5 + Math.random()
+			}turn)`
 		},
 	},
-	mounted () {
+	mounted() {
 		this.randomizeXRayCubeTransform()
 	},
 	metaInfo() {
