@@ -51,4 +51,4 @@ modifiers:
       types: [stagger]
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+Don't be limited to just the animation tokens we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique transforms.
