@@ -1,35 +1,24 @@
 <template>
-	<div class="page__wrap" :class="{ 'xyz-xray': xRayToggled }">
-		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+	<layout>
+    <main class="page-content">
+      <div class="banner__wrap">
+        <banner></banner>
+      </div>
 
-		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-			<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
-			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
-		</button>
-
-		<xyz-transition xyz="duration-15">
-			<div class="xray-overlay" v-if="xRayToggled"></div>
-		</xyz-transition>
-
-		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<div class="banner__wrap">
-				<banner></banner>
-			</div>
-
-			<xyz-transition appear>
-				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
-					<p class="intro-text">
-						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
-						your website to life.
-					</p>
-				</div>
-			</xyz-transition>
+      <xyz-transition appear>
+        <div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+          <p class="intro-text">
+            The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+            your website to life.
+          </p>
+        </div>
+      </xyz-transition>
 
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
-				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-			</xyz-transition-group>
-		</main>
-	</div>
+        <docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+      </xyz-transition-group>
+    </main>
+  </layout>
 </template>
 
 <page-query>
@@ -74,163 +63,35 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
-import Cube from '~/components/reusable/Cube'
 import DocsSection from '~/components/docsSection/DocsSection'
-import PageNav from '~/components/reusable/PageNav'
+import SectionsMixin from '~/mixins/Sections'
 
 export default {
+	mixins: [SectionsMixin],
 	components: {
 		Banner,
-		Cube,
 		DocsSection,
-		PageNav,
 	},
 	data() {
 		return {
-			navOpen: false,
-			xRayToggled: false,
-			xRayCubeTransform: null,
 			sectionDefinitions: [
-				'About',
-				'Installation',
-				{ header: true, title: 'Animations' },
-				'Fade',
-				'Transform',
-				'Origin',
-				'Timing',
-				'Stagger',
-				'Composition',
-				'Variables',
-				{ header: true, title: 'Concepts' },
-				'Contexts',
-				'Inheritance',
-				'Nesting',
-				'Modes',
-				{ header: true, title: 'Customizations' },
-				'Defaults',
-				'Utilities',
-				'Keyframes',
-				{ header: true, title: 'Integrations' },
-				'Vue',
-				'React',
+				'Why AnimXYZ?',
 			],
 		}
 	},
-	computed: {
-		sections() {
-			const sectionsObj = {}
-			this.$page.sections.edges.forEach((sectionEdge) => {
-				sectionsObj[sectionEdge.node.title] = sectionEdge.node
-			})
-
-			return this.sectionDefinitions.map((sectionDefinition) => {
-				if (sectionDefinition.header) {
-					return sectionDefinition
-				}
-
-				const section = sectionsObj[sectionDefinition]
-				return {
-					...section,
-					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-'),
-				}
-			})
-		},
-		mainSections() {
-			return this.sections.filter((section) => !section.header)
-		},
-	},
-	methods: {
-		toggleNav(toggled) {
-			if (toggled || this.$mq.below('large')) {
-				this.navOpen = toggled
-			}
-		},
-		toggleXRay(toggled) {
-			this.xRayToggled = toggled
-			this.randomizeXRayCubeTransform()
-		},
-		randomizeXRayCubeTransform() {
-			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${
-				-0.5 + Math.random()
-			}turn)`
-		},
-	},
-	mounted() {
-		this.randomizeXRayCubeTransform()
-	},
 	metaInfo() {
 		return {
-			titleTemplate: '%s',
-			title: 'AnimXYZ',
+			title: '',
 		}
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.page__wrap {
-	width: 100vw;
-	overflow-x: hidden;
-}
-
 .page-content {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	transition: transform 0.3s $ease-in-out;
-
-	&.nav-open {
-		transform: translateX(20rem);
-
-		@include media('<tablet') {
-			transform: initial;
-		}
-
-		@include media('>=large') {
-			transform: initial;
-			padding-left: 20rem;
-		}
-	}
-}
-
-.xray-toggle {
-	position: fixed;
-	top: $sp-xl;
-	right: $sp-xl;
-	z-index: 1;
-	perspective: 10rem;
-}
-
-.xray-cube {
-	--cube-size: 2rem;
-	transition: transform 1s $ease-in-out-back;
-
-	::v-deep {
-		.cube__face {
-			box-shadow: inset 0 0 0 1.5px primary-color(50), inset 0 0 0 1rem primary-color(400);
-			transition: background-color 1s $ease-in-out, box-shadow 1s $ease-in-out;
-
-			.xray-toggle.active & {
-				background-color: transparentize($cyan, 0.9);
-				box-shadow: inset 0 0 0 2px $cyan;
-			}
-		}
-	}
-}
-
-.xray-overlay {
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	pointer-events: none;
-	z-index: 99999;
-	--xyz-keyframes: xray-scan;
-
-	&::after {
-		display: none !important;
-	}
 }
 
 .intro__wrap {

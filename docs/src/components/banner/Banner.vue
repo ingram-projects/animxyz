@@ -1,5 +1,5 @@
 <template>
-	<xyz-transition-group tag="div" appear class="banner" :class="{ 'xyz-paused': !isVisible }" v-observe-visibility="visibilityChanged">
+	<xyz-transition-group tag="div" appear class="banner">
 		<banner-square v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></banner-square>
 	</xyz-transition-group>
 </template>
@@ -14,15 +14,11 @@ export default {
 	},
 	data() {
 		return {
-			isVisible: false,
 			numSquares: 8,
 			activeSquare: null,
 		}
 	},
 	methods: {
-		visibilityChanged(isVisible) {
-			this.isVisible = isVisible
-		},
 		randomizeSquare() {
 			const oldActiveSquare = this.activeSquare
 			while (this.activeSquare === oldActiveSquare) {
@@ -32,9 +28,7 @@ export default {
 	},
 	created() {
 		setInterval(() => {
-			if (this.isVisible) {
-				this.randomizeSquare()
-			}
+			this.randomizeSquare()
 		}, 3000)
 	},
 }
