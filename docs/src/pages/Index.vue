@@ -24,7 +24,7 @@
 						<span>GitHub</span>
 					</a>
 					<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
-						<icon-github></icon-github>
+						<icon-sandbox></icon-sandbox>
 						<span>Sandbox</span>
 					</a>
 					<a class="cta-button docs-link xyz-nested" href="/docs">
@@ -52,12 +52,14 @@
 import Banner from '~/components/banner/Banner'
 import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
+import IconSandbox from '~/assets/icons/IconSandbox.svg'
 
 export default {
 	components: {
 		Banner,
 		IconDocs,
 		IconGithub,
+		IconSandbox,
 	},
 	metaInfo() {
 		return {
