@@ -4,22 +4,22 @@ title: Contexts
 examples:
   - name: Single
     template: |
-      <xyz-transition xyz="fade turn-cw" v-on="data.listeners">
+      <xyz-transition xyz="fade down" v-on="data.listeners">
         <div class="square" v-show="data.toggled" ></div>
       </xyz-transition>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade turn-cw"></div>
+          <div class="square ${data.mode}" xyz="fade down"></div>
   - name: Multiple
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
+      <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
         <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
       </xyz-transition-group>
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade small">
+          <div class="square-group" xyz="fade turn-cw">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
