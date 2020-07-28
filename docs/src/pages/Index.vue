@@ -97,9 +97,17 @@ export default {
 .links__wrap {
 	display: grid;
 	grid-gap: $sp-l;
-	grid-template-columns: repeat(3, 15rem);
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+	max-width: 100%;
+	padding: 0 $sp-m;
 	margin: 0 auto;
 	margin-bottom: $sp-xxl;
+
+	@include media('<tablet') {
+		grid-template-columns: 1fr;
+		grid-gap: $sp-s;
+		width: 24rem;
+	}
 }
 
 .cta-button {
