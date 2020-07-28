@@ -93,7 +93,7 @@ export default {
 .intro-text {
 	padding: 0 $sp-l;
 	font-size: $fs-xxl;
-	font-weight: 600;
+	font-weight: 550;
 	line-height: 1.75;
 	max-width: 56ch;
 
