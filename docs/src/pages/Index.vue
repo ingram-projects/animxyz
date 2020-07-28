@@ -8,8 +8,7 @@
 			<xyz-transition appear>
 				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
 					<p class="intro-text">
-						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
-						your website to life.
+						The first truly composable CSS animation toolkit.
 					</p>
 				</div>
 			</xyz-transition>
@@ -34,6 +33,15 @@
 					</a>
 				</div>
 			</xyz-transition>
+
+			<div class="about-section">
+				<p>
+					AnimXYZ helps you create, customize, and compose animations for your website with simple HTML attributes and
+					CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are limited to
+					a specific set, use AnimXYZ to save you time and give you complete control over how your elements move. Built
+					for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
+				</p>
+			</div>
 		</main>
 	</layout>
 </template>
@@ -84,8 +92,8 @@ export default {
 
 .intro-text {
 	padding: 0 $sp-l;
-	font-size: $fs-xl;
-	font-weight: 500;
+	font-size: $fs-xxl;
+	font-weight: 600;
 	line-height: 1.75;
 	max-width: 56ch;
 
@@ -168,10 +176,14 @@ export default {
 	}
 }
 
-.sections__wrap {
+.about-section {
 	margin: 0 auto;
 	margin-bottom: $sp-xxxl;
 	width: 100%;
-	max-width: 80rem;
+	max-width: 48rem;
+
+	p {
+		font-size: $fs-l;
+	}
 }
 </style>
