@@ -1,5 +1,5 @@
 ---
-title: Why AnimXYZ?
+title: About
 quote: CSS is composable, animations should be too.
 ---
 

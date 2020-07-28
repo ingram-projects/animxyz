@@ -1,5 +1,6 @@
 ---
 title: Contexts
+quote: TBD
 
 examples:
   - name: Single
@@ -39,14 +40,8 @@ examples:
             <div class="square ${data.mode}" xyz="fade big"></div>
             <div class="square ${data.mode}"></div>
           </div>
-
-modifiers:
-  utilities:
-    hide: true
-  variables:
-    hide: true
 ---
 
-AnimXYZ uses its own attribute `xyz` to create a context that defines the animations within it. Unlike a class, an `xyz` context applies not only to the element it's on, but also all its child/descendant elements as well. This allows for a lot of flexibility without redundancy.
+AnimXYZ uses its own attribute `xyz` to create contexts that define the animations within them using composable utilities such as `xyz="fade down duration-10"`. Unlike classes, an `xyz` context applies not only to the element it's on, but also to all its child/descendant elements as well. This allows for the flexibility of utility classes without all the code repetition. Also, don't animations deserve their own attribute?
 
 If you want a child element to animate differently than it's parent context, simply create a new `xyz` context on the child which will override the parent context.
