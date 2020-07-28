@@ -28,7 +28,7 @@
 						<span>Sandbox</span>
 					</a>
 					<a class="cta-button docs-link xyz-nested" href="/docs">
-						<icon-github></icon-github>
+						<icon-docs></icon-docs>
 						<span>Docs</span>
 					</a>
 				</div>
@@ -48,11 +48,13 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
+import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	components: {
 		Banner,
+		IconDocs,
 		IconGithub,
 	},
 	metaInfo() {
@@ -127,12 +129,12 @@ export default {
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	border: 2px solid primary-color(500);
+	border: 2px solid primary-color(300);
 	color: primary-color(600);
 	font-weight: 600;
 	font-size: 1.125rem;
 	text-decoration: none;
-	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
+	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out, border 0.2s $ease-in-out;
 
 	svg {
 		@include size(1.5rem);
@@ -143,6 +145,7 @@ export default {
 	&:hover,
 	&:focus {
 		--icon-color: #{primary-color(700)};
+		border-color: primary-color(400);
 		color: primary-color(700);
 		outline: none;
 		background-color: primary-color(500, 0.15);
@@ -162,6 +165,10 @@ export default {
 	border: none;
 	background-color: primary-color(700);
 	color: primary-color(100);
+
+	svg {
+		@include size(1.75rem);
+	}
 
 	&:hover,
 	&:focus {
@@ -184,6 +191,7 @@ export default {
 
 	p {
 		font-size: $fs-l;
+		font-weight: 450;
 	}
 }
 </style>
