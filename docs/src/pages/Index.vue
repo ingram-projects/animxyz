@@ -1,20 +1,20 @@
 <template>
 	<layout>
-    <main class="page-content">
-      <div class="banner__wrap">
-        <banner></banner>
-      </div>
+		<main class="page-content">
+			<div class="banner__wrap">
+				<banner></banner>
+			</div>
 
-      <xyz-transition appear>
-        <div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
-          <p class="intro-text">
-            The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
-            your website to life.
-          </p>
-        </div>
-      </xyz-transition>
-    </main>
-  </layout>
+			<xyz-transition appear>
+				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+					<p class="intro-text">
+						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+						your website to life.
+					</p>
+				</div>
+			</xyz-transition>
+		</main>
+	</layout>
 </template>
 
 <script>

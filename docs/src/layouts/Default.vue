@@ -48,11 +48,11 @@ export default {
 	mounted() {
 		this.randomizeXRayCubeTransform()
 	},
-  metaInfo() {
+	metaInfo() {
 		return {
-      titleTemplate: (titleChunk) => {
-        return titleChunk ? `${titleChunk} | ${this.$static.metadata.siteName}` : this.$static.metadata.siteName;
-      },
+			titleTemplate: (titleChunk) => {
+				return titleChunk ? `${titleChunk} | ${this.$static.metadata.siteName}` : this.$static.metadata.siteName
+			},
 		}
 	},
 }

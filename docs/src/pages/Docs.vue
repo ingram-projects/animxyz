@@ -1,13 +1,13 @@
 <template>
-  <layout>
-    <page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+	<layout>
+		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
-    <main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-      <xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
-        <docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-      </xyz-transition-group>
-    </main>
-  </layout>
+		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
+			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
+				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+			</xyz-transition-group>
+		</main>
+	</layout>
 </template>
 
 <page-query>
@@ -87,7 +87,7 @@ export default {
 			],
 		}
 	},
-  computed: {
+	computed: {
 		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
@@ -102,7 +102,11 @@ export default {
 				const section = sectionsObj[sectionDefinition]
 				return {
 					...section,
-					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-').replace(/[^\w-]/g, ''),
+					anchor: section.title
+						.trim()
+						.toLowerCase()
+						.replace(/\s/g, '-')
+						.replace(/[^\w-]/g, ''),
 				}
 			})
 		},

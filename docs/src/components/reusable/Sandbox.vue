@@ -1,7 +1,12 @@
 <template>
 	<div class="sandbox">
 		<xyz-modifiers-input v-if="modifiers" v-model="xyzModifiers" :modifiers="modifiers"></xyz-modifiers-input>
-		<code-examples v-if="examples" :examples="examples" :data="injectedData" @example-changed="onExampleChanged"></code-examples>
+		<code-examples
+			v-if="examples"
+			:examples="examples"
+			:data="injectedData"
+			@example-changed="onExampleChanged"
+		></code-examples>
 	</div>
 </template>
 
@@ -102,7 +107,7 @@ export default {
 			this.toggleTimeout = setTimeout(() => {
 				this.toggleExample(true)
 			}, this.toggleInterval)
-		}
+		},
 	},
 	beforeDestroy() {
 		clearTimeout(this.toggleTimeout)
