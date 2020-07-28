@@ -64,6 +64,11 @@ export default {
 			navOpen: false,
 			sectionDefinitions: [
 				'Installation',
+				{ header: true, title: 'Concepts' },
+				'Contexts',
+				'Modes',
+				'Inheritance',
+				'Nesting',
 				{ header: true, title: 'Animations' },
 				'Fade',
 				'Transform',
@@ -72,11 +77,6 @@ export default {
 				'Stagger',
 				'Composition',
 				'Variables',
-				{ header: true, title: 'Concepts' },
-				'Contexts',
-				'Inheritance',
-				'Nesting',
-				'Modes',
 				{ header: true, title: 'Customizations' },
 				'Defaults',
 				'Utilities',
@@ -151,8 +151,7 @@ export default {
 }
 
 .sections__wrap {
-	margin: 0 auto;
-	margin-bottom: $sp-xxxl;
+	margin: $sp-xxxl auto;
 	width: 100%;
 	max-width: 80rem;
 }
