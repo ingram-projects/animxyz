@@ -14,7 +14,7 @@
 				</div>
 			</xyz-transition>
 
-			<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back">
+			<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
 				<div class="links__wrap">
 					<a
 						class="cta-button github-link xyz-nested"
@@ -160,12 +160,10 @@ export default {
 	height: 3rem;
 	border-radius: $br-l;
 	padding: 0 $sp-s;
-	margin: $sp-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	z-index: 2;
 	border: 2px solid primary-color(500);
 	color: primary-color(600);
 	font-weight: 600;
@@ -181,9 +179,10 @@ export default {
 
 	&:hover,
 	&:focus {
-		--icon-color: #{primary-color(50)};
+		--icon-color: #{primary-color(700)};
+		color: primary-color(700);
 		outline: none;
-		background-color: primary-color(500, 0.3);
+		background-color: primary-color(500, 0.15);
 
 		svg {
 			transform: scale(1.15);
@@ -191,18 +190,27 @@ export default {
 	}
 
 	&:focus {
-		box-shadow: 0 0 0 4px primary-color(200, 0.5);
-	}
-
-	@include media('<tablet') {
-		order: 1;
+		box-shadow: 0 0 0 4px primary-color(500, 0.5);
 	}
 }
 
 .docs-link {
+	--icon-color: #{primary-color(100)};
 	border: none;
-	background-color: primary-color(800);
-	color: primary-color(50);
+	background-color: primary-color(700);
+	color: primary-color(100);
+
+	&:hover,
+	&:focus {
+		--icon-color: #{primary-color(50)};
+		color: primary-color(50);
+		outline: none;
+		background-color: primary-color(800);
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 4px primary-color(600, 0.5);
+	}
 }
 
 .sections__wrap {
