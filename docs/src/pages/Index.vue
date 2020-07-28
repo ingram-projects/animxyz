@@ -13,71 +13,16 @@
           </p>
         </div>
       </xyz-transition>
-
-			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
-        <docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-      </xyz-transition-group>
     </main>
   </layout>
 </template>
 
-<page-query>
-{
-  sections: allSection {
-    edges {
-      node {
-        title
-				quote
-				content
-				examples {
-					name
-					template
-					code {
-						language
-						content
-					}
-				}
-				modifiers {
-					utilities {
-						hide
-						multiple
-						defaults
-					}
-					variables {
-						hide
-						defaults {
-							name
-							value
-						}
-					}
-					groups {
-						name
-						types
-					}
-				}
-      }
-    }
-  }
-}
-</page-query>
-
 <script>
 import Banner from '~/components/banner/Banner'
-import DocsSection from '~/components/docsSection/DocsSection'
-import SectionsMixin from '~/mixins/Sections'
 
 export default {
-	mixins: [SectionsMixin],
 	components: {
 		Banner,
-		DocsSection,
-	},
-	data() {
-		return {
-			sectionDefinitions: [
-				'Why AnimXYZ?',
-			],
-		}
 	},
 	metaInfo() {
 		return {
@@ -124,12 +69,5 @@ export default {
 		margin: $sp-l auto;
 		max-width: 80vw;
 	}
-}
-
-.sections__wrap {
-	margin: 0 auto;
-	margin-bottom: $sp-xxxl;
-	width: 100%;
-	max-width: 80rem;
 }
 </style>

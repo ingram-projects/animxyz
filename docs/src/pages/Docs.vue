@@ -53,10 +53,8 @@
 <script>
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
-import SectionsMixin from '~/mixins/Sections'
 
 export default {
-  mixins: [SectionsMixin],
 	components: {
 		DocsSection,
 		PageNav,
@@ -88,6 +86,29 @@ export default {
 				'React',
 			],
 		}
+	},
+  computed: {
+		sections() {
+			const sectionsObj = {}
+			this.$page.sections.edges.forEach((sectionEdge) => {
+				sectionsObj[sectionEdge.node.title] = sectionEdge.node
+			})
+
+			return this.sectionDefinitions.map((sectionDefinition) => {
+				if (sectionDefinition.header) {
+					return sectionDefinition
+				}
+
+				const section = sectionsObj[sectionDefinition]
+				return {
+					...section,
+					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-').replace(/[^\w-]/g, ''),
+				}
+			})
+		},
+		mainSections() {
+			return this.sections.filter((section) => !section.header)
+		},
 	},
 	methods: {
 		toggleNav(toggled) {
