@@ -19,7 +19,13 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<scrollactive tag="ul" class="nav-sections" xyz="fade left" active-class="active" @itemchanged="onSectionChanged">
+						<scrollactive
+							tag="ul"
+							class="nav-sections"
+							xyz="fade left"
+							active-class="active"
+							@itemchanged="onSectionChanged"
+						>
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
@@ -97,7 +103,7 @@ export default {
 					block: 'center',
 				})
 			}
-		}
+		},
 	},
 }
 </script>

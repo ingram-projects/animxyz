@@ -14,7 +14,12 @@
 					<th class="utility__header">
 						{{ utility.name }}
 					</th>
-					<td class="utility-level xyz-nested" xyz="fade down" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
+					<td
+						class="utility-level xyz-nested"
+						xyz="fade down"
+						v-for="utilityLevel in utility.levels"
+						:key="utilityLevel.id"
+					>
 						<div class="utility-level__content" v-if="utilityLevel.valid">
 							<input
 								class="toggle-input"
@@ -162,8 +167,9 @@ export default {
 	}
 }
 
-.utility, .utility-level {
-	--xyz-stagger: .05s;
+.utility,
+.utility-level {
+	--xyz-stagger: 0.05s;
 }
 
 .utility__header {

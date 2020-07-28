@@ -1,13 +1,13 @@
 <template>
-  <layout>
-    <page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+	<layout>
+		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
-    <main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-      <xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
-        <docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-      </xyz-transition-group>
-    </main>
-  </layout>
+		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
+			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
+				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+			</xyz-transition-group>
+		</main>
+	</layout>
 </template>
 
 <page-query>
@@ -53,10 +53,8 @@
 <script>
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
-import SectionsMixin from '~/mixins/Sections'
 
 export default {
-  mixins: [SectionsMixin],
 	components: {
 		DocsSection,
 		PageNav,
@@ -88,6 +86,33 @@ export default {
 				'React',
 			],
 		}
+	},
+	computed: {
+		sections() {
+			const sectionsObj = {}
+			this.$page.sections.edges.forEach((sectionEdge) => {
+				sectionsObj[sectionEdge.node.title] = sectionEdge.node
+			})
+
+			return this.sectionDefinitions.map((sectionDefinition) => {
+				if (sectionDefinition.header) {
+					return sectionDefinition
+				}
+
+				const section = sectionsObj[sectionDefinition]
+				return {
+					...section,
+					anchor: section.title
+						.trim()
+						.toLowerCase()
+						.replace(/\s/g, '-')
+						.replace(/[^\w-]/g, ''),
+				}
+			})
+		},
+		mainSections() {
+			return this.sections.filter((section) => !section.header)
+		},
 	},
 	methods: {
 		toggleNav(toggled) {

@@ -1,5 +1,10 @@
 <template>
-	<article class="docs-section" :class="{ 'xyz-paused': !isVisible }" :id="section.anchor" v-observe-visibility="visibilityChanged">
+	<article
+		class="docs-section"
+		:class="{ 'xyz-paused': !isVisible }"
+		:id="section.anchor"
+		v-observe-visibility="visibilityChanged"
+	>
 		<div class="section-column section-text">
 			<div class="section-column__content">
 				<header class="section-header">
@@ -40,7 +45,7 @@ export default {
 		MarkdownContent,
 		Sandbox,
 	},
-	data () {
+	data() {
 		return {
 			isVisible: false,
 		}
@@ -48,8 +53,8 @@ export default {
 	methods: {
 		visibilityChanged(isVisible) {
 			this.isVisible = isVisible
-		}
-	}
+		},
+	},
 }
 </script>
 

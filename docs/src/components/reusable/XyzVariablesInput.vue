@@ -2,7 +2,13 @@
 	<div class="variables-input">
 		<div class="variable" v-for="variable in variables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
-			<input class="variable-input" type="text" :id="variable.id" :placeholder="variable.syntax" v-model="toggledVariables[variable.string]" />
+			<input
+				class="variable-input"
+				type="text"
+				:id="variable.id"
+				:placeholder="variable.syntax"
+				v-model="toggledVariables[variable.string]"
+			/>
 		</div>
 	</div>
 </template>

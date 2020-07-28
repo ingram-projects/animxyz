@@ -27,6 +27,8 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "eslint . --ignore-path .gitignore --fix",
+    "lint": "eslint --ignore-path .gitignore --fix",
+    "lint-all": "yarn run lint --ext .js,.jsx,.ts,.tsx,.vue .",
     "publish": "lerna run build && lerna publish"
   },
   "devDependencies": {
