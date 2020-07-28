@@ -14,6 +14,27 @@
 				</div>
 			</xyz-transition>
 
+			<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back">
+				<div class="links__wrap">
+					<a
+						class="cta-button github-link xyz-nested"
+						href="https://github.com/ingram-projects/animxyz"
+						target="_blank"
+					>
+						<icon-github></icon-github>
+						<span>GitHub</span>
+					</a>
+					<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+						<icon-github></icon-github>
+						<span>Sandbox</span>
+					</a>
+					<a class="cta-button docs-link xyz-nested" href="/docs">
+						<icon-github></icon-github>
+						<span>Docs</span>
+					</a>
+				</div>
+			</xyz-transition>
+
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
 				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
 			</xyz-transition-group>
@@ -64,6 +85,7 @@
 <script>
 import Banner from '~/components/banner/Banner'
 import DocsSection from '~/components/docsSection/DocsSection'
+import IconGithub from '~/assets/icons/IconGithub.svg'
 import SectionsMixin from '~/mixins/Sections'
 
 export default {
@@ -71,6 +93,7 @@ export default {
 	components: {
 		Banner,
 		DocsSection,
+		IconGithub,
 	},
 	data() {
 		return {
@@ -90,6 +113,18 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.banner__wrap {
+	margin: $sp-xxl auto;
+	padding: 0 $sp-m;
+	width: 100%;
+	max-width: 80rem;
+
+	@include media('<phone') {
+		margin: $sp-l auto;
+		max-width: 80vw;
+	}
 }
 
 .intro__wrap {
@@ -112,16 +147,62 @@ export default {
 	}
 }
 
-.banner__wrap {
-	margin: $sp-xxl auto;
-	padding: 0 $sp-m;
-	width: 100%;
-	max-width: 80rem;
+.links__wrap {
+	display: grid;
+	grid-gap: $sp-l;
+	grid-template-columns: repeat(3, 15rem);
+	margin: 0 auto;
+	margin-bottom: $sp-xxl;
+}
 
-	@include media('<phone') {
-		margin: $sp-l auto;
-		max-width: 80vw;
+.cta-button {
+	--icon-color: #{primary-color(600)};
+	height: 3rem;
+	border-radius: $br-l;
+	padding: 0 $sp-s;
+	margin: $sp-s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	z-index: 2;
+	border: 2px solid primary-color(500);
+	color: primary-color(600);
+	font-weight: 600;
+	font-size: 1.125rem;
+	text-decoration: none;
+	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
+
+	svg {
+		@include size(1.5rem);
+		transition: transform 0.3s $ease-out-back;
+		margin-right: $sp-xs;
 	}
+
+	&:hover,
+	&:focus {
+		--icon-color: #{primary-color(50)};
+		outline: none;
+		background-color: primary-color(500, 0.3);
+
+		svg {
+			transform: scale(1.15);
+		}
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 4px primary-color(200, 0.5);
+	}
+
+	@include media('<tablet') {
+		order: 1;
+	}
+}
+
+.docs-link {
+	border: none;
+	background-color: primary-color(800);
+	color: primary-color(50);
 }
 
 .sections__wrap {

@@ -1,5 +1,5 @@
 export default {
-  computed: {
+	computed: {
 		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
@@ -14,7 +14,11 @@ export default {
 				const section = sectionsObj[sectionDefinition]
 				return {
 					...section,
-					anchor: section.title.trim().toLowerCase().replace(/\s/g, '-').replace(/[^\w-]/g, ''),
+					anchor: section.title
+						.trim()
+						.toLowerCase()
+						.replace(/\s/g, '-')
+						.replace(/[^\w-]/g, ''),
 				}
 			})
 		},
