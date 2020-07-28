@@ -1,32 +1,32 @@
 <template>
 	<layout>
-    <main class="page-content">
-      <div class="banner__wrap">
-        <banner></banner>
-      </div>
+		<main class="page-content">
+			<div class="banner__wrap">
+				<banner></banner>
+			</div>
 
-      <xyz-transition appear>
-        <div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
-          <p class="intro-text">
-            The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
-            your website to life.
-          </p>
-        </div>
-      </xyz-transition>
+			<xyz-transition appear>
+				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+					<p class="intro-text">
+						The first truly composable CSS animation toolkit. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+						your website to life.
+					</p>
+				</div>
+			</xyz-transition>
 
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
-        <docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
-      </xyz-transition-group>
-    </main>
-  </layout>
+				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+			</xyz-transition-group>
+		</main>
+	</layout>
 </template>
 
 <page-query>
 {
-  sections: allSection {
-    edges {
-      node {
-        title
+	sections: allSection {
+		edges {
+			node {
+				title
 				quote
 				content
 				examples {
@@ -55,9 +55,9 @@
 						types
 					}
 				}
-      }
-    }
-  }
+			}
+		}
+	}
 }
 </page-query>
 
@@ -74,9 +74,7 @@ export default {
 	},
 	data() {
 		return {
-			sectionDefinitions: [
-				'Why AnimXYZ?',
-			],
+			sectionDefinitions: ['Why AnimXYZ?'],
 		}
 	},
 	metaInfo() {
