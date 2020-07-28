@@ -71,10 +71,10 @@ export default {
 }
 
 .banner__wrap {
-	margin: $sp-xxl auto;
+	margin: 16vh auto;
 	padding: 0 $sp-m;
 	width: 100%;
-	max-width: 80rem;
+	max-width: 64rem;
 
 	@include media('<phone') {
 		margin: $sp-l auto;
@@ -98,7 +98,7 @@ export default {
 	max-width: 56ch;
 
 	@include media('<phone') {
-		font-size: $fs-l;
+		font-size: $fs-xl;
 	}
 }
 
@@ -177,10 +177,10 @@ export default {
 }
 
 .about-section {
-	margin: 0 auto;
-	margin-bottom: $sp-xxxl;
 	width: 100%;
+	padding: 0 $sp-m;
 	max-width: 48rem;
+	margin: 0 auto;
 
 	p {
 		font-size: $fs-l;

@@ -80,7 +80,7 @@ export default {
 	}
 
 	@include media('<phone') {
-		font-size: 16vw;
+		font-size: 20vw;
 	}
 }
 </style>
