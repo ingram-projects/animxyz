@@ -3,16 +3,27 @@ title: Contexts
 quote: TBD
 
 examples:
-  - name: Single
+  - name: Elements
     template: |
-      <xyz-transition xyz="fade down" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" ></div>
-      </xyz-transition>
+      <div class="square-group">
+        <xyz-transition xyz="fade down" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" ></div>
+        </xyz-transition>
+        <xyz-transition xyz="fade turn-cw" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" ></div>
+        </xyz-transition>
+        <xyz-transition xyz="fade big" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" ></div>
+        </xyz-transition>
+      </div>
     code:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade down"></div>
-  - name: Multiple
+          <div class="square ${data.mode}" xyz="fade turn-cw"></div>
+          <div class="square ${data.mode}" xyz="fade big"></div>
+
+  - name: Children
     template: |
       <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
         <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
