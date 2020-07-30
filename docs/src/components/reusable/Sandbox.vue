@@ -119,6 +119,7 @@ export default {
 .sandbox {
 	background: primary-color(900);
 	border-radius: $br-l;
+	overflow: hidden;
 }
 
 .modifiers-input {

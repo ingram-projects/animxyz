@@ -56,11 +56,11 @@ textarea {
 }
 
 code:not([class*="language-"]) {
-  color: #F92672;
+  color: desaturate(darken(#F92672, 12%), 8%);
   font-family: $font-stack-mono;
   font-size: inherit;
   font-weight: bold;
-  background-color: transparentize(#F92672, .925);
+  background-color: transparentize(darken(#F92672, 10%), .95);
   padding: .125em .25em;
   border-radius: $br-s;
   white-space: nowrap;
