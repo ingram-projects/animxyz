@@ -7,13 +7,13 @@ examples:
     template: |
       <div class="square-group">
         <xyz-transition xyz="fade down" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" ></div>
+          <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
         <xyz-transition xyz="fade turn-cw" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" ></div>
+          <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
         <xyz-transition xyz="fade big" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" ></div>
+          <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
       </div>
     code:
