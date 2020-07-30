@@ -61,7 +61,6 @@ export default {
 <style lang="scss" scoped>
 .page__wrap {
 	width: 100vw;
-	overflow-x: hidden;
 }
 
 .xray-toggle {
