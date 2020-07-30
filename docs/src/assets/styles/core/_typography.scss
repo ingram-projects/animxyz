@@ -25,7 +25,7 @@ p {
     position: relative;
     transition: color .2s $ease-out;
     white-space: nowrap;
-  
+
     &::before {
       content: '';
       position: absolute;
@@ -37,7 +37,7 @@ p {
       transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
       z-index: -1;
     }
-  
+
     &:hover {
       color: primary-color(800);
 
