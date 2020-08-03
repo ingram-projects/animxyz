@@ -26,6 +26,10 @@ export default {
 			}
 		}
 
+		strong {
+			font-weight: 640;
+		}
+
 		pre[class*='language-'] {
 			background: primary-color(900);
 			margin: 0 (-$sp-s);
@@ -41,6 +45,40 @@ export default {
 
 			pre[class*='language-'] {
 				margin: 0;
+			}
+		}
+
+		table {
+			border-collapse: collapse;
+			font-family: $font-stack-mono;
+			font-size: $fs-l;
+
+			thead {
+				// border-bottom: 1px solid primary-color(300);
+				color: primary-color(800);
+			}
+
+			tr + tr {
+				// border-top: 1px solid primary-color(300);
+			}
+
+			th,
+			td {
+				text-align: left;
+				padding: $sp-xxs $sp-s;
+			}
+
+			td {
+				color: primary-color(700);
+				line-height: 1.5rem;
+			}
+
+			tbody {
+				tr {
+					&:nth-child(odd) {
+						background-color: primary-color(800, 0.05);
+					}
+				}
 			}
 		}
 	}
