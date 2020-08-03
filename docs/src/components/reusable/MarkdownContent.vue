@@ -26,6 +26,10 @@ export default {
 			}
 		}
 
+		strong {
+			font-weight: 640;
+		}
+
 		pre[class*='language-'] {
 			background: primary-color(900);
 			margin: 0 (-$sp-s);

@@ -55,4 +55,4 @@ examples:
 
 AnimXYZ uses its own attribute `xyz` to create contexts that define the animations within them using composable utilities such as `xyz="fade down duration-10"`. Unlike classes, an `xyz` context applies not only to the element it's on, but also to all its child/descendant elements as well. This allows for the flexibility of utility classes without all the code repetition. In essence, `xyz` is an attribute for animations.
 
-If you want a child element to animate differently than it's parent context, simply create a new `xyz` context on the child which will override the parent context.
+To make a child element to animate differently than it's parent context, create a new `xyz` context on the child which will override the parent context. This new XYZ context will reset all utilities and variables. If you only wish to override or add some animation values without resetting all of them, add `inherit` along with the new `xyz` values.

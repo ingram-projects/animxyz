@@ -3,8 +3,8 @@ title: Modes
 quote: Element goes in, element goes out, you can't explain that.
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+AnimXYZ animates elements when they are added or removed from view. Following the same concept as Vue and React's animation systems, AnimXYZ animations come in 3 modes. **Appear** for when an element initially appears. **In** for when an element is added. **Out** for when an element is removed.
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+Each animation mode is triggered by a related class on the animating element or parent element. For example to run the **Out** animation, you add the class `xyz-out` to an element with an [XYZ Context](#contexts).
 
-Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+The provided animation utilities and variables adapt to each mode. **In** and **Appear** animate from the provided utility or variable values, and **Out** animates back to those values.
