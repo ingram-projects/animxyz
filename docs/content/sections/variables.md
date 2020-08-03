@@ -52,3 +52,8 @@ modifiers:
 ---
 
 Don't be limited to just the animation tokens we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique transforms.
+
+| Variable          | Default Value |
+|-------------------|---------------|
+| --xyz-fade        | 1             |
+| --xyz-translate-x | 0             |
