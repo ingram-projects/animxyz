@@ -50,6 +50,17 @@ export default {
 			isVisible: false,
 		}
 	},
+	watch: {
+		'$location.hash': {
+			immediate: true,
+			handler() {
+				const hash = window.location.hash.substr(1)
+				if (hash.startsWith(this.section.anchor) && hash.endsWith('example')) {
+					console.log(this.$location)
+				}
+			},
+		},
+	},
 	methods: {
 		visibilityChanged(isVisible) {
 			this.isVisible = isVisible

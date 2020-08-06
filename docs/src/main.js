@@ -14,6 +14,7 @@ import 'prismjs'
 
 // Plugins
 import VueAnimXyz from '@animxyz/vue'
+import VueLocation from '~/plugins/VueLocation'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 import VueScrollactive from 'vue-scrollactive'
@@ -24,6 +25,7 @@ import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue) {
 	Vue.use(VueAnimXyz)
+	Vue.use(VueLocation)
 	Vue.use(VueMQ, {
 		breakpoints: {
 			small: '375px',

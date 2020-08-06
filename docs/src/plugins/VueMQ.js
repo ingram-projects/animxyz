@@ -42,7 +42,7 @@ const VueMQ = {
 			return media({ min, max, ...options })
 		}
 
-		let data = {}
+		const data = {}
 
 		const updateMqObj = () => {
 			data.cached = {}
