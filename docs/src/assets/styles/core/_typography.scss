@@ -16,15 +16,19 @@ p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
 
 p {
   color: var(--text-color);
+  display: flow-root;
   line-height: 1.5;
 
   a {
-    color: primary-color(700);
     font-weight: 600;
     text-decoration: none;
     position: relative;
-    transition: color .2s $ease-out;
     white-space: nowrap;
+  }
+
+  a:not([href$=example]) {
+    color: primary-color(700);
+    transition: color .2s $ease-out;
 
     &::before {
       content: '';
@@ -48,6 +52,43 @@ p {
         background-color: $cyan;
       }
     }
+  }
+
+  a[href$=example] {
+    background-color: transparentize($cyan, 0.75);
+    color: primary-color(800);
+    display: inline-block;
+    font-size: $fs-m;
+    font-family: $font-stack-mono;
+    line-height: 1.5rem;
+    padding: 0 $sp-xxxs;
+    border-radius: $br-m;
+    transition: background-color .2s $ease-out, color .2s $ease-out;
+
+    &::after {
+      display: inline-block;
+      content: '\2192';
+      font-size: $fs-l;
+      margin-left: $sp-xxxs;
+      transition: transform .2s $ease-out-back;
+
+      @include media('<laptop') {
+        content: '\2193';
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparentize($cyan, 0.5);
+
+      &::after {
+        transform: translateX(.5rem);
+
+        @include media('<laptop') {
+          transform: translateY(.35rem);
+        }
+      }
+    } 
   }
 }
 
