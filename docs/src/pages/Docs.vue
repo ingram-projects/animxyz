@@ -72,7 +72,6 @@ export default {
 				'Composition',
 				'Variables',
 				'Nesting',
-				'Inheritance',
 				'How it Works',
 				{ header: true, title: 'Animations' },
 				'Fade',
