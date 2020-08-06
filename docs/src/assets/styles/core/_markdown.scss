@@ -1,0 +1,143 @@
+.markdown-content {
+  font-size: 1.125rem;
+
+	@include media('<phone') {
+		font-size: $fs-m;
+	}
+
+	p,
+	blockquote,
+	pre[class*='language-'] {
+		&:not(:last-child) {
+			margin-bottom: 1.25rem;
+		}
+	}
+
+	strong {
+		font-weight: 640;
+	}
+
+	pre[class*='language-'] {
+		background: primary-color(900);
+		margin: 0 (-$sp-s);
+		border-radius: $br-l;
+	}
+
+	blockquote {
+		background-color: primary-color(600, 0.05);
+		border-left: 8px solid primary-color(500);
+		padding: $sp-s;
+		border-radius: $br-m;
+		font-size: $fs-m;
+
+		pre[class*='language-'] {
+			margin: 0;
+		}
+	}
+
+	table {
+		border-collapse: collapse;
+		font-family: $font-stack-mono;
+		font-size: $fs-l;
+
+		thead {
+			// border-bottom: 1px solid primary-color(300);
+			color: primary-color(800);
+		}
+
+		tr + tr {
+			// border-top: 1px solid primary-color(300);
+		}
+
+		th,
+		td {
+			text-align: left;
+			padding: $sp-xxs $sp-s;
+		}
+
+		td {
+			color: primary-color(700);
+			line-height: 1.5rem;
+		}
+
+		tbody {
+			tr {
+				&:nth-child(odd) {
+					background-color: primary-color(800, 0.05);
+				}
+			}
+		}
+	}
+
+  a {
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    white-space: nowrap;
+  }
+
+  a:not([href$=sandbox]) {
+    color: primary-color(700);
+    transition: color .2s $ease-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -.2em;
+      left: .2em;
+      right: .2em;
+      height: .15em;
+      background-color: transparentize($cyan, 0.35);
+      transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: primary-color(800);
+
+      &::before {
+        left: -.1em;
+        right: -.1em;
+        height: .25em;
+        background-color: $cyan;
+      }
+    }
+  }
+
+  a[href$=sandbox] {
+    background-color: transparentize($cyan, 0.75);
+    color: primary-color(800);
+    display: inline-block;
+    font-size: $fs-m;
+    font-family: $font-stack-mono;
+    line-height: 1.5rem;
+    padding: 0 $sp-xxxs;
+    border-radius: $br-m;
+    transition: background-color .2s $ease-out, color .2s $ease-out;
+
+    &::after {
+      display: inline-block;
+      content: '\2192';
+      font-size: $fs-l;
+      margin-left: $sp-xxxs;
+      transition: transform .2s $ease-out-back;
+
+      @include media('<laptop') {
+        content: '\2193';
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: transparentize($cyan, 0.5);
+
+      &::after {
+        transform: translateX(.5rem);
+
+        @include media('<laptop') {
+          transform: translateY(.35rem);
+        }
+      }
+    }
+  }
+}
