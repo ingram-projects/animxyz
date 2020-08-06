@@ -13,6 +13,7 @@
     "gridsome": "^0.7.19",
     "lodash": "^4.17.19",
     "prettier": "^2.0.5",
+    "query-string": "^6.13.1",
     "ress": "^2.0.4",
     "typeface-inconsolata": "^0.0.72",
     "typeface-inter": "^3.12.0",

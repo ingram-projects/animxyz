@@ -53,6 +53,8 @@ modifiers:
 
 Don't be limited to just the animation tokens we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique transforms.
 
+[Try it out](?group=Translate&variables=translate-y:100vh,rotate-z:33deg#variables_sandbox)
+
 | Variable          | Default Value |
 |-------------------|---------------|
 | --xyz-fade        | 1             |

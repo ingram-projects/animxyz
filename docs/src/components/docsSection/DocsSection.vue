@@ -23,7 +23,7 @@
 		<div class="section-column section-sandbox" v-if="section.examples.length">
 			<div class="section-column__content">
 				<client-only>
-					<sandbox :modifiers="section.modifiers" :examples="section.examples"></sandbox>
+					<sandbox :id="`${section.anchor}_sandbox`" :modifiers="section.modifiers" :examples="section.examples"></sandbox>
 				</client-only>
 			</div>
 		</div>
@@ -49,17 +49,6 @@ export default {
 		return {
 			isVisible: false,
 		}
-	},
-	watch: {
-		'$location.hash': {
-			immediate: true,
-			handler() {
-				const hash = window.location.hash.substr(1)
-				if (hash.startsWith(this.section.anchor) && hash.endsWith('example')) {
-					console.log(this.$location)
-				}
-			},
-		},
 	},
 	methods: {
 		visibilityChanged(isVisible) {

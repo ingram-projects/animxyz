@@ -54,6 +54,13 @@ export default {
 			},
 		},
 	},
+	methods: {
+		setExample(exampleName) {
+			this.activeExample = this.examples.find((example) => {
+				return example.name === exampleName
+			})
+		},
+	},
 }
 </script>
 

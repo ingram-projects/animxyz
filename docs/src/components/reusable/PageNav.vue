@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
 import FocusLock from 'vue-focus-lock'
+import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {

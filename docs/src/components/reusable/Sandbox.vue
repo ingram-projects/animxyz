@@ -1,16 +1,18 @@
 <template>
 	<div class="sandbox">
-		<xyz-modifiers-input v-if="modifiers" v-model="xyzModifiers" :modifiers="modifiers"></xyz-modifiers-input>
+		<xyz-modifiers-input v-if="modifiers" v-model="xyzModifiers" :modifiers="modifiers" ref="modifiers"></xyz-modifiers-input>
 		<code-examples
 			v-if="examples"
 			:examples="examples"
 			:data="injectedData"
 			@example-changed="onExampleChanged"
+			ref="examples"
 		></code-examples>
 	</div>
 </template>
 
 <script>
+import queryString from 'query-string'
 import CodeExamples from '~/components/reusable/CodeExamples'
 import XyzModifiersInput from '~/components/reusable/XyzModifiersInput'
 
@@ -62,6 +64,9 @@ export default {
 		},
 	},
 	watch: {
+		$location () {
+			this.onLocationChange()
+		},
 		modifiers: {
 			immediate: true,
 			handler() {
@@ -108,6 +113,34 @@ export default {
 				this.toggleExample(true)
 			}, this.toggleInterval)
 		},
+		onLocationChange() {
+			if (this.$location.hash === `#${this.$attrs.id}` && this.$location.search) {
+				const params = queryString.parse(this.$location.search)
+				if (params.example) {
+					this.$refs.examples.setExample(params.example)
+				}
+				if (params.group) {
+					this.$refs.modifiers.setGroup(params.group)
+				}
+				if (params.utilities) {
+					this.xyzModifiers.utilities = {}
+					params.utilities.split(',').forEach((utility) => {
+						this.xyzModifiers.utilities[utility] = true
+					})
+				}
+				if (params.variables) {
+					this.xyzModifiers.variables = {}
+					params.variables.split(',').forEach((variable) => {
+						const splitVariable = variable.split(':')
+						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
+					})
+				}
+				history.replaceState(null, null, this.$location.pathname + this.$location.hash)
+			}
+		},
+	},
+	mounted() {
+		this.onLocationChange()
 	},
 	beforeDestroy() {
 		clearTimeout(this.toggleTimeout)

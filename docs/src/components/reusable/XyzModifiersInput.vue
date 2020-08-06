@@ -95,6 +95,13 @@ export default {
 			},
 		},
 	},
+	methods: {
+		setGroup(groupName) {
+			this.activeGroup = this.modifiers.groups.find((group) => {
+				return group.name === groupName
+			})
+		},
+	},
 }
 </script>
 
