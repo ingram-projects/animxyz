@@ -73,6 +73,7 @@ export default {
 				'Variables',
 				'Nesting',
 				'Inheritance',
+				'How it Works',
 				{ header: true, title: 'Animations' },
 				'Fade',
 				'Transform',
