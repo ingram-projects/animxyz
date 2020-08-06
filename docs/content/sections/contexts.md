@@ -3,27 +3,7 @@ title: Contexts
 quote: TBD
 
 examples:
-  - name: Elements
-    template: |
-      <div class="square-group">
-        <xyz-transition xyz="fade down" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
-        <xyz-transition xyz="fade turn-cw" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
-        <xyz-transition xyz="fade big" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
-      </div>
-    code:
-      - language: html
-        content: |
-          <div class="square ${data.mode}" xyz="fade down"></div>
-          <div class="square ${data.mode}" xyz="fade turn-cw"></div>
-          <div class="square ${data.mode}" xyz="fade big"></div>
-
-  - name: Children
+  - name: Simple
     template: |
       <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
         <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
@@ -53,6 +33,8 @@ examples:
           </div>
 ---
 
-AnimXYZ uses its own attribute `xyz` to create contexts that define the animations within them using composable utilities such as `xyz="fade down duration-10"`. Unlike classes, an `xyz` context applies not only to the element it's on, but also to all its child/descendant elements as well. This allows for the flexibility of utility classes without all the code repetition. In essence, `xyz` is an attribute for animations.
+Unlike classes, the `xyz` attribute doesn't just apply to the element it's on, it also defines the animation for all descendant elements with an AnimXYZ active class. This can be very useful when applying the same animation to lists or groups of elements with the flexibility of utility classes without having to add them to each element.
 
-To make a child element to animate differently than it's parent context, create a new `xyz` context on the child which will override the parent context. This new XYZ context will reset all utilities and variables. If you only wish to override or add some animation values without resetting all of them, add `inherit` along with the new `xyz` values.
+To have a child element animate differently than it's parent context, add an `xyz` attribute to the child to override it. This new XYZ context resets all utilities and variables.
+
+If you want to only override some of the parent context, add `inherit` along with the new `xyz` values.
