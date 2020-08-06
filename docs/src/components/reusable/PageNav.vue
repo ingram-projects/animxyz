@@ -113,7 +113,7 @@ export default {
 	position: fixed;
 	display: flex;
 	flex-direction: column;
-	width: 20rem;
+	width: $desktop-menu-width;
 	top: 0;
 	bottom: 0;
 	background-color: primary-color(900, 0.95);

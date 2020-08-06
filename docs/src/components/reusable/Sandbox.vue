@@ -1,6 +1,11 @@
 <template>
 	<div class="sandbox">
-		<xyz-modifiers-input v-if="modifiers" v-model="xyzModifiers" :modifiers="modifiers" ref="modifiers"></xyz-modifiers-input>
+		<xyz-modifiers-input
+			v-if="modifiers"
+			v-model="xyzModifiers"
+			:modifiers="modifiers"
+			ref="modifiers"
+		></xyz-modifiers-input>
 		<code-examples
 			v-if="examples"
 			:examples="examples"
@@ -64,7 +69,7 @@ export default {
 		},
 	},
 	watch: {
-		$location () {
+		$location() {
 			this.onLocationChange()
 		},
 		modifiers: {
@@ -152,7 +157,6 @@ export default {
 .sandbox {
 	background: primary-color(900);
 	border-radius: $br-l;
-	overflow: hidden;
 }
 
 .modifiers-input {

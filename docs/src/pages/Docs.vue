@@ -133,13 +133,15 @@ export default {
 
 <style lang="scss" scoped>
 .page-content {
+	$desktop-menu-width: 16rem;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	transition: transform 0.3s $ease-in-out;
 
 	&.nav-open {
-		transform: translateX(20rem);
+		transform: translateX($desktop-menu-width);
 
 		@include media('<tablet') {
 			transform: initial;
@@ -147,7 +149,7 @@ export default {
 
 		@include media('>=large') {
 			transform: initial;
-			padding-left: 20rem;
+			padding-left: $desktop-menu-width;
 		}
 	}
 }

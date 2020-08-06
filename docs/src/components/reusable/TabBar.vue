@@ -43,6 +43,14 @@ export default {
 	color: primary-color(50);
 	transition: background-color 0.2s $ease-in-out, color 0.2s $ease-in-out;
 
+	&:first-child {
+		border-top-left-radius: $br-l;
+	}
+
+	&:last-child {
+		border-top-right-radius: $br-l;
+	}
+
 	&:hover,
 	&:focus {
 		font-weight: bold;
