@@ -54,6 +54,7 @@ modifiers:
 Don't be limited to just the animation tokens we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique transforms.
 
 [Try it out](?group=Translate&variables=translate-y:100vh,rotate-z:33deg#variables_sandbox)
+[Spin freely](?variables=translate-y:-100vh,translate-x:-100vh,rotate-x:90deg,rotate-z:-360deg,origin:-200%,stagger:.1s,duration:1s#variables_sandbox)
 
 | Variable          | Default Value |
 |-------------------|---------------|
