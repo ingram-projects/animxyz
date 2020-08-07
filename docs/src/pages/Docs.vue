@@ -133,8 +133,6 @@ export default {
 
 <style lang="scss" scoped>
 .page-content {
-	$desktop-menu-width: 16rem;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

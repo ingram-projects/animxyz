@@ -32,7 +32,6 @@ code:not([class*="language-"]) {
   background-color: transparentize(darken(#F92672, 10%), .95);
   padding: .125em .25em;
   border-radius: $br-s;
-  white-space: nowrap;
 }
 
 label {

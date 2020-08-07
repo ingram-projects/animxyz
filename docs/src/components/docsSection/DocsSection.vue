@@ -135,11 +135,11 @@ export default {
 .section-title {
 	font-size: 2.5rem;
 	line-height: 1;
-	// font-family: $font-stack-mono;
+	font-weight: 640;
 	color: primary-color(700);
 
 	@include media('<phone') {
-		font-size: 2.5rem;
+		font-size: 2rem;
 	}
 }
 
@@ -150,6 +150,11 @@ export default {
 	color: primary-color(600);
 	margin-top: $sp-s;
 	margin-left: $sp-l;
+
+	@include media('<phone') {
+		margin-top: $sp-xs;
+		font-size: 1rem;
+	}
 }
 
 .section-column {
