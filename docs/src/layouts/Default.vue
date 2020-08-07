@@ -69,6 +69,13 @@ export default {
 	right: $sp-xl;
 	z-index: 1;
 	perspective: 10rem;
+
+	@include media('<tablet') {
+		top: initial;
+		right: initial;
+		left: 2.5rem;
+		bottom: 2.5rem;
+	}
 }
 
 .xray-cube {

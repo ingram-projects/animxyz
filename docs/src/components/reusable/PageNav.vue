@@ -247,15 +247,19 @@ export default {
 		::v-deep {
 			.cube-wrap {
 				transform: scale(1.25);
+
+				@include media('<tablet') {
+					transform: initial;
+				}
 			}
 		}
 	}
 
 	@include media('<tablet') {
 		top: initial;
-		left: 50%;
-		bottom: $sp-l;
-		margin-left: -1.25rem;
+		left: initial;
+		right: 2.5rem;
+		bottom: 2.5rem;
 	}
 
 	@include media('>=large') {
@@ -269,6 +273,10 @@ export default {
 
 .logo-wrap {
 	@include size(2.5rem);
+
+	@include media('<tablet') {
+		@include size(initial);
+	}
 }
 
 .nav-button__text {
