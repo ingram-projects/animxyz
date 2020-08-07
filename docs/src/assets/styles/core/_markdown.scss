@@ -41,6 +41,10 @@
     font-size: $fs-l;
     width: 100%;
 
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+
 		thead {
 			// border-bottom: 1px solid primary-color(300);
 			color: primary-color(800);

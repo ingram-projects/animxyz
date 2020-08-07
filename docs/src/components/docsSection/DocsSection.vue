@@ -23,7 +23,11 @@
 		<div class="section-column section-sandbox" v-if="section.examples.length">
 			<div class="section-column__content">
 				<client-only>
-					<sandbox :id="`${section.anchor}_sandbox`" :modifiers="section.modifiers" :examples="section.examples"></sandbox>
+					<sandbox
+						:id="`${section.anchor}_sandbox`"
+						:modifiers="section.modifiers"
+						:examples="section.examples"
+					></sandbox>
 				</client-only>
 			</div>
 		</div>
@@ -129,10 +133,10 @@ export default {
 }
 
 .section-title {
-	font-size: 3rem;
+	font-size: 2.5rem;
 	line-height: 1;
-	font-family: $font-stack-mono;
-	color: primary-color(600);
+	// font-family: $font-stack-mono;
+	color: primary-color(700);
 
 	@include media('<phone') {
 		font-size: 2.5rem;
@@ -141,9 +145,9 @@ export default {
 
 .section-quote {
 	display: block;
-	font-size: $fs-l;
+	font-size: 1.125rem;
 	font-weight: 500;
-	color: primary-color(500);
+	color: primary-color(600);
 	margin-top: $sp-s;
 	margin-left: $sp-l;
 }
@@ -193,6 +197,10 @@ export default {
 	@include media('<phone') {
 		border-radius: 0;
 		margin: 0;
+	}
+
+	&:target {
+		box-shadow: 0 0 0 8px primary-color(400);
 	}
 }
 </style>
