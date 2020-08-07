@@ -9,17 +9,23 @@ const VueLocation = {
 
 			window.history.pushState = (f => function pushState(){
 				const ret = f.apply(this, arguments)
-				updateLocationObject()
+				window.dispatchEvent(new Event('pushstate'))
+				window.dispatchEvent(new Event('historychange'))
 				return ret
 			})(window.history.pushState)
 
 			window.history.replaceState = (f => function replaceState(){
 				const ret = f.apply(this, arguments)
-				updateLocationObject()
+				window.dispatchEvent(new Event('replacestate'))
+				window.dispatchEvent(new Event('historychange'))
 				return ret
 			})(window.history.replaceState)
 
 			window.addEventListener('popstate', () => {
+				window.dispatchEvent(new Event('historychange'))
+			})
+
+			window.addEventListener('historychange', () => {
 				updateLocationObject()
 			})
 
