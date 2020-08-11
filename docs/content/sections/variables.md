@@ -30,7 +30,7 @@ modifiers:
     hide: true
   variables:
     defaults:
-      - name: --xyz-fade
+      - name: fade
         value: '0'
   groups:
     - name: Fade

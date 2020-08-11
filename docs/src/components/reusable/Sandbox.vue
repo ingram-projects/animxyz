@@ -87,7 +87,7 @@ export default {
 					}
 					if (this.modifiers.variables && this.modifiers.variables.defaults) {
 						this.modifiers.variables.defaults.forEach((defaultVariable) => {
-							this.xyzModifiers.variables[defaultVariable.name] = defaultVariable.value
+							this.xyzModifiers.variables[`--xyz-${defaultVariable.name}`] = defaultVariable.value
 						})
 					}
 				}
@@ -140,7 +140,7 @@ export default {
 						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
 					})
 				}
-				history.replaceState(null, null, this.$location.pathname + this.$location.hash)
+				window.history.replaceState(null, null, this.$location.pathname + this.$location.hash)
 			}
 		},
 	},
