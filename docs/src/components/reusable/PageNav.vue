@@ -245,11 +245,11 @@ export default {
 		}
 
 		::v-deep {
-			.cube-wrap {
-				transform: scale(1.25);
+			.logo-scene {
+				--logo-scale: 1.125;
 
 				@include media('<tablet') {
-					transform: initial;
+					--logo-scale: 1;
 				}
 			}
 		}
@@ -265,14 +265,11 @@ export default {
 	@include media('>=large') {
 		pointer-events: none;
 	}
-
-	.open & {
-		--logo-side-z: 0px;
-	}
 }
 
 .logo-wrap {
-	@include size(2.5rem);
+	margin-left: $sp-s;
+	margin-right: 1.25rem;
 
 	@include media('<tablet') {
 		@include size(initial);
