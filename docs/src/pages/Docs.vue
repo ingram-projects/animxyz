@@ -157,23 +157,25 @@ export default {
 	}
 }
 
+$sandbox-padding: $sp-l;
+
 .sections__wrap {
 	margin: $sp-xxxl 0;
-	padding-right: calc(40vw + #{$sp-l});
+	padding-right: calc(40vw + #{$sandbox-padding});
 	width: 100%;
 }
 
 .docs-section {
 	max-width: 48rem;
-	padding: 0 $sp-l;
+	padding: 0 $sandbox-padding;
 }
 
 .sandbox__wrap {
 	position: fixed;
 	width: 40vw;
-	top: $sp-l;
-	right: $sp-l;
-	bottom: $sp-l;
+	top: $sandbox-padding;
+	right: $sandbox-padding;
+	bottom: $sandbox-padding;
 
 	.sandbox {
 		position: absolute;
