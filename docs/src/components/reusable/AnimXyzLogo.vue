@@ -32,10 +32,6 @@ $logo-size: 2.25rem;
 	transform: rotateX(55deg) rotateZ(45deg);
 	transition: transform 0.3s $ease-out-back;
 	transform-origin: $logo-size / 2 $logo-size / 2;
-
-	.open & {
-		transform: rotateX(65deg) rotateZ(45deg);
-	}
 }
 
 .logo-side {
@@ -69,19 +65,5 @@ $logo-size: 2.25rem;
 .side--green {
 	--logo-gradient-direction: to left;
 	--logo-side-color: var(--green-rgb);
-}
-
-.open {
-	.side--red {
-		transform: rotateY(0deg) translateZ($sp-xs);
-	}
-
-	.side--yellow {
-		transform: rotateY(0deg);
-	}
-
-	.side--green {
-		transform: translateZ(-$sp-xs);
-	}
 }
 </style>

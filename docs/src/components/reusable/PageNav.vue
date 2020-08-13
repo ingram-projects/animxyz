@@ -109,6 +109,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page-nav__wrap:not(.open) {
+	.animxyz-logo ::v-deep {
+		.side--red {
+			transform: rotateY(0deg) translateZ($sp-xs);
+		}
+
+		.side--yellow {
+			transform: rotateY(0deg);
+		}
+
+		.side--green {
+			transform: translateZ(-$sp-xs);
+		}
+
+		.logo-sides {
+			transform: rotateX(65deg) rotateZ(45deg);
+		}
+	}
+}
+
 .page-nav {
 	position: fixed;
 	display: flex;
