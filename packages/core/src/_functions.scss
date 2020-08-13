@@ -160,7 +160,7 @@
 // ANIMATIONS
 
 @mixin xyz-animation($mode) {
-  $keyframes: xyz-var('keyframes', $mode, xyz-#{xyz-name('keyframes', $mode)});
+  $keyframes: xyz-var('keyframes', $mode, none);
   $ease: xyz-var('ease', $mode);
   $duration: xyz-var('duration', $mode);
   $delay: xyz-var('delay', $mode, 0s);
@@ -182,11 +182,12 @@
   backface-visibility: visible;
 
   animation:
-    #{$keyframes}
     #{$duration}
     #{$ease}
     #{var(--xyz-active-delay, 0s)}
     #{$iterate}
     #{$direction}
     both;
+
+  animation-name: xyz-#{xyz-name('keyframes', $mode)}, #{$keyframes};
 }
