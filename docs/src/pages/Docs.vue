@@ -6,6 +6,9 @@
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
 				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
 			</xyz-transition-group>
+			<section class="sandbox__wrap">
+				<sandbox></sandbox>
+			</section>
 		</main>
 	</layout>
 </template>
@@ -53,11 +56,13 @@
 <script>
 import DocsSection from '~/components/docsSection/DocsSection'
 import PageNav from '~/components/reusable/PageNav'
+import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	components: {
 		DocsSection,
 		PageNav,
+		Sandbox,
 	},
 	data() {
 		return {
@@ -153,8 +158,29 @@ export default {
 }
 
 .sections__wrap {
-	margin: $sp-xxxl auto;
+	margin: $sp-xxxl 0;
+	padding-right: calc(40vw + #{$sp-l});
 	width: 100%;
-	max-width: 80rem;
+}
+
+.docs-section {
+	max-width: 48rem;
+	padding: 0 $sp-l;
+}
+
+.sandbox__wrap {
+	position: fixed;
+	width: 40vw;
+	top: $sp-l;
+	right: $sp-l;
+	bottom: $sp-l;
+
+	.sandbox {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
 }
 </style>

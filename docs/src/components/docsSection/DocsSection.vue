@@ -5,49 +5,30 @@
 		:id="section.anchor"
 		v-observe-visibility="visibilityChanged"
 	>
-		<div class="section-column section-text">
-			<div class="section-column__content">
-				<header class="section-header">
-					<div class="section-title__wrap">
-						<h1 class="section-title">{{ section.title }}</h1>
-						<a :href="`#${section.anchor}`" class="section-anchor">
-							<icon-link></icon-link>
-							<span class="screen-reader-only">Link to {{ section.title }}</span>
-						</a>
-					</div>
-					<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
-				</header>
-				<markdown-content :content="section.content"></markdown-content>
+		<header class="section-header">
+			<div class="section-title__wrap">
+				<h1 class="section-title">{{ section.title }}</h1>
+				<a :href="`#${section.anchor}`" class="section-anchor">
+					<icon-link></icon-link>
+					<span class="screen-reader-only">Link to {{ section.title }}</span>
+				</a>
 			</div>
-		</div>
-		<div class="section-column section-sandbox" v-if="section.examples.length">
-			<div class="section-column__content">
-				<client-only>
-					<sandbox
-						:id="`${section.anchor}_sandbox`"
-						:modifiers="section.modifiers"
-						:examples="section.examples"
-					></sandbox>
-				</client-only>
-			</div>
-		</div>
+			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
+		</header>
+		<markdown-content :content="section.content"></markdown-content>
 	</article>
 </template>
 
 <script>
-import ClientOnly from 'vue-client-only'
 import IconLink from '~/assets/icons/IconLink.svg'
 import MarkdownContent from '~/components/reusable/MarkdownContent'
-import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	name: 'DocsSection',
 	props: ['section'],
 	components: {
-		ClientOnly,
 		IconLink,
 		MarkdownContent,
-		Sandbox,
 	},
 	data() {
 		return {
@@ -64,9 +45,6 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
 	margin: 0 auto;
 
 	& + & {
@@ -75,11 +53,6 @@ export default {
 		@include media('>=desktop') {
 			margin-top: 8rem;
 		}
-	}
-
-	@include media('<laptop') {
-		flex-direction: column;
-		align-items: center;
 	}
 }
 
@@ -154,58 +127,6 @@ export default {
 	@include media('<phone') {
 		margin-top: $sp-xs;
 		font-size: 1rem;
-	}
-}
-
-.section-column {
-	width: 50%;
-	max-width: 40rem;
-
-	&:only-child {
-		width: 100%;
-	}
-
-	@include media('<laptop') {
-		width: 100%;
-	}
-}
-
-.section-column__content {
-	margin: 0 auto;
-	width: 100%;
-}
-
-.section-text {
-	padding: 0 $sp-m;
-}
-
-.section-sandbox {
-	position: sticky;
-	padding: 0 $sp-m;
-	top: $sp-m;
-
-	@include media('<laptop') {
-		margin-top: $sp-l;
-	}
-
-	@include media('<phone') {
-		width: 100vw;
-		padding: 0;
-	}
-}
-
-.sandbox {
-	@include media('<laptop') {
-		margin: 0 (-$sp-s);
-	}
-
-	@include media('<phone') {
-		border-radius: 0;
-		margin: 0;
-	}
-
-	&:target {
-		box-shadow: 0 0 0 8px primary-color(400);
 	}
 }
 </style>
