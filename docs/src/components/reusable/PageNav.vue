@@ -110,6 +110,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page-nav__wrap:not(.open) {
+	.animxyz-logo ::v-deep {
+		.side--red {
+			transform: rotateY(0deg) translateZ($sp-xs);
+		}
+
+		.side--yellow {
+			transform: rotateY(0deg);
+		}
+
+		.side--green {
+			transform: translateZ(-$sp-xs);
+		}
+
+		.logo-sides {
+			transform: rotateX(65deg) rotateZ(45deg);
+		}
+	}
+}
+
 .page-nav {
 	position: fixed;
 	display: flex;
@@ -246,11 +266,11 @@ export default {
 		}
 
 		::v-deep {
-			.cube-wrap {
-				transform: scale(1.25);
+			.logo-scene {
+				--logo-scale: 1.125;
 
 				@include media('<tablet') {
-					transform: initial;
+					--logo-scale: 1;
 				}
 			}
 		}
@@ -266,14 +286,11 @@ export default {
 	@include media('>=large') {
 		pointer-events: none;
 	}
-
-	.open & {
-		--logo-side-z: 0px;
-	}
 }
 
 .logo-wrap {
-	@include size(2.5rem);
+	margin-left: $sp-s;
+	margin-right: 1.25rem;
 
 	@include media('<tablet') {
 		@include size(initial);
