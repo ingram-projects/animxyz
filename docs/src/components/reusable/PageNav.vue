@@ -294,6 +294,7 @@ export default {
 
 	@include media('<tablet') {
 		@include size(initial);
+		margin: 0;
 	}
 }
 
