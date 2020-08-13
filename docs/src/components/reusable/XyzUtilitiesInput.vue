@@ -9,14 +9,13 @@
 					</th>
 				</tr>
 			</thead>
-			<xyz-transition-group tag="tbody" appear duration="auto" xyz>
-				<tr class="utility" v-for="utility in utilities" :key="utility.name">
-					<th class="utility__header">
+			<xyz-transition-group class="utilities-table__body" tag="tbody" appear duration="auto" xyz="fade down">
+				<tr class="utility xyz-none" v-for="utility in utilities" :key="utility.name">
+					<th class="utility__header xyz-nested">
 						{{ utility.name }}
 					</th>
 					<td
 						class="utility-level xyz-nested"
-						xyz="fade down"
 						v-for="utilityLevel in utility.levels"
 						:key="utilityLevel.id"
 					>
@@ -167,8 +166,7 @@ export default {
 	}
 }
 
-.utility,
-.utility-level {
+.utilities-table__body {
 	--xyz-stagger: 0.05s;
 }
 
