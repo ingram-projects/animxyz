@@ -24,6 +24,7 @@
 							class="nav-sections"
 							xyz="fade left"
 							active-class="active"
+							:click-to-scroll="false"
 							@itemchanged="onSectionChanged"
 						>
 							<li
