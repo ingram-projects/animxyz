@@ -70,4 +70,4 @@ examples:
           </div>
 ---
 
-This is the nesting section
+To animate a descendant of an element with an AnimXYZ active class, give it an `.xyz-nested` class.
