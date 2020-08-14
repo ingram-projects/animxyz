@@ -20,7 +20,6 @@ $logo-size: 2.25rem;
 .logo-scene {
 	@include size(100%);
 	display: flex;
-	perspective: 1000px;
 	transform: translate(-$logo-size / 2, -$logo-size / 2) scale(var(--logo-scale, 1));
 	transition: transform 0.3s $ease-out-back;
 	transform-style: preserve-3d;

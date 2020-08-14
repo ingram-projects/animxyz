@@ -179,13 +179,13 @@ export default {
 
 .nav-section__item {
 	font-family: $font-stack-mono;
-	font-size: $fs-l;
+	font-size: 1.125rem;
 }
 
 .nav-section__link {
 	display: flex;
 	align-items: center;
-	height: 2.5rem;
+	height: 2.25rem;
 	padding: 0 $sp-l;
 	color: primary-color(300);
 	text-decoration: none;
