@@ -9,7 +9,7 @@
 		</xyz-transition>
 
 		<xyz-transition-group tag="div" appear xyz="appear-right-100 ease-in-out duration-3" v-xyz="tabDirectionXyz">
-			<div class="modifiers-sections" :key="activeGroup.name">
+			<div class="modifiers-sections xyz-out-nested" :key="activeGroup.name">
 				<xyz-utilities-input
 					class="modifiers-utilities modifiers-section"
 					:types="activeGroup.types"
