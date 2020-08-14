@@ -5,45 +5,49 @@
 				<banner></banner>
 			</div>
 
-			<xyz-transition appear>
-				<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
-					<p class="intro-text">
-						The first truly composable CSS animation toolkit.
-					</p>
-				</div>
-			</xyz-transition>
+			<div class="about__wrap">
+				<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
+					<div class="links__wrap">
+						<a
+							class="cta-button github-link xyz-nested"
+							href="https://github.com/ingram-projects/animxyz"
+							target="_blank"
+						>
+							<icon-github></icon-github>
+							<span>GitHub</span>
+						</a>
+						<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+							<icon-sandbox></icon-sandbox>
+							<span>Sandbox</span>
+						</a>
+						<a class="cta-button docs-link xyz-nested" href="/docs">
+							<icon-docs></icon-docs>
+							<span>Docs</span>
+						</a>
+					</div>
+				</xyz-transition>
 
-			<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
-				<div class="links__wrap">
-					<a
-						class="cta-button github-link xyz-nested"
-						href="https://github.com/ingram-projects/animxyz"
-						target="_blank"
-					>
-						<icon-github></icon-github>
-						<span>GitHub</span>
-					</a>
-					<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
-						<icon-sandbox></icon-sandbox>
-						<span>Sandbox</span>
-					</a>
-					<a class="cta-button docs-link xyz-nested" href="/docs">
-						<icon-docs></icon-docs>
-						<span>Docs</span>
-					</a>
-				</div>
-			</xyz-transition>
+				<section class="about-section">
+					<xyz-transition appear>
+						<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+							<p class="intro-text">
+								The first composable CSS animation framework.
+							</p>
+						</div>
+					</xyz-transition>
 
-			<xyz-transition appear xyz="delay-5 fade down">
-				<div class="about-section xyz-nested">
-					<p>
-						AnimXYZ helps you create, customize, and compose animations for your website with simple HTML attributes and
-						CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are limited
-						to a specific set, use AnimXYZ to save you time and give you complete control over how your elements move.
-						Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
-					</p>
-				</div>
-			</xyz-transition>
+					<xyz-transition appear xyz="delay-5 fade down">
+						<div class="about-text xyz-nested">
+							<p>
+								AnimXYZ helps you create, customize, and compose animations for your website with simple HTML attributes
+								and CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are
+								limited limited to a specific set, use AnimXYZ to save you time and give you complete control over how
+								your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
+							</p>
+						</div>
+					</xyz-transition>
+				</section>
+			</div>
 		</main>
 	</layout>
 </template>
@@ -77,7 +81,7 @@ export default {
 }
 
 .banner__wrap {
-	margin: 15vh auto;
+	margin: 12vh auto;
 	padding: 0 $sp-m;
 	width: 100%;
 	max-width: 64rem;
@@ -88,44 +92,73 @@ export default {
 	}
 }
 
+.about__wrap {
+	display: flex;
+	max-width: 90%;
+	margin: 0 auto;
+
+	@include media('<tablet') {
+		display: block;
+	}
+}
+
+.about-section {
+	width: 100%;
+	max-width: 44rem;
+	margin-bottom: $sp-xxxl;
+}
+
 .intro__wrap {
 	--xyz-duration: 0.7s;
 	--xyz-delay: 1.2s;
-	margin: 0 auto;
-	margin-bottom: $sp-l;
-	text-align: center;
+	margin-bottom: $sp-s;
 }
 
 .intro-text {
-	padding: 0 $sp-l;
 	font-size: $fs-xxl;
 	font-weight: 550;
-	line-height: 1.75;
-	max-width: 56ch;
+	line-height: 1.5;
+	max-width: 48rem;
 
 	@include media('<phone') {
 		font-size: $fs-xl;
 	}
 }
 
+.key-text {
+	color: primary-color(500);
+}
+
+.about-text {
+	font-size: $fs-l;
+	font-weight: 400;
+
+	@include media('<phone') {
+		font-size: 1.125rem;
+	}
+}
+
 .links__wrap {
-	display: grid;
-	grid-gap: $sp-l;
-	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-	max-width: 100%;
-	padding: 0 $sp-m;
-	margin: 0 auto;
-	margin-bottom: $sp-xxl;
+	width: 16rem;
+	flex-grow: 1;
+	flex-shrink: 0;
+	margin-left: $sp-xl;
+	order: 2;
 
 	@include media('<tablet') {
-		grid-template-columns: 1fr;
-		grid-gap: $sp-s;
-		width: 24rem;
+		display: flex;
+		align-items: center;
+		margin-left: 0;
+		margin-bottom: $sp-l;
+		width: 100%;
 	}
 }
 
 .cta-button {
 	--icon-color: #{primary-color(600)};
+	background-color: primary-color(100);
+	border-bottom: 3px solid primary-color(300);
+	color: primary-color(600);
 	height: 3rem;
 	border-radius: $br-l;
 	padding: 0 $sp-s;
@@ -133,12 +166,14 @@ export default {
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	border: 2px solid primary-color(300);
-	color: primary-color(600);
 	font-weight: 600;
 	font-size: 1.125rem;
 	text-decoration: none;
 	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out, border 0.2s $ease-in-out;
+
+	& + & {
+		margin-top: $sp-s;
+	}
 
 	svg {
 		@include size(1.5rem);
@@ -152,7 +187,7 @@ export default {
 		border-color: primary-color(400);
 		color: primary-color(700);
 		outline: none;
-		background-color: primary-color(500, 0.15);
+		background-color: primary-color(200, 0.75);
 
 		svg {
 			transform: scale(1.15);
@@ -160,43 +195,49 @@ export default {
 	}
 
 	&:focus {
-		box-shadow: 0 0 0 4px primary-color(500, 0.5);
+		box-shadow: 0 0 0 4px transparentize($cyan, 0.5);
+	}
+
+	@include media('<tablet') {
+		flex: 1;
+
+		& + & {
+			margin-top: 0;
+			margin-left: $sp-xs;
+		}
+	}
+
+	@include media('<phone') {
+		flex-direction: column;
+		padding: $sp-xxs;
+		height: auto;
+		font-size: $fs-s;
+
+		svg {
+			margin-right: 0;
+			margin-bottom: $sp-xxxs;
+			flex-shrink: 0;
+		}
 	}
 }
 
 .docs-link {
 	--icon-color: #{primary-color(100)};
-	border: none;
-	background-color: primary-color(700);
+	border-color: primary-color(700);
+	background-color: primary-color(600);
 	color: primary-color(100);
-
-	svg {
-		@include size(1.75rem);
-	}
 
 	&:hover,
 	&:focus {
 		--icon-color: #{primary-color(50)};
 		color: primary-color(50);
+		border-color: primary-color(800);
 		outline: none;
-		background-color: primary-color(800);
+		background-color: primary-color(700);
 	}
 
-	&:focus {
-		box-shadow: 0 0 0 4px primary-color(600, 0.5);
-	}
-}
-
-.about-section {
-	width: 100%;
-	padding: 0 $sp-m;
-	max-width: 48rem;
-	margin: 0 auto;
-	margin-bottom: $sp-xxl;
-
-	p {
-		font-size: $fs-l;
-		font-weight: 450;
-	}
+	// &:focus {
+	// 	box-shadow: 0 0 0 4px transparentize($cyan, 0.25);
+	// }
 }
 </style>
