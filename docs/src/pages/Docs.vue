@@ -4,7 +4,13 @@
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
-				<docs-section v-for="section in mainSections" :section="section" :class="{ 'active': section === activeSection }" :key="section.title" ref="sections"></docs-section>
+				<docs-section
+					v-for="section in mainSections"
+					:section="section"
+					:class="{ active: section === activeSection }"
+					:key="section.title"
+					ref="sections"
+				></docs-section>
 			</xyz-transition-group>
 
 			<section class="sandbox__wrap">
@@ -132,7 +138,7 @@ export default {
 				}
 			}
 			return null
-		}
+		},
 	},
 	methods: {
 		toggleNav(toggled) {
@@ -156,7 +162,7 @@ export default {
 			})
 		},
 	},
-	mounted () {
+	mounted() {
 		this.onWindowScroll()
 		window.addEventListener('scroll', this.onWindowScroll)
 	},

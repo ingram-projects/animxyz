@@ -1,20 +1,19 @@
 <template>
-	<article
-		class="docs-section"
-		:id="section.id"
-	>
-		<header class="section-header">
-			<div class="section-title__wrap">
-				<h1 class="section-title">{{ section.title }}</h1>
-				<a :href="`#${section.id}`" class="section-anchor">
-					<icon-link></icon-link>
-					<span class="screen-reader-only">Link to {{ section.title }}</span>
-				</a>
-			</div>
-			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
-		</header>
-		<markdown-content :content="section.content"></markdown-content>
-	</article>
+	<div class="docs-section__wrap" :id="section.id">
+		<article class="docs-section">
+			<header class="section-header">
+				<div class="section-title__wrap">
+					<h1 class="section-title">{{ section.title }}</h1>
+					<a :href="`#${section.id}`" class="section-anchor">
+						<icon-link></icon-link>
+						<span class="screen-reader-only">Link to {{ section.title }}</span>
+					</a>
+				</div>
+				<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
+			</header>
+			<markdown-content :content="section.content"></markdown-content>
+		</article>
+	</div>
 </template>
 
 <script>
@@ -32,31 +31,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.docs-section {
-	position: relative;
-	max-width: 48rem;
-	min-height: 60vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 6vw $sp-l;
+$active-border-width: 0.5rem;
 
-	@include media('>=desktop') {
-		padding: 4rem $sp-l;
+.docs-section__wrap {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		top: $sp-xl;
+		bottom: $sp-xl;
+		width: 0;
+		border-radius: 0;
+		background-color: $cyan;
+		z-index: 1;
+		transition: width 0.2s $ease-out, border-radius 0.2s $ease-out, right 0.2s $ease-out;
 	}
 
 	&.active {
 		&::after {
-			content: '';
-			position: absolute;
-			right: -2px;
-			top: $sp-xl;
-			bottom: $sp-xl;
-			width: 6px;
-			border-radius: 3px;
-			background-color: $cyan;
-			z-index: 1;
+			width: $active-border-width;
+			border-radius: $active-border-width / 2;
+			right: -$active-border-width / 2;
 		}
+	}
+}
+
+.docs-section {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 48rem;
+	min-height: 60vh;
+	margin: 0 auto;
+	padding: 6vw $sp-l;
+
+	@include media('>=desktop') {
+		padding: 4rem $sp-l;
 	}
 }
 
