@@ -42,14 +42,16 @@ export default function (Vue, context) {
 
 	Vue.component('Layout', DefaultLayout)
 
-	context.router.afterEach((to) => {
-    if (to.hash) {
-      setTimeout(() => {
-				const hashEl = document.getElementById(to.hash.substr(1))
-				if (hashEl) {
-					hashEl.scrollIntoView()
-				}
-      })
-    }
-  })
+	if (context.isClient) {
+		context.appOptions.mounted = function () {
+			if (window.location.hash) {
+	      setTimeout(() => {
+					const hashEl = document.getElementById(window.location.hash.substr(1))
+					if (hashEl) {
+						hashEl.scrollIntoView()
+					}
+	      })
+	    }
+		}
+	}
 }
