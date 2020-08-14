@@ -35,6 +35,10 @@ export default {
 .docs-section {
 	position: relative;
 	max-width: 48rem;
+	min-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	padding: 6vw $sp-l;
 
 	@include media('>=desktop') {
