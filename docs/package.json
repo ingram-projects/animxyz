@@ -21,8 +21,7 @@
     "vue-client-only": "^2.0.0",
     "vue-focus-lock": "^1.4.0",
     "vue-observe-visibility": "^0.4.6",
-    "vue-prism-component": "^1.2.0",
-    "vue-scrollactive": "^0.9.3"
+    "vue-prism-component": "^1.2.0"
   },
   "devDependencies": {
     "@gridsome/remark-prismjs": "^0.3.0",

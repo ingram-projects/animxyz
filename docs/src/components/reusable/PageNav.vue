@@ -19,14 +19,7 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<scrollactive
-							tag="ul"
-							class="nav-sections"
-							xyz="fade left"
-							active-class="active"
-							:click-to-scroll="false"
-							@itemchanged="onSectionChanged"
-						>
+						<ul class="nav-sections" xyz="fade left">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
@@ -36,14 +29,14 @@
 							>
 								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
 
-								<a class="nav-section__link scrollactive-item" v-if="!section.header" :href="`#${section.anchor}`">
+								<a class="nav-section__link" :class="{ 'active': section.id === activeSection }" v-if="!section.header" :href="`#${section.id}`">
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
 									</div>
 									<span class="link-title">{{ section.title }}</span>
 								</a>
 							</li>
-						</scrollactive>
+						</ul>
 					</div>
 					<a
 						class="github-link xyz-in-nested"
@@ -67,7 +60,7 @@ import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	name: 'PageNav',
-	props: ['open', 'sections'],
+	props: ['open', 'sections', 'activeSection'],
 	components: {
 		AnimXyzLogo,
 		FocusLock,

@@ -1,14 +1,12 @@
 <template>
 	<article
 		class="docs-section"
-		:class="{ 'xyz-paused': !isVisible }"
-		:id="section.anchor"
-		v-observe-visibility="visibilityChanged"
+		:id="section.id"
 	>
 		<header class="section-header">
 			<div class="section-title__wrap">
 				<h1 class="section-title">{{ section.title }}</h1>
-				<a :href="`#${section.anchor}`" class="section-anchor">
+				<a :href="`#${section.id}`" class="section-anchor">
 					<icon-link></icon-link>
 					<span class="screen-reader-only">Link to {{ section.title }}</span>
 				</a>
@@ -29,16 +27,6 @@ export default {
 	components: {
 		IconLink,
 		MarkdownContent,
-	},
-	data() {
-		return {
-			isVisible: false,
-		}
-	},
-	methods: {
-		visibilityChanged(isVisible) {
-			this.isVisible = isVisible
-		},
 	},
 }
 </script>

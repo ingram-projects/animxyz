@@ -1,10 +1,10 @@
 <template>
 	<layout>
-		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
+		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
-				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
+				<docs-section v-for="section in mainSections" :section="section" :class="{ 'active': section.id === activeSection }" :key="section.title" ref="sections"></docs-section>
 			</xyz-transition-group>
 
 			<section class="sandbox__wrap">
@@ -68,6 +68,7 @@ export default {
 	data() {
 		return {
 			navOpen: false,
+			activeSection: null,
 			sectionDefinitions: [
 				{ header: true, title: 'Getting Started' },
 				'Installation',
@@ -110,7 +111,7 @@ export default {
 				const section = sectionsObj[sectionDefinition]
 				return {
 					...section,
-					anchor: section.title
+					id: section.title
 						.trim()
 						.toLowerCase()
 						.replace(/\s/g, '-')
@@ -128,6 +129,26 @@ export default {
 				this.navOpen = toggled
 			}
 		},
+		onWindowScroll() {
+			let activeSection
+			let maxCoverage = 0
+			this.$refs.sections.forEach((sectionRef) => {
+				const { top, bottom } = sectionRef.$el.getBoundingClientRect()
+				const viewportCoverage = Math.min(bottom, window.innerHeight) - Math.max(top, 0)
+				if (viewportCoverage > maxCoverage) {
+					activeSection = sectionRef.$el.id
+					maxCoverage = viewportCoverage
+				}
+			})
+			this.activeSection = activeSection
+		},
+	},
+	mounted () {
+		this.onWindowScroll()
+		window.addEventListener('scroll', this.onWindowScroll)
+	},
+	beforeDestroy() {
+		window.removeEventListener('scroll', this.onWindowScroll)
 	},
 	metaInfo() {
 		return {
