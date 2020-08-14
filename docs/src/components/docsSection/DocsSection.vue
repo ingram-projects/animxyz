@@ -33,11 +33,26 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
+	position: relative;
 	max-width: 48rem;
 	padding: 6vw $sp-l;
 
 	@include media('>=desktop') {
 		padding: 4rem $sp-l;
+	}
+
+	&.active {
+		&::after {
+			content: '';
+			position: absolute;
+			right: -2px;
+			top: $sp-xl;
+			bottom: $sp-xl;
+			width: 6px;
+			border-radius: 3px;
+			background-color: $cyan;
+			z-index: 1;
+		}
 	}
 }
 

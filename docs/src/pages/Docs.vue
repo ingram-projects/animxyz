@@ -4,11 +4,11 @@
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
-				<docs-section v-for="section in mainSections" :section="section" :class="{ 'active': section.id === activeSection }" :key="section.title" ref="sections"></docs-section>
+				<docs-section v-for="section in mainSections" :section="section" :class="{ 'active': section === activeSection }" :key="section.title" ref="sections"></docs-section>
 			</xyz-transition-group>
 
 			<section class="sandbox__wrap">
-				<sandbox></sandbox>
+				<sandbox v-bind="sandboxProps"></sandbox>
 			</section>
 		</main>
 	</layout>
@@ -122,6 +122,15 @@ export default {
 		mainSections() {
 			return this.sections.filter((section) => !section.header)
 		},
+		sandboxProps() {
+			if (this.activeSection && this.activeSection.examples) {
+				return {
+					examples: this.activeSection.examples,
+					modifiers: this.activeSection.modifiers,
+				}
+			}
+			return null
+		}
 	},
 	methods: {
 		toggleNav(toggled) {
@@ -130,17 +139,19 @@ export default {
 			}
 		},
 		onWindowScroll() {
-			let activeSection
+			let activeSectionId
 			let maxCoverage = 0
 			this.$refs.sections.forEach((sectionRef) => {
 				const { top, bottom } = sectionRef.$el.getBoundingClientRect()
 				const viewportCoverage = Math.min(bottom, window.innerHeight) - Math.max(top, 0)
 				if (viewportCoverage > maxCoverage) {
-					activeSection = sectionRef.$el.id
+					activeSectionId = sectionRef.$el.id
 					maxCoverage = viewportCoverage
 				}
 			})
-			this.activeSection = activeSection
+			this.activeSection = this.sections.find((section) => {
+				return section.id === activeSectionId
+			})
 		},
 	},
 	mounted () {
@@ -163,17 +174,9 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	transition: transform 0.3s $ease-in-out;
 
 	&.nav-open {
-		transform: translateX($desktop-menu-width);
-
-		@include media('<tablet') {
-			transform: initial;
-		}
-
 		@include media('>=large') {
-			transform: initial;
 			padding-left: $desktop-menu-width;
 		}
 	}

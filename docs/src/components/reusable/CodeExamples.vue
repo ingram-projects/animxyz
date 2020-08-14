@@ -1,9 +1,11 @@
 <template>
 	<div class="code-examples">
-		<tab-bar class="modifiers-tabs" :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
+		<xyz-transition xyz="fade">
+			<tab-bar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
+		</xyz-transition>
 
 		<xyz-transition xyz="fade">
-			<div class="examples-sections" :key="activeExample.name">
+			<div class="examples-sections" v-if="activeExample" :key="activeExample.name">
 				<div class="example-template">
 					<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
 				</div>
@@ -65,9 +67,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.code-examples {
+	display: flex;
+	flex-direction: column;
+}
+
+.examples-sections {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
 .example-template {
 	position: relative;
 	min-height: 10rem;
+	flex-grow: 1;
 	padding: $sp-s;
 	display: flex;
 	align-items: center;

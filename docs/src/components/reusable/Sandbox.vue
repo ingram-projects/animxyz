@@ -1,18 +1,22 @@
 <template>
 	<div class="sandbox">
-		<xyz-modifiers-input
-			v-if="modifiers"
-			v-model="xyzModifiers"
-			:modifiers="modifiers"
-			ref="modifiers"
-		></xyz-modifiers-input>
-		<code-examples
-			v-if="examples"
-			:examples="examples"
-			:data="injectedData"
-			@example-changed="onExampleChanged"
-			ref="examples"
-		></code-examples>
+		<xyz-transition xyz="fade">
+			<xyz-modifiers-input
+				v-if="modifiers"
+				v-model="xyzModifiers"
+				:modifiers="modifiers"
+				ref="modifiers"
+			></xyz-modifiers-input>
+		</xyz-transition>
+		<xyz-transition xyz="fade">
+			<code-examples
+				v-if="examples"
+				:examples="examples"
+				:data="injectedData"
+				@example-changed="onExampleChanged"
+				ref="examples"
+			></code-examples>
+		</xyz-transition>
 	</div>
 </template>
 
@@ -156,10 +160,16 @@ export default {
 <style lang="scss" scoped>
 .sandbox {
 	background: primary-color(900);
+	display: flex;
+	flex-direction: column;
 }
 
 .modifiers-input {
 	border-bottom: 1px solid primary-color(800);
+}
+
+.code-examples {
+	flex-grow: 1;
 }
 
 .sandbox-row {

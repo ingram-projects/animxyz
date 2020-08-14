@@ -29,7 +29,7 @@
 							>
 								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
 
-								<a class="nav-section__link" :class="{ 'active': section.id === activeSection }" v-if="!section.header" :href="`#${section.id}`">
+								<a class="nav-section__link" :class="{ 'active': section === activeSection }" v-if="!section.header" :href="`#${section.id}`">
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
 									</div>
