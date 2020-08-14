@@ -8,7 +8,9 @@
 			</xyz-transition-group>
 
 			<section class="sandbox__wrap">
-				<sandbox v-bind="sandboxProps"></sandbox>
+				<xyz-transition appear xyz="fade">
+					<sandbox v-if="sandboxProps" v-bind="sandboxProps" :key="activeSection.id"></sandbox>
+				</xyz-transition>
 			</section>
 		</main>
 	</layout>
@@ -193,6 +195,7 @@ export default {
 	right: 0;
 	top: 0;
 	bottom: 0;
+	background-color: primary-color(900);
 
 	.sandbox {
 		width: 100%;
