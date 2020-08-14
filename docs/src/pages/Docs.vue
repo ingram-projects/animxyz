@@ -3,9 +3,10 @@
 		<page-nav :sections="sections" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down">
+			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
 				<docs-section v-for="section in mainSections" :section="section" :key="section.title"></docs-section>
 			</xyz-transition-group>
+
 			<section class="sandbox__wrap">
 				<sandbox></sandbox>
 			</section>
@@ -157,32 +158,21 @@ export default {
 	}
 }
 
-$sandbox-padding: $sp-l;
-
 .sections__wrap {
-	margin: $sp-xxxl 0;
-	padding-right: calc(40vw + #{$sandbox-padding});
+	padding-right: 40vw;
 	width: 100%;
-}
-
-.docs-section {
-	max-width: 48rem;
-	padding: 0 $sandbox-padding;
 }
 
 .sandbox__wrap {
 	position: fixed;
 	width: 40vw;
-	top: $sandbox-padding;
-	right: $sandbox-padding;
-	bottom: $sandbox-padding;
+	right: 0;
+	top: 0;
+	bottom: 0;
 
 	.sandbox {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+		width: 100%;
+		height: 100%;
 	}
 }
 </style>

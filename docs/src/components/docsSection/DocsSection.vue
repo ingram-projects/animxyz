@@ -45,14 +45,11 @@ export default {
 
 <style lang="scss" scoped>
 .docs-section {
-	margin: 0 auto;
+	max-width: 48rem;
+	padding: 6vw $sp-l;
 
-	& + & {
-		margin-top: 12vw;
-
-		@include media('>=desktop') {
-			margin-top: 8rem;
-		}
+	@include media('>=desktop') {
+		padding: 4rem $sp-l;
 	}
 }
 

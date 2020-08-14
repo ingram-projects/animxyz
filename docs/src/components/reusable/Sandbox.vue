@@ -156,7 +156,6 @@ export default {
 <style lang="scss" scoped>
 .sandbox {
 	background: primary-color(900);
-	border-radius: $br-l;
 }
 
 .modifiers-input {
