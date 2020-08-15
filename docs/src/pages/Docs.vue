@@ -3,13 +3,6 @@
 		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<xyz-transition appear xyz="fade small">
-				<nav class="mobile-view-toggles">
-					<button class="view-toggle" :class="{ active: activeTab === 'docs' }" @click="setActiveTab('docs')">Docs</button>
-					<button class="view-toggle" :class="{ active: activeTab === 'examples' }" @click="setActiveTab('examples')">Examples</button>
-				</nav>
-			</xyz-transition>
-
 			<xyz-transition-group tag="section" class="sections__wrap" :class="{ active: activeTab === 'docs' }" appear xyz="fade down delay-1">
 				<docs-section
 					v-for="section in mainSections"
@@ -154,9 +147,6 @@ export default {
 				this.navOpen = toggled
 			}
 		},
-		setActiveTab(tab) {
-			this.activeTab = tab
-		},
 		onWindowScroll() {
 			let activeSectionId
 			let maxCoverage = 0
@@ -238,42 +228,6 @@ export default {
 		&.active {
 			transform: none;
 		}
-	}
-}
-
-.mobile-view-toggles {
-	position: fixed;
-	left: 50%;
-	transform: translateX(-50%);
-	--xyz-translate-x: -50%;
-	bottom: 1.75rem;
-	background-color: primary-color(100);
-	padding: $sp-xxxs;
-	border-radius: $br-l;
-	z-index: 10;
-}
-
-.view-toggle {
-	height: 2rem;
-	width: 10rem;
-	border-radius: $br-m;
-	font-weight: 500;
-	color: primary-color(600);
-	transition: background-color 0.2s $ease-out, color 0.2s $ease-out;
-
-	&:hover,
-	&:focus {
-		background-color: primary-color(50);
-	}
-
-	&.active {
-		background-color: white;
-		font-weight: 700;
-		color: primary-color(700);
-	}
-
-	& + & {
-		margin-left: $sp-xxxs;
 	}
 }
 </style>
