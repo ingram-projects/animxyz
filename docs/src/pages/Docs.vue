@@ -223,33 +223,43 @@ export default {
 }
 
 .mobile-view-toggles {
+	display: flex;
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
 	bottom: 1.75rem;
-	background-color: primary-color(100);
+	background-color: primary-color(200);
 	padding: $sp-xxxs;
 	border-radius: $br-l;
 	z-index: 10;
+	width: 24rem;
+	max-width: 55%;
+
+	@include media('<tablet') {
+		bottom: 1.25rem;
+	}
+
+	@include media('>=laptop') {
+		display: none;
+	}
 }
 
 .view-toggle {
 	height: 2rem;
-	width: 10rem;
+	flex-grow: 1;
 	border-radius: $br-m;
-	font-weight: 500;
-	color: primary-color(600);
+	font-weight: 600;
+	color: primary-color(700);
 	transition: background-color 0.2s $ease-out, color 0.2s $ease-out;
 
 	&:hover,
 	&:focus {
-		background-color: primary-color(50);
+		background-color: primary-color(50, 0.5);
 	}
 
 	&.active {
 		background-color: white;
 		font-weight: 700;
-		color: primary-color(700);
 	}
 
 	& + & {
