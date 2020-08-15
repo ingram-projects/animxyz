@@ -3,13 +3,14 @@
 		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<xyz-transition xyz="fade small">
+			<xyz-transition appear xyz="fade small">
 				<nav class="mobile-view-toggles">
-					<button class="view-toggle active">Docs</button>
-					<button class="view-toggle">Examples</button>
+					<button class="view-toggle" :class="{ active: activeTab === 'docs' }" @click="setActiveTab('docs')">Docs</button>
+					<button class="view-toggle" :class="{ active: activeTab === 'examples' }" @click="setActiveTab('examples')">Examples</button>
 				</nav>
 			</xyz-transition>
-			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
+
+			<xyz-transition-group tag="section" class="sections__wrap" :class="{ active: activeTab === 'docs' }" appear xyz="fade down delay-1">
 				<docs-section
 					v-for="section in mainSections"
 					:section="section"
@@ -19,7 +20,7 @@
 				></docs-section>
 			</xyz-transition-group>
 
-			<section class="sandbox__wrap">
+			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<xyz-transition appear xyz="fade">
 					<sandbox v-if="sandboxProps" v-bind="sandboxProps" :key="activeSection.id"></sandbox>
 				</xyz-transition>
@@ -83,6 +84,7 @@ export default {
 		return {
 			navOpen: false,
 			activeSection: null,
+			activeTab: 'docs',
 			sectionDefinitions: [
 				{ header: true, title: 'Getting Started' },
 				'Installation',
@@ -152,6 +154,9 @@ export default {
 				this.navOpen = toggled
 			}
 		},
+		setActiveTab(tab) {
+			this.activeTab = tab
+		},
 		onWindowScroll() {
 			let activeSectionId
 			let maxCoverage = 0
@@ -202,6 +207,12 @@ export default {
 
 	@include media('<laptop') {
 		padding-right: 0;
+		transform: translateX(-100vw);
+		transition: transform 0.3s $ease-in-out;
+
+		&.active {
+			transform: none;
+		}
 	}
 }
 
@@ -220,7 +231,13 @@ export default {
 
 	@include media('<laptop') {
 		width: 100vw;
-		left: 100%;
+		transform: translateX(100vw);
+		transition: transform 0.3s $ease-in-out;
+		padding: $sp-xxl 0;
+
+		&.active {
+			transform: none;
+		}
 	}
 }
 
@@ -228,6 +245,7 @@ export default {
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
+	--xyz-translate-x: -50%;
 	bottom: 1.75rem;
 	background-color: primary-color(100);
 	padding: $sp-xxxs;

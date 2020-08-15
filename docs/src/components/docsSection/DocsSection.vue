@@ -59,7 +59,7 @@ $active-border-width: 0.5rem;
 	margin: auto;
 	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
 
-	.active & {
+	.docs-section__wrap.active & {
 		background-color: white;
 		border-radius: 1rem;
 	}
