@@ -89,7 +89,6 @@
       height: .15em;
       background-color: transparentize($cyan, 0.35);
       transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
-      z-index: -1;
     }
 
     &:hover {
