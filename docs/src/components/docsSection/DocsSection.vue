@@ -13,7 +13,7 @@
 						</a>
 					</div>
 
-					<button class="section-examples-button">View Examples →</button>
+					<button class="section-examples-button">View Examples</button>
 				</div>
 				<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			</header>
@@ -143,7 +143,7 @@ $active-border-width: 0.5rem;
 
 .section-examples-button {
 	margin-left: auto;
-	height: 2rem;
+	height: 1.75rem;
 	display: flex;
 	align-items: center;
 	padding: 0 $sp-xxs;
@@ -152,6 +152,24 @@ $active-border-width: 0.5rem;
 	color: primary-color(700);
 	font-weight: 500;
 	font-size: $fs-s;
+	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+
+	&::after {
+		display: inline-block;
+		content: '→';
+		margin-left: $sp-xxxs;
+		transition: transform 0.2s $ease-out-back;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: primary-color(300);
+		color: primary-color(800);
+
+		&::after {
+			transform: translateX(0.75rem);
+		}
+	}
 }
 
 .section-quote {

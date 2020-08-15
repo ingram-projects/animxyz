@@ -116,7 +116,7 @@
 
     &::after {
       display: inline-block;
-      content: '\2192';
+      content: '→';
       font-size: $fs-l;
       margin-left: $sp-xxxs;
       transition: transform .2s $ease-out-back;
