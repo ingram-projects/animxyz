@@ -3,6 +3,12 @@
 		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
+			<xyz-transition xyz="fade small">
+				<nav class="mobile-view-toggles">
+					<button class="view-toggle active">Docs</button>
+					<button class="view-toggle">Examples</button>
+				</nav>
+			</xyz-transition>
 			<xyz-transition-group tag="section" class="sections__wrap" appear xyz="fade down delay-1">
 				<docs-section
 					v-for="section in mainSections"
@@ -180,8 +186,6 @@ export default {
 <style lang="scss" scoped>
 .page-content {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 
 	&.nav-open {
 		@include media('>=large') {
@@ -193,6 +197,10 @@ export default {
 .sections__wrap {
 	padding-right: 40vw;
 	width: 100%;
+
+	@include media('<laptop') {
+		padding-right: 0;
+	}
 }
 
 .sandbox__wrap {
@@ -206,6 +214,46 @@ export default {
 	.sandbox {
 		width: 100%;
 		height: 100%;
+	}
+
+	@include media('<laptop') {
+		width: 100vw;
+		left: 100%;
+	}
+}
+
+.mobile-view-toggles {
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 1.75rem;
+	background-color: primary-color(100);
+	padding: $sp-xxxs;
+	border-radius: $br-l;
+	z-index: 10;
+}
+
+.view-toggle {
+	height: 2rem;
+	width: 10rem;
+	border-radius: $br-m;
+	font-weight: 500;
+	color: primary-color(600);
+	transition: background-color 0.2s $ease-out, color 0.2s $ease-out;
+
+	&:hover,
+	&:focus {
+		background-color: primary-color(50);
+	}
+
+	&.active {
+		background-color: white;
+		font-weight: 700;
+		color: primary-color(700);
+	}
+
+	& + & {
+		margin-left: $sp-xxxs;
 	}
 }
 </style>

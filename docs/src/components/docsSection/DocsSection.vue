@@ -34,27 +34,38 @@ export default {
 $active-border-width: 0.5rem;
 
 .docs-section__wrap {
+	display: flex;
 	position: relative;
+	padding: 6vw $sp-l;
+	min-height: 60vh;
 
-	&::after {
-		content: '';
-		position: absolute;
-		right: 0;
-		top: $sp-xl;
-		bottom: $sp-xl;
-		width: 0;
-		border-radius: 0;
-		background-color: $cyan;
-		z-index: 1;
-		transition: width 0.2s $ease-out, border-radius 0.2s $ease-out, right 0.2s $ease-out;
+	@include media('>=laptop') {
+		padding: 4rem $sp-m;
+
+		&::after {
+			content: '';
+			position: absolute;
+			right: 0;
+			top: $sp-xl;
+			bottom: $sp-xl;
+			width: 0;
+			border-radius: 0;
+			background-color: $cyan;
+			z-index: 1;
+			transition: width 0.5s $ease-out, border-radius 0.5s $ease-out, right 0.5s $ease-out;
+		}
+
+		&.active {
+			&::after {
+				width: $active-border-width;
+				border-radius: $active-border-width / 2;
+				right: -$active-border-width / 2;
+			}
+		}
 	}
 
-	&.active {
-		&::after {
-			width: $active-border-width;
-			border-radius: $active-border-width / 2;
-			right: -$active-border-width / 2;
-		}
+	@include media('>=desktop') {
+		padding: 4rem $sp-m;
 	}
 }
 
@@ -64,12 +75,22 @@ $active-border-width: 0.5rem;
 	flex-direction: column;
 	justify-content: center;
 	max-width: 48rem;
-	min-height: 60vh;
-	margin: 0 auto;
-	padding: 6vw $sp-l;
+	width: 100%;
+	padding: $sp-l;
+	margin: auto;
+	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
 
-	@include media('>=desktop') {
-		padding: 4rem $sp-l;
+	.active & {
+		background-color: white;
+		border-radius: 1rem;
+	}
+
+	@include media('>=laptop') {
+		padding: $sp-xl $sp-l;
+	}
+
+	@include media('>=x-large') {
+		padding: $sp-xl;
 	}
 }
 

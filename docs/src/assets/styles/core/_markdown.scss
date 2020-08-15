@@ -46,12 +46,7 @@
     }
 
 		thead {
-			// border-bottom: 1px solid primary-color(300);
 			color: primary-color(800);
-		}
-
-		tr + tr {
-			// border-top: 1px solid primary-color(300);
 		}
 
 		th,
@@ -126,10 +121,6 @@
       font-size: $fs-l;
       margin-left: $sp-xxxs;
       transition: transform .2s $ease-out-back;
-
-      @include media('<laptop') {
-        content: '\2193';
-      }
     }
 
     &:hover,
@@ -138,10 +129,6 @@
 
       &::after {
         transform: translateX(.5rem);
-
-        @include media('<laptop') {
-          transform: translateY(.35rem);
-        }
       }
     }
   }
