@@ -2,12 +2,18 @@
 	<div class="docs-section__wrap" :id="section.id">
 		<article class="docs-section">
 			<header class="section-header">
-				<div class="section-title__wrap">
-					<h1 class="section-title">{{ section.title }}</h1>
-					<a :href="`#${section.id}`" class="section-anchor">
-						<icon-link></icon-link>
-						<span class="screen-reader-only">Link to {{ section.title }}</span>
-					</a>
+				<div class="header-top__wrap">
+					<div class="section-title__wrap">
+						<h1 class="section-title">
+							{{ section.title }}
+						</h1>
+						<a :href="`#${section.id}`" class="section-anchor">
+							<icon-link></icon-link>
+							<span class="screen-reader-only">Link to {{ section.title }}</span>
+						</a>
+					</div>
+
+					<button class="section-examples-button">View Examples →</button>
 				</div>
 				<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			</header>
@@ -36,7 +42,7 @@ $active-border-width: 0.5rem;
 .docs-section__wrap {
 	display: flex;
 	position: relative;
-	padding: 6vw $sp-l;
+	padding: 6vw 0;
 	min-height: 60vh;
 
 	@include media('>=laptop') {
@@ -55,17 +61,17 @@ $active-border-width: 0.5rem;
 	justify-content: center;
 	max-width: 48rem;
 	width: 100%;
-	padding: $sp-l;
+	padding: $sp-l $sp-s;
 	margin: auto;
 	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
 
-	.docs-section__wrap.active & {
-		background-color: white;
-		border-radius: 1rem;
-	}
-
 	@include media('>=laptop') {
 		padding: $sp-xl $sp-l;
+
+		.docs-section__wrap.active & {
+			background-color: white;
+			border-radius: 1rem;
+		}
 	}
 
 	@include media('>=x-large') {
@@ -77,11 +83,13 @@ $active-border-width: 0.5rem;
 	margin-bottom: $sp-m;
 }
 
+.header-top__wrap {
+	display: flex;
+	align-items: center;
+}
+
 .section-title__wrap {
-	display: inline-flex;
 	position: relative;
-	padding: 0 $sp-s;
-	margin-left: -$sp-s;
 
 	&:hover {
 		.section-anchor {
@@ -129,8 +137,21 @@ $active-border-width: 0.5rem;
 	color: primary-color(700);
 
 	@include media('<phone') {
-		font-size: 2rem;
+		font-size: 1.75rem;
 	}
+}
+
+.section-examples-button {
+	margin-left: auto;
+	height: 2rem;
+	display: flex;
+	align-items: center;
+	padding: 0 $sp-xxs;
+	border-radius: $br-m;
+	background-color: primary-color(100);
+	color: primary-color(700);
+	font-weight: 500;
+	font-size: $fs-s;
 }
 
 .section-quote {
@@ -143,6 +164,7 @@ $active-border-width: 0.5rem;
 
 	@include media('<phone') {
 		margin-top: $sp-xs;
+		margin-left: $sp-m;
 		font-size: 1rem;
 	}
 }
