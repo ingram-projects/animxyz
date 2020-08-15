@@ -64,7 +64,7 @@ $active-border-width: 0.5rem;
 	flex-direction: column;
 	justify-content: center;
 	max-width: 48rem;
-	min-height: 60vh;
+	min-height: 75vh;
 	margin: 0 auto;
 	padding: 6vw $sp-l;
 
