@@ -171,9 +171,11 @@ export default {
 	mounted() {
 		this.onWindowScroll()
 		window.addEventListener('scroll', this.onWindowScroll)
+		window.addEventListener('resize', this.onWindowScroll)
 	},
 	beforeDestroy() {
 		window.removeEventListener('scroll', this.onWindowScroll)
+		window.removeEventListener('resize', this.onWindowScroll)
 	},
 	metaInfo() {
 		return {

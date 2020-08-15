@@ -41,27 +41,6 @@ $active-border-width: 0.5rem;
 
 	@include media('>=laptop') {
 		padding: 4rem $sp-m;
-
-		&::after {
-			content: '';
-			position: absolute;
-			right: 0;
-			top: $sp-xl;
-			bottom: $sp-xl;
-			width: 0;
-			border-radius: 0;
-			background-color: $cyan;
-			z-index: 1;
-			transition: width 0.5s $ease-out, border-radius 0.5s $ease-out, right 0.5s $ease-out;
-		}
-
-		&.active {
-			&::after {
-				width: $active-border-width;
-				border-radius: $active-border-width / 2;
-				right: -$active-border-width / 2;
-			}
-		}
 	}
 
 	@include media('>=desktop') {
