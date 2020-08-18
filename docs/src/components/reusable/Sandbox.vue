@@ -27,7 +27,7 @@ import XyzModifiersInput from '~/components/reusable/XyzModifiersInput'
 
 export default {
 	name: 'Sandbox',
-	props: ['examples', 'modifiers'],
+	props: ['name', 'examples', 'modifiers'],
 	components: {
 		CodeExamples,
 		XyzModifiersInput,
@@ -74,6 +74,9 @@ export default {
 	},
 	watch: {
 		$location() {
+			this.onLocationChange()
+		},
+		name() {
 			this.onLocationChange()
 		},
 		modifiers: {
@@ -123,7 +126,7 @@ export default {
 			}, this.toggleInterval)
 		},
 		onLocationChange() {
-			if (this.$location.hash === `#${this.$attrs.id}` && this.$location.search) {
+			if (this.$location.hash === `#${this.name}` && this.$location.search) {
 				const params = queryString.parse(this.$location.search)
 				if (params.example) {
 					this.$refs.examples.setExample(params.example)
@@ -144,7 +147,6 @@ export default {
 						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
 					})
 				}
-				window.history.replaceState(null, null, this.$location.pathname + this.$location.hash)
 			}
 		},
 	},

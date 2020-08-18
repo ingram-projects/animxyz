@@ -48,8 +48,8 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 
 | Some Examples| |
 |-------------------|---------------|
-| fade left up small | [Go](?utilities=fade,left,up,small#composition_sandbox) |
-| fade down right | [Go](?utilities=fade,down,right#composition_sandbox) |
+| fade left up small | [Go](?utilities=fade,left,up,small#composition) |
+| fade down right | [Go](?utilities=fade,down,right#composition) |
 
 Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [Modes](#modes) section to learn how to use different utilities for animating in and out.
 

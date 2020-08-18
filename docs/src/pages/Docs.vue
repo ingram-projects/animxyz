@@ -140,6 +140,7 @@ export default {
 		sandboxProps() {
 			if (this.activeSection && this.activeSection.examples) {
 				return {
+					name: this.activeSection.id,
 					examples: this.activeSection.examples,
 					modifiers: this.activeSection.modifiers,
 				}
