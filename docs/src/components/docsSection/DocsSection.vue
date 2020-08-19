@@ -2,21 +2,18 @@
 	<div class="docs-section__wrap" :id="section.id">
 		<article class="docs-section">
 			<header class="section-header">
-				<div class="header-top__wrap">
-					<div class="section-title__wrap">
-						<h1 class="section-title">
-							{{ section.title }}
-						</h1>
-						<a :href="`#${section.id}`" class="section-anchor">
-							<icon-link></icon-link>
-							<span class="screen-reader-only">Link to {{ section.title }}</span>
-						</a>
-					</div>
-
-					<button class="section-examples-button">View Examples</button>
+				<div class="section-title__wrap">
+					<h1 class="section-title">
+						{{ section.title }}
+					</h1>
+					<a :href="`#${section.id}`" class="section-anchor">
+						<icon-link></icon-link>
+						<span class="screen-reader-only">Link to {{ section.title }}</span>
+					</a>
 				</div>
-				<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
+				<button class="section-examples-button">View Examples</button>
 			</header>
+			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			<markdown-content :content="section.content"></markdown-content>
 		</article>
 	</div>
@@ -61,26 +58,32 @@ $active-border-width: 0.5rem;
 	justify-content: center;
 	max-width: 48rem;
 	width: 100%;
-	padding: $sp-l $sp-s;
+	padding: $sp-s;
 	margin: auto;
 	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
 
 	@include media('>=laptop') {
-		padding: $sp-xl $sp-l;
+		padding: $sp-l;
 
 		.docs-section__wrap.active & {
 			background-color: white;
 			border-radius: 1rem;
 		}
 	}
-
-	@include media('>=x-large') {
-		padding: $sp-xl;
-	}
 }
 
 .section-header {
-	margin-bottom: $sp-m;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+
+	@include media('<tablet') {
+		background-color: primary-color(50);
+		margin: 0 (-$sp-s);
+		padding: $sp-s;
+		position: sticky;
+		top: 0;
+	}
 }
 
 .header-top__wrap {
@@ -131,13 +134,13 @@ $active-border-width: 0.5rem;
 }
 
 .section-title {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	line-height: 1;
 	font-weight: 640;
 	color: primary-color(700);
 
 	@include media('<phone') {
-		font-size: 1.75rem;
+		font-size: 1.5rem;
 	}
 }
 
@@ -177,11 +180,12 @@ $active-border-width: 0.5rem;
 	font-size: 1.125rem;
 	font-weight: 500;
 	color: primary-color(600);
-	margin-top: $sp-s;
 	margin-left: $sp-l;
+	margin-top: $sp-m;
+	margin-bottom: $sp-m;
 
 	@include media('<phone') {
-		margin-top: $sp-xs;
+		margin-top: 0;
 		margin-left: $sp-m;
 		font-size: 1rem;
 	}
