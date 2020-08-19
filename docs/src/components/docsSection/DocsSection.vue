@@ -76,9 +76,9 @@ $active-border-width: 0.5rem;
 	display: flex;
 	align-items: center;
 	z-index: 2;
-	overflow: hidden;
 
 	@include media('<laptop') {
+		overflow: hidden;
 		background-color: primary-color(50);
 		margin: 0 (-$sp-s);
 		padding: $sp-s;
