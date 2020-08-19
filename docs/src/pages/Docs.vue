@@ -82,7 +82,7 @@ export default {
 	data() {
 		return {
 			navOpen: false,
-			activeSection: null,
+			activeSectionId: null,
 			activeTab: 'docs',
 			sectionDefinitions: [
 				{ header: true, title: 'Getting Started' },
@@ -137,15 +137,27 @@ export default {
 		mainSections() {
 			return this.sections.filter((section) => !section.header)
 		},
+		activeSection() {
+			return this.sections.find((section) => {
+				return section.id === this.activeSectionId
+			})
+		},
 		sandboxProps() {
 			if (this.activeSection && this.activeSection.examples) {
 				return {
-					name: this.activeSection.id,
+					name: this.activeSectionId,
 					examples: this.activeSection.examples,
 					modifiers: this.activeSection.modifiers,
 				}
 			}
 			return null
+		},
+	},
+	watch: {
+		activeSectionId(newVal, oldVal) {
+			if (this.$location.hash === `#${oldVal}`) {
+				window.history.replaceState(null, null, this.$location.pathname)
+			}
 		},
 	},
 	methods: {
@@ -165,9 +177,7 @@ export default {
 					maxCoverage = viewportCoverage
 				}
 			})
-			this.activeSection = this.sections.find((section) => {
-				return section.id === activeSectionId
-			})
+			this.activeSectionId = activeSectionId
 		},
 	},
 	mounted() {

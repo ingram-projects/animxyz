@@ -90,14 +90,6 @@ export default {
 		onSectionClick() {
 			this.toggle(false)
 		},
-		onSectionChanged(event, currentItem) {
-			if (currentItem) {
-				currentItem.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center',
-				})
-			}
-		},
 	},
 }
 </script>
