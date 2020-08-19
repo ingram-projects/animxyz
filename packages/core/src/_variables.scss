@@ -59,7 +59,7 @@ $xyz-origin-levels: (
  'bottom-right': bottom right,
 ) !default;
 
-$xyz-fade-levels: (
+$xyz-opacity-levels: (
   '0': 0,
   '25': .25,
   '50': .5,
@@ -151,8 +151,8 @@ $xyz-variables-map: (
     'type': 'origin',
     'modes': $xyz-modes-all,
   ),
-  'fade': (
-    'type': 'fade',
+  'opacity': (
+    'type': 'opacity',
     'modes': $xyz-modes-all,
   ),
   'transform': (
@@ -260,10 +260,10 @@ $xyz-utilities-map: (
     'modes': $xyz-modes-all,
   ),
   'fade': (
-    'type': 'fade',
-    'vars': ['fade'],
-    'default': calc(1 - var(--xyz-fade-default)),
-    'levels': $xyz-fade-levels,
+    'type': 'opacity',
+    'vars': ['opacity'],
+    'default': calc(1 - var(--xyz-opacity-default)),
+    'levels': $xyz-opacity-levels,
     'transformer': 'xyz-one-minus-val',
     'modes': $xyz-modes-all,
   ),

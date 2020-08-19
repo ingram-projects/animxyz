@@ -30,11 +30,11 @@ modifiers:
     hide: true
   variables:
     defaults:
-      - name: fade
+      - name: opacity
         value: '0'
   groups:
     - name: Fade
-      types: [fade]
+      types: [opacity]
     - name: Translate
       types: [translate]
     - name: Rotate
