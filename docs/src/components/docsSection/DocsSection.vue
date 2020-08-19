@@ -76,8 +76,9 @@ $active-border-width: 0.5rem;
 	display: flex;
 	align-items: center;
 	z-index: 2;
+	overflow: hidden;
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		background-color: primary-color(50);
 		margin: 0 (-$sp-s);
 		padding: $sp-s;
@@ -92,44 +93,53 @@ $active-border-width: 0.5rem;
 }
 
 .section-title__wrap {
+	display: flex;
+	align-items: center;
 	position: relative;
 
-	&:hover {
+	&:hover,
+	.docs-section__wrap.active & {
 		.section-anchor {
-			background-color: primary-color(700, 0.15);
 			opacity: 1;
-			transform: translate(0, -50%);
-		}
-	}
-
-	.section-anchor {
-		&:hover,
-		&:focus {
-			background-color: primary-color(700);
-
-			svg {
-				--icon-color: #{$white};
-			}
 		}
 	}
 }
 
 .section-anchor {
-	@include circle(1.75rem);
+	@include circle(1.25rem);
 	display: flex;
-	position: absolute;
-	left: 100%;
-	top: 50%;
-	background-color: primary-color(700, 0);
+	background-color: primary-color(700, 0.15);
+	margin-left: $sp-xxs;
 	opacity: 0;
-	transform: translate(-$sp-s, -50%);
-	transition: opacity 0.2s $ease-in-out, background-color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
+	transition: background-color 0.3s $ease-in-out, opacity 0.3s $ease-in-out;
 
 	svg {
-		--icon-color: #{primary-color(700)};
-		height: 1rem;
-		width: auto;
+		--icon-color: #{primary-color(600)};
+		@include size(0.75rem);
 		margin: auto;
+	}
+
+	&:focus,
+	&:hover {
+		outline: none;
+		background-color: primary-color(600);
+
+		svg {
+			--icon-color: white;
+		}
+	}
+
+	&:hover {
+		transform: scale(1.25);
+	}
+
+	&:active {
+		background-color: $cyan;
+		transform: scale(1);
+
+		svg {
+			--icon-color: #{$white};
+		}
 	}
 }
 
@@ -155,7 +165,9 @@ $active-border-width: 0.5rem;
 	color: primary-color(700);
 	font-weight: 500;
 	font-size: $fs-s;
-	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+	opacity: 0;
+	transform: translateX(1rem);
+	transition: background-color 0.3s $ease-out, color 0.3s $ease-out, transform 0.3s $ease-out;
 
 	&::after {
 		display: inline-block;
@@ -172,6 +184,15 @@ $active-border-width: 0.5rem;
 		&::after {
 			transform: translateX(0.75rem);
 		}
+	}
+
+	.docs-section__wrap.active & {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	@include media('>laptop') {
+		display: none;
 	}
 }
 
