@@ -34,12 +34,7 @@ export const xyzTimeLevels = {
 }
 
 export const xyzIterateLevels = {
-	'0': '0',
-	'1': '1',
-	'2': '2',
-	'3': '3',
-	'4': '4',
-	'5': '5',
+	once: '1',
 	infinite: 'infinite',
 }
 
