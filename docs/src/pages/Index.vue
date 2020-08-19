@@ -36,6 +36,13 @@
 						</div>
 					</xyz-transition>
 
+					<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
+						<div class="tech-logos__wrap">
+							<icon-vue class="xyz-nested"></icon-vue>
+							<icon-react class="xyz-nested"></icon-react>
+						</div>
+					</xyz-transition>
+
 					<xyz-transition appear xyz="delay-5 fade down">
 						<div class="about-text xyz-nested">
 							<p>
@@ -56,14 +63,18 @@
 import Banner from '~/components/banner/Banner'
 import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
+import IconReact from '~/assets/icons/IconReact.svg'
 import IconSandbox from '~/assets/icons/IconSandbox.svg'
+import IconVue from '~/assets/icons/IconVue.svg'
 
 export default {
 	components: {
 		Banner,
 		IconDocs,
 		IconGithub,
+		IconReact,
 		IconSandbox,
+		IconVue,
 	},
 	metaInfo() {
 		return {
@@ -99,6 +110,16 @@ export default {
 
 	@include media('<tablet') {
 		display: block;
+	}
+}
+
+.tech-logos__wrap {
+	display: flex;
+	margin-bottom: $sp-m;
+
+	.icon-svg {
+		@include size(3rem);
+		margin-right: $sp-m;
 	}
 }
 
