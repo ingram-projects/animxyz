@@ -34,12 +34,7 @@ export const xyzTimeLevels = {
 }
 
 export const xyzIterateLevels = {
-	'0': '0',
-	'1': '1',
-	'2': '2',
-	'3': '3',
-	'4': '4',
-	'5': '5',
+	once: '1',
 	infinite: 'infinite',
 }
 
@@ -55,7 +50,7 @@ export const xyzOriginLevels = {
 	'bottom-right': 'bottom right',
 }
 
-export const xyzFadeLevels = {
+export const xyzOpacityLevels = {
 	'0': '0',
 	'25': '.25',
 	'50': '.5',
@@ -154,8 +149,8 @@ export const xyzVariablesMap = {
 		syntax: '<transform-origin>',
 		modes: xyzModesAll,
 	},
-	fade: {
-		type: 'fade',
+	opacity: {
+		type: 'opacity',
 		syntax: '<number>',
 		modes: xyzModesAll,
 	},
@@ -325,10 +320,10 @@ export const xyzUtilitiesMap = {
 
 	// Fades
 	fade: {
-		type: 'fade',
-		vars: ['fade'],
-		default: 'calc(1 - var(--xyz-fade-default))',
-		levels: xyzFadeLevels,
+		type: 'opacity',
+		vars: ['opacity'],
+		default: 'calc(1 - var(--xyz-opacity-default))',
+		levels: xyzOpacityLevels,
 		transformer: 'xyz-one-minus-val',
 		modes: xyzModesAll,
 	},

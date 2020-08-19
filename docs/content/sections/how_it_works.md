@@ -9,7 +9,7 @@ Here is a simplified version of whats going on behind the scenes:
 ```css
 @keyframes xyz-keyframes {
   from {
-    opacity: var(--xyz-fade);
+    opacity: var(--xyz-opacity);
     transform: translate3d(var(--xyz-translate-x), var(--xyz-translate-y), var(--xyz-translate-z));
   }
 }

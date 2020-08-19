@@ -27,7 +27,7 @@ modifiers:
     hide: true
   groups:
     - name: Fade
-      types: [fade]
+      types: [opacity]
     - name: Translate
       types: [translate]
     - name: Rotate

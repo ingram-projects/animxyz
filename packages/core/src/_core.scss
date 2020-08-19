@@ -5,9 +5,10 @@
 
 @mixin xyz-core() {
   @include xyz-include-once('core') {
+    // generates core keyframes
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
-        $fade: xyz-var('fade', $mode, 1);
+        $opacity: xyz-var('opacity', $mode, 1);
         $translate-x: xyz-var('translate-x', $mode, 0);
         $translate-y: xyz-var('translate-y', $mode, 0);
         $translate-z: xyz-var('translate-z', $mode, 0);
@@ -24,11 +25,12 @@
           scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})
         );
 
-        opacity: $fade;
+        opacity: $opacity;
         transform: $transform;
       }
     }
 
+    // sets comfortable defaults for xyz variables
     :root {
       --xyz-ease-default: #{map.get($xyz-ease-levels, 'ease')};
       --xyz-duration-default: #{map.get($xyz-time-levels, '5')};
@@ -36,13 +38,14 @@
       --xyz-stagger-default: #{map.get($xyz-time-levels, '3')};
       --xyz-iterate-default: #{map.get($xyz-iterate-levels, '1')};
       --xyz-origin-default: #{map.get($xyz-origin-levels, 'center')};
-      --xyz-fade-default: #{map.get($xyz-fade-levels, '100')};
+      --xyz-opacity-default: #{map.get($xyz-opacity-levels, '100')};
       --xyz-translate-default: #{map.get($xyz-translate-levels, '3')};
       --xyz-rotate-default: #{map.get($xyz-rotate-levels, '25')};
       --xyz-scale-default: #{map.get($xyz-scale-levels, '50')};
     }
 
-    .xyz-in, .xyz-out, .xyz-appear, .xyz-nested, .xyz-in-nested, .xyz-out-nested, .xyz-appear-nested {
+    // gives elements an xyz-index based on nth child
+    %xyz-indexed {
       @for $i from 1 through $xyz-index-levels {
         &:nth-child(#{$i}) {
           --xyz-index: #{$i - 1};
@@ -53,16 +56,37 @@
       }
     }
 
-    .xyz-in, .xyz-out, .xyz-appear {
+    // sets delay for root elements
+    %xyz-root-delay {
       --xyz-root-delay: var(--xyz-computed-delay, 0s);
       --xyz-active-delay: var(--xyz-computed-delay, 0s);
     }
 
-    .xyz-nested, .xyz-in-nested, .xyz-out-nested, .xyz-appear-nested {
+    // sets delay for nested elements
+    %xyz-nested-delay {
       --xyz-active-delay: calc(var(--xyz-root-delay, 0s) + var(--xyz-computed-delay, 0s));
     }
 
+    // all nested elements
+    .xyz-nested {
+      @extend %xyz-indexed;
+      @extend %xyz-nested-delay;
+    }
+
     @each $mode in $xyz-modes {
+      // root elements
+      .xyz-#{$mode} {
+        @extend %xyz-indexed;
+        @extend %xyz-root-delay;
+      }
+
+      // mode nested elements
+      .xyz-#{$mode}-nested {
+        @extend %xyz-indexed;
+        @extend %xyz-nested-delay;
+      }
+
+      // all active elements
       .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
         @include xyz-animation($mode);
 
@@ -76,14 +100,7 @@
       }
     }
 
-    %xyz-anim-none {
-      animation: none;
-    }
-
-    %xyz-pos-absolute {
-      position: absolute;
-    }
-
+    // helper for FLIP transitions
     .xyz-move {
       $duration: var(--xyz-#{xyz-name('duration', $xyz-mode-move)}, 0s);
       $ease: var(--xyz-#{xyz-name('ease', $xyz-mode-move)}, var(--xyz-ease-default));
@@ -91,14 +108,27 @@
       transition: transform #{$duration} #{$ease} #{$delay};
     }
 
+    // turns off animations
+    %xyz-anim-none {
+      animation: none;
+    }
+
+    // so elements dont take space during animation
+    %xyz-pos-absolute {
+      position: absolute;
+    }
+
+    // resets all xyz variables
     [xyz] {
       @include xyz-set-all();
     }
 
+    // inherits all xyz variables
     [xyz~=inherit] {
       @include xyz-set-all(inherit);
     }
 
+    // for reduced motion users
     @media (prefers-reduced-motion: reduce) {
       @each $mode in $xyz-modes {
         .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
