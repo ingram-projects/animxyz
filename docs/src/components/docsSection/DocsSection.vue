@@ -101,13 +101,6 @@ $active-border-width: 0.5rem;
 	display: flex;
 	align-items: center;
 	position: relative;
-
-	&:hover,
-	.docs-section__wrap.active & {
-		.section-anchor {
-			opacity: 1;
-		}
-	}
 }
 
 .section-anchor {
@@ -115,7 +108,6 @@ $active-border-width: 0.5rem;
 	display: flex;
 	background-color: primary-color(700, 0.15);
 	margin-left: $sp-xxs;
-	opacity: 0;
 	transition: 0.3s $ease-in-out;
 	transition-property: background-color, opacity, transform;
 
