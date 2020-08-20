@@ -1,10 +1,13 @@
+import queryString from 'query-string'
+
 const VueLocation = {
 	install(Vue) {
 		const data = {}
 
 		if (typeof window !== 'undefined') {
 			const updateLocationObject = () => {
-				data.location = Object.assign({}, window.location)
+				const params = queryString.parse(window.location.search)
+				data.location = Object.assign({ params }, window.location)
 			}
 
 			window.history.pushState = (f => function pushState(){

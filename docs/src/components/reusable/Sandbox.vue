@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import queryString from 'query-string'
 import CodeExamples from '~/components/reusable/CodeExamples'
 import XyzModifiersInput from '~/components/reusable/XyzModifiersInput'
 
@@ -123,8 +122,8 @@ export default {
 			}, this.toggleInterval)
 		},
 		onLocationChange() {
-			if (this.$location.hash === `#${this.name}` && this.$location.search) {
-				const params = queryString.parse(this.$location.search)
+			const { params, hash } = this.$location
+			if (hash === `#${this.name}`) {
 				if (params.example) {
 					this.$refs.examples.setExample(params.example)
 				}

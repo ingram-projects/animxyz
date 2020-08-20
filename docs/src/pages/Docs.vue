@@ -161,15 +161,30 @@ export default {
 	},
 	watch: {
 		activeSectionId(newVal, oldVal) {
-			if (this.$location.hash === `#${oldVal}`) {
-				window.history.replaceState(null, null, this.$location.pathname)
+			const { hash, pathname } = this.$location
+			if (hash === `#${oldVal}`) {
+				window.history.replaceState(null, null, pathname)
 			}
+		},
+		$location() {
+			this.onLocationChange()
 		},
 	},
 	methods: {
 		toggleNav(toggled) {
 			if (toggled || this.$mq.below('large')) {
 				this.navOpen = toggled
+			}
+		},
+		setTab(tab) {
+			this.activeTab = tab
+		},
+		onLocationChange() {
+			const { params } = this.$location
+			if (params.tab) {
+				this.setTab(params.tab)
+			} else {
+				this.setTab('docs')
 			}
 		},
 		onWindowScroll() {
@@ -187,6 +202,7 @@ export default {
 		},
 	},
 	mounted() {
+		this.onLocationChange()
 		this.onWindowScroll()
 		window.addEventListener('scroll', this.onWindowScroll)
 		window.addEventListener('resize', this.onWindowScroll)

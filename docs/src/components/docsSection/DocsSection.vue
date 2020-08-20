@@ -11,7 +11,7 @@
 						<span class="screen-reader-only">Link to {{ section.title }}</span>
 					</a>
 				</div>
-				<button class="section-examples-button" v-if="section.examples.length">View Examples</button>
+				<a class="section-examples-button" v-if="section.examples.length" :href="`?tab=examples#${section.id}`">View Examples</a>
 			</header>
 			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			<markdown-content :content="section.content"></markdown-content>
@@ -30,6 +30,9 @@ export default {
 		IconLink,
 		MarkdownContent,
 	},
+	methods: {
+		goToExamples() {}
+	}
 }
 </script>
 
