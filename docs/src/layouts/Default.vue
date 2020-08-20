@@ -65,13 +65,12 @@ export default {
 
 .xray-toggle {
 	position: fixed;
-	top: $sp-xl;
+	bottom: $sp-xl;
 	right: $sp-xl;
-	z-index: 1;
+	z-index: 3;
 	perspective: 10rem;
 
 	@include media('<tablet') {
-		top: initial;
 		right: initial;
 		left: 2.5rem;
 		bottom: 2.5rem;

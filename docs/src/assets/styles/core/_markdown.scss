@@ -19,7 +19,7 @@
 
 	pre[class*='language-'] {
 		background: primary-color(900);
-		margin: 0 (-$sp-s);
+		margin: 0 (-$sp-xxs);
 		border-radius: $br-l;
 	}
 
@@ -46,12 +46,7 @@
     }
 
 		thead {
-			// border-bottom: 1px solid primary-color(300);
 			color: primary-color(800);
-		}
-
-		tr + tr {
-			// border-top: 1px solid primary-color(300);
 		}
 
 		th,
@@ -94,7 +89,6 @@
       height: .15em;
       background-color: transparentize($cyan, 0.35);
       transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
-      z-index: -1;
     }
 
     &:hover {
@@ -122,14 +116,10 @@
 
     &::after {
       display: inline-block;
-      content: '\2192';
+      content: '→';
       font-size: $fs-l;
       margin-left: $sp-xxxs;
       transition: transform .2s $ease-out-back;
-
-      @include media('<laptop') {
-        content: '\2193';
-      }
     }
 
     &:hover,
@@ -138,10 +128,6 @@
 
       &::after {
         transform: translateX(.5rem);
-
-        @include media('<laptop') {
-          transform: translateY(.35rem);
-        }
       }
     }
   }

@@ -48,8 +48,8 @@ examples:
           </div>
 ---
 
-Unlike classes, the `xyz` attribute doesn't just apply to the element it's on, it also defines the animation for all descendant elements with an AnimXYZ active class. This can be very useful when applying the same animation to lists or groups of elements with the flexibility of utility classes without having to add them to each element. [Simple Example](?example=Simple#contexts_sandbox)
+Unlike classes, the `xyz` attribute doesn't just apply to the element it's on, it also defines the animation for all descendant elements with an AnimXYZ active class. This can be very useful when applying the same animation to lists or groups of elements with the flexibility of utility classes without having to add them to each element. [Simple Example](?tab=examples&example=Simple#contexts)
 
-To have a child element animate differently than it's parent context, add an `xyz` attribute to the child to override it. This new XYZ context resets all utilities and variables. [Override Example](?example=Override#contexts_sandbox)
+To have a child element animate differently than it's parent context, add an `xyz` attribute to the child to override it. This new XYZ context resets all utilities and variables. [Override Example](?tab=examples&example=Override#contexts)
 
-If you want to only override some of the parent context, add `inherit` along with the new `xyz` values. [Inherit Example](?example=Inherit#contexts_sandbox)
+If you want to only override some of the parent context, add `inherit` along with the new `xyz` values. [Inherit Example](?tab=examples&example=Inherit#contexts)

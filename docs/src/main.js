@@ -17,13 +17,12 @@ import VueAnimXyz from '@animxyz/vue'
 import VueLocation from '~/plugins/VueLocation'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
-import VueScrollactive from 'vue-scrollactive'
 import VScrollLock from 'v-scroll-lock'
 
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
 
-export default function (Vue) {
+export default function (Vue, context) {
 	Vue.use(VueAnimXyz)
 	Vue.use(VueLocation)
 	Vue.use(VueMQ, {
@@ -39,8 +38,20 @@ export default function (Vue) {
 		},
 	})
 	Vue.use(VueObserveVisibility)
-	Vue.use(VueScrollactive)
 	Vue.use(VScrollLock)
 
 	Vue.component('Layout', DefaultLayout)
+
+	if (context.isClient) {
+		context.appOptions.mounted = function () {
+			if (window.location.hash) {
+	      setTimeout(() => {
+					const hashEl = document.getElementById(window.location.hash.substr(1))
+					if (hashEl) {
+						hashEl.scrollIntoView()
+					}
+	      })
+	    }
+		}
+	}
 }

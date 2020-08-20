@@ -19,14 +19,7 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<scrollactive
-							tag="ul"
-							class="nav-sections"
-							xyz="fade left"
-							active-class="active"
-							:click-to-scroll="false"
-							@itemchanged="onSectionChanged"
-						>
+						<ul class="nav-sections" xyz="fade left">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
@@ -36,14 +29,19 @@
 							>
 								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
 
-								<a class="nav-section__link scrollactive-item" v-if="!section.header" :href="`#${section.anchor}`">
+								<a
+									class="nav-section__link"
+									:class="{ active: section === activeSection }"
+									v-if="!section.header"
+									:href="`#${section.id}`"
+								>
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
 									</div>
 									<span class="link-title">{{ section.title }}</span>
 								</a>
 							</li>
-						</scrollactive>
+						</ul>
 					</div>
 					<a
 						class="github-link xyz-in-nested"
@@ -67,7 +65,7 @@ import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	name: 'PageNav',
-	props: ['open', 'sections'],
+	props: ['open', 'sections', 'activeSection'],
 	components: {
 		AnimXyzLogo,
 		FocusLock,
@@ -96,14 +94,6 @@ export default {
 		},
 		onSectionClick() {
 			this.toggle(false)
-		},
-		onSectionChanged(event, currentItem) {
-			if (currentItem) {
-				currentItem.scrollIntoView({
-					behavior: 'smooth',
-					block: 'center',
-				})
-			}
 		},
 	},
 }
@@ -138,7 +128,7 @@ export default {
 	top: 0;
 	bottom: 0;
 	background-color: primary-color(900, 0.95);
-	z-index: 2;
+	z-index: 3;
 
 	@include media('<tablet') {
 		left: 0;
@@ -257,7 +247,7 @@ export default {
 	position: fixed;
 	top: $sp-m;
 	left: $sp-m;
-	z-index: 3;
+	z-index: 4;
 
 	&:hover {
 		.nav-button__text {
@@ -341,7 +331,7 @@ export default {
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	z-index: 2;
+	z-index: 3;
 	background-color: primary-color(500, 0.2);
 	color: var(--icon-color);
 	text-decoration: none;

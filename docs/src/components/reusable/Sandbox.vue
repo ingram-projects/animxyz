@@ -1,13 +1,14 @@
 <template>
 	<div class="sandbox">
-		<xyz-modifiers-input
-			v-if="modifiers"
-			v-model="xyzModifiers"
-			:modifiers="modifiers"
-			ref="modifiers"
-		></xyz-modifiers-input>
+		<xyz-transition xyz="fade">
+			<xyz-modifiers-input
+				v-if="modifiers"
+				v-model="xyzModifiers"
+				:modifiers="modifiers"
+				ref="modifiers"
+			></xyz-modifiers-input>
+		</xyz-transition>
 		<code-examples
-			v-if="examples"
 			:examples="examples"
 			:data="injectedData"
 			@example-changed="onExampleChanged"
@@ -17,13 +18,12 @@
 </template>
 
 <script>
-import queryString from 'query-string'
 import CodeExamples from '~/components/reusable/CodeExamples'
 import XyzModifiersInput from '~/components/reusable/XyzModifiersInput'
 
 export default {
 	name: 'Sandbox',
-	props: ['examples', 'modifiers'],
+	props: ['name', 'examples', 'modifiers'],
 	components: {
 		CodeExamples,
 		XyzModifiersInput,
@@ -70,6 +70,9 @@ export default {
 	},
 	watch: {
 		$location() {
+			this.onLocationChange()
+		},
+		name() {
 			this.onLocationChange()
 		},
 		modifiers: {
@@ -119,8 +122,8 @@ export default {
 			}, this.toggleInterval)
 		},
 		onLocationChange() {
-			if (this.$location.hash === `#${this.$attrs.id}` && this.$location.search) {
-				const params = queryString.parse(this.$location.search)
+			const { params, hash } = this.$location
+			if (hash === `#${this.name}`) {
 				if (params.example) {
 					this.$refs.examples.setExample(params.example)
 				}
@@ -140,7 +143,6 @@ export default {
 						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
 					})
 				}
-				window.history.replaceState(null, null, this.$location.pathname + this.$location.hash)
 			}
 		},
 	},
@@ -156,11 +158,16 @@ export default {
 <style lang="scss" scoped>
 .sandbox {
 	background: primary-color(900);
-	border-radius: $br-l;
+	display: flex;
+	flex-direction: column;
 }
 
 .modifiers-input {
 	border-bottom: 1px solid primary-color(800);
+}
+
+.code-examples {
+	flex-grow: 1;
 }
 
 .sandbox-row {

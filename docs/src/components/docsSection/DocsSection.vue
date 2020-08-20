@@ -1,145 +1,190 @@
 <template>
-	<article
-		class="docs-section"
-		:class="{ 'xyz-paused': !isVisible }"
-		:id="section.anchor"
-		v-observe-visibility="visibilityChanged"
-	>
-		<div class="section-column section-text">
-			<div class="section-column__content">
-				<header class="section-header">
-					<div class="section-title__wrap">
-						<h1 class="section-title">{{ section.title }}</h1>
-						<a :href="`#${section.anchor}`" class="section-anchor">
-							<icon-link></icon-link>
-							<span class="screen-reader-only">Link to {{ section.title }}</span>
-						</a>
-					</div>
-					<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
-				</header>
-				<markdown-content :content="section.content"></markdown-content>
-			</div>
-		</div>
-		<div class="section-column section-sandbox" v-if="section.examples.length">
-			<div class="section-column__content">
-				<client-only>
-					<sandbox
-						:id="`${section.anchor}_sandbox`"
-						:modifiers="section.modifiers"
-						:examples="section.examples"
-					></sandbox>
-				</client-only>
-			</div>
-		</div>
-	</article>
+	<div class="docs-section__wrap" :id="section.id">
+		<article class="docs-section">
+			<header class="section-header">
+				<div class="section-title__wrap">
+					<h1 class="section-title">
+						{{ section.title }}
+					</h1>
+					<a :href="`#${section.id}`" class="section-anchor">
+						<icon-link></icon-link>
+						<span class="screen-reader-only">Link to {{ section.title }}</span>
+					</a>
+				</div>
+				<a class="section-examples-button" v-if="section.examples.length" :href="`?tab=examples#${section.id}`"
+					>View Examples</a
+				>
+			</header>
+			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
+			<markdown-content :content="section.content"></markdown-content>
+		</article>
+	</div>
 </template>
 
 <script>
-import ClientOnly from 'vue-client-only'
 import IconLink from '~/assets/icons/IconLink.svg'
 import MarkdownContent from '~/components/reusable/MarkdownContent'
-import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	name: 'DocsSection',
 	props: ['section'],
 	components: {
-		ClientOnly,
 		IconLink,
 		MarkdownContent,
-		Sandbox,
-	},
-	data() {
-		return {
-			isVisible: false,
-		}
 	},
 	methods: {
-		visibilityChanged(isVisible) {
-			this.isVisible = isVisible
-		},
+		goToExamples() {},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
-.docs-section {
+$active-border-width: 0.5rem;
+
+.docs-section__wrap {
 	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	margin: 0 auto;
+	position: relative;
+	padding: 6vw 0;
+	min-height: 60vh;
 
-	& + & {
-		margin-top: 12vw;
-
-		@include media('>=desktop') {
-			margin-top: 8rem;
-		}
+	@include media('>=laptop') {
+		padding: 4rem $sp-m;
 	}
 
-	@include media('<laptop') {
-		flex-direction: column;
-		align-items: center;
+	@include media('>=desktop') {
+		padding: 4rem $sp-m;
+	}
+}
+
+.docs-section {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 48rem;
+	width: 100%;
+	padding: $sp-s;
+	margin: auto;
+	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
+
+	@include media('>=laptop') {
+		padding: $sp-l;
+
+		.docs-section__wrap.active & {
+			background-color: white;
+			border-radius: 1rem;
+		}
 	}
 }
 
 .section-header {
-	margin-bottom: $sp-m;
+	display: flex;
+	align-items: center;
+	z-index: 2;
+
+	@include media('<laptop') {
+		overflow: hidden;
+		background-color: primary-color(50);
+		margin: 0 (-$sp-s);
+		padding: $sp-s;
+		position: sticky;
+		top: 0;
+	}
+}
+
+.header-top__wrap {
+	display: flex;
+	align-items: center;
 }
 
 .section-title__wrap {
-	display: inline-flex;
+	display: flex;
+	align-items: center;
 	position: relative;
-	padding: 0 $sp-s;
-	margin-left: -$sp-s;
-
-	&:hover {
-		.section-anchor {
-			background-color: primary-color(700, 0.15);
-			opacity: 1;
-			transform: translate(0, -50%);
-		}
-	}
-
-	.section-anchor {
-		&:hover,
-		&:focus {
-			background-color: primary-color(700);
-
-			svg {
-				--icon-color: #{$white};
-			}
-		}
-	}
 }
 
 .section-anchor {
-	@include circle(1.75rem);
+	@include circle(1.5rem);
 	display: flex;
-	position: absolute;
-	left: 100%;
-	top: 50%;
-	background-color: primary-color(700, 0);
-	opacity: 0;
-	transform: translate(-$sp-s, -50%);
-	transition: opacity 0.2s $ease-in-out, background-color 0.2s $ease-in-out, transform 0.2s $ease-in-out;
+	background-color: primary-color(700, 0.15);
+	margin-left: $sp-xxs;
+	transition: 0.3s $ease-in-out;
+	transition-property: background-color, opacity, transform;
 
 	svg {
-		--icon-color: #{primary-color(700)};
-		height: 1rem;
-		width: auto;
+		--icon-color: #{primary-color(600)};
+		@include size(0.75rem);
 		margin: auto;
+	}
+
+	&:focus,
+	&:hover {
+		outline: none;
+		background-color: primary-color(600);
+
+		svg {
+			--icon-color: white;
+		}
+	}
+
+	&:hover {
+		transform: scale(1.25);
+	}
+
+	&:active {
+		background-color: $cyan;
+		transform: scale(1);
+
+		svg {
+			--icon-color: #{$white};
+		}
 	}
 }
 
 .section-title {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	line-height: 1;
 	font-weight: 640;
 	color: primary-color(700);
 
 	@include media('<phone') {
-		font-size: 2rem;
+		font-size: 1.5rem;
+	}
+}
+
+.section-examples-button {
+	margin-left: auto;
+	height: 1.75rem;
+	display: flex;
+	align-items: center;
+	padding: 0 $sp-xxs;
+	border-radius: $br-m;
+	background-color: primary-color(100);
+	color: primary-color(700);
+	text-decoration: none;
+	font-weight: 500;
+	font-size: $fs-s;
+	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+
+	&::after {
+		display: inline-block;
+		content: '→';
+		margin-left: $sp-xxxs;
+		transition: transform 0.2s $ease-out-back;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: primary-color(300);
+		color: primary-color(800);
+
+		&::after {
+			transform: translateX(0.75rem);
+		}
+	}
+
+	@include media('>laptop') {
+		display: none;
 	}
 }
 
@@ -148,64 +193,14 @@ export default {
 	font-size: 1.125rem;
 	font-weight: 500;
 	color: primary-color(600);
-	margin-top: $sp-s;
 	margin-left: $sp-l;
+	margin-top: $sp-m;
+	margin-bottom: $sp-m;
 
 	@include media('<phone') {
-		margin-top: $sp-xs;
+		margin-top: 0;
+		margin-left: $sp-m;
 		font-size: 1rem;
-	}
-}
-
-.section-column {
-	width: 50%;
-	max-width: 40rem;
-
-	&:only-child {
-		width: 100%;
-	}
-
-	@include media('<laptop') {
-		width: 100%;
-	}
-}
-
-.section-column__content {
-	margin: 0 auto;
-	width: 100%;
-}
-
-.section-text {
-	padding: 0 $sp-m;
-}
-
-.section-sandbox {
-	position: sticky;
-	padding: 0 $sp-m;
-	top: $sp-m;
-
-	@include media('<laptop') {
-		margin-top: $sp-l;
-	}
-
-	@include media('<phone') {
-		width: 100vw;
-		padding: 0;
-	}
-}
-
-.sandbox {
-	@include media('<laptop') {
-		margin: 0 (-$sp-s);
-	}
-
-	@include media('<phone') {
-		border-radius: 0;
-		margin: 0;
-	}
-
-	&:target {
-		box-shadow: 0 0 0 8px primary-color(400);
 	}
 }
 </style>
