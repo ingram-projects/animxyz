@@ -106,12 +106,12 @@ $active-border-width: 0.5rem;
 }
 
 .section-anchor {
-	@include circle(1.25rem);
+	@include circle(1.5rem);
 	display: flex;
 	background-color: primary-color(700, 0.15);
 	margin-left: $sp-xxs;
 	opacity: 0;
-	transition: background-color 0.3s $ease-in-out, opacity 0.3s $ease-in-out;
+	transition: background-color 0.3s $ease-in-out, opacity 0.3s $ease-in-out, transform 0.3s $ease-in-out;
 
 	svg {
 		--icon-color: #{primary-color(600)};
@@ -165,8 +165,6 @@ $active-border-width: 0.5rem;
 	color: primary-color(700);
 	font-weight: 500;
 	font-size: $fs-s;
-	opacity: 0;
-	transform: translateX(1rem);
 	transition: background-color 0.3s $ease-out, color 0.3s $ease-out, transform 0.3s $ease-out;
 
 	&::after {
@@ -184,11 +182,6 @@ $active-border-width: 0.5rem;
 		&::after {
 			transform: translateX(0.75rem);
 		}
-	}
-
-	.docs-section__wrap.active & {
-		opacity: 1;
-		transform: translateX(0);
 	}
 
 	@include media('>laptop') {
