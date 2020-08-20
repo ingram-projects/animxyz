@@ -4,7 +4,7 @@
 			<tab-bar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
 		</xyz-transition>
 
-		<xyz-transition xyz="fade">
+		<xyz-transition xyz="fade" mode="out-in">
 			<div class="examples-sections" v-if="activeExample" :key="activeExample.name">
 				<div class="example-template">
 					<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
