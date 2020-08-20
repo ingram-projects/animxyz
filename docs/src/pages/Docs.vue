@@ -19,9 +19,16 @@
 				></docs-section>
 			</xyz-transition-group>
 
-			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'">
+			<section
+				class="sandbox__wrap"
+				:class="{ active: activeTab === 'examples' }"
+				v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
+			>
 				<xyz-transition appear xyz="fade" mode="out-in">
-					<sandbox v-if="sandboxProps" v-bind="sandboxProps" :key="activeSection.id"></sandbox>
+					<div v-if="sandboxProps" :key="activeSection.id">
+						<a class="back-to-docs" :href="`/docs#${activeSection.id}`">Back to docs</a>
+						<sandbox v-bind="sandboxProps"></sandbox>
+					</div>
 					<div class="no-examples" v-if="!sandboxProps" key="no-example">
 						<icon-sandbox></icon-sandbox>
 						There are no examples<br />for this section.
@@ -263,11 +270,52 @@ export default {
 		width: 100vw;
 		transform: translateX(100vw);
 		transition: transform 0.3s $ease-in-out;
-		padding: $sp-xxl 0;
+		padding-top: 2.5rem;
+		padding-bottom: $sp-xxl;
+
+		.sandbox {
+			border-top: 1px solid primary-color(800);
+		}
 
 		&.active {
 			transform: none;
 		}
+	}
+}
+
+.back-to-docs {
+	position: fixed;
+	top: 0;
+	left: $sp-xxxs;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	padding: 0 $sp-xxs;
+	border-radius: $br-m;
+	color: primary-color(300);
+	text-decoration: none;
+	font-weight: 500;
+	font-size: $fs-s;
+	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+
+	&::before {
+		display: inline-block;
+		content: '←';
+		margin-right: $sp-xxxs;
+		transition: transform 0.2s $ease-out-back;
+	}
+
+	&:hover,
+	&:focus {
+		color: primary-color(200);
+
+		&::before {
+			transform: translateX(-0.75rem);
+		}
+	}
+
+	@include media('>laptop') {
+		display: none;
 	}
 }
 

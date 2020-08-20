@@ -11,7 +11,9 @@
 						<span class="screen-reader-only">Link to {{ section.title }}</span>
 					</a>
 				</div>
-				<a class="section-examples-button" v-if="section.examples.length" :href="`?tab=examples#${section.id}`">View Examples</a>
+				<a class="section-examples-button" v-if="section.examples.length" :href="`?tab=examples#${section.id}`"
+					>View Examples</a
+				>
 			</header>
 			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			<markdown-content :content="section.content"></markdown-content>
@@ -31,8 +33,8 @@ export default {
 		MarkdownContent,
 	},
 	methods: {
-		goToExamples() {}
-	}
+		goToExamples() {},
+	},
 }
 </script>
 
@@ -167,9 +169,10 @@ $active-border-width: 0.5rem;
 	border-radius: $br-m;
 	background-color: primary-color(100);
 	color: primary-color(700);
+	text-decoration: none;
 	font-weight: 500;
 	font-size: $fs-s;
-	transition: background-color 0.3s $ease-out, color 0.3s $ease-out, transform 0.3s $ease-out;
+	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
 
 	&::after {
 		display: inline-block;
