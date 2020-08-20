@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/docs",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "private": true,
   "scripts": {
     "build": "gridsome build",
@@ -9,7 +9,7 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "@animxyz/vue": "^0.0.21",
+    "@animxyz/vue": "^0.0.22",
     "gridsome": "^0.7.19",
     "lodash": "^4.17.19",
     "prettier": "^2.0.5",

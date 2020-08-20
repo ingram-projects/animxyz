@@ -1,12 +1,12 @@
 {
   "name": "@animxyz/vue-examples",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "@animxyz/vue": "^0.0.21",
+    "@animxyz/vue": "^0.0.22",
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.11"
