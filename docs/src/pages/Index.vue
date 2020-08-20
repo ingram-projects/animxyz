@@ -6,7 +6,7 @@
 			</div>
 
 			<div class="about__wrap">
-				<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
+				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 					<div class="links__wrap">
 						<a
 							class="cta-button github-link xyz-nested"
@@ -29,14 +29,14 @@
 
 				<section class="about-section">
 					<xyz-transition appear>
-						<div class="intro__wrap" xyz="fade small-2 duration-7 ease-out-back">
+						<div class="intro__wrap" xyz="delay-4 fade small-2 duration-7 ease-out">
 							<p class="intro-text">
 								The first composable CSS animation framework.
 							</p>
 						</div>
 					</xyz-transition>
 
-					<xyz-transition appear xyz="delay-4 stagger-3 fade down small-2 ease-out-back" duration="auto">
+					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 						<div class="tech-logos__wrap">
 							<icon-vue class="xyz-nested"></icon-vue>
 							<icon-react class="xyz-nested"></icon-react>
@@ -131,7 +131,6 @@ export default {
 
 .intro__wrap {
 	--xyz-duration: 0.7s;
-	--xyz-delay: 1.2s;
 	margin-bottom: $sp-s;
 }
 
