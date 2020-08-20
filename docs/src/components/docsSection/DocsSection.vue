@@ -111,7 +111,8 @@ $active-border-width: 0.5rem;
 	background-color: primary-color(700, 0.15);
 	margin-left: $sp-xxs;
 	opacity: 0;
-	transition: background-color 0.3s $ease-in-out, opacity 0.3s $ease-in-out, transform 0.3s $ease-in-out;
+	transition: 0.3s $ease-in-out;
+	transition-property: background-color, opacity, transform;
 
 	svg {
 		--icon-color: #{primary-color(600)};
