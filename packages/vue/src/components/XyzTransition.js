@@ -4,11 +4,7 @@ export default {
 	name: 'XyzTransition',
 	functional: true,
 	render(createElement, context) {
-		const data = getXyzTransitionData(context.data, {
-			attrs: {
-				mode: 'out-in',
-			},
-		})
+		const data = getXyzTransitionData(context.data)
 
 		context.children.forEach((child) => {
 			child.data = mergeData(
