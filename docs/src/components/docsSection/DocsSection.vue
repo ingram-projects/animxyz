@@ -11,7 +11,7 @@
 						<span class="screen-reader-only">Link to {{ section.title }}</span>
 					</a>
 				</div>
-				<button class="section-examples-button">View Examples</button>
+				<button class="section-examples-button" v-if="section.examples.length">View Examples</button>
 			</header>
 			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
 			<markdown-content :content="section.content"></markdown-content>

@@ -67,7 +67,7 @@ export default {
 	position: fixed;
 	bottom: $sp-xl;
 	right: $sp-xl;
-	z-index: 1;
+	z-index: 3;
 	perspective: 10rem;
 
 	@include media('<tablet') {
