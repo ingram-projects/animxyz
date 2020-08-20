@@ -25,7 +25,7 @@
 				v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
 			>
 				<xyz-transition appear xyz="fade" mode="out-in">
-					<div v-if="sandboxProps" :key="activeSection.id">
+					<div class="active-sandbox" v-if="sandboxProps" :key="activeSection.id">
 						<a class="back-to-docs" :href="`/docs#${activeSection.id}`">Back to docs</a>
 						<sandbox v-bind="sandboxProps"></sandbox>
 					</div>
@@ -281,6 +281,10 @@ export default {
 			transform: none;
 		}
 	}
+}
+
+.active-sandbox {
+	width: 100%;
 }
 
 .back-to-docs {
