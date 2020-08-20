@@ -19,7 +19,7 @@
 				></docs-section>
 			</xyz-transition-group>
 
-			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
+			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'">
 				<xyz-transition appear xyz="fade" mode="out-in">
 					<sandbox v-if="sandboxProps" v-bind="sandboxProps" :key="activeSection.id"></sandbox>
 					<div class="no-examples" v-if="!sandboxProps" key="no-example">
