@@ -22,6 +22,10 @@
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<xyz-transition appear xyz="fade">
 					<sandbox v-if="sandboxProps" v-bind="sandboxProps" :key="activeSection.id"></sandbox>
+					<div class="no-examples" v-if="!sandboxProps" key="no-example">
+						<icon-sandbox></icon-sandbox>
+						There are no examples<br />for this section.
+					</div>
 				</xyz-transition>
 			</section>
 		</main>
@@ -70,12 +74,14 @@
 
 <script>
 import DocsSection from '~/components/docsSection/DocsSection'
+import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import PageNav from '~/components/reusable/PageNav'
 import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	components: {
 		DocsSection,
+		IconSandbox,
 		PageNav,
 		Sandbox,
 	},
@@ -143,7 +149,7 @@ export default {
 			})
 		},
 		sandboxProps() {
-			if (this.activeSection && this.activeSection.examples) {
+			if (this.activeSection && this.activeSection.examples.length) {
 				return {
 					name: this.activeSectionId,
 					examples: this.activeSection.examples,
@@ -224,6 +230,7 @@ export default {
 }
 
 .sandbox__wrap {
+	display: flex;
 	position: fixed;
 	width: 40vw;
 	right: 0;
@@ -245,6 +252,29 @@ export default {
 		&.active {
 			transform: none;
 		}
+	}
+}
+
+.no-examples {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: primary-color(200);
+	font-size: $fs-l;
+	line-height: 1.5;
+	padding: $sp-m;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+
+	.icon-sandbox {
+		--icon-color: #{primary-color(300)};
+		@include size(3rem);
+		margin-bottom: $sp-m;
 	}
 }
 </style>

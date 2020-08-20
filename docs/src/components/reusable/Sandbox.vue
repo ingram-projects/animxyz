@@ -8,19 +8,12 @@
 				ref="modifiers"
 			></xyz-modifiers-input>
 		</xyz-transition>
-		<xyz-transition xyz="fade">
-			<code-examples
-				v-if="examples.length"
-				:examples="examples"
-				:data="injectedData"
-				@example-changed="onExampleChanged"
-				ref="examples"
-				key="example"
-			></code-examples>
-			<div class="no-examples" v-if="!examples.length" key="no-example">
-				There are no examples for this section.
-			</div>
-		</xyz-transition>
+		<code-examples
+			:examples="examples"
+			:data="injectedData"
+			@example-changed="onExampleChanged"
+			ref="examples"
+		></code-examples>
 	</div>
 </template>
 
@@ -183,13 +176,5 @@ export default {
 		border-bottom: 1px solid;
 		border-color: primary-color(800);
 	}
-}
-
-.no-examples {
-	text-align: center;
-	color: primary-color(200);
-	font-size: $fs-l;
-	padding: $sp-m;
-	margin: auto;
 }
 </style>
