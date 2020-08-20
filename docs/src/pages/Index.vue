@@ -40,6 +40,7 @@
 						<div class="tech-logos__wrap">
 							<icon-vue class="xyz-nested"></icon-vue>
 							<icon-react class="xyz-nested"></icon-react>
+							<icon-sass class="xyz-nested"></icon-sass>
 						</div>
 					</xyz-transition>
 
@@ -65,6 +66,7 @@ import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 import IconReact from '~/assets/icons/IconReact.svg'
 import IconSandbox from '~/assets/icons/IconSandbox.svg'
+import IconSass from '~/assets/icons/IconSass.svg'
 import IconVue from '~/assets/icons/IconVue.svg'
 
 export default {
@@ -74,6 +76,7 @@ export default {
 		IconGithub,
 		IconReact,
 		IconSandbox,
+		IconSass,
 		IconVue,
 	},
 	metaInfo() {
