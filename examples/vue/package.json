@@ -9,16 +9,16 @@
     "@animxyz/vue": "^0.0.22",
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.6",
-    "@vue/cli-service": "~4.4.6",
+    "@vue/cli-plugin-babel": "~4.5.4",
+    "@vue/cli-service": "~4.5.4",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "sass-loader": "^9.0.3",
+    "vue-template-compiler": "^2.6.12"
   }
 }
