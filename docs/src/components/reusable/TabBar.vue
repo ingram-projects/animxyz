@@ -28,9 +28,14 @@ export default {
 
 <style lang="scss" scoped>
 .tab-bar {
+	background-color: primary-color(900);
 	font-family: $font-stack-mono;
 	display: flex;
+	flex-shrink: 0;
 	overflow-x: auto;
+	position: sticky;
+	top: 0;
+	z-index: 1;
 }
 
 .tab-bar__tab {
@@ -42,6 +47,10 @@ export default {
 	padding: 0 $sp-xxs;
 	color: primary-color(50);
 	transition: background-color 0.2s $ease-in-out, color 0.2s $ease-in-out;
+
+	@include media('<laptop') {
+		height: 2.5rem;
+	}
 
 	&:first-child {
 		border-top-left-radius: $br-l;

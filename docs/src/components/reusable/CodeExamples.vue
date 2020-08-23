@@ -70,6 +70,14 @@ export default {
 .code-examples {
 	display: flex;
 	flex-direction: column;
+
+	.example-code {
+		@include media('<laptop') {
+			font-size: $fs-m;
+			margin-bottom: 4.5rem;
+			overflow-y: initial;
+		}
+	}
 }
 
 .examples-sections {
@@ -81,15 +89,12 @@ export default {
 .example-template {
 	position: relative;
 	min-height: 10rem;
+	max-height: 33vh;
 	flex-grow: 1;
 	padding: $sp-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	perspective: 200px;
-}
-
-.example-code {
-	font-size: 1.125rem;
 }
 </style>

@@ -270,11 +270,10 @@ export default {
 		width: 100vw;
 		transform: translateX(100vw);
 		transition: transform 0.3s $ease-in-out;
-		padding-top: 2.5rem;
-		padding-bottom: $sp-xxl;
 
 		.sandbox {
 			border-top: 1px solid primary-color(800);
+			overflow-y: auto;
 		}
 
 		&.active {
@@ -285,15 +284,19 @@ export default {
 
 .active-sandbox {
 	width: 100%;
+
+	@include media('<laptop') {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 .back-to-docs {
-	position: fixed;
-	top: 0;
-	left: $sp-xxxs;
 	height: 2.5rem;
 	display: flex;
 	align-items: center;
+	align-self: flex-start;
+	flex-shrink: 0;
 	padding: 0 $sp-xxs;
 	border-radius: $br-m;
 	color: primary-color(300);
