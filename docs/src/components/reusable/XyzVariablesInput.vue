@@ -86,6 +86,10 @@ export default {
 	font-family: $font-stack-mono;
 	padding: $sp-s 0;
 	overflow-x: auto;
+
+	@include media('<laptop') {
+		padding: $sp-xxs 0;
+	}
 }
 
 .variable {

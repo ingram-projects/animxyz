@@ -1,11 +1,7 @@
 <template>
 	<div class="modifiers-input">
 		<xyz-transition xyz="fade">
-			<tab-bar
-				:tabs="modifiers.groups"
-				v-if="modifiers.groups.length > 1"
-				v-model="activeGroup"
-			></tab-bar>
+			<tab-bar :tabs="modifiers.groups" v-if="modifiers.groups.length > 1" v-model="activeGroup"></tab-bar>
 		</xyz-transition>
 
 		<xyz-transition-group tag="div" appear xyz="appear-right-100 ease-in-out duration-3" v-xyz="tabDirectionXyz">
@@ -109,6 +105,7 @@ export default {
 <style lang="scss" scoped>
 .modifiers-input {
 	position: relative;
+	flex-shrink: 0;
 	overflow: hidden;
 }
 
@@ -120,8 +117,14 @@ export default {
 }
 
 .modifiers-section {
-	&:not(:last-child) {
-		padding-bottom: 0;
+	padding: $sp-s 0;
+
+	& + & {
+		padding-top: 0;
+	}
+
+	@include media('<laptop') {
+		padding: $sp-xxs 0;
 	}
 }
 </style>

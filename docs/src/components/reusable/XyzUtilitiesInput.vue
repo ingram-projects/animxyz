@@ -1,5 +1,5 @@
 <template>
-	<div class="utilities-input">
+	<div class="utilities-table__wrap">
 		<table class="utilities-table">
 			<thead>
 				<tr>
@@ -14,11 +14,7 @@
 					<th class="utility__header xyz-nested">
 						{{ utility.name }}
 					</th>
-					<td
-						class="utility-level xyz-nested"
-						v-for="utilityLevel in utility.levels"
-						:key="utilityLevel.id"
-					>
+					<td class="utility-level xyz-nested" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">
 						<div class="utility-level__content" v-if="utilityLevel.valid">
 							<input
 								class="toggle-input"
@@ -139,8 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.utilities-input {
-	padding: $sp-s 0;
+.utilities-table__wrap {
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }
