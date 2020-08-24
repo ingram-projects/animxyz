@@ -28,8 +28,8 @@
 				</xyz-transition>
 
 				<section class="about-section">
-					<xyz-transition appear>
-						<div class="intro__wrap" xyz="delay-4 fade small-2 duration-7 ease-out">
+					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+						<div class="intro__wrap">
 							<p class="intro-text">
 								The first composable CSS animation framework.
 							</p>
@@ -44,8 +44,8 @@
 						</div>
 					</xyz-transition>
 
-					<xyz-transition appear xyz="delay-5 fade down">
-						<div class="about-text xyz-nested">
+					<xyz-transition appear xyz="delay-5 fade down ease-out">
+						<div class="about-text">
 							<p>
 								AnimXYZ helps you create, customize, and compose animations for your website with simple HTML attributes
 								and CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are
