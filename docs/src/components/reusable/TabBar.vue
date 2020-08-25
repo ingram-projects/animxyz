@@ -1,8 +1,8 @@
 <template>
-	<xyz-transition-group tag="div" class="tab-bar" duration="auto">
+	<xyz-transition-group tag="div" class="tab-bar" appear duration="auto" xyz="fade flip-down origin-bottom" style="--xyz-stagger: 0.075s;">
 		<button
 			type="button"
-			class="tab-bar__tab xyz-nested"
+			class="tab-bar__tab"
 			:class="{ active: tab === value }"
 			v-for="tab in tabs"
 			:ref="tab === value && 'activeTab'"

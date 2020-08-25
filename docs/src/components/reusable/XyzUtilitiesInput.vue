@@ -9,7 +9,7 @@
 					</th>
 				</tr>
 			</thead>
-			<xyz-transition-group class="utilities-table__body" tag="tbody" appear duration="auto" xyz="fade down">
+			<xyz-transition-group tag="tbody" class="utilities-table__body" appear duration="auto" xyz="fade down" style="--xyz-stagger: 0.05s;">
 				<tr class="utility xyz-none" v-for="utility in utilities" :key="utility.name">
 					<th class="utility__header xyz-nested">
 						{{ utility.name }}
@@ -159,10 +159,6 @@ export default {
 			padding-right: $sp-s;
 		}
 	}
-}
-
-.utilities-table__body {
-	--xyz-stagger: 0.05s;
 }
 
 .utility__header {

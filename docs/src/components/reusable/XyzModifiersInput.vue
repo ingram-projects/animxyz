@@ -4,18 +4,15 @@
 			:tabs="modifiers.groups"
 			v-if="modifiers.groups.length > 1"
 			v-model="activeGroup"
-			xyz="fade up"
-			style="--xyz-stagger: 0.05s;"
 		></tab-bar>
 
 		<xyz-transition-group
 			tag="div"
 			class="modifiers-sections__wrap"
-			appear
-			xyz="appear-right-100 ease-in-out duration-3"
+			xyz="ease-in-out duration-3"
 			v-xyz="tabDirectionXyz"
 		>
-			<div class="modifiers-sections xyz-out-nested" :key="activeGroup.name">
+			<div class="modifiers-sections" :key="activeGroup.name">
 				<xyz-utilities-input
 					class="modifiers-utilities modifiers-section"
 					:types="activeGroup.types"

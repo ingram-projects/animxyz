@@ -19,7 +19,7 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<ul class="nav-sections" xyz="fade left">
+						<ul class="nav-sections" xyz="fade left" style="--xyz-stagger: 0.05s;">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
@@ -156,7 +156,6 @@ export default {
 	width: 100%;
 	margin: auto 0;
 	list-style: none;
-	--xyz-stagger: 0.05s;
 
 	@include media('<tablet') {
 		margin: 0;

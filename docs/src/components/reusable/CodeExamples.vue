@@ -4,8 +4,6 @@
 			:tabs="examples"
 			v-if="examples.length > 1"
 			v-model="activeExample"
-			xyz="fade up"
-			style="--xyz-stagger: 0.05s;"
 		></tab-bar>
 
 		<xyz-transition xyz="fade" mode="out-in">
