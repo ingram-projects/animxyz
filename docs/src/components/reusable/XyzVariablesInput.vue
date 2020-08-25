@@ -1,5 +1,5 @@
 <template>
-	<div class="variables-input">
+	<div class="variables__wrap">
 		<div class="variable" v-for="variable in variables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
 			<input
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.variables-input {
+.variables__wrap {
 	font-family: $font-stack-mono;
 	padding: $sp-s 0;
 	overflow-x: auto;
