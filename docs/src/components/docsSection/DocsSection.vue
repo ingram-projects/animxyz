@@ -12,7 +12,7 @@
 					</a>
 				</div>
 				<a class="section-examples-button" v-if="section.examples.length" :href="`?tab=examples#${section.id}`"
-					>View Examples</a
+					>Examples</a
 				>
 			</header>
 			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>

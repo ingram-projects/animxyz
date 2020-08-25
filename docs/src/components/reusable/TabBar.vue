@@ -1,8 +1,8 @@
 <template>
-	<div class="tab-bar">
+	<xyz-transition-group tag="div" class="tab-bar" duration="auto">
 		<button
 			type="button"
-			class="tab-bar__tab"
+			class="tab-bar__tab xyz-nested"
 			:class="{ active: tab === value }"
 			v-for="tab in tabs"
 			:ref="tab === value && 'activeTab'"
@@ -11,7 +11,7 @@
 		>
 			<span class="tab-text">{{ tab.name }}</span>
 		</button>
-	</div>
+	</xyz-transition-group>
 </template>
 
 <script>
