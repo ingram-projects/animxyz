@@ -70,14 +70,15 @@ export default {
 .code-examples {
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 
 	.example-code {
 		font-size: 1.125rem;
 
 		@include media('<laptop') {
 			font-size: $fs-m;
-			margin-bottom: 4.5rem;
-			overflow-y: initial;
+			margin-bottom: 5rem;
+			overflow-y: visible;
 		}
 	}
 }
