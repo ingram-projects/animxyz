@@ -20,11 +20,9 @@
 			</xyz-transition-group>
 
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
+				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">Back to docs</a>
 				<xyz-transition appear xyz="fade" mode="out-in">
-					<div class="active-sandbox" v-if="sandboxProps" :key="activeSection.id">
-						<a class="back-to-docs" :href="`/docs#${activeSection.id}`">Back to docs</a>
-						<sandbox v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"></sandbox>
-					</div>
+					<sandbox v-if="sandboxProps" v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'" :key="activeSection.id"></sandbox>
 					<div class="no-examples" v-if="!sandboxProps" key="no-example">
 						<icon-sandbox></icon-sandbox>
 						There are no examples<br />for this section.
@@ -250,6 +248,7 @@ export default {
 
 .sandbox__wrap {
 	display: flex;
+	flex-direction: column;
 	position: fixed;
 	width: 40vw;
 	right: 0;
@@ -278,13 +277,9 @@ export default {
 	}
 }
 
-.active-sandbox {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
 .back-to-docs {
+	position: relative;
+	z-index: 1;
 	height: 2.5rem;
 	display: flex;
 	align-items: center;
