@@ -72,6 +72,8 @@ export default {
 	flex-direction: column;
 
 	.example-code {
+		font-size: 1.125rem;
+
 		@include media('<laptop') {
 			font-size: $fs-m;
 			margin-bottom: 4.5rem;

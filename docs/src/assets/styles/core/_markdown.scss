@@ -20,7 +20,8 @@
 	pre[class*='language-'] {
 		background: primary-color(900);
 		margin: 0 (-$sp-xxs);
-		border-radius: $br-l;
+    border-radius: $br-l;
+    font-size: inherit;
 	}
 
 	blockquote {
