@@ -1,10 +1,10 @@
 <template>
-	<div class="modifiers-input">
+	<div class="modifiers__wrap">
 		<xyz-transition xyz="fade">
 			<tab-bar :tabs="modifiers.groups" v-if="modifiers.groups.length > 1" v-model="activeGroup"></tab-bar>
 		</xyz-transition>
 
-		<xyz-transition-group tag="div" appear xyz="appear-right-100 ease-in-out duration-3" v-xyz="tabDirectionXyz">
+		<xyz-transition-group tag="div" class="modifiers-sections__wrap" appear xyz="appear-right-100 ease-in-out duration-3" v-xyz="tabDirectionXyz">
 			<div class="modifiers-sections xyz-out-nested" :key="activeGroup.name">
 				<xyz-utilities-input
 					class="modifiers-utilities modifiers-section"
@@ -31,7 +31,7 @@ import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
 
 export default {
-	name: 'Sandbox',
+	name: 'XyzModifiersInput',
 	props: ['value', 'modifiers'],
 	components: {
 		TabBar,
@@ -103,9 +103,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modifiers-input {
+.modifiers__wrap {
 	position: relative;
 	flex-shrink: 0;
+}
+
+.modifiers-sections__wrap {
+	overflow: hidden;
 }
 
 .modifiers-sections {

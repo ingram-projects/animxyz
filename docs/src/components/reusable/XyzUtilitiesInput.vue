@@ -1,5 +1,5 @@
 <template>
-	<div class="utilities-table__wrap">
+	<div class="utilities__wrap">
 		<table class="utilities-table">
 			<thead>
 				<tr>
@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.utilities-table__wrap {
+.utilities__wrap {
 	font-family: $font-stack-mono;
 	overflow-x: auto;
 }
