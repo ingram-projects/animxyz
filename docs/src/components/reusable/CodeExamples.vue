@@ -92,7 +92,6 @@ export default {
 .example-template {
 	position: relative;
 	min-height: 10rem;
-	max-height: 33vh;
 	flex-grow: 1;
 	padding: $sp-s;
 	display: flex;
