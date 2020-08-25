@@ -22,12 +22,11 @@
 			<section
 				class="sandbox__wrap"
 				:class="{ active: activeTab === 'examples' }"
-				v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
 			>
 				<xyz-transition appear xyz="fade" mode="out-in">
 					<div class="active-sandbox" v-if="sandboxProps" :key="activeSection.id">
 						<a class="back-to-docs" :href="`/docs#${activeSection.id}`">Back to docs</a>
-						<sandbox v-bind="sandboxProps"></sandbox>
+						<sandbox v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"></sandbox>
 					</div>
 					<div class="no-examples" v-if="!sandboxProps" key="no-example">
 						<icon-sandbox></icon-sandbox>
