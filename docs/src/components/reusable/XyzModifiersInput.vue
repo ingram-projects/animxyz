@@ -106,7 +106,6 @@ export default {
 .modifiers-input {
 	position: relative;
 	flex-shrink: 0;
-	overflow: hidden;
 }
 
 .modifiers-sections {

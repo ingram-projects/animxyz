@@ -33,9 +33,12 @@ export default {
 	display: flex;
 	flex-shrink: 0;
 	overflow-x: auto;
-	position: sticky;
-	top: 0;
-	z-index: 1;
+
+	@include media('<laptop') {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+	}
 }
 
 .tab-bar__tab {
