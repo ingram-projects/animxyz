@@ -17,7 +17,9 @@ import VueAnimXyz from '@animxyz/vue'
 import VueLocation from '~/plugins/VueLocation'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
-import VScrollLock from 'v-scroll-lock'
+
+// Directives
+import ScrollLock from '~/directives/ScrollLock'
 
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
@@ -38,9 +40,10 @@ export default function (Vue, context) {
 		},
 	})
 	Vue.use(VueObserveVisibility)
-	Vue.use(VScrollLock)
 
 	Vue.component('Layout', DefaultLayout)
+
+	Vue.directive('ScrollLock', ScrollLock)
 
 	if (context.isClient) {
 		context.appOptions.mounted = function () {
