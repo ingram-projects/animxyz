@@ -19,10 +19,7 @@
 				></docs-section>
 			</xyz-transition-group>
 
-			<section
-				class="sandbox__wrap"
-				:class="{ active: activeTab === 'examples' }"
-			>
+			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<xyz-transition appear xyz="fade" mode="out-in">
 					<div class="active-sandbox" v-if="sandboxProps" :key="activeSection.id">
 						<a class="back-to-docs" :href="`/docs#${activeSection.id}`">Back to docs</a>
@@ -283,11 +280,8 @@ export default {
 
 .active-sandbox {
 	width: 100%;
-
-	@include media('<laptop') {
-		display: flex;
-		flex-direction: column;
-	}
+	display: flex;
+	flex-direction: column;
 }
 
 .back-to-docs {
