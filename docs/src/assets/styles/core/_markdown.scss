@@ -75,6 +75,11 @@
     text-decoration: none;
     position: relative;
     white-space: nowrap;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
   }
 
   a:not([href*='tab=examples']) {

@@ -175,6 +175,7 @@ $active-border-width: 0.5rem;
 
 	&:hover,
 	&:focus {
+		outline: none;
 		background-color: primary-color(300);
 		color: primary-color(800);
 
