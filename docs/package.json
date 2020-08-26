@@ -34,6 +34,7 @@
     "gridsome-plugin-svg": "^0.0.14",
     "http-server": "^0.12.3",
     "include-media": "^1.4.9",
+    "remark-attr": "^0.11.1",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3"
   }

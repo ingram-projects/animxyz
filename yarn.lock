@@ -8958,6 +8958,11 @@ html-comment-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.2.tgz#97d4688aeb5c81886a364faa0cad1dda14d433a7"
   integrity sha512-P+M65QY2JQ5Y0G9KKdlDpo0zK+/OHptU5AaBwUfAIDJZk1MYf32Frm84EcOytfJE0t5JvkAnKlmjsXDnWzCJmQ==
 
+html-element-attributes@^2.0.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/html-element-attributes/-/html-element-attributes-2.2.1.tgz#ff397c7a3d6427064b117b6f36b45be08e79db93"
+  integrity sha512-gGTgCeQu+g1OFExZKWQ1LwbFXxLJ6cGdCGj64ByEaxatr/EPVc23D6Gxngb37ao+SNInP/sGu8FXxRsSxMm7aQ==
+
 html-encoding-sniffer@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-1.0.2.tgz#e70d84b94da53aa375e11fe3a351be6642ca46f8"
@@ -10029,7 +10034,7 @@ is-utf8@^0.2.0:
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
 
-is-whitespace-character@^1.0.0:
+is-whitespace-character@^1.0.0, is-whitespace-character@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.4.tgz#0858edd94a95594c7c9dd0b5c174ec6e45ee4aa7"
   integrity sha512-SDweEzfIZM0SJV0EUga669UTKlmL0Pq8Lno0QDQsPnvECB3IM2aP0gdx5TrU0A01MAPfViaZiI2V1QMZLaKK5w==
@@ -11409,6 +11414,11 @@ markdown-escapes@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
   integrity sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==
+
+md-attr-parser@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/md-attr-parser/-/md-attr-parser-1.3.0.tgz#23e1d507858746d4e84beb244c089799979cfce8"
+  integrity sha512-KTVlfU5Oxo/6kd0YZ2mLP3eWJj+5vzh5mBCxLo3yGl1fzHIgxmtadbE9tHb7TbUBi3XZbl+P0xKeGmakat135w==
 
 md5-file@^4.0.0:
   version "4.0.0"
@@ -14843,6 +14853,16 @@ relateurl@0.2.x, relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+remark-attr@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/remark-attr/-/remark-attr-0.11.1.tgz#4f2f96b16316be2887a24662116756c88ee36f15"
+  integrity sha512-NnzURvBJ52c58L3AohBk5qSTBPXdMKsf5+w9L0YNhi/HCtv7ZA9dNRz5NsPIxLtIHhoZIjTqQsMzoyggyPVvkQ==
+  dependencies:
+    html-element-attributes "^2.0.0"
+    is-whitespace-character "^1.0.4"
+    md-attr-parser "^1.3.0"
+    remark-footnotes "^1.0.0"
+
 remark-autolink-headings@^5.0.0:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/remark-autolink-headings/-/remark-autolink-headings-5.2.2.tgz#6ff4682b43a1614c8ba343627abe3d9805173677"
@@ -14867,6 +14887,11 @@ remark-fix-guillemets@^1.0.15:
   integrity sha512-Cn4TyeXlyMajqdYjbFf9b76Ozffx/tvyr9m4Q9sypoGZ/CMA+du+kLE54T+j+5n9asEU7+cpiSZTimD4s+1Izg==
   dependencies:
     unist-util-visit "^2.0.1"
+
+remark-footnotes@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-1.0.0.tgz#9c7a97f9a89397858a50033373020b1ea2aad011"
+  integrity sha512-X9Ncj4cj3/CIvLI2Z9IobHtVi8FVdUrdJkCNaL9kdX8ohfsi18DXHsCVd/A7ssARBdccdDb5ODnt62WuEWaM/g==
 
 remark-html@^8.0.0:
   version "8.0.0"
