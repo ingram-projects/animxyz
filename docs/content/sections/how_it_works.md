@@ -6,6 +6,7 @@ quote: TBD
 AnimXYZ uses [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) under the hood to modify a core keyframe animation. These xyz-variables determine the timing and the values of the element properties that will be animated such as opacity and transform. Each value will be animated to and from depending on whether the element is animating in or out.
 
 Here is a simplified version of whats going on behind the scenes:
+
 ```css
 @keyframes xyz-keyframes {
   from {

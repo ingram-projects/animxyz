@@ -77,7 +77,7 @@
     white-space: nowrap;
   }
 
-  a:not([href$=sandbox]) {
+  a:not([href*='tab=examples']) {
     color: primary-color(700);
     transition: color .2s $ease-out;
 
@@ -92,7 +92,8 @@
       transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: primary-color(800);
 
       &::before {
@@ -102,9 +103,22 @@
         background-color: $cyan;
       }
     }
+
+    &[target=_blank] {
+      &::before {
+        background-color: transparentize($green, 0.35);
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          background-color: $green;
+        }
+      }
+    }
   }
 
-  a[href$=sandbox] {
+  a[href*='tab=examples'] {
     background-color: transparentize($cyan, 0.75);
     color: primary-color(800);
     display: inline-block;
