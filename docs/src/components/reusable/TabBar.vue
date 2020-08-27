@@ -49,7 +49,8 @@ export default {
 	height: 3rem;
 	padding: 0 $sp-xxs;
 	color: primary-color(50);
-	transition: background-color 0.2s $ease-in-out, color 0.2s $ease-in-out;
+	transition: 0.2s $ease-in-out;
+	transition-property: background-color, color;
 
 	@include media('<laptop') {
 		height: 2.5rem;

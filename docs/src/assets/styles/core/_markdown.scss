@@ -94,7 +94,8 @@
       right: .2em;
       height: .15em;
       background-color: transparentize($cyan, 0.35);
-      transition: height .15s $ease-out, left .15s $ease-out, right .15s $ease-out, background-color .15s $ease-out;
+      transition: .15s $ease-out;
+      transition-property: height, left, right, background-color;
     }
 
     &:hover,
@@ -132,7 +133,8 @@
     line-height: 1.5rem;
     padding: 0 $sp-xxxs;
     border-radius: $br-m;
-    transition: background-color .2s $ease-out, color .2s $ease-out;
+    transition: .2s $ease-out;
+    transition-property: background-color, color;
 
     &::after {
       display: inline-block;

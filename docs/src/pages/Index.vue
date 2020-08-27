@@ -205,7 +205,8 @@ export default {
 	font-weight: 600;
 	font-size: 1.125rem;
 	text-decoration: none;
-	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out, border 0.2s $ease-in-out;
+	transition: 0.2s $ease-in-out;
+	transition-property: background-color, box-shadow, border;
 
 	& + & {
 		margin-top: $sp-s;

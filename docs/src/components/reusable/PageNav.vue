@@ -360,7 +360,8 @@ export default {
 	background-color: primary-color(500, 0.2);
 	color: var(--icon-color);
 	text-decoration: none;
-	transition: background-color 0.2s $ease-in-out, box-shadow 0.2s $ease-in-out;
+	transition: 0.2s $ease-in-out;
+	transition-property: background-color, box-shadow;
 
 	svg {
 		@include size(1.5rem);

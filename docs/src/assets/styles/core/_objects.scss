@@ -3,7 +3,8 @@
 .icon-svg {
   --iconColor: white;
   overflow: visible;
-  transition: fill .2s $ease-out-quad, stroke .2s $ease-out-quad;
+  transition: .2s $ease-out-quad;
+  transition-property: fill, stroke;
 }
 
 .square {

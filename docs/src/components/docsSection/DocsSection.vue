@@ -49,11 +49,11 @@ $active-border-width: 0.5rem;
 	content-visibility: auto;
 
 	@include media('>=laptop') {
-		padding: 4rem $sp-m;
+		padding: 4rem 0;
 	}
 
 	@include media('>=desktop') {
-		padding: 4rem $sp-m;
+		padding: 4rem 0;
 	}
 }
 
@@ -64,17 +64,17 @@ $active-border-width: 0.5rem;
 	justify-content: center;
 	max-width: 48rem;
 	width: 100%;
-	padding: $sp-s;
+	padding: $sp-m;
 	margin: auto;
-	border-radius: 1rem;
-	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
+	transition: 1s $ease-out;
+	transition-property: background-color, box-shadow;
 
 	@include media('>=laptop') {
-		padding: $sp-l;
+		padding: $sp-xl;
 
 		.docs-section__wrap.active & {
-			box-shadow: 0 0 6px 2px transparentize($cyan, 0.5);
 			background-color: white;
+			box-shadow: 0 0 1.5rem primary-color(700, .15);
 		}
 	}
 }
@@ -167,7 +167,8 @@ $active-border-width: 0.5rem;
 	text-decoration: none;
 	font-weight: 500;
 	font-size: $fs-s;
-	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+	transition: 0.3s $ease-out;
+	transition-property: background-color, color;
 
 	&::after {
 		display: inline-block;

@@ -84,7 +84,8 @@ export default {
 	::v-deep {
 		.cube__face {
 			box-shadow: inset 0 0 0 1.5px primary-color(50), inset 0 0 0 1rem primary-color(400);
-			transition: background-color 1s $ease-in-out, box-shadow 1s $ease-in-out;
+			transition: 1s $ease-in-out;
+			transition-property: background-color, box-shadow;
 
 			.xray-toggle.active & {
 				background-color: transparentize($cyan, 0.9);

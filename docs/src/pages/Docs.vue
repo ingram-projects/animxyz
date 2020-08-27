@@ -298,7 +298,8 @@ export default {
 	text-decoration: none;
 	font-weight: 500;
 	font-size: $fs-s;
-	transition: background-color 0.3s $ease-out, color 0.3s $ease-out;
+	transition: 0.3s $ease-out;
+	transition-property: background-color, color;
 
 	&::before {
 		display: inline-block;
