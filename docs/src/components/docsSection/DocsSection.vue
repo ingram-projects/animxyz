@@ -66,14 +66,15 @@ $active-border-width: 0.5rem;
 	width: 100%;
 	padding: $sp-s;
 	margin: auto;
+	border-radius: 1rem;
 	transition: background-color 1s $ease-out, box-shadow 0.5s $ease-out;
 
 	@include media('>=laptop') {
 		padding: $sp-l;
 
 		.docs-section__wrap.active & {
+			box-shadow: 0 0 6px 2px transparentize($cyan, 0.5);
 			background-color: white;
-			border-radius: 1rem;
 		}
 	}
 }
@@ -81,6 +82,7 @@ $active-border-width: 0.5rem;
 .section-header {
 	display: flex;
 	align-items: center;
+	margin-bottom: $sp-m;
 	z-index: 2;
 
 	@include media('<laptop') {
@@ -195,13 +197,12 @@ $active-border-width: 0.5rem;
 	font-size: 1.125rem;
 	font-weight: 500;
 	color: primary-color(600);
-	margin-left: $sp-l;
-	margin-top: $sp-m;
+	padding-left: $sp-l;
 	margin-bottom: $sp-m;
 
 	@include media('<phone') {
-		margin-top: 0;
-		margin-left: $sp-m;
+		padding-left: $sp-m;
+		margin-bottom: $sp-s;
 		font-size: 1rem;
 	}
 }
