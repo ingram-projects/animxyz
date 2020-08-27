@@ -19,7 +19,7 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<ul class="nav-sections" xyz="fade left" style="--xyz-stagger: 0.05s;">
+						<ul class="nav-sections" xyz="fade left" style="--xyz-stagger: 0.05s">
 							<li
 								v-for="(section, index) in sections"
 								class="nav-section__item xyz-in-nested"
@@ -140,15 +140,20 @@ export default {
 
 .nav-sections__wrap {
 	display: flex;
-	margin-top: 5.5rem;
+	margin-top: 5rem;
 	flex-grow: 1;
 	overflow-y: auto;
 
+	@include media('<laptop') {
+		margin-top: 0;
+		margin-bottom: 5.5rem;
+		order: 2;
+	}
+
 	@include media('<tablet') {
 		display: block;
-		margin-top: 0;
-		order: 2;
-		padding-bottom: 6rem;
+		margin-bottom: 0;
+		padding-bottom: 2rem;
 	}
 }
 
@@ -265,8 +270,13 @@ export default {
 		}
 	}
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		top: initial;
+		left: 2.5rem;
+		bottom: 2rem;
+	}
+
+	@include media('<tablet') {
 		left: initial;
 		right: 2.5rem;
 		bottom: 2.5rem;
@@ -357,7 +367,7 @@ export default {
 		box-shadow: 0 0 0 4px primary-color(200, 0.5);
 	}
 
-	@include media('<tablet') {
+	@include media('<laptop') {
 		order: 1;
 	}
 }
