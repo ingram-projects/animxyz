@@ -1,5 +1,5 @@
 <template>
-	<div class="markdown-content" v-html="content"></div>
+	<div class="copy-content" v-html="content"></div>
 </template>
 
 <script>
@@ -9,5 +9,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

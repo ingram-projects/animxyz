@@ -27,12 +27,10 @@
 					</div>
 				</xyz-transition>
 
-				<section class="about-section">
+				<section class="about-section copy-content">
 					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
 						<div class="intro__wrap">
-							<p class="intro-text">
-								The first composable CSS animation framework.
-							</p>
+							<p class="intro-text">The first composable CSS animation framework.</p>
 						</div>
 					</xyz-transition>
 
@@ -51,6 +49,14 @@
 								and CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are
 								limited limited to a specific set, use AnimXYZ to save you time and give you complete control over how
 								your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
+							</p>
+						</div>
+					</xyz-transition>
+					<xyz-transition appear xyz="delay-5 fade down ease-out">
+						<div class="created-by" style="--xyz-delay: 0.6s">
+							<p>
+								Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
+								<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
 							</p>
 						</div>
 					</xyz-transition>
@@ -159,6 +165,13 @@ export default {
 	@include media('<phone') {
 		font-size: 1.125rem;
 	}
+}
+
+.created-by {
+	--text-color: #{primary-color(600)};
+	font-weight: 500;
+	font-size: $fs-s;
+	margin-top: $sp-xxl;
 }
 
 .links__wrap {
