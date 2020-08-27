@@ -14,18 +14,18 @@
     "web"
   ],
   "homepage": "https://animxyz.com",
-  "author": "Ingram Projects (https://github.com/milesingrams/animxyz/graphs/contributors)",
+  "author": "Ingram Projects (https://github.com/ingram-projects/animxyz/graphs/contributors)",
   "contributors": [
     "Miles Ingram <milesingrams@gmail.com> (https://milesingram.me/)",
     "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/milesingrams/animxyz.git",
+    "url": "git+https://github.com/ingram-projects/animxyz.git",
     "directory": "packages/vue"
   },
   "bugs": {
-    "url": "https://github.com/milesingrams/animxyz/issues"
+    "url": "https://github.com/ingram-projects/animxyz/issues"
   },
   "license": "MIT",
   "files": [
