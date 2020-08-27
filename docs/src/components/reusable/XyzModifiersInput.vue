@@ -14,19 +14,19 @@
 		>
 			<div class="modifiers-sections" :key="activeGroup.name">
 				<xyz-utilities-input
+					v-if="!this.modifiers.utilities || !this.modifiers.utilities.hide"
 					class="modifiers-utilities modifiers-section"
-					:types="activeGroup.types"
-					:multiple="multipleUtilities"
+					:utilities="utilityNames"
+					:multiple="this.modifiers.utilities.multiple"
 					v-model="value.utilities"
-					v-if="!hideUtilities"
 				></xyz-utilities-input>
 
 				<xyz-variables-input
+					v-if="!this.modifiers.variables || !this.modifiers.variables.hide"
 					class="modifiers-variables modifiers-section"
-					:types="activeGroup.types"
+					:variables="variableNames"
 					v-model="value.variables"
-					v-if="!hideVariables"
-					:style="{ '--xyz-delay': `${utilitiesRows * 0.05}s`}"
+					:style="{ '--xyz-delay': `${utilityNames.length * 0.05}s`}"
 				></xyz-variables-input>
 			</div>
 		</xyz-transition-group>
@@ -37,7 +37,7 @@
 import TabBar from '~/components/reusable/TabBar'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
-import { xyzUtilities } from '~/utils'
+import { xyzUtilities, xyzVariables } from '~/utils'
 
 export default {
 	name: 'XyzModifiersInput',
@@ -54,14 +54,31 @@ export default {
 		}
 	},
 	computed: {
-		multipleUtilities() {
-			return this.modifiers.utilities && this.modifiers.utilities.multiple
+		utilityNames() {
+			const utilityNames = []
+			if (this.activeGroup) {
+				this.activeGroup.types.forEach((type) => {
+					utilityNames.push(
+						...xyzUtilities.filter((utility) => {
+							return utility.type === type
+						}).map((utility) => utility.name)
+					)
+				})
+			}
+			return utilityNames
 		},
-		hideUtilities() {
-			return this.modifiers.utilities && this.modifiers.utilities.hide
-		},
-		hideVariables() {
-			return this.modifiers.variables && this.modifiers.variables.hide
+		variableNames() {
+			const variableNames = []
+			if (this.activeGroup) {
+				this.activeGroup.types.forEach((type) => {
+					variableNames.push(
+						...xyzVariables.filter((variable) => {
+							return variable.type === type
+						}).map((variable) => variable.name)
+					)
+				})
+			}
+			return variableNames
 		},
 		activeGroupIndex() {
 			if (this.activeGroup) {
@@ -70,19 +87,6 @@ export default {
 				})
 			}
 			return -1
-		},
-		utilitiesRows() {
-			let count = 0
-			if (!this.hideUtilities && !this.hideVariables) {
-				this.activeGroup.types.forEach((type) => {
-					xyzUtilities.forEach((utility) => {
-						if (utility.type === type) {
-							count += 1
-						}
-					})
-				})
-			}
-			return count
 		},
 	},
 	watch: {

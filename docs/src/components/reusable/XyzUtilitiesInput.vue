@@ -4,13 +4,13 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th class="level__header" v-for="level in levels" :key="level">
-						{{ level }}
+					<th class="level__header" v-for="utilityLevel in utilityLevels" :key="utilityLevel">
+						{{ utilityLevel }}
 					</th>
 				</tr>
 			</thead>
 			<xyz-transition-group tag="tbody" class="utilities-table__body" appear duration="auto" xyz="fade down" style="--xyz-stagger: 0.05s;">
-				<tr class="utility xyz-none" v-for="utility in utilities" :key="utility.name">
+				<tr class="utility xyz-none" v-for="utility in computedUtilities" :key="utility.name">
 					<th class="utility__header xyz-nested">
 						{{ utility.name }}
 					</th>
@@ -38,43 +38,35 @@
 
 <script>
 import isEqual from 'lodash/isEqual'
-import { xyzUtilities, getXyzUtility, getXyzUtilityRegex } from '~/utils'
+import { getXyzUtility, getXyzUtilityRegex } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
-	props: ['value', 'types', 'multiple'],
+	props: ['value', 'utilities', 'multiple'],
 	data() {
 		return {
 			toggledUtilities: {},
 		}
 	},
 	computed: {
-		typeUtilities() {
-			const typeUtilities = []
-			this.types.forEach((type) => {
-				typeUtilities.push(
-					...xyzUtilities.filter((utility) => {
-						return utility.type === type
-					})
-				)
-			})
-			return typeUtilities
+		utilityObjs() {
+			return this.utilities.map(getXyzUtility)
 		},
-		levels() {
+		utilityLevels() {
 			const levelsMap = {}
-			this.typeUtilities.forEach((utility) => {
+			this.utilityObjs.forEach((utility) => {
 				Object.keys(utility.levels).forEach((level) => {
 					levelsMap[level] = true
 				})
 			})
 			return ['default', ...Object.keys(levelsMap)]
 		},
-		utilities() {
-			return this.typeUtilities.map((utility) => {
+		computedUtilities() {
+			return this.utilityObjs.map((utility) => {
 				return {
 					name: utility.name,
 					model: this.getUtilityModel(utility),
-					levels: this.levels.map((level) => {
+					levels: this.utilityLevels.map((level) => {
 						const utilityLevel = getXyzUtility(utility.name, level)
 						return {
 							...utilityLevel,

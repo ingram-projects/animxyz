@@ -1,6 +1,6 @@
 <template>
 	<xyz-transition-group tag="div" class="variables__wrap" appear xyz="fade down" style="--xyz-stagger: 0.05s;">
-		<div class="variable" v-for="variable in variables" :key="variable.string">
+		<div class="variable" v-for="variable in computedVariables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
 			<input
 				class="variable-input"
@@ -15,31 +15,20 @@
 
 <script>
 import isEqual from 'lodash/isEqual'
-import { xyzVariables, getXyzVariable, getXyzVariableRegex } from '~/utils'
+import { getXyzVariable, getXyzVariableRegex } from '~/utils'
 
 export default {
 	name: 'XyzVariablesInput',
-	props: ['value', 'types'],
+	props: ['value', 'variables'],
 	data() {
 		return {
 			toggledVariables: {},
 		}
 	},
 	computed: {
-		typeVariables() {
-			const typeVariables = []
-			this.types.forEach((type) => {
-				typeVariables.push(
-					...xyzVariables.filter((variable) => {
-						return variable.type === type
-					})
-				)
-			})
-			return typeVariables
-		},
-		variables() {
-			return this.typeVariables.map((variable) => {
-				const variableObj = getXyzVariable(variable.name)
+		computedVariables() {
+			return this.variables.map((variable) => {
+				const variableObj = getXyzVariable(variable)
 				return {
 					...variableObj,
 					id: `${this._uid}_${variableObj.string}`,
