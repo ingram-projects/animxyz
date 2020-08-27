@@ -14,7 +14,6 @@ import 'prismjs'
 
 // Plugins
 import VueAnimXyz from '@animxyz/vue'
-import VueLocation from '~/plugins/VueLocation'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 
@@ -24,9 +23,8 @@ import ScrollLock from '~/directives/ScrollLock'
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
 
-export default function (Vue, context) {
+export default function (Vue, { router }) {
 	Vue.use(VueAnimXyz)
-	Vue.use(VueLocation)
 	Vue.use(VueMQ, {
 		breakpoints: {
 			small: '375px',
@@ -45,16 +43,16 @@ export default function (Vue, context) {
 
 	Vue.directive('ScrollLock', ScrollLock)
 
-	if (context.isClient) {
-		context.appOptions.mounted = function () {
-			if (window.location.hash) {
-	      setTimeout(() => {
-					const hashEl = document.getElementById(window.location.hash.substr(1))
-					if (hashEl) {
-						hashEl.scrollIntoView()
-					}
-	      })
-	    }
+	router.options.scrollBehavior = function(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+		if (to.path !== from.path) {
+    	return { x: 0, y: 0 }
 		}
-	}
+		return null
+  }
 }

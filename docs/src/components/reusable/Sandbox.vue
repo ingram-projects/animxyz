@@ -69,11 +69,11 @@ export default {
 		},
 	},
 	watch: {
-		$location() {
-			this.onLocationChange()
+		$route() {
+			this.onRouteChange()
 		},
 		name() {
-			this.onLocationChange()
+			this.onRouteChange()
 		},
 		modifiers: {
 			immediate: true,
@@ -121,24 +121,24 @@ export default {
 				this.toggleExample(true)
 			}, this.toggleInterval)
 		},
-		onLocationChange() {
-			const { params, hash } = this.$location
+		onRouteChange() {
+			const { query, hash } = this.$route
 			if (hash === `#${this.name}`) {
-				if (params.example) {
-					this.$refs.examples.setExample(params.example)
+				if (query.example) {
+					this.$refs.examples.setExample(query.example)
 				}
-				if (params.group) {
-					this.$refs.modifiers.setGroup(params.group)
+				if (query.group) {
+					this.$refs.modifiers.setGroup(query.group)
 				}
-				if (params.utilities) {
+				if (query.utilities) {
 					this.xyzModifiers.utilities = {}
-					params.utilities.split(',').forEach((utility) => {
+					query.utilities.split(',').forEach((utility) => {
 						this.xyzModifiers.utilities[utility] = true
 					})
 				}
-				if (params.variables) {
+				if (query.variables) {
 					this.xyzModifiers.variables = {}
-					params.variables.split(',').forEach((variable) => {
+					query.variables.split(',').forEach((variable) => {
 						const splitVariable = variable.split(':')
 						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
 					})
@@ -147,7 +147,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.onLocationChange()
+		this.onRouteChange()
 	},
 	beforeDestroy() {
 		clearTimeout(this.toggleTimeout)

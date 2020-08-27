@@ -165,13 +165,17 @@ export default {
 	},
 	watch: {
 		activeSectionId(newVal, oldVal) {
-			const { hash, pathname } = this.$location
+			const { hash } = this.$route
 			if (hash === `#${oldVal}`) {
-				window.history.replaceState(null, null, pathname)
+				this.$router.replace({
+					...this.$route,
+					hash: null,
+					query: null,
+				})
 			}
 		},
-		$location() {
-			this.onLocationChange()
+		$route() {
+			this.onRouteChange()
 		},
 	},
 	methods: {
@@ -183,10 +187,10 @@ export default {
 		setTab(tab) {
 			this.activeTab = tab
 		},
-		onLocationChange() {
-			const { params } = this.$location
-			if (params.tab) {
-				this.setTab(params.tab)
+		onRouteChange() {
+			const { query } = this.$route
+			if (query.tab) {
+				this.setTab(query.tab)
 			} else {
 				this.setTab('docs')
 			}
@@ -206,7 +210,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.onLocationChange()
+		this.onRouteChange()
 		this.onWindowScroll()
 		window.addEventListener('scroll', this.onWindowScroll)
 		window.addEventListener('resize', this.onWindowScroll)
