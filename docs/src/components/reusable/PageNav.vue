@@ -140,11 +140,11 @@ export default {
 
 .nav-sections__wrap {
 	display: flex;
-	margin-top: 5.5rem;
+	margin-top: 5rem;
 	flex-grow: 1;
 	overflow-y: auto;
 
-	@include media('<large') {
+	@include media('<laptop') {
 		margin-top: 0;
 		margin-bottom: 5.5rem;
 		order: 2;
@@ -270,7 +270,7 @@ export default {
 		}
 	}
 
-	@include media('<large') {
+	@include media('<laptop') {
 		top: initial;
 		left: 2.5rem;
 		bottom: 2rem;
@@ -367,7 +367,7 @@ export default {
 		box-shadow: 0 0 0 4px primary-color(200, 0.5);
 	}
 
-	@include media('<large') {
+	@include media('<laptop') {
 		order: 1;
 	}
 }
