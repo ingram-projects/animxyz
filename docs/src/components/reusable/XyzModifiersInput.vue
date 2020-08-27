@@ -26,6 +26,7 @@
 					:types="activeGroup.types"
 					v-model="value.variables"
 					v-if="!hideVariables"
+					:style="{ '--xyz-delay': `${utilitiesRows * 0.05}s`}"
 				></xyz-variables-input>
 			</div>
 		</xyz-transition-group>
@@ -36,6 +37,7 @@
 import TabBar from '~/components/reusable/TabBar'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
+import { xyzUtilities } from '~/utils'
 
 export default {
 	name: 'XyzModifiersInput',
@@ -68,6 +70,19 @@ export default {
 				})
 			}
 			return -1
+		},
+		utilitiesRows() {
+			let count = 0
+			if (!this.hideUtilities && !this.hideVariables) {
+				this.activeGroup.types.forEach((type) => {
+					xyzUtilities.forEach((utility) => {
+						if (utility.type === type) {
+							count += 1
+						}
+					})
+				})
+			}
+			return count
 		},
 	},
 	watch: {

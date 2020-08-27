@@ -1,5 +1,5 @@
 <template>
-	<xyz-transition-group tag="div" class="variables__wrap" appear xyz="fade down" style="--xyz-stagger: 0.075s;">
+	<xyz-transition-group tag="div" class="variables__wrap" appear xyz="fade down" style="--xyz-stagger: 0.05s;">
 		<div class="variable" v-for="variable in variables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
 			<input
