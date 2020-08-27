@@ -34,6 +34,7 @@
 									:class="{ active: section === activeSection }"
 									v-if="!section.header"
 									:href="`#${section.id}`"
+									:ref="section === activeSection && 'activeLink'"
 								>
 									<div class="link-dot__wrap">
 										<span class="link-dot"></span>
@@ -84,6 +85,21 @@ export default {
 					this.toggle(true)
 				} else {
 					this.toggle(false)
+				}
+			},
+		},
+		activeSection: {
+			immediate: true,
+			handler() {
+				if (this.activeSection) {
+					this.$nextTick(() => {
+						if (this.$refs.activeLink) {
+							this.$refs.activeLink[0].scrollIntoView({
+								block: 'center',
+								behavior: 'smooth',
+							})
+						}
+					})
 				}
 			},
 		},
