@@ -274,6 +274,10 @@ export default {
 		&.active {
 			transform: none;
 		}
+
+		&:not(.active) {
+			content-visibility: hidden;
+		}
 	}
 }
 

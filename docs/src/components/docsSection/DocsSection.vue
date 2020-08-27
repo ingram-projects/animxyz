@@ -46,6 +46,7 @@ $active-border-width: 0.5rem;
 	position: relative;
 	padding: 6vw 0;
 	min-height: 60vh;
+	content-visibility: auto;
 
 	@include media('>=laptop') {
 		padding: 4rem $sp-m;
