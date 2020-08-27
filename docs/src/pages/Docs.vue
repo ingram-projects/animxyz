@@ -22,8 +22,8 @@
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">Back to docs</a>
 				<xyz-transition appear xyz="fade" mode="out-in">
-					<sandbox v-if="sandboxProps" v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'" :key="activeSection.id"></sandbox>
-					<div class="no-examples" v-if="!sandboxProps" key="no-example">
+					<sandbox v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')" v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'" :key="activeSection.id"></sandbox>
+					<div class="no-examples" v-if="!hasSandbox" key="no-example">
 						<icon-sandbox></icon-sandbox>
 						There are no examples<br />for this section.
 					</div>
@@ -149,8 +149,11 @@ export default {
 				return section.id === this.activeSectionId
 			})
 		},
+		hasSandbox() {
+			return this.activeSection && this.activeSection.examples.length
+		},
 		sandboxProps() {
-			if (this.activeSection && this.activeSection.examples.length) {
+			if (this.hasSandbox) {
 				return {
 					name: this.activeSectionId,
 					examples: this.activeSection.examples,
@@ -273,10 +276,6 @@ export default {
 
 		&.active {
 			transform: none;
-		}
-
-		&:not(.active) {
-			content-visibility: hidden;
 		}
 	}
 }
