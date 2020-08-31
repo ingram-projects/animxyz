@@ -130,18 +130,19 @@ export default {
 
 <style lang="scss" scoped>
 .modifiers__wrap {
-	position: relative;
 	flex-shrink: 0;
 }
 
 .modifiers-sections__wrap {
+	position: relative;
 	overflow: hidden;
 }
 
 .modifiers-sections {
+	width: 100%;
+
 	&.xyz-out {
 		position: absolute;
-		width: 100%;
 	}
 }
 
