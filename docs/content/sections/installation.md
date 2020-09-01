@@ -3,7 +3,9 @@ title: Installation
 quote: You put it inside the computer!?
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+#### Install AnimXYZ via npm
+
+To install AnimXYZ, simply use your favorite package manager.
 
 ```bash
 # For npm
@@ -13,4 +15,14 @@ npm install @animxyz/core
 yarn install @animxyz/core
 ```
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+#### Add AnimXYZ to your project
+
+After installation, you can import the CSS into your project by putting this snippet anywhere in your javascript code:
+
+```js
+import '@animxyz/core'
+```
+
+That's all there is to it! You are now ready to make your website move.
+
+> If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue) and [React](#react).
