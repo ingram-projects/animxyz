@@ -79,8 +79,6 @@ export default {
 
 		@include media('<laptop') {
 			font-size: $fs-m;
-			margin-bottom: 5rem;
-			overflow-y: visible;
 		}
 	}
 }
@@ -99,6 +97,5 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	perspective: 200px;
 }
 </style>

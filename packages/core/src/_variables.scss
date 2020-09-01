@@ -54,6 +54,15 @@ $xyz-origin-levels: (
  'bottom-right': bottom right,
 ) !default;
 
+$xyz-perspective-levels: (
+ '0': 0px,
+ '1': 100px,
+ '2': 200px,
+ '3': 300px,
+ '4': 400px,
+ '5': 500px,
+) !default;
+
 $xyz-opacity-levels: (
   '0': 0,
   '25': .25,
@@ -154,6 +163,10 @@ $xyz-variables-map: (
     'type': 'transform',
     'modes': $xyz-modes-all,
   ),
+  'perspective': (
+    'type': 'perspective',
+    'modes': $xyz-modes-all,
+  ),
   'translate-x': (
     'type': 'translate',
     'axis': 'x',
@@ -252,6 +265,13 @@ $xyz-utilities-map: (
     'vars': ['origin'],
     'default': var(--xyz-origin-default),
     'levels': $xyz-origin-levels,
+    'modes': $xyz-modes-all,
+  ),
+  'perspective': (
+    'type': 'perspective',
+    'vars': ['perspective'],
+    'default': var(--xyz-perspective-default),
+    'levels': $xyz-perspective-levels,
     'modes': $xyz-modes-all,
   ),
   'fade': (

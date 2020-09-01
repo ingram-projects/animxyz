@@ -58,6 +58,15 @@ export const xyzOpacityLevels = {
 	'100': '1',
 }
 
+export const xyzPerspectiveLevels = {
+	'0': '0px',
+	'1': '100px',
+	'2': '200px',
+	'3': '300px',
+	'4': '400px',
+	'5': '500px',
+}
+
 export const xyzTranslateLevels = {
 	'0': '0px',
 	'1': '10px',
@@ -157,6 +166,11 @@ export const xyzVariablesMap = {
 	transform: {
 		type: 'transform',
 		syntax: '<transform-list>',
+		modes: xyzModesAll,
+	},
+	perspective: {
+		type: 'perspective',
+		syntax: '<length>',
 		modes: xyzModesAll,
 	},
 	'translate-x': {
@@ -325,6 +339,15 @@ export const xyzUtilitiesMap = {
 		default: 'calc(1 - var(--xyz-opacity-default))',
 		levels: xyzOpacityLevels,
 		transformer: 'xyz-one-minus-val',
+		modes: xyzModesAll,
+	},
+
+	// Perspectives
+	perspective: {
+		type: 'perspective',
+		vars: ['perspective'],
+		default: 'var(--xyz-perspective-default)',
+		levels: xyzPerspectiveLevels,
 		modes: xyzModesAll,
 	},
 

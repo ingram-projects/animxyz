@@ -105,6 +105,7 @@ export default {
 				{ header: true, title: 'Animations' },
 				'Fade',
 				'Transform',
+				'Perspective',
 				'Origin',
 				'Timing',
 				'Stagger',

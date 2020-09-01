@@ -41,6 +41,8 @@ modifiers:
       types: [rotate]
     - name: Scale
       types: [scale]
+    - name: Perspective
+      types: [perspective]
     - name: Origin
       types: [origin]
     - name: Timing

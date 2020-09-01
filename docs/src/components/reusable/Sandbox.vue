@@ -160,6 +160,7 @@ export default {
 	background: primary-color(900);
 	display: flex;
 	flex-direction: column;
+	padding-bottom: 5rem;
 }
 
 .modifiers-input {
