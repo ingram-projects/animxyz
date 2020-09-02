@@ -74,7 +74,13 @@ $active-border-width: 0.5rem;
 
 		.docs-section__wrap.active & {
 			background-color: white;
-			box-shadow: 0 0 1.5rem primary-color(700, .15);
+			box-shadow: 0 0 1.5rem primary-color(700, 0.15);
+		}
+	}
+
+	@include media('>=x-large') {
+		.docs-section__wrap.active & {
+			border-radius: $br-xl;
 		}
 	}
 }
