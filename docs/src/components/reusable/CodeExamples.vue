@@ -77,7 +77,7 @@ export default {
 	.example-code {
 		font-size: 1.125rem;
 
-		@include media('<laptop') {
+		@include media('<tablet') {
 			font-size: $fs-m;
 		}
 	}

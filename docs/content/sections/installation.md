@@ -3,7 +3,7 @@ title: Installation
 quote: You put it inside the computer!?
 ---
 
-#### Install AnimXYZ via npm
+## Install AnimXYZ via npm
 
 To install AnimXYZ, simply use your favorite package manager.
 
@@ -15,7 +15,7 @@ npm install @animxyz/core
 yarn install @animxyz/core
 ```
 
-#### Add AnimXYZ to your project
+## Add AnimXYZ to your project
 
 After installation, you can import the CSS into your project by putting this snippet anywhere in your javascript code:
 
