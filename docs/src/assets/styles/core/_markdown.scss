@@ -140,14 +140,18 @@
   }
 
   a[href*='tab=examples'] {
-    background-color: transparentize($cyan, 0.75);
     color: primary-color(800);
-    display: inline-block;
+    box-shadow: inset 0 0 0 1px primary-color(300);
+    align-items: center;
+    display: inline-flex;
+    width: fit-content;
     font-size: $fs-m;
     font-family: $font-stack-mono;
-    line-height: 1.5rem;
-    padding: 0 $sp-xxxs;
+    line-height: 2rem;
+    padding: 0 $sp-xxs;
     border-radius: $br-m;
+    margin-right: $sp-xxxs;
+    margin-bottom: $sp-xxs;
     transition: .2s $ease-out;
     transition-property: background-color, color;
 
@@ -155,17 +159,25 @@
       display: inline-block;
       content: '→';
       font-size: $fs-l;
-      margin-left: $sp-xxxs;
+      margin-left: $sp-xxs;
       transition: transform .2s $ease-out-back;
     }
 
     &:hover,
     &:focus {
-      background-color: transparentize($cyan, 0.5);
+      background-color: primary-color(100, 0.75);
+      box-shadow: inset 0 0 0 1px primary-color(500); 
+    }
 
+    &:hover {
       &::after {
         transform: translateX(.5rem);
       }
+    }
+
+    &:active {
+      background-color: primary-color(600);
+      color: primary-color(50);
     }
   }
 }
