@@ -18,19 +18,31 @@
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 			>
 				<nav class="page-nav" v-show="open">
-					<div class="nav-sections__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<ul class="nav-sections" xyz="fade left" style="--xyz-stagger: 0.05s">
+					<div class="nav-list__wrap" v-scroll-lock="$mq.below('tablet') && open">
+						<ul class="nav-list" xyz="fade left" style="--xyz-stagger: 0.05s">
+							<li
+								class="nav-item xyz-in-nested"
+								:style="{ '--xyz-index': 0 }"
+								key="home"
+							>
+								<a class="nav-item__link link-home" href="/">
+									<div class="link-dot__wrap">
+										<span class="link-arrow">←</span>
+									</div>
+									<span class="link-title"> Splash Page</span>
+								</a>
+							</li>
 							<li
 								v-for="(section, index) in sections"
-								class="nav-section__item xyz-in-nested"
+								class="nav-item xyz-in-nested"
 								@click="onSectionClick"
-								:style="{ '--xyz-index': index }"
+								:style="{ '--xyz-index': index + 1 }"
 								:key="section.title"
 							>
-								<h2 class="nav-section__header" v-if="section.header">{{ section.title }}</h2>
+								<h2 class="nav-item__header" v-if="section.header">{{ section.title }}</h2>
 
 								<a
-									class="nav-section__link"
+									class="nav-item__link"
 									:class="{ active: section === activeSection }"
 									v-if="!section.header"
 									:href="`#${section.id}`"
@@ -51,7 +63,7 @@
 						target="_blank"
 					>
 						<icon-github></icon-github>
-						<span>View on GitHub</span>
+						<span>GitHub</span>
 					</a>
 				</nav>
 			</xyz-transition>
@@ -154,7 +166,7 @@ export default {
 	}
 }
 
-.nav-sections__wrap {
+.nav-list__wrap {
 	display: flex;
 	margin-top: 5rem;
 	flex-grow: 1;
@@ -173,7 +185,7 @@ export default {
 	}
 }
 
-.nav-sections {
+.nav-list {
 	width: 100%;
 	margin: auto 0;
 	list-style: none;
@@ -183,7 +195,7 @@ export default {
 	}
 }
 
-.nav-section__header {
+.nav-item__header {
 	color: primary-color(200);
 	font-size: $fs-m;
 	font-family: $font-stack-mono;
@@ -194,12 +206,12 @@ export default {
 	margin-bottom: $sp-xxs;
 }
 
-.nav-section__item {
+.nav-item {
 	font-family: $font-stack-mono;
 	font-size: 1.125rem;
 }
 
-.nav-section__link {
+.nav-item__link {
 	display: flex;
 	align-items: center;
 	height: 2.25rem;
@@ -219,6 +231,10 @@ export default {
 			transition-duration: 0.2s;
 		}
 
+		.link-arrow {
+			transform: translateX(-.5rem);
+		}
+
 		.link-title {
 			transform: translateX($sp-xxs);
 		}
@@ -231,7 +247,6 @@ export default {
 			background-color: $cyan;
 			border-radius: $br-m;
 			transform: none;
-			transition: all 0.25s $ease-out-back;
 		}
 
 		.link-title {
@@ -244,6 +259,10 @@ export default {
 
 .link-title {
 	transition: transform 0.2s $ease-in-out;
+
+	.link-home & {
+		transform: none !important;
+	}
 }
 
 .link-dot__wrap {
@@ -258,6 +277,12 @@ export default {
 	opacity: 0.2;
 	background-color: primary-color(100);
 	transform: rotate(-0.125turn);
+	transition: all 0.25s $ease-in-out;
+}
+
+.link-arrow {
+	font-size: 1.5rem;
+	line-height: 1.25rem;
 	transition: all 0.25s $ease-in-out;
 }
 

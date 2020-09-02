@@ -5,6 +5,21 @@
 		font-size: $fs-m;
 	}
 
+
+  h2 {
+    font-size: 1.125rem;
+  }
+
+  h2, h3, h4, h5 {
+    color: primary-color(800);
+    margin-bottom: .5em;
+    font-weight: 600;
+
+    &:not(:first-child) {
+      margin-top: 1.5em;
+		}
+  }
+
 	p,
 	blockquote,
 	pre[class*='language-'] {
