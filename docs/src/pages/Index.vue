@@ -7,7 +7,7 @@
 
 			<div class="about__wrap">
 				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-					<div class="links__wrap">
+					<div class="links__wrap xyz-none">
 						<a
 							class="cta-button github-link xyz-nested"
 							href="https://github.com/ingram-projects/animxyz"
@@ -35,7 +35,7 @@
 					</xyz-transition>
 
 					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-						<div class="tech-logos__wrap">
+						<div class="tech-logos__wrap xyz-none">
 							<icon-vue class="xyz-nested"></icon-vue>
 							<icon-react class="xyz-nested"></icon-react>
 							<icon-sass class="xyz-nested"></icon-sass>
