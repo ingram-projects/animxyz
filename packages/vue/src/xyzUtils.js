@@ -89,15 +89,17 @@ function getXyzBeforeAnimationHook(mode, duration, hook) {
 			}
 		} else {
 			el.xyzAnimStart = (event) => {
-				if (event.target === el) {
+				if (event.target === el && event.animationName === `xyz-${mode}-keyframes`) {
 					animatingElsSet.add(event.target)
 				}
 			}
 		}
 		el.xyzAnimEnd = (event) => {
-			animatingElsSet.delete(event.target)
-			if (animatingElsSet.size === 0) {
-				xyzAnimDone()
+			if (event.animationName === `xyz-${mode}-keyframes`) {
+				animatingElsSet.delete(event.target)
+				if (animatingElsSet.size === 0) {
+					xyzAnimDone()
+				}
 			}
 		}
 
