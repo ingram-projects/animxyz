@@ -2,12 +2,12 @@
 	<layout>
 		<main class="page-content">
 			<div class="banner__wrap">
-				<banner></banner>
+				<!-- <banner></banner> -->
 			</div>
 
 			<div class="about__wrap">
 				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-					<div class="links__wrap xyz-none">
+					<div class="links__wrap">
 						<a
 							class="cta-button github-link xyz-nested"
 							href="https://github.com/ingram-projects/animxyz"
@@ -35,7 +35,7 @@
 					</xyz-transition>
 
 					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-						<div class="tech-logos__wrap xyz-none">
+						<div class="tech-logos__wrap">
 							<icon-vue class="xyz-nested"></icon-vue>
 							<icon-react class="xyz-nested"></icon-react>
 							<icon-sass class="xyz-nested"></icon-sass>
