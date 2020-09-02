@@ -48,57 +48,72 @@ function getXyzDurationForMode(mode, duration) {
 	return null
 }
 
-function clearXyzProperties(el) {
+function clearXyzElementProperties(el) {
 	clearTimeout(el.xyzAnimTimeout)
-	delete el.xyzAnimTimeout
+	el.removeEventListener('animationstart', el.xyzAnimStart)
+	el.removeEventListener('animationend', el.xyzAnimEnd)
 
-	el.removeEventListener('animationend', el.xyzAnimDone)
 	delete el.xyzAnimDone
+	delete el.xyzAnimTimeout
+	delete el.xyzAnimStart
+	delete el.xyzAnimEnd
 }
 
-function getXyzAnimationActiveHook(duration) {
-	return (el, done) => {
-		clearXyzProperties(el)
+function getXyzBeforeAnimationHook(mode, duration, hook) {
+	const modeDuration = getXyzDurationForMode(mode, duration)
 
-		let mode
-		if (el.classList.contains('xyz-appear')) {
-			mode = 'appear'
-		} else if (el.classList.contains('xyz-in')) {
-			mode = 'in'
-		} else if (el.classList.contains('xyz-out')) {
-			mode = 'out'
+	return (el) => {
+		if (hook) {
+			hook()
 		}
 
-		const modeDuration = getXyzDurationForMode(mode, duration)
+		clearXyzElementProperties(el)
+
+		function xyzAnimDone () {
+			if (el.xyzAnimDone) {
+				el.xyzAnimDone()
+				clearXyzElementProperties(el)
+			}
+		}
 
 		if (typeof modeDuration === 'number') {
-			el.xyzAnimTimeout = setTimeout(done, modeDuration)
-		} else if (modeDuration === 'auto') {
-			const nestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
-			const visibleNestedEls = Array.from(nestedEls).filter((nestedEl) => {
-				return nestedEl.offsetParent !== null
-			})
-
-			const animatingElsSet = new Set([el, ...visibleNestedEls])
-			el.xyzAnimDone = (event) => {
-				animatingElsSet.delete(event.target)
-				if (animatingElsSet.size === 0) {
-					done()
-				}
-			}
-			el.addEventListener('animationend', el.xyzAnimDone, false)
-		} else {
-			el.xyzAnimDone = (event) => {
-				if (event.target === el) {
-					done()
-				}
-			}
-			el.addEventListener('animationend', el.xyzAnimDone, false)
+			el.xyzAnimTimeout = setTimeout(xyzAnimDone, modeDuration)
 		}
+
+		const animatingElsSet = new Set()
+		if (modeDuration === 'auto') {
+			el.xyzAnimStart = (event) => {
+				if (event.animationName === `xyz-${mode}-keyframes`) {
+					animatingElsSet.add(event.target)
+				}
+			}
+		} else {
+			el.xyzAnimStart = (event) => {
+				if (event.target === el) {
+					animatingElsSet.add(event.target)
+				}
+			}
+		}
+		el.xyzAnimEnd = (event) => {
+			animatingElsSet.delete(event.target)
+			if (animatingElsSet.size === 0) {
+				xyzAnimDone()
+			}
+		}
+
+		el.addEventListener('animationstart', el.xyzAnimStart, false)
+		el.addEventListener('animationend', el.xyzAnimEnd, false)
 	}
 }
 
+function xyzAnimationHook(el, done) {
+	el.xyzAnimDone = done
+}
+
 export function getXyzTransitionData(data, customData = {}) {
+	const { appear, duration } = data.attrs || {}
+	const { beforeEnter, beforeLeave, beforeAppear } = data.on || {}
+
 	const attrs = {
 		name: 'xyz',
 		css: true,
@@ -114,12 +129,13 @@ export function getXyzTransitionData(data, customData = {}) {
 		leaveToClass: xyzTransitionClasses.leaveTo,
 	}
 
-	const { duration } = data.attrs || {}
-	const animationActiveHook = getXyzAnimationActiveHook(duration)
-
 	const on = {
-		enter: animationActiveHook,
-		leave: animationActiveHook,
+		enter: xyzAnimationHook,
+		leave: xyzAnimationHook,
+	}
+
+	if (typeof appear !== 'undefined') {
+		on.appear = xyzAnimationHook
 	}
 
 	const mergedData = mergeData(
@@ -136,6 +152,14 @@ export function getXyzTransitionData(data, customData = {}) {
 		},
 		data
 	)
+
+	mergedData.on.beforeEnter = getXyzBeforeAnimationHook('in', duration, beforeEnter)
+	mergedData.on.beforeLeave = getXyzBeforeAnimationHook('out', duration, beforeLeave)
+
+	if (typeof appear !== 'undefined') {
+		mergedData.on.beforeAppear = getXyzBeforeAnimationHook('appear', duration, beforeAppear)
+	}
+
 	delete mergedData.attrs.duration
 
 	return mergedData

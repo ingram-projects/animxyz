@@ -5,9 +5,9 @@ quote: With our powers combined...
 examples:
   - name: Composition
     template: |
-      <xyz-transition duration="auto" xyz v-on="data.listeners">
-        <div class="square-group" v-show="data.toggled">
-          <div class="square xyz-nested" v-xyz="data.utilities" :style="data.variables" v-for="index in 3" :key="index"></div>
+      <xyz-transition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
         </div>
       </xyz-transition>
     code:
@@ -51,7 +51,7 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 [😐 fade up](?tab=examples&utilities=fade,up#composition)
 [🙂 fade flip-up flip-left](?tab=examples&utilities=fade,flip-up,flip-left#composition)
 [😀 fade down-5 turn-cw-50 stagger](?tab=examples&utilities=fade,down-5,turn-cw-50,stagger#composition)
-[😃 fade ](?tab=examples&utilities=fade,down,right#composition)
+[😃 fade front-5 flip-down-50 duration-10 stagger-5](?tab=examples&utilities=fade,front-5,flip-down-50,duration-10,stagger-5#composition)
 [🤪 fade down right](?tab=examples&utilities=fade,down,right#composition)
 
 Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [Modes](#modes) section to learn how to use different utilities for animating in and out.

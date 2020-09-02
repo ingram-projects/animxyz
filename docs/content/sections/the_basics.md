@@ -5,7 +5,7 @@ quote: Time to learn your XYZ's
 examples:
   - name: The Basics
     template: |
-      <xyz-transition xyz="fade down big" v-on="data.listeners">
+      <xyz-transition xyz="fade down big" :duration="1000" v-on="data.listeners">
         <div class="square" v-show="data.toggled"></div>
       </xyz-transition>
     code:
