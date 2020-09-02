@@ -98,5 +98,6 @@ export default {
 	align-items: center;
 	justify-content: center;
 	perspective: 200px;
+	transform-style: preserve-3d;
 }
 </style>
