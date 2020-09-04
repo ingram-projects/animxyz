@@ -118,7 +118,7 @@ $active-border-width: 0.5rem;
 	background-color: primary-color(700, 0.15);
 	margin-left: $sp-xxs;
 	transition: 0.3s $ease-in-out;
-	transition-property: background-color, opacity, transform;
+	transition-property: background-color, opacity, transform, box-shadow;
 
 	svg {
 		--icon-color: #{primary-color(600)};
@@ -143,6 +143,7 @@ $active-border-width: 0.5rem;
 	&:active {
 		background-color: $cyan;
 		transform: scale(1);
+		box-shadow: none;
 
 		svg {
 			--icon-color: #{$white};
@@ -174,7 +175,7 @@ $active-border-width: 0.5rem;
 	font-weight: 500;
 	font-size: $fs-s;
 	transition: 0.3s $ease-out;
-	transition-property: background-color, color;
+	transition-property: background-color, color, box-shadow;
 
 	&::after {
 		display: inline-block;
@@ -183,15 +184,24 @@ $active-border-width: 0.5rem;
 		transition: transform 0.2s $ease-out-back;
 	}
 
-	&:hover,
 	&:focus {
+		box-shadow: 0 0 0 2px $cyan;
 		outline: none;
+	}
+
+	&:hover {
 		background-color: primary-color(300);
 		color: primary-color(800);
 
 		&::after {
 			transform: translateX(0.75rem);
 		}
+	}
+
+	&:active {
+		background-color: primary-color(600);
+		color: primary-color(50);
+		box-shadow: none;
 	}
 
 	@include media('>laptop') {

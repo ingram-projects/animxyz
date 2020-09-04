@@ -140,20 +140,20 @@
   }
 
   a[href*='tab=examples'] {
-    color: primary-color(800);
-    box-shadow: inset 0 0 0 1px primary-color(300);
+    color: primary-color(700);
+    background-color: primary-color(100, 0.75);
     align-items: center;
     display: inline-flex;
     width: fit-content;
     font-size: $fs-m;
     font-family: $font-stack-mono;
-    line-height: 2rem;
+    line-height: 1.5rem;
     padding: 0 $sp-xxs;
     border-radius: $br-m;
     margin-right: $sp-xxxs;
     margin-bottom: $sp-xxs;
     transition: .2s $ease-out;
-    transition-property: background-color, color;
+    transition-property: background-color, color, box-shadow;
 
     &::after {
       display: inline-block;
@@ -163,21 +163,28 @@
       transition: transform .2s $ease-out-back;
     }
 
-    &:hover,
     &:focus {
-      background-color: primary-color(100, 0.75);
-      box-shadow: inset 0 0 0 1px primary-color(500); 
+      box-shadow: 0 0 0 2px $cyan;
+      outline: none;
     }
-
+    
     &:hover {
+      background-color: primary-color(300);
+      color: primary-color(800);
+
       &::after {
-        transform: translateX(.5rem);
+        transform: translateX(.75rem);
       }
     }
 
     &:active {
       background-color: primary-color(600);
       color: primary-color(50);
+      box-shadow: none;
+    }
+
+    &.link--large {
+      line-height: 2rem;
     }
   }
 }
