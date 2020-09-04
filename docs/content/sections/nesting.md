@@ -70,4 +70,8 @@ examples:
           </div>
 ---
 
-To animate a descendant of an element with an AnimXYZ active class, give it an `.xyz-nested` class.
+Elements with an `.xyz-nested` class will trigger an AnimXYZ animation whenever a parent element has an active AnimXYZ class such as `.xyz-in`. It will use the nearest parent element's AnimXYZ properties or any properties set on the `.xyz-nested` element itself.
+
+For example any child element can animate the same as their parent without needing to declare identical AnimXYZ properties on each: [Simple Example](?tab=examples&example=Simple#nesting)
+
+Or the parent just dictates the triggering of the animations while each `.xyz-nested` element has its own unique animations: [Complex Example](?tab=examples&example=Complex#nesting)
