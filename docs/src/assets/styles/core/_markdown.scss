@@ -140,14 +140,13 @@
   }
 
   a[href*='tab=examples'] {
+    align-items: center;
+    line-height: 1.5rem;
+    display: inline-flex;
     color: primary-color(700);
     background-color: primary-color(100, 0.75);
-    align-items: center;
-    display: inline-flex;
-    width: fit-content;
     font-size: $fs-m;
     font-family: $font-stack-mono;
-    line-height: 1.5rem;
     padding: 0 $sp-xxs;
     border-radius: $br-m;
     margin-right: $sp-xxxs;

@@ -164,16 +164,16 @@ $active-border-width: 0.5rem;
 
 .section-examples-button {
 	margin-left: auto;
-	height: 1.75rem;
 	display: flex;
 	align-items: center;
+	height: 1.75rem;
+	color: primary-color(700);
+	background-color: primary-color(100);
+	font-size: $fs-s;
+	font-weight: 500;
+	text-decoration: none;
 	padding: 0 $sp-xxs;
 	border-radius: $br-m;
-	background-color: primary-color(100);
-	color: primary-color(700);
-	text-decoration: none;
-	font-weight: 500;
-	font-size: $fs-s;
 	transition: 0.3s $ease-out;
 	transition-property: background-color, color, box-shadow;
 
