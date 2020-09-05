@@ -48,11 +48,11 @@ modifiers:
 
 AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="left up small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilites are endless! Here are some examples:
 
-[😐 fade up](?tab=examples&utilities=fade,up#composition)
-[🙂 fade flip-up flip-left](?tab=examples&utilities=fade,flip-up,flip-left#composition)
-[😀 fade down-5 turn-cw-50 stagger](?tab=examples&utilities=fade,down-5,turn-cw-50,stagger#composition)
+[😐 fade up](?tab=examples&utilities=fade,up#composition){.link--large}
+[🙂 fade flip-up flip-left](?tab=examples&utilities=fade,flip-up,flip-left#composition){.link--large}
+[😀 fade down-5 turn-cw-50 stagger](?tab=examples&utilities=fade,down-5,turn-cw-50,stagger#composition){.link--large}
 [😃 fade front-5 flip-down-50 duration-10 stagger-5](?tab=examples&utilities=fade,front-5,flip-down-50,duration-10,stagger-5#composition)
-[🤪 fade down right](?tab=examples&utilities=fade,down,right#composition)
+[🤪 fade down right](?tab=examples&utilities=fade,down,right#composition){.link--large}
 
 Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [Modes](#modes) section to learn how to use different utilities for animating in and out.
 
