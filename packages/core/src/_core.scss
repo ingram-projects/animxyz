@@ -60,33 +60,33 @@
     }
 
     // sets delay for root elements
-    %xyz-root-delay {
-      --xyz-root-delay: var(--xyz-computed-delay, 0s);
-      --xyz-active-delay: var(--xyz-computed-delay, 0s);
+    %xyz-root-stagger-delay {
+      --xyz-root-stagger-delay: var(--xyz-stagger-delay, 0s);
+      --xyz-nested-stagger-delay: initial;
     }
 
     // sets delay for nested elements
-    %xyz-nested-delay {
-      --xyz-active-delay: calc(var(--xyz-root-delay, 0s) + var(--xyz-computed-delay, 0s));
+    %xyz-nested-stagger-delay {
+      --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
     }
 
     // all nested elements
     .xyz-nested {
       @extend %xyz-indexed;
-      @extend %xyz-nested-delay;
+      @extend %xyz-nested-stagger-delay;
     }
 
     @each $mode in $xyz-modes {
       // root elements
       .xyz-#{$mode} {
         @extend %xyz-indexed;
-        @extend %xyz-root-delay;
+        @extend %xyz-root-stagger-delay;
       }
 
       // mode nested elements
       .xyz-#{$mode}-nested {
         @extend %xyz-indexed;
-        @extend %xyz-nested-delay;
+        @extend %xyz-nested-stagger-delay;
       }
 
       // all active elements

@@ -177,14 +177,14 @@
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
-  --xyz-computed-delay: calc(#{$delay} + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
+  --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
   transform-origin: #{$origin};
   backface-visibility: visible;
 
   animation:
     #{$duration}
     #{$ease}
-    #{var(--xyz-active-delay, 0s)}
+    calc(#{$delay} + var(--xyz-stagger-delay, 0s))
     #{$iterate}
     #{$direction}
     both;
