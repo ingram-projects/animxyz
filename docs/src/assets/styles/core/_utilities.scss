@@ -1,0 +1,172 @@
+// SPACING -------------------------------------
+
+$spacingSizes: (
+  'xxxs': $sp-xxxs,
+  'xxs': $sp-xxs,
+  'xs': $sp-xs,
+  's': $sp-s,
+  'm': $sp-m,
+  'l': $sp-l,
+  'xl': $sp-xl,
+  'xxl': $sp-xxl,
+  'xxxl': $sp-xxxl,
+  '0': 0
+);
+
+@mixin margins($sizeName, $sizeSize) {
+  .m-#{$sizeName} { margin: $sizeSize !important; }
+  .mt-#{$sizeName} { margin-top: $sizeSize !important; }
+  .mr-#{$sizeName} { margin-right: $sizeSize !important; }
+  .mb-#{$sizeName} { margin-bottom: $sizeSize !important; }
+  .ml-#{$sizeName} { margin-left: $sizeSize !important; }
+  .mh-#{$sizeName} { margin-left: $sizeSize !important; margin-right: $sizeSize !important; }
+  .mv-#{$sizeName} { margin-top: $sizeSize !important; margin-bottom: $sizeSize !important; }
+}
+
+@mixin paddings($sizeName, $sizeSize) {
+  .p-#{$sizeName} { padding: $sizeSize !important; }
+  .pt-#{$sizeName} { padding-top: $sizeSize !important; }
+  .pr-#{$sizeName} { padding-right: $sizeSize !important; }
+  .pb-#{$sizeName} { padding-bottom: $sizeSize !important; }
+  .pl-#{$sizeName} { padding-left: $sizeSize !important; }
+  .ph-#{$sizeName} { padding-left: $sizeSize !important; padding-right: $sizeSize !important; }
+  .pv-#{$sizeName} { padding-top: $sizeSize !important; padding-bottom: $sizeSize !important; }
+}
+
+@include margins('auto', auto);
+
+@each $name, $size in $spacingSizes {
+  @include margins($name, $size);
+  @include paddings($name, $size);
+}
+
+
+// LAYOUT
+
+.h-100 {
+  height: 100% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+
+// TYPOGRAPHY -------------------------------------
+
+.list--no-style {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.text--white {
+  color: white !important;
+}
+
+.text--xs {
+  font-size: $fs-xs !important;
+}
+
+.text--s {
+  font-size: $fs-s !important;
+}
+
+.text--m {
+  font-size: $fs-m !important;
+}
+
+.text--l {
+  font-size: $fs-l !important;
+}
+
+.text--xl {
+  font-size: $fs-xl !important;
+}
+
+.text--xxl {
+  font-size: $fs-xxl !important;
+}
+
+.text--xxxl {
+  font-size: $fs-xxxl !important;
+}
+
+.fw--normal {
+  font-weight: $fw-normal !important;
+}
+
+.fw--medium {
+  font-weight: $fw-medium !important;
+}
+
+.fw--bold {
+  font-weight: $fw-bold !important;
+}
+
+.fw--boldest {
+  font-weight: $fw-boldest !important;
+}
+
+.td--underline {
+  text-decoration: underline !important;
+}
+
+.text--nowrap {
+  white-space: nowrap !important;
+}
+
+
+// POINTER -------------------------------------
+
+.pe-none {
+  pointer-events: none !important;
+}
+
+.c-pointer {
+  cursor: pointer !important;
+}
+
+
+// PERSPECTIVE -------------------------------------
+
+.perspective-1 {
+  perspective: 100px !important;
+}
+
+.perspective-2 {
+  perspective: 200px !important;
+}
+
+.perspective-3 {
+  perspective: 300px !important;
+}
+
+.perspective-4 {
+  perspective: 400px !important;
+}
+
+.perspective-5 {
+  perspective: 500px !important;
+}
+
+.perspective-none {
+  perspective: none !important;
+}
+
+
+// MISC -------------------------------------
+
+.screen-reader-only {
+  @include screen-reader-only;
+}

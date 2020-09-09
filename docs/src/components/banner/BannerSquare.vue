@@ -128,7 +128,6 @@ export default {
 	z-index: 1;
 	display: flex;
 	flex-direction: column;
-	color: primary-color(50);
 	border-radius: $br-l;
 	font-family: $font-stack-mono;
 
@@ -146,5 +145,25 @@ export default {
 	@include media('>=laptop') {
 		font-size: 1.25rem;
 	}
+}
+
+.anim-name {
+	color: $cyan;
+}
+
+.color-axis-x {
+	color: $red;
+}
+
+.color-axis-y {
+	color: $yellow;
+}
+
+.color-axis-z {
+	color: $green;
+}
+
+.color-axis-all {
+	color: primary-color(50);
 }
 </style>

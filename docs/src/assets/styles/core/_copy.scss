@@ -32,6 +32,16 @@
 		font-weight: 640;
 	}
 
+  code:not([class*="language-"]) {
+    color: desaturate(darken(#F92672, 12%), 8%);
+    font-family: $font-stack-mono;
+    font-size: inherit;
+    font-weight: bold;
+    background-color: transparentize(darken(#F92672, 10%), .95);
+    padding: .125em .25em;
+    border-radius: $br-s;
+  }
+
 	pre[class*='language-'] {
 		background: primary-color(900);
 		margin: 0 (-$sp-xxs);
@@ -167,7 +177,7 @@
       box-shadow: 0 0 0 2px $cyan;
       outline: none;
     }
-    
+
     &:hover {
       background-color: primary-color(300);
       color: primary-color(800);

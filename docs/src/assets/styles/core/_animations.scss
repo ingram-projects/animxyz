@@ -1,5 +1,3 @@
-// ANIMXYZ -------------------------------------
-@use 'sass:map';
 @import '@animxyz/core';
 @include xyz-all;
 
@@ -55,7 +53,7 @@ $mode-colors: (
         z-index: 9999;
         $duration: xyz-var('duration', $mode);
         $delay: var(--xyz-active-delay, 0s);
-        --xyz-xray-color: #{map.get($mode-colors, $mode)};
+        --xyz-xray-color: #{map-get($mode-colors, $mode)};
         animation: xyz-xray-mode $duration $ease-out $delay;
       }
     }
