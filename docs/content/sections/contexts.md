@@ -5,9 +5,11 @@ quote: The div doesn't fall far from the tree
 examples:
   - name: Simple
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
-      </xyz-transition-group>
+      <div class="example-wrap">
+        <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
+        </xyz-transition-group>
+      </div>
     code:
       - language: html
         content: |
@@ -18,11 +20,13 @@ examples:
           </div>
   - name: Override
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :key="1"></div>
-        <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
-        <div class="square" v-show="data.toggled" :key="3"></div>
-      </xyz-transition-group>
+      <div class="example-wrap">
+        <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" :key="1"></div>
+          <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
+          <div class="square" v-show="data.toggled" :key="3"></div>
+        </xyz-transition-group>
+      </div>
     code:
       - language: html
         content: |
@@ -33,11 +37,13 @@ examples:
           </div>
   - name: Inherit
     template: |
-      <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :key="1"></div>
-        <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
-        <div class="square" v-show="data.toggled" :key="3"></div>
-      </xyz-transition-group>
+      <div class="example-wrap">
+        <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
+          <div class="square" v-show="data.toggled" :key="1"></div>
+          <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
+          <div class="square" v-show="data.toggled" :key="3"></div>
+        </xyz-transition-group>
+      </div>
     code:
       - language: html
         content: |
