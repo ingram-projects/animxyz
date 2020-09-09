@@ -35,6 +35,6 @@ For example here is how you would make an element fade and shrink from above:
 <div class="xyz-in" xyz="fade up big">I will animate!</div>
 ```
 
-[See it in action!](?tab=examples&example=Example 1#the-basics)
+[See it in action!](?tab=examples&example=Example%201#the-basics)
 
 For simple animations, that's all you need, but AnimXYZ can do so much more! Keep on reading to see how much more you can do with it.
