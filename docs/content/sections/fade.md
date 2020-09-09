@@ -5,9 +5,11 @@ quote: Beam me up Scotty!
 examples:
   - name: Fade
     template: |
-      <xyz-transition v-xyz="data.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.variables"></div>
-      </xyz-transition>
+      <div class="example-wrap">
+        <xyz-transition v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+          <div class="square" v-show="data.toggled"></div>
+        </xyz-transition>
+      </div>
     code:
       - language: html
         content: |

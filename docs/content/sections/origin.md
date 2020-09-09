@@ -5,9 +5,11 @@ quote: You spin my bottom-right round, baby.
 examples:
   - name: Origin
     template: |
-      <xyz-transition xyz="fade small-100" v-xyz="data.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.variables"></div>
-      </xyz-transition>
+      <div class="example-wrap">
+        <xyz-transition xyz="fade small-100" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+          <div class="square" v-show="data.toggled"></div>
+        </xyz-transition>
+      </div>
     code:
       - language: html
         content: |

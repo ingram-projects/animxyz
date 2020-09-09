@@ -31,12 +31,28 @@ const translateZClasses = xyzUtilities.filter((xyzUtility) => {
 	return xyzUtility.type === 'translate' && xyzUtility.axis === 'z'
 })
 
-const scaleClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'scale' && xyzUtility.axis !== 'z'
+const scaleXClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'scale' && xyzUtility.axis === 'x'
 })
 
-const rotateClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'rotate'
+const scaleYClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'scale' && xyzUtility.axis === 'y'
+})
+
+const scaleAllClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'scale' && xyzUtility.axis === 'all'
+})
+
+const rotateXClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'rotate' && xyzUtility.axis === 'x'
+})
+
+const rotateYClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'rotate' && xyzUtility.axis === 'y'
+})
+
+const rotateZClasses = xyzUtilities.filter((xyzUtility) => {
+	return xyzUtility.type === 'rotate' && xyzUtility.axis === 'z'
 })
 
 export default {
@@ -74,8 +90,12 @@ export default {
 				randomArrayItem(translateXClasses),
 				randomArrayItem(translateYClasses),
 				randomArrayItem(translateZClasses),
-				randomArrayItem(scaleClasses),
-				randomArrayItem(rotateClasses),
+				randomArrayItem(scaleXClasses),
+				randomArrayItem(scaleYClasses),
+				randomArrayItem(scaleAllClasses),
+				randomArrayItem(rotateXClasses),
+				randomArrayItem(rotateYClasses),
+				randomArrayItem(rotateZClasses),
 			]
 
 			for (let i = 0; i < this.numXyzClasses; i++) {

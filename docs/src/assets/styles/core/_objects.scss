@@ -7,6 +7,13 @@
   transition-property: fill, stroke;
 }
 
+
+// EXAMPLES -------------------------------------
+
+.example-wrap {
+  perspective: 200px;
+}
+
 .square {
 	@include size(5rem);
 	background-color: $cyan;

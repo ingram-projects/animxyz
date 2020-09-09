@@ -22,7 +22,12 @@
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">Back to docs</a>
 				<xyz-transition appear xyz="fade" mode="out-in">
-					<sandbox v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')" v-bind="sandboxProps" v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'" :key="activeSection.id"></sandbox>
+					<sandbox
+						v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')"
+						v-bind="sandboxProps"
+						v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
+						:key="activeSection.id"
+					></sandbox>
 					<div class="no-examples" v-if="!hasSandbox" key="no-example">
 						<icon-sandbox></icon-sandbox>
 						There are no examples<br />for this section.
@@ -95,21 +100,22 @@ export default {
 				{ header: true, title: 'Getting Started' },
 				'Installation',
 				'The Basics',
-				{ header: true, title: 'Core Concepts' },
+				'How it Works',
+				{ header: true, title: 'Composing Animations' },
 				'Contexts',
-				'Modes',
 				'Composition',
 				'Variables',
+				{ header: true, title: 'Triggering Animations' },
+				'Modes',
 				'Nesting',
-				'How it Works',
-				{ header: true, title: 'Animations' },
+				{ header: true, title: 'Animation Utilities' },
 				'Fade',
 				'Transform',
 				'Perspective',
 				'Origin',
 				'Timing',
 				'Stagger',
-				{ header: true, title: 'Customizations' },
+				{ header: true, title: 'Customizing AnimXYZ' },
 				'Defaults',
 				'Utilities',
 				'Keyframes',

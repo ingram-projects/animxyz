@@ -1,10 +1,6 @@
 <template>
 	<div class="code-examples">
-		<tab-bar
-			:tabs="examples"
-			v-if="examples.length > 1"
-			v-model="activeExample"
-		></tab-bar>
+		<tab-bar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
 
 		<xyz-transition xyz="fade" mode="out-in">
 			<div class="examples-sections" v-if="activeExample" :key="activeExample.name">
@@ -97,6 +93,5 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	perspective: 200px;
 }
 </style>

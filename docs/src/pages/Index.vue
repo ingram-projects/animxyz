@@ -2,7 +2,7 @@
 	<layout>
 		<main class="page-content">
 			<div class="banner__wrap">
-				<!-- <banner></banner> -->
+				<banner></banner>
 			</div>
 
 			<div class="about__wrap">
