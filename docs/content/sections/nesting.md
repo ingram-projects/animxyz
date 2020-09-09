@@ -23,10 +23,10 @@ examples:
     template: |
       <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
         <div class="square-block" v-show="data.toggled">
-          <div class="square xyz-nested" xyz="up left turn-cw"></div>
-          <div class="square xyz-nested" xyz="up right turn-cw"></div>
-          <div class="square xyz-nested" xyz="down left turn-cw"></div>
-          <div class="square xyz-nested" xyz="down right turn-cw"></div>
+          <div class="square xyz-nested" xyz="fade up left turn-cw"></div>
+          <div class="square xyz-nested" xyz="fade up right turn-cw"></div>
+          <div class="square xyz-nested" xyz="fade down left turn-cw"></div>
+          <div class="square xyz-nested" xyz="fade down right turn-cw"></div>
         </div>
       </xyz-transition>
     code:
@@ -70,8 +70,8 @@ examples:
           </div>
 ---
 
-Elements with an `.xyz-nested` class will trigger an AnimXYZ animation whenever a parent element has an active AnimXYZ class such as `.xyz-in`. It will use the nearest parent element's AnimXYZ properties or any properties set on the `.xyz-nested` element itself.
-
-For example any child element can animate the same as their parent without needing to declare identical AnimXYZ properties on each: [Simple Example](?tab=examples&example=Simple#nesting)
+Elements with an `.xyz-nested` class will inherit the active [XYZ mode](/modes) of the nearest parent with an XYZ trigger class such as `.xyz-in` and `.xyz-out`: [Simple Example](?tab=examples&example=Simple#nesting)
 
 Or the parent just dictates the triggering of the animations while each `.xyz-nested` element has its own unique animations: [Complex Example](?tab=examples&example=Complex#nesting)
+
+If a parent XYZ element is staggered, then the `.xyz-nested` elements will animate once the parent animation begins: [Stagger Example](?tab=examples&example=Stagger#nesting)

@@ -1,6 +1,6 @@
 ---
 title: Perspective
-quote: TBD
+quote: From a certain point of view.
 
 examples:
   - name: Perspective
@@ -28,4 +28,4 @@ modifiers:
 
 ---
 
-This is the perspective section
+To take full advantage of CSS 3D animations, you need to set a perspective on an animating item or its parent, for example by adding `perspective: 400px`. However if you want to set perspective only during an XYZ animation you can use a perspective XYZ utility.

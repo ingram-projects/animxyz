@@ -65,22 +65,28 @@ $active-border-width: 0.5rem;
 	width: 100%;
 	padding: $sp-m;
 	margin: auto;
-	transition: 1s $ease-out;
-	transition-property: background-color, box-shadow;
+	box-shadow: 0 0 0 primary-color(700, 0);
+	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
 
 	@include media('>=laptop') {
 		padding: $sp-xl;
 
 		.docs-section__wrap.active & {
 			background-color: white;
-			box-shadow: 0 0 1.5rem primary-color(700, 0.15);
+			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		}
 	}
 
 	@include media('>=x-large') {
-		.docs-section__wrap.active & {
-			border-radius: $br-xl;
-		}
+		border-radius: $br-xl;
+	}
+
+	@include media('<large') {
+		border-radius: $br-xl;
+	}
+
+	@include media('<desktop') {
+		border-radius: 0;
 	}
 }
 
