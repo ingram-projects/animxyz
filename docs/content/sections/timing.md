@@ -5,8 +5,8 @@ quote: How did it get so late so soon?
 examples:
   - name: Timing
     template: |
-      <xyz-transition xyz="fade turn-cw-50" v-xyz="data.utilities" v-on="data.listeners">
-        <div class="square" v-show="data.toggled" :style="data.variables"></div>
+      <xyz-transition xyz="fade turn-cw-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <div class="square" v-show="data.toggled"></div>
       </xyz-transition>
     code:
       - language: html

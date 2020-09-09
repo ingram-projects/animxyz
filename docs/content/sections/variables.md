@@ -5,7 +5,7 @@ quote: '--xyz-gigawatts: 1.21'
 examples:
   - name: Variables
     template: |
-      <xyz-transition duration="auto" :style="data.variables" v-on="data.listeners">
+      <xyz-transition duration="auto" xyz :style="data.variables" v-on="data.listeners">
         <div class="square-group xyz-none" v-show="data.toggled">
           <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
         </div>
