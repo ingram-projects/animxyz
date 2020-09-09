@@ -6,9 +6,13 @@ examples:
   - name: Simple
     template: |
       <div class="example-wrap">
-        <xyz-transition-group tag="div" class="square-group" xyz="fade turn-cw" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" v-for="index in 3" :key="index"></div>
-        </xyz-transition-group>
+        <div class="example-wrap">
+          <xyz-transition duration="auto" xyz="fade turn-cw" v-on="data.listeners">
+            <div class="square-group xyz-none" v-show="data.toggled">
+              <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+            </div>
+          </xyz-transition>
+        </div>
       </div>
     code:
       - language: html
@@ -21,12 +25,13 @@ examples:
   - name: Override
     template: |
       <div class="example-wrap">
-        <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" :key="1"></div>
-          <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
-          <div class="square" v-show="data.toggled" :key="3"></div>
-        </xyz-transition-group>
-      </div>
+        <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
+          <div class="square-group xyz-none" v-show="data.toggled">
+            <div class="square xyz-nested" :key="1"></div>
+            <div class="square xyz-nested" xyz="fade big" :key="2"></div>
+            <div class="square xyz-nested" :key="3"></div>
+          </div>
+        </xyz-transition>
     code:
       - language: html
         content: |
@@ -38,18 +43,20 @@ examples:
   - name: Inherit
     template: |
       <div class="example-wrap">
-        <xyz-transition-group tag="div" class="square-group" xyz="fade small" v-on="data.listeners">
-          <div class="square" v-show="data.toggled" :key="1"></div>
-          <div class="square" xyz="fade big" v-show="data.toggled" :key="2"></div>
-          <div class="square" v-show="data.toggled" :key="3"></div>
-        </xyz-transition-group>
+        <xyz-transition duration="auto" xyz="fade up turn-cw duration-10 ease-out-back stagger" v-on="data.listeners">
+          <div class="square-group xyz-none" v-show="data.toggled">
+            <div class="square xyz-nested" :key="1"></div>
+            <div class="square xyz-nested" xyz="inherit turn-cw-0 turn-ccw" :key="2"></div>
+            <div class="square xyz-nested" :key="3"></div>
+          </div>
+        </xyz-transition>
       </div>
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade small">
+          <div class="square-group" xyz="fade up turn-cw duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>
-            <div class="square ${data.mode}" xyz="fade big"></div>
+            <div class="square ${data.mode}" xyz="inherit turn-cw-0 turn-ccw"></div>
             <div class="square ${data.mode}"></div>
           </div>
 ---
