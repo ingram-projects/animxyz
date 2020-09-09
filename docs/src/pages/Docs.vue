@@ -83,6 +83,7 @@ import DocsSection from '~/components/docsSection/DocsSection'
 import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import PageNav from '~/components/reusable/PageNav'
 import Sandbox from '~/components/reusable/Sandbox'
+import { textToId } from '~/utils'
 
 export default {
 	components: {
@@ -140,11 +141,7 @@ export default {
 				const section = sectionsObj[sectionDefinition]
 				return {
 					...section,
-					id: section.title
-						.trim()
-						.toLowerCase()
-						.replace(/\s/g, '-')
-						.replace(/[^\w-]/g, ''),
+					id: textToId(section.title),
 				}
 			})
 		},
