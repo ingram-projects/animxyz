@@ -25,7 +25,6 @@ import ScrollLock from '~/directives/ScrollLock'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { router }) {
-	console.log(process.env.NODE_ENV)
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
 		breakpoints: {
@@ -45,22 +44,26 @@ export default function (Vue, { router }) {
 
 	Vue.directive('ScrollLock', ScrollLock)
 
-	router.options.scrollBehavior = function(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    }
-    if (to.hash) {
-      return { selector: to.hash }
-    }
+	router.options.scrollBehavior = function (to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		}
+		if (to.hash) {
+			return { selector: to.hash }
+		}
 		if (to.path !== from.path) {
-    	return { x: 0, y: 0 }
+			return { x: 0, y: 0 }
 		}
 		return null
-  }
+	}
 
 	if (process.env.NODE_ENV === 'production') {
-		Vue.use(VueGtag, {
-			config: { id: 'UA-177625453-1' },
-		}, router)
+		Vue.use(
+			VueGtag,
+			{
+				config: { id: 'UA-177625453-1' },
+			},
+			router
+		)
 	}
 }
