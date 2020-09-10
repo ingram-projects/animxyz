@@ -1,12 +1,6 @@
 @import '@animxyz/core';
 @include xyz-all;
 
-$mode-colors: (
-  'in': transparentize($green, 0.25),
-  'out': transparentize($red, 0.25),
-  'appear': transparentize($yellow, 0.25),
-);
-
 @keyframes xray-scan {
   0% {
     right: 0;
@@ -25,43 +19,30 @@ $mode-colors: (
   }
 }
 
-@keyframes xyz-xray-mode {
-  0% {
-    background-color: transparent;
+@keyframes xyz-xray-in {
+  0%, 33% {
+    background-color: $green;
   }
-  25%, 75% {
-    background-color: var(--xyz-xray-color);
+}
+
+@keyframes xyz-xray-out {
+  0%, 33% {
+    background-color: $red;
   }
-  100% {
-    background-color: transparent;
+}
+
+@keyframes xyz-xray-appear {
+  0%, 33% {
+    background-color: $yellow;
   }
 }
 
 .xyz-xray {
-  @each $mode in $xyz-modes {
-    .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-      position: relative;
-
-      &:not(:hover)::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        --xyz-xray-color: #{map-get($mode-colors, $mode)};
-
-        $duration: xyz-var('duration', $mode);
-        $delay: xyz-var('delay', $mode);
-        animation: xyz-xray-mode #{$duration} #{$ease-out} calc(#{$delay} + var(--xyz-stagger-delay, 0s));
-      }
-    }
-  }
-
   [xyz] {
     position: relative;
+    --xyz-in-keyframes: xyz-xray-in;
+    --xyz-out-keyframes: xyz-xray-out;
+    --xyz-appear-keyframes: xyz-xray-appear;
 
     &:hover {
       box-shadow: inset 0 0 0 3px $cyan;
