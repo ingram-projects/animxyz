@@ -103,7 +103,8 @@ export default {
 	bottom: 0;
 	pointer-events: none;
 	z-index: 99999;
-	--xyz-keyframes: xray-scan;
+	--xyz-in-keyframes: xray-scan;
+	--xyz-out-keyframes: xray-scan;
 
 	&::after {
 		display: none !important;
