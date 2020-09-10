@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@animxyz/vue": "^0.0.22",
-    "body-scroll-lock": "^3.0.3",
+    "body-scroll-lock": "^3.1.3",
     "gridsome": "^0.7.20",
     "lodash": "^4.17.20",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.1",
     "query-string": "^6.13.1",
     "ress": "^3.0.0",
     "typeface-inconsolata": "^0.0.72",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@gridsome/remark-prismjs": "^0.4.0",
     "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.1",
+    "@gridsome/transformer-remark": "^0.6.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^6.2.2",
@@ -37,6 +37,6 @@
     "include-media": "^1.4.9",
     "remark-attr": "^0.11.1",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.3"
+    "sass-loader": "^10.0.2"
   }
 }
