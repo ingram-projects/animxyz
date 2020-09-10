@@ -52,6 +52,7 @@ function clearXyzElementProperties(el) {
 	clearTimeout(el.xyzAnimTimeout)
 	el.removeEventListener('animationstart', el.xyzAnimStart)
 	el.removeEventListener('animationend', el.xyzAnimEnd)
+	el.removeEventListener('animationcancelled', el.xyzAnimEnd)
 
 	delete el.xyzAnimTimeout
 	delete el.xyzAnimStart
@@ -64,7 +65,7 @@ function getXyzAnimationHook(mode, duration) {
 	return (el, done) => {
 		clearXyzElementProperties(el)
 
-		function xyzAnimDone () {
+		function xyzAnimDone() {
 			done()
 			clearXyzElementProperties(el)
 		}
@@ -101,6 +102,7 @@ function getXyzAnimationHook(mode, duration) {
 
 		el.addEventListener('animationstart', el.xyzAnimStart, false)
 		el.addEventListener('animationend', el.xyzAnimEnd, false)
+		el.addEventListener('animationcancelled', el.xyzAnimEnd, false)
 	}
 }
 
@@ -126,7 +128,6 @@ export function getXyzTransitionData(data, customData = {}) {
 		enter: getXyzAnimationHook('in', duration),
 		leave: getXyzAnimationHook('out', duration),
 	}
-
 	if (typeof appear !== 'undefined') {
 		on.appear = getXyzAnimationHook('appear', duration)
 	}
