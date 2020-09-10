@@ -51,10 +51,11 @@ $mode-colors: (
         left: 0;
         pointer-events: none;
         z-index: 9999;
-        $duration: xyz-var('duration', $mode);
-        $delay: var(--xyz-active-delay, 0s);
         --xyz-xray-color: #{map-get($mode-colors, $mode)};
-        animation: xyz-xray-mode $duration $ease-out $delay;
+
+        $duration: xyz-var('duration', $mode);
+        $delay: xyz-var('delay', $mode);
+        animation: xyz-xray-mode #{$duration} #{$ease-out} calc(#{$delay} + var(--xyz-stagger-delay, 0s));
       }
     }
   }
@@ -83,6 +84,10 @@ $mode-colors: (
         pointer-events: none;
       }
     }
+  }
+
+  [xyz='']:hover::after {
+    padding: 0;
   }
 }
 
