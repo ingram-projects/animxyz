@@ -14,6 +14,7 @@ import 'prismjs'
 
 // Plugins
 import VueAnimXyz from '@animxyz/vue'
+import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 
@@ -24,6 +25,7 @@ import ScrollLock from '~/directives/ScrollLock'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { router }) {
+	console.log(process.env.NODE_ENV)
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
 		breakpoints: {
@@ -55,4 +57,10 @@ export default function (Vue, { router }) {
 		}
 		return null
   }
+
+	if (process.env.NODE_ENV === 'production') {
+		Vue.use(VueGtag, {
+			config: { id: 'UA-177625453-1' },
+		}, router)
+	}
 }

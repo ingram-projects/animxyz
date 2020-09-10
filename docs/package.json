@@ -20,6 +20,7 @@
     "typeface-inter": "^3.15.0",
     "vue-client-only": "^2.0.0",
     "vue-focus-lock": "^1.4.0",
+    "vue-gtag": "^1.9.1",
     "vue-observe-visibility": "^0.4.6",
     "vue-prism-component": "^1.2.0"
   },
