@@ -64,8 +64,9 @@ $active-border-width: 0.5rem;
 	max-width: 48rem;
 	width: 100%;
 	padding: $sp-m;
-	margin: auto;
+	border-radius: $br-xl;
 	box-shadow: 0 0 0 primary-color(700, 0);
+	margin: auto;
 	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
 
 	@include media('>=laptop') {
@@ -77,8 +78,8 @@ $active-border-width: 0.5rem;
 		}
 	}
 
-	@include media('>=x-large') {
-		border-radius: $br-xl;
+	@include media('<=x-large') {
+		border-radius: 0;
 	}
 
 	@include media('<large') {
