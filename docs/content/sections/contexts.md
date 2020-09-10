@@ -32,6 +32,7 @@ examples:
             <div class="square xyz-nested" :key="3"></div>
           </div>
         </xyz-transition>
+      </div>
     code:
       - language: html
         content: |
