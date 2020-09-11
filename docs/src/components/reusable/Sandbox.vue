@@ -64,6 +64,8 @@ export default {
 					beforeLeave: this.beforeAnim,
 					afterEnter: this.afterAnim,
 					afterLeave: this.afterAnim,
+					enterCancelled: this.animCancelled,
+					leaveCancelled: this.animCancelled,
 				},
 			}
 		},
@@ -113,6 +115,9 @@ export default {
 					this.toggleExample(!this.exampleToggled)
 				}, this.toggleInterval)
 			}
+		},
+		animCancelled() {
+			this.toggleExample(!this.exampleToggled)
 		},
 		onExampleChanged() {
 			clearTimeout(this.toggleTimeout)
