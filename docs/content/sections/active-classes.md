@@ -1,5 +1,5 @@
 ---
-title: Modes
+title: Active Classes
 quote: Element goes in, element goes out, you can't explain that.
 ---
 

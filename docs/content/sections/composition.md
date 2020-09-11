@@ -56,6 +56,6 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 [😃 fade front-5 flip-down-50 duration-10 stagger-5](?tab=examples&utilities=fade,front-5,flip-down-50,duration-10,stagger-5#composition){.link--large}
 [🤪 fade up-100 flip-down flip-right-50 turn-ccw-100 origin-bottom duration-10 stagger](?tab=examples&utilities=fade,up-100,flip-down,flip-right-50,turn-ccw-100,origin-bottom,duration-10,stagger#composition){.link--large}
 
-Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [Modes](#modes) section to learn how to use different utilities for animating in and out.
+Certain utilities won't work with other utilities if they are both changing the same property. For example `xyz="up down"` will not work because both `up` and `down` are changing the `--xyz-translate-y` variable. Check out the [active classes](#active-classes) section to learn how to use different utilities for animating in and out.
 
 You can also combine a utility and a custom value on an animation variable. For example `xyz="fade tall" style="--xyz-rotate: 33deg"` will make an element fade, change height, and rotate in and out.
