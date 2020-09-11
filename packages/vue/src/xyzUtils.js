@@ -50,12 +50,10 @@ function getXyzDurationForMode(mode, duration) {
 
 function clearXyzElementProperties(el) {
 	clearTimeout(el.xyzAnimTimeout)
-	el.removeEventListener('animationstart', el.xyzAnimStart)
 	el.removeEventListener('animationend', el.xyzAnimEnd)
 	el.removeEventListener('animationcancelled', el.xyzAnimEnd)
 
 	delete el.xyzAnimTimeout
-	delete el.xyzAnimStart
 	delete el.xyzAnimEnd
 }
 
@@ -75,32 +73,36 @@ function getXyzAnimationHook(mode, duration) {
 			return
 		}
 
-		const xyzAnimEls = new Set()
+		const xyzModeKeyframes = `xyz-${mode}-keyframes`
+		const xyzEls = [el]
 
 		if (modeDuration === 'auto') {
-			el.xyzAnimStart = (event) => {
-				if (event.animationName === `xyz-${mode}-keyframes`) {
-					xyzAnimEls.add(event.target)
-				}
-			}
-		} else {
-			el.xyzAnimStart = (event) => {
-				if (event.target === el && event.animationName === `xyz-${mode}-keyframes`) {
-					xyzAnimEls.add(event.target)
-				}
-			}
+			const xyzNestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
+			xyzEls.push(...Array.from(xyzNestedEls))
 		}
 
+		const xyzActiveEls = xyzEls.filter((xyzEl) => {
+			// If element is invisible
+			if (xyzEl.offsetParent === null) return false
+
+			// If element isn't animating
+			const animationName = window.getComputedStyle(xyzEl).getPropertyValue('animation-name')
+			if (animationName.indexOf(xyzModeKeyframes) === -1) return false
+
+			return true
+		})
+
+		const xyzActiveElsSet = new Set(xyzActiveEls)
+
 		el.xyzAnimEnd = (event) => {
-			if (event.animationName === `xyz-${mode}-keyframes`) {
-				xyzAnimEls.delete(event.target)
-				if (xyzAnimEls.size === 0) {
+			if (event.animationName === xyzModeKeyframes) {
+				xyzActiveElsSet.delete(event.target)
+				if (xyzActiveElsSet.size === 0) {
 					xyzAnimDone()
 				}
 			}
 		}
 
-		el.addEventListener('animationstart', el.xyzAnimStart, false)
 		el.addEventListener('animationend', el.xyzAnimEnd, false)
 		el.addEventListener('animationcancelled', el.xyzAnimEnd, false)
 	}
