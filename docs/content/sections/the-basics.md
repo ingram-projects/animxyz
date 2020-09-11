@@ -27,7 +27,7 @@ examples:
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
 ---
 
-To animate an element with AnimXYZ, give it an `xyz` attribute describing the animation you want (with our provided [utilities](#utilities) or [variables](#variables)), as well as an AnimXYZ active class such as `.xyz-in` or `.xyz-out` to trigger the animation.
+The two core concepts of AnimXYZ are defining the properties of an animation, and triggering an animation with a direction. Animation properties are set with an `xyz` attribute and [utility values](#utilities), or with [variables](#variables). Animations are triggered with [active classes](#active-classes) such as `.xyz-in` or `.xyz-out`.
 
 For example here is how you would make an element fade and shrink from above:
 
