@@ -48,7 +48,7 @@ modifiers:
       types: [stagger]
 ---
 
-AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="left up small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilites are endless! Here are just a few of the many combinations you can do:
+AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="left up small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilities are endless! Here are just a few of the many combinations you can do:
 
 [😐 fade up](?tab=examples&utilities=fade,up#composition){.link--large}  
 [🙂 fade flip-up flip-left](?tab=examples&utilities=fade,flip-up,flip-left#composition){.link--large}  
