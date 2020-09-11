@@ -35,7 +35,7 @@ AnimXYZ animations are defined with an `xyz` attribute and [utility values](#uti
 
 Animations are triggered with [active classes](#active-classes) such as `.xyz-in` or `.xyz-out`. These also determine the direction of the animation to or from the defined values.
 
-For example here is how you would make an element fade and shrink from above:
+Here is how you would make an element fade and shrink from above:
 
 ```html
 <div class="xyz-in" xyz="fade up big">I will animate!</div>
