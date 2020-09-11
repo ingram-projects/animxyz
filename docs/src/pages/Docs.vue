@@ -107,7 +107,7 @@ export default {
 				'Composition',
 				'Variables',
 				{ header: true, title: 'Triggering Animations' },
-				'Modes',
+				'Active Classes',
 				'Nesting',
 				{ header: true, title: 'Animation Utilities' },
 				'Fade',

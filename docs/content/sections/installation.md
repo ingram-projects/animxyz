@@ -1,6 +1,6 @@
 ---
 title: Installation
-quote: You put it inside the computer!?
+quote: 
 ---
 
 ## Install AnimXYZ via npm
