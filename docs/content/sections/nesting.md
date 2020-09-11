@@ -78,6 +78,6 @@ examples:
 
 Elements with an `.xyz-nested` class will inherit the active [XYZ mode](/modes) of the nearest parent with an XYZ trigger class such as `.xyz-in` and `.xyz-out`: [Simple Example](?tab=examples&example=Simple#nesting)
 
-Or the parent just dictates the triggering of the animations while each `.xyz-nested` element has its own unique animations: [Complex Example](?tab=examples&example=Complex#nesting)
+Each `.xyz-nested` element can have its own unique XYZ properties: [Complex Example](?tab=examples&example=Complex#nesting)
 
-If a parent XYZ element is staggered, then the `.xyz-nested` elements will animate once the parent animation begins: [Staggered Example](?tab=examples&example=Staggered#nesting)
+If a parent element has an `xyz="stagger"`, then the `.xyz-nested` elements will animate once the parent animation begins: [Staggered Example](?tab=examples&example=Staggered#nesting)
