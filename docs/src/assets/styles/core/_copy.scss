@@ -22,7 +22,8 @@
 
 	p,
 	blockquote,
-	pre[class*='language-'] {
+  pre[class*='language-'],
+  .note {
 		&:not(:last-child) {
 			margin-bottom: 1.25rem;
 		}
@@ -197,4 +198,60 @@
       padding: $sp-xxxs $sp-xxs;
     }
   }
+}
+
+.note {
+  position: relative;
+  background-color: primary-color(600, 0.05);
+  border-left: 8px solid primary-color(500);
+  padding: $sp-s;
+  border-radius: $br-m;
+  font-size: $fs-m;
+}
+
+.note-tag__wrap {
+  position: absolute;
+  top: -.75rem;
+  right: 1rem;
+  display: flex;
+  grid-gap: $sp-xxs;
+}
+
+.note-tag {
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: $fs-s;
+  font-weight: 600;
+  padding: 0 $sp-xxs;
+  border-radius: $br-m;
+  background-size: 1rem;
+  background-position: left center;
+}
+
+.note--vue {
+  border-color: #41B883;
+}
+
+.note-tag--vue {
+  background-image: url('../../icons/IconVue.svg');
+  background-color: #41B883;
+}
+
+.note--react {
+  border-color: #61DAFB;
+}
+
+.note-tag--react {
+  color: #282c34;
+  background-color: #61DAFB;
+}
+
+.note--sass {
+  border-color: #CD6799;
+}
+
+.note-tag--sass {
+  background-color: #CD6799;
 }
