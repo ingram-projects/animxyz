@@ -25,4 +25,6 @@ import '@animxyz/core'
 
 That's all there is to it! You are now ready to make your website move.
 
-> If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue) and [React](#react).
+::: note [Vue,React]
+If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue) and [React](#react).
+:::
