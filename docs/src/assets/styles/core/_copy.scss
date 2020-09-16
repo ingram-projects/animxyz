@@ -21,7 +21,6 @@
   }
 
 	p,
-	blockquote,
   pre[class*='language-'],
   .note {
 		&:not(:last-child) {
@@ -48,18 +47,6 @@
 		margin: 0 (-$sp-xxs);
     border-radius: $br-l;
     font-size: inherit;
-	}
-
-	blockquote {
-		background-color: primary-color(600, 0.05);
-		border-left: 8px solid primary-color(500);
-		padding: $sp-s;
-		border-radius: $br-m;
-		font-size: $fs-m;
-
-		pre[class*='language-'] {
-			margin: 0;
-		}
 	}
 
 	table {
@@ -207,6 +194,10 @@
   padding: $sp-s;
   border-radius: $br-m;
   font-size: $fs-m;
+
+  pre[class*='language-'] {
+    margin: 0;
+  }
 }
 
 .note-tag__wrap {
