@@ -36,6 +36,7 @@
     "http-server": "^0.12.3",
     "include-media": "^1.4.9",
     "remark-attr": "^0.11.1",
+    "remark-containers": "^1.2.0",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2"
   }

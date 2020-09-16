@@ -45,10 +45,49 @@ module.exports = {
 	transformers: {
 		remark: {
 			plugins: [
-				['remark-attr', {
-					extend: { '*': ['xyz'] }
-				}],
 				'@gridsome/remark-prismjs',
+				[
+					'remark-attr',
+					{
+						extend: { '*': ['xyz'] },
+					},
+				],
+				[
+					'remark-containers',
+					{
+						default: true,
+						custom: [
+							{
+								type: 'note',
+								transform(node, config) {
+									let classes = ['note']
+
+									const tagsMatch = config.match(/\[(.*?)\]/)
+									if (tagsMatch) {
+										const tagsArray = tagsMatch[1].split(',')
+										if (tagsArray.length) {
+											if (tagsArray.length === 1) {
+												classes.push(`note--${tagsArray[0]}`)
+											}
+											node.children.unshift({
+												type: 'html',
+												value: `
+												<div class="note-tag__wrap">
+													${tagsArray.map((tag) => `<div class="note-tag note-tag--${tag}">${tag}</div>`).join('')}
+												</div>
+											`,
+											})
+										}
+									}
+
+									node.data.hProperties = {
+										className: classes.join(' '),
+									}
+								},
+							},
+						],
+					},
+				],
 			],
 		},
 	},
