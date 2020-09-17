@@ -76,7 +76,7 @@ examples:
           </div>
 ---
 
-When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#Vue) and [React](#React) plugins, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
+When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#vue) and [React](#react) plugins, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
 
 Elements with an `.xyz-nested` class trigger their animations when a parent element has an XYZ [active class](#active-classes) such as `.xyz-in` or `.xyz-out`: [Simple Example](?tab=examples&example=Simple#nesting)
 

@@ -32,7 +32,7 @@ modifiers:
 
 ---
 
-Timing utilities let you set the `animation-duration`, `animation-delay`, and `animation-timing-function` of an animation. AnimXYZ animations default to a duration of `0.5s`, a delay of `0s`, and a timing-function of `ease`.
+Timing utilities let you set the [animation-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration), [animation-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay), and [animation-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) of an animation. AnimXYZ animations default to a duration of `0.5s`, a delay of `0s`, and a timing-function of `ease`.
 
 Changing the timing of an animation can have a large impact on how it feels. For example `xyz="ease-out-back"` will add a slight overshoot at the end of an animation.
 

@@ -30,7 +30,7 @@ modifiers:
 
 ---
 
-If you want to animate an element like a swinging door, or have it expand from a particular corner, use an origin utility to apply a `transform-origin` during the animation. This should be used along with a rotate or scale animation.
+If you want to animate an element like a swinging door, or have it expand from a particular corner, use an origin utility to apply a [transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) during the animation. This should be used along with a rotate or scale animation.
 
 For example setting `xyz="small-100 origin-right"` on an element will scale it to its right center edge.
 
