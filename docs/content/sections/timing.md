@@ -39,11 +39,13 @@ Changing the timing of an animation can have a large impact on how it feels. For
 You can set your own custom duration, delay, and timing function using the `--xyz-duration`, `--xyz-delay`, and `--xyz-ease` variables respectively.
 
 ::: note
-To change the default duration for all animations, set `--xyz-duration-default` in `:root`. For example:
+To change the default timing values you can modify them in `:root`. For example:
 
 ```css
 :root {
-  --xyz-duration-default: .3s;
+  --xyz-duration-default: 0.3s;
+  --xyz-delay-default: 0.1s;
+  --xyz-ease-default: ease-in-out;
 }
 ```
 

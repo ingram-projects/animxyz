@@ -34,11 +34,25 @@ modifiers:
 
 ---
 
-Translate, rotate, and scale your elements along any axis. We call it AnimXYZ for a reason!
+Translate, rotate, and scale your elements along any axis. We call it Anim**XYZ** for a reason!
 
 Transform utilities and variables define the starting (.xyz-in) or ending (.xyz-out) transformation of the animating element. For example `xyz="up"` will apply a `translateY()` to an element, translating it from above its normal position when animating in and to that same position when animating out.
 
 You can also override any of the provided transform variables with a custom value in your CSS or with inline styling for more granular control.
+
+::: note
+To change the default transform values you can modify them in `:root`. For example:
+
+```css
+:root {
+  --xyz-translate-default: 100%;
+  --xyz-rotate-default: 1turn;
+  --xyz-scale-default: 1;
+}
+```
+
+See the [defaults](#defaults) section for more information about setting defaults.
+:::
 
 ::: note
 If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.

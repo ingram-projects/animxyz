@@ -41,6 +41,18 @@ AnimXYZ will apply this staggered delay to the first 20 elements (or last 20 if 
 
 You can also override the `--xyz-stagger` and `--xyz-stagger-rev` variables with a custom time value in your CSS or with inline styling for more granular control.
 
+::: note
+To change the default stagger value you can set `--xyz-stagger-default` in `:root`. For example:
+
+```css
+:root {
+  --xyz-stagger-default: 0.1s;
+}
+```
+
+See the [defaults](#defaults) section for more information about setting defaults.
+:::
+
 ::: note [Vue,React]
 If you are using the provided Vue/React `XyzTransitionGroup` components, AnimXYZ will automatically add the `--xyz-index` and `--xyz-index-rev`for all elements in the group.
 
