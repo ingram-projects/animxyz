@@ -43,11 +43,48 @@
   }
 
 	pre[class*='language-'] {
+    position: relative;
 		background: primary-color(900);
 		margin: 0 (-$sp-xxs);
     border-radius: $br-l;
     font-size: inherit;
+
+    &::before {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      background-color: primary-color(600);
+      color: white;
+      font-size: $fs-xs;
+      font-weight: 600;
+      padding: 0 $sp-xxs;
+      border-bottom-left-radius: $br-m;
+      user-select: none;
+    }
 	}
+
+  pre[class*='language-html']::before {
+    content: 'HTML';
+  }
+
+  pre[class*='language-css']::before {
+    content: 'CSS';
+  }
+
+  pre[class*='language-js']::before {
+    content: 'JS';
+  }
+
+  pre[class*='language-jsx']::before {
+    content: 'JSX';
+  }
+
+  pre[class*='language-bash']::before {
+    content: 'Bash';
+  }
 
 	table {
 		border-collapse: collapse;
@@ -207,7 +244,7 @@
 .note-tag__wrap {
   position: absolute;
   top: -.5rem;
-  left: 1rem;
+  right: 1rem;
   display: flex;
   grid-gap: $sp-xxs;
 }
@@ -222,6 +259,7 @@
   font-weight: 600;
   padding: 0 $sp-xxs;
   border-radius: $br-m;
+  user-select: none;
 }
 
 .note--Vue {
