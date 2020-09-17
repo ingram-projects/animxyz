@@ -36,7 +36,7 @@ modifiers:
 
 Translate, rotate, and scale your elements along any axis. We call it AnimXYZ for a reason!
 
-Transform utilities animate between the value of the relevant CSS variables and the element's natural position. For example applying `xyz="up"` to an element will translate it on the Y axis between `translateY(30px)` and the element's `translateY` position.
+Transform utilities and variables define the starting (.xyz-in) or ending (.xyz-out) transformation of the animating element. For example `xyz="up"` will apply a `translateY()` to an element, translating it from above its normal position when animating in and to that same position when animating out.
 
 You can also override any of the provided transform variables with a custom value in your CSS or with inline styling for more granular control.
 

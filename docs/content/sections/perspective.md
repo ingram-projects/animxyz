@@ -30,4 +30,8 @@ modifiers:
 
 ---
 
-To take full advantage of CSS 3D animations, you need to set a perspective on an animating item or its parent, for example by adding `perspective: 400px`. However if you want to set perspective only during an XYZ animation you can use a perspective XYZ utility.
+To take full advantage of CSS 3D animations, your animating elements should have a perspective applied to them. This can be done by adding a [perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective) property on a parent of the animating elements, for example by adding `perspective: 500px`. However if you want to set a perspective on each element only while it is animating you can use a perspective XYZ utility.
+
+::: note
+Smaller perspective values will result in a more pronounced effect.
+:::

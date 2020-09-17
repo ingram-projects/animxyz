@@ -30,8 +30,8 @@ modifiers:
 
 ---
 
-Fade is one of the most common animations, and combines well with other utilities.
+Fade is one of the most commonly used animations and combines well other animations.
 
-Fade animates between the value of the CSS variable `--xyz-opacity` and the opacity of the element. Apply `xyz="fade"` to an element to use the default variable value of 0, or use one of the utilities like `xyz="fade-50"` to set the variable to a predefined value.
+Fade utilities and variables define the starting (.xyz-in) or ending (.xyz-out) opacity of the animating element. Apply `xyz="fade"` to an element to use the default value, or use one of the utilities like `xyz="fade-50"` to fade from and to a predefined value.
 
 You can also override `--xyz-opacity` with a custom value in your CSS or with inline styling for more granular control.

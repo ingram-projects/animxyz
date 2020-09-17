@@ -23,7 +23,7 @@ examples:
 
 modifiers:
   utilities:
-    defaults: [origin-top]
+    defaults: [origin-right]
   groups:
     - name: Origin
       types: [origin]
