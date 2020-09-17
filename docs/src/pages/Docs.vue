@@ -116,6 +116,7 @@ export default {
 				'Origin',
 				'Timing',
 				'Stagger',
+				'Iterate',
 				{ header: true, title: 'Customizing AnimXYZ' },
 				'Defaults',
 				'Utilities',
