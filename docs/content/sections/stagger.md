@@ -41,7 +41,14 @@ AnimXYZ will apply this staggered delay to the first 20 elements (or last 20 if 
 
 You can also override the `--xyz-stagger` and `--xyz-stagger-rev` variables with a custom time value in your CSS or with inline styling for more granular control.
 
-::: note
+::: note [Vue,React]
+If you are using the provided Vue/React `XyzTransitionGroup` components, AnimXYZ will automatically add the `--xyz-index` and `--xyz-index-rev`for all elements in the group.
+
+Since Vue and React add/remove elements when their enter/exit animations end, staggered elements that are not `position: absolute` may cause the group layout to change as each element enters or exits in order.
+:::
+
+## Defaults
+
 To change the default stagger value you can set `--xyz-stagger-default` in `:root`. For example:
 
 ```css
@@ -51,10 +58,3 @@ To change the default stagger value you can set `--xyz-stagger-default` in `:roo
 ```
 
 See the [defaults](#defaults) section for more information about setting defaults.
-:::
-
-::: note [Vue,React]
-If you are using the provided Vue/React `XyzTransitionGroup` components, AnimXYZ will automatically add the `--xyz-index` and `--xyz-index-rev`for all elements in the group.
-
-Since Vue and React add/remove elements when their enter/exit animations end, staggered elements that are not `position: absolute` may cause the group layout to change as each element enters or exits in order.
-:::

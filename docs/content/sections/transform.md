@@ -41,6 +41,11 @@ Transform utilities and variables define the starting (.xyz-in) or ending (.xyz-
 You can also override any of the provided transform variables with a custom value in your CSS or with inline styling for more granular control.
 
 ::: note
+If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
+:::
+
+## Defaults
+
 To change the default transform values you can modify them in `:root`. For example:
 
 ```css
@@ -52,8 +57,3 @@ To change the default transform values you can modify them in `:root`. For examp
 ```
 
 See the [defaults](#defaults) section for more information about setting defaults.
-:::
-
-::: note
-If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
-:::

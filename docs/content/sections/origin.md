@@ -36,7 +36,8 @@ For example setting `xyz="small-100 origin-right"` on an element will scale it t
 
 If you want to place the `transform-origin` in a more precise location than the utilities provide, override `--xyz-origin` with a custom value in your CSS or with inline styling for more granular control. For example `--xyz-origin: 50px 50px` will set the origin to a point 50px down and to the right from the top left.
 
-::: note
+## Defaults
+
 To change the default origin value you can set `--xyz-origin-default` in `:root`. For example:
 
 ```css
@@ -46,4 +47,3 @@ To change the default origin value you can set `--xyz-origin-default` in `:root`
 ```
 
 See the [defaults](#defaults) section for more information about setting defaults.
-:::
