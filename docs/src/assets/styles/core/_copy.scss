@@ -212,37 +212,36 @@
   height: 1.5rem;
   display: flex;
   align-items: center;
+  background-color: primary-color(600);
   color: white;
   font-size: $fs-s;
   font-weight: 600;
   padding: 0 $sp-xxs;
   border-radius: $br-m;
-  background-size: 1rem;
-  background-position: left center;
 }
 
 .note--Vue {
-  border-color: #41B883;
+  border-color: $color-vue;
 }
 
 .note-tag--Vue {
   background-image: url('../../icons/IconVue.svg');
-  background-color: #41B883;
+  background-color: $color-vue;
 }
 
 .note--React {
-  border-color: #61DAFB;
+  border-color: $color-react;
 }
 
 .note-tag--React {
   color: #282c34;
-  background-color: #61DAFB;
+  background-color: $color-react;
 }
 
 .note--Sass {
-  border-color: #CD6799;
+  border-color: $color-sass;
 }
 
 .note-tag--Sass {
-  background-color: #CD6799;
+  background-color: $color-sass;
 }
