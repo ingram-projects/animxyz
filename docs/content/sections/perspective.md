@@ -32,6 +32,8 @@ modifiers:
 
 To take full advantage of CSS 3D animations, your animating elements should have a perspective applied to them. This can be done by adding a [perspective](https://developer.mozilla.org/en-US/docs/Web/CSS/perspective) property on a parent of the animating elements, for example by adding `perspective: 500px`. However if you want to set a perspective on each element only while it is animating you can use a perspective XYZ utility.
 
+Smaller perspective values will result in a more pronounced effect.
+
 ::: note
 To change the default perspective value you can set `--xyz-perspective-default` in `:root`. For example:
 
@@ -42,8 +44,4 @@ To change the default perspective value you can set `--xyz-perspective-default` 
 ```
 
 See the [defaults](#defaults) section for more information about setting defaults.
-:::
-
-::: note
-Smaller perspective values will result in a more pronounced effect.
 :::
