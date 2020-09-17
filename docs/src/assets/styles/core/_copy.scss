@@ -44,10 +44,12 @@
 
 	pre[class*='language-'] {
     position: relative;
-		background: primary-color(900);
-		margin: 0 (-$sp-xxs);
+    background: primary-color(900);
+    padding: 0;
     border-radius: $br-l;
+		margin: 0 (-$sp-xxs);
     font-size: inherit;
+    overflow: initial;
 
     &::before {
       position: absolute;
@@ -61,8 +63,15 @@
       font-size: $fs-xs;
       font-weight: 600;
       padding: 0 $sp-xxs;
+      border-top-right-radius: $br-m;
       border-bottom-left-radius: $br-m;
       user-select: none;
+    }
+
+    code {
+      display: block;
+      padding: $sp-s;
+      overflow: auto;
     }
 	}
 
