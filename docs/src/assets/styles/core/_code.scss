@@ -1,6 +1,6 @@
 /* All code */
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*='language-'],
+pre[class*='language-'] {
 	color: primary-color(50);
 	background: none;
 	font-family: $font-stack-mono;
@@ -16,13 +16,13 @@ pre[class*="language-"] {
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+pre[class*='language-'] {
 	padding: $sp-s;
 	overflow: auto;
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*='language-'] {
 	padding: .25em .5em;
 	white-space: normal;
 }

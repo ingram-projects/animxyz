@@ -2,7 +2,7 @@ body {
   background-color: primary-color(50);
 }
 
-[data-server-rendered=true] {
+[data-server-rendered='true'] {
   opacity: 0;
 }
 

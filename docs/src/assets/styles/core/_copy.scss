@@ -32,7 +32,7 @@
 		font-weight: 640;
 	}
 
-  code:not([class*="language-"]) {
+  code:not([class*='language-']) {
     color: desaturate(darken(#F92672, 12%), 8%);
     font-family: $font-stack-mono;
     font-size: inherit;
@@ -160,7 +160,7 @@
       }
     }
 
-    &[target=_blank] {
+    &[target='_blank'] {
       &::before {
         background-color: transparentize($green, 0.35);
       }
