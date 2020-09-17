@@ -66,6 +66,8 @@ module.exports = {
 									if (tagsMatch) {
 										const tagsArray = tagsMatch[1].split(',')
 										if (tagsArray.length) {
+											classes.push(`note--tagged`)
+
 											if (tagsArray.length === 1) {
 												classes.push(`note--${tagsArray[0]}`)
 											}

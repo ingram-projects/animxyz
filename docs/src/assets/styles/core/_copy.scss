@@ -200,21 +200,25 @@
   }
 }
 
+.note--tagged {
+  margin-top: 1.75rem;
+}
+
 .note-tag__wrap {
   position: absolute;
-  top: -.75rem;
-  right: 1rem;
+  top: -.5rem;
+  left: 1rem;
   display: flex;
   grid-gap: $sp-xxs;
 }
 
 .note-tag {
-  height: 1.5rem;
+  height: 1.25rem;
   display: flex;
   align-items: center;
   background-color: primary-color(600);
   color: white;
-  font-size: $fs-s;
+  font-size: $fs-xs;
   font-weight: 600;
   padding: 0 $sp-xxs;
   border-radius: $br-m;
