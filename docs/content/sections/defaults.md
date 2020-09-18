@@ -1,15 +1,16 @@
 ---
 title: Defaults
+quote: TBD
 
 examples:
-  - name: Root
+  - name: Defaults
     template: |
-      <div class="example-wrap" style="--xyz-translate-default: 200%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275);">
-        <xyz-transition v-on="data.listeners">
+      <div class="example-wrap" style="--xyz-translate-default: 200%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
+        <xyz-transition duration="auto" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
-            <div class="square xyz-nested" xyz="fade left"></div>
-            <div class="square xyz-nested" xyz="fade up"></div>
-            <div class="square xyz-nested" xyz="fade down"></div>
+            <div class="square xyz-nested" xyz="fade left stagger"></div>
+            <div class="square xyz-nested" xyz="fade up stagger"></div>
+            <div class="square xyz-nested" xyz="fade down stagger"></div>
           </div>
         </xyz-transition>
       </div>
@@ -17,15 +18,16 @@ examples:
       - language: html
         content: |
           <div class="square-group">
-            <div class="square ${data.mode}" xyz="fade left"></div>
-            <div class="square ${data.mode}" xyz="fade up"></div>
-            <div class="square ${data.mode}" xyz="fade down"></div>
+            <div class="square ${data.mode}" xyz="fade left stagger"></div>
+            <div class="square ${data.mode}" xyz="fade up stagger"></div>
+            <div class="square ${data.mode}" xyz="fade down stagger"></div>
           </div>
 
           <style>
             :root {
               --xyz-translate-default: 200%;
               --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+              --xyz-stagger-default: 0.1s;
             }
           </style>
 ---
