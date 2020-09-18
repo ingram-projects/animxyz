@@ -20,17 +20,17 @@ export const xyzEaseLevels = {
 }
 
 export const xyzTimeLevels = {
-	'0': '0s',
-	'1': '.1s',
-	'2': '.2s',
-	'3': '.3s',
-	'4': '.4s',
-	'5': '.5s',
-	'10': '1s',
-	'15': '1.5s',
-	'20': '2s',
-	'25': '2.5s',
-	'30': '3s',
+	0: '0s',
+	1: '.1s',
+	2: '.2s',
+	3: '.3s',
+	4: '.4s',
+	5: '.5s',
+	10: '1s',
+	15: '1.5s',
+	20: '2s',
+	25: '2.5s',
+	30: '3s',
 }
 
 export const xyzIterateLevels = {
@@ -51,68 +51,68 @@ export const xyzOriginLevels = {
 }
 
 export const xyzOpacityLevels = {
-	'0': '0',
-	'25': '.25',
-	'50': '.5',
-	'75': '.75',
-	'100': '1',
+	0: '0',
+	25: '.25',
+	50: '.5',
+	75: '.75',
+	100: '1',
 }
 
 export const xyzPerspectiveLevels = {
-	'0': '0px',
-	'1': '100px',
-	'2': '200px',
-	'3': '300px',
-	'4': '400px',
-	'5': '500px',
+	0: '0px',
+	1: '100px',
+	2: '200px',
+	3: '300px',
+	4: '400px',
+	5: '500px',
 }
 
 export const xyzTranslateLevels = {
-	'0': '0px',
-	'1': '10px',
-	'2': '20px',
-	'3': '30px',
-	'4': '40px',
-	'5': '50px',
-	'25': '25%',
-	'50': '50%',
-	'75': '75%',
-	'100': '100%',
+	0: '0px',
+	1: '10px',
+	2: '20px',
+	3: '30px',
+	4: '40px',
+	5: '50px',
+	25: '25%',
+	50: '50%',
+	75: '75%',
+	100: '100%',
 }
 
 export const xyzTranslateZLevels = {
-	'0': '0px',
-	'1': '10px',
-	'2': '20px',
-	'3': '30px',
-	'4': '40px',
-	'5': '50px',
+	0: '0px',
+	1: '10px',
+	2: '20px',
+	3: '30px',
+	4: '40px',
+	5: '50px',
 }
 
 export const xyzRotateLevels = {
-	'0': '0deg',
-	'1': '10deg',
-	'2': '20deg',
-	'3': '30deg',
-	'4': '40deg',
-	'5': '50deg',
-	'25': '.25turn',
-	'50': '.50turn',
-	'75': '.75turn',
-	'100': '1turn',
+	0: '0deg',
+	1: '10deg',
+	2: '20deg',
+	3: '30deg',
+	4: '40deg',
+	5: '50deg',
+	25: '.25turn',
+	50: '.50turn',
+	75: '.75turn',
+	100: '1turn',
 }
 
 export const xyzScaleLevels = {
-	'0': '0',
-	'1': '0.025',
-	'2': '0.05',
-	'3': '0.075',
-	'4': '0.1',
-	'5': '0.125',
-	'25': '.25',
-	'50': '.5',
-	'75': '.75',
-	'100': '1',
+	0: '0',
+	1: '0.025',
+	2: '0.05',
+	3: '0.075',
+	4: '0.1',
+	5: '0.125',
+	25: '.25',
+	50: '.5',
+	75: '.75',
+	100: '1',
 }
 
 // VARIABLES
@@ -150,7 +150,7 @@ export const xyzVariablesMap = {
 	},
 	iterate: {
 		type: 'iterate',
-		syntax: '<single-animation-iteration-count>',
+		syntax: 'infinite | <number>',
 		modes: xyzModesAll,
 	},
 	origin: {
@@ -175,13 +175,13 @@ export const xyzVariablesMap = {
 	},
 	'translate-x': {
 		type: 'translate',
-		syntax: '<length-percentage>',
+		syntax: '<length> | <percentage>',
 		axis: 'x',
 		modes: xyzModesAll,
 	},
 	'translate-y': {
 		type: 'translate',
-		syntax: '<length-percentage>',
+		syntax: '<length> | <percentage>',
 		axis: 'y',
 		modes: xyzModesAll,
 	},
