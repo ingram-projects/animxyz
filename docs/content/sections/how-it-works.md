@@ -1,6 +1,6 @@
 ---
 title: How it Works
-quote: TBD
+quote: A series of tubes.
 ---
 
 AnimXYZ uses [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) under the hood to modify a core [@keyframes](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) animation. These xyz-variables determine the timing and the values of the element properties that will be animated such as opacity and transform. Each value will be animated to and from depending on whether the element is animating in or out.

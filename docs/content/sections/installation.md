@@ -1,6 +1,6 @@
 ---
 title: Installation
-quote:
+quote: Woah. I know kung fu.
 ---
 
 ## Install AnimXYZ via npm

@@ -1,6 +1,6 @@
 ---
 title: Iterate
-quote: From a certain point of view.
+quote: 99 bottles of beer on the wall
 
 examples:
   - name: Iterate

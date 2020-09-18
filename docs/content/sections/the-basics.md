@@ -1,6 +1,6 @@
 ---
 title: The Basics
-quote: Time to learn your XYZ's
+quote: Time to learn your XYZ's.
 
 examples:
   - name: Example 1

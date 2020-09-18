@@ -44,6 +44,7 @@ module.exports = {
 	],
 	transformers: {
 		remark: {
+			slug: false,
 			plugins: [
 				'@gridsome/remark-prismjs',
 				[

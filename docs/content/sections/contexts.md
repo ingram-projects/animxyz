@@ -1,6 +1,6 @@
 ---
 title: Contexts
-quote: The div doesn't fall far from the tree
+quote: The div doesn't fall far from the tree.
 
 examples:
   - name: Simple

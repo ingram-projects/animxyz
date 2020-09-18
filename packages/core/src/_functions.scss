@@ -88,11 +88,11 @@
       $mode-name: xyz-name($name, $mode);
 
       @if $level == 'default' {
-        [xyz~=#{$mode-name}] {
+        [xyz~='#{$mode-name}'] {
           @include xyz-utility($name, $level, $mode);
         }
       } @else {
-        [xyz~=#{$mode-name}-#{$level}] {
+        [xyz~='#{$mode-name}-#{$level}'] {
           @include xyz-utility($name, $level, $mode);
         }
       }
