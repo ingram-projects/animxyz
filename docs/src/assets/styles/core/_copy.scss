@@ -174,10 +174,33 @@
         background-color: transparentize($green, 0.35);
       }
 
+      &::after {
+        content: attr(href);
+        background-color: primary-color(800);
+        color: primary-color(50);
+        padding: $sp-xxxs $sp-xxs;
+        border-radius: $br-m;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: $fs-xs;
+        z-index: 1;
+        opacity: 0;
+        visibility: hidden;
+        transition: transform .2s ease-out, opacity .2s ease-out;
+      }
+
       &:hover,
       &:focus {
         &::before {
           background-color: $green;
+        }
+
+        &::after {
+          visibility: visible;
+          transform: translateX(-50%) translateY(#{$sp-xxs});
+          opacity: 1;
         }
       }
     }
