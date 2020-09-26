@@ -189,6 +189,10 @@
         opacity: 0;
         visibility: hidden;
         transition: transform .2s ease-out, opacity .2s ease-out;
+
+        @include media('<laptop') {
+          display: none;
+        }
       }
 
       &:hover,
@@ -198,9 +202,9 @@
         }
 
         &::after {
-          visibility: visible;
           transform: translateX(-50%) translateY(#{$sp-xxs});
           opacity: 1;
+          visibility: visible;
         }
       }
     }
