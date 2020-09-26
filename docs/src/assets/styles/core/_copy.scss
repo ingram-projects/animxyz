@@ -255,7 +255,6 @@
   top: -.5rem;
   right: 1rem;
   display: flex;
-  grid-gap: $sp-xxs;
 }
 
 .note-tag {
@@ -269,6 +268,10 @@
   padding: 0 $sp-xxs;
   border-radius: $br-m;
   user-select: none;
+
+  & + & {
+    margin-left: $sp-xxs;
+  }
 }
 
 .note--Vue {
