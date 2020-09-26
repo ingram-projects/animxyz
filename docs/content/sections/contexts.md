@@ -47,7 +47,7 @@ examples:
         <xyz-transition duration="auto" xyz="fade up turn-cw duration-10 ease-out-back stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
-            <div class="square xyz-nested" xyz="inherit turn-cw-0 turn-ccw" :key="2"></div>
+            <div class="square xyz-nested" xyz="inherit turn-ccw" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
           </div>
         </xyz-transition>
@@ -57,7 +57,7 @@ examples:
         content: |
           <div class="square-group" xyz="fade up turn-cw duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>
-            <div class="square ${data.mode}" xyz="inherit turn-cw-0 turn-ccw"></div>
+            <div class="square ${data.mode}" xyz="inherit turn-ccw"></div>
             <div class="square ${data.mode}"></div>
           </div>
 ---
