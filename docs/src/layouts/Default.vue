@@ -59,10 +59,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page__wrap {
-	width: 100vw;
-}
-
 .xray-toggle {
 	position: fixed;
 	bottom: $sp-xl;
