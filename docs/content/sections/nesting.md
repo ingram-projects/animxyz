@@ -3,7 +3,7 @@ title: Nesting
 quote: It's <turtles> all the way down.
 
 examples:
-  - name: Simple
+  - name: Basic
     template: |
       <div class="example-wrap">
         <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
@@ -78,7 +78,7 @@ examples:
 
 When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#vue) and [React](#react) plugins, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
 
-Elements with an `.xyz-nested` class trigger their animations when a parent element has an XYZ [active class](#active-classes) such as `.xyz-in` or `.xyz-out`: [Simple Example](?tab=examples&example=Simple#nesting)
+Elements with an `.xyz-nested` class trigger their animations when a parent element has an XYZ [active class](#active-classes) such as `.xyz-in` or `.xyz-out`: [Basic Example](?tab=examples&example=Basic#nesting)
 
 Each `.xyz-nested` element can have its own unique XYZ properties: [Complex Example](?tab=examples&example=Complex#nesting)
 
