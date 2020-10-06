@@ -26,25 +26,35 @@
       }
     }
 
-    @include xyz-make-keyframes('blur') using ($mode) {
+    @include xyz-make-keyframes('expand-border-radius') using ($mode) {
       from {
-        filter: #{'blur'}(#{xyz-var('blur', $mode, 10px)});
+        border-radius: xyz-var('border-radius', $mode, 50%);
+        overflow: hidden;
+      }
+      to {
+        overflow: hidden;
       }
     }
 
-    @include xyz-make-keyframes('grayscale') using ($mode) {
+    @include xyz-make-keyframes('filter-blur') using ($mode) {
       from {
-        filter: #{'grayscale'}(#{xyz-var('grayscale', $mode, 100%)});
+        filter: #{'blur'}(#{xyz-var('filter-blur', $mode, 10px)});
       }
     }
 
-    @include xyz-make-keyframes('shadow') using ($mode) {
+    @include xyz-make-keyframes('filter-grayscale') using ($mode) {
       from {
-        box-shadow: #{xyz-var('shadow', $mode, 0px 0px 10px rgba(0,0,0,.5))};
+        filter: #{'grayscale'}(#{xyz-var('filter-grayscale', $mode, 100%)});
       }
     }
 
-    @include xyz-make-keyframes('stroke') using ($mode) {
+    @include xyz-make-keyframes('box-shadow') using ($mode) {
+      from {
+        box-shadow: #{xyz-var('box-shadow', $mode, 0px 0px 10px rgba(0,0,0,.5))};
+      }
+    }
+
+    @include xyz-make-keyframes('stroke-draw') using ($mode) {
       from {
         stroke-dashoffset: xyz-var('stroke-length', $mode, 100);
         stroke-dasharray: xyz-var('stroke-length', $mode, 100) xyz-var('stroke-length', $mode, 100);
