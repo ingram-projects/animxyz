@@ -1,53 +1,55 @@
 .copy-content {
   font-size: 1.125rem;
 
-	@include media('<phone') {
-		font-size: $fs-m;
-	}
-
+  @include media("<phone") {
+    font-size: $fs-m;
+  }
 
   h2 {
     font-size: 1.125rem;
   }
 
-  h2, h3, h4, h5 {
+  h2,
+  h3,
+  h4,
+  h5 {
     color: primary-color(800);
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     font-weight: 600;
 
     &:not(:first-child) {
       margin-top: 1.5em;
-		}
+    }
   }
 
-	p,
-  pre[class*='language-'],
+  p,
+  pre[class*="language-"],
   .note {
-		&:not(:last-child) {
-			margin-bottom: 1.25rem;
-		}
-	}
+    &:not(:last-child) {
+      margin-bottom: 1.25rem;
+    }
+  }
 
-	strong {
-		font-weight: 640;
-	}
+  strong {
+    font-weight: 640;
+  }
 
-  code:not([class*='language-']) {
-    color: desaturate(darken(#F92672, 12%), 8%);
+  code:not([class*="language-"]) {
+    color: desaturate(darken(#f92672, 12%), 8%);
     font-family: $font-stack-mono;
     font-size: inherit;
     font-weight: bold;
-    background-color: transparentize(darken(#F92672, 10%), .95);
-    padding: .125em .25em;
+    background-color: transparentize(darken(#f92672, 10%), 0.95);
+    padding: 0.125em 0.25em;
     border-radius: $br-s;
   }
 
-	pre[class*='language-'] {
+  pre[class*="language-"] {
     position: relative;
     background: primary-color(900);
     padding: 0;
     border-radius: $br-l;
-		margin: 0 (-$sp-xxs);
+    margin: 0 (-$sp-xxs);
     font-size: inherit;
     overflow: initial;
 
@@ -73,61 +75,68 @@
       padding: $sp-s;
       overflow: auto;
     }
-	}
-
-  pre[class*='language-html']::before {
-    content: 'HTML';
   }
 
-  pre[class*='language-css']::before {
-    content: 'CSS';
+  pre[class*="language-html"]::before {
+    content: "HTML";
   }
 
-  pre[class*='language-js']::before {
-    content: 'JS';
+  pre[class*="language-css"]::before {
+    content: "CSS";
   }
 
-  pre[class*='language-jsx']::before {
-    content: 'JSX';
+  pre[class*="language-js"]::before {
+    content: "JS";
   }
 
-  pre[class*='language-bash']::before {
-    content: 'Bash';
+  pre[class*="language-jsx"]::before {
+    content: "JSX";
   }
 
-	table {
-		border-collapse: collapse;
-		font-family: $font-stack-mono;
-    font-size: $fs-l;
-    width: 100%;
+  pre[class*="language-bash"]::before {
+    content: "Bash";
+  }
+
+  table {
+    border-collapse: collapse;
 
     &:not(:last-child) {
       margin-bottom: 1.25rem;
     }
 
-		thead {
-			color: primary-color(800);
-		}
+    thead {
+      color: primary-color(800);
+    }
 
-		th,
-		td {
-			text-align: left;
-			padding: $sp-xxs $sp-s;
-		}
+    th,
+    td {
+      text-align: left;
+      padding: $sp-xxs $sp-m;
+    }
 
-		td {
-			color: primary-color(700);
-			line-height: 1.5rem;
-		}
+    th {
+      color: primary-color(800);
+      font-weight: 600;
+    }
 
-		tbody {
-			tr {
-				&:nth-child(odd) {
-					background-color: primary-color(800, 0.05);
-				}
-			}
-		}
-	}
+    td {
+      color: primary-color(700);
+      line-height: 1.5rem;
+    }
+
+    tbody {
+      th {
+        padding-left: 0;
+      }
+
+      tr {
+        border-top: 1px solid primary-color(100, 0.75);
+        &:nth-child(odd) {
+          // background-color: primary-color(700, 0.05);
+        }
+      }
+    }
+  }
 
   a {
     font-weight: 600;
@@ -141,19 +150,19 @@
     }
   }
 
-  a:not([href*='tab=examples']) {
+  a:not([href*="tab=examples"]) {
     color: primary-color(700);
-    transition: color .2s $ease-out;
+    transition: color 0.2s $ease-out;
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
-      bottom: -.2em;
-      left: .2em;
-      right: .2em;
-      height: .15em;
+      bottom: -0.2em;
+      left: 0.2em;
+      right: 0.2em;
+      height: 0.15em;
       background-color: transparentize($cyan, 0.35);
-      transition: .15s $ease-out;
+      transition: 0.15s $ease-out;
       transition-property: height, left, right, background-color;
     }
 
@@ -162,14 +171,14 @@
       color: primary-color(800);
 
       &::before {
-        left: -.1em;
-        right: -.1em;
-        height: .25em;
+        left: -0.1em;
+        right: -0.1em;
+        height: 0.25em;
         background-color: $cyan;
       }
     }
 
-    &[target='_blank'] {
+    &[target="_blank"] {
       &::before {
         background-color: transparentize($green, 0.35);
       }
@@ -188,9 +197,9 @@
         z-index: 1;
         opacity: 0;
         visibility: hidden;
-        transition: transform .2s ease-out, opacity .2s ease-out;
+        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 
-        @include media('<laptop') {
+        @include media("<laptop") {
           display: none;
         }
       }
@@ -210,7 +219,7 @@
     }
   }
 
-  a[href*='tab=examples'] {
+  a[href*="tab=examples"] {
     align-items: center;
     line-height: 1.5rem;
     display: inline-flex;
@@ -223,15 +232,15 @@
     border-radius: $br-m;
     margin-right: $sp-xxxs;
     margin-bottom: $sp-xxs;
-    transition: .2s $ease-out;
+    transition: 0.2s $ease-out;
     transition-property: background-color, color, box-shadow;
 
     &::after {
       display: inline-block;
-      content: '→';
+      content: "→";
       font-size: $fs-l;
       margin-left: $sp-xxs;
-      transition: transform .2s $ease-out-back;
+      transition: transform 0.2s $ease-out-back;
     }
 
     &:focus {
@@ -244,7 +253,7 @@
       color: primary-color(800);
 
       &::after {
-        transform: translateX(.75rem);
+        transform: translateX(0.75rem);
       }
     }
 
@@ -268,7 +277,7 @@
   border-radius: $br-m;
   font-size: $fs-m;
 
-  pre[class*='language-'] {
+  pre[class*="language-"] {
     margin: 0;
   }
 }
@@ -279,7 +288,7 @@
 
 .note-tag__wrap {
   position: absolute;
-  top: -.5rem;
+  top: -0.5rem;
   right: 1rem;
   display: flex;
 }
@@ -306,7 +315,7 @@
 }
 
 .note-tag--Vue {
-  background-image: url('../../icons/IconVue.svg');
+  background-image: url("../../icons/IconVue.svg");
   background-color: $color-vue;
 }
 
@@ -325,4 +334,18 @@
 
 .note-tag--Sass {
   background-color: $color-sass;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.variables-table {
+  font-size: $fs-m;
+
+  td {
+    font-family: $font-stack-mono;
+    white-space: nowrap;
+  }
 }
