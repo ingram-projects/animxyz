@@ -116,7 +116,9 @@
 
     th {
       color: primary-color(800);
-      font-weight: 600;
+			font-weight: 600;
+			font-size: $fs-s;
+			white-space: nowrap;
     }
 
     td {
@@ -126,13 +128,12 @@
 
     tbody {
       th {
-        padding-left: 0;
+        padding-left: $sp-xs;
       }
 
       tr {
-        border-top: 1px solid primary-color(100, 0.75);
         &:nth-child(odd) {
-          // background-color: primary-color(700, 0.05);
+          background-color: primary-color(700, 0.05);
         }
       }
     }
