@@ -38,7 +38,7 @@
       --xyz-duration-default: #{map.get($xyz-time-levels, '5')};
       --xyz-delay-default: #{map.get($xyz-time-levels, '0')};
       --xyz-stagger-default: #{map.get($xyz-time-levels, '3')};
-      --xyz-iterate-default: #{map.get($xyz-iterate-levels, 'once')};
+      --xyz-iterate-default: #{map.get($xyz-iterate-levels, '1')};
       --xyz-origin-default: #{map.get($xyz-origin-levels, 'center')};
       --xyz-opacity-default: #{map.get($xyz-opacity-levels, '100')};
       --xyz-perspective-default: #{map.get($xyz-perspective-levels, '0')};
