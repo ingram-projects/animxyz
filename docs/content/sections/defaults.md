@@ -5,7 +5,7 @@ quote: TBD
 examples:
   - name: Defaults
     template: |
-      <div class="example-wrap" style="--xyz-translate-default: 200%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
+      <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
         <xyz-transition duration="auto" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" xyz="fade left stagger"></div>
@@ -25,14 +25,14 @@ examples:
 
           <style>
             :root {
-              --xyz-translate-default: 200%;
+              --xyz-translate-default: 300%;
               --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275);
               --xyz-stagger-default: 0.1s;
             }
           </style>
 ---
 
-All AnimXYZ [variables](#variables) are provided with default values that determine what animations our basic `xyz` [utilites](#utilities) such as `fade` or `left` set when not provided a utility level such as `left-3`. Some default values such as for transform are shared across all transform utilities.
+All AnimXYZ [variables](#variables) are provided with default values that determine what animations basic `xyz` [utilites](#utilities) like `fade` or `left` set when not provided a utility scale such as `left-3`. Some default values are shared across related utilites, for example `--xyz-translate-default` is the default value for X, Y, and Z translations.
 
 You can change these default values by setting their respective variables. To change them across your entire site set them at the `:root`.
 
