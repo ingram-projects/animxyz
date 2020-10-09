@@ -198,7 +198,3 @@ $shadow-scroll-backdrop: var(--shadow-scroll-backdrop, white);
       inset 0 calc(#{$shadow-scroll-size} * -2) #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
   }
 }
-
-.shadow-scroll-content {
-  width: max-content;
-}
