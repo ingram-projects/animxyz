@@ -345,6 +345,20 @@
 .variables-table {
   font-size: $fs-m;
 
+  --table-shadow-size: 20px;
+  --table-shadow-color: #{primary-color(900, 0.075)};
+  --table-backdrop-color: white;
+  background-image:
+    linear-gradient(to right, var(--table-shadow-color), transparent var(--table-shadow-size)),
+    linear-gradient(to left, var(--table-shadow-color), transparent var(--table-shadow-size));
+
+  table {
+    background-image:
+      linear-gradient(to right, var(--table-backdrop-color), transparent, var(--table-backdrop-color)),
+      linear-gradient(to bottom, var(--table-backdrop-color), var(--table-backdrop-color), transparent var(--table-shadow-size)),
+      linear-gradient(to top, var(--table-backdrop-color), var(--table-backdrop-color), transparent var(--table-shadow-size));
+  }
+
   td {
     font-family: $font-stack-mono;
     white-space: nowrap;
