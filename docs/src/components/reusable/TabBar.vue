@@ -1,17 +1,26 @@
 <template>
-	<xyz-transition-group tag="div" class="tab-bar" appear duration="auto" xyz="fade flip-down origin-bottom" style="--xyz-stagger: 0.075s;">
-		<button
-			type="button"
-			class="tab-bar__tab"
-			:class="{ active: tab === value }"
-			v-for="tab in tabs"
-			:ref="tab === value && 'activeTab'"
-			:key="tab.name"
-			@click="setTab(tab)"
+	<div class="tab-bar shadow-scroll-h">
+		<xyz-transition-group
+			tag="div"
+			class="tab-bar__tabs shadow-scroll-content"
+			appear
+			duration="auto"
+			xyz="fade flip-down origin-bottom"
+			style="--xyz-stagger: 0.075s"
 		>
-			<span class="tab-text">{{ tab.name }}</span>
-		</button>
-	</xyz-transition-group>
+			<button
+				type="button"
+				class="tab-bar__tab"
+				:class="{ active: tab === value }"
+				v-for="tab in tabs"
+				:ref="tab === value && 'activeTab'"
+				:key="tab.name"
+				@click="setTab(tab)"
+			>
+				<span class="tab-text">{{ tab.name }}</span>
+			</button>
+		</xyz-transition-group>
+	</div>
 </template>
 
 <script>
@@ -30,15 +39,20 @@ export default {
 .tab-bar {
 	background-color: primary-color(900);
 	font-family: $font-stack-mono;
-	display: flex;
 	flex-shrink: 0;
 	overflow-x: auto;
+	--shadow-scroll-color-rgb: #{$primary50-rgb};
+	--shadow-scroll-backdrop-rgb: #{$primary900-rgb};
 
 	@include media('<laptop') {
 		position: sticky;
 		top: 0;
 		z-index: 2;
 	}
+}
+
+.tab-bar__tabs {
+	display: flex;
 }
 
 .tab-bar__tab {
