@@ -171,7 +171,7 @@ $spacingSizes: (
   @include screen-reader-only;
 }
 
-.shadow-scroll-container {
+.shadow-scroll-h {
   background-image:
     linear-gradient(to right, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px)),
     linear-gradient(to left, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px));
@@ -181,5 +181,18 @@ $spacingSizes: (
       linear-gradient(to right, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1)),
       linear-gradient(to bottom, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0) var(--shadow-scroll-size, 20px)),
       linear-gradient(to top, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0) var(--shadow-scroll-size, 20px));
+  }
+}
+
+.shadow-scroll-v {
+  background-image:
+    linear-gradient(to bottom, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px)),
+    linear-gradient(to top, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px));
+
+  .shadow-scroll-contents {
+    background-image:
+      linear-gradient(to bottom, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1)),
+      linear-gradient(to right, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0) var(--shadow-scroll-size, 20px)),
+      linear-gradient(to left, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0) var(--shadow-scroll-size, 20px));
   }
 }
