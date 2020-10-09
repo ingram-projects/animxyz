@@ -121,8 +121,12 @@
       position: absolute;
     }
 
+    xyz-context {
+      display: contents;
+    }
+
     // resets all xyz variables
-    [xyz] {
+    [xyz], xyz-context {
       @include xyz-set-all();
     }
 
