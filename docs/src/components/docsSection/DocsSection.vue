@@ -68,8 +68,8 @@ $active-border-width: 0.5rem;
 	box-shadow: 0 0 0 primary-color(700, 0);
 	margin: auto;
 	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
-	--shadow-scroll-color-rgb: #{$primary900-rgb};
-	--shadow-scroll-backdrop-rgb: #{$primary50-rgb};
+	--shadow-scroll-color: #{primary-color(900, 0.25)};
+	--shadow-scroll-backdrop: #{primary-color(50)};
 
 	@include media('>=laptop') {
 		padding: $sp-xl;
@@ -77,7 +77,7 @@ $active-border-width: 0.5rem;
 		.docs-section__wrap.active & {
 			background-color: white;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
-			--shadow-scroll-backdrop-rgb: 255, 255, 255;
+			--shadow-scroll-backdrop: white;
 		}
 	}
 

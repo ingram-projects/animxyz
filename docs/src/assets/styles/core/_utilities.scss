@@ -171,28 +171,34 @@ $spacingSizes: (
   @include screen-reader-only;
 }
 
+$shadow-scroll-size: var(--shadow-scroll-size, 20px);
+$shadow-scroll-color: var(--shadow-scroll-color, black);
+$shadow-scroll-backdrop: var(--shadow-scroll-backdrop, white);
+
 .shadow-scroll-h {
-  background-image:
-    linear-gradient(to right, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px)),
-    linear-gradient(to left, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px));
+  box-shadow:
+    inset #{$shadow-scroll-size} 0 #{$shadow-scroll-size} calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-color},
+    inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-size} calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-color};
 
   .shadow-scroll-content {
-    background-image:
-      linear-gradient(to right, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1)),
+    box-shadow:
+      inset #{$shadow-scroll-size} 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop},
+      inset calc(#{$shadow-scroll-size} * -2) 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
   }
 }
 
 .shadow-scroll-v {
-  background-image:
-    linear-gradient(to bottom, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px)),
-    linear-gradient(to top, rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), var(--shadow-scroll-opacity, 0.1)), rgba(var(--shadow-scroll-color-rgb, 0, 0, 0), 0) var(--shadow-scroll-size, 20px));
+  box-shadow:
+    inset 0 #{$shadow-scroll-size} #{$shadow-scroll-size} calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-color},
+    inset 0 calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-size} calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-color};
 
   .shadow-scroll-content {
-    background-image:
-      linear-gradient(to bottom, rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 0), rgba(var(--shadow-scroll-backdrop-rgb, 255, 255, 255), 1)),
+    box-shadow:
+      inset 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop},
+      inset 0 calc(#{$shadow-scroll-size} * -2) #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
   }
 }
 
 .shadow-scroll-content {
-  width: fit-content;
+  width: max-content;
 }
