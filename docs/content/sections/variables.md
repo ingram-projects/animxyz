@@ -62,8 +62,8 @@ You have control over everything you need to animate an element, even transform 
 
 Keep in mind that CSS variables are inherited by child elements, so any element with an [active class](/active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
 
-<div class="variables-table table-wrap">
-  <table>
+<div class="variables-table table-wrap shadow-scroll-container">
+  <table class="shadow-scroll-contents">
     <thead>
       <tr>
         <th></th>

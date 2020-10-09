@@ -69,6 +69,16 @@ $active-border-width: 0.5rem;
 	margin: auto;
 	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
 
+	::v-deep .shadow-scroll-container {
+		--shadow-scroll-color-rgb: #{$primary900-rgb};
+		--shadow-scroll-opacity: 0.075;
+		--shadow-scroll-backdrop-rgb: #{$primary50-rgb};
+
+		.docs-section__wrap.active & {
+			--shadow-scroll-backdrop-rgb: 255, 255, 255;
+		}
+	}
+
 	@include media('>=laptop') {
 		padding: $sp-xl;
 
