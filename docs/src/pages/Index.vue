@@ -16,10 +16,10 @@
 							<icon-github></icon-github>
 							<span>GitHub</span>
 						</a>
-						<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+						<!-- <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
 							<icon-sandbox></icon-sandbox>
 							<span>Sandbox</span>
-						</a>
+						</a> -->
 						<a class="cta-button docs-link xyz-nested" href="/docs">
 							<icon-docs></icon-docs>
 							<span>Docs</span>
@@ -106,7 +106,7 @@ import Banner from '~/components/banner/Banner'
 import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 import IconReact from '~/assets/icons/IconReact.svg'
-import IconSandbox from '~/assets/icons/IconSandbox.svg'
+// import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import IconSass from '~/assets/icons/IconSass.svg'
 import IconVue from '~/assets/icons/IconVue.svg'
 
@@ -116,7 +116,7 @@ export default {
 		IconDocs,
 		IconGithub,
 		IconReact,
-		IconSandbox,
+		// IconSandbox,
 		IconSass,
 		IconVue,
 	},
