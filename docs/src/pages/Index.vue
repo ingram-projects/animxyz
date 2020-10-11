@@ -5,7 +5,7 @@
 				<banner></banner>
 			</div>
 
-			<div class="about__wrap">
+			<div class="landing-content">
 				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 					<div class="links__wrap xyz-none">
 						<a
@@ -27,40 +27,75 @@
 					</div>
 				</xyz-transition>
 
-				<section class="about-section copy-content">
-					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-						<div class="intro__wrap">
-							<p class="intro-text">The first composable CSS animation framework.</p>
-						</div>
-					</xyz-transition>
+				<div class="copy__wrap">
+					<section class="about-section copy-content">
+						<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+							<div class="intro__wrap">
+								<p class="intro-text">The first composable CSS animation framework.</p>
+							</div>
+						</xyz-transition>
 
-					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-						<div class="tech-logos__wrap xyz-none">
-							<icon-vue class="xyz-nested"></icon-vue>
-							<icon-react class="xyz-nested"></icon-react>
-							<icon-sass class="xyz-nested"></icon-sass>
-						</div>
-					</xyz-transition>
+						<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+							<div class="tech-logos__wrap xyz-none">
+								<icon-vue class="xyz-nested"></icon-vue>
+								<icon-react class="xyz-nested"></icon-react>
+								<icon-sass class="xyz-nested"></icon-sass>
+							</div>
+						</xyz-transition>
 
+						<xyz-transition appear xyz="delay-5 fade down ease-out">
+							<div class="about-text">
+								<p>
+									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
+									attributes attributes and CSS utilities. Instead of writing similar keyframes over and over, or
+									relying on libraries that are limited to a specific set, use AnimXYZ to save you time and give you
+									complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
+									your website to life.
+								</p>
+							</div>
+						</xyz-transition>
+					</section>
 					<xyz-transition appear xyz="delay-5 fade down ease-out">
-						<div class="about-text">
-							<p>
-								AnimXYZ helps you create, customize, and compose animations for your website with simple HTML attributes
-								and CSS utilities. Instead of writing similar keyframes over and over, or relying on libraries that are
-								limited to a specific set, use AnimXYZ to save you time and give you complete control over how your
-								elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
-							</p>
-						</div>
+						<section class="features-section copy-content xyz-none">
+							<div class="feature">
+								<h4>CSS Stuff</h4>
+								<p>
+									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
+									attributes and CSS utilities.
+								</p>
+							</div>
+							<div class="feature">
+								<h4>CSS Stuff</h4>
+								<p>
+									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
+									attributes and CSS utilities.
+								</p>
+							</div>
+							<div class="feature">
+								<h4>CSS Stuff</h4>
+								<p>
+									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
+									attributes and CSS utilities.
+								</p>
+							</div>
+							<div class="feature">
+								<h4>CSS Stuff</h4>
+								<p>
+									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
+									attributes and CSS utilities.
+								</p>
+							</div>
+						</section>
 					</xyz-transition>
 					<xyz-transition appear xyz="delay-5 fade down ease-out">
-						<div class="created-by" style="--xyz-delay: 0.6s">
+						<footer class="created-by" style="--xyz-delay: 0.6s">
 							<p>
 								Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
 								<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
 							</p>
-						</div>
+						</footer>
 					</xyz-transition>
-				</section>
+				</div>
 			</div>
 		</main>
 	</layout>
@@ -112,7 +147,7 @@ export default {
 	}
 }
 
-.about__wrap {
+.landing-content {
 	display: flex;
 	max-width: 90%;
 	margin: 0 auto;
@@ -132,10 +167,14 @@ export default {
 	}
 }
 
-.about-section {
+.copy__wrap {
 	width: 100%;
 	max-width: 44rem;
 	margin-bottom: $sp-xxxl;
+}
+
+.about-section {
+	margin-bottom: $sp-xxl;
 }
 
 .intro__wrap {
@@ -159,11 +198,25 @@ export default {
 }
 
 .about-text {
+	--text-color: #{primary-color(700)};
+
 	font-size: $fs-l;
 	font-weight: 400;
 
 	@include media('<phone') {
 		font-size: 1.125rem;
+	}
+}
+
+.features-section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: $sp-xl;
+
+	p {
+		font-size: $fs-m;
+		line-height: 1.75;
+		color: primary-color(700);
 	}
 }
 
