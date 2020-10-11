@@ -6,6 +6,10 @@
 			</div>
 
 			<div class="landing-content">
+				<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+					<h1 class="intro-text">The first composable CSS animation framework.</h1>
+				</xyz-transition>
+
 				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 					<div class="links__wrap xyz-none">
 						<a
@@ -27,20 +31,16 @@
 					</div>
 				</xyz-transition>
 
+				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+					<div class="tech-logos__wrap xyz-none">
+						<icon-vue class="xyz-nested"></icon-vue>
+						<icon-react class="xyz-nested"></icon-react>
+						<icon-sass class="xyz-nested"></icon-sass>
+					</div>
+				</xyz-transition>
+
 				<div class="copy__wrap copy-content">
-					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-						<h1 class="intro-text">The first composable CSS animation framework.</h1>
-					</xyz-transition>
-
 					<section class="about-section">
-						<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-							<div class="tech-logos__wrap xyz-none">
-								<icon-vue class="xyz-nested"></icon-vue>
-								<icon-react class="xyz-nested"></icon-react>
-								<icon-sass class="xyz-nested"></icon-sass>
-							</div>
-						</xyz-transition>
-
 						<xyz-transition appear xyz="delay-5 fade down ease-out">
 							<div class="about-text">
 								<p>
@@ -86,17 +86,17 @@
 							</div>
 						</section>
 					</xyz-transition>
-
-					<xyz-transition appear xyz="delay-5 fade down ease-out">
-						<footer class="created-by" style="--xyz-delay: 0.6s">
-							<p>
-								Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
-								<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
-							</p>
-						</footer>
-					</xyz-transition>
 				</div>
 			</div>
+
+			<xyz-transition appear xyz="delay-5 fade down ease-out">
+				<footer class="created-by copy-content" style="--xyz-delay: 0.6s">
+					<p>
+						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
+						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
+					</p>
+				</footer>
+			</xyz-transition>
 		</main>
 	</layout>
 </template>
@@ -148,18 +148,14 @@ export default {
 }
 
 .landing-content {
-	display: flex;
 	max-width: 90%;
 	margin: 0 auto;
-
-	@include media('<tablet') {
-		display: block;
-	}
 }
 
 .copy__wrap {
 	width: 100%;
 	max-width: 44rem;
+	margin: 0 auto;
 	margin-bottom: $sp-xxxl;
 }
 
@@ -174,6 +170,7 @@ export default {
 	font-weight: 600;
 	line-height: 1.35;
 	max-width: 48rem;
+	text-align: center;
 
 	@include media('<phone') {
 		font-size: $fs-xl;
@@ -182,11 +179,15 @@ export default {
 
 .tech-logos__wrap {
 	display: flex;
+	justify-content: center;
 	margin: $sp-l 0;
 
 	.icon-svg {
 		@include size(3rem);
-		margin-right: $sp-m;
+	}
+
+	.icon-svg + .icon-svg {
+		margin-left: $sp-m;
 	}
 }
 
@@ -213,19 +214,10 @@ export default {
 }
 
 .links__wrap {
-	width: 16rem;
-	flex-grow: 1;
-	flex-shrink: 0;
-	margin-left: $sp-xl;
-	order: 2;
-
-	@include media('<tablet') {
-		display: flex;
-		align-items: center;
-		margin-left: 0;
-		margin-bottom: $sp-l;
-		width: 100%;
-	}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: $sp-l auto;
 }
 
 .cta-button {
@@ -234,6 +226,7 @@ export default {
 	border-bottom: 3px solid primary-color(300);
 	color: primary-color(600);
 	height: 3rem;
+	width: 16rem;
 	border-radius: $br-l;
 	padding: 0 $sp-s;
 	display: flex;
@@ -247,7 +240,7 @@ export default {
 	transition-property: background-color, box-shadow, border;
 
 	& + & {
-		margin-top: $sp-s;
+		margin-left: $sp-s;
 	}
 
 	svg {
