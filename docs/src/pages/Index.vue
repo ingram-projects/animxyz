@@ -27,14 +27,12 @@
 					</div>
 				</xyz-transition>
 
-				<div class="copy__wrap">
-					<section class="about-section copy-content">
-						<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-							<div class="intro__wrap">
-								<p class="intro-text">The first composable CSS animation framework.</p>
-							</div>
-						</xyz-transition>
+				<div class="copy__wrap copy-content">
+					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+						<h1 class="intro-text">The first composable CSS animation framework.</h1>
+					</xyz-transition>
 
+					<section class="about-section">
 						<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 							<div class="tech-logos__wrap xyz-none">
 								<icon-vue class="xyz-nested"></icon-vue>
@@ -55,31 +53,32 @@
 							</div>
 						</xyz-transition>
 					</section>
-					<xyz-transition appear xyz="delay-5 fade down ease-out">
-						<section class="features-section copy-content xyz-none">
-							<div class="feature">
-								<h4>CSS Stuff</h4>
+
+					<xyz-transition appear xyz="delay-5 fade down stagger-3 ease-out" duration="auto">
+						<section class="features-section xyz-none">
+							<div class="feature xyz-nested">
+								<h3>Composable</h3>
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
 									attributes and CSS utilities.
 								</p>
 							</div>
-							<div class="feature">
-								<h4>CSS Stuff</h4>
+							<div class="feature xyz-nested">
+								<h3>Performant</h3>
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
 									attributes and CSS utilities.
 								</p>
 							</div>
-							<div class="feature">
-								<h4>CSS Stuff</h4>
+							<div class="feature xyz-nested">
+								<h3>Customizable</h3>
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
 									attributes and CSS utilities.
 								</p>
 							</div>
-							<div class="feature">
-								<h4>CSS Stuff</h4>
+							<div class="feature xyz-nested">
+								<h3>Attributes</h3>
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
 									attributes and CSS utilities.
@@ -87,6 +86,7 @@
 							</div>
 						</section>
 					</xyz-transition>
+
 					<xyz-transition appear xyz="delay-5 fade down ease-out">
 						<footer class="created-by" style="--xyz-delay: 0.6s">
 							<p>
@@ -157,16 +157,6 @@ export default {
 	}
 }
 
-.tech-logos__wrap {
-	display: flex;
-	margin-bottom: $sp-m;
-
-	.icon-svg {
-		@include size(3rem);
-		margin-right: $sp-m;
-	}
-}
-
 .copy__wrap {
 	width: 100%;
 	max-width: 44rem;
@@ -177,15 +167,12 @@ export default {
 	margin-bottom: $sp-xxl;
 }
 
-.intro__wrap {
-	--xyz-duration: 0.7s;
-	margin-bottom: $sp-s;
-}
-
 .intro-text {
-	font-size: $fs-xxl;
-	font-weight: 550;
-	line-height: 1.5;
+	--xyz-duration: 0.7s;
+	color: primary-color(800);
+	font-size: $fs-xxxl;
+	font-weight: 600;
+	line-height: 1.35;
 	max-width: 48rem;
 
 	@include media('<phone') {
@@ -193,13 +180,18 @@ export default {
 	}
 }
 
-.key-text {
-	color: primary-color(500);
+.tech-logos__wrap {
+	display: flex;
+	margin: $sp-l 0;
+
+	.icon-svg {
+		@include size(3rem);
+		margin-right: $sp-m;
+	}
 }
 
 .about-text {
 	--text-color: #{primary-color(700)};
-
 	font-size: $fs-l;
 	font-weight: 400;
 
@@ -218,13 +210,6 @@ export default {
 		line-height: 1.75;
 		color: primary-color(700);
 	}
-}
-
-.created-by {
-	--text-color: #{primary-color(600)};
-	font-weight: 500;
-	font-size: $fs-s;
-	margin-top: $sp-xxl;
 }
 
 .links__wrap {
@@ -311,6 +296,13 @@ export default {
 	}
 }
 
+.created-by {
+	--text-color: #{primary-color(600)};
+	font-weight: 500;
+	font-size: $fs-s;
+	margin-top: $sp-xxl;
+}
+
 .docs-link {
 	--icon-color: #{primary-color(100)};
 	border-color: primary-color(700);
@@ -325,9 +317,5 @@ export default {
 		outline: none;
 		background-color: primary-color(700);
 	}
-
-	// &:focus {
-	// 	box-shadow: 0 0 0 4px transparentize($cyan, 0.25);
-	// }
 }
 </style>
