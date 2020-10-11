@@ -6,38 +6,40 @@
 			</div>
 
 			<div class="landing-content">
-				<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-					<h1 class="intro-text">The first composable CSS animation framework.</h1>
-				</xyz-transition>
+				<section class="hero__wrap">
+					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+						<h1 class="intro-text">The first composable CSS animation framework.</h1>
+					</xyz-transition>
 
-				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-					<div class="links__wrap xyz-none">
-						<a
-							class="cta-button github-link xyz-nested"
-							href="https://github.com/ingram-projects/animxyz"
-							target="_blank"
-						>
-							<icon-github></icon-github>
-							<span>GitHub</span>
-						</a>
-						<!-- <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
-							<icon-sandbox></icon-sandbox>
-							<span>Sandbox</span>
-						</a> -->
-						<a class="cta-button docs-link xyz-nested" href="/docs">
-							<icon-docs></icon-docs>
-							<span>Docs</span>
-						</a>
-					</div>
-				</xyz-transition>
+					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+						<div class="tech-logos__wrap xyz-none">
+							<icon-vue class="xyz-nested"></icon-vue>
+							<icon-react class="xyz-nested"></icon-react>
+							<icon-sass class="xyz-nested"></icon-sass>
+						</div>
+					</xyz-transition>
 
-				<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
-					<div class="tech-logos__wrap xyz-none">
-						<icon-vue class="xyz-nested"></icon-vue>
-						<icon-react class="xyz-nested"></icon-react>
-						<icon-sass class="xyz-nested"></icon-sass>
-					</div>
-				</xyz-transition>
+					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+						<div class="links__wrap xyz-none">
+							<a
+								class="cta-button github-link xyz-nested"
+								href="https://github.com/ingram-projects/animxyz"
+								target="_blank"
+							>
+								<icon-github></icon-github>
+								<span>GitHub</span>
+							</a>
+							<!-- <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+								<icon-sandbox></icon-sandbox>
+								<span>Sandbox</span>
+							</a> -->
+							<a class="cta-button docs-link xyz-nested" href="/docs">
+								<icon-docs></icon-docs>
+								<span>Documentation</span>
+							</a>
+						</div>
+					</xyz-transition>
+				</section>
 
 				<div class="copy__wrap copy-content">
 					<section class="about-section">
@@ -147,6 +149,12 @@ export default {
 	}
 }
 
+.hero__wrap {
+	border-radius: $br-xxl;
+	margin: 0 auto;
+	margin-bottom: $sp-xxl;
+}
+
 .landing-content {
 	max-width: 90%;
 	margin: 0 auto;
@@ -171,6 +179,7 @@ export default {
 	line-height: 1.35;
 	max-width: 48rem;
 	text-align: center;
+	background-color: primary-color(50);
 
 	@include media('<phone') {
 		font-size: $fs-xl;
@@ -210,6 +219,14 @@ export default {
 		font-size: $fs-m;
 		line-height: 1.75;
 		color: primary-color(700);
+	}
+
+	@include media('<tablet') {
+		grid-template-columns: 1fr;
+	}
+
+	@include media('<phone') {
+		grid-gap: $sp-l;
 	}
 }
 
@@ -293,7 +310,7 @@ export default {
 	--text-color: #{primary-color(600)};
 	font-weight: 500;
 	font-size: $fs-s;
-	margin-top: $sp-xxl;
+	margin: $sp-xxl auto;
 }
 
 .docs-link {
