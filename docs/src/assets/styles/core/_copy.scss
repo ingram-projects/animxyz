@@ -103,12 +103,19 @@ h5 {
     content: "Bash";
   }
 
-  table {
-    border-collapse: collapse;
-
+  table, .table-wrap {
     &:not(:last-child) {
       margin-bottom: 1.25rem;
     }
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    min-width: 100%;
 
     thead {
       color: primary-color(800);
@@ -142,6 +149,15 @@ h5 {
           background-color: primary-color(700, 0.05);
         }
       }
+    }
+  }
+
+  .variables-table {
+    font-size: $fs-m;
+  
+    td {
+      font-family: $font-stack-mono;
+      white-space: nowrap;
     }
   }
 
@@ -341,18 +357,4 @@ h5 {
 
 .note-tag--Sass {
   background-color: $color-sass;
-}
-
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.variables-table {
-  font-size: $fs-m;
-
-  td {
-    font-family: $font-stack-mono;
-    white-space: nowrap;
-  }
 }
