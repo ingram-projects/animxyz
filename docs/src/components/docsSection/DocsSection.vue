@@ -71,6 +71,22 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop: #{primary-color(50)};
 
+	::v-deep {
+		hr {
+			margin: $sp-xl (-$sp-m);
+		}
+
+		hr + h2 {
+			background-color: primary-color(50);
+			margin-top: -3.75rem;
+			margin-bottom: $sp-l;
+			margin-left: -$sp-xs;
+			width: fit-content;
+			padding: 0 $sp-xs;
+			transition: background-color 0.8s $ease-out;
+		}
+	}
+
 	@include media('>=laptop') {
 		padding: $sp-xl;
 
@@ -78,10 +94,16 @@ $active-border-width: 0.5rem;
 			background-color: white;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 			--shadow-scroll-backdrop: white;
-		}
 
-		::v-deep hr {
-			margin: $sp-l (-$sp-xl);
+			::v-deep {
+				hr {
+					margin: $sp-xl (-$sp-xl);
+				}
+
+				hr + h2 {
+					background-color: white;
+				}
+			}
 		}
 	}
 
