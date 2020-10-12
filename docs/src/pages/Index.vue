@@ -164,7 +164,6 @@ export default {
 	width: 100%;
 	max-width: 44rem;
 	margin: 0 auto;
-	margin-bottom: $sp-xxxl;
 }
 
 .about-section {
@@ -310,7 +309,7 @@ export default {
 	--text-color: #{primary-color(600)};
 	font-weight: 500;
 	font-size: $fs-s;
-	margin: $sp-xxl auto;
+	margin: $sp-xxxl auto;
 }
 
 .docs-link {
