@@ -16,13 +16,15 @@ npm install @animxyz/core
 yarn install @animxyz/core
 ```
 
+After installation, you will need to import AnimXYZ into your project.
+
 **Import into a Webpack project:** If your Webpack project uses `css-loader` you can import the CSS by putting this snippet anywhere in your javascript code:
 
 ```js
 import '@animxyz/core'
 ```
 
-**Import into a SASS/SCSS project:** AnimXYZ is built in SCSS and provides useful functions and mixins for customization. Import it anywhere in your SASS code:
+**Import into a SASS project:** AnimXYZ is built in SASS and provides useful functions and mixins for customization. Import it anywhere in your SASS code:
 
 ```css
 @import '@animxyz/core';
