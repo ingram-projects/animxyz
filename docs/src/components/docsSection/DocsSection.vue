@@ -79,6 +79,10 @@ $active-border-width: 0.5rem;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 			--shadow-scroll-backdrop: white;
 		}
+
+		::v-deep hr {
+			margin: $sp-l (-$sp-xl);
+		}
 	}
 
 	@include media('<=x-large') {
