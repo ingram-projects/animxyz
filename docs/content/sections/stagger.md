@@ -47,6 +47,7 @@ If you are using the provided Vue/React `XyzTransitionGroup` components, AnimXYZ
 Since Vue and React add/remove elements when their enter/exit animations end, staggered elements that are not `position: absolute` may cause the group layout to change as each element enters or exits in order.
 :::
 
+---
 ## Defaults
 
 To change the default stagger value you can set `--xyz-stagger-default` in `:root`. For example:

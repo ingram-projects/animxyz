@@ -38,6 +38,7 @@ Changing the timing of an animation can have a large impact on how it feels. For
 
 You can set your own custom duration, delay, and timing function using the `--xyz-duration`, `--xyz-delay`, and `--xyz-ease` variables respectively.
 
+---
 ## Defaults
 
 To change the default timing values you can modify them in `:root`. For example:

@@ -34,6 +34,7 @@ To take full advantage of CSS 3D animations, your animating elements should have
 
 Smaller perspective values will result in a more pronounced effect.
 
+---
 ## Defaults
 
 To change the default perspective value you can set `--xyz-perspective-default` in `:root`. For example:

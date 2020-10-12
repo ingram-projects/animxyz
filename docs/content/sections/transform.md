@@ -44,16 +44,34 @@ You can also override any of the provided transform variables with a custom valu
 If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
 :::
 
+---
 ## Defaults
 
 To change the default transform values you can modify them in `:root`. For example:
 
-```css
-:root {
-  --xyz-translate-default: 100%;
-  --xyz-rotate-default: 1turn;
-  --xyz-scale-default: 1;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-translate-default</td>
+        <td>30px</td>
+      </tr>
+      <tr>
+        <td>--xyz-rotate-default</td>
+        <td>.25turn</td>
+      </tr>
+      <tr>
+        <td>--xyz-scale-default</td>
+        <td>0.5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.

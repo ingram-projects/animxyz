@@ -9,9 +9,16 @@
 					</th>
 				</tr>
 			</thead>
-			<xyz-transition-group tag="tbody" class="utilities-table__body" appear duration="auto" xyz="fade down" style="--xyz-stagger: 0.05s;">
+			<xyz-transition-group
+				tag="tbody"
+				class="utilities-table__body"
+				appear
+				duration="auto"
+				xyz="fade down"
+				style="--xyz-stagger: 0.05s"
+			>
 				<tr class="utility xyz-none" v-for="utility in computedUtilities" :key="utility.name">
-					<th class="utility__header xyz-nested">
+					<th class="utility__header xyz-nested" scope="row">
 						{{ utility.name }}
 					</th>
 					<td class="utility-level xyz-nested" v-for="utilityLevel in utility.levels" :key="utilityLevel.id">

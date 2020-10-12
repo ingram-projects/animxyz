@@ -36,14 +36,24 @@ Fade utilities and variables define the starting (.xyz-in) or ending (.xyz-out) 
 
 You can also override `--xyz-opacity` with a custom value in your CSS or with inline styling for more granular control.
 
+---
 ## Defaults
 
-To change the default fade value you can set `--xyz-opacity-default` in `:root`. For example:
-
-```css
-:root {
-  --xyz-opacity-default: 0.5;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-opacity-default</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.
