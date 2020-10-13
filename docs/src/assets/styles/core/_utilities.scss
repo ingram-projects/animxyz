@@ -183,7 +183,7 @@ $shadow-scroll-backdrop: var(--shadow-scroll-backdrop, white);
   .shadow-scroll-content {
     box-shadow:
       inset #{$shadow-scroll-size} 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop},
-      inset calc(#{$shadow-scroll-size} * -2) 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
+      inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
   }
 }
 
@@ -195,6 +195,6 @@ $shadow-scroll-backdrop: var(--shadow-scroll-backdrop, white);
   .shadow-scroll-content {
     box-shadow:
       inset 0 #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop},
-      inset 0 calc(#{$shadow-scroll-size} * -2) #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
+      inset 0 calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-size} #{$shadow-scroll-size} #{$shadow-scroll-backdrop};
   }
 }

@@ -89,12 +89,14 @@ See the [variables](#variables) section to learn more.
   <table class="shadow-scroll-content">
     <thead>
       <tr>
+        <th></th>
         <th>Variable</th>
         <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th scope="row">Stagger</th>
         <td>--xyz-stagger-default</td>
         <td>0.3s</td>
       </tr>

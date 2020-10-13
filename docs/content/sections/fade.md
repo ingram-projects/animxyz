@@ -71,12 +71,14 @@ See the [variables](#variables) section to learn more.
   <table class="shadow-scroll-content">
     <thead>
       <tr>
+        <th></th>
         <th>Variable</th>
         <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th scope="row">Opacity</th>
         <td>--xyz-opacity-default</td>
         <td>0</td>
       </tr>

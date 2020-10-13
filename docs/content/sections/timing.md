@@ -91,22 +91,26 @@ See the [variables](#variables) section to learn more.
   <table class="shadow-scroll-content">
     <thead>
       <tr>
+        <th></th>
         <th>Variable</th>
         <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th scope="row">Ease</th>
+        <td>--xyz-ease-default</td>
+        <td>ease</td>
+      </tr>
+      <tr>
+        <th scope="row">Duration</th>
         <td>--xyz-duration-default</td>
         <td>0.5s</td>
       </tr>
       <tr>
+        <th scope="row">Delay</th>
         <td>--xyz-delay-default</td>
         <td>0s</td>
-      </tr>
-      <tr>
-        <td>--xyz-ease-default</td>
-        <td>ease</td>
       </tr>
     </tbody>
   </table>

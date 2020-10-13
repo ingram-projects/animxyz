@@ -65,7 +65,6 @@ If an element already has a transform applied to it that you want to maintain du
         <td>--xyz-in-transform</td>
         <td>--xyz-out-transform</td>
         <td>--xyz-appear-transform</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Translate X</th>
@@ -73,7 +72,6 @@ If an element already has a transform applied to it that you want to maintain du
         <td>--xyz-in-translate-x</td>
         <td>--xyz-out-translate-x</td>
         <td>--xyz-appear-translate-x</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Translate Y</th>
@@ -144,20 +142,24 @@ See the [variables](#variables) section to learn more.
   <table class="shadow-scroll-content">
     <thead>
       <tr>
+        <th></th>
         <th>Variable</th>
         <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th scope="row">Translate</th>
         <td>--xyz-translate-default</td>
         <td>30px</td>
       </tr>
       <tr>
+        <th scope="row">Rotate</th>
         <td>--xyz-rotate-default</td>
         <td>.25turn</td>
       </tr>
       <tr>
+        <th scope="row">Scale</th>
         <td>--xyz-scale-default</td>
         <td>0.5</td>
       </tr>
