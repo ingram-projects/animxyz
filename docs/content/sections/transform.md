@@ -45,9 +45,100 @@ If an element already has a transform applied to it that you want to maintain du
 :::
 
 ---
-## Defaults
+## Variables
 
-To change the default transform values you can modify them in `:root`. For example:
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Transform</th>
+        <td>--xyz-transform</td>
+        <td>--xyz-in-transform</td>
+        <td>--xyz-out-transform</td>
+        <td>--xyz-appear-transform</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Translate X</th>
+        <td>--xyz-translate-x</td>
+        <td>--xyz-in-translate-x</td>
+        <td>--xyz-out-translate-x</td>
+        <td>--xyz-appear-translate-x</td>
+        <td></td>
+      </tr>
+      <tr>
+        <th scope="row">Translate Y</th>
+        <td>--xyz-translate-y</td>
+        <td>--xyz-in-translate-y</td>
+        <td>--xyz-out-translate-y</td>
+        <td>--xyz-appear-translate-y</td>
+      </tr>
+      <tr>
+        <th scope="row">Translate Z</th>
+        <td>--xyz-translate-z</td>
+        <td>--xyz-in-translate-z</td>
+        <td>--xyz-out-translate-z</td>
+        <td>--xyz-appear-translate-z</td>
+      </tr>
+      <tr>
+        <th scope="row">Rotate X</th>
+        <td>--xyz-rotate-x</td>
+        <td>--xyz-in-rotate-x</td>
+        <td>--xyz-out-rotate-x</td>
+        <td>--xyz-appear-rotate-x</td>
+      </tr>
+      <tr>
+        <th scope="row">Rotate Y</th>
+        <td>--xyz-rotate-y</td>
+        <td>--xyz-in-rotate-y</td>
+        <td>--xyz-out-rotate-y</td>
+        <td>--xyz-appear-rotate-y</td>
+      </tr>
+      <tr>
+        <th scope="row">Rotate Z</th>
+        <td>--xyz-rotate-z</td>
+        <td>--xyz-in-rotate-z</td>
+        <td>--xyz-out-rotate-z</td>
+        <td>--xyz-appear-rotate-z</td>
+      </tr>
+      <tr>
+        <th scope="row">Scale X</th>
+        <td>--xyz-scale-x</td>
+        <td>--xyz-in-scale-x</td>
+        <td>--xyz-out-scale-x</td>
+        <td>--xyz-appear-scale-x</td>
+      </tr>
+      <tr>
+        <th scope="row">Scale Y</th>
+        <td>--xyz-scale-y</td>
+        <td>--xyz-in-scale-y</td>
+        <td>--xyz-out-scale-y</td>
+        <td>--xyz-appear-scale-y</td>
+      </tr>
+      <tr>
+        <th scope="row">Scale Z</th>
+        <td>--xyz-scale-z</td>
+        <td>--xyz-in-scale-z</td>
+        <td>--xyz-out-scale-z</td>
+        <td>--xyz-appear-scale-z</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
+## Defaults
 
 <div class="variables-table table-wrap shadow-scroll-h">
   <table class="shadow-scroll-content">

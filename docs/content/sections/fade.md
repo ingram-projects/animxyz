@@ -37,6 +37,34 @@ Fade utilities and variables define the starting (.xyz-in) or ending (.xyz-out) 
 You can also override `--xyz-opacity` with a custom value in your CSS or with inline styling for more granular control.
 
 ---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Opacity</th>
+        <td>--xyz-opacity</td>
+        <td>--xyz-in-opacity</td>
+        <td>--xyz-out-opacity</td>
+        <td>--xyz-appear-opacity</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
 ## Defaults
 
 <div class="variables-table table-wrap shadow-scroll-h">

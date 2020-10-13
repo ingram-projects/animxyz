@@ -48,14 +48,58 @@ Since Vue and React add/remove elements when their enter/exit animations end, st
 :::
 
 ---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Stagger</th>
+        <td>--xyz-stagger</td>
+        <td>--xyz-in-stagger</td>
+        <td>--xyz-out-stagger</td>
+        <td>--xyz-appear-stagger</td>
+      </tr>
+      <tr>
+        <th scope="row">Stagger Reverse</th>
+        <td>--xyz-stagger-rev</td>
+        <td>--xyz-in-stagger-rev</td>
+        <td>--xyz-out-stagger-rev</td>
+        <td>--xyz-appear-stagger-rev</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
 ## Defaults
 
-To change the default stagger value you can set `--xyz-stagger-default` in `:root`. For example:
-
-```css
-:root {
-  --xyz-stagger-default: 0.1s;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-stagger-default</td>
+        <td>0.3s</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.

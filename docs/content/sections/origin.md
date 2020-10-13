@@ -37,14 +37,51 @@ For example setting `xyz="small-100 origin-right"` on an element will scale it t
 If you want to place the `transform-origin` in a more precise location than the utilities provide, override `--xyz-origin` with a custom value in your CSS or with inline styling for more granular control. For example `--xyz-origin: 50px 50px` will set the origin to a point 50px down and to the right from the top left.
 
 ---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Origin</th>
+        <td>--xyz-origin</td>
+        <td>--xyz-in-origin</td>
+        <td>--xyz-out-origin</td>
+        <td>--xyz-appear-origin</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
 ## Defaults
 
-To change the default origin value you can set `--xyz-origin-default` in `:root`. For example:
-
-```css
-:root {
-  --xyz-origin-default: top right;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-origin-default</td>
+        <td>center</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.
