@@ -8,7 +8,7 @@
 			<div class="landing-content">
 				<section class="hero__wrap">
 					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-						<h1 class="intro-text">The first composable CSS animation framework.</h1>
+						<h1 class="intro-text">The first composable CSS animation toolkit.</h1>
 					</xyz-transition>
 
 					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
@@ -75,7 +75,7 @@
 							<div class="feature xyz-nested">
 								<h3>Customizable</h3>
 								<p>
-									Use our provided animation utilities or make your own. Override any animations properties with simple
+									Use our provided animation utilities or make your own. Override any animation properties with simple
 									CSS variables.
 								</p>
 							</div>
@@ -314,7 +314,13 @@ export default {
 	--text-color: #{primary-color(600)};
 	font-weight: 500;
 	font-size: $fs-s;
-	margin: $sp-xxxl auto;
+	margin: 0 auto;
+	margin-top: $sp-xxxl;
+	margin-bottom: 2.25rem;
+
+	@include media('<phone') {
+		margin-bottom: $sp-xxxl;
+	}
 }
 
 .docs-link {
