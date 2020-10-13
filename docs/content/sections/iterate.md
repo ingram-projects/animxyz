@@ -1,6 +1,6 @@
 ---
 title: Iterate
-quote: 99 bottles of beer on the wall.
+quote: Two hops this time!
 
 examples:
   - name: Iterate
