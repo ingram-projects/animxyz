@@ -71,12 +71,14 @@ See the [variables](#variables) section for more information about using CSS var
   <table class="shadow-scroll-content">
     <thead>
       <tr>
+        <th></th>
         <th>Variable</th>
         <th>Value</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <th scope="row">Origin</th>
         <td>--xyz-origin-default</td>
         <td>center</td>
       </tr>
