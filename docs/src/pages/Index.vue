@@ -81,7 +81,9 @@
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Attributes</h3>
-								<p>Use an `xyz` attribute selector and CSS variables to easily create inheritable animations.</p>
+								<p>
+									Use an <code>xyz</code> attribute selector and CSS variables to easily create inheritable animations.
+								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Staggering</h3>
