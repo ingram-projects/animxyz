@@ -35,14 +35,51 @@ To take full advantage of CSS 3D animations, your animating elements should have
 Smaller perspective values will result in a more pronounced effect.
 
 ---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Perspective</th>
+        <td>--xyz-perspective</td>
+        <td>--xyz-in-perspective</td>
+        <td>--xyz-out-perspective</td>
+        <td>--xyz-appear-perspective</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
 ## Defaults
 
-To change the default perspective value you can set `--xyz-perspective-default` in `:root`. For example:
-
-```css
-:root {
-  --xyz-perspective-default: 500px;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-perspective-default</td>
+        <td>0px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.

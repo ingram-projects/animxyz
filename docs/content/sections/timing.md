@@ -39,16 +39,77 @@ Changing the timing of an animation can have a large impact on how it feels. For
 You can set your own custom duration, delay, and timing function using the `--xyz-duration`, `--xyz-delay`, and `--xyz-ease` variables respectively.
 
 ---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+        <th>Move</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Ease</th>
+        <td>--xyz-ease</td>
+        <td>--xyz-in-ease</td>
+        <td>--xyz-out-ease</td>
+        <td>--xyz-appear-ease</td>
+        <td>--xyz-move-ease</td>
+      </tr>
+      <tr>
+        <th scope="row">Duration</th>
+        <td>--xyz-duration</td>
+        <td>--xyz-in-duration</td>
+        <td>--xyz-out-duration</td>
+        <td>--xyz-appear-duration</td>
+        <td>--xyz-move-duration</td>
+      </tr>
+      <tr>
+        <th scope="row">Delay</th>
+        <td>--xyz-delay</td>
+        <td>--xyz-in-delay</td>
+        <td>--xyz-out-delay</td>
+        <td>--xyz-appear-delay</td>
+        <td>--xyz-move-delay</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
 ## Defaults
 
-To change the default timing values you can modify them in `:root`. For example:
-
-```css
-:root {
-  --xyz-duration-default: 0.3s;
-  --xyz-delay-default: 0.1s;
-  --xyz-ease-default: ease-in-out;
-}
-```
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-duration-default</td>
+        <td>0.5s</td>
+      </tr>
+      <tr>
+        <td>--xyz-delay-default</td>
+        <td>0s</td>
+      </tr>
+      <tr>
+        <td>--xyz-ease-default</td>
+        <td>ease</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 See the [defaults](#defaults) section for more information about setting defaults.

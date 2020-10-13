@@ -31,3 +31,53 @@ modifiers:
 ---
 
 This is the iterate section
+
+---
+## Variables
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>In</th>
+        <th>Out</th>
+        <th>Appear</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Iterate</th>
+        <td>--xyz-iterate</td>
+        <td>--xyz-in-iterate</td>
+        <td>--xyz-out-iterate</td>
+        <td>--xyz-appear-iterate</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [variables](#variables) section for more information about using CSS variables.
+
+---
+## Defaults
+
+<div class="variables-table table-wrap shadow-scroll-h">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>--xyz-iterate-default</td>
+        <td>1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+See the [defaults](#defaults) section for more information about setting defaults.

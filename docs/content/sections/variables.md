@@ -84,7 +84,7 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td></td>
       </tr>
       <tr>
-        <th scope="row">Easing</th>
+        <th scope="row">Ease</th>
         <td>--xyz-ease</td>
         <td>--xyz-in-ease</td>
         <td>--xyz-out-ease</td>
