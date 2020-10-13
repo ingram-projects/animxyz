@@ -61,30 +61,35 @@
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
 								<p>
-									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
-									attributes and CSS utilities.
+									Mix and match animations without writing any keyframes. Combine a spin with a scale and drop it from
+									the top!
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Performant</h3>
 								<p>
-									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
-									attributes and CSS utilities.
+									Silky smooth animations without even trying. Only <code>2.64kB</code> for base functionality and
+									<code>10.9kB</code> if you include convenient shortcut utilities.
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Customizable</h3>
 								<p>
-									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
-									attributes and CSS utilities.
+									Use our provided animation utilities or make your own. Override any animations properties with simple
+									CSS variables.
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Attributes</h3>
-								<p>
-									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
-									attributes and CSS utilities.
-								</p>
+								<p>Use an `xyz` attribute selector and CSS variables to easily create inheritable animations.</p>
+							</div>
+							<div class="feature xyz-nested">
+								<h3>Staggering</h3>
+								<p>Staggered animation of lists of elements in both forward and reverse order.</p>
+							</div>
+							<div class="feature xyz-nested">
+								<h3>Child Animations</h3>
+								<p>Animate sub-elements of an item in sync with their parent to create eye-catching details.</p>
 							</div>
 						</section>
 					</xyz-transition>
@@ -150,6 +155,7 @@ export default {
 }
 
 .hero__wrap {
+	position: relative;
 	border-radius: $br-xxl;
 	margin: 0 auto;
 	margin-bottom: $sp-xxl;
@@ -178,7 +184,6 @@ export default {
 	line-height: 1.35;
 	max-width: 48rem;
 	text-align: center;
-	background-color: primary-color(50);
 
 	@include media('<phone') {
 		font-size: $fs-xl;

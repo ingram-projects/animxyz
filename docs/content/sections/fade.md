@@ -62,7 +62,7 @@ You can also override `--xyz-opacity` with a custom value in your CSS or with in
   </table>
 </div>
 
-See the [variables](#variables) section for more information about using CSS variables.
+See the [variables](#variables) section to learn more.
 
 ---
 ## Defaults
@@ -86,4 +86,4 @@ See the [variables](#variables) section for more information about using CSS var
   </table>
 </div>
 
-See the [defaults](#defaults) section for more information about setting defaults.
+See the [defaults](#defaults) section to learn more.
