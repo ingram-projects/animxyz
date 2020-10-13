@@ -37,7 +37,7 @@ Smaller perspective values will result in a more pronounced effect.
 ---
 ## Variables
 
-<div class="variables-table table-wrap shadow-scroll-h">
+<div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">
     <thead>
       <tr>
@@ -65,7 +65,7 @@ See the [variables](#variables) section to learn more.
 ---
 ## Defaults
 
-<div class="variables-table table-wrap shadow-scroll-h">
+<div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">
     <thead>
       <tr>

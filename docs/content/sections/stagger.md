@@ -50,7 +50,7 @@ Since Vue and React add/remove elements when their enter/exit animations end, st
 ---
 ## Variables
 
-<div class="variables-table table-wrap shadow-scroll-h">
+<div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">
     <thead>
       <tr>
@@ -85,7 +85,7 @@ See the [variables](#variables) section to learn more.
 ---
 ## Defaults
 
-<div class="variables-table table-wrap shadow-scroll-h">
+<div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">
     <thead>
       <tr>

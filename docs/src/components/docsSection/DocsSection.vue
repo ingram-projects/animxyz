@@ -72,8 +72,7 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
 
 	::v-deep {
-		.shadow-scroll-h,
-		.shadow-scroll-v,
+		.shadow-scroll,
 		.shadow-scroll-content {
 			transition: box-shadow 0.8s $ease-out;
 		}

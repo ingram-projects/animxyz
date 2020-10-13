@@ -171,37 +171,27 @@ $spacingSizes: (
   @include screen-reader-only;
 }
 
-$shadow-scroll-color: var(--shadow-scroll-color, black);
-$shadow-scroll-spread: var(--shadow-scroll-spread, 0px);
-$shadow-scroll-blur: var(--shadow-scroll-blur, 20px);
-$shadow-scroll-size: var(--shadow-scroll-size);
-$shadow-scroll-backdrop-color: var(--shadow-scroll-backdrop-color, white);
-$shadow-scroll-backdrop-blur: var(--shadow-scroll-backdrop-blur, #{$shadow-scroll-blur});
+.shadow-scroll {
+  $shadow-scroll-color: var(--shadow-scroll-color, black);
+  $shadow-scroll-spread: var(--shadow-scroll-spread, 0px);
+  $shadow-scroll-blur: var(--shadow-scroll-blur, 20px);
+  $shadow-scroll-backdrop-color: var(--shadow-scroll-backdrop-color, white);
+  $shadow-scroll-backdrop-blur: var(--shadow-scroll-backdrop-blur, #{$shadow-scroll-blur});
 
-.shadow-scroll-h, .shadow-scroll-v {
   --shadow-scroll-size: calc(#{$shadow-scroll-spread} + #{$shadow-scroll-blur});
-}
+  $shadow-scroll-size: var(--shadow-scroll-size, 0px);
 
-.shadow-scroll-h {
   box-shadow:
     inset #{$shadow-scroll-size} 0 #{$shadow-scroll-blur} calc(#{$shadow-scroll-blur} * -1) #{$shadow-scroll-color},
-    inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-blur} calc(#{$shadow-scroll-blur} * -1) #{$shadow-scroll-color};
-
-  .shadow-scroll-content {
-    box-shadow:
-      inset #{$shadow-scroll-size} 0 #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
-      inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
-  }
-}
-
-.shadow-scroll-v {
-  box-shadow:
+    inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-blur} calc(#{$shadow-scroll-blur} * -1) #{$shadow-scroll-color},
     inset 0 #{$shadow-scroll-size} #{$shadow-scroll-blur} calc(#{$shadow-scroll-blur} * -1) #{$shadow-scroll-color},
     inset 0 calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-blur} calc(#{$shadow-scroll-blur} * -1) #{$shadow-scroll-color};
 
   .shadow-scroll-content {
     box-shadow:
+      inset #{$shadow-scroll-size} 0 #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
+      inset calc(#{$shadow-scroll-size} * -1) 0 #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
       inset 0 #{$shadow-scroll-size} #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
-      inset 0 calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color},
+      inset 0 calc(#{$shadow-scroll-size} * -1) #{$shadow-scroll-backdrop-blur} 0 #{$shadow-scroll-backdrop-color};
   }
 }
