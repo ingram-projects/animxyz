@@ -80,7 +80,7 @@ Since Vue and React add/remove elements when their enter/exit animations end, st
   </table>
 </div>
 
-See the [variables](#variables) section for more information about using CSS variables.
+See the [variables](#variables) section to learn more.
 
 ---
 ## Defaults
@@ -102,4 +102,4 @@ See the [variables](#variables) section for more information about using CSS var
   </table>
 </div>
 
-See the [defaults](#defaults) section for more information about setting defaults.
+See the [defaults](#defaults) section to learn more.
