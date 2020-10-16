@@ -1,6 +1,6 @@
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
-function updateScrollLock (el, binding) {
+function updateScrollLock(el, binding) {
 	if (binding.oldValue === binding.value) {
 		return
 	}
@@ -13,9 +13,9 @@ function updateScrollLock (el, binding) {
 }
 
 export default {
-  inserted: updateScrollLock,
-  componentUpdated: updateScrollLock,
-  unbind (el) {
-    enableBodyScroll(el)
-  },
+	inserted: updateScrollLock,
+	componentUpdated: updateScrollLock,
+	unbind(el) {
+		enableBodyScroll(el)
+	},
 }

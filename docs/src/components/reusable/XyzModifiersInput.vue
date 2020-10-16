@@ -1,10 +1,7 @@
 <template>
+	<!-- eslint-disable vue/no-mutating-props -->
 	<div class="modifiers__wrap">
-		<tab-bar
-			:tabs="modifiers.groups"
-			v-if="modifiers.groups.length > 1"
-			v-model="activeGroup"
-		></tab-bar>
+		<tab-bar :tabs="modifiers.groups" v-if="modifiers.groups.length > 1" v-model="activeGroup"></tab-bar>
 
 		<xyz-transition-group
 			tag="div"
@@ -26,7 +23,7 @@
 					class="modifiers-variables modifiers-section"
 					:variables="variableNames"
 					v-model="value.variables"
-					:style="{ '--xyz-delay': `${utilityNames.length * 0.05}s`}"
+					:style="{ '--xyz-delay': `${utilityNames.length * 0.05}s` }"
 				></xyz-variables-input>
 			</div>
 		</xyz-transition-group>
@@ -34,6 +31,8 @@
 </template>
 
 <script>
+/* eslint-disable vue/no-mutating-props */
+
 import TabBar from '~/components/reusable/TabBar'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
@@ -59,9 +58,11 @@ export default {
 			if (this.activeGroup) {
 				this.activeGroup.types.forEach((type) => {
 					utilityNames.push(
-						...xyzUtilities.filter((utility) => {
-							return utility.type === type
-						}).map((utility) => utility.name)
+						...xyzUtilities
+							.filter((utility) => {
+								return utility.type === type
+							})
+							.map((utility) => utility.name)
 					)
 				})
 			}
@@ -72,9 +73,11 @@ export default {
 			if (this.activeGroup) {
 				this.activeGroup.types.forEach((type) => {
 					variableNames.push(
-						...xyzVariables.filter((variable) => {
-							return variable.type === type
-						}).map((variable) => variable.name)
+						...xyzVariables
+							.filter((variable) => {
+								return variable.type === type
+							})
+							.map((variable) => variable.name)
 					)
 				})
 			}

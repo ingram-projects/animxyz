@@ -26,19 +26,18 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "lint": "eslint . --ignore-path .gitignore --fix",
     "lint": "eslint --ignore-path .gitignore --fix",
     "lint-all": "yarn run lint --ext .js,.jsx,.ts,.tsx,.vue .",
     "publish": "lerna run build && lerna publish"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
     "lerna": "^3.22.1",
-    "lint-staged": "^10.3.0",
-    "prettier": "^2.1.1"
+    "lint-staged": "^10.4.1",
+    "prettier": "^2.1.2"
   },
   "husky": {
     "hooks": {

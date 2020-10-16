@@ -8,12 +8,12 @@
   "dependencies": {
     "@animxyz/react": "^0.0.22",
     "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "react-scripts": "^3.4.3",
-    "sass": "^1.26.10"
+    "sass": "^1.27.0"
   }
 }

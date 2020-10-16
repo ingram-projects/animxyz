@@ -12,13 +12,13 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.4",
-    "@vue/cli-service": "~4.5.4",
+    "@vue/cli-plugin-babel": "~4.5.7",
+    "@vue/cli-service": "~4.5.7",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "^1.26.10",
-    "sass-loader": "^10.0.2",
+    "eslint-plugin-vue": "^7.0.1",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
     "vue-template-compiler": "^2.6.12"
   }
 }
