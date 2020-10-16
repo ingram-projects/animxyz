@@ -17,8 +17,6 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^7.0.1",
-    "sass": "^1.27.0",
-    "sass-loader": "^10.0.3",
     "vue-template-compiler": "^2.6.12"
   }
 }

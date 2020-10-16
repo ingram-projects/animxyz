@@ -9,11 +9,11 @@
     "@animxyz/react": "^0.0.23",
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-dom": "^16.14.0",
+    "react-scripts": "3.4.3"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "react-scripts": "^3.4.3",
-    "sass": "^1.27.0"
+    "eslint-plugin-react": "^7.21.4"
   }
 }

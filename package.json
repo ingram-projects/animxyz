@@ -19,9 +19,6 @@
       "packages/*",
       "examples/*",
       "docs"
-    ],
-    "nohoist": [
-      "**/react"
     ]
   },
   "scripts": {
@@ -31,7 +28,7 @@
     "publish": "lerna run build && lerna publish"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",

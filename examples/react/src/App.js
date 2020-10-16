@@ -6,7 +6,7 @@ const switchStates = ['one', 'two', 'three', 'four', 'five']
 function App() {
 	const [switchState, setSwitchState] = useState(switchStates[0])
 
-	function randomState () {
+	function randomState() {
 		setSwitchState(switchStates[Math.floor(Math.random() * switchStates.length)])
 	}
 
@@ -19,7 +19,9 @@ function App() {
 			</XyzTransitionGroup>
 
 			<XyzTransitionSwitch appear mode="out-in" xyz={xyz(['fade', 'turn-cw', 'duration-10', 'big-100'])}>
-				<button onClick={randomState} key={switchState}>State {switchState}</button>
+				<button onClick={randomState} key={switchState}>
+					State {switchState}
+				</button>
 			</XyzTransitionSwitch>
 		</div>
 	)
