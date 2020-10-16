@@ -6,21 +6,21 @@ examples:
   - name: Defaults
     template: |
       <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
-        <xyz-transition duration="auto" v-on="data.listeners">
+        <xyz-transition duration="auto" xyz="fade stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
-            <div class="square xyz-nested" xyz="fade left stagger"></div>
-            <div class="square xyz-nested" xyz="fade up stagger"></div>
-            <div class="square xyz-nested" xyz="fade down stagger"></div>
+            <div class="square xyz-nested" xyz="inherit left"></div>
+            <div class="square xyz-nested" xyz="inherit up"></div>
+            <div class="square xyz-nested" xyz="inherit down"></div>
           </div>
         </xyz-transition>
       </div>
     code:
       - language: html
         content: |
-          <div class="square-group">
-            <div class="square ${data.mode}" xyz="fade left stagger"></div>
-            <div class="square ${data.mode}" xyz="fade up stagger"></div>
-            <div class="square ${data.mode}" xyz="fade down stagger"></div>
+          <div class="square-group" xyz="fade stagger">
+            <div class="square ${data.mode}" xyz="inherit left"></div>
+            <div class="square ${data.mode}" xyz="inherit up"></div>
+            <div class="square ${data.mode}" xyz="inherit down"></div>
           </div>
 
           <style>
