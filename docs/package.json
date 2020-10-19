@@ -11,12 +11,12 @@
   "dependencies": {
     "@animxyz/vue": "^0.0.23",
     "body-scroll-lock": "^3.1.5",
+    "fontsource-inconsolata": "3.0.5",
     "gridsome": "^0.7.21",
     "lodash": "^4.17.20",
     "prettier": "^2.1.2",
     "query-string": "^6.13.5",
     "ress": "^3.0.0",
-    "typeface-inconsolata": "^1.1.13",
     "typeface-inter": "^3.15.0",
     "vue-client-only": "^2.0.0",
     "vue-focus-lock": "^1.4.0",

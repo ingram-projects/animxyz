@@ -3,7 +3,7 @@
 
 // Fonts
 import 'typeface-inter'
-import 'typeface-inconsolata'
+import 'fontsource-inconsolata'
 
 // Styles
 import 'ress'
