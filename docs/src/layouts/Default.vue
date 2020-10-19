@@ -5,8 +5,11 @@
 			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 		</button>
 
-		<xyz-transition xyz="duration-15">
-			<div class="xray-overlay" v-if="xRayToggled"></div>
+		<xyz-transition xyz="duration-30 ease-in" duration="auto">
+			<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
+				<div class="xray-overlay xyz-nested"></div>
+				<div class="xray-overlay xyz-nested" xyz="inherit delay-5"></div>
+			</div>
 		</xyz-transition>
 
 		<slot></slot>
@@ -91,14 +94,20 @@ export default {
 	}
 }
 
-.xray-overlay {
+.xray-overlay__wrap {
 	position: fixed;
-	left: 0;
 	right: 0;
-	top: 0;
 	bottom: 0;
-	pointer-events: none;
 	z-index: 99999;
+	pointer-events: none;
+}
+
+.xray-overlay {
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
 	--xyz-in-keyframes: xray-scan;
 	--xyz-out-keyframes: xray-scan;
 

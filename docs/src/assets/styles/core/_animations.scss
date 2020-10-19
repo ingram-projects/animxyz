@@ -3,19 +3,15 @@
 
 @keyframes xray-scan {
   0% {
-    right: 0;
-    left: 100vw;
     backdrop-filter: invert(1);
-    background-color: transparentize($cyan, .75);
   }
   50% {
-    right: 0;
-    left: 0;
+    @include size(300vmax);
+    backdrop-filter: invert(1);
   }
   100% {
-    right: 100vw;
+    @include size(300vmax);
     backdrop-filter: invert(1);
-    background-color: transparentize($cyan, .75);
   }
 }
 
