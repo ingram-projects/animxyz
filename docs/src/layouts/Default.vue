@@ -3,14 +3,14 @@
 		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 			<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
 			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
-		</button>
 
-		<xyz-transition xyz="duration-10 ease-in-out" duration="auto">
-			<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
-				<div class="xray-overlay xyz-nested"></div>
-				<div class="xray-overlay xyz-nested" xyz="inherit delay-4"></div>
-			</div>
-		</xyz-transition>
+			<xyz-transition xyz="duration-10 ease-in-out" duration="auto">
+				<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
+					<div class="xray-overlay xyz-nested"></div>
+					<div class="xray-overlay xyz-nested" xyz="inherit delay-4"></div>
+				</div>
+			</xyz-transition>
+		</button>
 
 		<slot></slot>
 	</div>
@@ -62,21 +62,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.xray-toggle,
-.xray-overlay__wrap {
+.xray-toggle {
 	position: fixed;
 	bottom: $sp-xl;
 	right: $sp-xl;
-}
-
-.xray-toggle {
-	z-index: 3;
+	z-index: 4;
 	perspective: 10rem;
+	transition: transform 0.3s $ease-out-back;
 
 	@include media('<tablet') {
 		right: initial;
 		left: 2.5rem;
 		bottom: 2.5rem;
+		z-index: 3;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.125);
 	}
 }
 

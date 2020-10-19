@@ -290,7 +290,8 @@ export default {
 	left: $sp-m;
 	z-index: 4;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		.nav-button__text {
 			transform: translateX($sp-xxxs);
 			opacity: 1;
