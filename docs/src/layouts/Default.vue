@@ -108,6 +108,8 @@ export default {
 	right: 50%;
 	border-radius: 50%;
 	transform: translate(-50%, -50%);
+	--xyz-translate-x: -50%;
+	--xyz-translate-y: -50%;
 	--xyz-in-keyframes: xray-scan;
 	--xyz-out-keyframes: xray-scan;
 
