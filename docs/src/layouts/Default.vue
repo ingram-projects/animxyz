@@ -5,10 +5,10 @@
 			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 		</button>
 
-		<xyz-transition xyz="duration-15 ease-in-out" duration="auto">
+		<xyz-transition xyz="duration-10 ease-in-out" duration="auto">
 			<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
 				<div class="xray-overlay xyz-nested"></div>
-				<div class="xray-overlay xyz-nested" xyz="inherit delay-5"></div>
+				<div class="xray-overlay xyz-nested" xyz="inherit delay-4"></div>
 			</div>
 		</xyz-transition>
 
@@ -62,10 +62,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.xray-toggle {
+.xray-toggle,
+.xray-overlay__wrap {
 	position: fixed;
 	bottom: $sp-xl;
 	right: $sp-xl;
+}
+
+.xray-toggle {
 	z-index: 3;
 	perspective: 10rem;
 
@@ -94,27 +98,29 @@ export default {
 	}
 }
 
+.xray-overlay,
 .xray-overlay__wrap {
-	position: fixed;
-	right: 0;
-	bottom: 0;
+	&::after {
+		display: none !important;
+	}
+}
+
+.xray-overlay__wrap {
 	z-index: 99999;
 	pointer-events: none;
 }
 
 .xray-overlay {
+	@include size(0);
 	position: absolute;
 	left: 50%;
 	right: 50%;
 	border-radius: 50%;
+	backdrop-filter: invert(1);
 	transform: translate(-50%, -50%);
 	--xyz-translate-x: -50%;
 	--xyz-translate-y: -50%;
 	--xyz-in-keyframes: xray-scan;
 	--xyz-out-keyframes: xray-scan;
-
-	&::after {
-		display: none !important;
-	}
 }
 </style>

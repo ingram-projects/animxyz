@@ -2,17 +2,8 @@
 @include xyz-all;
 
 @keyframes xray-scan {
-  0% {
-    @include size(0);
-    backdrop-filter: invert(1);
-  }
-  50% {
-    @include size(283vmax); // Smallest number to cover any screen size (rounded up)
-    backdrop-filter: invert(1);
-  }
   100% {
     @include size(283vmax);
-    backdrop-filter: invert(1);
   }
 }
 
