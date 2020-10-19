@@ -5,7 +5,7 @@
 			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 		</button>
 
-		<xyz-transition xyz="duration-15 ease-in" duration="auto">
+		<xyz-transition xyz="duration-15 ease-in-out" duration="auto">
 			<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
 				<div class="xray-overlay xyz-nested"></div>
 				<div class="xray-overlay xyz-nested" xyz="inherit delay-5"></div>
