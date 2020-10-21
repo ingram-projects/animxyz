@@ -109,7 +109,6 @@ export default {
 }
 
 .xray-overlay__wrap {
-	z-index: 99999;
 	pointer-events: none;
 }
 
