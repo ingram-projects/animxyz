@@ -46,9 +46,9 @@ examples:
           </div>
 ---
 
-AnimXYZ animates elements in and out when activated by their respective classes. `xyz-in` animates elements **from** the values set by XYZ utilities and variables, while `xyz-out` animates elements **to** those values.
+AnimXYZ animates elements in and out when activated by their respective classes. `.xyz-in` animates elements **from** the values set by XYZ utilities and variables, while `.xyz-out` animates elements **to** those values.
 
-For example an element with `xyz-in` and `xyz="fade"` will fade from 0 to its natural opacity, while `xyz-out` will fade it from its natural opacity to 0.
+For example an element with `.xyz-in` and `xyz="fade"` will fade from 0 to its natural opacity, while `.xyz-out` will fade it from its natural opacity to 0.
 
 By default AnimXYZ utilities and variables apply to both the in and out classes, but you can set specific animations for each direction. Utilities and variables have **in** and **out** variants which will apply only to the relevant direction. For example an element with `xyz="in-left in-turn-ccw out-right out-turn-cw"` will slide/rotate in from the left and slide/rotate out to the right. [Try it out](<?tab=examples&example=Direction variation#active-classes>)
 
@@ -58,5 +58,5 @@ You can combine direction-specific utilities and variables to achieve some very 
 [Try it out](<?tab=examples&example=Mixing it Up#active-classes>)
 
 ::: note [Vue,React]
-The Vue and React libraries also expose an `xyz-appear` class and a full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page.
+The Vue and React libraries also expose an `.xyz-appear` class and a full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page.
 :::
