@@ -57,8 +57,6 @@ Direction-specific utilities and variables take precedence over the basic varian
 You can combine direction-specific utilities and variables to achieve some very cool effects.
 [Try it out](<?tab=examples&example=Mixing it Up#active-classes>)
 
-Also an element with an `xyz-nested` class will animate if it is a descendant of an element with an active class, and will adopt the direction set by the parent class.
-
 ::: note [Vue,React]
-There is also an `xyz-appear` class.
+The Vue and React libraries also expose an `xyz-appear` class and a full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page.
 :::
