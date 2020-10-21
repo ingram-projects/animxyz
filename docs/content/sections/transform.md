@@ -156,7 +156,7 @@ See the [variables](#variables) section to learn more.
       <tr>
         <th scope="row">Rotate</th>
         <td>--xyz-rotate-default</td>
-        <td>.25turn</td>
+        <td>0.25turn</td>
       </tr>
       <tr>
         <th scope="row">Scale</th>
