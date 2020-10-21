@@ -48,12 +48,6 @@ module.exports = {
 			plugins: [
 				'@gridsome/remark-prismjs',
 				[
-					'remark-attr',
-					{
-						extend: { '*': ['xyz'] },
-					},
-				],
-				[
 					'remark-containers',
 					{
 						default: true,

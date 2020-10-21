@@ -32,7 +32,7 @@ examples:
           </style>
 ---
 
-All AnimXYZ [variables](#variables) are provided with default values that determine what animations basic `xyz` [utilities](#utilities) like `fade` or `left` set when not provided a utility scale such as `left-3`. Some default values are shared across related utilities, for example `--xyz-translate-default` is the default value for X, Y, and Z translations.
+All AnimXYZ [variables](#variables) are provided with default values that determine what animations basic `xyz` utilities like `fade` or `left` set when not provided a utility scale such as `left-3`. Some default values are shared across related utilities, for example `--xyz-translate-default` is the default value for X, Y, and Z translations.
 
 You can change these default values by setting their respective variables. To change them across your entire site set them at the `:root`.
 

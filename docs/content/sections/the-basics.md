@@ -27,18 +27,18 @@ examples:
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
 ---
 
-## Defining Animations
+AnimXYZ works by applying a CSS keyframe animation to an element when it has an AnimXYZ class such as `.xyz-in` or `.xyz-out`. The properties of the animation are defined by CSS variables that you can set directly or with class-like utilities in an `xyz` attribute.
 
-AnimXYZ animations are defined with an `xyz` attribute and [utility values](#utilities), or with [variables](#variables), that tell the animation what to do.
-
-## Triggering Animations
-
-Animations are triggered with [active classes](#active-classes) such as `.xyz-in` or `.xyz-out`. These also determine the direction of the animation to or from the defined values.
-
-Here is how you would make an element fade and shrink from above:
+For example here is how you make an element fade and shrink in from above:
 
 ```html
-<div class="xyz-in" xyz="fade up big">I will animate!</div>
+<div class="xyz-in" xyz="fade up big">I will animate in!</div>
 ```
+Changing the class to `xyz-out` reverses the direction of the animation:
+
+```html
+<div class="xyz-out" xyz="fade up big">I will animate out!</div>
+```
+[See it in action here](<?tab=examples&example=Example 1#the-basics>)
 
 For simple animations, that's all you need, but AnimXYZ can do so much more! Keep on reading to see how you can customize and control AnimXYZ to create exactly the animations you want.
