@@ -1,10 +1,61 @@
 ---
 title: Utilities
-quote: TBD
+quote: With our powers combined...
+
+examples:
+  - name: Utilities
+    template: |
+      <div class="example-wrap">
+        <xyz-transition duration="auto" v-xyz="data.utilities" v-on="data.listeners">
+          <div class="square-group xyz-none" v-show="data.toggled">
+            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+          </div>
+        </xyz-transition>
+      </div>
+    code:
+      - language: html
+        content: |
+          <div class="square-group" xyz="${data.utilitiesString}">
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+          </div>
+
+modifiers:
+  utilities:
+    multiple: true
+    defaults: [fade]
+  variables:
+    hide: true
+  groups:
+    - name: Fade
+      types: [opacity]
+    - name: Translate
+      types: [translate]
+    - name: Rotate
+      types: [rotate]
+    - name: Scale
+      types: [scale]
+    - name: Perspective
+      types: [perspective]
+    - name: Origin
+      types: [origin]
+    - name: Timing
+      types: [duration, delay]
+    - name: Ease
+      types: [ease]
+    - name: Stagger
+      types: [stagger]
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="left up small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilities are endless! Here are just a few of the many combinations you can do:
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+[😐 fade up](?tab=examples&utilities=fade,up#utilities){.link--large}  
+[🙂 fade flip-up flip-left](?tab=examples&utilities=fade,flip-up,flip-left#utilities){.link--large}  
+[😀 fade down-5 turn-cw-50 stagger](?tab=examples&utilities=fade,down-5,turn-cw-50,stagger#utilities){.link--large}  
+[😃 fade front-5 flip-down-50 duration-10 stagger-5](?tab=examples&utilities=fade,front-5,flip-down-50,duration-10,stagger-5#utilities){.link--large}  
+[🤪 fade up-100 flip-down flip-right-50 turn-ccw-100 origin-bottom duration-10 stagger](?tab=examples&utilities=fade,up-100,flip-down,flip-right-50,turn-ccw-100,origin-bottom,duration-10,stagger#utilities){.link--large}  
 
-Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+Certain utilities won't work with other utilities if they both change the same property. For example `xyz="up down"` will not work because both `up` and `down` change the `--xyz-translate-y` variable. Check out the [active classes](#active-classes) section to learn how to use different utilities for animating in and out.
+
+You can also combine a utility and a custom value on an animation variable. For example `xyz="fade tall" style="--xyz-rotate-z: 33deg"` will make an element fade, change height, and rotate in and out.
