@@ -37,3 +37,72 @@ All AnimXYZ [variables](#variables) are provided with default values that determ
 You can change these default values by setting their respective variables. To change them across your entire site set them at the `:root`.
 
 You can also change default values on an element, but keep in mind they will apply to all child elements as well.
+
+<div class="variables-table table-wrap shadow-scroll">
+  <table class="shadow-scroll-content">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Variable</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Ease</th>
+        <td>--xyz-ease-default</td>
+        <td>ease</td>
+      </tr>
+      <tr>
+        <th scope="row">Duration</th>
+        <td>--xyz-duration-default</td>
+        <td>0.5s</td>
+      </tr>
+      <tr>
+        <th scope="row">Delay</th>
+        <td>--xyz-delay-default</td>
+        <td>0s</td>
+      </tr>
+      <tr>
+        <th scope="row">Stagger</th>
+        <td>--xyz-stagger-default</td>
+        <td>0.3s</td>
+      </tr>
+      <tr>
+        <th scope="row">Iterate</th>
+        <td>--xyz-iterate-default</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th scope="row">Origin</th>
+        <td>--xyz-origin-default</td>
+        <td>center</td>
+      </tr>
+      <tr>
+        <th scope="row">Opacity</th>
+        <td>--xyz-opacity-default</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th scope="row">Perspective</th>
+        <td>--xyz-perspective-default</td>
+        <td>0px</td>
+      </tr>
+      <tr>
+        <th scope="row">Translate</th>
+        <td>--xyz-translate-default</td>
+        <td>30px</td>
+      </tr>
+      <tr>
+        <th scope="row">Rotate</th>
+        <td>--xyz-rotate-default</td>
+        <td>0.25turn</td>
+      </tr>
+      <tr>
+        <th scope="row">Scale</th>
+        <td>--xyz-scale-default</td>
+        <td>0.5</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

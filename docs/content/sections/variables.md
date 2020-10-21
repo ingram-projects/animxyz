@@ -55,7 +55,7 @@ modifiers:
       types: [stagger]
 ---
 
-You aren't limited to just the composable utilities we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique animations. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width. [--xyz-translate-x: -42%](?tab=examples&group=Translate&variables=translate-x:-42%#variables)
+You aren't limited to just the composable [utilities](#utilities) we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique animations. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width. [--xyz-translate-x: -42%](?tab=examples&group=Translate&variables=translate-x:-42%#variables)
 
 You have control over everything you need to animate an element, even transform origin, duration, or staggering.
 [Try it out](?tab=examples&group=Origin&variables=origin:75%,rotate-z:90deg,rotate-x:90deg#variables) [Spin freely](?tab=examples&variables=translate-y:80vh,translate-x:-100vh,rotate-x:90deg,rotate-z:-360deg,origin:-200%,stagger:.1s,duration:1s#variables)
