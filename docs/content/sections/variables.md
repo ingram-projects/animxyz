@@ -60,10 +60,10 @@ You can set the CSS variables that drive the core AnimXYZ animations to customiz
 You have control over everything you need to animate an element, even transform origin, duration, or staggering. This lets you create unique animations beyond what the [utilities](#utilities) can provide:
 
 [🐞 vw units](?tab=examples&group=Translate&variables=translate-x:-100vw#variables)  
-[🎈 Yoink!](<?tab=examples&group=Origin&variables=stagger:0.2s;translate-y:-400%;scale-x:0;ease:cubic-bezier(.26,2.05,.84,.38)#variables>)  
-[📺 Click.](?tab=examples&group=Translate&variables=duration:0.6s;scale-x:1.25;scale-y:0#variables)  
+[🎈 Yoink!](<?tab=examples&group=Ease&variables=stagger:0.2s;translate-y:-400%;scale-x:0;ease:cubic-bezier(.26,2.05,.84,.38)#variables>)  
+[📺 Click.](?tab=examples&group=Scale&variables=duration:0.6s;scale-x:1.25;scale-y:0#variables)  
 [🌀 It's gone spiral!](<?tab=examples&variables=rotate-z:1turn;origin:center -200%;duration:2s;scale-x:0;scale-y:0#variables>)  
-[🛩 Fly away!](?tab=examples&variables=translate-y:80vh;translate-x:-100vh;rotate-x:90deg;rotate-z:-360deg;origin:-200%;stagger:.1s;duration:0.75s#variables)  
+[💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:10px;translate-z:100px;translate-y:10vh#variables)  
 
 Keep in mind that CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
 
