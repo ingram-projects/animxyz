@@ -6,14 +6,14 @@ examples:
   - name: Direction variation
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade in-left in-turn-ccw out-right out-turn-cw" v-on="data.listeners">
+        <xyz-transition xyz="fade up in-left in-turn-ccw out-right out-turn-cw" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
       </div>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade in-left in-turn-ccw out-right out-turn-cw"></div>
+          <div class="square ${data.mode}" xyz="fade up in-left in-turn-ccw out-right out-turn-cw"></div>
   - name: Direction override
     template: |
       <div class="example-wrap">
@@ -55,7 +55,7 @@ By default AnimXYZ utilities and variables apply to both the in and out classes,
 Direction-specific utilities and variables take precedence over the basic variants. For example an element with `xyz="big-100 out-big-25"` will have a more pronounced scale effect in the **in** direction than in the **out** direction. [Try it out](<?tab=examples&example=Direction override#active-classes>)
 
 You can combine direction-specific utilities and variables to achieve some very cool effects.
-[Try it out](<?tab=examples&example=Mixing it Up#active-classes>)
+[Try it out](<?tab=examples&example=Mixing it up#active-classes>)
 
 ::: note [Vue,React]
 The Vue and React libraries also expose an `.xyz-appear` class and a full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page.
