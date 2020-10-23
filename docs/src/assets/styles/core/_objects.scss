@@ -22,6 +22,12 @@ svg {
 	@include size(5rem);
 	background-color: $cyan;
   border-radius: $br-l;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $fs-m;
+  font-weight: 600;
+  font-family: $font-stack-mono;
 }
 
 .square-group {

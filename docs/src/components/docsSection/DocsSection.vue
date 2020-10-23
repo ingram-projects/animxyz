@@ -46,6 +46,8 @@ $active-border-width: 0.5rem;
 	position: relative;
 	padding: 6vw 0;
 	min-height: 60vh;
+	// content-visibility: auto;
+	// contain-intrinsic-size: 100% 60vh;
 
 	@include media('>=laptop') {
 		padding: 4rem 0;
