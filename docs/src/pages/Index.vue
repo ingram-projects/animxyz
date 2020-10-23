@@ -90,7 +90,7 @@
 								<p>Staggered animation of lists of elements in both forward and reverse order.</p>
 							</div>
 							<div class="feature xyz-nested">
-								<h3>Child Animations</h3>
+								<h3>Nested</h3>
 								<p>Animate sub-elements of an item in sync with their parent to create eye-catching details.</p>
 							</div>
 						</section>
