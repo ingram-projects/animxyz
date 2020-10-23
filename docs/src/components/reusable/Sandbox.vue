@@ -137,13 +137,13 @@ export default {
 				}
 				if (query.utilities) {
 					this.xyzModifiers.utilities = {}
-					query.utilities.split(',').forEach((utility) => {
+					query.utilities.split(';').forEach((utility) => {
 						this.xyzModifiers.utilities[utility] = true
 					})
 				}
 				if (query.variables) {
 					this.xyzModifiers.variables = {}
-					query.variables.split(',').forEach((variable) => {
+					query.variables.split(';').forEach((variable) => {
 						const splitVariable = variable.split(':')
 						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
 					})

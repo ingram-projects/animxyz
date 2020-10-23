@@ -55,10 +55,15 @@ modifiers:
       types: [stagger]
 ---
 
-You aren't limited to just the composable [utilities](#utilities) we provide, override the CSS variables that drive AnimXYZ to customize and create your own unique animations. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width. [See example](?tab=examples&group=Translate&variables=translate-x:-42%#variables)
+You can set the CSS variables that drive the core AnimXYZ animations to customize and create your own. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width.
 
-You have control over everything you need to animate an element, even transform origin, duration, or staggering.
-[See example](?tab=examples&group=Origin&variables=origin:75%,rotate-z:90deg,rotate-x:90deg#variables) [Another example](?tab=examples&variables=translate-y:80vh,translate-x:-100vh,rotate-x:90deg,rotate-z:-360deg,origin:-200%,stagger:.1s,duration:1s#variables)
+You have control over everything you need to animate an element, even transform origin, duration, or staggering. This lets you create unique animations beyond what the [utilities](#utilities) can provide:
+
+[🐞 vw units](?tab=examples&group=Translate&variables=translate-x:-100vw#variables)  
+[🎈 Yoink!](<?tab=examples&group=Origin&variables=stagger:0.2s;translate-y:-400%;scale-x:0;ease:cubic-bezier(.26,2.05,.84,.38)#variables>)  
+[📺 Click.](?tab=examples&group=Translate&variables=duration:0.6s;scale-x:1.25;scale-y:0#variables)  
+[🌀 It's gone spiral!](<?tab=examples&variables=rotate-z:1turn;origin:center -200%;duration:2s;scale-x:0;scale-y:0#variables>)  
+[🛩 Fly away!](?tab=examples&variables=translate-y:80vh;translate-x:-100vh;rotate-x:90deg;rotate-z:-360deg;origin:-200%;stagger:.1s;duration:0.75s#variables)  
 
 Keep in mind that CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
 
