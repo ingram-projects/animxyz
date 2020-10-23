@@ -29,10 +29,10 @@
 								<icon-github></icon-github>
 								<span>GitHub</span>
 							</a>
-							<!-- <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+							<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
 								<icon-sandbox></icon-sandbox>
 								<span>Sandbox</span>
-							</a> -->
+							</a>
 							<a class="cta-button docs-link xyz-nested" href="/docs">
 								<icon-docs></icon-docs>
 								<span>Documentation</span>
@@ -106,7 +106,9 @@
 					</p>
 				</footer>
 			</xyz-transition>
-		</main>
+
+			<sandbox v-bind="sandboxProps" id="sandbox"></sandbox>
+	</main>
 	</layout>
 </template>
 
@@ -115,9 +117,10 @@ import Banner from '~/components/banner/Banner'
 import IconDocs from '~/assets/icons/IconDocs.svg'
 import IconGithub from '~/assets/icons/IconGithub.svg'
 import IconReact from '~/assets/icons/IconReact.svg'
-// import IconSandbox from '~/assets/icons/IconSandbox.svg'
+import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import IconSass from '~/assets/icons/IconSass.svg'
 import IconVue from '~/assets/icons/IconVue.svg'
+import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	components: {
@@ -125,9 +128,84 @@ export default {
 		IconDocs,
 		IconGithub,
 		IconReact,
-		// IconSandbox,
+		IconSandbox,
 		IconSass,
 		IconVue,
+		Sandbox,
+	},
+	data () {
+		return {
+			sandboxProps: {
+				name: 'sandbox',
+				examples: [{
+					name: 'Sandbox',
+			    template: `
+			      <div class="example-wrap">
+			        <xyz-transition duration="auto" v-xyz="data.utilities" v-on="data.listeners">
+			          <div class="square-group xyz-none" v-show="data.toggled">
+			            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+			          </div>
+			        </xyz-transition>
+			      </div>
+					`,
+			    code: [{
+			      language: 'html',
+			      content: `
+		          <div class="square-group" xyz="\${data.utilitiesString}">
+		            <div class="square \${data.mode}"></div>
+		            <div class="square \${data.mode}"></div>
+		            <div class="square \${data.mode}"></div>
+		          </div>
+						`,
+					}],
+				}],
+				modifiers: {
+				  utilities: {
+				    multiple: true,
+				    defaults: ['fade'],
+					},
+				  variables: true,
+				  groups: [
+						{
+				    	name: 'Fade',
+				      types: ['opacity'],
+						},
+						{
+				    	name: 'Translate',
+				    	types: ['translate'],
+						},
+						{
+				    	name: 'Rotate',
+				    	types: ['rotate'],
+						},
+						{
+				    	name: 'Scale',
+				    	types: ['scale'],
+						},
+						{
+				    	name: 'Perspective',
+				    	types: ['perspective'],
+						},
+						{
+				    	name: 'Origin',
+				    	types: ['origin'],
+						},
+						{
+				    	name: 'Timing',
+				    	types: ['duration', 'delay'],
+						},
+						{
+				    	name: 'Ease',
+				    	types: ['ease'],
+						},
+						{
+				    	name: 'Stagger',
+				    	types: ['stagger'],
+						},
+					],
+				},
+			},
+		}
 	},
 	metaInfo() {
 		return {
@@ -156,25 +234,15 @@ export default {
 	}
 }
 
-.hero__wrap {
-	position: relative;
-	border-radius: $br-xxl;
-	margin: 0 auto;
-	margin-bottom: $sp-xxl;
-}
-
 .landing-content {
 	max-width: 90%;
 	margin: 0 auto;
 }
 
-.copy__wrap {
-	width: 100%;
-	max-width: 44rem;
+.hero__wrap {
+	position: relative;
+	border-radius: $br-xxl;
 	margin: 0 auto;
-}
-
-.about-section {
 	margin-bottom: $sp-xxl;
 }
 
@@ -203,36 +271,6 @@ export default {
 
 	.icon-svg + .icon-svg {
 		margin-left: $sp-m;
-	}
-}
-
-.about-text {
-	--text-color: #{primary-color(700)};
-	font-size: $fs-l;
-	font-weight: 400;
-
-	@include media('<phone') {
-		font-size: 1.125rem;
-	}
-}
-
-.features-section {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: $sp-xl;
-
-	p {
-		font-size: $fs-m;
-		line-height: 1.75;
-		color: primary-color(700);
-	}
-
-	@include media('<tablet') {
-		grid-template-columns: 1fr;
-	}
-
-	@include media('<phone') {
-		grid-gap: $sp-l;
 	}
 }
 
@@ -312,19 +350,6 @@ export default {
 	}
 }
 
-.created-by {
-	--text-color: #{primary-color(600)};
-	font-weight: 500;
-	font-size: $fs-s;
-	margin: 0 auto;
-	margin-top: $sp-xxxl;
-	margin-bottom: 2.25rem;
-
-	@include media('<phone') {
-		margin-bottom: $sp-xxxl;
-	}
-}
-
 .docs-link {
 	--icon-color: #{primary-color(100)};
 	border-color: primary-color(700);
@@ -339,5 +364,62 @@ export default {
 		outline: none;
 		background-color: primary-color(700);
 	}
+}
+
+.copy__wrap {
+	width: 100%;
+	max-width: 44rem;
+	margin: 0 auto;
+}
+
+.about-section {
+	margin-bottom: $sp-xxl;
+}
+
+.about-text {
+	--text-color: #{primary-color(700)};
+	font-size: $fs-l;
+	font-weight: 400;
+
+	@include media('<phone') {
+		font-size: 1.125rem;
+	}
+}
+
+.features-section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: $sp-xl;
+
+	p {
+		font-size: $fs-m;
+		line-height: 1.75;
+		color: primary-color(700);
+	}
+
+	@include media('<tablet') {
+		grid-template-columns: 1fr;
+	}
+
+	@include media('<phone') {
+		grid-gap: $sp-l;
+	}
+}
+
+.created-by {
+	--text-color: #{primary-color(600)};
+	font-weight: 500;
+	font-size: $fs-s;
+	margin: 0 auto;
+	margin-top: $sp-xxxl;
+	margin-bottom: 2.25rem;
+
+	@include media('<phone') {
+		margin-bottom: $sp-xxxl;
+	}
+}
+
+.sandbox {
+	height: 100vh;
 }
 </style>
