@@ -1,12 +1,6 @@
 @import '@animxyz/core';
 @include xyz-all;
 
-@keyframes xray-scan {
-  100% {
-    @include size(283vmax);
-  }
-}
-
 @keyframes xyz-xray-in {
   0%, 33% {
     background-color: $green;

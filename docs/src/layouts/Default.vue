@@ -1,16 +1,16 @@
 <template>
 	<div class="page__wrap" :class="{ 'xyz-xray': xRayToggled }">
-		<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-			<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
-			<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+		<div class="xray__wrap">
+			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
+				<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
+				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+			</button>
 
-			<xyz-transition xyz="duration-10 ease-in-out" duration="auto">
-				<div class="xray-overlay__wrap xyz-none" v-if="xRayToggled">
-					<div class="xray-overlay xyz-nested"></div>
-					<div class="xray-overlay xyz-nested" xyz="inherit delay-4"></div>
-				</div>
-			</xyz-transition>
-		</button>
+			<div class="xray-overlay__wrap">
+				<div class="xray-overlay"></div>
+				<div class="xray-overlay"></div>
+			</div>
+		</div>
 
 		<slot></slot>
 	</div>
@@ -62,13 +62,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.xray-toggle {
+.xray__wrap {
 	position: fixed;
 	bottom: $sp-xl;
 	right: $sp-xl;
 	z-index: 4;
-	perspective: 10rem;
-	transition: transform 0.3s $ease-out-back;
 
 	@include media('<tablet') {
 		right: initial;
@@ -76,6 +74,11 @@ export default {
 		bottom: 2.5rem;
 		z-index: 3;
 	}
+}
+
+.xray-toggle {
+	perspective: 10rem;
+	transition: transform 0.3s $ease-out-back;
 
 	&:hover,
 	&:focus {
@@ -104,7 +107,7 @@ export default {
 .xray-overlay,
 .xray-overlay__wrap {
 	&::after {
-		display: none !important;
+		display: none !important; //Hides xray-overlay copy showing xyz values
 	}
 }
 
@@ -113,16 +116,21 @@ export default {
 }
 
 .xray-overlay {
-	@include size(0);
+	@include size(1vmax);
 	position: absolute;
-	left: 50%;
-	right: 50%;
 	border-radius: 50%;
 	backdrop-filter: invert(1);
 	transform: translate(-50%, -50%);
-	--xyz-translate-x: -50%;
-	--xyz-translate-y: -50%;
-	--xyz-in-keyframes: xray-scan;
-	--xyz-out-keyframes: xray-scan;
+	transition: transform 0.5s ease-in-out, visibility 0.5s;
+	visibility: hidden;
+
+	.xyz-xray & {
+		transform: translate(-50%, -50%) scale(283);
+		visibility: visible;
+	}
+
+	&:last-child {
+		transition-delay: 0.4s;
+	}
 }
 </style>
