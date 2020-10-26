@@ -108,7 +108,30 @@
 			</xyz-transition>
 
 			<sandbox v-bind="sandboxProps" id="sandbox"></sandbox>
-	</main>
+
+			<div class="sandbox__presets">
+				<ul class="presets-list">
+					<li class="preset-item__wrap">
+						<a class="preset-item">
+							<div class="preset-title">Example 1</div>
+							<div class="square"></div>
+						</a>
+					</li>
+					<li class="preset-item__wrap">
+						<a class="preset-item">
+							<div class="preset-title">Example 2</div>
+							<div class="square"></div>
+						</a>
+					</li>
+					<li class="preset-item__wrap">
+						<a class="preset-item">
+							<div class="preset-title">Example 3</div>
+							<div class="square"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</main>
 	</layout>
 </template>
 
@@ -133,13 +156,14 @@ export default {
 		IconVue,
 		Sandbox,
 	},
-	data () {
+	data() {
 		return {
 			sandboxProps: {
 				name: 'sandbox',
-				examples: [{
-					name: 'Sandbox',
-			    template: `
+				examples: [
+					{
+						name: 'Sandbox',
+						template: `
 			      <div class="example-wrap">
 			        <xyz-transition duration="auto" v-xyz="data.utilities" v-on="data.listeners">
 			          <div class="square-group xyz-none" v-show="data.toggled">
@@ -148,59 +172,62 @@ export default {
 			        </xyz-transition>
 			      </div>
 					`,
-			    code: [{
-			      language: 'html',
-			      content: `
+						code: [
+							{
+								language: 'html',
+								content: `
 		          <div class="square-group" xyz="\${data.utilitiesString}">
 		            <div class="square \${data.mode}"></div>
 		            <div class="square \${data.mode}"></div>
 		            <div class="square \${data.mode}"></div>
 		          </div>
 						`,
-					}],
-				}],
-				modifiers: {
-				  utilities: {
-				    multiple: true,
-				    defaults: ['fade'],
+							},
+						],
 					},
-				  variables: true,
-				  groups: [
+				],
+				modifiers: {
+					utilities: {
+						multiple: true,
+						defaults: ['fade'],
+					},
+					variables: true,
+					groups: [
 						{
-				    	name: 'Fade',
-				      types: ['opacity'],
+							name: 'Fade',
+							types: ['opacity'],
 						},
 						{
-				    	name: 'Translate',
-				    	types: ['translate'],
+							name: 'Translate',
+							types: ['translate'],
 						},
 						{
-				    	name: 'Rotate',
-				    	types: ['rotate'],
+							name: 'Rotate',
+							types: ['rotate'],
 						},
 						{
-				    	name: 'Scale',
-				    	types: ['scale'],
+							name: 'Scale',
+							types: ['scale'],
 						},
 						{
-				    	name: 'Perspective',
-				    	types: ['perspective'],
+							name: 'Perspective',
+							types: ['perspective'],
 						},
 						{
-				    	name: 'Origin',
-				    	types: ['origin'],
+							name: 'Origin',
+							types: ['origin'],
 						},
 						{
-				    	name: 'Timing',
-				    	types: ['duration', 'delay'],
+							name: 'Timing',
+							types: ['duration', 'delay'],
 						},
 						{
-				    	name: 'Ease',
-				    	types: ['ease'],
+							name: 'Ease',
+							types: ['ease'],
 						},
 						{
-				    	name: 'Stagger',
-				    	types: ['stagger'],
+							name: 'Stagger',
+							types: ['stagger'],
 						},
 					],
 				},
@@ -421,5 +448,62 @@ export default {
 
 .sandbox {
 	height: 100vh;
+}
+
+.sandbox__presets {
+	background-color: primary-color(900);
+}
+
+.presets-list {
+	padding: $sp-m;
+	padding-right: 0;
+	overflow-x: auto;
+	display: flex;
+	list-style: none;
+}
+
+.preset-item__wrap {
+	padding-right: $sp-m;
+}
+
+.preset-item {
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	flex-shrink: 0;
+	height: 12rem;
+	width: 16rem;
+	box-shadow: inset 0 0 0 2px primary-color(800);
+	border-radius: $br-xl;
+	transition: box-shadow 0.3s ease-in-out;
+
+	.square {
+		@include size(4rem);
+		margin: auto;
+		background-color: primary-color(200, 0.65);
+		transition: background-color 0.3s ease-in-out;
+	}
+
+	&:hover,
+	&.active {
+		box-shadow: inset 0 0 0 4px primary-color(700);
+
+		.preset-title {
+			color: primary-color(100);
+		}
+
+		.square {
+			background-color: $cyan;
+		}
+	}
+}
+
+.preset-title {
+	position: absolute;
+	font-family: $font-stack-mono;
+	top: $sp-xs;
+	left: $sp-xs;
+	color: primary-color(300);
+	transition: color 0.3s ease-in-out;
 }
 </style>
