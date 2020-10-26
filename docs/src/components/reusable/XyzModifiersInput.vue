@@ -1,7 +1,7 @@
 <template>
 	<!-- eslint-disable vue/no-mutating-props -->
 	<div class="modifiers__wrap">
-		<tab-bar :tabs="modifiers.groups" v-if="modifiers.groups.length > 1" v-model="activeGroup"></tab-bar>
+		<tab-bar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></tab-bar>
 
 		<xyz-transition-group
 			tag="div"
@@ -9,21 +9,24 @@
 			xyz="ease-in-out duration-3"
 			v-xyz="tabDirectionXyz"
 		>
-			<div class="modifiers-sections" :key="activeGroup.name">
+			<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
+				<xyz-modifiers-presets :presets="activeGroup.presets"></xyz-modifiers-presets>
+			</div>
+			<div class="modifiers-sections" v-if="activeGroup.name !== 'Presets'" :key="activeGroup.name">
 				<xyz-utilities-input
-					v-if="!this.modifiers.utilities || !this.modifiers.utilities.hide"
+					v-if="showUtilities"
 					class="modifiers-utilities modifiers-section"
-					:utilities="utilityNames"
+					:utilities="this.activeGroup.utilityNames"
 					:multiple="this.modifiers.utilities.multiple"
 					v-model="value.utilities"
 				></xyz-utilities-input>
 
 				<xyz-variables-input
-					v-if="!this.modifiers.variables || !this.modifiers.variables.hide"
+					v-if="showVariables"
 					class="modifiers-variables modifiers-section"
-					:variables="variableNames"
+					:variables="this.activeGroup.variableNames"
 					v-model="value.variables"
-					:style="{ '--xyz-delay': `${utilityNames.length * 0.05}s` }"
+					:style="{ '--xyz-delay': `${this.activeGroup.utilityNames.length * 0.05}s` }"
 				></xyz-variables-input>
 			</div>
 		</xyz-transition-group>
@@ -34,6 +37,7 @@
 /* eslint-disable vue/no-mutating-props */
 
 import TabBar from '~/components/reusable/TabBar'
+import XyzModifiersPresets from '~/components/reusable/XyzModifiersPresets'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
 import { xyzUtilities, xyzVariables } from '~/utils'
@@ -43,6 +47,7 @@ export default {
 	props: ['value', 'modifiers'],
 	components: {
 		TabBar,
+		XyzModifiersPresets,
 		XyzUtilitiesInput,
 		XyzVariablesInput,
 	},
@@ -53,10 +58,18 @@ export default {
 		}
 	},
 	computed: {
-		utilityNames() {
-			const utilityNames = []
-			if (this.activeGroup) {
-				this.activeGroup.types.forEach((type) => {
+		showUtilities() {
+			return this.modifiers.utilities && !this.modifiers.utilities.hide
+		},
+		showVariables() {
+			return this.modifiers.variables && !this.modifiers.variables.hide
+		},
+		computedGroups() {
+			const computedGroups = this.modifiers.groups.map((group) => {
+				const utilityNames = []
+				const variableNames = []
+
+				group.types.forEach((type) => {
 					utilityNames.push(
 						...xyzUtilities
 							.filter((utility) => {
@@ -64,14 +77,6 @@ export default {
 							})
 							.map((utility) => utility.name)
 					)
-				})
-			}
-			return utilityNames
-		},
-		variableNames() {
-			const variableNames = []
-			if (this.activeGroup) {
-				this.activeGroup.types.forEach((type) => {
 					variableNames.push(
 						...xyzVariables
 							.filter((variable) => {
@@ -80,12 +85,27 @@ export default {
 							.map((variable) => variable.name)
 					)
 				})
+
+				return {
+					name: group.name,
+					utilityNames,
+					variableNames,
+				}
+			})
+
+			if (this.modifiers.presets) {
+				const presetsGroup = {
+					name: 'Presets',
+					presets: this.modifiers.presets,
+				}
+				return [presetsGroup, ...computedGroups]
 			}
-			return variableNames
+
+			return computedGroups
 		},
 		activeGroupIndex() {
 			if (this.activeGroup) {
-				return this.modifiers.groups.findIndex((group) => {
+				return this.computedGroups.findIndex((group) => {
 					return group.name === this.activeGroup.name
 				})
 			}
@@ -103,17 +123,15 @@ export default {
 				this.tabDirectionXyz = 'out-right-100 in-left-100'
 			}
 		},
-		'modifiers.groups': {
+		'computedGroups': {
 			immediate: true,
 			handler() {
-				if (this.modifiers.groups.length) {
+				if (this.computedGroups.length) {
 					if (this.activeGroup) {
-						this.activeGroup = this.modifiers.groups.find((group) => {
-							return group.name === this.activeGroup.name
-						})
+						this.setGroup(this.activeGroup.name)
 					}
 					if (!this.activeGroup) {
-						this.activeGroup = this.modifiers.groups[0]
+						this.activeGroup = this.computedGroups[0]
 					}
 				} else {
 					this.activeGroup = null
@@ -123,7 +141,7 @@ export default {
 	},
 	methods: {
 		setGroup(groupName) {
-			this.activeGroup = this.modifiers.groups.find((group) => {
+			this.activeGroup = this.computedGroups.find((group) => {
 				return group.name === groupName
 			})
 		},

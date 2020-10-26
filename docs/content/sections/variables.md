@@ -31,9 +31,7 @@ modifiers:
   utilities:
     hide: true
   variables:
-    defaults:
-      - name: opacity
-        value: '0'
+    defaults: ['opacity: 0']
   groups:
     - name: Fade
       types: [opacity]

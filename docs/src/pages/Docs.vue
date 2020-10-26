@@ -62,10 +62,7 @@
 					}
 					variables {
 						hide
-						defaults {
-							name
-							value
-						}
+						defaults
 					}
 					groups {
 						name

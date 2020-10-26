@@ -92,7 +92,8 @@ export default {
 					}
 					if (this.modifiers.variables && this.modifiers.variables.defaults) {
 						this.modifiers.variables.defaults.forEach((defaultVariable) => {
-							this.xyzModifiers.variables[`--xyz-${defaultVariable.name}`] = defaultVariable.value
+							const [name, value] = defaultVariable.split(':')
+							this.xyzModifiers.variables[`--xyz-${name}`] = value.trim()
 						})
 					}
 				}
@@ -144,8 +145,8 @@ export default {
 				if (query.variables) {
 					this.xyzModifiers.variables = {}
 					query.variables.split(';').forEach((variable) => {
-						const splitVariable = variable.split(':')
-						this.xyzModifiers.variables[`--xyz-${splitVariable[0]}`] = splitVariable[1]
+						const [name, value] = variable.split(':')
+						this.xyzModifiers.variables[`--xyz-${name}`] = value.trim()
 					})
 				}
 			}
