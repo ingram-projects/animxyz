@@ -5,12 +5,12 @@
 			class="presets-list"
 			appear
 			duration="auto"
-			xyz="fade small stagger-1"
+			xyz="fade small stagger-1 delay-1"
 		>
-			<li class="preset-item__wrap" v-for="preset in presets" :key="preset.title" @click="onPresetClick(preset)">
+			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title" @click="onPresetClick(preset)">
 				<a class="preset-item">
 					<div class="preset-title">{{preset.title}}</div>
-					<div class="square xyz-nested" xyz="delay-3" v-xyz="preset.utilities" :style="preset.style"></div>
+					<div class="square xyz-nested" xyz="delay-1" v-xyz="preset.utilities" :style="preset.style"></div>
 				</a>
 			</li>
 		</xyz-transition-group>
@@ -24,9 +24,18 @@ export default {
 	computed: {
 		computedPresets() {
 			return this.presets.map((preset) => {
+				const style = {}
+
+				if (preset.variables) {
+					preset.variables.forEach((variable) => {
+						const [name, value] = variable.split(':')
+						style[`--xyz-${name}`] = value.trim()
+					})
+				}
+
 				return {
 					...preset,
-					style: {},
+					style,
 				}
 			})
 		}
