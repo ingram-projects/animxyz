@@ -1,13 +1,19 @@
 <template>
 	<div class="modifiers-presets">
-		<ul class="presets-list">
-			<li class="preset-item__wrap" v-for="preset in presets" :key="preset.title">
+		<xyz-transition-group
+			tag="ul"
+			class="presets-list"
+			appear
+			duration="auto"
+			xyz="fade small stagger-1"
+		>
+			<li class="preset-item__wrap" v-for="preset in presets" :key="preset.title" @click="onPresetClick(preset)">
 				<a class="preset-item">
 					<div class="preset-title">{{preset.title}}</div>
-					<div class="square" v-xyz="preset.utilities" :style="preset.variables"></div>
+					<div class="square xyz-nested" xyz="delay-3" v-xyz="preset.utilities" :style="preset.style"></div>
 				</a>
 			</li>
-		</ul>
+		</xyz-transition-group>
 	</div>
 </template>
 
@@ -15,6 +21,21 @@
 export default {
 	name: 'XyzModifiersPresets',
 	props: ['presets'],
+	computed: {
+		computedPresets() {
+			return this.presets.map((preset) => {
+				return {
+					...preset,
+					style: {},
+				}
+			})
+		}
+	},
+	methods: {
+		onPresetClick(preset) {
+			this.$emit('select-preset', preset)
+		}
+	}
 }
 </script>
 
@@ -40,8 +61,8 @@ export default {
 	cursor: pointer;
 	display: flex;
 	flex-shrink: 0;
-	height: 12rem;
-	width: 16rem;
+	height: 10rem;
+	width: 14rem;
 	box-shadow: inset 0 0 0 2px primary-color(800);
 	border-radius: $br-xl;
 	transition: box-shadow 0.2s $ease-in-out;

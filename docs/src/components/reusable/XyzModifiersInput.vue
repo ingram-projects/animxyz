@@ -10,7 +10,7 @@
 			v-xyz="tabDirectionXyz"
 		>
 			<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
-				<xyz-modifiers-presets :presets="activeGroup.presets"></xyz-modifiers-presets>
+				<xyz-modifiers-presets :presets="activeGroup.presets" @select-preset="onSelectPreset"></xyz-modifiers-presets>
 			</div>
 			<div class="modifiers-sections" v-if="activeGroup.name !== 'Presets'" :key="activeGroup.name">
 				<xyz-utilities-input
@@ -87,7 +87,7 @@ export default {
 				})
 
 				return {
-					name: group.name,
+					...group,
 					utilityNames,
 					variableNames,
 				}
@@ -144,6 +144,26 @@ export default {
 			this.activeGroup = this.computedGroups.find((group) => {
 				return group.name === groupName
 			})
+		},
+		onSelectPreset(preset) {
+			const newValue = {
+				utilities: {},
+				variables: {},
+			}
+
+			if (preset.utilities) {
+				preset.utilities.forEach((utility) => {
+					newValue.utilities[utility] = true
+				})
+			}
+			if (preset.variables) {
+				preset.variables.forEach((variable) => {
+					const [name, value] = variable.split(':')
+					newValue.variables[`--xyz-${name}`] = value.trim()
+				})
+			}
+
+			this.$emit('input', newValue)
 		},
 	},
 }
