@@ -15,7 +15,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group">
+          <div class="square-group" xyz>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>

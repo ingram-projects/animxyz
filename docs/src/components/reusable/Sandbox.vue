@@ -133,12 +133,14 @@ export default {
 		onRouteChange() {
 			const { query, hash } = this.$route
 			if (hash === `#${this.name}`) {
-				this.clearModifiers()
 				if (query.example) {
 					this.$refs.examples.setExample(query.example)
 				}
 				if (query.group) {
 					this.$refs.modifiers.setGroup(query.group)
+				}
+				if (query.utilities || query.variables) {
+					this.clearModifiers()
 				}
 				if (query.utilities) {
 					query.utilities.split(';').forEach((utility) => {
