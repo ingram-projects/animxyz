@@ -31,7 +31,8 @@ modifiers:
       types: [rotate]
     - name: Scale
       types: [scale]
-
+    - name: Skew
+      types: [skew]
 ---
 
 Translate, rotate, and scale your elements along any axis. We call it Anim**XYZ** for a reason!

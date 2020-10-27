@@ -119,6 +119,15 @@ export const xyzScaleLevels = {
 	100: '1',
 }
 
+export const xyzSkewLevels = {
+	0: '0deg',
+	1: '10deg',
+	2: '20deg',
+	3: '30deg',
+	4: '40deg',
+	5: '50deg',
+}
+
 // VARIABLES
 
 export const xyzVariablesMap = {
@@ -229,6 +238,18 @@ export const xyzVariablesMap = {
 		type: 'scale',
 		syntax: '<number>',
 		axis: 'z',
+		modes: xyzModesAll,
+	},
+	'skew-x': {
+		type: 'skew',
+		syntax: '<angle>',
+		axis: 'x',
+		modes: xyzModesAll,
+	},
+	'skew-y': {
+		type: 'skew',
+		syntax: '<angle>',
+		axis: 'y',
 		modes: xyzModesAll,
 	},
 }
@@ -532,6 +553,40 @@ export const xyzUtilitiesMap = {
 		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-plus-val',
+		modes: xyzModesAll,
+	},
+	'skew-left': {
+		type: 'skew',
+		axis: 'x',
+		vars: ['skew-x'],
+		default: 'var(--xyz-skew-default)',
+		levels: xyzSkewLevels,
+		modes: xyzModesAll,
+	},
+	'skew-right': {
+		type: 'skew',
+		axis: 'x',
+		vars: ['skew-x'],
+		default: 'calc(var(--xyz-skew-default) * -1)',
+		levels: xyzSkewLevels,
+		transformer: 'xyz-negative-val',
+		modes: xyzModesAll,
+	},
+	'skew-up': {
+		type: 'skew',
+		axis: 'y',
+		vars: ['skew-y'],
+		default: 'var(--xyz-skew-default)',
+		levels: xyzSkewLevels,
+		modes: xyzModesAll,
+	},
+	'skew-down': {
+		type: 'skew',
+		axis: 'y',
+		vars: ['skew-y'],
+		default: 'calc(var(--xyz-skew-default) * -1)',
+		levels: xyzSkewLevels,
+		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
 }

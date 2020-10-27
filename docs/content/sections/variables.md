@@ -41,6 +41,8 @@ modifiers:
       types: [rotate]
     - name: Scale
       types: [scale]
+    - name: Skew
+      types: [skew]
     - name: Perspective
       types: [perspective]
     - name: Origin
