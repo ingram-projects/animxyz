@@ -74,19 +74,23 @@ export default {
 		border-top-right-radius: $br-l;
 	}
 
+	&.active,
 	&:hover,
 	&:focus {
 		font-weight: bold;
-		background-color: primary-color(800, 0.5);
 
 		.tab-text {
 			opacity: 1;
 		}
 	}
 
+	&:hover,
+	&:focus {
+		background-color: primary-color(800, 0.5);
+	}
+
 	&.active {
 		color: $cyan;
-		font-weight: bold;
 
 		&:hover,
 		&:focus {
@@ -94,8 +98,6 @@ export default {
 		}
 
 		.tab-text {
-			opacity: 1;
-
 			&::after {
 				background-color: $cyan;
 				transform: scale(1);
