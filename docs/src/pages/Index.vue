@@ -186,12 +186,10 @@ export default {
 						},
 						{
 							title: `🌀 It's gone spiral!`,
-							utilities: ['fade', 'up'],
 							variables: ['rotate-z: 1turn', 'origin: center -200%', 'duration: 2s', 'scale-x: 0', 'scale-y: 0'],
 						},
 						{
 							title: '💫 Engage.',
-							utilities: ['fade', 'up', 'turn-cw'],
 							variables: [
 								'rotate-x: 90deg',
 								'rotate-z: -180deg',
