@@ -8,17 +8,21 @@
 			xyz="fade small"
 			:style="{ '--xyz-stagger': '0.15s' }"
 		>
-			<li
-				class="preset-item__wrap"
-				v-for="preset in computedPresets"
-				@click="onPresetClick(preset)"
-				@mouseenter="onPresetMouseEnter(preset)"
-				@mouseleave="onPresetMouseLeave"
-				:key="preset.title"
-			>
-				<a class="preset-item">
+			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title">
+				<a
+					class="preset-item"
+					@click="onPresetClick(preset)"
+					@mouseenter="onPresetMouseEnter(preset)"
+					@mouseleave="onPresetMouseLeave"
+				>
 					<div class="preset-title">{{preset.title}}</div>
-					<div class="square xyz-nested" :class="{ 'xyz-in': hoveredPreset === preset.title }" v-xyz="preset.utilities" :style="preset.style"></div>
+					<div
+						class="square xyz-nested"
+						:class="{ [mode]: hoveredPreset === preset.title }"
+						v-xyz="preset.utilities"
+						:style="preset.style"
+						@animationend="onPresetAnimationEnd"
+					></div>
 				</a>
 			</li>
 		</xyz-transition-group>
@@ -31,10 +35,14 @@ export default {
 	props: ['presets'],
 	data() {
 		return {
+			toggled: false,
 			hoveredPreset: null,
 		}
 	},
 	computed: {
+		mode() {
+			return this.toggled ? 'xyz-in' : 'xyz-out'
+		},
 		computedPresets() {
 			return this.presets.map((preset) => {
 				const style = {}
@@ -61,7 +69,11 @@ export default {
 			this.hoveredPreset = preset.title
 		},
 		onPresetMouseLeave() {
+			this.toggled = false
 			this.hoveredPreset = null
+		},
+		onPresetAnimationEnd() {
+			this.toggled = !this.toggled
 		}
 	}
 }
