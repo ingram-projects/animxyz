@@ -177,24 +177,22 @@ export default {
 					variables: true,
 					presets: [
 						{
-							title: 'Preset 1',
+							title: '🎈 Yoink!',
+							variables: ['stagger: 0.2s', 'translate-y: 400%', 'scale-x: 0', 'ease: cubic-bezier(.26,2.05,.84,.38)'],
+						},
+						{
+							title: '📺 Click.',
+							variables: ['duration: 0.6s', 'scale-x: 1.25', 'scale-y: 0'],
+						},
+						{
+							title: `🌀 It's gone spiral!`,
 							utilities: ['fade', 'up'],
-							variables: ['opacity: 0.5'],
+							variables: ['rotate-z: 1turn', 'origin: center -200%', 'duration: 2s', 'scale-x: 0', 'scale-y: 0'],
 						},
 						{
-							title: 'Preset 2',
+							title: '💫 Engage.',
 							utilities: ['fade', 'up', 'turn-cw'],
-							variables: ['opacity: 1'],
-						},
-						{
-							title: 'Preset 3',
-							utilities: ['fade', 'up'],
-							variables: ['opacity: 0.5'],
-						},
-						{
-							title: 'Preset 4',
-							utilities: ['fade', 'up', 'turn-cw'],
-							variables: ['opacity: 1'],
+							variables: ['rotate-x: 90deg', 'rotate-z: -180deg', 'origin: -200%', 'stagger: 0.1s', 'duration: 0.75s', 'perspective: 10px', 'translate-z: 100px', 'translate-y: 10vh'],
 						}
 					],
 					groups: [
