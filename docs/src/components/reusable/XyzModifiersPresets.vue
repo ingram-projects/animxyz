@@ -5,12 +5,21 @@
 			class="presets-list"
 			appear
 			duration="auto"
-			xyz="fade small stagger-1 delay-1"
+			xyz="fade small stagger-1"
 		>
-			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title" @click="onPresetClick(preset)">
+			<li
+				class="preset-item__wrap xyz-none"
+				:class="{ 'xyz-in': hoveredPreset === preset.title }"
+				:style="{ '--xyz-index': hoveredPreset === preset.title ? 0 : undefined }"
+				v-for="preset in computedPresets"
+				@click="onPresetClick(preset)"
+				@mouseenter="hoveredPreset = preset.title"
+				@mouseleave="hoveredPreset = null"
+				:key="preset.title"
+			>
 				<a class="preset-item">
 					<div class="preset-title">{{preset.title}}</div>
-					<div class="square xyz-nested" xyz="delay-1" v-xyz="preset.utilities" :style="preset.style"></div>
+					<div class="square xyz-nested" v-xyz="preset.utilities" :style="preset.style"></div>
 				</a>
 			</li>
 		</xyz-transition-group>
@@ -21,6 +30,11 @@
 export default {
 	name: 'XyzModifiersPresets',
 	props: ['presets'],
+	data() {
+		return {
+			hoveredPreset: null,
+		}
+	},
 	computed: {
 		computedPresets() {
 			return this.presets.map((preset) => {
@@ -43,7 +57,7 @@ export default {
 	methods: {
 		onPresetClick(preset) {
 			this.$emit('select-preset', preset)
-		}
+		},
 	}
 }
 </script>

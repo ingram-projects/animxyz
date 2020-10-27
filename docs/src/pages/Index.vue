@@ -185,6 +185,16 @@ export default {
 							title: 'Preset 2',
 							utilities: ['fade', 'up', 'turn-cw'],
 							variables: ['opacity: 1'],
+						},
+						{
+							title: 'Preset 3',
+							utilities: ['fade', 'up'],
+							variables: ['opacity: 0.5'],
+						},
+						{
+							title: 'Preset 4',
+							utilities: ['fade', 'up', 'turn-cw'],
+							variables: ['opacity: 1'],
 						}
 					],
 					groups: [
