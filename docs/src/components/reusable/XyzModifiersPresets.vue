@@ -35,8 +35,9 @@ export default {
 	props: ['presets'],
 	data() {
 		return {
-			toggled: false,
 			hoveredPreset: null,
+			toggled: false,
+			toggleTimeout: null,
 		}
 	},
 	computed: {
@@ -62,6 +63,10 @@ export default {
 		},
 	},
 	methods: {
+		clearToggleTimeout() {
+			clearTimeout(this.toggleTimeout)
+			this.toggleTimeout = null
+		},
 		onPresetClick(preset) {
 			this.$emit('select-preset', preset)
 		},
@@ -69,13 +74,20 @@ export default {
 			this.hoveredPreset = preset.title
 		},
 		onPresetMouseLeave() {
-			this.toggled = false
 			this.hoveredPreset = null
+			this.toggled = false
+			this.clearToggleTimeout()
 		},
 		onPresetAnimationEnd() {
-			this.toggled = !this.toggled
+			this.clearToggleTimeout()
+			this.toggleTimeout = setTimeout(() => {
+				this.toggled = !this.toggled
+			}, 500)
 		},
 	},
+	beforeDestroy() {
+		this.clearToggleTimeout()
+	}
 }
 </script>
 

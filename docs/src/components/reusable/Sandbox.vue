@@ -11,7 +11,7 @@
 		<code-examples
 			:examples="examples"
 			:data="injectedData"
-			@example-changed="onExampleChanged"
+			@example-changed="onExampleChange"
 			ref="examples"
 		></code-examples>
 	</div>
@@ -30,10 +30,9 @@ export default {
 	},
 	data() {
 		return {
-			toggled: false,
 			xyzModifiers: null,
 			animCount: 0,
-			toggleInterval: 1000,
+			toggled: false,
 			toggleTimeout: null,
 		}
 	},
@@ -60,12 +59,15 @@ export default {
 				variables: this.xyzModifiers.variables,
 				variablesString: this.variablesString,
 				listeners: {
+					beforeAppear: this.beforeAnim,
 					beforeEnter: this.beforeAnim,
 					beforeLeave: this.beforeAnim,
+					afterAppear: this.afterAnim,
 					afterEnter: this.afterAnim,
 					afterLeave: this.afterAnim,
-					enterCancelled: this.animCancelled,
-					leaveCancelled: this.animCancelled,
+					appearCancelled: this.afterAnim,
+					enterCancelled: this.afterAnim,
+					leaveCancelled: this.afterAnim,
 				},
 			}
 		},
@@ -104,9 +106,16 @@ export default {
 				variables: {},
 			}
 		},
-		toggleExample(toggled) {
+		clearToggleTimeout() {
+			clearTimeout(this.toggleTimeout)
+			this.toggleTimeout = null
+		},
+		toggleExample() {
 			this.animCount = 0
-			this.toggled = toggled
+			this.clearToggleTimeout()
+			this.toggleTimeout = setTimeout(() => {
+				this.toggled = !this.toggled
+			}, 1000)
 		},
 		beforeAnim() {
 			this.animCount++
@@ -114,32 +123,23 @@ export default {
 		afterAnim() {
 			this.animCount--
 			if (this.animCount === 0) {
-				clearTimeout(this.toggleTimeout)
-				this.toggleTimeout = setTimeout(() => {
-					this.toggleExample(!this.toggled)
-				}, this.toggleInterval)
+				this.toggleExample()
 			}
 		},
-		animCancelled() {
-			this.toggleExample(!this.toggled)
-		},
-		onExampleChanged() {
-			clearTimeout(this.toggleTimeout)
-			this.toggleExample(false)
-			this.toggleTimeout = setTimeout(() => {
-				this.toggleExample(true)
-			}, this.toggleInterval)
+		onExampleChange() {
+			this.toggled = false
+			this.toggleExample()
 		},
 		onRouteChange() {
 			const { query, hash } = this.$route
 			if (hash === `#${this.name}`) {
+				this.clearModifiers()
 				if (query.example) {
 					this.$refs.examples.setExample(query.example)
 				}
 				if (query.group) {
 					this.$refs.modifiers.setGroup(query.group)
 				}
-				this.clearModifiers()
 				if (query.utilities) {
 					query.utilities.split(';').forEach((utility) => {
 						this.xyzModifiers.utilities[utility] = true
@@ -156,9 +156,10 @@ export default {
 	},
 	mounted() {
 		this.onRouteChange()
+		this.onExampleChange()
 	},
 	beforeDestroy() {
-		clearTimeout(this.toggleTimeout)
+		this.clearToggleTimeout()
 	},
 }
 </script>
