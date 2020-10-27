@@ -80,10 +80,7 @@ export default {
 		modifiers: {
 			immediate: true,
 			handler() {
-				this.xyzModifiers = {
-					utilities: {},
-					variables: {},
-				}
+				this.clearModifiers()
 				if (this.modifiers) {
 					if (this.modifiers.utilities && this.modifiers.utilities.defaults) {
 						this.modifiers.utilities.defaults.forEach((defaultUtility) => {
@@ -101,6 +98,12 @@ export default {
 		},
 	},
 	methods: {
+		clearModifiers() {
+			this.xyzModifiers = {
+				utilities: {},
+				variables: {},
+			}
+		},
 		toggleExample(toggled) {
 			this.animCount = 0
 			this.toggled = toggled
@@ -136,14 +139,13 @@ export default {
 				if (query.group) {
 					this.$refs.modifiers.setGroup(query.group)
 				}
+				this.clearModifiers();
 				if (query.utilities) {
-					this.xyzModifiers.utilities = {}
 					query.utilities.split(';').forEach((utility) => {
 						this.xyzModifiers.utilities[utility] = true
 					})
 				}
 				if (query.variables) {
-					this.xyzModifiers.variables = {}
 					query.variables.split(';').forEach((variable) => {
 						const [name, value] = variable.split(':')
 						this.xyzModifiers.variables[`--xyz-${name}`] = value.trim()
