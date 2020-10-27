@@ -5,12 +5,11 @@
 			class="presets-list"
 			appear
 			duration="auto"
-			xyz="fade small stagger-1"
+			xyz="fade small"
+			:style="{ '--xyz-stagger': '0.15s' }"
 		>
 			<li
-				class="preset-item__wrap xyz-none"
-				:class="{ 'xyz-in': hoveredPreset === preset.title }"
-				:style="{ '--xyz-index': hoveredPreset === preset.title ? 0 : undefined }"
+				class="preset-item__wrap"
 				v-for="preset in computedPresets"
 				@click="onPresetClick(preset)"
 				@mouseenter="hoveredPreset = preset.title"
@@ -19,7 +18,7 @@
 			>
 				<a class="preset-item">
 					<div class="preset-title">{{preset.title}}</div>
-					<div class="square xyz-nested" v-xyz="preset.utilities" :style="preset.style"></div>
+					<div class="square xyz-nested" :class="{ 'xyz-in': hoveredPreset === preset.title }" v-xyz="preset.utilities" :style="preset.style"></div>
 				</a>
 			</li>
 		</xyz-transition-group>

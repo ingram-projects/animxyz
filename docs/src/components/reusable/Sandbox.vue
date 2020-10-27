@@ -30,7 +30,7 @@ export default {
 	},
 	data() {
 		return {
-			exampleToggled: false,
+			toggled: false,
 			xyzModifiers: null,
 			animCount: 0,
 			toggleInterval: 1000,
@@ -39,7 +39,7 @@ export default {
 	},
 	computed: {
 		mode() {
-			return this.exampleToggled ? 'xyz-in' : 'xyz-out'
+			return this.toggled ? 'xyz-in' : 'xyz-out'
 		},
 		utilitiesString() {
 			return Object.keys(this.xyzModifiers.utilities).join(' ')
@@ -53,7 +53,7 @@ export default {
 		},
 		injectedData() {
 			return {
-				toggled: this.exampleToggled,
+				toggled: this.toggled,
 				mode: this.mode,
 				utilities: this.xyzModifiers.utilities,
 				utilitiesString: this.utilitiesString,
@@ -103,7 +103,7 @@ export default {
 	methods: {
 		toggleExample(toggled) {
 			this.animCount = 0
-			this.exampleToggled = toggled
+			this.toggled = toggled
 		},
 		beforeAnim() {
 			this.animCount++
@@ -113,12 +113,12 @@ export default {
 			if (this.animCount === 0) {
 				clearTimeout(this.toggleTimeout)
 				this.toggleTimeout = setTimeout(() => {
-					this.toggleExample(!this.exampleToggled)
+					this.toggleExample(!this.toggled)
 				}, this.toggleInterval)
 			}
 		},
 		animCancelled() {
-			this.toggleExample(!this.exampleToggled)
+			this.toggleExample(!this.toggled)
 		},
 		onExampleChanged() {
 			clearTimeout(this.toggleTimeout)
