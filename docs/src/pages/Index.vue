@@ -192,8 +192,17 @@ export default {
 						{
 							title: '💫 Engage.',
 							utilities: ['fade', 'up', 'turn-cw'],
-							variables: ['rotate-x: 90deg', 'rotate-z: -180deg', 'origin: -200%', 'stagger: 0.1s', 'duration: 0.75s', 'perspective: 10px', 'translate-z: 100px', 'translate-y: 10vh'],
-						}
+							variables: [
+								'rotate-x: 90deg',
+								'rotate-z: -180deg',
+								'origin: -200%',
+								'stagger: 0.1s',
+								'duration: 0.75s',
+								'perspective: 10px',
+								'translate-z: 100px',
+								'translate-y: 10vh',
+							],
+						},
 					],
 					groups: [
 						{

@@ -123,7 +123,7 @@ export default {
 				this.tabDirectionXyz = 'out-right-100 in-left-100'
 			}
 		},
-		'computedGroups': {
+		computedGroups: {
 			immediate: true,
 			handler() {
 				if (this.computedGroups.length) {

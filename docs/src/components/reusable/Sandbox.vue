@@ -139,7 +139,7 @@ export default {
 				if (query.group) {
 					this.$refs.modifiers.setGroup(query.group)
 				}
-				this.clearModifiers();
+				this.clearModifiers()
 				if (query.utilities) {
 					query.utilities.split(';').forEach((utility) => {
 						this.xyzModifiers.utilities[utility] = true

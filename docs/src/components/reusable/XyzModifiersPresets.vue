@@ -15,7 +15,7 @@
 					@mouseenter="onPresetMouseEnter(preset)"
 					@mouseleave="onPresetMouseLeave"
 				>
-					<div class="preset-title">{{preset.title}}</div>
+					<div class="preset-title">{{ preset.title }}</div>
 					<div
 						class="square xyz-nested"
 						:class="{ [mode]: hoveredPreset === preset.title }"
@@ -59,7 +59,7 @@ export default {
 					style,
 				}
 			})
-		}
+		},
 	},
 	methods: {
 		onPresetClick(preset) {
@@ -74,8 +74,8 @@ export default {
 		},
 		onPresetAnimationEnd() {
 			this.toggled = !this.toggled
-		}
-	}
+		},
+	},
 }
 </script>
 
