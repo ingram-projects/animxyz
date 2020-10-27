@@ -19,12 +19,15 @@
         $scale-x: xyz-var('scale-x', $mode, 1);
         $scale-y: xyz-var('scale-y', $mode, 1);
         $scale-z: xyz-var('scale-z', $mode, 1);
+        $skew-x: xyz-var('skew-x', $mode, 0);
+        $skew-y: xyz-var('skew-y', $mode, 0);
 
         $transform: xyz-var('transform', $mode,
           perspective(#{$perspective})
           translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
           rotateX(#{$rotate-x}) rotateY(#{$rotate-y}) rotateZ(#{$rotate-z})
           scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})
+          skew(#{$skew-x}, #{$skew-y})
         );
 
         opacity: $opacity;
@@ -45,6 +48,7 @@
       --xyz-translate-default: #{map.get($xyz-translate-levels, '3')};
       --xyz-rotate-default: #{map.get($xyz-rotate-levels, '25')};
       --xyz-scale-default: #{map.get($xyz-scale-levels, '50')};
+      --xyz-skew-default: #{map.get($xyz-skew-levels, '3')};
     }
 
     // gives elements an xyz-index based on nth child
