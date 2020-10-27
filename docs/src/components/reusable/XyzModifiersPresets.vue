@@ -9,7 +9,7 @@
 			:style="{ '--xyz-stagger': '0.15s' }"
 		>
 			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title">
-				<a
+				<button
 					class="preset-item"
 					@click="onPresetClick(preset)"
 					@mouseenter="onPresetMouseEnter(preset)"
@@ -23,7 +23,7 @@
 						:style="preset.style"
 						@animationend="onPresetAnimationEnd"
 					></div>
-				</a>
+				</button>
 			</li>
 		</xyz-transition-group>
 	</div>
@@ -98,7 +98,6 @@ export default {
 
 .preset-item {
 	position: relative;
-	cursor: pointer;
 	display: flex;
 	flex-shrink: 0;
 	height: 10rem;
@@ -115,7 +114,8 @@ export default {
 	}
 
 	&:hover,
-	&.active {
+	&:focus,
+	&:active {
 		box-shadow: inset 0 0 0 4px primary-color(700);
 
 		.preset-title {
