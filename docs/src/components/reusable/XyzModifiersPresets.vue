@@ -12,8 +12,8 @@
 				class="preset-item__wrap"
 				v-for="preset in computedPresets"
 				@click="onPresetClick(preset)"
-				@mouseenter="hoveredPreset = preset.title"
-				@mouseleave="hoveredPreset = null"
+				@mouseenter="onPresetMouseEnter(preset)"
+				@mouseleave="onPresetMouseLeave"
 				:key="preset.title"
 			>
 				<a class="preset-item">
@@ -57,6 +57,12 @@ export default {
 		onPresetClick(preset) {
 			this.$emit('select-preset', preset)
 		},
+		onPresetMouseEnter(preset) {
+			this.hoveredPreset = preset.title
+		},
+		onPresetMouseLeave() {
+			this.hoveredPreset = null
+		}
 	}
 }
 </script>
