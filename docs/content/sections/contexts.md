@@ -6,13 +6,11 @@ examples:
   - name: Basic
     template: |
       <div class="example-wrap">
-        <div class="example-wrap">
-          <xyz-transition duration="auto" xyz="fade turn-cw" v-on="data.listeners">
-            <div class="square-group xyz-none" v-show="data.toggled">
-              <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
-            </div>
-          </xyz-transition>
-        </div>
+        <xyz-transition duration="auto" xyz="fade turn-cw" v-on="data.listeners">
+          <div class="square-group xyz-none" v-show="data.toggled">
+            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+          </div>
+        </xyz-transition>
       </div>
     code:
       - language: html
