@@ -19,7 +19,10 @@ import { getXyzVariable, getXyzVariableRegex } from '~/utils'
 
 export default {
 	name: 'XyzVariablesInput',
-	props: ['value', 'variables'],
+	props: {
+		value: Object,
+		variables: Array,
+	},
 	data() {
 		return {
 			toggledVariables: {},

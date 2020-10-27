@@ -49,7 +49,14 @@ import { getXyzUtility, getXyzUtilityRegex } from '~/utils'
 
 export default {
 	name: 'XyzUtilitiesInput',
-	props: ['value', 'utilities', 'multiple'],
+	props: {
+		value: Object,
+		utilities: Array,
+		multiple: {
+			type: Boolean,
+			default: true,
+		},
+	},
 	data() {
 		return {
 			toggledUtilities: {},

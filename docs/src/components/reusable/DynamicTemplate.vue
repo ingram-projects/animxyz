@@ -1,12 +1,17 @@
 <script>
 export default {
 	name: 'DynamicTemplate',
-	props: ['template', 'data'],
+	props: {
+		template: String,
+		data: Object,
+	},
 	computed: {
 		component() {
 			return {
 				template: this.template,
-				props: ['data'],
+				props: {
+					data: Object,
+				},
 			}
 		},
 	},

@@ -59,7 +59,10 @@ const langOptions = {
 
 export default {
 	name: 'CodeBlock',
-	props: ['code', 'data'],
+	props: {
+		code: Array,
+		data: Object,
+	},
 	components: {
 		Prism,
 	},

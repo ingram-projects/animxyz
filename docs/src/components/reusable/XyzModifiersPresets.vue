@@ -32,7 +32,9 @@
 <script>
 export default {
 	name: 'XyzModifiersPresets',
-	props: ['presets'],
+	props: {
+		presets: Array,
+	},
 	data() {
 		return {
 			hoveredPreset: null,

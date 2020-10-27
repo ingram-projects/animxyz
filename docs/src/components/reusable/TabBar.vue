@@ -24,7 +24,10 @@
 <script>
 export default {
 	name: 'TabBar',
-	props: ['value', 'tabs'],
+	props: {
+		value: Object,
+		tabs: Array,
+	},
 	methods: {
 		setTab(tab) {
 			this.$emit('input', tab)

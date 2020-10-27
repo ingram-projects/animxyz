@@ -23,7 +23,11 @@ import XyzModifiersInput from '~/components/reusable/XyzModifiersInput'
 
 export default {
 	name: 'Sandbox',
-	props: ['name', 'examples', 'modifiers'],
+	props: {
+		name: String,
+		examples: Array,
+		modifiers: Object,
+	},
 	components: {
 		CodeExamples,
 		XyzModifiersInput,

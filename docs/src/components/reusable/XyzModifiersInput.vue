@@ -44,7 +44,10 @@ import { xyzUtilities, xyzVariables } from '~/utils'
 
 export default {
 	name: 'XyzModifiersInput',
-	props: ['value', 'modifiers'],
+	props: {
+		value: Object,
+		modifiers: Object,
+	},
 	components: {
 		TabBar,
 		XyzModifiersPresets,

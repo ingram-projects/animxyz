@@ -5,7 +5,9 @@
 <script>
 export default {
 	name: 'MarkdownContent',
-	props: ['content'],
+	props: {
+		content: String,
+	},
 }
 </script>
 

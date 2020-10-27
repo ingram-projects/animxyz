@@ -15,7 +15,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="${data.utilitiesString}">
+          <div class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -23,7 +23,6 @@ examples:
 
 modifiers:
   utilities:
-    multiple: true
     defaults: [fade]
   variables:
     hide: true

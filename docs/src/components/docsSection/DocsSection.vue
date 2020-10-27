@@ -27,7 +27,9 @@ import MarkdownContent from '~/components/reusable/MarkdownContent'
 
 export default {
 	name: 'DocsSection',
-	props: ['section'],
+	props: {
+		section: Object,
+	},
 	components: {
 		IconLink,
 		MarkdownContent,

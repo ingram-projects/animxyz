@@ -21,7 +21,10 @@ import TabBar from '~/components/reusable/TabBar'
 
 export default {
 	name: 'CodeExamples',
-	props: ['examples', 'data'],
+	props: {
+		examples: Array,
+		data: Object,
+	},
 	components: {
 		CodeBlock,
 		DynamicTemplate,

@@ -13,7 +13,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="${data.utilitiesString}"></div>
+          <div class="square ${data.mode}" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}></div>
 
           ${data.variablesString && `
           <style>

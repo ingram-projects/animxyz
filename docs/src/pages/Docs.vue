@@ -57,7 +57,6 @@
 				modifiers {
 					utilities {
 						hide
-						multiple
 						defaults
 					}
 					variables {

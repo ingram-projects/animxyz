@@ -141,37 +141,36 @@ export default {
 					{
 						name: 'Sandbox',
 						template: `
-			      <div class="example-wrap">
-			        <xyz-transition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners" >
-			          <div class="square-group xyz-none" v-show="data.toggled">
-			            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
-			          </div>
-			        </xyz-transition>
-			      </div>
-					`,
+				      <div class="example-wrap">
+				        <xyz-transition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners" >
+				          <div class="square-group xyz-none" v-show="data.toggled">
+				            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+				          </div>
+				        </xyz-transition>
+				      </div>
+						`,
 						code: [
 							{
 								language: 'html',
 								content: `
-		          <div class="square-group" xyz="\${data.utilitiesString}">
-		            <div class="square \${data.mode}"></div>
-		            <div class="square \${data.mode}"></div>
-		            <div class="square \${data.mode}"></div>
-		          </div>
+				          <div class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+				            <div class="square \${data.mode}"></div>
+				            <div class="square \${data.mode}"></div>
+				            <div class="square \${data.mode}"></div>
+				          </div>
 
-							\${data.variablesString && \`
-		          <style>
-		            .square-group { \${data.variablesString} }
-		          </style>
-		          \`}
-						`,
+									\${data.variablesString && \`
+				          <style>
+				            .square-group { \${data.variablesString} }
+				          </style>
+				          \`}
+								`,
 							},
 						],
 					},
 				],
 				modifiers: {
 					utilities: {
-						multiple: true,
 						defaults: ['fade'],
 					},
 					variables: true,

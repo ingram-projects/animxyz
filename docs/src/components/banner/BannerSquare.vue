@@ -57,7 +57,9 @@ const rotateZClasses = xyzUtilities.filter((xyzUtility) => {
 
 export default {
 	name: 'BannerSquare',
-	props: ['show'],
+	props: {
+		show: Boolean,
+	},
 	data() {
 		return {
 			numXyzClasses: 2,

@@ -74,7 +74,11 @@ import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	name: 'PageNav',
-	props: ['open', 'sections', 'activeSection'],
+	props: {
+		open: Boolean,
+		sections: Array,
+		activeSection: Object,
+	},
 	components: {
 		AnimXyzLogo,
 		FocusLock,
