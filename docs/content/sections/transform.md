@@ -130,6 +130,20 @@ If an element already has a transform applied to it that you want to maintain du
         <td>--xyz-out-scale-z</td>
         <td>--xyz-appear-scale-z</td>
       </tr>
+      <tr>
+        <th scope="row">Skew X</th>
+        <td>--xyz-skew-x</td>
+        <td>--xyz-in-skew-x</td>
+        <td>--xyz-out-skew-x</td>
+        <td>--xyz-appear-skew-x</td>
+      </tr>
+      <tr>
+        <th scope="row">Skew Y</th>
+        <td>--xyz-skew-y</td>
+        <td>--xyz-in-skew-y</td>
+        <td>--xyz-out-skew-y</td>
+        <td>--xyz-appear-skew-y</td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -163,6 +177,11 @@ See the [variables](#variables) section to learn more.
         <th scope="row">Scale</th>
         <td>--xyz-scale-default</td>
         <td>0.5</td>
+      </tr>
+      <tr>
+        <th scope="row">Skew</th>
+        <td>--xyz-skew-default</td>
+        <td>30deg</td>
       </tr>
     </tbody>
   </table>
