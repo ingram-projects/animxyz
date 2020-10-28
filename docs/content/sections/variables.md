@@ -240,6 +240,20 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-appear-scale-z</td>
         <td></td>
       </tr>
+      <tr>
+        <th scope="row">Skew X</th>
+        <td>--xyz-skew-x</td>
+        <td>--xyz-in-skew-x</td>
+        <td>--xyz-out-skew-x</td>
+        <td>--xyz-appear-skew-x</td>
+      </tr>
+      <tr>
+        <th scope="row">Skew Y</th>
+        <td>--xyz-skew-y</td>
+        <td>--xyz-in-skew-y</td>
+        <td>--xyz-out-skew-y</td>
+        <td>--xyz-appear-skew-y</td>
+      </tr>
     </tbody>
   </table>
 </div>
