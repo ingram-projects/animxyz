@@ -283,7 +283,6 @@ export default {
 
 .hero__wrap {
 	position: relative;
-	border-radius: $br-xxl;
 	margin: 0 auto;
 	margin-bottom: $sp-xxl;
 }
@@ -296,6 +295,7 @@ export default {
 	line-height: 1.35;
 	max-width: 48rem;
 	text-align: center;
+	margin: 0 auto;
 
 	@include media('<phone') {
 		font-size: $fs-xl;
