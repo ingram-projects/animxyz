@@ -178,6 +178,10 @@ export default {
 					variables: true,
 					presets: [
 						{
+							title: '⏬ Drop',
+							utilities: ['fade', 'down-100', 'back-5'],
+						},
+						{
 							title: '🎈 Yoink!',
 							variables: ['stagger: 0.2s', 'translate-y: 400%', 'scale-x: 0', 'ease: cubic-bezier(.26,2.05,.84,.38)'],
 						},

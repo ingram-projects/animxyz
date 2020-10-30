@@ -10,7 +10,7 @@
 		>
 			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title">
 				<button
-					class="preset-item"
+					class="preset-item example-wrap"
 					@click="onPresetClick(preset)"
 					@mouseenter="onPresetMouseEnter(preset)"
 					@mouseleave="onPresetMouseLeave"
@@ -89,7 +89,7 @@ export default {
 	},
 	beforeDestroy() {
 		this.clearToggleTimeout()
-	}
+	},
 }
 </script>
 
