@@ -107,7 +107,9 @@
 				</footer>
 			</xyz-transition>
 
-			<sandbox v-bind="sandboxProps" id="sandbox"></sandbox>
+			<div class="sandbox__wrap">
+				<sandbox v-bind="sandboxProps" id="sandbox"></sandbox>
+			</div>
 		</main>
 	</layout>
 </template>
@@ -453,6 +455,10 @@ export default {
 	@include media('<phone') {
 		margin-bottom: $sp-xxxl;
 	}
+}
+
+.sandbox__wrap {
+	position: relative;
 }
 
 .sandbox {
