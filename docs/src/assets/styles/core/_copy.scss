@@ -338,7 +338,6 @@ h5 {
 }
 
 .note-tag--Vue {
-  background-image: url("../../icons/IconVue.svg");
   background-color: $color-vue;
 }
 
@@ -357,4 +356,12 @@ h5 {
 
 .note-tag--Sass {
   background-color: $color-sass;
+}
+
+.note--Warning {
+  border-color: $red;
+}
+
+.note-tag--Warning {
+  background-color: $red;
 }

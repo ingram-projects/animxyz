@@ -45,6 +45,12 @@ You can also override any of the provided transform variables with a custom valu
 If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
 :::
 
+::: note [Warning]
+There is a bug in Safari (Mac and iOS) which prevents elements from rendering during an animation set to `scale(0)` (or `scaleX(0)` and `scaleY(0)`) if it is a text element OR if the element has a border, border-radius, or box-shadow.
+
+If you encounter this issue, an easy fix is setting the scale variable to a low value, for example: `--xyz-scale-x: 0.001; --xyz-scale-y: 0.001;`.
+:::
+
 ---
 ## Variables
 
