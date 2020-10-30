@@ -21,7 +21,6 @@ svg {
 .square {
 	@include size(5rem);
 	background-color: $cyan;
-  border-radius: $br-l;
   display: flex;
   align-items: center;
   justify-content: center;
