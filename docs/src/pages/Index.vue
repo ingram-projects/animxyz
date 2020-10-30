@@ -221,6 +221,10 @@ export default {
 							types: ['scale'],
 						},
 						{
+							name: 'Skew',
+							types: ['skew'],
+						},
+						{
 							name: 'Perspective',
 							types: ['perspective'],
 						},

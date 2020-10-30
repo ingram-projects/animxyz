@@ -103,6 +103,11 @@ You can also change default values on an element, but keep in mind they will app
         <td>--xyz-scale-default</td>
         <td>0.5</td>
       </tr>
+      <tr>
+        <th scope="row">Skew</th>
+        <td>--xyz-skew-default</td>
+        <td>30deg</td>
+      </tr>
     </tbody>
   </table>
 </div>

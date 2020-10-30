@@ -123,6 +123,15 @@ $xyz-scale-levels: (
   '100': 1,
 ) !default;
 
+$xyz-skew-levels: (
+  '0': 0deg,
+  '1': 10deg,
+  '2': 20deg,
+  '3': 30deg,
+  '4': 40deg,
+  '5': 50deg,
+) !default;
+
 
 // VARIABLES
 
@@ -214,6 +223,16 @@ $xyz-variables-map: (
   'scale-z': (
     'type': 'scale',
     'axis': 'z',
+    'modes': $xyz-modes-all,
+  ),
+  'skew-x': (
+    'type': 'skew',
+    'axis': 'x',
+    'modes': $xyz-modes-all,
+  ),
+  'skew-y': (
+    'type': 'skew',
+    'axis': 'y',
     'modes': $xyz-modes-all,
   ),
 );
@@ -458,6 +477,40 @@ $xyz-utilities-map: (
     'default': calc(1 + var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
+    'modes': $xyz-modes-all,
+  ),
+  'skew-left': (
+    'type': 'skew',
+    'axis': 'x',
+    'vars': ['skew-x'],
+    'default': var(--xyz-skew-default),
+    'levels': $xyz-skew-levels,
+    'modes': $xyz-modes-all,
+  ),
+  'skew-right': (
+    'type': 'skew',
+    'axis': 'x',
+    'vars': ['skew-x'],
+    'default': calc(var(--xyz-skew-default) * -1),
+    'levels': $xyz-skew-levels,
+    'transformer': 'xyz-negative-val',
+    'modes': $xyz-modes-all,
+  ),
+  'skew-up': (
+    'type': 'skew',
+    'axis': 'y',
+    'vars': ['skew-y'],
+    'default': var(--xyz-skew-default),
+    'levels': $xyz-skew-levels,
+    'modes': $xyz-modes-all,
+  ),
+  'skew-down': (
+    'type': 'skew',
+    'axis': 'y',
+    'vars': ['skew-y'],
+    'default': calc(var(--xyz-skew-default) * -1),
+    'levels': $xyz-skew-levels,
+    'transformer': 'xyz-negative-val',
     'modes': $xyz-modes-all,
   ),
 );
