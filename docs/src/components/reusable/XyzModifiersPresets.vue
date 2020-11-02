@@ -107,21 +107,26 @@ export default {
 }
 
 .preset-item__wrap {
-	padding-right: $sp-m;
+	padding-right: $sp-s;
+
+	&:last-child {
+		padding-right: $sp-m;
+	}
 }
 
 .preset-item {
 	position: relative;
 	display: flex;
+	flex-direction: column;
 	flex-shrink: 0;
-	height: 10rem;
+	height: 9rem;
 	width: 14rem;
 	box-shadow: inset 0 0 0 2px primary-color(800);
 	border-radius: $br-xl;
 	transition: box-shadow 0.2s $ease-in-out;
 
 	.square {
-		@include size(4rem);
+		@include size(3.5rem);
 		margin: auto;
 		background-color: primary-color(200, 0.65);
 		transition: background-color 0.2s $ease-in-out;
@@ -143,10 +148,10 @@ export default {
 }
 
 .preset-title {
-	position: absolute;
 	font-family: $font-stack-mono;
-	top: $sp-xs;
-	left: $sp-xs;
+	padding: $sp-xs;
+	padding-bottom: 0;
+	line-height: 1;
 	color: primary-color(300);
 	transition: color 0.2s $ease-in-out;
 }
