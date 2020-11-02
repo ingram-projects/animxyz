@@ -100,8 +100,20 @@ export default {
 		.tab-text {
 			&::after {
 				background-color: $cyan;
-				transform: scale(1);
+				transform: scaleX(1);
 			}
+		}
+	}
+
+	&.has-content {
+		::before {
+			@include size(10px);
+			background-color: primary-color(200);
+			content: '';
+			position: absolute;
+			top: -13px;
+			left: 50%;
+			transform: translateX(-50%) rotate(45deg);
 		}
 	}
 }
@@ -120,9 +132,9 @@ export default {
 		top: 100%;
 		left: 0;
 		right: 0;
-		height: 3px;
-		transform: scale(0);
-		transition: background-color 0.2s $ease-in-out, transform 0.3s $ease-out-back;
+		height: 4px;
+		transform: scaleX(0);
+		transition: background-color 0.2s $ease-in-out, transform 0.5s $ease-out-back;
 	}
 }
 </style>
