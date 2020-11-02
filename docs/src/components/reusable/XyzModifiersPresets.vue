@@ -104,13 +104,19 @@ export default {
 	overflow-x: auto;
 	display: flex;
 	list-style: none;
+
+	@include media('<tablet') {
+		padding: $sp-s;
+	}
 }
 
 .preset-item__wrap {
 	padding-right: $sp-s;
 
-	&:last-child {
-		padding-right: $sp-m;
+	@include media('>=tablet') {
+		&:last-child {
+			padding-right: $sp-m;
+		}
 	}
 }
 
@@ -125,11 +131,20 @@ export default {
 	border-radius: $br-xl;
 	transition: box-shadow 0.2s $ease-in-out;
 
+	@include media('<tablet') {
+		height: 7rem;
+		width: 12rem;
+	}
+
 	.square {
 		@include size(3.5rem);
 		margin: auto;
 		background-color: primary-color(200, 0.65);
 		transition: background-color 0.2s $ease-in-out;
+
+		@include media('<tablet') {
+			@include size(2.5rem);
+		}
 	}
 
 	&:hover,

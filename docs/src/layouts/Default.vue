@@ -70,8 +70,8 @@ export default {
 
 	@include media('<tablet') {
 		right: initial;
-		left: 2.5rem;
-		bottom: 2.5rem;
+		left: 2.25rem;
+		bottom: 2.25rem;
 		z-index: 3;
 	}
 }

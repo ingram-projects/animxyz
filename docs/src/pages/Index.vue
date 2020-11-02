@@ -8,7 +8,7 @@
 			<div class="landing-content">
 				<section class="hero__wrap">
 					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
-						<h1 class="intro-text">The first composable CSS animation toolkit.</h1>
+						<h1 class="intro-text">The first composable<br />CSS animation toolkit.</h1>
 					</xyz-transition>
 
 					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
@@ -295,14 +295,18 @@ export default {
 	--xyz-duration: 0.7s;
 	color: primary-color(800);
 	font-size: $fs-xxxl;
-	font-weight: 600;
+	font-weight: 650;
 	line-height: 1.35;
 	max-width: 48rem;
 	text-align: center;
 	margin: 0 auto;
 
+	@include media('<tablet') {
+		font-size: 2.5rem;
+	}
+
 	@include media('<phone') {
-		font-size: $fs-xl;
+		font-size: 1.75rem;
 	}
 }
 
@@ -392,6 +396,11 @@ export default {
 			margin-right: 0;
 			margin-bottom: $sp-xxxs;
 			flex-shrink: 0;
+		}
+
+		& + & {
+			margin-top: 0;
+			margin-left: $sp-xxs;
 		}
 	}
 }
