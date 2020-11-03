@@ -99,7 +99,21 @@
 			</div>
 
 			<xyz-transition appear xyz="delay-5 fade down ease-out">
-				<footer class="created-by copy-content" style="--xyz-delay: 0.6s">
+				<section class="used-by copy-content" style="--xyz-delay: 0.6s">
+					<h3>AnimXYZ is used by:</h3>
+					<ul class="used-by__list">
+						<li class="used-by__item">
+							<a href="https://yaherd.co/" target="_blank">
+								<g-image src="@/assets/images/yaherd-logo.svg" width="240" immediate="true" />
+								<span class="screen-reader-only">YaHerd</span>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</xyz-transition>
+
+			<xyz-transition appear xyz="delay-5 fade down ease-out">
+				<footer class="created-by copy-content" style="--xyz-delay: 0.7s">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
 						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
@@ -444,6 +458,7 @@ export default {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: $sp-xl;
+	margin-bottom: $sp-xxl;
 
 	p {
 		font-size: $fs-m;
@@ -457,6 +472,39 @@ export default {
 
 	@include media('<phone') {
 		grid-gap: $sp-l;
+	}
+}
+
+.used-by {
+	margin: 0 auto;
+
+	h3 {
+		text-align: center;
+	}
+}
+
+.used-by__list {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	list-style: none;
+	margin-top: $sp-m;
+}
+
+.used-by__item {
+	margin-bottom: $sp-s;
+	padding: 0 $sp-s;
+
+	a {
+		display: block;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	img {
+		display: block;
 	}
 }
 
