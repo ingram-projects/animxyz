@@ -367,8 +367,10 @@ export default {
 		color: primary-color(100);
 	}
 
-	@include media('<laptop') {
-		color: primary-color(300);
+	.tab--examples & {
+		@include media('<laptop') {
+			color: primary-color(300);
+		}
 	}
 
 	@include media('>=large') {

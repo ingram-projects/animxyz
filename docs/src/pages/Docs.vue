@@ -1,5 +1,5 @@
 <template>
-	<layout>
+	<layout :class="`tab--${activeTab}`">
 		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
