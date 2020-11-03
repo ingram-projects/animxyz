@@ -343,7 +343,6 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-shrink: 0;
 	font-weight: 600;
 	font-size: 1.125rem;
 	text-decoration: none;
