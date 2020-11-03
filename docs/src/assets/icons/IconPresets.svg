@@ -1,0 +1,6 @@
+<svg class="icon-svg icon-presets" width="32" height="32" viewBox="0 0 32 32" fill="var(--icon-color, var(--primary-900))" xmlns="http://www.w3.org/2000/svg">
+<rect y="16" width="10.1823" height="10.1823" rx="2" transform="rotate(-45 0 16)"/>
+<rect x="8.8" y="24.8" width="10.1823" height="10.1823" rx="2" transform="rotate(-45 8.8 24.8)"/>
+<rect x="8.8" y="7.2" width="10.1823" height="10.1823" rx="2" transform="rotate(-45 8.8 7.2)"/>
+<rect x="17.6" y="16" width="10.1823" height="10.1823" rx="2" transform="rotate(-45 17.6 16)"/>
+</svg>

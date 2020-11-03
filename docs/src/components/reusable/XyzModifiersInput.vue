@@ -99,6 +99,7 @@ export default {
 			if (this.modifiers.presets) {
 				const presetsGroup = {
 					name: 'Presets',
+					icon: 'icon-presets',
 					presets: this.modifiers.presets,
 				}
 				return [presetsGroup, ...computedGroups]

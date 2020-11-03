@@ -16,17 +16,23 @@
 			:key="tab.name"
 			@click="setTab(tab)"
 		>
+			<component :is="tab.icon" class="tab-icon"></component>
 			<span class="tab-text">{{ tab.name }}</span>
 		</button>
 	</xyz-transition-group>
 </template>
 
 <script>
+import IconPresets from '~/assets/icons/IconPresets.svg'
+
 export default {
 	name: 'TabBar',
 	props: {
 		value: Object,
 		tabs: Array,
+	},
+	components: {
+		IconPresets,
 	},
 	methods: {
 		setTab(tab) {
@@ -82,6 +88,10 @@ export default {
 		.tab-text {
 			opacity: 1;
 		}
+
+		.tab-icon {
+			--icon-color: #{$cyan};
+		}
 	}
 
 	&:hover,
@@ -116,6 +126,13 @@ export default {
 			transform: translateX(-50%) rotate(45deg);
 		}
 	}
+}
+
+.tab-icon {
+	--icon-color: currentColor;
+	@include size(1rem);
+	margin-right: $sp-xxs;
+	flex-shrink: 0;
 }
 
 .tab-text {
