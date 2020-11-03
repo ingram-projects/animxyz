@@ -125,6 +125,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
+	align-items: stretch;
 	height: 9rem;
 	width: 14rem;
 	box-shadow: inset 0 0 0 2px primary-color(800);
@@ -168,6 +169,7 @@ export default {
 	padding-bottom: 0;
 	line-height: 1;
 	color: primary-color(300);
+	text-align: left;
 	transition: color 0.2s $ease-in-out;
 }
 </style>
