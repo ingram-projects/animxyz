@@ -1,4 +1,4 @@
-export default function ({ title, description, url, type, image }) {
+export default function ({ title, description, type, url, image }) {
 	const metaInfo = {
 		meta: [],
 	}
@@ -20,16 +20,8 @@ export default function ({ title, description, url, type, image }) {
 		})
 		metaInfo.meta.push({
 			key: 'og:description',
-			name: 'og:description',
+			property: 'og:description',
 			content: description,
-		})
-	}
-
-	if (url) {
-		metaInfo.meta.push({
-			key: 'og:url',
-			property: 'og:url',
-			content: url,
 		})
 	}
 
@@ -38,6 +30,14 @@ export default function ({ title, description, url, type, image }) {
 			key: 'og:type',
 			property: 'og:type',
 			content: type,
+		})
+	}
+
+	if (url) {
+		metaInfo.meta.push({
+			key: 'og:url',
+			property: 'og:url',
+			content: url,
 		})
 	}
 

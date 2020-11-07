@@ -54,8 +54,9 @@ export default function (Vue, { router, head }) {
 		...openGraphMeta({
 			title: 'AnimXYZ',
 			description: 'The first composable CSS animation toolkit',
-			image: 'https://animxyz.com/animxyz-link-preview.png',
+			type: 'website',
 			url: 'https://animxyz.com',
+			image: 'https://animxyz.com/animxyz-link-preview.png',
 		}),
 	})
 
