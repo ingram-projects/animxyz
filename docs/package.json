@@ -31,6 +31,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^7.0.1",
+    "gridsome-plugin-ogp": "^0.0.14",
     "gridsome-plugin-sass-resources-loader": "^0.0.3",
     "gridsome-plugin-svg": "^0.0.14",
     "http-server": "^0.12.3",

@@ -79,7 +79,7 @@ import DocsSection from '~/components/docsSection/DocsSection'
 import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import PageNav from '~/components/reusable/PageNav'
 import Sandbox from '~/components/reusable/Sandbox'
-import { textToId } from '~/utils'
+import { textToId, openGraphMeta } from '~/utils'
 
 export default {
 	components: {
@@ -222,24 +222,10 @@ export default {
 	},
 	metaInfo() {
 		return {
-			title: 'Docs | AnimXYZ',
-			meta: [
-				{
-					key: 'title',
-					name: 'title',
-					content: 'Docs | AnimXYZ',
-				},
-				{
-					key: 'og:title',
-					name: 'og:title',
-					content: 'Docs | AnimXYZ',
-				},
-				{
-					key: 'og:url',
-					name: 'og:url',
-					content: 'https://animxyz.com/docs',
-				},
-			],
+			...openGraphMeta({
+				title: 'Docs | AnimXYZ',
+				url: 'https://animxyz.com/docs',
+			}),
 		}
 	},
 }

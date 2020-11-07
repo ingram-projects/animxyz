@@ -23,6 +23,9 @@ module.exports = {
 			},
 		},
 		{
+			use: 'gridsome-plugin-ogp',
+		},
+		{
 			use: 'gridsome-plugin-sass-resources-loader',
 			options: {
 				resources: '~/assets/styles/variables/_index.scss',

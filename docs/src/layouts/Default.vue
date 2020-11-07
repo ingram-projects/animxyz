@@ -26,6 +26,7 @@ query {
 
 <script>
 import Cube from '~/components/reusable/Cube'
+import { openGraphMeta } from '~/utils'
 
 export default {
 	components: {
@@ -50,6 +51,19 @@ export default {
 	},
 	mounted() {
 		this.randomizeXRayCubeTransform()
+	},
+	metaInfo() {
+		return {
+			titleTemplate: (titleChunk) => {
+				return titleChunk
+			},
+			...openGraphMeta({
+				title: 'AnimXYZ',
+				description: 'The first composable CSS animation toolkit',
+				image: 'https://animxyz.com/animxyz-link-preview.png',
+				url: 'https://animxyz.com',
+			}),
+		}
 	},
 }
 </script>
