@@ -5,6 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
+	siteName: 'AnimXYZ',
 	host: '0.0.0.0',
 	runtimeCompiler: true,
 	icon: {
