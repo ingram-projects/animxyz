@@ -44,30 +44,27 @@ export default function (Vue, { router, head }) {
 
 	Vue.directive('ScrollLock', ScrollLock)
 
-	head.meta.push({
-		key: 'og:title',
-		name: 'og:title',
-		content: `AnimXYZ`,
-	})
+	function addMeta(name, content, ogDupe) {
+		head.meta.push({
+			key: name,
+			name,
+			content,
+		})
 
-	head.meta.push({
-		key: 'og:description',
-		name: 'og:description',
-		content: `The first composable
-		CSS animation toolkit`,
-	})
+		if (ogDupe) {
+			head.meta.push({
+				key: `og:${name}`,
+				name: `og:${name}`,
+				content,
+			})
+		}
+	}
 
-	head.meta.push({
-		key: 'og:url',
-		name: 'og:url',
-		content: `https://animxyz.com`,
-	})
-
-	head.meta.push({
-		key: 'og:image',
-		name: 'og:image',
-		content: `https://animxyz.com/animxyz-link-preview.png`,
-	})
+	addMeta('title', 'AnimXYZ', true)
+	addMeta('description', 'The first composable CSS animation toolkit', true)
+	addMeta('og:type', 'website')
+	addMeta('og:url', 'https://animxyz.com')
+	addMeta('og:image', 'https://animxyz.com/animxyz-link-preview.png')
 
 	router.options.scrollBehavior = function (to, from, savedPosition) {
 		if (savedPosition) {

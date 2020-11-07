@@ -225,6 +225,11 @@ export default {
 			title: 'Docs | AnimXYZ',
 			meta: [
 				{
+					key: 'title',
+					name: 'title',
+					content: 'Docs | AnimXYZ',
+				},
+				{
 					key: 'og:title',
 					name: 'og:title',
 					content: 'Docs | AnimXYZ',
