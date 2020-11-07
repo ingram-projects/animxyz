@@ -267,11 +267,6 @@ export default {
 			},
 		}
 	},
-	metaInfo() {
-		return {
-			title: '',
-		}
-	},
 }
 </script>
 

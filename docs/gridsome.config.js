@@ -5,8 +5,6 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-	siteName: 'AnimXYZ',
-	siteDescription: 'AnimXYZ Documentation',
 	host: '0.0.0.0',
 	runtimeCompiler: true,
 	icon: {
@@ -21,9 +19,6 @@ module.exports = {
 				baseDir: 'content/sections',
 				path: '**/*.md',
 			},
-		},
-		{
-			use: 'gridsome-plugin-ogp',
 		},
 		{
 			use: 'gridsome-plugin-sass-resources-loader',

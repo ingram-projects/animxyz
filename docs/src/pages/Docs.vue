@@ -220,13 +220,11 @@ export default {
 		window.removeEventListener('scroll', this.onWindowScroll)
 		window.removeEventListener('resize', this.onWindowScroll)
 	},
-	metaInfo() {
-		return {
-			...openGraphMeta({
-				title: 'Docs | AnimXYZ',
-				url: 'https://animxyz.com/docs',
-			}),
-		}
+	metaInfo: {
+		...openGraphMeta({
+			title: 'Docs | AnimXYZ',
+			url: 'https://animxyz.com/docs',
+		}),
 	},
 }
 </script>

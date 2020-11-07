@@ -24,7 +24,10 @@ import ScrollLock from '~/directives/ScrollLock'
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
 
-export default function (Vue, { router }) {
+// Other
+import { openGraphMeta } from '~/utils'
+
+export default function (Vue, { router, head }) {
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
 		breakpoints: {
@@ -43,6 +46,18 @@ export default function (Vue, { router }) {
 	Vue.component('Layout', DefaultLayout)
 
 	Vue.directive('ScrollLock', ScrollLock)
+
+	Object.assign(head, {
+		titleTemplate: (titleChunk) => {
+			return titleChunk
+		},
+		...openGraphMeta({
+			title: 'AnimXYZ',
+			description: 'The first composable CSS animation toolkit',
+			image: 'https://animxyz.com/animxyz-link-preview.png',
+			url: 'https://animxyz.com',
+		}),
+	})
 
 	router.options.scrollBehavior = function (to, from, savedPosition) {
 		if (savedPosition) {
