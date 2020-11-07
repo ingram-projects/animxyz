@@ -24,7 +24,7 @@ import ScrollLock from '~/directives/ScrollLock'
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
 
-export default function (Vue, { router }) {
+export default function (Vue, { router, head }) {
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
 		breakpoints: {
@@ -43,6 +43,31 @@ export default function (Vue, { router }) {
 	Vue.component('Layout', DefaultLayout)
 
 	Vue.directive('ScrollLock', ScrollLock)
+
+	head.meta.push({
+		key: 'og:title',
+		name: 'og:title',
+		content: `AnimXYZ`,
+	})
+
+	head.meta.push({
+		key: 'og:description',
+		name: 'og:description',
+		content: `The first composable
+		CSS animation toolkit`,
+	})
+
+	head.meta.push({
+		key: 'og:url',
+		name: 'og:url',
+		content: `https://animxyz.com`,
+	})
+
+	head.meta.push({
+		key: 'og:image',
+		name: 'og:image',
+		content: `https://animxyz.com/animxyz-link-preview.png`,
+	})
 
 	router.options.scrollBehavior = function (to, from, savedPosition) {
 		if (savedPosition) {

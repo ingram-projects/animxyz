@@ -222,7 +222,19 @@ export default {
 	},
 	metaInfo() {
 		return {
-			title: 'Docs',
+			title: 'Docs | AnimXYZ',
+			meta: [
+				{
+					key: 'og:title',
+					name: 'og:title',
+					content: 'Docs | AnimXYZ',
+				},
+				{
+					key: 'og:url',
+					name: 'og:url',
+					content: 'https://animxyz.com/docs',
+				},
+			],
 		}
 	},
 }

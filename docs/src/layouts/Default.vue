@@ -51,13 +51,6 @@ export default {
 	mounted() {
 		this.randomizeXRayCubeTransform()
 	},
-	metaInfo() {
-		return {
-			titleTemplate: (titleChunk) => {
-				return titleChunk ? `${titleChunk} | ${this.$static.metadata.siteName}` : this.$static.metadata.siteName
-			},
-		}
-	},
 }
 </script>
 
