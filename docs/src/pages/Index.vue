@@ -67,7 +67,7 @@
 								<h3>Performant</h3>
 								<p>
 									Silky smooth animations out of the box. Only <code>2.64kB</code> for base functionality and
-									<code>10.9kB</code> if you include convenient utilities.
+									<code>11.7kB</code> if you include convenient utilities.
 								</p>
 							</div>
 							<div class="feature xyz-nested">
