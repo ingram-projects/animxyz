@@ -60,7 +60,8 @@
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
 								<p>
-									Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it from the top! <code class="text--nowrap">xyz="fade small up"</code>
+									Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it
+									from the top! <code class="text--nowrap">xyz="fade small up"</code>
 								</p>
 							</div>
 							<div class="feature xyz-nested">
@@ -95,7 +96,7 @@
 					<ul class="used-by__list">
 						<li class="used-by__item">
 							<a href="https://yaherd.co/" target="_blank">
-								<g-image src="@/assets/images/yaherd-logo.svg" width="240" immediate="true" />
+								<g-image src="@/assets/images/yaherd-logo.svg" width="240" :immediate="true" />
 								<span class="screen-reader-only">YaHerd</span>
 							</a>
 						</li>
