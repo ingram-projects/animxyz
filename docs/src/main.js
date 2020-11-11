@@ -60,6 +60,11 @@ export default function (Vue, { router, head }) {
 		}),
 	})
 
+	head.meta.push({
+		name: 'viewport',
+		content: 'width=device-width, initial-scale=1.0',
+	})
+
 	router.options.scrollBehavior = function (to, from, savedPosition) {
 		if (savedPosition) {
 			return savedPosition
