@@ -10,7 +10,7 @@
 		<button
 			type="button"
 			class="tab-bar__tab"
-			:class="{ active: tab === value }"
+			:class="{ active: tab === value, 'has-content': tab.hasContent }"
 			v-for="tab in tabs"
 			:ref="tab === value && 'activeTab'"
 			:key="tab.name"
