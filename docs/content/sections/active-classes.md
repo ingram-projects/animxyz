@@ -50,7 +50,7 @@ AnimXYZ animates elements in and out when activated by their respective classes.
 
 For example an element with `.xyz-in` and `xyz="fade"` will fade from 0 to its natural opacity, while `.xyz-out` will fade it from its natural opacity to 0.
 
-By default AnimXYZ utilities and variables apply to both the in and out classes, but you can set specific animations for each direction. Utilities and variables have **in** and **out** variants which apply only to the corresponding direction. For example an element with `xyz="in-left in-rotate-left out-right out-rotate-right"` will slide/rotate in from the left and slide/rotate out to the right. [See example](<?tab=examples&example=Direction variation#active-classes>)
+By default AnimXYZ utilities and variables apply to both the **in** and **out** classes, but you can set specific animations for each direction. Utilities and variables have **in** and **out** variants which apply only to the corresponding direction. For example an element with `xyz="in-left in-rotate-left out-right out-rotate-right"` will slide/rotate in from the left and slide/rotate out to the right. [See example](<?tab=examples&example=Direction variation#active-classes>)
 
 Direction-specific utilities and variables take precedence over the basic variants. For example an element with `xyz="big-100 out-big-25"` will have a more pronounced scale effect in the **in** direction than in the **out** direction. [See example](<?tab=examples&example=Direction override#active-classes>)
 
