@@ -83,8 +83,6 @@ export default {
 	&.active,
 	&:hover,
 	&:focus {
-		font-weight: bold;
-
 		.tab-text {
 			opacity: 1;
 		}
