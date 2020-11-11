@@ -2,19 +2,19 @@
 @include xyz-all;
 
 @keyframes xyz-xray-in {
-  0%, 33% {
+  0%, 50% {
     background-color: $green;
   }
 }
 
 @keyframes xyz-xray-out {
-  0%, 33% {
+  0%, 50% {
     background-color: $red;
   }
 }
 
 @keyframes xyz-xray-appear {
-  0%, 33% {
+  0%, 50% {
     background-color: $yellow;
   }
 }
