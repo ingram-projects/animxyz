@@ -390,7 +390,7 @@ $xyz-utilities-map: (
     'transformer': 'xyz-negative-val',
     'modes': $xyz-modes-all,
   ),
-  'turn-cw': (
+  'rotate-right': (
     'type': 'rotate',
     'axis': 'z',
     'vars': ['rotate-z'],
@@ -398,7 +398,7 @@ $xyz-utilities-map: (
     'levels': $xyz-rotate-levels,
     'modes': $xyz-modes-all,
   ),
-  'turn-ccw': (
+  'rotate-left': (
     'type': 'rotate',
     'axis': 'z',
     'vars': ['rotate-z'],

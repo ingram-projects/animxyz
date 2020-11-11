@@ -18,7 +18,7 @@ function App() {
 				})}
 			</XyzTransitionGroup>
 
-			<XyzTransitionSwitch appear mode="out-in" xyz={xyz(['fade', 'turn-cw', 'duration-10', 'big-100'])}>
+			<XyzTransitionSwitch appear mode="out-in" xyz={xyz(['fade', 'rotate-right', 'duration-10', 'big-100'])}>
 				<button onClick={randomState} key={switchState}>
 					State {switchState}
 				</button>

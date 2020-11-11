@@ -4,7 +4,7 @@
 			<div v-for="index in 5" :key="index">Hello</div>
 		</xyz-transition-group>
 
-		<xyz-transition appear mode="out-in" xyz="fade turn-cw duration-10" v-xyz="['big-100']">
+		<xyz-transition appear mode="out-in" xyz="fade rotate-right duration-10" v-xyz="['big-100']">
 			<button @click="randomState" :key="switchState">State {{ switchState }}</button>
 		</xyz-transition>
 	</div>

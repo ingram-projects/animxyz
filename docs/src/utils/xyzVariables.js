@@ -464,7 +464,7 @@ export const xyzUtilitiesMap = {
 		transformer: 'xyz-negative-val',
 		modes: xyzModesAll,
 	},
-	'turn-cw': {
+	'rotate-right': {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],
@@ -472,7 +472,7 @@ export const xyzUtilitiesMap = {
 		levels: xyzRotateLevels,
 		modes: xyzModesAll,
 	},
-	'turn-ccw': {
+	'rotate-left': {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],

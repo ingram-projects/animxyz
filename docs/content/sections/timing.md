@@ -6,14 +6,14 @@ examples:
   - name: Timing
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade turn-cw-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <xyz-transition xyz="fade rotate-right-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
       </div>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade turn-cw-50${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" xyz="fade rotate-right-50${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>

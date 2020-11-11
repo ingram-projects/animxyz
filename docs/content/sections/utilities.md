@@ -53,9 +53,9 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 
 [😐 fade up](?tab=examples&utilities=fade;up#utilities)  
 [🙂 fade flip-up flip-left](?tab=examples&utilities=fade;flip-up;flip-left#utilities)  
-[😀 fade down-5 turn-cw-50 stagger](?tab=examples&utilities=fade;down-5;turn-cw-50;stagger#utilities)  
+[😀 fade down-5 rotate-right-50 stagger](?tab=examples&utilities=fade;down-5;rotate-right-50;stagger#utilities)  
 [😃 fade front-5 flip-down-50 duration-10 stagger-5](?tab=examples&utilities=fade;front-5;flip-down-50;duration-10;stagger-5#utilities)  
-[🤪 fade up-100 flip-down flip-right-50 turn-ccw-100 origin-bottom duration-10 stagger](?tab=examples&utilities=fade;up-100;flip-down;flip-right-50;turn-ccw-100;origin-bottom;duration-10;stagger#utilities)  
+[🤪 fade up-100 flip-down flip-right-50 rotate-left-100 origin-bottom duration-10 stagger](?tab=examples&utilities=fade;up-100;flip-down;flip-right-50;rotate-left-100;origin-bottom;duration-10;stagger#utilities)  
 
 Certain utilities won't work with other utilities if they both change the same property. For example `xyz="up down"` will not work because both `up` and `down` change the `--xyz-translate-y` variable. Check out the [active classes](#active-classes) section to learn how to use different utilities for animating in and out.
 

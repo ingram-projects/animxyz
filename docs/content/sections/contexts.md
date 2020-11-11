@@ -6,7 +6,7 @@ examples:
   - name: Basic
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade turn-cw" v-on="data.listeners">
+        <xyz-transition duration="auto" xyz="fade rotate-right" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
@@ -15,7 +15,7 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade turn-cw">
+          <div class="square-group" xyz="fade rotate-right">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -42,10 +42,10 @@ examples:
   - name: Inherit
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade up turn-cw duration-10 ease-out-back stagger" v-on="data.listeners">
+        <xyz-transition duration="auto" xyz="fade up rotate-right duration-10 ease-out-back stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
-            <div class="square xyz-nested" xyz="inherit turn-ccw" :key="2"></div>
+            <div class="square xyz-nested" xyz="inherit rotate-left" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
           </div>
         </xyz-transition>
@@ -53,9 +53,9 @@ examples:
     code:
       - language: html
         content: |
-          <div class="square-group" xyz="fade up turn-cw duration-10 ease-out-back stagger">
+          <div class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>
-            <div class="square ${data.mode}" xyz="inherit turn-ccw"></div>
+            <div class="square ${data.mode}" xyz="inherit rotate-left"></div>
             <div class="square ${data.mode}"></div>
           </div>
 ---

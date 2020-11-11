@@ -31,7 +31,7 @@
 							</a>
 							<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
 								<icon-sandbox></icon-sandbox>
-								<span>Sandbox</span>
+								<span>Try it out</span>
 							</a>
 							<a class="cta-button docs-link xyz-nested" href="/docs">
 								<icon-docs></icon-docs>
@@ -46,11 +46,10 @@
 						<xyz-transition appear xyz="delay-5 fade down ease-out">
 							<div class="about-text">
 								<p>
-									AnimXYZ helps you create, customize, and compose animations for your website with simple HTML
-									attributes attributes and CSS utilities. Instead of writing similar keyframes over and over, or
-									relying on libraries that are limited to a specific set, use AnimXYZ to save you time and give you
-									complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring
-									your website to life.
+									AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables
+									to allow a nearly limitless number of unique animations without writing a single keyframe. Save time
+									and have complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ
+									will bring your website to life.
 								</p>
 							</div>
 						</xyz-transition>
@@ -61,37 +60,26 @@
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
 								<p>
-									Mix and match animations without writing any keyframes. Combine a spin with a scale and drop it from
-									the top!
+									Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it from the top! <code class="text--nowrap">xyz="fade small up"</code>
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Performant</h3>
 								<p>
-									Silky smooth animations without even trying. Only <code>2.64kB</code> for base functionality and
-									<code>10.9kB</code> if you include convenient shortcut utilities.
+									Silky smooth animations out of the box. Only <code>2.64kB</code> for base functionality and
+									<code>10.9kB</code> if you include convenient utilities.
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Customizable</h3>
 								<p>
 									Use our provided animation utilities or make your own. Override any animation properties with simple
-									CSS variables.
+									CSS variables. <code class="text--nowrap">--xyz-translate-y: 100vw;</code>
 								</p>
 							</div>
 							<div class="feature xyz-nested">
-								<h3>Attributes</h3>
-								<p>
-									Use an <code>xyz</code> attribute selector and CSS variables to easily create inheritable animations.
-								</p>
-							</div>
-							<div class="feature xyz-nested">
-								<h3>Staggering</h3>
-								<p>Staggered animation of lists of elements in both forward and reverse order.</p>
-							</div>
-							<div class="feature xyz-nested">
-								<h3>Nested</h3>
-								<p>Animate sub-elements of an item in sync with their parent to create eye-catching details.</p>
+								<h3>Nest &amp; Stagger</h3>
+								<p>Stagger lists of elements in both forward and reverse order, while animating nested items in sync with their parents.</p>
 							</div>
 						</section>
 					</xyz-transition>
@@ -443,6 +431,10 @@ export default {
 	--text-color: #{primary-color(700)};
 	font-size: $fs-l;
 	font-weight: 400;
+
+	p {
+		line-height: 1.65;
+	}
 
 	@include media('<phone') {
 		font-size: 1.125rem;

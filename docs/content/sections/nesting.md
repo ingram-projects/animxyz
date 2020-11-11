@@ -26,10 +26,10 @@ examples:
       <div class="example-wrap">
         <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
           <div class="square-block" v-show="data.toggled">
-            <div class="square xyz-nested" xyz="up left turn-cw"></div>
-            <div class="square xyz-nested" xyz="up right turn-cw"></div>
-            <div class="square xyz-nested" xyz="down left turn-cw"></div>
-            <div class="square xyz-nested" xyz="down right turn-cw"></div>
+            <div class="square xyz-nested" xyz="up left rotate-right"></div>
+            <div class="square xyz-nested" xyz="up right rotate-right"></div>
+            <div class="square xyz-nested" xyz="down left rotate-right"></div>
+            <div class="square xyz-nested" xyz="down right rotate-right"></div>
           </div>
         </xyz-transition>
       </div>
@@ -37,10 +37,10 @@ examples:
       - language: html
         content: |
           <div class="square-block ${data.mode}" xyz="fade small">
-            <div class="square xyz-nested" xyz="up left turn-cw"></div>
-            <div class="square xyz-nested" xyz="up right turn-cw"></div>
-            <div class="square xyz-nested" xyz="down left turn-cw"></div>
-            <div class="square xyz-nested" xyz="down right turn-cw"></div>
+            <div class="square xyz-nested" xyz="up left rotate-right"></div>
+            <div class="square xyz-nested" xyz="up right rotate-right"></div>
+            <div class="square xyz-nested" xyz="down left rotate-right"></div>
+            <div class="square xyz-nested" xyz="down right rotate-right"></div>
           </div>
   - name: Staggered
     template: |

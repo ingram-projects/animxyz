@@ -6,14 +6,14 @@ examples:
   - name: Direction variation
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade up in-left in-turn-ccw out-right out-turn-cw" v-on="data.listeners">
+        <xyz-transition xyz="fade up in-left in-rotate-left out-right out-rotate-right" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
         </xyz-transition>
       </div>
     code:
       - language: html
         content: |
-          <div class="square ${data.mode}" xyz="fade up in-left in-turn-ccw out-right out-turn-cw"></div>
+          <div class="square ${data.mode}" xyz="fade up in-left in-rotate-left out-right out-rotate-right"></div>
   - name: Direction override
     template: |
       <div class="example-wrap">
@@ -30,9 +30,9 @@ examples:
       <div class="example-wrap">
         <xyz-transition duration="auto" xyz="fade up out-down stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
-            <div class="square xyz-nested" xyz="inherit out-left out-turn-ccw" :key="1"></div>
+            <div class="square xyz-nested" xyz="inherit out-left out-rotate-left" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit out-flip-down" :key="2"></div>
-            <div class="square xyz-nested" xyz="inherit out-right out-turn-cw" :key="3"></div>
+            <div class="square xyz-nested" xyz="inherit out-right out-rotate-right" :key="3"></div>
           </div>
         </xyz-transition>
       </div>
@@ -40,9 +40,9 @@ examples:
       - language: html
         content: |
           <div class="square-group" xyz="fade up out-down stagger">
-            <div class="square ${data.mode}" xyz="inherit out-left out-turn-ccw"></div>
+            <div class="square ${data.mode}" xyz="inherit out-left out-rotate-left"></div>
             <div class="square ${data.mode}" xyz="inherit out-flip-down"></div>
-            <div class="square ${data.mode}" xyz="inherit out-right out-turn-cw"></div>
+            <div class="square ${data.mode}" xyz="inherit out-right out-rotate-right"></div>
           </div>
 ---
 
@@ -50,7 +50,7 @@ AnimXYZ animates elements in and out when activated by their respective classes.
 
 For example an element with `.xyz-in` and `xyz="fade"` will fade from 0 to its natural opacity, while `.xyz-out` will fade it from its natural opacity to 0.
 
-By default AnimXYZ utilities and variables apply to both the in and out classes, but you can set specific animations for each direction. Utilities and variables have **in** and **out** variants which apply only to the corresponding direction. For example an element with `xyz="in-left in-turn-ccw out-right out-turn-cw"` will slide/rotate in from the left and slide/rotate out to the right. [See example](<?tab=examples&example=Direction variation#active-classes>)
+By default AnimXYZ utilities and variables apply to both the in and out classes, but you can set specific animations for each direction. Utilities and variables have **in** and **out** variants which apply only to the corresponding direction. For example an element with `xyz="in-left in-rotate-left out-right out-rotate-right"` will slide/rotate in from the left and slide/rotate out to the right. [See example](<?tab=examples&example=Direction variation#active-classes>)
 
 Direction-specific utilities and variables take precedence over the basic variants. For example an element with `xyz="big-100 out-big-25"` will have a more pronounced scale effect in the **in** direction than in the **out** direction. [See example](<?tab=examples&example=Direction override#active-classes>)
 
