@@ -101,7 +101,6 @@ export default {
 		.tab-text {
 			&::after {
 				background-color: primary-color(500);
-				width: 4px;
 			}
 		}
 	}
@@ -116,6 +115,7 @@ export default {
 
 		.tab-text {
 			&::after {
+				transition: background-color 0.2s $ease-in-out, width 0.4s $ease-out-back;
 				background-color: $cyan;
 				width: 100%;
 			}
@@ -143,10 +143,9 @@ export default {
 		position: absolute;
 		top: 100%;
 		left: 50%;
-		width: 0;
-		height: 4px;
+		@include size(4px);
 		transform: translateX(-50%);
-		transition: background-color 0.3s $ease-in-out, width 0.3s $ease-out-back;
+		transition: background-color 0.2s $ease-in-out, width 0.4s $ease-in-out;
 	}
 }
 </style>
