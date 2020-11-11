@@ -40,7 +40,7 @@ import TabBar from '~/components/reusable/TabBar'
 import XyzModifiersPresets from '~/components/reusable/XyzModifiersPresets'
 import XyzUtilitiesInput from '~/components/reusable/XyzUtilitiesInput'
 import XyzVariablesInput from '~/components/reusable/XyzVariablesInput'
-import { xyzUtilities, xyzVariables } from '~/utils'
+import { xyzUtilities, xyzVariables, createXyzUtilityRegex, createXyzVariableRegex } from '~/utils'
 
 export default {
 	name: 'XyzModifiersInput',
@@ -69,30 +69,40 @@ export default {
 		},
 		computedGroups() {
 			const computedGroups = this.modifiers.groups.map((group) => {
-				const utilityNames = []
-				const variableNames = []
+				const utilities = []
+				const variables = []
 
 				group.types.forEach((type) => {
-					utilityNames.push(
-						...xyzUtilities
-							.filter((utility) => {
-								return utility.type === type
-							})
-							.map((utility) => utility.name)
+					utilities.push(
+						...xyzUtilities.filter((utility) => {
+							return utility.type === type
+						})
 					)
-					variableNames.push(
-						...xyzVariables
-							.filter((variable) => {
-								return variable.type === type
-							})
-							.map((variable) => variable.name)
+					variables.push(
+						...xyzVariables.filter((variable) => {
+							return variable.type === type
+						})
 					)
+				})
+
+				const utilityNames = utilities.map((utility) => utility.name)
+				const variableNames = variables.map((variable) => variable.name)
+
+				const utilityRegex = createXyzUtilityRegex(utilityNames)
+				const variableRegex = createXyzVariableRegex(variableNames)
+
+				const hasToggledUtilities = Object.keys(this.value.utilities).some((utility) => {
+					return utility.match(utilityRegex)
+				})
+				const hasToggledVariables = Object.keys(this.value.variables).some((variable) => {
+					return variable.match(variableRegex)
 				})
 
 				return {
 					...group,
 					utilityNames,
 					variableNames,
+					hasContent: hasToggledUtilities || hasToggledVariables,
 				}
 			})
 

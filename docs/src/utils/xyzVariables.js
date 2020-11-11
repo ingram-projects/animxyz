@@ -281,9 +281,14 @@ export function getXyzVariable(name, value = 'initial', mode = 'all') {
 	}
 }
 
-export const xyzVariableRegex = new RegExp(
-	`^--xyz-(?:(in|out|appear|move)-)?(${Object.keys(xyzVariablesMap).join('|')})(?::\\s*(.+))?$`
-)
+export function createXyzVariableRegex(
+	variables = Object.keys(xyzVariablesMap),
+	modes = [...xyzModesAll, xyzModeMove]
+) {
+	return new RegExp(`^--xyz-(?:(${modes.join('|')})-)?(${variables.join('|')})(?::\\s*(.+))?$`)
+}
+
+export const xyzVariableRegex = createXyzVariableRegex()
 
 export function getXyzVariableRegex(string) {
 	const match = string.match(xyzVariableRegex)
@@ -619,9 +624,11 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 	}
 }
 
-export const xyzUtilityRegex = new RegExp(
-	`^(?:(in|out|appear|move)-)?(${Object.keys(xyzUtilitiesMap).join('|')})(?:-([\\w-]+))?$`
-)
+export function createXyzUtilityRegex(utilities = Object.keys(xyzUtilitiesMap), modes = [...xyzModesAll, xyzModeMove]) {
+	return new RegExp(`^(?:(${modes.join('|')})-)?(${utilities.join('|')})(?:-([\\w-]+))?$`)
+}
+
+export const xyzUtilityRegex = createXyzUtilityRegex()
 
 export function getXyzUtilityRegex(string) {
 	const match = string.match(xyzUtilityRegex)
