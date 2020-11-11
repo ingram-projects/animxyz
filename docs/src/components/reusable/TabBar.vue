@@ -97,6 +97,15 @@ export default {
 		background-color: primary-color(800, 0.5);
 	}
 
+	&.has-content {
+		.tab-text {
+			&::after {
+				background-color: primary-color(500);
+				width: 4px;
+			}
+		}
+	}
+
 	&.active {
 		color: $cyan;
 
@@ -108,20 +117,8 @@ export default {
 		.tab-text {
 			&::after {
 				background-color: $cyan;
-				transform: scaleX(1);
+				width: 100%;
 			}
-		}
-	}
-
-	&.has-content {
-		::before {
-			@include size(10px);
-			background-color: primary-color(200);
-			content: '';
-			position: absolute;
-			top: -13px;
-			left: 50%;
-			transform: translateX(-50%) rotate(45deg);
 		}
 	}
 }
@@ -145,11 +142,11 @@ export default {
 		content: '';
 		position: absolute;
 		top: 100%;
-		left: 0;
-		right: 0;
+		left: 50%;
+		width: 0;
 		height: 4px;
-		transform: scaleX(0);
-		transition: background-color 0.2s $ease-in-out, transform 0.5s $ease-out-back;
+		transform: translateX(-50%);
+		transition: background-color 0.3s $ease-in-out, width 0.3s $ease-out-back;
 	}
 }
 </style>
