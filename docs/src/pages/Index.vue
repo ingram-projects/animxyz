@@ -74,12 +74,15 @@
 								<h3>Customizable</h3>
 								<p>
 									Use our provided animation utilities or make your own. Override any animation properties with simple
-									CSS variables. <code class="text--nowrap">--xyz-translate-y: 100vw;</code>
+									CSS variables. <code class="text--nowrap">--xyz-translate-y: 42%;</code>
 								</p>
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Nest &amp; Stagger</h3>
-								<p>Stagger lists of elements in both forward and reverse order, while animating nested items in sync with their parents.</p>
+								<p>
+									Stagger lists of elements in both forward and reverse order, while animating nested items in sync with
+									their parents.
+								</p>
 							</div>
 						</section>
 					</xyz-transition>
