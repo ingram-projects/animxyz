@@ -8,7 +8,7 @@
 					<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
 				</div>
 
-				<code-block class="example-code" :code="activeExample.code" :data="data"></code-block>
+				<code-block class="example-code" body-scroll-lock-ignore :code="activeExample.code" :data="data"></code-block>
 			</div>
 		</xyz-transition>
 	</div>

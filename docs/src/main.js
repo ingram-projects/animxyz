@@ -45,7 +45,7 @@ export default function (Vue, { router, head }) {
 
 	Vue.component('Layout', DefaultLayout)
 
-	Vue.directive('ScrollLock', ScrollLock)
+	Vue.directive('scroll-lock', ScrollLock)
 
 	Object.assign(head, {
 		titleTemplate: (titleChunk) => {

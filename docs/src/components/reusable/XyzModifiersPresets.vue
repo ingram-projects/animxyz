@@ -3,6 +3,7 @@
 		<xyz-transition-group
 			tag="ul"
 			class="presets-list"
+			body-scroll-lock-ignore
 			appear
 			duration="auto"
 			xyz="fade small"

@@ -2,6 +2,7 @@
 	<xyz-transition-group
 		tag="div"
 		class="tab-bar"
+		body-scroll-lock-ignore
 		appear
 		duration="auto"
 		xyz="fade flip-down origin-bottom"

@@ -1,5 +1,5 @@
 <template>
-	<div class="utilities__wrap">
+	<div class="utilities__wrap" body-scroll-lock-ignore>
 		<table class="utilities-table">
 			<thead>
 				<tr>
