@@ -3,14 +3,14 @@ title: Vue
 quote: May the force be with Vue.
 ---
 
-AnimXYZ seamlessly integrates with Vue using our provided Vue components.
+VueAnimXYZ seamlessly integrates with Vue using our provided components.
 
 ---
 ## Installation
 
 ### Using a package manager
 
-To install VueAnimXYZ, use your favorite package manager:
+VueAnimXYZ can be installed using your favorite package manager:
 
 ```bash
 # with npm
@@ -20,23 +20,26 @@ npm install @animxyz/vue
 yarn install @animxyz/vue
 ```
 
-After installation, you will need to import VueAnimXYZ into your project.
+After installation, you will need to import VueAnimXYZ into your project and tell the Vue instance to use the [plugin](https://vuejs.org/v2/guide/plugins.html). This has to be done before you start your app by calling `new Vue({...})`.
 
 ```js
-import '@animxyz/vue'
+import Vue from 'vue'
+import VueAnimXYZ from '@animxyz/vue'
+
+Vue.use(VueAnimXYZ)
+
+new Vue({
+  //... options
+})
 ```
 
 ### Using jsDelivr
 
-To add VueAnimXYZ using a CDN put this script in the `<head>` of your `index.html` file:
+To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index.html` file:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.1.0/dist/VueAnimXyz.js"></script>
 ```
-
----
-## Adding the plugin
-
 ---
 ## XyzTransition Component
 
