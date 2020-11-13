@@ -32,7 +32,7 @@
 		</xyz-transition-group>
 
 		<xyz-transition appear xyz="fade right">
-			<button v-if="hasContent" class="clear-modifiers" @click="clearAll" :style="{ '--xyz-delay': `${(this.activeGroup.utilityNames.length + this.activeGroup.variableNames.length) * 0.05}s` }">Clear All</button>
+			<button v-if="hasContent" class="clear-modifiers" @click="clearModifiers">Clear All</button>
 		</xyz-transition>
 	</div>
 </template>
@@ -186,7 +186,7 @@ export default {
 
 			this.$emit('input', newValue)
 		},
-		clearAll() {
+		clearModifiers() {
 			this.$emit('input', {
 				utilities: {},
 				variables: {},
@@ -237,7 +237,7 @@ export default {
 	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 	border-radius: $br-m;
 
-	&:hover {
+	&:hover, &:focus {
 		background-color: primary-color(800, 0.5);
 		color: primary-color(50);
 	}
