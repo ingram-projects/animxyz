@@ -30,7 +30,7 @@ modifiers:
 
 ---
 
-This is the iterate section
+The iterate utilities and variables set the [animation-iteration-count](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count) of an animation. This allows you to have the animation repeat a set number of times or indefinitely.
 
 ---
 ## Variables
