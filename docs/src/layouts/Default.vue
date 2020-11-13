@@ -1,18 +1,22 @@
 <template>
-	<div class="page__wrap" :class="{ 'xyz-xray': xRayToggled }">
-		<div class="xray__wrap">
+	<div class="page__wrap">
+		<div class="xray-toggle__wrap">
 			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 				<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
 				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 			</button>
 
-			<div class="xray-overlay__wrap">
-				<div class="xray-overlay"></div>
-				<div class="xray-overlay"></div>
-			</div>
+			<xyz-transition xyz duration="auto">
+				<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
+					<div class="xray-invert xyz-nested"></div>
+					<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
+				</div>
+			</xyz-transition>
 		</div>
 
-		<slot></slot>
+		<div class="page-content__wrap" :class="{ 'xyz-xray': xRayToggled }">
+			<slot></slot>
+		</div>
 	</div>
 </template>
 
@@ -56,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.xray__wrap {
+.xray-toggle__wrap {
 	position: fixed;
 	bottom: $sp-xl;
 	right: $sp-xl;
@@ -98,33 +102,20 @@ export default {
 	}
 }
 
-.xray-overlay,
-.xray-overlay__wrap {
-	&::after {
-		display: none !important; //Hides xray-overlay copy showing xyz values
-	}
-}
-
-.xray-overlay__wrap {
+.xray-invert__wrap {
 	pointer-events: none;
+	--xyz-translate-x: -50%;
+	--xyz-translate-y: -50%;
+	--xyz-scale-x: 0.001;
+	--xyz-scale-y: 0.001;
+	--xyz-duration: 1.25s;
 }
 
-.xray-overlay {
+.xray-invert {
 	@include size(1vmax);
 	position: absolute;
 	border-radius: 50%;
+	transform: translate(-50%, -50%) scale(283);
 	backdrop-filter: invert(1);
-	transform: translate(-50%, -50%);
-	transition: transform 0.5s ease-in-out, visibility 0.5s;
-	visibility: hidden;
-
-	.xyz-xray & {
-		transform: translate(-50%, -50%) scale(283);
-		visibility: visible;
-	}
-
-	&:last-child {
-		transition-delay: 0.4s;
-	}
 }
 </style>
