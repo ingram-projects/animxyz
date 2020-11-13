@@ -3,8 +3,42 @@ title: Vue
 quote: May the force be with Vue.
 ---
 
-Curabitur blandit tempus porttitor. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus.
+AnimXYZ seamlessly integrates with Vue using our provided Vue components.
 
-Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Maecenas faucibus mollis interdum.
+---
+## Installation
 
-Aenean lacinia bibendum nulla sed consectetur. Maecenas faucibus mollis interdum. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec sed odio dui. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.
+### Using a package manager
+
+To install VueAnimXYZ, use your favorite package manager:
+
+```bash
+# with npm
+npm install @animxyz/vue
+
+# with yarn
+yarn install @animxyz/vue
+```
+
+After installation, you will need to import VueAnimXYZ into your project.
+
+```js
+import '@animxyz/vue'
+```
+
+### Using jsDelivr
+
+To add VueAnimXYZ using a CDN put this script in the `<head>` of your `index.html` file:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.1.0/dist/VueAnimXyz.js"></script>
+```
+
+---
+## Adding the plugin
+
+---
+## XyzTransition Component
+
+---
+## XyzTransitionGroup Component
