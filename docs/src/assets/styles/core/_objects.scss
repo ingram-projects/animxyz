@@ -15,6 +15,10 @@ svg {
 
 .example-wrap {
   perspective: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .square {
@@ -32,15 +36,15 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 20rem;
-  max-width: 100%;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
 }
 
 .square-block {
   @include size(5rem);
   border: 2px solid $cyan;
-	border-radius: $br-l;
-  margin: $sp-s;
+  flex-shrink: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -49,7 +53,5 @@ svg {
 
   .square {
     @include size(100%);
-    border-radius: $br-m;
-    margin: auto;
   }
 }
