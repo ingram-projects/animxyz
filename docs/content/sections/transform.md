@@ -46,7 +46,7 @@ If an element already has a transform applied to it that you want to maintain du
 :::
 
 ::: note [Warning]
-There is a bug in Safari (Mac and iOS) which prevents elements from rendering during an animation set to `scale(0)` (or `scaleX(0)` and `scaleY(0)`) if it is a text element OR if the element has a border, border-radius, or box-shadow.
+There is a bug in Safari (Mac and iOS) which prevents certain elements from rendering during an animation set to `scale(0)`, `scaleX(0)`, or `scaleY(0)`. All elements with `border`, `border-radius`, or `box-shadow` are affected.
 
 If you encounter this issue, an easy fix is setting the scale variable to a low value, for example: `--xyz-scale-x: 0.001; --xyz-scale-y: 0.001;`.
 :::
