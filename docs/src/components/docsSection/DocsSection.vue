@@ -136,7 +136,6 @@ $active-border-width: 0.5rem;
 	z-index: 2;
 
 	@include media('<laptop') {
-		overflow: hidden;
 		background-color: primary-color(50);
 		margin: 0 (-$sp-s);
 		padding: $sp-s;
@@ -203,6 +202,26 @@ $active-border-width: 0.5rem;
 
 	@include media('<phone') {
 		font-size: 1.5rem;
+	}
+
+	&::before {
+		content: '';
+		@include size(1rem);
+		border-radius: $br-s;
+		position: absolute;
+		top: 50%;
+		transform: translate(-2rem, -50%) rotate(0deg);
+		right: 100%;
+		background-color: $cyan;
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	}
+
+	.docs-section__wrap.active & {
+		&::before {
+			opacity: 1;
+			transform: translate(-1rem, -50%) rotate(45deg);
+		}
 	}
 }
 
