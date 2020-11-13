@@ -6,7 +6,7 @@ quote: Woah... I know kung fu.
 ---
 ## Using a package manager
 
-To install AnimXYZ, use your favorite package manager:
+AnimXYZ can be installed using your favorite package manager:
 
 ```bash
 # with npm
