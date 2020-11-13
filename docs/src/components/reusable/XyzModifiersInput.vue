@@ -31,8 +31,13 @@
 			</div>
 		</xyz-transition-group>
 
-		<xyz-transition appear xyz="fade right">
-			<button v-if="hasContent" class="clear-modifiers" @click="clearModifiers">Clear All</button>
+		<xyz-transition appear xyz="fade right skew-right-3 ease-out-back">
+			<button v-if="numActiveModifiers" class="clear-modifiers" @click="clearModifiers">
+				Clear All
+				<xyz-transition-group xyz="flip-right-50 duration-3 ease-in-out">
+					<div class="num-active-modifiers xyz-out-absolute" :key="numActiveModifiers">{{numActiveModifiers}}</div>
+				</xyz-transition-group>
+			</button>
 		</xyz-transition>
 	</div>
 </template>
@@ -129,8 +134,8 @@ export default {
 			}
 			return -1
 		},
-		hasContent() {
-			return Object.keys(this.value.utilities).length || Object.keys(this.value.variables).length
+		numActiveModifiers() {
+			return Object.keys(this.value.utilities).length + Object.keys(this.value.variables).length
 		},
 	},
 	watch: {
@@ -234,8 +239,22 @@ export default {
 	margin-left: auto;
 	margin-right: $sp-xxs;
 	font-size: $fs-s;
+	font-weight: 500;
 	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 	border-radius: $br-m;
+	display: flex;
+	align-items: center;
+
+	.num-active-modifiers {
+		@include size(1.125rem);
+		color: primary-color(900);
+		background-color: primary-color(200);
+		border-radius: $br-m;
+		margin-left: $sp-xxs;
+		text-align: center;
+		line-height: 1.125rem;
+		backface-visibility: hidden;
+	}
 
 	&:hover, &:focus {
 		background-color: primary-color(800, 0.5);
