@@ -30,6 +30,10 @@
 				></xyz-variables-input>
 			</div>
 		</xyz-transition-group>
+
+		<xyz-transition appear xyz="fade right">
+			<button v-if="hasContent" class="clear-modifiers" @click="clearAll" :style="{ '--xyz-delay': `${(this.activeGroup.utilityNames.length + this.activeGroup.variableNames.length) * 0.05}s` }">Clear All</button>
+		</xyz-transition>
 	</div>
 </template>
 
@@ -125,6 +129,9 @@ export default {
 			}
 			return -1
 		},
+		hasContent() {
+			return Object.keys(this.value.utilities).length || Object.keys(this.value.variables).length
+		},
 	},
 	watch: {
 		activeGroup() {
@@ -179,12 +186,20 @@ export default {
 
 			this.$emit('input', newValue)
 		},
+		clearAll() {
+			this.$emit('input', {
+				utilities: {},
+				variables: {},
+			})
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 .modifiers__wrap {
+	display: flex;
+	flex-direction: column;
 	flex-shrink: 0;
 }
 
@@ -210,6 +225,21 @@ export default {
 
 	@include media('<laptop') {
 		padding: $sp-xxs 0;
+	}
+}
+
+.clear-modifiers {
+	color: primary-color(200);
+	padding: $sp-xxs $sp-xs;
+	margin-left: auto;
+	margin-right: $sp-xxs;
+	font-size: $fs-s;
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	border-radius: $br-m;
+
+	&:hover {
+		background-color: primary-color(800, 0.5);
+		color: primary-color(50);
 	}
 }
 </style>
