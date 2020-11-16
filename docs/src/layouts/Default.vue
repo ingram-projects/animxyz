@@ -7,7 +7,7 @@
 			</button>
 
 			<div class="xray-tooltip__wrap">
-				<xyz-transition xyz="fade small-100" mode="out-in">
+				<xyz-transition xyz="fade in-rotate-left out-rotate-right" mode="out-in">
 					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
 					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
 				</xyz-transition>
