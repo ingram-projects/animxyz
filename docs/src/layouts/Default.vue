@@ -7,7 +7,7 @@
 			</button>
 
 			<div class="xray-tooltip__wrap">
-				<xyz-transition xyz="fade in-rotate-left out-rotate-right" mode="out-in">
+				<xyz-transition xyz mode="out-in">
 					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
 					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
 				</xyz-transition>
@@ -37,7 +37,6 @@ query {
 
 <script>
 import Cube from '~/components/reusable/Cube'
-import { openGraphMeta } from '~/utils'
 
 export default {
 	components: {
@@ -111,9 +110,11 @@ export default {
 }
 
 .xray-tooltip {
-	--xyz-origin: 9rem center;
+	--xyz-origin: 9.5rem center;
+	--xyz-in-rotate-z: 0.5turn;
+	--xyz-out-rotate-z: -0.5turn;
 	line-height: 2rem;
-	width: 6rem;
+	width: 6.5rem;
 	color: $cyan;
 	font-size: $fs-s;
 	font-weight: 600;
@@ -126,6 +127,8 @@ export default {
 
 	@include media('<tablet') {
 		--xyz-origin: -3rem center;
+		--xyz-in-rotate-z: -0.5turn;
+		--xyz-out-rotate-z: 0.5turn;
 	}
 }
 
@@ -161,6 +164,9 @@ export default {
 	position: absolute;
 	border-radius: 50%;
 	transform: translate(-50%, -50%) scale(283);
-	backdrop-filter: invert(1);
+
+	.xyz-in &, .xyz-out & {
+		backdrop-filter: invert(1);
+	}
 }
 </style>

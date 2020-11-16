@@ -37,6 +37,6 @@
     "prettier": "^2.1.2",
     "remark-containers": "^1.2.0",
     "sass": "^1.29.0",
-    "sass-loader": "^10.0.5"
+    "sass-loader": "^10.1.0"
   }
 }
