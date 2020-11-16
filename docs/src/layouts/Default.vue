@@ -6,6 +6,13 @@
 				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 			</button>
 
+			<div class="xray-tooltip__wrap">
+				<xyz-transition xyz="fade small-100" mode="out-in">
+					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
+					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
+				</xyz-transition>
+			</div>
+
 			<xyz-transition xyz duration="auto">
 				<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
 					<div class="xray-invert xyz-nested"></div>
@@ -77,10 +84,48 @@ export default {
 .xray-toggle {
 	perspective: 10rem;
 	transition: transform 0.3s $ease-out-back;
+	padding: 3rem;
+	margin: -3rem;
 
 	&:hover,
 	&:focus {
 		transform: scale(1.125);
+	}
+}
+
+.xray-tooltip__wrap {
+	position: absolute;
+	right: $sp-xl;
+	top: 0rem;
+	opacity: 0;
+	transition: opacity 0.3s ease-in;
+
+	.xray-toggle:hover + & {
+		opacity: 1;
+	}
+
+	@include media('<tablet') {
+		right: initial;
+		left: $sp-xl;
+	}
+}
+
+.xray-tooltip {
+	--xyz-origin: 9rem center;
+	line-height: 2rem;
+	width: 6rem;
+	color: $cyan;
+	font-size: $fs-s;
+	font-weight: 600;
+	text-align: center;
+	white-space: nowrap;
+	background-color: primary-color(900, 0.85);
+	backdrop-filter: invert(1);
+	border-radius: 1rem;
+	pointer-events: none;
+
+	@include media('<tablet') {
+		--xyz-origin: -3rem center;
 	}
 }
 
