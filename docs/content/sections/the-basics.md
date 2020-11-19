@@ -27,7 +27,7 @@ examples:
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
 ---
 
-AnimXYZ works by applying a CSS keyframe animation to an element when it has an AnimXYZ class such as `.xyz-in` or `.xyz-out`. The properties of the animation are defined by CSS variables that you can set directly or with class-like utilities in an `xyz` attribute.
+AnimXYZ is an easy way to animate elements without all the boilerplate of writing keyframes. Just describe the animation with some attributes and variables, and tell the element whether it's animating in or out of the scene with a class.
 
 For example here is how you make an element fade and shrink in from above:
 
