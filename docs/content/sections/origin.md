@@ -24,6 +24,7 @@ examples:
 modifiers:
   utilities:
     defaults: [origin-right]
+  variables: true
   groups:
     - name: Origin
       types: [origin]

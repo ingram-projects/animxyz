@@ -256,7 +256,8 @@ export default {
 		backface-visibility: hidden;
 	}
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background-color: primary-color(800, 0.5);
 		color: primary-color(50);
 	}

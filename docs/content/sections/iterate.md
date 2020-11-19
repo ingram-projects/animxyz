@@ -24,6 +24,7 @@ examples:
 modifiers:
   utilities:
     defaults: [iterate-infinite]
+  variables: true
   groups:
     - name: Iterate
       types: [iterate]

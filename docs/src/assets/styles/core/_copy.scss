@@ -167,6 +167,18 @@ h5 {
     }
   }
 
+  .properties-table {
+    font-size: $fs-m;
+
+    th {
+      width: 10ch;
+    }
+
+    td {
+      font-family: $font-stack-mono;
+    }
+  }
+
   a {
     font-weight: 600;
     text-decoration: none;

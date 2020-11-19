@@ -30,6 +30,7 @@ examples:
 modifiers:
   utilities:
     defaults: [stagger]
+  variables: true
   groups:
     - name: Stagger
       types: [stagger]

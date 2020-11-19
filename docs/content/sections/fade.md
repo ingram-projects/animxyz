@@ -24,6 +24,7 @@ examples:
 modifiers:
   utilities:
     defaults: [fade]
+  variables: true
   groups:
     - name: Fade
       types: [opacity]

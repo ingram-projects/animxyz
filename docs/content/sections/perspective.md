@@ -24,6 +24,7 @@ examples:
 modifiers:
   utilities:
     defaults: [perspective-3]
+  variables: true
   groups:
     - name: Perspective
       types: [perspective]

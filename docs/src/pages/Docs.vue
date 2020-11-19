@@ -106,7 +106,7 @@ export default {
 				{ header: true, title: 'Triggering Animations' },
 				'Active Classes',
 				'Nesting',
-				{ header: true, title: 'Animation Utilities' },
+				{ header: true, title: 'Animations' },
 				'Fade',
 				'Transform',
 				'Perspective',

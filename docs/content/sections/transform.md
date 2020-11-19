@@ -24,6 +24,7 @@ examples:
 modifiers:
   utilities:
     defaults: [down]
+  variables: true
   groups:
     - name: Translate
       types: [translate]
