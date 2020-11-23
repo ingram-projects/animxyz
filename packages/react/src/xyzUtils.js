@@ -4,12 +4,12 @@ export const xyzTransitionClasses = {
 	appearFrom: 'xyz-appear-from',
 	appearActive: 'xyz-appear',
 	appearTo: 'xyz-appear-to',
-	enterFrom: 'xyz-in-from',
-	enterActive: 'xyz-in',
-	enterTo: 'xyz-in-to',
-	leaveFrom: 'xyz-out-from',
-	leaveActive: 'xyz-out',
-	leaveTo: 'xyz-out-to',
+	inFrom: 'xyz-in-from',
+	inActive: 'xyz-in',
+	inTo: 'xyz-in-to',
+	outFrom: 'xyz-out-from',
+	outActive: 'xyz-out',
+	outTo: 'xyz-out-to',
 	move: 'xyz-move',
 }
 
@@ -109,12 +109,12 @@ export function getXyzTransitionProps(props) {
 		appear: xyzTransitionClasses.appearFrom,
 		appearActive: xyzTransitionClasses.appearActive,
 		appearDone: xyzTransitionClasses.appearTo,
-		enter: xyzTransitionClasses.enterFrom,
-		enterActive: xyzTransitionClasses.enterActive,
-		enterDone: xyzTransitionClasses.enterTo,
-		exit: xyzTransitionClasses.leaveFrom,
-		exitActive: xyzTransitionClasses.leaveActive,
-		exitDone: xyzTransitionClasses.leaveTo,
+		enter: xyzTransitionClasses.inFrom,
+		enterActive: xyzTransitionClasses.inActive,
+		enterDone: xyzTransitionClasses.inTo,
+		exit: xyzTransitionClasses.outFrom,
+		exitActive: xyzTransitionClasses.outActive,
+		exitDone: xyzTransitionClasses.outTo,
 	}
 
 	const addEndListener = getXyzAnimationHook(timeout)
