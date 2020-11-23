@@ -25,6 +25,8 @@
 
 <script>
 import IconPresets from '~/assets/icons/IconPresets.svg'
+import IconReact from '~/assets/icons/IconReact.svg'
+import IconVue from '~/assets/icons/IconVue.svg'
 
 export default {
 	name: 'TabBar',
@@ -34,6 +36,8 @@ export default {
 	},
 	components: {
 		IconPresets,
+		IconReact,
+		IconVue,
 	},
 	methods: {
 		setTab(tab) {

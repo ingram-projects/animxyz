@@ -47,6 +47,7 @@ const langOptions = {
 	},
 	vue: {
 		name: 'Vue',
+		icon: 'icon-vue',
 		prettier: {
 			parser: 'vue',
 			plugins: [parserHtml, parserPostCSS, parserBabel],
@@ -57,6 +58,7 @@ const langOptions = {
 	},
 	react: {
 		name: 'React',
+		icon: 'icon-react',
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],
