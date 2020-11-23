@@ -13,6 +13,7 @@ export default {
 						xyz: data.attrs.xyz,
 					},
 					directives: data.directives,
+					staticStyle: data.staticStyle,
 					style: data.style,
 				},
 				child.data

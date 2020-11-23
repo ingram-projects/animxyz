@@ -90,8 +90,8 @@
 				</div>
 			</div>
 
-			<xyz-transition appear xyz="delay-5 fade down ease-out">
-				<section class="used-by copy-content" style="--xyz-delay: 0.6s">
+			<xyz-transition appear xyz="fade down ease-out" style="--xyz-delay: 0.6s">
+				<section class="used-by copy-content">
 					<h3>AnimXYZ is used by:</h3>
 					<ul class="used-by__list">
 						<li class="used-by__item">
@@ -104,8 +104,8 @@
 				</section>
 			</xyz-transition>
 
-			<xyz-transition appear xyz="delay-5 fade down ease-out">
-				<footer class="created-by copy-content" style="--xyz-delay: 0.7s">
+			<xyz-transition appear xyz="fade down ease-out" style="--xyz-delay: 0.7s">
+				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
 						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.

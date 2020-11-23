@@ -13,7 +13,7 @@ export default {
 		context.children.forEach((child, index) => {
 			child.data = mergeData(
 				{
-					style: {
+					staticStyle: {
 						'--xyz-index': index,
 						'--xyz-index-rev': context.children.length - index - 1,
 					},
