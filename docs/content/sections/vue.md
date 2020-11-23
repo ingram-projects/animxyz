@@ -42,57 +42,70 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 ---
 ## &lt;xyz-transition&gt; component
 
+```jsx
+<xyz-transition
+	appear={ boolean }
+	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
+	mode={ 'out-in' | 'in-out' }
+	xyz="fade up ..."
+	style="--xyz-duration: 0.75s; ..."
+>
+	<child-component />
+</xyz-transition>
+```
+
 The `<xyz-transition>` component is an extended version of the [&lt;transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
 Unlike the complexity of the Vue component, with `<xyz-transition>` you only need to care about the `appear`, `duration`, and `mode` props.
 
 ### appear
+
+When set to `true` will trigger the xyz animation on initial render. Defaults to the **in** animation, however **appear**-specific behaviour can be set using the **appear**-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
+
+You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Transitions-on-Initial-Render).
+
+### duration
+
+Sets the behavior of how long to apply the [active class](#active-classes) for the animation. By default the class will be applied only for the duration of the animation, however if you have [nested animations](#nesting) you will want them to complete before removing the class. To do this we've added `duration="auto"` which conviently waits for all nested animations to finish before removing the class.
+
+To apply the class for a specific amount of time you can use a number in milliseconds like `:duration="2000"`.
+
+You can also specify direction-specific behavior using an object describing the behavior for each direction such as `:duration="{ appear: 'auto', enter: 2000, leave: 1000 }"`.
+
+You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Explicit-Transition-Durations).
+
+### mode
+
+Sets the sequencing of element switch transitions. By default the new element will transition **in** simultanously to the old element transitioning **out**. Setting `mode="out-in"` will transition the old element **out** first and setting `mode="in-out"` will transition the new element **in** first.
+
+You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Transition-Modes).
+
+### Properties
+
 <div class="properties-table table-wrap">
 	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Default</th>
+				<th>Syntax</th>
+			</tr>
+		</thead>
 		<tbody>
 			<tr>
-				<th scope="row">syntax</th>
+				<th scope="row">appear</th>
+				<td>false</td>
 				<td>boolean</td>
 			</tr>
 			<tr>
-				<th scope="row">default</th>
-				<td>false</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
-By setting `appear` to 
-
-### duration
-<div class="properties-table table-wrap">
-	<table>
-		<tbody>
-			<tr>
-				<th scope="row">syntax</th>
+				<th scope="row">duration</th>
+				<td>--</td>
 				<td>number | 'auto' | { in: number | 'auto', out: number | 'auto', appear: number | 'auto' }</td>
 			</tr>
 			<tr>
-				<th scope="row">default</th>
+				<th scope="row">mode</th>
 				<td>--</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-
-asdsada
-
-### mode
-<div class="properties-table table-wrap">
-	<table>
-		<tbody>
-			<tr>
-				<th scope="row">syntax</th>
 				<td>'out-in' | 'in-out'</td>
-			</tr>
-			<tr>
-				<th scope="row">default</th>
-				<td>--</td>
 			</tr>
 		</tbody>
 	</table>
@@ -101,9 +114,66 @@ asdsada
 ---
 ## &lt;xyz-transition-group&gt; component
 
-The `<xyz-transition-group>` component is an extended version of the [&lt;transition-group&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate lists/groups of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+```jsx
+<xyz-transition-group
+	appear={ boolean }
+	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
+	tag={ string }
+	xyz="fade up ..."
+	style="--xyz-duration: 0.75s; ..."
+>
+	<child-component key="..." />
+	<child-component key="..." />
+	<child-component key="..." />
+</xyz-transition-group>
+```
+
+The `<xyz-transition-group>` component is an extended version of the [&lt;transition-group&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
 Unlike the complexity of the Vue component, with `<xyz-transition-group>` you only need to care about the `appear`, `duration`, and `tag` props.
+
+### appear
+
+Same as the `<xyz-transition>` component.
+
+### duration
+
+Same as the `<xyz-transition>` component.
+
+### tag
+
+Specifies the tag to use for the wrapper element. Defaults to `'span'`.
+
+### Properties
+
+<div class="properties-table table-wrap">
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Default</th>
+				<th>Syntax</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">appear</th>
+				<td>false</td>
+				<td>boolean</td>
+			</tr>
+			<tr>
+				<th scope="row">duration</th>
+				<td>--</td>
+				<td>number | 'auto' | { in: number | 'auto', out: number | 'auto', appear: number | 'auto' }</td>
+			</tr>
+			<tr>
+				<th scope="row">tag</th>
+				<td>'span'</td>
+				<td>string</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
 ---
 ## v-xyz directive
