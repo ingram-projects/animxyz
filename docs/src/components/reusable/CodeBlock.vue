@@ -1,5 +1,8 @@
 <template>
-	<prism :language="activeLangOptions.language">{{ activeCodeContent }}</prism>
+	<div class="code-block">
+		<tab-bar :tabs="languages" v-if="languages.length > 1" v-model="activeLanguage"></tab-bar>
+		<prism :language="activeLanguage.prism.language">{{ activeLanguageContent }}</prism>
+	</div>
 </template>
 
 <script>
@@ -8,9 +11,12 @@ import parserBabel from 'prettier/parser-babel'
 import parserHtml from 'prettier/parser-html'
 import parserPostCSS from 'prettier/parser-postcss'
 import Prism from 'vue-prism-component'
+import 'prismjs/components/prism-jsx'
+import TabBar from '~/components/reusable/TabBar'
 
 const langOptions = {
 	html: {
+		name: 'HTML',
 		prettier: {
 			parser: 'html',
 			plugins: [parserHtml, parserPostCSS, parserBabel],
@@ -20,6 +26,7 @@ const langOptions = {
 		},
 	},
 	css: {
+		name: 'CSS',
 		prettier: {
 			parser: 'postcss',
 			plugins: [parserPostCSS],
@@ -29,6 +36,7 @@ const langOptions = {
 		},
 	},
 	javascript: {
+		name: 'Javascript',
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],
@@ -38,6 +46,7 @@ const langOptions = {
 		},
 	},
 	vue: {
+		name: 'Vue',
 		prettier: {
 			parser: 'vue',
 			plugins: [parserHtml, parserPostCSS, parserBabel],
@@ -47,6 +56,7 @@ const langOptions = {
 		},
 	},
 	react: {
+		name: 'React',
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],
@@ -65,29 +75,30 @@ export default {
 	},
 	components: {
 		Prism,
+		TabBar,
 	},
 	data() {
 		return {
-			activeCodeIndex: null,
+			activeLanguage: null,
 		}
 	},
 	computed: {
-		activeCode() {
-			if (this.code.length) {
-				return this.code[this.activeCodeIndex]
-			}
-			return null
+		languages() {
+			return this.code.map((code) => {
+				const codeLangOptions = langOptions[code.language]
+				return {
+					...code,
+					...codeLangOptions,
+				}
+			})
 		},
-		activeLangOptions() {
-			return langOptions[this.activeCode.language]
-		},
-		activeCodeContent() {
+		activeLanguageContent() {
 			/* eslint-disable no-unused-vars */
 			const data = this.data
 			/* eslint-enable no-unused-vars */
-			const evalData = eval(`\`${this.activeCode.content}\``)
+			const evalData = eval(`\`${this.activeLanguage.content}\``)
 			const prettierData = prettier.format(evalData, {
-				...this.activeLangOptions.prettier,
+				...this.activeLanguage.prettier,
 				printWidth: 80,
 				semi: false,
 				singleQuote: true,
@@ -96,13 +107,34 @@ export default {
 			return prettierData
 		},
 	},
-	methods: {
-		setActiveLang(index) {
-			this.activeCodeIndex = index
+	watch: {
+		activeLanguage() {
+			this.$emit('language-changed', this.activeLanguage)
+		},
+		languages: {
+			immediate: true,
+			handler() {
+				if (this.code.length) {
+					if (this.activeLanguage) {
+						this.activeLanguage = this.languages.find((language) => {
+							return language.name === this.activeLanguage.name
+						})
+					}
+					if (!this.activeLanguage) {
+						this.activeLanguage = this.languages[0]
+					}
+				} else {
+					this.activeLanguage = null
+				}
+			},
 		},
 	},
-	created() {
-		this.setActiveLang(0)
+	methods: {
+		setLanguage(languageName) {
+			this.activeLanguage = this.languages.find((language) => {
+				return language.name === languageName
+			})
+		},
 	},
 }
 </script>

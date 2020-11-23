@@ -14,6 +14,17 @@ examples:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade up big"></div>
+      - language: vue
+        content: |
+          <xyz-transition xyz="fade up big">
+            <div class="square" v-show="${data.toggled}"></div>
+          </xyz-transition>
+      - language: react
+        content: |
+          <XyzTransition xyz="fade up big">
+            {${data.toggled} && <div class="square"></div>}
+          </XyzTransition>
+
   - name: Example 2
     template: |
       <div class="example-wrap">
@@ -25,6 +36,16 @@ examples:
       - language: html
         content: |
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
+      - language: vue
+        content: |
+          <xyz-transition xyz="fade down flip-up-50">
+            <div class="square" v-show="${data.toggled}"></div>
+          </xyz-transition>
+      - language: react
+        content: |
+          <XyzTransition xyz="fade down flip-up-50">
+            {${data.toggled} && <div class="square"></div>}
+          </XyzTransition>
 ---
 
 AnimXYZ is an easy way to animate elements without all the boilerplate of writing keyframes. Just describe the animation with some attributes and variables, and tell the element whether it's animating in or out of the scene with a class.
