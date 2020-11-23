@@ -13,6 +13,10 @@ export function mergeData(data1 = {}, data2 = {}) {
 			...data1.on,
 			...data2.on,
 		},
+		staticStyle: {
+			...data1.staticStyle,
+			...data2.staticStyle,
+		},
 		style: {
 			...data1.style,
 			...data2.style,
