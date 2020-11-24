@@ -28,7 +28,7 @@ import '@animxyz/core'
 ### Import into a SASS project
 AnimXYZ is built in SASS and provides useful functions and mixins for customization. Import it anywhere in your SASS code:
 
-```css
+```scss
 @import '@animxyz/core';
 ```
 

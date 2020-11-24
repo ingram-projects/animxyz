@@ -97,6 +97,10 @@ h5 {
     content: "CSS";
   }
 
+  pre[class*="language-scss"]::before {
+    content: "SCSS";
+  }
+
   pre[class*="language-js"]::before {
     content: "JS";
   }

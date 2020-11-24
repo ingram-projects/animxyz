@@ -1,7 +1,7 @@
 <template>
 	<div class="code-block">
-		<TabBar :tabs="languages" v-if="languages.length > 1" v-model="activeLanguage"></TabBar>
-		<Prism :language="activeLanguage.prism.language">{{ activeLanguageContent }}</Prism>
+		<TabBar :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
+		<Prism :language="activeCode.prism.language">{{ activeCodeContent }}</Prism>
 	</div>
 </template>
 
@@ -12,9 +12,10 @@ import parserHtml from 'prettier/parser-html'
 import parserPostCSS from 'prettier/parser-postcss'
 import Prism from 'vue-prism-component'
 import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-scss'
 import TabBar from '~/components/reusable/TabBar'
 
-const langOptions = {
+const languageDefaults = {
 	html: {
 		name: 'HTML',
 		prettier: {
@@ -28,7 +29,17 @@ const langOptions = {
 	css: {
 		name: 'CSS',
 		prettier: {
-			parser: 'postcss',
+			parser: 'css',
+			plugins: [parserPostCSS],
+		},
+		prism: {
+			language: 'css',
+		},
+	},
+	scss: {
+		name: 'SCSS',
+		prettier: {
+			parser: 'scss',
 			plugins: [parserPostCSS],
 		},
 		prism: {
@@ -81,26 +92,26 @@ export default {
 	},
 	data() {
 		return {
-			activeLanguage: null,
+			activeCode: null,
 		}
 	},
 	computed: {
-		languages() {
+		computedCode() {
 			return this.code.map((code) => {
-				const codeLangOptions = langOptions[code.language]
+				const codeLanguageDefaults = languageDefaults[code.language]
 				return {
+					...codeLanguageDefaults,
 					...code,
-					...codeLangOptions,
 				}
 			})
 		},
-		activeLanguageContent() {
+		activeCodeContent() {
 			/* eslint-disable no-unused-vars */
 			const data = this.data
 			/* eslint-enable no-unused-vars */
-			const evalData = eval(`\`${this.activeLanguage.content}\``)
+			const evalData = eval(`\`${this.activeCode.content}\``)
 			const prettierData = prettier.format(evalData, {
-				...this.activeLanguage.prettier,
+				...this.activeCode.prettier,
 				printWidth: 80,
 				semi: false,
 				singleQuote: true,
@@ -110,31 +121,31 @@ export default {
 		},
 	},
 	watch: {
-		activeLanguage() {
-			this.$emit('language-changed', this.activeLanguage)
+		activeCode() {
+			this.$emit('language-changed', this.activeCode)
 		},
-		languages: {
+		computedCode: {
 			immediate: true,
 			handler() {
 				if (this.code.length) {
-					if (this.activeLanguage) {
-						this.activeLanguage = this.languages.find((language) => {
-							return language.name === this.activeLanguage.name
+					if (this.activeCode) {
+						this.activeCode = this.computedCode.find((language) => {
+							return language.name === this.activeCode.name
 						})
 					}
-					if (!this.activeLanguage) {
-						this.activeLanguage = this.languages[0]
+					if (!this.activeCode) {
+						this.activeCode = this.computedCode[0]
 					}
 				} else {
-					this.activeLanguage = null
+					this.activeCode = null
 				}
 			},
 		},
 	},
 	methods: {
-		setLanguage(languageName) {
-			this.activeLanguage = this.languages.find((language) => {
-				return language.name === languageName
+		setCode(codeName) {
+			this.activeCode = this.computedCode.find((code) => {
+				return code.name === codeName
 			})
 		},
 	},
