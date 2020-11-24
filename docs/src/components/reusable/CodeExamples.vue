@@ -3,7 +3,7 @@
 		<TabBar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></TabBar>
 
 		<XyzTransition xyz="fade" mode="out-in">
-			<div class="examples-sections" v-if="activeExample" :key="activeExample.name">
+			<div class="examples-sections" v-if="activeExample">
 				<div class="example-template">
 					<DynamicTemplate :template="activeExample.template" :data="data"></DynamicTemplate>
 				</div>
