@@ -6,11 +6,11 @@ examples:
   - name: Stagger
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

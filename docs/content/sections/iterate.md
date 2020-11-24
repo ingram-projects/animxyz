@@ -6,9 +6,9 @@ examples:
   - name: Iterate
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="duration-20 ease-in-out-back flip-up-100" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition xyz="duration-20 ease-in-out-back flip-up-100" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

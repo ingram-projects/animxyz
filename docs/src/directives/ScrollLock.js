@@ -7,15 +7,15 @@ function updateScrollLock(el, binding) {
 
 	if (binding.value) {
 		disableBodyScroll(el, {
-	    allowTouchMove: (node) => {
-	      while (node && node !== document.body) {
-	        if (node.getAttribute('body-scroll-lock-ignore') !== null) {
-	          return true
-	        }
-	        node = node.parentNode
-	      }
+			allowTouchMove: (node) => {
+				while (node && node !== document.body) {
+					if (node.getAttribute('body-scroll-lock-ignore') !== null) {
+						return true
+					}
+					node = node.parentNode
+				}
 			},
-    })
+		})
 	} else {
 		enableBodyScroll(el)
 	}

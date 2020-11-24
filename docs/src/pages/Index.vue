@@ -1,49 +1,49 @@
 <template>
-	<layout>
+	<Layout>
 		<main class="page-content">
 			<div class="banner__wrap">
-				<banner></banner>
+				<Banner></Banner>
 			</div>
 
 			<div class="landing-content">
 				<section class="hero__wrap">
-					<xyz-transition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+					<XyzTransition appear xyz="delay-4 fade small-2 duration-7 ease-out">
 						<h1 class="intro-text">The first composable<br />CSS animation toolkit.</h1>
-					</xyz-transition>
+					</XyzTransition>
 
-					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+					<XyzTransition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 						<div class="tech-logos__wrap xyz-none">
-							<icon-vue class="xyz-nested"></icon-vue>
-							<icon-react class="xyz-nested"></icon-react>
-							<icon-sass class="xyz-nested"></icon-sass>
+							<IconVue class="xyz-nested"></IconVue>
+							<IconReact class="xyz-nested"></IconReact>
+							<IconSass class="xyz-nested"></IconSass>
 						</div>
-					</xyz-transition>
+					</XyzTransition>
 
-					<xyz-transition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+					<XyzTransition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
 						<div class="links__wrap xyz-none">
 							<a
 								class="cta-button github-link xyz-nested"
 								href="https://github.com/ingram-projects/animxyz"
 								target="_blank"
 							>
-								<icon-github></icon-github>
+								<IconGithub></IconGithub>
 								<span>GitHub</span>
 							</a>
 							<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
-								<icon-sandbox></icon-sandbox>
+								<IconSandbox></IconSandbox>
 								<span>Try it out</span>
 							</a>
 							<a class="cta-button docs-link xyz-nested" href="/docs">
-								<icon-docs></icon-docs>
+								<IconDocs></IconDocs>
 								<span>Documentation</span>
 							</a>
 						</div>
-					</xyz-transition>
+					</XyzTransition>
 				</section>
 
 				<div class="copy__wrap copy-content">
 					<section class="about-section">
-						<xyz-transition appear xyz="delay-5 fade down ease-out">
+						<XyzTransition appear xyz="delay-5 fade down ease-out">
 							<div class="about-text">
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables
@@ -52,10 +52,10 @@
 									will bring your website to life.
 								</p>
 							</div>
-						</xyz-transition>
+						</XyzTransition>
 					</section>
 
-					<xyz-transition appear xyz="delay-5 fade down stagger-3 ease-out" duration="auto">
+					<XyzTransition appear xyz="delay-5 fade down stagger-3 ease-out" duration="auto">
 						<section class="features-section xyz-none">
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
@@ -86,38 +86,38 @@
 								</p>
 							</div>
 						</section>
-					</xyz-transition>
+					</XyzTransition>
 				</div>
 			</div>
 
-			<xyz-transition appear xyz="fade down ease-out" style="--xyz-delay: 0.6s">
+			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.6s">
 				<section class="used-by copy-content">
 					<h3>AnimXYZ is used by:</h3>
 					<ul class="used-by__list">
 						<li class="used-by__item">
 							<a href="https://yaherd.co/" target="_blank">
-								<g-image src="@/assets/images/yaherd-logo.svg" width="240" :immediate="true" />
+								<GImage src="@/assets/images/yaherd-logo.svg" width="240" :immediate="true" />
 								<span class="screen-reader-only">YaHerd</span>
 							</a>
 						</li>
 					</ul>
 				</section>
-			</xyz-transition>
+			</XyzTransition>
 
-			<xyz-transition appear xyz="fade down ease-out" style="--xyz-delay: 0.7s">
+			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.7s">
 				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
 						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>.
 					</p>
 				</footer>
-			</xyz-transition>
+			</XyzTransition>
 
 			<div class="sandbox__wrap">
-				<sandbox v-bind="sandboxProps" id="sandbox"></sandbox>
+				<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
 			</div>
 		</main>
-	</layout>
+	</Layout>
 </template>
 
 <script>
@@ -150,11 +150,11 @@ export default {
 						name: 'Sandbox',
 						template: `
 				      <div class="example-wrap">
-				        <xyz-transition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+				        <XyzTransition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
 				          <div class="square-group xyz-none" v-show="data.toggled">
 				            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
 				          </div>
-				        </xyz-transition>
+				        </XyzTransition>
 				      </div>
 						`,
 						code: [

@@ -1,41 +1,41 @@
 <template>
-	<layout :class="`tab--${activeTab}`">
-		<page-nav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></page-nav>
+	<Layout :class="`tab--${activeTab}`">
+		<PageNav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></PageNav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<xyz-transition-group
+			<XyzTransitionGroup
 				tag="section"
 				class="sections__wrap"
 				:class="{ active: activeTab === 'docs' }"
 				appear
 				xyz="fade down delay-1"
 			>
-				<docs-section
+				<DocsSection
 					v-for="section in mainSections"
 					:section="section"
 					:class="{ active: section === activeSection }"
 					:key="section.title"
 					ref="sections"
-				></docs-section>
-			</xyz-transition-group>
+				></DocsSection>
+			</XyzTransitionGroup>
 
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
 				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">Back to docs</a>
-				<xyz-transition appear xyz="fade" mode="out-in">
-					<sandbox
+				<XyzTransition appear xyz="fade" mode="out-in">
+					<Sandbox
 						v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')"
 						v-bind="sandboxProps"
 						v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
 						:key="activeSection.id"
-					></sandbox>
+					></Sandbox>
 					<div class="no-examples" v-if="!hasSandbox" key="no-example">
-						<icon-sandbox></icon-sandbox>
+						<IconSandbox></IconSandbox>
 						There are no examples<br />for this section.
 					</div>
-				</xyz-transition>
+				</XyzTransition>
 			</section>
 		</main>
-	</layout>
+	</Layout>
 </template>
 
 <page-query>

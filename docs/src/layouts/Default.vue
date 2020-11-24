@@ -2,23 +2,23 @@
 	<div class="page__wrap">
 		<div class="xray-toggle__wrap">
 			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-				<cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></cube>
+				<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
 				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
 			</button>
 
 			<div class="xray-tooltip__wrap">
-				<xyz-transition xyz mode="out-in">
+				<XyzTransition xyz mode="out-in">
 					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
 					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
-				</xyz-transition>
+				</XyzTransition>
 			</div>
 
-			<xyz-transition xyz duration="auto">
+			<XyzTransition xyz duration="auto">
 				<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
 					<div class="xray-invert xyz-nested"></div>
 					<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
 				</div>
-			</xyz-transition>
+			</XyzTransition>
 		</div>
 
 		<div class="page-content__wrap" :class="{ 'xyz-xray': xRayToggled }">
@@ -165,7 +165,8 @@ export default {
 	border-radius: 50%;
 	transform: translate(-50%, -50%) scale(283);
 
-	.xyz-in &, .xyz-out & {
+	.xyz-in &,
+	.xyz-out & {
 		backdrop-filter: invert(1);
 	}
 }

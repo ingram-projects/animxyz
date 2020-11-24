@@ -1,7 +1,7 @@
 <template>
-	<xyz-transition-group tag="div" appear class="banner">
-		<banner-square v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></banner-square>
-	</xyz-transition-group>
+	<XyzTransitionGroup tag="div" appear class="banner">
+		<BannerSquare v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></BannerSquare>
+	</XyzTransitionGroup>
 </template>
 
 <script>

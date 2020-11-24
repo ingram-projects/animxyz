@@ -6,9 +6,9 @@ examples:
   - name: Fade
     template: |
       <div class="example-wrap">
-        <xyz-transition v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

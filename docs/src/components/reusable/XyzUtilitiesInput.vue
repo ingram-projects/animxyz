@@ -9,7 +9,7 @@
 					</th>
 				</tr>
 			</thead>
-			<xyz-transition-group
+			<XyzTransitionGroup
 				tag="tbody"
 				class="utilities-table__body"
 				appear
@@ -38,7 +38,7 @@
 						</div>
 					</td>
 				</tr>
-			</xyz-transition-group>
+			</XyzTransitionGroup>
 		</table>
 	</div>
 </template>

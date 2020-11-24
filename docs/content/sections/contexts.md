@@ -6,11 +6,11 @@ examples:
   - name: Basic
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade rotate-right" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade rotate-right" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -23,13 +23,13 @@ examples:
   - name: Override
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="fade big" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -42,13 +42,13 @@ examples:
   - name: Inherit
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade up rotate-right duration-10 ease-out-back stagger" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade up rotate-right duration-10 ease-out-back stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit rotate-left" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

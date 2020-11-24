@@ -1,7 +1,7 @@
 <template>
 	<div class="code-block">
-		<tab-bar :tabs="languages" v-if="languages.length > 1" v-model="activeLanguage"></tab-bar>
-		<prism :language="activeLanguage.prism.language">{{ activeLanguageContent }}</prism>
+		<TabBar :tabs="languages" v-if="languages.length > 1" v-model="activeLanguage"></TabBar>
+		<Prism :language="activeLanguage.prism.language">{{ activeLanguageContent }}</Prism>
 	</div>
 </template>
 
@@ -47,7 +47,7 @@ const langOptions = {
 	},
 	vue: {
 		name: 'Vue',
-		icon: 'icon-vue',
+		icon: 'IconVue',
 		prettier: {
 			parser: 'vue',
 			plugins: [parserHtml, parserPostCSS, parserBabel],
@@ -58,7 +58,7 @@ const langOptions = {
 	},
 	react: {
 		name: 'React',
-		icon: 'icon-react',
+		icon: 'IconReact',
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],

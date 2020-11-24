@@ -40,10 +40,10 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 <script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.1.0/dist/VueAnimXyz.js"></script>
 ```
 ---
-## &lt;xyz-transition&gt; component
+## &lt;XyzTransition&gt; component
 
 ```jsx
-<xyz-transition
+<XyzTransition
 	appear={ boolean }
 	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
 	mode={ 'out-in' | 'in-out' }
@@ -51,12 +51,12 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 	style="--xyz-duration: 0.75s; ..."
 >
 	<child-component />
-</xyz-transition>
+</XyzTransition>
 ```
 
-The `<xyz-transition>` component is an extended version of the [&lt;transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+The `<XyzTransition>` component is an extended version of the [&lt;Transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<xyz-transition>` you only need to care about the `appear`, `duration`, and `mode` props.
+Unlike the complexity of the Vue component, with `<XyzTransition>` you only need to care about the `appear`, `duration`, and `mode` props.
 
 ### appear
 
@@ -112,10 +112,10 @@ You can learn more about using this property in the [Vue docs](https://vuejs.org
 </div>
 
 ---
-## &lt;xyz-transition-group&gt; component
+## &lt;XyzTransitionGroup&gt; component
 
 ```jsx
-<xyz-transition-group
+<XyzTransitionGroup
 	appear={ boolean }
 	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
 	tag={ string }
@@ -125,20 +125,20 @@ You can learn more about using this property in the [Vue docs](https://vuejs.org
 	<child-component key="..." />
 	<child-component key="..." />
 	<child-component key="..." />
-</xyz-transition-group>
+</XyzTransitionGroup>
 ```
 
-The `<xyz-transition-group>` component is an extended version of the [&lt;transition-group&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<xyz-transition-group>` you only need to care about the `appear`, `duration`, and `tag` props.
+Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `duration`, and `tag` props.
 
 ### appear
 
-Same as the `<xyz-transition>` component.
+Same as the `<XyzTransition>` component.
 
 ### duration
 
-Same as the `<xyz-transition>` component.
+Same as the `<XyzTransition>` component.
 
 ### tag
 

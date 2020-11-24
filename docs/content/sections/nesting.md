@@ -6,11 +6,11 @@ examples:
   - name: Basic
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
           <div class="square-block" v-show="data.toggled">
             <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -24,14 +24,14 @@ examples:
   - name: Complex
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade small" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
           <div class="square-block" v-show="data.toggled">
             <div class="square xyz-nested" xyz="up left rotate-right"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
             <div class="square xyz-nested" xyz="down right rotate-right"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -45,11 +45,11 @@ examples:
   - name: Staggered
     template: |
       <div class="example-wrap">
-        <xyz-transition-group tag="div" duration="auto" class="square-group" xyz="fade small stagger" v-on="data.listeners">
+        <XyzTransitionGroup tag="div" duration="auto" class="square-group" xyz="fade small stagger" v-on="data.listeners">
           <div class="square-block" v-for="index in 3" v-show="data.toggled" :key="index">
             <div class="square xyz-nested" v-for="subIndex in 4" :key="subIndex"></div>
           </div>
-        </xyz-transition-group>
+        </XyzTransitionGroup>
       </div>
     code:
       - language: html

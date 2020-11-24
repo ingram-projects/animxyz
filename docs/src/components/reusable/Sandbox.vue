@@ -1,19 +1,19 @@
 <template>
 	<div class="sandbox">
-		<xyz-transition xyz="fade">
-			<xyz-modifiers-input
+		<XyzTransition xyz="fade">
+			<XyzModifiersInput
 				v-if="modifiers"
 				v-model="xyzModifiers"
 				:modifiers="modifiers"
 				ref="modifiers"
-			></xyz-modifiers-input>
-		</xyz-transition>
-		<code-examples
+			></XyzModifiersInput>
+		</XyzTransition>
+		<CodeExamples
 			:examples="examples"
 			:data="injectedData"
 			@example-changed="onExampleChange"
 			ref="examples"
-		></code-examples>
+		></CodeExamples>
 	</div>
 </template>
 

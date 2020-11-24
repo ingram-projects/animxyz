@@ -7,7 +7,7 @@
 						{{ section.title }}
 					</h1>
 					<a :href="`#${section.id}`" class="section-anchor">
-						<icon-link></icon-link>
+						<IconLink></IconLink>
 						<span class="screen-reader-only">Link to {{ section.title }}</span>
 					</a>
 				</div>
@@ -16,7 +16,7 @@
 				>
 			</header>
 			<span class="section-quote" v-if="section.quote">{{ section.quote }}</span>
-			<markdown-content :content="section.content"></markdown-content>
+			<MarkdownContent :content="section.content"></MarkdownContent>
 		</article>
 	</div>
 </template>

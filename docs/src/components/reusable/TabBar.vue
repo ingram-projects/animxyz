@@ -1,5 +1,5 @@
 <template>
-	<xyz-transition-group
+	<XyzTransitionGroup
 		tag="div"
 		class="tab-bar"
 		body-scroll-lock-ignore
@@ -20,7 +20,7 @@
 			<component :is="tab.icon" class="tab-icon"></component>
 			<span class="tab-text">{{ tab.name }}</span>
 		</button>
-	</xyz-transition-group>
+	</XyzTransitionGroup>
 </template>
 
 <script>

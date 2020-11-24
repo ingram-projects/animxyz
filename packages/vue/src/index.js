@@ -6,8 +6,8 @@ import XyzContext from './directives/XyzContext'
 // Create module definition for Vue.use()
 const VueAnimXyz = {
 	install(Vue) {
-		Vue.component('xyz-transition', XyzTransition)
-		Vue.component('xyz-transition-group', XyzTransitionGroup)
+		Vue.component('XyzTransition', XyzTransition)
+		Vue.component('XyzTransitionGroup', XyzTransitionGroup)
 
 		Vue.directive('xyz', XyzContext)
 	},

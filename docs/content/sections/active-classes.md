@@ -6,9 +6,9 @@ examples:
   - name: Direction variation
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade up in-left in-rotate-left out-right out-rotate-right" v-on="data.listeners">
+        <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -17,9 +17,9 @@ examples:
   - name: Direction override
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade big-100 out-big-25" v-on="data.listeners">
+        <XyzTransition xyz="fade big-100 out-big-25" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -28,13 +28,13 @@ examples:
   - name: Mixing it up
     template: |
       <div class="example-wrap">
-        <xyz-transition duration="auto" xyz="fade up out-down stagger" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade up out-down stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" xyz="inherit out-left out-rotate-left" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit out-flip-down" :key="2"></div>
             <div class="square xyz-nested" xyz="inherit out-right out-rotate-right" :key="3"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

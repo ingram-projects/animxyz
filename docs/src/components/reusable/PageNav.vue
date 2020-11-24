@@ -1,17 +1,17 @@
 <template>
 	<div class="page-nav__wrap" :class="{ open }">
-		<focus-lock :disabled="isMediaLarge || !open">
-			<xyz-transition appear>
+		<FocusLock :disabled="isMediaLarge || !open">
+			<XyzTransition appear>
 				<button class="nav-button" xyz="fade delay-4" @click="toggle(!open)">
 					<div class="logo-wrap">
-						<anim-xyz-logo></anim-xyz-logo>
+						<AnimXyzLogo></AnimXyzLogo>
 					</div>
 					<span class="nav-button__text logo-text">AnimXYZ</span>
 					<span class="nav-button__text toggle-text">{{ open ? 'Close' : 'Menu' }}</span>
 				</button>
-			</xyz-transition>
+			</XyzTransition>
 
-			<xyz-transition
+			<XyzTransition
 				appear
 				duration="auto"
 				xyz="ease-in-out duration-3"
@@ -58,12 +58,12 @@
 						href="https://github.com/ingram-projects/animxyz"
 						target="_blank"
 					>
-						<icon-github></icon-github>
+						<IconGithub></IconGithub>
 						<span>GitHub</span>
 					</a>
 				</nav>
-			</xyz-transition>
-		</focus-lock>
+			</XyzTransition>
+		</FocusLock>
 	</div>
 </template>
 

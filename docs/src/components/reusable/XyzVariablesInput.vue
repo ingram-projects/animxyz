@@ -1,5 +1,5 @@
 <template>
-	<xyz-transition-group
+	<XyzTransitionGroup
 		tag="div"
 		class="variables__wrap"
 		body-scroll-lock-ignore
@@ -17,7 +17,7 @@
 				v-model="toggledVariables[variable.string]"
 			/>
 		</div>
-	</xyz-transition-group>
+	</XyzTransitionGroup>
 </template>
 
 <script>

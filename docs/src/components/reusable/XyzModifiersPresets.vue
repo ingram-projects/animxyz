@@ -1,6 +1,6 @@
 <template>
 	<div class="modifiers-presets">
-		<xyz-transition-group
+		<XyzTransitionGroup
 			tag="ul"
 			class="presets-list"
 			body-scroll-lock-ignore
@@ -26,7 +26,7 @@
 					></div>
 				</button>
 			</li>
-		</xyz-transition-group>
+		</XyzTransitionGroup>
 	</div>
 </template>
 

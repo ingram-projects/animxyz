@@ -6,9 +6,9 @@ examples:
   - name: Example 1
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade up big" v-on="data.listeners">
+        <XyzTransition xyz="fade up big" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -16,9 +16,9 @@ examples:
           <div class="square ${data.mode}" xyz="fade up big"></div>
       - language: vue
         content: |
-          <xyz-transition xyz="fade up big">
+          <XyzTransition xyz="fade up big">
             <div class="square" v-show="${data.toggled}"></div>
-          </xyz-transition>
+          </XyzTransition>
       - language: react
         content: |
           <XyzTransition xyz="fade up big">
@@ -28,9 +28,9 @@ examples:
   - name: Example 2
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade down flip-up-50" v-on="data.listeners">
+        <XyzTransition xyz="fade down flip-up-50" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html
@@ -38,9 +38,9 @@ examples:
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
       - language: vue
         content: |
-          <xyz-transition xyz="fade down flip-up-50">
+          <XyzTransition xyz="fade down flip-up-50">
             <div class="square" v-show="${data.toggled}"></div>
-          </xyz-transition>
+          </XyzTransition>
       - language: react
         content: |
           <XyzTransition xyz="fade down flip-up-50">

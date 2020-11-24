@@ -6,13 +6,13 @@ examples:
   - name: Defaults
     template: |
       <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
-        <xyz-transition duration="auto" xyz="fade stagger" v-on="data.listeners">
+        <XyzTransition duration="auto" xyz="fade stagger" v-on="data.listeners">
           <div class="square-group xyz-none" v-show="data.toggled">
             <div class="square xyz-nested" xyz="inherit left"></div>
             <div class="square xyz-nested" xyz="inherit up"></div>
             <div class="square xyz-nested" xyz="inherit down"></div>
           </div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

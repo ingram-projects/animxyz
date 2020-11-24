@@ -6,9 +6,9 @@ examples:
   - name: Perspective
     template: |
       <div class="example-wrap perspective-none">
-        <xyz-transition xyz="fade flip-left" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition xyz="fade flip-left" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

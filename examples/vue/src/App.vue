@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<xyz-transition-group appear xyz="fade down duration-10 stagger">
+		<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
 			<div v-for="index in 5" :key="index">Hello</div>
-		</xyz-transition-group>
+		</XyzTransitionGroup>
 
-		<xyz-transition appear mode="out-in" xyz="fade rotate-right duration-10" v-xyz="['big-100']">
+		<XyzTransition appear mode="out-in" xyz="fade rotate-right duration-10" v-xyz="['big-100']">
 			<button @click="randomState" :key="switchState">State {{ switchState }}</button>
-		</xyz-transition>
+		</XyzTransition>
 	</div>
 </template>
 

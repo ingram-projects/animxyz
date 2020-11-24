@@ -6,9 +6,9 @@ examples:
   - name: Timing
     template: |
       <div class="example-wrap">
-        <xyz-transition xyz="fade rotate-right-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition xyz="fade rotate-right-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-show="data.toggled"></div>
-        </xyz-transition>
+        </XyzTransition>
       </div>
     code:
       - language: html

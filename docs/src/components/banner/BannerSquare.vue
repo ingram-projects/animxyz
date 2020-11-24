@@ -1,6 +1,6 @@
 <template>
 	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
-		<xyz-transition duration="auto">
+		<XyzTransition duration="auto">
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"
@@ -12,7 +12,7 @@
 					{{ xyzUtility.string }}
 				</p>
 			</div>
-		</xyz-transition>
+		</XyzTransition>
 	</div>
 </template>
 

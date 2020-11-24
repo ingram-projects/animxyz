@@ -1,16 +1,16 @@
 <template>
 	<div class="code-examples">
-		<tab-bar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></tab-bar>
+		<TabBar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></TabBar>
 
-		<xyz-transition xyz="fade" mode="out-in">
+		<XyzTransition xyz="fade" mode="out-in">
 			<div class="examples-sections" v-if="activeExample" :key="activeExample.name">
 				<div class="example-template">
-					<dynamic-template :template="activeExample.template" :data="data"></dynamic-template>
+					<DynamicTemplate :template="activeExample.template" :data="data"></DynamicTemplate>
 				</div>
 
-				<code-block class="example-code" body-scroll-lock-ignore :code="activeExample.code" :data="data"></code-block>
+				<CodeBlock class="example-code" body-scroll-lock-ignore :code="activeExample.code" :data="data"></CodeBlock>
 			</div>
-		</xyz-transition>
+		</XyzTransition>
 	</div>
 </template>
 

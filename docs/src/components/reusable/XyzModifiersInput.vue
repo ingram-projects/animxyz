@@ -1,44 +1,39 @@
 <template>
 	<!-- eslint-disable vue/no-mutating-props -->
 	<div class="modifiers__wrap">
-		<tab-bar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></tab-bar>
+		<TabBar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></TabBar>
 
-		<xyz-transition-group
-			tag="div"
-			class="modifiers-sections__wrap"
-			xyz="ease-in-out duration-3"
-			v-xyz="tabDirectionXyz"
-		>
+		<XyzTransitionGroup tag="div" class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
 			<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
-				<xyz-modifiers-presets :presets="activeGroup.presets" @select-preset="onSelectPreset"></xyz-modifiers-presets>
+				<XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
 			</div>
 			<div class="modifiers-sections" v-if="activeGroup.name !== 'Presets'" :key="activeGroup.name">
-				<xyz-utilities-input
+				<XyzUtilitiesInput
 					v-if="showUtilities"
 					class="modifiers-utilities modifiers-section"
 					:utilities="this.activeGroup.utilityNames"
 					:multiple="this.modifiers.utilities.multiple"
 					v-model="value.utilities"
-				></xyz-utilities-input>
+				></XyzUtilitiesInput>
 
-				<xyz-variables-input
+				<XyzVariablesInput
 					v-if="showVariables"
 					class="modifiers-variables modifiers-section"
 					:variables="this.activeGroup.variableNames"
 					v-model="value.variables"
 					:style="{ '--xyz-delay': `${this.activeGroup.utilityNames.length * 0.05}s` }"
-				></xyz-variables-input>
+				></XyzVariablesInput>
 			</div>
-		</xyz-transition-group>
+		</XyzTransitionGroup>
 
-		<xyz-transition appear xyz="fade right skew-right-3 ease-out-back">
+		<XyzTransition appear xyz="fade right skew-right-3 ease-out-back">
 			<button v-if="numActiveModifiers" class="clear-modifiers" @click="clearModifiers">
 				Clear All
-				<xyz-transition-group xyz="flip-right-50 duration-3 ease-in-out">
-					<div class="num-active-modifiers xyz-out-absolute" :key="numActiveModifiers">{{numActiveModifiers}}</div>
-				</xyz-transition-group>
+				<XyzTransitionGroup xyz="flip-right-50 duration-3 ease-in-out">
+					<div class="num-active-modifiers xyz-out-absolute" :key="numActiveModifiers">{{ numActiveModifiers }}</div>
+				</XyzTransitionGroup>
 			</button>
-		</xyz-transition>
+		</XyzTransition>
 	</div>
 </template>
 
@@ -118,7 +113,7 @@ export default {
 			if (this.modifiers.presets) {
 				const presetsGroup = {
 					name: 'Presets',
-					icon: 'icon-presets',
+					icon: 'IconPresets',
 					presets: this.modifiers.presets,
 				}
 				return [presetsGroup, ...computedGroups]
