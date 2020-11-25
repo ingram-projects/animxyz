@@ -17,12 +17,47 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade stagger">
             <div class="square ${data.mode}" xyz="inherit left"></div>
             <div class="square ${data.mode}" xyz="inherit up"></div>
             <div class="square ${data.mode}" xyz="inherit down"></div>
           </div>
 
+          <style>
+            :root {
+              --xyz-translate-default: 300%;
+              --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+              --xyz-stagger-default: 0.1s;
+            }
+          </style>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade stagger">
+            <div class="square" v-show="${data.toggled}" xyz="inherit left"></div>
+            <div class="square" v-show="${data.toggled}" xyz="inherit up"></div>
+            <div class="square" v-show="${data.toggled}" xyz="inherit down"></div>
+          </XyzTransitionGroup>
+
+          ##html
+          <style>
+            :root {
+              --xyz-translate-default: 300%;
+              --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+              --xyz-stagger-default: 0.1s;
+            }
+          </style>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade stagger">
+            {${data.toggled} && <div class="square" xyz="inherit left" />}
+            {${data.toggled} && <div class="square" xyz="inherit up" />}
+            {${data.toggled} && <div class="square" xyz="inherit down" />}
+          </XyzTransitionGroup>
+
+          ##html
           <style>
             :root {
               --xyz-translate-default: 300%;
