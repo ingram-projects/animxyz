@@ -13,9 +13,36 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}></div>
 
           ${data.variablesString && `
+          <style>
+            .square { ${data.variablesString} }
+          </style>
+          `}
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransition>
+
+          ${data.variablesString && `
+          ##html
+          <style>
+            .square { ${data.variablesString} }
+          </style>
+          `}
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+            {${data.toggled} && <div class="square" />}
+          </XyzTransition>
+
+          ${data.variablesString && `
+          ##html
           <style>
             .square { ${data.variablesString} }
           </style>
