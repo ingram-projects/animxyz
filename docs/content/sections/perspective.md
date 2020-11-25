@@ -13,6 +13,7 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
@@ -20,6 +21,33 @@ examples:
             .square { ${data.variablesString} }
           </style>
           `}
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}">
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransition>
+
+          ${data.variablesString && `
+          ##html
+          <style>
+            .square { ${data.variablesString} }
+          </style>
+          `}
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}">
+            {${data.toggled} && <div class="square" />}
+          </XyzTransition>
+
+          ${data.variablesString && `
+          ##html
+          <style>
+            .square { ${data.variablesString} }
+          </style>
+          `}
+
 
 modifiers:
   utilities:
