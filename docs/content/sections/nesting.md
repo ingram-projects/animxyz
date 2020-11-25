@@ -15,12 +15,37 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-block ${data.mode}" xyz="fade small">
             <div class="square xyz-nested"></div>
             <div class="square xyz-nested"></div>
             <div class="square xyz-nested"></div>
             <div class="square xyz-nested"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition xyz="fade small" duration="auto">
+            <div class="square-block" v-show="${data.toggled}">
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+            </div>
+          </XyzTransition>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition xyz="fade small" timeout="auto">
+            {${data.toggled} && (
+              <div class="square-block">
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+              </div>
+            )}
+          </XyzTransition>
   - name: Complex
     template: |
       <div class="example-wrap">
@@ -36,12 +61,37 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-block ${data.mode}" xyz="fade small">
             <div class="square xyz-nested" xyz="up left rotate-right"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
             <div class="square xyz-nested" xyz="down right rotate-right"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition duration="auto" xyz="fade small">
+            <div class="square-block" v-show="${data.toggled}">
+              <div class="square xyz-nested" xyz="up left rotate-right"></div>
+              <div class="square xyz-nested" xyz="up right rotate-right"></div>
+              <div class="square xyz-nested" xyz="down left rotate-right"></div>
+              <div class="square xyz-nested" xyz="down right rotate-right"></div>
+            </div>
+          </XyzTransition>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition timeout="auto" xyz="fade small">
+            {${data.toggled} && (
+              <div class="square-block">
+                <div class="square xyz-nested" xyz="up left rotate-right" />
+                <div class="square xyz-nested" xyz="up right rotate-right" />
+                <div class="square xyz-nested" xyz="down left rotate-right" />
+                <div class="square xyz-nested" xyz="down right rotate-right" />
+              </div>
+            )}
+          </XyzTransition>
   - name: Staggered
     template: |
       <div class="example-wrap">
@@ -54,6 +104,7 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade small stagger">
             <div class="square-block ${data.mode}">
               <div class="square xyz-nested"></div>
@@ -74,6 +125,58 @@ examples:
               <div class="square xyz-nested"></div>
             </div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" duration="auto" xyz="fade small stagger">
+            <div class="square-block" v-show="${data.toggled}">
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+            </div>
+            <div class="square-block" v-show="${data.toggled}">
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+            </div>
+            <div class="square-block" v-show="${data.toggled}">
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+              <div class="square xyz-nested"></div>
+            </div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" timeout="auto" xyz="fade small stagger">
+            {${data.toggled} && (
+              <div class="square-block">
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+              </div>
+            )}
+            {${data.toggled} && (
+              <div class="square-block">
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+              </div>
+            )}
+            {${data.toggled} && (
+              <div class="square-block">
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+                <div class="square xyz-nested" />
+              </div>
+            )}
+          </XyzTransitionGroup>
 ---
 
 When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#vue) and [React](#react) plugins, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
