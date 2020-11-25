@@ -113,34 +113,41 @@ export default {
 		activeCodeChunks() {
 			/* eslint-disable no-unused-vars */
 			const data = this.data
-			const evalData = eval(`\`${this.activeCode.content}\``)
+			const evalContent = eval(`\`${this.activeCode.content}\``)
 
 			const codeChunks = []
 
-			const splitChunks = evalData.split(/##(\w+)/)
+			const splitChunks = evalContent.split(/##(\w+)/)
 			for (let i = 1; i < splitChunks.length; i += 2) {
-				const language = splitChunks[i]
-				const content = splitChunks[i + 1]
-				const chunkLanguageOptions = languageOptions[language]
+				const chunkLanguage = splitChunks[i]
+				const chunkContent = splitChunks[i + 1]
+				const chunkLanguageOptions = languageOptions[chunkLanguage]
 
-				let prettifiedContent = prettier.format(content, {
-					...chunkLanguageOptions.prettier,
+				const chunkPrettierOptions = {
 					printWidth: 70,
 					tabWidth: 2,
 					semi: false,
 					singleQuote: true,
 					trailingComma: 'es5',
-				})
+					...chunkLanguageOptions.prettier,
+				}
+
+				const chunkPrismOptions = {
+					...chunkLanguageOptions.prism,
+				}
+
+				let chunkParsedContent = prettier.format(chunkContent, chunkPrettierOptions)
 
 				// Remove weird semicolon from beginning of jsx content
-				if (prettifiedContent.startsWith(';')) {
-					prettifiedContent = prettifiedContent.substring(1)
+				if (chunkParsedContent.startsWith(';')) {
+					chunkParsedContent = chunkParsedContent.substring(1)
 				}
 
 				codeChunks.push({
-					language,
-					content: prettifiedContent,
-					...chunkLanguageOptions,
+					language: chunkLanguage,
+					prettier: chunkPrettierOptions,
+					prism: chunkPrismOptions,
+					content: chunkParsedContent,
 				})
 			}
 
