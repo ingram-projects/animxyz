@@ -20,7 +20,9 @@
 			</XyzTransitionGroup>
 
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
-				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">Back to {{ activeSection.title }}</a>
+				<a class="back-to-docs" :href="`/docs#${activeSection && activeSection.id}`">
+					Back to {{ activeSection && activeSection.title }}
+				</a>
 				<XyzTransition appear xyz="fade" mode="out-in">
 					<Sandbox
 						v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')"

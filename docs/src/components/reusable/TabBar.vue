@@ -67,14 +67,14 @@ export default {
 	flex-grow: 1;
 	align-items: center;
 	justify-content: center;
-	height: 3rem;
+	min-height: 3rem;
 	padding: 0 $sp-xxs;
 	color: primary-color(50);
 	transition: 0.2s $ease-in-out;
 	transition-property: background-color, color;
 
 	@include media('<laptop') {
-		height: 2.5rem;
+		min-height: 2.5rem;
 	}
 
 	&:first-child {
@@ -141,6 +141,7 @@ export default {
 	height: 2rem;
 	position: relative;
 	opacity: 0.85;
+	white-space: nowrap;
 	transition: opacity 0.2s $ease-in-out;
 
 	&::after {
