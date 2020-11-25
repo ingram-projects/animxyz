@@ -123,14 +123,19 @@ export default {
 				const content = splitChunks[i + 1]
 				const chunkLanguageOptions = languageOptions[language]
 
-				const prettifiedContent = prettier.format(content, {
+				let prettifiedContent = prettier.format(content, {
 					...chunkLanguageOptions.prettier,
-					printWidth: 80,
+					printWidth: 70,
 					tabWidth: 2,
 					semi: false,
 					singleQuote: true,
 					trailingComma: 'es5',
 				})
+
+				// Remove weird semicolon from beginning of jsx content
+				if (prettifiedContent.startsWith(';')) {
+					prettifiedContent = prettifiedContent.substring(1)
+				}
 
 				codeChunks.push({
 					language,
