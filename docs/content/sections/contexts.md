@@ -32,10 +32,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade rotate-right">
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" />}
+          <XyzTransitionGroup className="square-group" xyz="fade rotate-right">
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransitionGroup>
   - name: Override
     template: |
@@ -68,10 +68,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small">
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" xyz="fade big" />}
-            {${data.toggled} && <div class="square" />}
+          <XyzTransitionGroup className="square-group" xyz="fade small">
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" xyz="fade big" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransitionGroup>
   - name: Inherit
     template: |
@@ -104,10 +104,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" xyz="inherit rotate-left" />}
-            {${data.toggled} && <div class="square" />}
+          <XyzTransitionGroup className="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" xyz="inherit rotate-left" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransitionGroup>
 ---
 

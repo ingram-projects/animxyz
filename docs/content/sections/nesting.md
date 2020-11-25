@@ -38,11 +38,11 @@ examples:
           ##jsx
           <XyzTransition xyz="fade small" timeout="auto">
             {${data.toggled} && (
-              <div class="square-block">
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
+              <div className="square-block">
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
               </div>
             )}
           </XyzTransition>
@@ -84,11 +84,11 @@ examples:
           ##jsx
           <XyzTransition timeout="auto" xyz="fade small">
             {${data.toggled} && (
-              <div class="square-block">
-                <div class="square xyz-nested" xyz="up left rotate-right" />
-                <div class="square xyz-nested" xyz="up right rotate-right" />
-                <div class="square xyz-nested" xyz="down left rotate-right" />
-                <div class="square xyz-nested" xyz="down right rotate-right" />
+              <div className="square-block">
+                <div className="square xyz-nested" xyz="up left rotate-right" />
+                <div className="square xyz-nested" xyz="up right rotate-right" />
+                <div className="square xyz-nested" xyz="down left rotate-right" />
+                <div className="square xyz-nested" xyz="down right rotate-right" />
               </div>
             )}
           </XyzTransition>
@@ -151,29 +151,29 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" timeout="auto" xyz="fade small stagger">
+          <XyzTransitionGroup className="square-group" timeout="auto" xyz="fade small stagger">
             {${data.toggled} && (
-              <div class="square-block">
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
+              <div className="square-block">
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
               </div>
             )}
             {${data.toggled} && (
-              <div class="square-block">
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
+              <div className="square-block">
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
               </div>
             )}
             {${data.toggled} && (
-              <div class="square-block">
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
-                <div class="square xyz-nested" />
+              <div className="square-block">
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
+                <div className="square xyz-nested" />
               </div>
             )}
           </XyzTransitionGroup>

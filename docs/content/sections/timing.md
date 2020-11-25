@@ -38,7 +38,7 @@ examples:
         content: |
           ##jsx
           <XyzTransition xyz="fade rotate-right-50${data.utilitiesString && ' ' + data.utilitiesString}">
-            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransition>
 
           ${data.variablesString && `

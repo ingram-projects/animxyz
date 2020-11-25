@@ -25,7 +25,7 @@ examples:
         content: |
           ##jsx
           <XyzTransition xyz="fade up big">
-            {${data.toggled} && <div class="square"></div>}
+            {${data.toggled} && <div className="square"></div>}
           </XyzTransition>
 
   - name: Example 2
@@ -50,7 +50,7 @@ examples:
         content: |
           ##jsx
           <XyzTransition xyz="fade down flip-up-50">
-            {${data.toggled} && <div class="square"></div>}
+            {${data.toggled} && <div className="square"></div>}
           </XyzTransition>
 ---
 

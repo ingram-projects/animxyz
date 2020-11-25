@@ -45,10 +45,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" />}
-            {${data.toggled} && <div class="square" />}
+          <XyzTransitionGroup className="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransitionGroup>
 
           ${data.variablesString && `

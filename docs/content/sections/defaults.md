@@ -51,10 +51,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade stagger">
-            {${data.toggled} && <div class="square" xyz="inherit left" />}
-            {${data.toggled} && <div class="square" xyz="inherit up" />}
-            {${data.toggled} && <div class="square" xyz="inherit down" />}
+          <XyzTransitionGroup className="square-group" xyz="fade stagger">
+            {${data.toggled} && <div className="square" xyz="inherit left" />}
+            {${data.toggled} && <div className="square" xyz="inherit up" />}
+            {${data.toggled} && <div className="square" xyz="inherit down" />}
           </XyzTransitionGroup>
 
           ##html

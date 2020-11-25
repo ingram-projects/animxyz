@@ -25,7 +25,7 @@ examples:
         content: |
           ##jsx
           <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right">
-            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransition>
   - name: Direction override
     template: |
@@ -49,7 +49,7 @@ examples:
         content: |
           ##jsx
           <XyzTransition xyz="fade big-100 out-big-25">
-            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div className="square" />}
           </XyzTransition>
   - name: Mixing it up
     template: |
@@ -82,10 +82,10 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up out-down stagger">
-            {${data.toggled} && <div class="square" xyz="inherit out-left out-rotate-left" />}
-            {${data.toggled} && <div class="square" xyz="inherit out-flip-down" />}
-            {${data.toggled} && <div class="square" xyz="inherit out-right out-rotate-right" />}
+          <XyzTransitionGroup className="square-group" xyz="fade up out-down stagger">
+            {${data.toggled} && <div className="square" xyz="inherit out-left out-rotate-left" />}
+            {${data.toggled} && <div className="square" xyz="inherit out-flip-down" />}
+            {${data.toggled} && <div className="square" xyz="inherit out-right out-rotate-right" />}
           </XyzTransitionGroup>
 ---
 
