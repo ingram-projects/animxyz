@@ -97,7 +97,7 @@ export default {
 				switch (code.name) {
 					case 'Vue':
 						icon = 'IconVue'
-						break;
+						break
 					case 'React':
 						icon = 'IconReact'
 				}
