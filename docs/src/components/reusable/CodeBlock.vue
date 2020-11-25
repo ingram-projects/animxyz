@@ -2,7 +2,9 @@
 	<div class="code-block">
 		<TabBar :tabs="code" v-if="code.length > 1" v-model="activeCode"></TabBar>
 
-		<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{ codeChunk.content }}</Prism>
+		<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
+			codeChunk.content
+		}}</Prism>
 	</div>
 </template>
 
