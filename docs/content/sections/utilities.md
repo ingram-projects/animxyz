@@ -15,11 +15,28 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" />}
+          </XyzTransitionGroup>
 
 modifiers:
   utilities:
