@@ -268,6 +268,7 @@ export default {
 	.sandbox {
 		width: 100%;
 		height: 100%;
+		overflow-y: auto;
 	}
 
 	@include media('<laptop') {
@@ -277,7 +278,6 @@ export default {
 
 		.sandbox {
 			border-top: 1px solid primary-color(800);
-			overflow-y: auto;
 		}
 
 		&.active {

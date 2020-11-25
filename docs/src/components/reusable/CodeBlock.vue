@@ -2,9 +2,11 @@
 	<div class="code-block">
 		<TabBar :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
-		<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
-			codeChunk.content
-		}}</Prism>
+		<div class="example-code__wrap">
+			<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
+				codeChunk.content
+			}}</Prism>
+		</div>
 	</div>
 </template>
 
@@ -172,4 +174,16 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.example-code__wrap {
+	overflow: auto;
+
+	pre[class*='language-'] {
+		overflow: initial;
+	}
+
+	pre + pre {
+		padding-top: 0;
+	}
+}
+</style>

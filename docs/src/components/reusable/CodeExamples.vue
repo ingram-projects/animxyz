@@ -72,14 +72,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
-
-	.example-code {
-		font-size: 1.125rem;
-
-		@include media('<tablet') {
-			font-size: $fs-m;
-		}
-	}
 }
 
 .examples-sections {
@@ -96,5 +88,13 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.example-code {
+	font-size: 1.125rem;
+
+	@include media('<tablet') {
+		font-size: $fs-m;
+	}
 }
 </style>
