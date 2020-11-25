@@ -1,6 +1,6 @@
 <template>
 	<div class="code-block">
-		<TabBar :tabs="code" v-if="code.length > 1" v-model="activeCode"></TabBar>
+		<TabBar :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
 		<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
 			codeChunk.content
@@ -91,6 +91,23 @@ export default {
 		}
 	},
 	computed: {
+		computedCode() {
+			return this.code.map((code) => {
+				let icon
+				switch (code.name) {
+					case 'Vue':
+						icon = 'IconVue'
+						break;
+					case 'React':
+						icon = 'IconReact'
+				}
+
+				return {
+					icon,
+					...code,
+				}
+			})
+		},
 		activeCodeChunks() {
 			/* eslint-disable no-unused-vars */
 			const data = this.data
@@ -107,6 +124,7 @@ export default {
 				const prettifiedContent = prettier.format(content, {
 					...chunkLanguageOptions.prettier,
 					printWidth: 80,
+					tabWidth: 2,
 					semi: false,
 					singleQuote: true,
 					trailingComma: 'es5',
@@ -129,14 +147,14 @@ export default {
 		code: {
 			immediate: true,
 			handler() {
-				if (this.code.length) {
+				if (this.computedCode.length) {
 					if (this.activeCode) {
-						this.activeCode = this.code.find((code) => {
+						this.activeCode = this.computedCode.find((code) => {
 							return code.name === this.activeCode.name
 						})
 					}
 					if (!this.activeCode) {
-						this.activeCode = this.code[0]
+						this.activeCode = this.computedCode[0]
 					}
 				} else {
 					this.activeCode = null
@@ -146,7 +164,7 @@ export default {
 	},
 	methods: {
 		setCode(codeName) {
-			this.activeCode = this.code.find((code) => {
+			this.activeCode = this.computedCode.find((code) => {
 				return code.name === codeName
 			})
 		},
