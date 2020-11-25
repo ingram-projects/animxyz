@@ -13,7 +13,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
             <div class="square ${data.mode}"></div>

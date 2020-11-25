@@ -11,9 +11,22 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" xyz="fade up in-left in-rotate-left out-right out-rotate-right"></div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right">
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransition>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right">
+            {${data.toggled} && <div class="square" />}
+          </XyzTransition>
   - name: Direction override
     template: |
       <div class="example-wrap">
@@ -22,9 +35,22 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" xyz="fade big-100 out-big-25"></div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition xyz="fade big-100 out-big-25">
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransition>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition xyz="fade big-100 out-big-25">
+            {${data.toggled} && <div class="square" />}
+          </XyzTransition>
   - name: Mixing it up
     template: |
       <div class="example-wrap">
@@ -37,13 +63,30 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade up out-down stagger">
             <div class="square ${data.mode}" xyz="inherit out-left out-rotate-left"></div>
             <div class="square ${data.mode}" xyz="inherit out-flip-down"></div>
             <div class="square ${data.mode}" xyz="inherit out-right out-rotate-right"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up out-down stagger">
+            <div class="square" v-show="${data.toggled}" xyz="inherit out-left out-rotate-left"></div>
+            <div class="square" v-show="${data.toggled}" xyz="inherit out-flip-down"></div>
+            <div class="square" v-show="${data.toggled}" xyz="inherit out-right out-rotate-right"></div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up out-down stagger">
+            {${data.toggled} && <div class="square" xyz="inherit out-left out-rotate-left" />}
+            {${data.toggled} && <div class="square" xyz="inherit out-flip-down" />}
+            {${data.toggled} && <div class="square" xyz="inherit out-right out-rotate-right" />}
+          </XyzTransitionGroup>
 ---
 
 AnimXYZ animates elements in and out when activated by their respective classes. `.xyz-in` animates elements **from** the values set by XYZ utilities and variables, while `.xyz-out` animates elements **to** those values.

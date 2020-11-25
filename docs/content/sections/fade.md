@@ -11,7 +11,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square ${data.mode}" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}></div>
 

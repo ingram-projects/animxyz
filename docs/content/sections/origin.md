@@ -11,7 +11,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square ${data.mode}" xyz="fade small-100${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 

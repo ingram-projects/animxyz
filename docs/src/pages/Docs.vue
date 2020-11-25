@@ -50,7 +50,7 @@
 					name
 					template
 					code {
-						language
+						name
 						content
 					}
 				}

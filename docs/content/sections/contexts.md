@@ -13,7 +13,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square-group" xyz="fade rotate-right">
             <div class="square ${data.mode}"></div>
@@ -32,7 +32,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square-group" xyz="fade small">
             <div class="square ${data.mode}"></div>
@@ -51,7 +51,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>

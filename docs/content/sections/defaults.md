@@ -15,7 +15,7 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
           <div class="square-group" xyz="fade stagger">
             <div class="square ${data.mode}" xyz="inherit left"></div>
