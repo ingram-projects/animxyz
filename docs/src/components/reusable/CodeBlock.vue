@@ -1,7 +1,8 @@
 <template>
 	<div class="code-block">
-		<TabBar :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
-		<Prism :language="activeCode.prism.language">{{ activeCodeContent }}</Prism>
+		<TabBar :tabs="code" v-if="code.length > 1" v-model="activeCode"></TabBar>
+
+		<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{ codeChunk.content }}</Prism>
 	</div>
 </template>
 
@@ -15,9 +16,8 @@ import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-scss'
 import TabBar from '~/components/reusable/TabBar'
 
-const languageDefaults = {
+const languageOptions = {
 	html: {
-		name: 'HTML',
 		prettier: {
 			parser: 'html',
 			plugins: [parserHtml, parserPostCSS, parserBabel],
@@ -27,7 +27,6 @@ const languageDefaults = {
 		},
 	},
 	css: {
-		name: 'CSS',
 		prettier: {
 			parser: 'css',
 			plugins: [parserPostCSS],
@@ -37,7 +36,6 @@ const languageDefaults = {
 		},
 	},
 	scss: {
-		name: 'SCSS',
 		prettier: {
 			parser: 'scss',
 			plugins: [parserPostCSS],
@@ -47,7 +45,6 @@ const languageDefaults = {
 		},
 	},
 	javascript: {
-		name: 'Javascript',
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],
@@ -56,26 +53,22 @@ const languageDefaults = {
 			language: 'javascript',
 		},
 	},
-	vue: {
-		name: 'Vue',
-		icon: 'IconVue',
-		prettier: {
-			parser: 'vue',
-			plugins: [parserHtml, parserPostCSS, parserBabel],
-		},
-		prism: {
-			language: 'html',
-		},
-	},
-	react: {
-		name: 'React',
-		icon: 'IconReact',
+	jsx: {
 		prettier: {
 			parser: 'babel',
 			plugins: [parserBabel],
 		},
 		prism: {
 			language: 'jsx',
+		},
+	},
+	vue: {
+		prettier: {
+			parser: 'vue',
+			plugins: [parserHtml, parserPostCSS, parserBabel],
+		},
+		prism: {
+			language: 'html',
 		},
 	},
 }
@@ -96,45 +89,52 @@ export default {
 		}
 	},
 	computed: {
-		computedCode() {
-			return this.code.map((code) => {
-				const codeLanguageDefaults = languageDefaults[code.language]
-				return {
-					...codeLanguageDefaults,
-					...code,
-				}
-			})
-		},
-		activeCodeContent() {
+		activeCodeChunks() {
 			/* eslint-disable no-unused-vars */
 			const data = this.data
-			/* eslint-enable no-unused-vars */
 			const evalData = eval(`\`${this.activeCode.content}\``)
-			const prettierData = prettier.format(evalData, {
-				...this.activeCode.prettier,
-				printWidth: 80,
-				semi: false,
-				singleQuote: true,
-				trailingComma: 'es5',
-			})
-			return prettierData
+
+			const codeChunks = []
+
+			const splitChunks = evalData.split(/##(\w+)/)
+			for (let i = 1; i < splitChunks.length; i += 2) {
+				const language = splitChunks[i]
+				const content = splitChunks[i + 1]
+				const chunkLanguageOptions = languageOptions[language]
+
+				const prettifiedContent = prettier.format(content, {
+					...chunkLanguageOptions.prettier,
+					printWidth: 80,
+					semi: false,
+					singleQuote: true,
+					trailingComma: 'es5',
+				})
+
+				codeChunks.push({
+					language,
+					content: prettifiedContent,
+					...chunkLanguageOptions,
+				})
+			}
+
+			return codeChunks
 		},
 	},
 	watch: {
 		activeCode() {
 			this.$emit('language-changed', this.activeCode)
 		},
-		computedCode: {
+		code: {
 			immediate: true,
 			handler() {
 				if (this.code.length) {
 					if (this.activeCode) {
-						this.activeCode = this.computedCode.find((language) => {
-							return language.name === this.activeCode.name
+						this.activeCode = this.code.find((code) => {
+							return code.name === this.activeCode.name
 						})
 					}
 					if (!this.activeCode) {
-						this.activeCode = this.computedCode[0]
+						this.activeCode = this.code[0]
 					}
 				} else {
 					this.activeCode = null
@@ -144,7 +144,7 @@ export default {
 	},
 	methods: {
 		setCode(codeName) {
-			this.activeCode = this.computedCode.find((code) => {
+			this.activeCode = this.code.find((code) => {
 				return code.name === codeName
 			})
 		},

@@ -149,29 +149,66 @@ export default {
 					{
 						name: 'Sandbox',
 						template: `
-				      <div class="example-wrap">
-				        <XyzTransition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-				          <div class="square-group xyz-none" v-show="data.toggled">
-				            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
-				          </div>
-				        </XyzTransition>
-				      </div>
+<div class="example-wrap">
+	<XyzTransition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+		<div class="square-group xyz-none" v-show="data.toggled">
+			<div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+		</div>
+	</XyzTransition>
+</div>
 						`,
 						code: [
 							{
-								language: 'html',
+								name: 'HTML',
 								content: `
-				          <div class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
-				            <div class="square \${data.mode}"></div>
-				            <div class="square \${data.mode}"></div>
-				            <div class="square \${data.mode}"></div>
-				          </div>
+##html
+<div class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+	<div class="square \${data.mode}"></div>
+	<div class="square \${data.mode}"></div>
+	<div class="square \${data.mode}"></div>
+</div>
 
-									\${data.variablesString && \`
-				          <style>
-				            .square-group { \${data.variablesString} }
-				          </style>
-				          \`}
+\${data.variablesString && \`
+<style>
+	.square-group { \${data.variablesString} }
+</style>
+\`}
+								`,
+							},
+							{
+								name: 'Vue',
+								content: `
+##vue
+<XyzTransitionGroup tag="div" class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+	<div class="square" v-show="\${data.toggled}"></div>
+	<div class="square" v-show="\${data.toggled}"></div>
+	<div class="square" v-show="\${data.toggled}"></div>
+</XyzTransitionGroup>
+
+\${data.variablesString && \`
+##html
+<style>
+	.square-group { \${data.variablesString} }
+</style>
+\`}
+								`,
+							},
+							{
+								name: 'React',
+								content: `
+##jsx
+<XyzTransitionGroup tag="div" class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+	{\${data.toggled} && <div class="square" />}
+	{\${data.toggled} && <div class="square" />}
+	{\${data.toggled} && <div class="square" />}
+</XyzTransitionGroup>
+
+\${data.variablesString && \`
+##html
+<style>
+	.square-group { \${data.variablesString} }
+</style>
+\`}
 								`,
 							},
 						],

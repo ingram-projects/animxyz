@@ -11,16 +11,19 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" xyz="fade up big"></div>
-      - language: vue
+      - name: Vue
         content: |
+          ##vue
           <XyzTransition xyz="fade up big">
             <div class="square" v-show="${data.toggled}"></div>
           </XyzTransition>
-      - language: react
+      - name: React
         content: |
+          ##jsx
           <XyzTransition xyz="fade up big">
             {${data.toggled} && <div class="square"></div>}
           </XyzTransition>
@@ -33,16 +36,19 @@ examples:
         </XyzTransition>
       </div>
     code:
-      - language: html
+      - name: HTML
         content: |
+          ##html
           <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
-      - language: vue
+      - name: Vue
         content: |
+          ##vue
           <XyzTransition xyz="fade down flip-up-50">
             <div class="square" v-show="${data.toggled}"></div>
           </XyzTransition>
-      - language: react
+      - name: React
         content: |
+          ##jsx
           <XyzTransition xyz="fade down flip-up-50">
             {${data.toggled} && <div class="square"></div>}
           </XyzTransition>
