@@ -15,11 +15,28 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade rotate-right">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade rotate-right">
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade rotate-right">
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" />}
+          </XyzTransitionGroup>
   - name: Override
     template: |
       <div class="example-wrap">
@@ -34,11 +51,28 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade small">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}" xyz="fade big"></div>
             <div class="square ${data.mode}"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small">
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}" xyz="fade big"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small">
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" xyz="fade big" />}
+            {${data.toggled} && <div class="square" />}
+          </XyzTransitionGroup>
   - name: Inherit
     template: |
       <div class="example-wrap">
@@ -53,11 +87,28 @@ examples:
     code:
       - name: HTML
         content: |
+          ##html
           <div class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}" xyz="inherit rotate-left"></div>
             <div class="square ${data.mode}"></div>
           </div>
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}" xyz="inherit rotate-left"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+            {${data.toggled} && <div class="square" />}
+            {${data.toggled} && <div class="square" xyz="inherit rotate-left" />}
+            {${data.toggled} && <div class="square" />}
+          </XyzTransitionGroup>
 ---
 
 The `xyz` attribute creates an animation context where any AnimXYZ animations that take place within will use the animation variables it sets. This can be very useful when applying the same animation to lists or groups of elements without having to add them to each element. [Basic Example](?tab=examples&example=Basic#contexts)
