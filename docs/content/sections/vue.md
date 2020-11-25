@@ -50,7 +50,7 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 	xyz="fade up ..."
 	style="--xyz-duration: 0.75s; ..."
 >
-	<child-component />
+	<child />
 </XyzTransition>
 ```
 
@@ -122,9 +122,10 @@ You can learn more about using this property in the [Vue docs](https://vuejs.org
 	xyz="fade up ..."
 	style="--xyz-duration: 0.75s; ..."
 >
-	<child-component key="..." />
-	<child-component key="..." />
-	<child-component key="..." />
+	<child />
+	<child />
+	<child />
+	...
 </XyzTransitionGroup>
 ```
 

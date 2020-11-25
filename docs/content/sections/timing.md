@@ -20,7 +20,7 @@ examples:
           <style>
             .square { ${data.variablesString} }
           </style>
-          `}]
+          `}
       - name: Vue
         content: |
           ##vue
