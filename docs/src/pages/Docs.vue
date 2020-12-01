@@ -10,13 +10,15 @@
 				appear
 				xyz="fade down delay-1"
 			>
-				<DocsSection
-					v-for="section in mainSections"
-					:section="section"
-					:class="{ active: section === activeSection }"
-					:key="section.title"
-					ref="sections"
-				></DocsSection>
+				<div v-for="section in sections" :key="section.title">
+					<h1 class="section-group__header" v-if="section.header">{{ section.title }}</h1>
+					<DocsSection
+						v-if="!section.header"
+						:section="section"
+						:class="{ active: section === activeSection }"
+						ref="sections"
+					></DocsSection>
+				</div>
 			</XyzTransitionGroup>
 
 			<section class="sandbox__wrap" :class="{ active: activeTab === 'examples' }">
@@ -143,9 +145,6 @@ export default {
 					id: textToId(section.title),
 				}
 			})
-		},
-		mainSections() {
-			return this.sections.filter((section) => !section.header)
 		},
 		activeSection() {
 			return this.sections.find((section) => {

@@ -47,8 +47,6 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 	appear={ boolean }
 	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
 	mode={ 'out-in' | 'in-out' }
-	xyz="fade up ..."
-	style="--xyz-duration: 0.75s; ..."
 >
 	<child />
 </XyzTransition>
@@ -119,8 +117,6 @@ You can learn more about using this property in the [Vue docs](https://vuejs.org
 	appear={ boolean }
 	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
 	tag={ string }
-	xyz="fade up ..."
-	style="--xyz-duration: 0.75s; ..."
 >
 	<child />
 	<child />
@@ -179,7 +175,7 @@ Specifies the tag to use for the wrapper element. Defaults to `'span'`.
 ---
 ## v-xyz directive
 
-The `v-xyz` directive allows you to dynamically set an element or components `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings. For instance you can conditionally apply a transform on a div like so:
+The `v-xyz` directive allows you to dynamically set the `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings. For instance you can conditionally apply a transform on a div like so:
 
 ```html
 <div v-xyz="{ 'left-5': isTransformed }"></div>
