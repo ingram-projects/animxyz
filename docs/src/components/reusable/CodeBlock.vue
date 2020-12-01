@@ -1,6 +1,6 @@
 <template>
 	<div class="code-block">
-		<TabBar :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
+		<TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
 		<div class="example-code__wrap">
 			<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
@@ -97,6 +97,9 @@ export default {
 			return this.code.map((code) => {
 				let icon
 				switch (code.name) {
+					case 'HTML':
+						icon = 'IconHtml'
+						break
 					case 'Vue':
 						icon = 'IconVue'
 						break
@@ -187,6 +190,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.code-block__tabs {
+	::v-deep {
+		@include media('>tablet') {
+			.tab-bar__tab {
+				flex-grow: initial;
+				padding: 0 $sp-m;
+			}
+		}
+	}
+}
+
 .example-code__wrap {
 	overflow: auto;
 

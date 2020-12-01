@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import IconHtml from '~/assets/icons/IconHtml.svg'
 import IconPresets from '~/assets/icons/IconPresets.svg'
 import IconReact from '~/assets/icons/IconReact.svg'
 import IconVue from '~/assets/icons/IconVue.svg'
@@ -35,6 +36,7 @@ export default {
 		tabs: Array,
 	},
 	components: {
+		IconHtml,
 		IconPresets,
 		IconReact,
 		IconVue,
