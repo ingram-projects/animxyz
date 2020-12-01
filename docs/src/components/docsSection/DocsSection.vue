@@ -54,10 +54,6 @@ $active-border-width: 0.5rem;
 	@include media('>=laptop') {
 		padding: 4rem 0;
 	}
-
-	@include media('>=desktop') {
-		padding: 4rem 0;
-	}
 }
 
 .docs-section {

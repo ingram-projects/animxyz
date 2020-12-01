@@ -242,6 +242,7 @@ export default {
 }
 
 .sections__wrap {
+	padding-top: 4rem;
 	padding-right: 40vw;
 	width: 100%;
 
@@ -253,6 +254,18 @@ export default {
 		&.active {
 			transform: none;
 		}
+	}
+}
+
+.section-group__header {
+	text-align: center;
+	color: primary-color(600);
+	font-size: 2.5rem;
+	font-weight: 720;
+	padding: 2vw 0;
+
+	@include media('>=laptop') {
+		padding: 0;
 	}
 }
 
