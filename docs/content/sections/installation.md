@@ -1,5 +1,6 @@
 ---
 title: Installation
+id: installation
 quote: Woah... I know kung fu.
 ---
 

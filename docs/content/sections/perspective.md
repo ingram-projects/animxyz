@@ -1,5 +1,6 @@
 ---
 title: Perspective
+id: perspective
 quote: From a certain point of view.
 
 examples:

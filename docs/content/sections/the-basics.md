@@ -1,5 +1,6 @@
 ---
 title: The Basics
+id: the-basics
 quote: Time to learn your XYZ's.
 
 examples:

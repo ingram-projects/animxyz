@@ -1,5 +1,6 @@
 ---
 title: Stagger
+id: stagger
 quote: For the nth time!
 
 examples:

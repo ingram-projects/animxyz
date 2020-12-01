@@ -10,7 +10,7 @@
 				appear
 				xyz="fade down delay-1"
 			>
-				<div v-for="section in sections" :key="section.title">
+				<div v-for="section in sections" :key="section.id">
 					<h1 class="section-group__header" v-if="section.header">{{ section.title }}</h1>
 					<DocsSection
 						v-if="!section.header"
@@ -47,6 +47,7 @@
   sections: allSection {
     edges {
       node {
+				id
         title
 				quote
 				content
@@ -83,7 +84,7 @@ import DocsSection from '~/components/docsSection/DocsSection'
 import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import PageNav from '~/components/reusable/PageNav'
 import Sandbox from '~/components/reusable/Sandbox'
-import { textToId, openGraphMeta } from '~/utils'
+import { openGraphMeta } from '~/utils'
 
 export default {
 	components: {
@@ -98,32 +99,36 @@ export default {
 			activeSectionId: null,
 			activeTab: 'docs',
 			sectionDefinitions: [
-				{ header: true, title: 'Getting Started' },
-				'Installation',
-				'The Basics',
-				'How it Works',
-				{ header: true, title: 'Composing Animations' },
-				'Contexts',
-				'Utilities',
-				'Variables',
-				'Defaults',
-				{ header: true, title: 'Triggering Animations' },
-				'Active Classes',
-				'Nesting',
-				{ header: true, title: 'Animations' },
-				'Fade',
-				'Transform',
-				'Perspective',
-				'Origin',
-				'Timing',
-				'Stagger',
-				'Iterate',
+				{ header: true, title: 'Getting Started', id: 'getting-started' },
+				'installation',
+				'the-basics',
+				'how-it-works',
+				{ header: true, title: 'Composing Animations', id: 'composing-animations' },
+				'contexts',
+				'utilities',
+				'variables',
+				'defaults',
+				{ header: true, title: 'Triggering Animations', id: 'triggering-animations' },
+				'active-classes',
+				'nesting',
+				{ header: true, title: 'Animations', id: 'animations' },
+				'fade',
+				'transform',
+				'perspective',
+				'origin',
+				'timing',
+				'stagger',
+				'iterate',
 				// { header: true, title: 'Customizing AnimXYZ' },
-				// 'Modifying Utilities',
-				// 'Adding Keyframes',
-				{ header: true, title: 'Integrations' },
-				'Vue',
-				'React',
+				// 'modifying-utilities',
+				// 'adding-keyframes',
+				{ header: true, title: 'Vue Integration', id: 'vue-integration' },
+				'vue-installation',
+				'vue-xyz-transition',
+				'vue-xyz-transition-group',
+				'vue-v-xyz',
+				{ header: true, title: 'React Integration', id: 'react-integration' },
+				'react',
 			],
 		}
 	},
@@ -131,7 +136,7 @@ export default {
 		sections() {
 			const sectionsObj = {}
 			this.$page.sections.edges.forEach((sectionEdge) => {
-				sectionsObj[sectionEdge.node.title] = sectionEdge.node
+				sectionsObj[sectionEdge.node.id] = sectionEdge.node
 			})
 
 			return this.sectionDefinitions.map((sectionDefinition) => {
@@ -139,11 +144,7 @@ export default {
 					return sectionDefinition
 				}
 
-				const section = sectionsObj[sectionDefinition]
-				return {
-					...section,
-					id: textToId(section.title),
-				}
+				return sectionsObj[sectionDefinition]
 			})
 		},
 		activeSection() {

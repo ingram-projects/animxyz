@@ -1,5 +1,6 @@
 ---
 title: Timing
+id: timing
 quote: How did it get so late so soon?
 
 examples:

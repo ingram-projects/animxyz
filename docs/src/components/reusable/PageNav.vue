@@ -33,7 +33,7 @@
 								class="nav-item xyz-in-nested"
 								@click="onSectionClick"
 								:style="{ '--xyz-index': index + 1 }"
-								:key="section.title"
+								:key="section.id"
 							>
 								<h2 class="nav-item__header" v-if="section.header">{{ section.title }}</h2>
 

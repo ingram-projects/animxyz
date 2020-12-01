@@ -1,5 +1,6 @@
 ---
 title: Origin
+id: origin
 quote: You spin my bottom-right round, baby.
 
 examples:

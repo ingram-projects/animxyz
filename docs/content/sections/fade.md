@@ -1,5 +1,6 @@
 ---
 title: Fade
+id: fade
 quote: Beam me up Scotty!
 
 examples:
