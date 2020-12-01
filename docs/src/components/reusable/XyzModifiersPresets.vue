@@ -138,6 +138,12 @@ export default {
 		width: 12rem;
 	}
 
+	@include media('<phone') {
+		height: auto;
+		width: auto;
+		min-width: 12rem;
+	}
+
 	.square {
 		@include size(3.5rem);
 		margin: auto;
@@ -146,6 +152,10 @@ export default {
 
 		@include media('<tablet') {
 			@include size(2.5rem);
+		}
+
+		@include media('<phone') {
+			display: none;
 		}
 	}
 
@@ -167,10 +177,13 @@ export default {
 .preset-title {
 	font-family: $font-stack-mono;
 	padding: $sp-xs;
-	padding-bottom: 0;
 	line-height: 1;
 	color: primary-color(300);
-	text-align: left;
 	transition: color 0.2s $ease-in-out;
+
+	@include media('>=phone') {
+		text-align: left;
+		padding-bottom: 0;
+	}
 }
 </style>
