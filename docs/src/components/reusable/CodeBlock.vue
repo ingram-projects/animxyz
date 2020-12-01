@@ -147,7 +147,7 @@ export default {
 					language: chunkLanguage,
 					prettier: chunkPrettierOptions,
 					prism: chunkPrismOptions,
-					content: chunkParsedContent,
+					content: chunkParsedContent + '\n',
 				})
 			}
 
@@ -192,6 +192,7 @@ export default {
 
 	pre[class*='language-'] {
 		overflow: initial;
+		padding-bottom: 0;
 	}
 
 	pre + pre {
