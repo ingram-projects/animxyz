@@ -51,7 +51,7 @@ examples:
 
 modifiers:
   utilities:
-    defaults: [down]
+    defaults: [down, flip-up]
   variables: true
   groups:
     - name: Translate

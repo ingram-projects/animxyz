@@ -51,7 +51,7 @@ examples:
 
 modifiers:
   utilities:
-    defaults: [origin-right]
+    defaults: [origin-top-right]
   variables: true
   groups:
     - name: Origin

@@ -52,7 +52,7 @@ examples:
 
 modifiers:
   utilities:
-    defaults: [perspective-3]
+    defaults: [perspective-1]
   variables: true
   groups:
     - name: Perspective

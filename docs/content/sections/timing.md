@@ -51,7 +51,7 @@ examples:
 
 modifiers:
   utilities:
-    defaults: [duration-20]
+    defaults: [duration-20, ease-out-back]
   variables: true
   groups:
     - name: Timing
