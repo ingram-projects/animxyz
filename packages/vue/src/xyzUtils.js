@@ -134,8 +134,11 @@ export function getXyzTransitionData(data) {
 		on: {
 			enter: getXyzAnimationHook('in', duration),
 			leave: getXyzAnimationHook('out', duration),
-			appear: typeof appear !== 'undefined' ? getXyzAnimationHook('appear', duration) : undefined,
 		},
+	}
+
+	if (appear) {
+		transitionData.on.appear = getXyzAnimationHook('appear', duration)
 	}
 
 	const mergedData = mergeData(data, transitionData)
