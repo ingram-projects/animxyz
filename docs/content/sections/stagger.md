@@ -8,8 +8,8 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
-            <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
+          <div class="square-grid xyz-none" v-show="data.toggled">
+            <div class="square xyz-nested" v-for="index in 8" :key="index"></div>
           </div>
         </XyzTransition>
       </div>
@@ -17,7 +17,12 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <div class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
+            <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -25,13 +30,18 @@ examples:
 
           ${data.variablesString && `
           <style>
-            .square-group { ${data.variablesString} }
+            .square-grid { ${data.variablesString} }
           </style>
           `}
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup tag="div" class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
@@ -40,13 +50,18 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .square-grid { ${data.variablesString} }
           </style>
           `}
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup className="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
@@ -55,7 +70,7 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .square-grid { ${data.variablesString} }
           </style>
           `}
 
@@ -68,7 +83,7 @@ modifiers:
       types: [stagger]
 ---
 
-Staggering the animation of a list of elements can add some panache to their entrance and exit. AnimXYZ stagger utilities calculate the `animation-delay` for each element so that their animation is triggered one following the other.
+Staggering increases the `animation-delay` for each element in a list so that their animation is triggered one following the other, like dominoes.
 
 AnimXYZ will apply this staggered delay to the first 20 elements (or last 20 if using `stagger-rev`) based on their `nth-child` index. Alternatively you can pass your own index to each element with the `--xyz-index` or `--xyz-index-rev` variables if you want more than 20 elements to stagger or want to change the staggering order in other ways.
 

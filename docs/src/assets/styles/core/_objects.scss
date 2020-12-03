@@ -41,6 +41,21 @@ svg {
   margin: 0 auto;
 }
 
+.square-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  // grid-gap: $sp-xxs;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 20rem;
+
+  .square {
+    @include size(100%);
+    height: 4rem;
+  }
+}
+
 .square-block {
   @include size(5rem);
   border: 2px solid $cyan;
