@@ -45,5 +45,5 @@ To add AnimXYZ using a CDN put this link in the `<head>` of your `index.html` fi
 ---
 
 ::: note [Vue,React]
-If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue) and [React](#react).
+If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue-installation) and [React](#react-installation).
 :::

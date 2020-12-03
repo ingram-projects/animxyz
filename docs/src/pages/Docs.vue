@@ -11,7 +11,7 @@
 				xyz="fade down delay-1"
 			>
 				<div v-for="section in sections" :key="section.id">
-					<h1 class="section-group__header" v-if="section.header">{{ section.title }}</h1>
+					<h1 class="section-group__header" v-if="section.header" :id="section.id">{{ section.title }}</h1>
 					<DocsSection
 						v-if="!section.header"
 						:section="section"

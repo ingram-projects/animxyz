@@ -180,7 +180,7 @@ examples:
           </XyzTransitionGroup>
 ---
 
-When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#vue) and [React](#react) plugins, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
+When dynamically applying AnimXYZ [active classes](#active-classes) with a JavaScript framework or the AnimXYZ [Vue](#vue-integration) and [React](#react-integration) components, it's common to want child elements to animate in sync with the element you are controlling without having to apply the same class logic to each child.
 
 Elements with an `.xyz-nested` class trigger their animations when a parent element has an XYZ [active class](#active-classes) such as `.xyz-in` or `.xyz-out`. [See example](?tab=examples&example=Basic#nesting)
 
