@@ -9,10 +9,6 @@ export function mergeData(data1 = {}, data2 = {}) {
 			...data2.attrs,
 		},
 		directives: [...(data1.directives || []), ...(data2.directives || [])],
-		on: {
-			...data1.on,
-			...data2.on,
-		},
 		staticStyle: {
 			...data1.staticStyle,
 			...data2.staticStyle,
@@ -20,6 +16,10 @@ export function mergeData(data1 = {}, data2 = {}) {
 		style: {
 			...data1.style,
 			...data2.style,
+		},
+		on: {
+			...data1.on,
+			...data2.on,
 		},
 	}
 }
