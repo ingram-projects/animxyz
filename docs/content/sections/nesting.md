@@ -96,7 +96,7 @@ examples:
   - name: Staggered
     template: |
       <div class="example-wrap">
-        <XyzTransitionGroup tag="div" duration="auto" class="square-group" xyz="fade small stagger" v-on="data.listeners">
+        <XyzTransitionGroup duration="auto" class="square-group" xyz="fade small stagger" v-on="data.listeners">
           <div class="square-block" v-for="index in 3" v-show="data.toggled" :key="index">
             <div class="square xyz-nested" v-for="subIndex in 4" :key="subIndex"></div>
           </div>
@@ -129,7 +129,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" duration="auto" xyz="fade small stagger">
+          <XyzTransitionGroup class="square-group" duration="auto" xyz="fade small stagger">
             <div class="square-block" v-show="${data.toggled}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>

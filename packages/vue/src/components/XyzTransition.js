@@ -3,8 +3,22 @@ import { getXyzTransitionData, mergeData } from '../xyzUtils'
 export default {
 	name: 'XyzTransition',
 	functional: true,
+	props: {
+		appear: {
+			type: Boolean,
+		},
+		duration: {
+			type: [Number, String, Object],
+		},
+	},
 	render(createElement, context) {
-		const data = getXyzTransitionData(context.data)
+		const data = getXyzTransitionData({
+			...context.data,
+			attrs: {
+				...context.data.attrs,
+				...context.props,
+			},
+		})
 
 		context.children.forEach((child) => {
 			child.data = mergeData(

@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade rotate-right">
+          <XyzTransitionGroup class="square-group" xyz="fade rotate-right">
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
@@ -61,7 +61,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small">
+          <XyzTransitionGroup class="square-group" xyz="fade small">
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}" xyz="fade big"></div>
             <div class="square" v-show="${data.toggled}"></div>
@@ -97,7 +97,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+          <XyzTransitionGroup class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}" xyz="inherit rotate-left"></div>
             <div class="square" v-show="${data.toggled}"></div>

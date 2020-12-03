@@ -57,7 +57,7 @@ Specifies the tag to use for the wrapper element. Defaults to `'span'`.
 			</tr>
 			<tr>
 				<th scope="row">tag</th>
-				<td>'span'</td>
+				<td>'div'</td>
 				<td>string</td>
 			</tr>
 		</tbody>

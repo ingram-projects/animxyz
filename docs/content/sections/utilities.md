@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+          <XyzTransitionGroup class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>

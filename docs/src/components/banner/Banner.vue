@@ -1,5 +1,5 @@
 <template>
-	<XyzTransitionGroup tag="div" appear class="banner">
+	<XyzTransitionGroup appear class="banner">
 		<BannerSquare v-for="index in numSquares" :show="activeSquare === index - 1" :key="index"></BannerSquare>
 	</XyzTransitionGroup>
 </template>

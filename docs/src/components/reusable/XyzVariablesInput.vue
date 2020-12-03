@@ -1,6 +1,5 @@
 <template>
 	<XyzTransitionGroup
-		tag="div"
 		class="variables__wrap"
 		body-scroll-lock-ignore
 		appear

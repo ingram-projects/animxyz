@@ -75,7 +75,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade up out-down stagger">
+          <XyzTransitionGroup class="square-group" xyz="fade up out-down stagger">
             <div class="square" v-show="${data.toggled}" xyz="inherit out-left out-rotate-left"></div>
             <div class="square" v-show="${data.toggled}" xyz="inherit out-flip-down"></div>
             <div class="square" v-show="${data.toggled}" xyz="inherit out-right out-rotate-right"></div>
