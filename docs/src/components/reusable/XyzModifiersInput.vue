@@ -3,7 +3,7 @@
 	<div class="modifiers__wrap">
 		<TabBar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></TabBar>
 
-		<XyzTransitionGroup tag="div" class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
+		<XyzTransitionGroup class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
 			<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
 				<XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
 			</div>

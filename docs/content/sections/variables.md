@@ -31,7 +31,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz>
+          <XyzTransitionGroup class="square-group" xyz>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>

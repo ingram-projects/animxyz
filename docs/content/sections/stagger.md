@@ -31,7 +31,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup class="square-group" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>
             <div class="square" v-show="${data.toggled}"></div>

@@ -35,7 +35,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup tag="div" class="square-group" xyz="fade stagger">
+          <XyzTransitionGroup class="square-group" xyz="fade stagger">
             <div class="square" v-show="${data.toggled}" xyz="inherit left"></div>
             <div class="square" v-show="${data.toggled}" xyz="inherit up"></div>
             <div class="square" v-show="${data.toggled}" xyz="inherit down"></div>

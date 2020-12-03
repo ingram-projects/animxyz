@@ -45,9 +45,9 @@ function getXyzDurationForMode(mode, duration) {
 		case 'appear':
 			return duration.appear
 		case 'in':
-			return duration.enter
+			return duration.in
 		case 'out':
-			return duration.leave
+			return duration.out
 	}
 	return null
 }
@@ -112,47 +112,33 @@ function getXyzAnimationHook(mode, duration) {
 	}
 }
 
-export function getXyzTransitionData(data, customData = {}) {
+export function getXyzTransitionData(data) {
 	const { appear, duration } = data.attrs || {}
 
-	const attrs = {
-		name: 'xyz',
-		css: true,
-		type: 'animation',
-		appearClass: `${xyzTransitionClasses.inFrom} ${xyzTransitionClasses.appearFrom}`,
-		appearActiveClass: `${xyzTransitionClasses.inActive} ${xyzTransitionClasses.appearActive}`,
-		appearToClass: `${xyzTransitionClasses.inTo} ${xyzTransitionClasses.appearTo}`,
-		enterClass: xyzTransitionClasses.inFrom,
-		enterActiveClass: xyzTransitionClasses.inActive,
-		enterToClass: xyzTransitionClasses.inTo,
-		leaveClass: xyzTransitionClasses.outFrom,
-		leaveActiveClass: xyzTransitionClasses.outActive,
-		leaveToClass: xyzTransitionClasses.outTo,
-	}
-
-	const on = {
-		enter: getXyzAnimationHook('in', duration),
-		leave: getXyzAnimationHook('out', duration),
-	}
-	if (typeof appear !== 'undefined') {
-		on.appear = getXyzAnimationHook('appear', duration)
-	}
-
-	const mergedData = mergeData(
-		{
-			...customData,
-			attrs: {
-				...attrs,
-				...customData.attrs,
-			},
-			on: {
-				...on,
-				...customData.on,
-			},
+	const transitionData = {
+		attrs: {
+			name: 'xyz',
+			css: true,
+			type: 'animation',
+			appearClass: `${xyzTransitionClasses.inFrom} ${xyzTransitionClasses.appearFrom}`,
+			appearActiveClass: `${xyzTransitionClasses.inActive} ${xyzTransitionClasses.appearActive}`,
+			appearToClass: `${xyzTransitionClasses.inTo} ${xyzTransitionClasses.appearTo}`,
+			enterClass: xyzTransitionClasses.inFrom,
+			enterActiveClass: xyzTransitionClasses.inActive,
+			enterToClass: xyzTransitionClasses.inTo,
+			leaveClass: xyzTransitionClasses.outFrom,
+			leaveActiveClass: xyzTransitionClasses.outActive,
+			leaveToClass: xyzTransitionClasses.outTo,
+			moveClass: xyzTransitionClasses.move,
 		},
-		data
-	)
+		on: {
+			enter: getXyzAnimationHook('in', duration),
+			leave: getXyzAnimationHook('out', duration),
+			appear: typeof appear !== 'undefined' ? getXyzAnimationHook('appear', duration) : undefined,
+		},
+	}
 
+	const mergedData = mergeData(data, transitionData)
 	delete mergedData.attrs.duration
 
 	return mergedData

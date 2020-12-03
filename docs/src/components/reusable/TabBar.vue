@@ -1,6 +1,5 @@
 <template>
 	<XyzTransitionGroup
-		tag="div"
 		class="tab-bar"
 		body-scroll-lock-ignore
 		appear

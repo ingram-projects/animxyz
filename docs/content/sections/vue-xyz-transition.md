@@ -32,7 +32,7 @@ Sets the behavior of how long to apply the [active class](#active-classes) for t
 
 To apply the class for a specific amount of time you can use a number in milliseconds like `:duration="2000"`.
 
-You can also specify direction-specific behavior using an object describing the behavior for each direction such as `:duration="{ appear: 'auto', enter: 2000, leave: 1000 }"`.
+You can also specify direction-specific behavior using an object describing the behavior for each direction such as `:duration="{ appear: 'auto', in: 2000, out: 1000 }"`.
 
 You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Explicit-Transition-Durations).
 
