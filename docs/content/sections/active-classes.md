@@ -90,7 +90,7 @@ examples:
           </XyzTransitionGroup>
 ---
 
-AnimXYZ animates elements in and out when activated by their respective classes. `.xyz-in` animates elements **from** the values set by XYZ utilities and variables, while `.xyz-out` animates elements **to** those values.
+AnimXYZ animates elements in and out when activated by their respective classes: `.xyz-in` animates elements **from** the values set by XYZ utilities and variables, while `.xyz-out` animates elements **to** those values.
 
 For example an element with `.xyz-in` and `xyz="fade"` will fade from 0 to its natural opacity, while `.xyz-out` will fade it from its natural opacity to 0.
 

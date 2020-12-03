@@ -52,10 +52,10 @@ examples:
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
           <div class="square-block" v-show="data.toggled">
-            <div class="square xyz-nested" xyz="up left rotate-right"></div>
+            <div class="square xyz-nested" xyz="up left rotate-left"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
-            <div class="square xyz-nested" xyz="down right rotate-right"></div>
+            <div class="square xyz-nested" xyz="down right rotate-left"></div>
           </div>
         </XyzTransition>
       </div>
@@ -64,20 +64,20 @@ examples:
         content: |
           ##html
           <div class="square-block ${data.mode}" xyz="fade small">
-            <div class="square xyz-nested" xyz="up left rotate-right"></div>
+            <div class="square xyz-nested" xyz="up left rotate-left"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
-            <div class="square xyz-nested" xyz="down right rotate-right"></div>
+            <div class="square xyz-nested" xyz="down right rotate-left"></div>
           </div>
       - name: Vue
         content: |
           ##vue
           <XyzTransition duration="auto" xyz="fade small">
             <div class="square-block" v-show="${data.toggled}">
-              <div class="square xyz-nested" xyz="up left rotate-right"></div>
+              <div class="square xyz-nested" xyz="up left rotate-left"></div>
               <div class="square xyz-nested" xyz="up right rotate-right"></div>
               <div class="square xyz-nested" xyz="down left rotate-right"></div>
-              <div class="square xyz-nested" xyz="down right rotate-right"></div>
+              <div class="square xyz-nested" xyz="down right rotate-left"></div>
             </div>
           </XyzTransition>
       - name: React
@@ -86,10 +86,10 @@ examples:
           <XyzTransition timeout="auto" xyz="fade small">
             {${data.toggled} && (
               <div className="square-block">
-                <div className="square xyz-nested" xyz="up left rotate-right" />
+                <div className="square xyz-nested" xyz="up left rotate-left" />
                 <div className="square xyz-nested" xyz="up right rotate-right" />
                 <div className="square xyz-nested" xyz="down left rotate-right" />
-                <div className="square xyz-nested" xyz="down right rotate-right" />
+                <div className="square xyz-nested" xyz="down right rotate-left" />
               </div>
             )}
           </XyzTransition>
