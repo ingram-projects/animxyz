@@ -167,6 +167,14 @@ export default {
 	}
 }
 
+.utility {
+	transition: background-color 0.2s $ease-in-out;
+
+	&:focus-within {
+		background-color: primary-color(800, 0.35);
+	}
+}
+
 .utility__header {
 	position: sticky;
 	left: 0;
