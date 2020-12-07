@@ -2,6 +2,8 @@
 
 # AnimXYZ
 
+[![npm version](https://badge.fury.io/js/%40animxyz%2Fcore.svg)](https://www.npmjs.com/package/@animxyz/core)
+
 [animxyz.com](https://animxyz.com)
 
 AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables to allow a nearly limitless number of unique animations without writing a single keyframe. Save time and have complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
@@ -64,3 +66,10 @@ To add AnimXYZ using a CDN put this link in the `<head>` of your `index.html` fi
 ### Vue & React
 
  If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](https://animxyz.com/docs/#vue-installation) and [React](https://animxyz.com/docs/#react-installation).
+
+---
+## Made By
+
+Miles Ingram • [GitHub](https://github.com/milesingrams) • [Website](https://milesingrams.me)
+
+Mattan Ingram • [GitHub](https://github.com/mattaningram) • [Website](https://mattaningram.com)
