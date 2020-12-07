@@ -70,7 +70,6 @@
 <script>
 import FocusLock from 'vue-focus-lock'
 import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
-import IconGithub from '~/assets/icons/IconGithub.svg'
 
 export default {
 	name: 'PageNav',
@@ -82,7 +81,6 @@ export default {
 	components: {
 		AnimXyzLogo,
 		FocusLock,
-		IconGithub,
 	},
 	computed: {
 		isMediaLarge() {

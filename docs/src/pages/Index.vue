@@ -122,23 +122,11 @@
 
 <script>
 import Banner from '~/components/banner/Banner'
-import IconDocs from '~/assets/icons/IconDocs.svg'
-import IconGithub from '~/assets/icons/IconGithub.svg'
-import IconReact from '~/assets/icons/IconReact.svg'
-import IconSandbox from '~/assets/icons/IconSandbox.svg'
-import IconSass from '~/assets/icons/IconSass.svg'
-import IconVue from '~/assets/icons/IconVue.svg'
 import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	components: {
 		Banner,
-		IconDocs,
-		IconGithub,
-		IconReact,
-		IconSandbox,
-		IconSass,
-		IconVue,
 		Sandbox,
 	},
 	data() {
