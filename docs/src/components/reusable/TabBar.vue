@@ -114,11 +114,6 @@ export default {
 	&.active {
 		color: $cyan;
 
-		&:hover,
-		&:focus {
-			background-color: transparent;
-		}
-
 		.tab-text {
 			&::after {
 				transition: background-color 0.2s $ease-in-out, width 0.4s $ease-out-back;
