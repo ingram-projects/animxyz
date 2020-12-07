@@ -1,6 +1,22 @@
 # AnimXYZ
 
+[animxyz.com](https://animxyz.com)
+
 AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables to allow a nearly limitless number of unique animations without writing a single keyframe. Save time and have complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
+
+For example here is how you make an element fade and shrink in from above:
+
+```html
+<div class="xyz-in" xyz="fade up big">I will animate in!</div>
+```
+Changing the class to `xyz-out` reverses the direction of the animation:
+
+```html
+<div class="xyz-out" xyz="fade up big">I will animate out!</div>
+```
+[See it in action here](<?tab=examples&example=Example 1#the-basics>)
+
+For simple animations, that's all you need, but AnimXYZ can do so much more! [Check out the AnimXYZ docs!](https://animxyz.com/docs)
 
 ---
 ## Installation
