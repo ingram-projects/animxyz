@@ -14,7 +14,7 @@ Changing the class to `xyz-out` reverses the direction of the animation:
 ```html
 <div class="xyz-out" xyz="fade up big">I will animate out!</div>
 ```
-[See it in action here](<?tab=examples&example=Example 1#the-basics>)
+[See it in action here](<https://animxyz.com/docs?tab=examples&example=Example 1#the-basics>)
 
 For simple animations, that's all you need, but AnimXYZ can do so much more! [Check out the AnimXYZ docs!](https://animxyz.com/docs)
 
