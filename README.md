@@ -1,6 +1,6 @@
 <p align="center"><img src="https://raw.githubusercontent.com/ingram-projects/animxyz/master/docs/src/assets/images/animxyz-logo.svg" alt="AnimXYZ Logo" height="160"></p>
 
-# AnimXYZ
+<h1 align="center">AnimXYZ</h1>
 
 [![npm version](https://badge.fury.io/js/%40animxyz%2Fcore.svg)](https://www.npmjs.com/package/@animxyz/core)
 
