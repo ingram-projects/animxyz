@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/ingram-projects/animxyz/master/docs/src/assets/images/animxyz-logo.svg" alt="AnimXYZ Logo" height="160"></p>
+<p align="center"><a href="https://animxyz.com"><img src="https://raw.githubusercontent.com/ingram-projects/animxyz/master/docs/src/assets/images/animxyz-logo.svg" alt="AnimXYZ Logo" height="160"><a></p>
 
 <h1 align="center">AnimXYZ</h1>
 
