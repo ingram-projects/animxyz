@@ -18,6 +18,12 @@ import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 
+// Icons
+import icons from '~/assets/icons'
+
+// Examples
+import examples from '~/components/examples'
+
 // Directives
 import ScrollLock from '~/directives/ScrollLock'
 
@@ -42,6 +48,14 @@ export default function (Vue, { router, head }) {
 		},
 	})
 	Vue.use(VueObserveVisibility)
+
+	Object.entries(icons).forEach(([name, component]) => {
+		return Vue.component(name, component)
+	})
+
+	Object.entries(examples).forEach(([name, component]) => {
+		return Vue.component(name, component)
+	})
 
 	Vue.component('Layout', DefaultLayout)
 

@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import IconLink from '~/assets/icons/IconLink.svg'
 import MarkdownContent from '~/components/reusable/MarkdownContent'
 
 export default {
@@ -31,7 +30,6 @@ export default {
 		section: Object,
 	},
 	components: {
-		IconLink,
 		MarkdownContent,
 	},
 	methods: {

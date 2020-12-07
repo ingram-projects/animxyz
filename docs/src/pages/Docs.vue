@@ -81,7 +81,6 @@
 
 <script>
 import DocsSection from '~/components/docsSection/DocsSection'
-import IconSandbox from '~/assets/icons/IconSandbox.svg'
 import PageNav from '~/components/reusable/PageNav'
 import Sandbox from '~/components/reusable/Sandbox'
 import { openGraphMeta } from '~/utils'
@@ -89,7 +88,6 @@ import { openGraphMeta } from '~/utils'
 export default {
 	components: {
 		DocsSection,
-		IconSandbox,
 		PageNav,
 		Sandbox,
 	},
