@@ -70,6 +70,6 @@ To add AnimXYZ using a CDN put this link in the `<head>` of your `index.html` fi
 ---
 ## Made By
 
-Miles Ingram • [GitHub](https://github.com/milesingrams) • [Website](https://milesingrams.me)
+Miles Ingram • [GitHub](https://github.com/milesingrams) • [Website](https://milesingram.me)
 
 Mattan Ingram • [GitHub](https://github.com/mattaningram) • [Website](https://mattaningram.com)
