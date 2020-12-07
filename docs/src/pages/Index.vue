@@ -96,7 +96,7 @@
 					<ul class="used-by__list">
 						<li class="used-by__item">
 							<a href="https://yaherd.co/" target="_blank">
-								<GImage src="@/assets/images/yaherd-logo.svg" width="240" :immediate="true" />
+								<GImage src="@/assets/images/yaherd-logo.svg" width="240" height="54" :immediate="true" />
 								<span class="screen-reader-only">YaHerd</span>
 							</a>
 						</li>
