@@ -1,6 +1,9 @@
-# animxyz
+# AnimXYZ
 
-# How to install
+AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables to allow a nearly limitless number of unique animations without writing a single keyframe. Save time and have complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ will bring your website to life.
+
+# Installation
+
 ## Using a package manager
 
 AnimXYZ can be installed using your favorite package manager:
@@ -39,5 +42,6 @@ To add AnimXYZ using a CDN put this link in the `<head>` of your `index.html` fi
 ```
 
 ---
+## Vue & React
 
-> If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](#vue-installation) and [React](#react-installation).
+ If you are using AnimXYZ in a Vue or React project we strongly recommend you also use our AnimXYZ components. To add those, follow the installation instructions in the relevant sections [Vue](https://animxyz.com/docs/#vue-installation) and [React](https://animxyz.com/docs/#react-installation).
