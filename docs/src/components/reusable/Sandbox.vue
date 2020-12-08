@@ -8,12 +8,7 @@
 				ref="modifiers"
 			></XyzModifiersInput>
 		</XyzTransition>
-		<CodeExamples
-			:examples="examples"
-			:data="injectedData"
-			@example-changed="onExampleChange"
-			ref="examples"
-		></CodeExamples>
+		<CodeExamples :examples="examples" :injected-data="injectedData" ref="examples"></CodeExamples>
 	</div>
 </template>
 
@@ -35,15 +30,9 @@ export default {
 	data() {
 		return {
 			xyzModifiers: null,
-			animCount: 0,
-			toggled: false,
-			toggleTimeout: null,
 		}
 	},
 	computed: {
-		mode() {
-			return this.toggled ? 'xyz-in' : 'xyz-out'
-		},
 		utilitiesString() {
 			return Object.keys(this.xyzModifiers.utilities).join(' ')
 		},
@@ -56,23 +45,10 @@ export default {
 		},
 		injectedData() {
 			return {
-				toggled: this.toggled,
-				mode: this.mode,
 				utilities: this.xyzModifiers.utilities,
 				utilitiesString: this.utilitiesString,
 				variables: this.xyzModifiers.variables,
 				variablesString: this.variablesString,
-				listeners: {
-					beforeAppear: this.beforeAnim,
-					beforeEnter: this.beforeAnim,
-					beforeLeave: this.beforeAnim,
-					afterAppear: this.afterAnim,
-					afterEnter: this.afterAnim,
-					afterLeave: this.afterAnim,
-					appearCancelled: this.afterAnim,
-					enterCancelled: this.afterAnim,
-					leaveCancelled: this.afterAnim,
-				},
 			}
 		},
 	},
@@ -110,30 +86,6 @@ export default {
 				variables: {},
 			}
 		},
-		clearToggleTimeout() {
-			clearTimeout(this.toggleTimeout)
-			this.toggleTimeout = null
-		},
-		toggleExample() {
-			this.animCount = 0
-			this.clearToggleTimeout()
-			this.toggleTimeout = setTimeout(() => {
-				this.toggled = !this.toggled
-			}, 1000)
-		},
-		beforeAnim() {
-			this.animCount++
-		},
-		afterAnim() {
-			this.animCount--
-			if (this.animCount === 0) {
-				this.toggleExample()
-			}
-		},
-		onExampleChange() {
-			this.toggled = false
-			this.toggleExample()
-		},
 		onRouteChange() {
 			const { query, hash } = this.$route
 			if (hash === `#${this.name}`) {
@@ -162,10 +114,6 @@ export default {
 	},
 	mounted() {
 		this.onRouteChange()
-		this.onExampleChange()
-	},
-	beforeDestroy() {
-		this.clearToggleTimeout()
 	},
 }
 </script>

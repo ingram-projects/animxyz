@@ -53,6 +53,7 @@
 				content
 				examples {
 					name
+					component
 					template
 					code {
 						name

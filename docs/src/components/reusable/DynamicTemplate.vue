@@ -2,15 +2,11 @@
 export default {
 	name: 'DynamicTemplate',
 	props: {
-		componentName: String,
 		template: String,
 		data: Object,
 	},
 	computed: {
 		component() {
-			if (this.componentName) {
-				return this.componentName
-			}
 			return {
 				template: this.template,
 				props: {
@@ -24,6 +20,8 @@ export default {
 			props: {
 				data: this.data,
 			},
+			attrs: this.$attrs,
+			on: this.$listeners,
 		})
 	},
 }

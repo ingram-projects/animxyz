@@ -1,5 +1,5 @@
-import TestExample from './TestExample'
+import ExampleXyzTransitionToggle from './ExampleXyzTransitionToggle'
 
 export default {
-	TestExample,
+	ExampleXyzTransitionToggle,
 }
