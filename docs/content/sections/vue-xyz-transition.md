@@ -23,6 +23,19 @@ examples:
             <div class="square" :key="key">{{ key }}</div>
           </XyzTransition>
           <button @click="key += 1">Switch</button>
+  - name: Nested
+    component: ExampleXyzTransitionNested
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition appear duration="auto" xyz="fade up-100 duration-10">
+            <div class="square-block" v-show="toggled">
+              <div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
+            </div>
+          </XyzTransition>
+          <button @click="toggled = !toggled">Click to toggle</button>
+
 ---
 
 The `<XyzTransition>` component is an extended version of the [&lt;Transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
