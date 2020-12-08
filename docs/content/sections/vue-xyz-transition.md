@@ -9,7 +9,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade up flip-up">
+          <XyzTransition appear xyz="fade rotate-right ease-out-back appear-duration-10">
             <div class="square" v-show="toggled"></div>
           </XyzTransition>
           <button @click="toggled = !toggled">Toggle</button>
@@ -19,7 +19,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade in-flip-up out-flip-down">
+          <XyzTransition appear mode="out-in" xyz="in-flip-up out-flip-down ease-out appear-up-100">
             <div class="square" :key="key">{{ key }}</div>
           </XyzTransition>
           <button @click="key += 1">Switch</button>

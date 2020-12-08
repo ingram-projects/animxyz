@@ -1,6 +1,6 @@
 <template>
 	<div class="example-wrap example-wrap-column">
-		<XyzTransition xyz="fade rotate-right ease-out-back">
+		<XyzTransition appear xyz="fade rotate-right ease-out-back appear-duration-10">
 			<div class="square" v-show="customData.buttonToggled"></div>
 		</XyzTransition>
 		<button @click="customData.buttonToggled = !customData.buttonToggled">Click to toggle</button>
