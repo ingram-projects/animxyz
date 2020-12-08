@@ -6,16 +6,16 @@ export default {
 		customData: {
 			deep: true,
 			handler() {
-				this.onCustomDataChange()
+				this.onCustomData()
 			},
 		},
 	},
 	methods: {
-		onCustomDataChange() {
+		onCustomData() {
 			this.$emit('custom-data', this.customData)
 		},
 	},
-	mounted() {
-		this.onCustomDataChange()
+	created() {
+		this.$nextTick(() => this.onCustomData())
 	},
 }

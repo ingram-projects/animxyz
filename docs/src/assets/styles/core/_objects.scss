@@ -21,6 +21,10 @@ svg {
   justify-content: center;
 }
 
+.example-wrap-column {
+  flex-direction: column;
+}
+
 .square {
 	@include size(5rem);
 	background-color: $cyan;

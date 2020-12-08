@@ -9,13 +9,13 @@
 						v-if="activeExample.component"
 						:is="activeExample.component"
 						:data="data"
-						@custom-data="onCustomDataChanged"
+						@custom-data="onCustomData"
 					></component>
 					<DynamicTemplate
 						v-if="activeExample.template"
 						:template="activeExample.template"
 						:data="data"
-						@custom-data="onCustomDataChanged"
+						@custom-data="onCustomData"
 					></DynamicTemplate>
 				</div>
 
@@ -124,7 +124,7 @@ export default {
 				return example.name === exampleName
 			})
 		},
-		onCustomDataChanged(customData) {
+		onCustomData(customData) {
 			this.customData = customData
 		},
 	},

@@ -1,9 +1,9 @@
 <template>
 	<div class="example-wrap example-wrap-column">
-		<XyzTransition xyz="fade rotate-right ease-out-back">
-			<div class="square" v-show="customData.buttonToggled"></div>
+		<XyzTransition mode="out-in" xyz="in-flip-up out-flip-down ease-out">
+			<div class="square" :key="customData.key">{{ customData.key }}</div>
 		</XyzTransition>
-		<button @click="customData.buttonToggled = !customData.buttonToggled">Click to toggle</button>
+		<button @click="customData.key += 1">Click to switch</button>
 	</div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 	data() {
 		return {
 			customData: {
-				buttonToggled: true,
+				key: 1,
 			},
 		}
 	},

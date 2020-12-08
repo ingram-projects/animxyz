@@ -10,8 +10,19 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade up flip-up">
-            <div class="square" v-show="${data.buttonToggled}"></div>
+            <div class="square" v-show="toggled"></div>
           </XyzTransition>
+          <button @click="toggled = !toggled">Toggle</button>
+  - name: Switch
+    component: ExampleXyzTransitionSwitch
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition xyz="fade in-flip-up out-flip-down">
+            <div class="square" :key="key">{{ key }}</div>
+          </XyzTransition>
+          <button @click="key += 1">Switch</button>
 ---
 
 The `<XyzTransition>` component is an extended version of the [&lt;Transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.

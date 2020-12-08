@@ -29,9 +29,9 @@
 		<XyzTransition appear xyz="fade right skew-right-3 ease-out-back">
 			<button v-if="numActiveModifiers" class="clear-modifiers" @click="clearModifiers">
 				Clear All
-				<XyzTransitionGroup xyz="flip-right-50 duration-3 ease-in-out">
-					<div class="num-active-modifiers xyz-out-absolute" :key="numActiveModifiers">{{ numActiveModifiers }}</div>
-				</XyzTransitionGroup>
+				<XyzTransition mode="out-in" xyz="in-flip-right out-flip-left duration-1 ease-out">
+					<div class="num-active-modifiers" :key="numActiveModifiers">{{ numActiveModifiers }}</div>
+				</XyzTransition>
 			</button>
 		</XyzTransition>
 	</div>
