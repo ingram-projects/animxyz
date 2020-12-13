@@ -1,9 +1,9 @@
 <template>
-	<div class="example-wrap example-wrap-column">
+	<div class="example-wrap flex-col">
 		<XyzTransition appear xyz="fade rotate-right ease-out-back">
 			<div class="square" v-show="customData.buttonToggled"></div>
 		</XyzTransition>
-		<button @click="customData.buttonToggled = !customData.buttonToggled">Click to toggle</button>
+		<button class="example-button mt-l" @click="customData.buttonToggled = !customData.buttonToggled">Click to toggle</button>
 	</div>
 </template>
 

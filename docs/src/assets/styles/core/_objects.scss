@@ -21,10 +21,6 @@ svg {
   justify-content: center;
 }
 
-.example-wrap-column {
-  flex-direction: column;
-}
-
 .square {
 	@include size(5rem);
 	background-color: $cyan;
@@ -68,5 +64,31 @@ svg {
 
   .square {
     @include size(100%);
+  }
+}
+
+.example-button {
+  background-color: primary-color(800);
+  color: primary-color(100);
+  border-radius: $br-l;
+  display: flex;
+  align-items: center;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  padding: $sp-xxs $sp-s;
+  transition: 0.2s ease-in-out;
+  transition-property: background-color, box-shadow, color;
+
+  &:hover {
+    background-color: primary-color(700);
+  }
+
+  &:active {
+    color: primary-color(700);
+    background-color: primary-color(100);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $cyan;
   }
 }
