@@ -1,9 +1,16 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
-			<div class="square text--xxl fw--bold" :key="customData.key">{{ customData.key }}</div>
+		<XyzTransition appear mode="out-in">
+			<div class="square" xyz="fade left-100" v-if="customData.shape === 'square'" key="square"></div>
+			<div class="circle" xyz="fade up-100" v-if="customData.shape === 'circle'" key="circle"></div>
+			<div class="triangle" xyz="fade right-100" v-if="customData.shape === 'triangle'" key="triangle"></div>
 		</XyzTransition>
-		<button class="example-button mt-l" @click="customData.key += 1">Click to switch</button>
+		<button
+			class="example-button mt-l"
+			@click="customData.shape = ['square', 'circle', 'triangle'][Math.floor(Math.random() * 3)]"
+		>
+			Click to switch
+		</button>
 	</div>
 </template>
 
@@ -15,7 +22,7 @@ export default {
 	data() {
 		return {
 			customData: {
-				key: 1,
+				shape: 'square',
 			},
 		}
 	},
