@@ -77,38 +77,40 @@ function getXyzAnimationHook(mode, duration) {
 			return
 		}
 
-		const xyzModeKeyframes = `xyz-${mode}-keyframes`
-		const xyzEls = [el]
+		el.xyzAnimTimeout = setTimeout(() => {
+			const xyzModeKeyframes = `xyz-${mode}-keyframes`
+			const xyzEls = [el]
 
-		if (modeDuration === 'auto') {
-			const xyzNestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
-			xyzEls.push(...Array.from(xyzNestedEls))
-		}
+			if (modeDuration === 'auto') {
+				const xyzNestedEls = el.querySelectorAll(`.xyz-nested, .xyz-${mode}-nested`)
+				xyzEls.push(...Array.from(xyzNestedEls))
+			}
 
-		const xyzActiveEls = xyzEls.filter((xyzEl) => {
-			// If element is invisible
-			if (xyzEl.offsetParent === null) return false
+			const xyzActiveEls = xyzEls.filter((xyzEl) => {
+				// If element is invisible
+				if (xyzEl.offsetParent === null) return false
 
-			// If element isn't animating
-			const animationName = window.getComputedStyle(xyzEl).getPropertyValue('animation-name')
-			if (animationName.indexOf(xyzModeKeyframes) === -1) return false
+				// If element isn't animating
+				const animationName = window.getComputedStyle(xyzEl).getPropertyValue('animation-name')
+				if (animationName.indexOf(xyzModeKeyframes) === -1) return false
 
-			return true
-		})
+				return true
+			})
 
-		const xyzActiveElsSet = new Set(xyzActiveEls)
+			const xyzActiveElsSet = new Set(xyzActiveEls)
 
-		el.xyzAnimEnd = (event) => {
-			if (event.animationName === xyzModeKeyframes) {
-				xyzActiveElsSet.delete(event.target)
-				if (xyzActiveElsSet.size === 0) {
-					xyzAnimDone()
+			el.xyzAnimEnd = (event) => {
+				if (event.animationName === xyzModeKeyframes) {
+					xyzActiveElsSet.delete(event.target)
+					if (xyzActiveElsSet.size === 0) {
+						xyzAnimDone()
+					}
 				}
 			}
-		}
 
-		el.addEventListener('animationend', el.xyzAnimEnd, false)
-		el.addEventListener('animationcancelled', el.xyzAnimEnd, false)
+			el.addEventListener('animationend', el.xyzAnimEnd, false)
+			el.addEventListener('animationcancelled', el.xyzAnimEnd, false)
+		})
 	}
 }
 
