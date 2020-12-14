@@ -24,12 +24,7 @@ examples:
             <div class="circle" xyz="fade up-100" v-if="shape === 'circle'" key="circle"></div>
             <div class="triangle" xyz="fade right-100" v-if="shape === 'triangle'" key="triangle"></div>
           </XyzTransition>
-          <button
-            class="example-button mt-l"
-            @click="shape = ['square', 'circle', 'triangle'][Math.floor(Math.random() * 3)]"
-          >
-            Click to switch
-          </button>
+          <button @click="changeShape">Click to switch</button>
   - name: Key
     component: ExampleXyzTransitionKey
     code:
@@ -39,7 +34,7 @@ examples:
           <XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
             <div class="square" :key="key">{{ key }}</div>
           </XyzTransition>
-          <button @click="key += 1">Switch</button>
+          <button @click="key += 1">Click to increment</button>
   - name: Nested
     component: ExampleXyzTransitionNested
     code:
