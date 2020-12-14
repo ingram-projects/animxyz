@@ -23,7 +23,8 @@ svg {
 
 .circle {
   border-radius: 50%;
-  @include size(5rem);
+  @include size(5.5rem);
+  margin: -.25rem 0;
 	background-color: $cyan;
   display: flex;
   align-items: center;
