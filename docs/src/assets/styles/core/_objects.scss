@@ -23,7 +23,7 @@ svg {
 
 .circle {
   border-radius: 50%;
-  @include size(6rem);
+  @include size(5rem);
 	background-color: $cyan;
   display: flex;
   align-items: center;
@@ -35,16 +35,14 @@ svg {
 
 .triangle {
   --triangle-color: #{$cyan};
-  --triangle-side: 6rem;  /* setting side of the triangle */
-  --triangle-a: calc(var(--triangle-side) * .866); /* bottom border-width */
-  --triangle-b: calc(var(--triangle-a) * .577); /* left/right border-width */
+  --triangle-height: 5rem;  /* setting side of the triangle */
   
   position: relative;
   width: 0;
   height: 0;
-  border-bottom: var(--triangle-a) solid var(--triangle-color);
-  border-left: var(--triangle-b) solid transparent;
-  border-right: var(--triangle-b) solid transparent;
+  border-bottom: var(--triangle-height, 0) solid var(--triangle-color);
+  border-left: calc(var(--triangle-height, 0) * 0.577) solid transparent;
+  border-right: calc(var(--triangle-height, 0) * 0.577) solid transparent;
 }
 
 .square {
