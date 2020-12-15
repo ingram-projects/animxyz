@@ -1,12 +1,12 @@
 {
   "name": "@animxyz/react-examples",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "start": "PORT=8080 SKIP_PREFLIGHT_CHECK=true react-scripts start"
   },
   "dependencies": {
-    "@animxyz/react": "^0.1.0",
+    "@animxyz/react": "^0.1.1",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
