@@ -215,15 +215,27 @@ export default {
 					variables: true,
 					presets: [
 						{
-							title: '⏬ Drop',
+							title: '🎓 Drop out',
 							utilities: ['fade', 'down-100', 'back-5'],
+						},
+						{
+							title: '🌪 Spinny',
+							utilities: ['fade', 'down-5', 'rotate-right-50', 'stagger'],
+						},
+						{
+							title: '⤵️ Flippy',
+							utilities: ['fade', 'flip-up', 'flip-left'],
+						},
+						{
+							title: '💾 Floppy',
+							utilities: ['fade', 'front-5', 'flip-down-50', 'duration-10', 'stagger-5'],
 						},
 						{
 							title: '🎈 Yoink!',
 							variables: ['stagger: 0.2s', 'translate-y: 400%', 'scale-x: 0', 'ease: cubic-bezier(.26,2.05,.84,.38)'],
 						},
 						{
-							title: '📺 Click.',
+							title: '📺 Click',
 							variables: ['duration: 0.6s', 'scale-x: 1.25', 'scale-y: 0'],
 						},
 						{
@@ -231,7 +243,7 @@ export default {
 							variables: ['rotate-z: 1turn', 'origin: center -200%', 'duration: 2s', 'scale-x: 0', 'scale-y: 0'],
 						},
 						{
-							title: '💫 Engage.',
+							title: '💫 Engage',
 							variables: [
 								'rotate-x: 90deg',
 								'rotate-z: -180deg',
