@@ -33,5 +33,5 @@ Vue.use(VueAnimXYZ)
 To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index.html` file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.1.0/dist/VueAnimXyz.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.1.1/dist/VueAnimXyz.js"></script>
 ```
