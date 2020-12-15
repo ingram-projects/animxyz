@@ -128,3 +128,47 @@ svg {
     margin-left: $sp-xxs;
   }
 }
+
+.example-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  transition-property: box-shadow;
+  
+  & + & {
+    margin-left: $sp-s;
+  }
+  
+  span {
+    color: primary-color(200);
+    font-weight: 600;
+    border-radius: $br-m;
+    padding: $sp-xxxs $sp-xs;
+    box-shadow: inset 0 0 0 2px primary-color(700);
+    transition: 0.3s ease-in-out;
+    transition-property: color, box-shadow;
+  }
+
+  &:hover,
+  &:focus-within {
+    span {
+      box-shadow: inset 0 0 0 4px primary-color(500);
+    }
+  }
+
+  input {
+    &:checked + span {
+      color: primary-color(800);
+      box-shadow: inset 0 0 0 48px primary-color(100);
+
+      &:hover {
+        box-shadow: inset 0 0 0 48px primary-color(300);
+      }
+    }
+
+    &:checked:focus + span {
+      box-shadow: inset 0 0 0 48px primary-color(100), 0 0 0 2px $cyan;
+    }
+  }
+}
