@@ -9,7 +9,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-grid" xyz="fade appear-stagger small out-down out-rotate-right">
+          <XyzTransitionGroup appear class="square-grid" xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
@@ -32,7 +32,7 @@ examples:
           >
             <div
               class="square"
-              v-if="data.toggled"
+              v-if="${data.toggled}"
               v-for="index in 100"
               :key="index"
               :style="{ '--xyz-index-rev': Math.random() * 100 }"

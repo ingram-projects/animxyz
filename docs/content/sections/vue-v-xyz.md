@@ -10,13 +10,13 @@ examples:
         content: |
           ##vue
           <XyzTransition appear xyz="fade" v-xyz="xyzUtilities" v-on="data.listeners">
-            <div class="square" v-if="data.toggled"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
           <input type="checkbox" v-model="xyzUtilities['down']" />
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
-  - name: Random
-    component: ExampleVXyzRandom
+  - name: ByIndex
+    component: ExampleVXyzByIndex
     code:
       - name: Vue
         content: |
@@ -26,13 +26,13 @@ examples:
               class="square"
               xyz="fade"
               v-xyz="{
-                'down right in-stagger-1': index < 50,
-                'up left in-stagger-rev-1': index >= 50,
+                'down right in-stagger-1': index <= 50,
+                'up left in-stagger-rev-1': index > 50,
                 'small-100': index % 2,
                 'rotate-right': index % 3,
                 'flip-up': index % 5,
               }"
-              v-if="data.toggled"
+              v-if="${data.toggled"
               v-for="index in 100"
               :key="index"
             ></div>

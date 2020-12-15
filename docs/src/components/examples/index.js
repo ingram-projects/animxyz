@@ -6,7 +6,7 @@ import ExampleXyzTransitionGroupList from './ExampleXyzTransitionGroupList'
 import ExampleXyzTransitionGroupIndex from './ExampleXyzTransitionGroupIndex'
 import ExampleXyzTransitionGroupNested from './ExampleXyzTransitionGroupNested'
 import ExampleVXyzBasic from './ExampleVXyzBasic'
-import ExampleVXyzRandom from './ExampleVXyzRandom'
+import ExampleVXyzByIndex from './ExampleVXyzByIndex'
 
 export default {
 	ExampleXyzTransitionToggle,
@@ -17,5 +17,5 @@ export default {
 	ExampleXyzTransitionGroupIndex,
 	ExampleXyzTransitionGroupNested,
 	ExampleVXyzBasic,
-	ExampleVXyzRandom,
+	ExampleVXyzByIndex,
 }
