@@ -15,8 +15,8 @@ examples:
           <input type="checkbox" v-model="xyzUtilities['down']" />
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
-  - name: Random
-    component: ExampleVXyzRandom
+  - name: ByIndex
+    component: ExampleVXyzByIndex
     code:
       - name: Vue
         content: |
@@ -26,8 +26,8 @@ examples:
               class="square"
               xyz="fade"
               v-xyz="{
-                'down right in-stagger-1': index < 50,
-                'up left in-stagger-rev-1': index >= 50,
+                'down right in-stagger-1': index <= 50,
+                'up left in-stagger-rev-1': index > 50,
                 'small-100': index % 2,
                 'rotate-right': index % 3,
                 'flip-up': index % 5,
