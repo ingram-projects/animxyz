@@ -1,17 +1,20 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransitionGroup
-			appear
-			class="square-grid square-grid-10"
-			style="--xyz-appear-stagger: 0.025s"
-			v-on="data.listeners"
-		>
-			<div class="square" v-if="data.toggled" v-for="index in 100" :key="index"></div>
-		</XyzTransitionGroup>
-		<div class="flex-row">
-			<button class="example-button mt-l" @click="addElement">Add Element</button>
-			<button class="example-button mt-l" @click="removeElement">Remove Element</button>
-		</div>
+		<XyzTransition appear xyz="fade" v-xyz="customData.xyzUtilities" v-on="data.listeners">
+			<div class="square" v-if="data.toggled"></div>
+		</XyzTransition>
+		<label class="example-checkbox mt-l">
+			<input type="checkbox" v-model="customData.xyzUtilities['down']" />
+			down
+		</label>
+		<label class="example-checkbox mt-l">
+			<input type="checkbox" v-model="customData.xyzUtilities['small']" />
+			small
+		</label>
+		<label class="example-checkbox mt-l">
+			<input type="checkbox" v-model="customData.xyzUtilities['rotate-right']" />
+			rotate-right
+		</label>
 	</div>
 </template>
 
@@ -23,19 +26,13 @@ export default {
 	data() {
 		return {
 			customData: {
-				numElements: 3,
+				xyzUtilities: {
+					down: false,
+					small: false,
+					rotate: false,
+				},
 			},
 		}
-	},
-	methods: {
-		addElement() {
-			this.customData.numElements += 1
-		},
-		removeElement() {
-			if (this.customData.numElements > 0) {
-				this.customData.numElements -= 1
-			}
-		},
 	},
 }
 </script>
