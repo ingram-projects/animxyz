@@ -10,7 +10,6 @@ export const xyzTransitionClasses = {
 	outFrom: 'xyz-out-from',
 	outActive: 'xyz-out',
 	outTo: 'xyz-out-to',
-	move: 'xyz-move',
 }
 
 function getXyzElementMode(el) {

@@ -79,7 +79,6 @@ You can set your own custom duration, delay, and timing function using the `--xy
         <th>In</th>
         <th>Out</th>
         <th>Appear</th>
-        <th>Move</th>
       </tr>
     </thead>
     <tbody>
@@ -89,7 +88,6 @@ You can set your own custom duration, delay, and timing function using the `--xy
         <td>--xyz-in-ease</td>
         <td>--xyz-out-ease</td>
         <td>--xyz-appear-ease</td>
-        <td>--xyz-move-ease</td>
       </tr>
       <tr>
         <th scope="row">Duration</th>
@@ -97,7 +95,6 @@ You can set your own custom duration, delay, and timing function using the `--xy
         <td>--xyz-in-duration</td>
         <td>--xyz-out-duration</td>
         <td>--xyz-appear-duration</td>
-        <td>--xyz-move-duration</td>
       </tr>
       <tr>
         <th scope="row">Delay</th>
@@ -105,7 +102,6 @@ You can set your own custom duration, delay, and timing function using the `--xy
         <td>--xyz-in-delay</td>
         <td>--xyz-out-delay</td>
         <td>--xyz-appear-delay</td>
-        <td>--xyz-move-delay</td>
       </tr>
     </tbody>
   </table>

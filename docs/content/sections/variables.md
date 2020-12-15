@@ -108,7 +108,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <th>In</th>
         <th>Out</th>
         <th>Appear</th>
-        <th>Move</th>
       </tr>
     </thead>
     <tbody>
@@ -118,7 +117,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-keyframes</td>
         <td>--xyz-out-keyframes</td>
         <td>--xyz-appear-keyframes</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Ease</th>
@@ -126,7 +124,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-ease</td>
         <td>--xyz-out-ease</td>
         <td>--xyz-appear-ease</td>
-        <td>--xyz-move-ease</td>
       </tr>
       <tr>
         <th scope="row">Duration</th>
@@ -134,7 +131,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-duration</td>
         <td>--xyz-out-duration</td>
         <td>--xyz-appear-duration</td>
-        <td>--xyz-move-duration</td>
       </tr>
       <tr>
         <th scope="row">Delay</th>
@@ -142,7 +138,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-delay</td>
         <td>--xyz-out-delay</td>
         <td>--xyz-appear-delay</td>
-        <td>--xyz-move-delay</td>
       </tr>
       <tr>
         <th scope="row">Stagger</th>
@@ -150,7 +145,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-stagger</td>
         <td>--xyz-out-stagger</td>
         <td>--xyz-appear-stagger</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Stagger Reverse</th>
@@ -158,7 +152,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-stagger-rev</td>
         <td>--xyz-out-stagger-rev</td>
         <td>--xyz-appear-stagger-rev</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Iterate</th>
@@ -166,7 +159,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-iterate</td>
         <td>--xyz-out-iterate</td>
         <td>--xyz-appear-iterate</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Origin</th>
@@ -174,7 +166,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-origin</td>
         <td>--xyz-out-origin</td>
         <td>--xyz-appear-origin</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Opacity</th>
@@ -182,7 +173,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-opacity</td>
         <td>--xyz-out-opacity</td>
         <td>--xyz-appear-opacity</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Transform</th>
@@ -190,7 +180,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-transform</td>
         <td>--xyz-out-transform</td>
         <td>--xyz-appear-transform</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Perspective</th>
@@ -198,7 +187,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-perspective</td>
         <td>--xyz-out-perspective</td>
         <td>--xyz-appear-perspective</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Translate X</th>
@@ -206,7 +194,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-translate-x</td>
         <td>--xyz-out-translate-x</td>
         <td>--xyz-appear-translate-x</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Translate Y</th>
@@ -214,7 +201,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-translate-y</td>
         <td>--xyz-out-translate-y</td>
         <td>--xyz-appear-translate-y</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Translate Z</th>
@@ -222,7 +208,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-translate-z</td>
         <td>--xyz-out-translate-z</td>
         <td>--xyz-appear-translate-z</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Rotate X</th>
@@ -230,7 +215,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-rotate-x</td>
         <td>--xyz-out-rotate-x</td>
         <td>--xyz-appear-rotate-x</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Rotate Y</th>
@@ -238,7 +222,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-rotate-y</td>
         <td>--xyz-out-rotate-y</td>
         <td>--xyz-appear-rotate-y</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Rotate Z</th>
@@ -246,7 +229,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-rotate-z</td>
         <td>--xyz-out-rotate-z</td>
         <td>--xyz-appear-rotate-z</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Scale X</th>
@@ -254,7 +236,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-scale-x</td>
         <td>--xyz-out-scale-x</td>
         <td>--xyz-appear-scale-x</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Scale Y</th>
@@ -262,7 +243,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-scale-y</td>
         <td>--xyz-out-scale-y</td>
         <td>--xyz-appear-scale-y</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Scale Z</th>
@@ -270,7 +250,6 @@ Keep in mind that CSS variables are inherited by child elements, so any element 
         <td>--xyz-in-scale-z</td>
         <td>--xyz-out-scale-z</td>
         <td>--xyz-appear-scale-z</td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Skew X</th>

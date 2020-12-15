@@ -34,7 +34,6 @@ export const xyzTransitionClasses = {
 	outFrom: 'xyz-out-from',
 	outActive: 'xyz-out',
 	outTo: 'xyz-out-to',
-	move: 'xyz-move',
 }
 
 function getXyzDurationForMode(mode, duration) {
@@ -124,7 +123,6 @@ export function getXyzTransitionData(data) {
 
 	const transitionData = {
 		attrs: {
-			name: 'xyz',
 			css: true,
 			type: 'animation',
 			appearClass: xyzTransitionClasses.appearFrom,
@@ -136,7 +134,6 @@ export function getXyzTransitionData(data) {
 			leaveClass: xyzTransitionClasses.outFrom,
 			leaveActiveClass: xyzTransitionClasses.outActive,
 			leaveToClass: xyzTransitionClasses.outTo,
-			moveClass: xyzTransitionClasses.move,
 		},
 		on: {
 			enter: getXyzAnimationHook('in', duration),
