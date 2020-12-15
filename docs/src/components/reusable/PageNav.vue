@@ -351,7 +351,7 @@ export default {
 }
 
 .logo-text {
-	color: primary-color(100);
+	color: primary-color(50);
 
 	@include media('<large') {
 		display: none;
@@ -362,7 +362,7 @@ export default {
 	color: primary-color(800);
 
 	.open & {
-		color: primary-color(100);
+		color: primary-color(50);
 	}
 
 	.tab--examples & {
