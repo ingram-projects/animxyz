@@ -126,6 +126,7 @@ $active-border-width: 0.5rem;
 .section-header {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	margin-bottom: $sp-m;
 	z-index: 2;
 
@@ -163,6 +164,10 @@ $active-border-width: 0.5rem;
 		margin: auto;
 	}
 
+	@include media('<phone') {
+		@include circle(1.375rem);
+	}
+
 	&:focus,
 	&:hover {
 		outline: none;
@@ -196,6 +201,10 @@ $active-border-width: 0.5rem;
 
 	@include media('<phone') {
 		font-size: 1.5rem;
+	}
+
+	@include media('<small') {
+		font-size: 1.25rem;
 	}
 
 	&::before {
@@ -259,6 +268,11 @@ $active-border-width: 0.5rem;
 		background-color: primary-color(600);
 		color: primary-color(50);
 		box-shadow: none;
+	}
+
+	@include media('<phone') {
+		font-size: $fs-xs;
+		font-weight: 600;
 	}
 
 	@include media('>laptop') {
