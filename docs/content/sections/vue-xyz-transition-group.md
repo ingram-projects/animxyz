@@ -9,7 +9,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-grid" xyz="fade appear-stagger small out-down out-rotate-right">
+          <XyzTransitionGroup appear class="square-grid" xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
