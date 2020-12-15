@@ -17,7 +17,7 @@
 				xyz="ease-in-out duration-3"
 				v-xyz="{ 'left-100': $mq.above('tablet'), 'down-100': $mq.below('tablet') }"
 			>
-				<nav class="page-nav" v-if="open">
+				<nav class="page-nav" v-show="open">
 					<div class="nav-list__wrap" v-scroll-lock="$mq.below('tablet') && open">
 						<ul class="nav-list" xyz="fade left" style="--xyz-stagger: 0.05s">
 							<li class="nav-item xyz-in-nested" :style="{ '--xyz-index': 0 }" key="home">

@@ -9,7 +9,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-row" xyz="fade appear-stagger small out-down out-rotate-right">
+          <XyzTransitionGroup appear class="square-grid" xyz="fade appear-stagger small out-down out-rotate-right">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
@@ -20,18 +20,31 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-row" xyz="fade appear-stagger small out-down out-rotate-right">
-            <div class="square" v-for="index in numElements" :key="index"></div>
+          <XyzTransitionGroup
+            appear
+            class="square-grid"
+            xyz="fade small down"
+            :style="{
+              '--xyz-appear-stagger': '0.025s',
+              '--xyz-in-stagger': '0.025s',
+              '--xyz-out-stagger-rev': '0.025s',
+            }"
+          >
+            <div
+              class="square"
+              v-if="data.toggled"
+              v-for="index in 100"
+              :key="index"
+              :style="{ '--xyz-index-rev': Math.random() * 100 }"
+            ></div>
           </XyzTransitionGroup>
-          <button @click="addElement">Add Element</button>
-          <button @click="removeElement">Remove Element</button>
   - name: Nested
     component: ExampleXyzTransitionGroupNested
     code:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear duration="auto" class="square-row" xyz="fade flip-left origin-left duration-3 appear-stagger">
+          <XyzTransitionGroup appear duration="auto" class="square-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
             <div class="square-block" v-for="index in numElements" :key="index">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
             </div>

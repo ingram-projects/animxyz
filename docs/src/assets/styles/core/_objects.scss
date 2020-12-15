@@ -66,27 +66,21 @@ svg {
   margin: 0 auto;
 }
 
-.square-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 20rem;
-  margin: 0 auto;
-
-  .square {
-    flex-shrink: 0;
-  }
-}
-
 .square-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   margin: 0 auto;
 
   .square {
     @include size(4rem);
+  }
+}
+
+.square-grid-10 {
+  grid-template-columns: repeat(10, 1fr);
+
+  .square {
+    @include size(2rem);
   }
 }
 
@@ -95,8 +89,8 @@ svg {
   border: 2px solid $cyan;
   flex-shrink: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-gap: .5rem;
   padding: .5rem;
 
