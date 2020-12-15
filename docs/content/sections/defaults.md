@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
         <XyzTransition duration="auto" xyz="fade stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" xyz="inherit left"></div>
             <div class="square xyz-nested" xyz="inherit up"></div>
             <div class="square xyz-nested" xyz="inherit down"></div>
@@ -36,9 +36,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz="fade stagger">
-            <div class="square" v-show="${data.toggled}" xyz="inherit left"></div>
-            <div class="square" v-show="${data.toggled}" xyz="inherit up"></div>
-            <div class="square" v-show="${data.toggled}" xyz="inherit down"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit left"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit up"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit down"></div>
           </XyzTransitionGroup>
 
           ##html

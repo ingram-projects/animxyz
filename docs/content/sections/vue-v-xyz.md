@@ -1,6 +1,29 @@
 ---
 title: v-xyz
 id: vue-v-xyz
+
+examples:
+  - name: Basic
+    component: ExampleVXyz
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition appear xyz="fade" v-xyz="xyzUtilities" v-on="data.listeners">
+            <div class="square" v-if="data.toggled"></div>
+          </XyzTransition>
+          <label class="example-checkbox">
+            <input type="checkbox" v-model="xyzUtilities['down']" />
+            down
+          </label>
+          <label class="example-checkbox">
+            <input type="checkbox" v-model="xyzUtilities['small']" />
+            small
+          </label>
+          <label class="example-checkbox">
+            <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
+            rotate-right
+          </label>
 ---
 
 The `v-xyz` directive allows you to dynamically set the `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings. For instance you can conditionally apply a transform on an element like so:

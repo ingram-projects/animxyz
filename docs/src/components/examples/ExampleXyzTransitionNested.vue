@@ -5,7 +5,9 @@
 				<div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
 			</div>
 		</XyzTransition>
-		<button class="example-button mt-l" @click="customData.buttonToggled = !customData.buttonToggled">Click to toggle</button>
+		<button class="example-button mt-l" @click="customData.buttonToggled = !customData.buttonToggled">
+			Click to toggle
+		</button>
 	</div>
 </template>
 

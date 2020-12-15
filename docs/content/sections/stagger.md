@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-          <div class="square-grid xyz-none" v-show="data.toggled">
+          <div class="square-grid xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 8" :key="index"></div>
           </div>
         </XyzTransition>
@@ -37,14 +37,14 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
 
           ${data.variablesString && `

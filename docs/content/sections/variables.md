@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz :style="data.variables" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -32,9 +32,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
 
           ${data.variablesString && `

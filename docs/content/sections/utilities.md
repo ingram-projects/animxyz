@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" v-xyz="data.utilities" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -26,9 +26,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
       - name: React
         content: |

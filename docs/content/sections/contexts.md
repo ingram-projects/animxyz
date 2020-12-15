@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade rotate-right" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -26,9 +26,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz="fade rotate-right">
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
       - name: React
         content: |
@@ -42,7 +42,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="fade big" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
@@ -62,9 +62,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz="fade small">
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}" xyz="fade big"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}" xyz="fade big"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
       - name: React
         content: |
@@ -78,7 +78,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade up rotate-right duration-10 ease-out-back stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit rotate-left" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
@@ -98,9 +98,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
-            <div class="square" v-show="${data.toggled}"></div>
-            <div class="square" v-show="${data.toggled}" xyz="inherit rotate-left"></div>
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit rotate-left"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransitionGroup>
       - name: React
         content: |

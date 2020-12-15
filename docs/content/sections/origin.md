@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition xyz="fade small-100" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
+          <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
     code:
@@ -26,7 +26,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade small-100${data.utilitiesString && ' ' + data.utilitiesString}">
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
           ${data.variablesString && `

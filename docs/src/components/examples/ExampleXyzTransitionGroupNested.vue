@@ -1,7 +1,14 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransitionGroup appear class="square-grid" xyz="fade appear-stagger small out-down out-rotate-right">
-			<div class="square" v-for="index in customData.numElements" :key="index"></div>
+		<XyzTransitionGroup
+			appear
+			duration="auto"
+			class="square-grid"
+			xyz="fade flip-left origin-left duration-3 appear-stagger"
+		>
+			<div class="square-block" v-for="index in customData.numElements" :key="index">
+				<div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
+			</div>
 		</XyzTransitionGroup>
 		<div class="flex-row">
 			<button class="example-button mt-l" @click="addElement">Add Element</button>

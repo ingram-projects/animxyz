@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition xyz="fade up big" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
+          <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
     code:
@@ -20,7 +20,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade up big">
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
         content: |
@@ -33,7 +33,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition xyz="fade down flip-up-50" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
+          <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
     code:
@@ -45,7 +45,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade down flip-up-50">
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
         content: |
