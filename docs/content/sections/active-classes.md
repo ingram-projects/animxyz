@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
+          <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
     code:
@@ -20,7 +20,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade up in-left in-rotate-left out-right out-rotate-right">
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
         content: |
@@ -32,7 +32,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition xyz="fade big-100 out-big-25" v-on="data.listeners">
-          <div class="square" v-show="data.toggled"></div>
+          <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
     code:
@@ -44,7 +44,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade big-100 out-big-25">
-            <div class="square" v-show="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
         content: |
@@ -56,7 +56,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade up out-down stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-show="data.toggled">
+          <div class="square-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" xyz="inherit out-left out-rotate-left" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit out-flip-down" :key="2"></div>
             <div class="square xyz-nested" xyz="inherit out-right out-rotate-right" :key="3"></div>
@@ -76,9 +76,9 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-group" xyz="fade up out-down stagger">
-            <div class="square" v-show="${data.toggled}" xyz="inherit out-left out-rotate-left"></div>
-            <div class="square" v-show="${data.toggled}" xyz="inherit out-flip-down"></div>
-            <div class="square" v-show="${data.toggled}" xyz="inherit out-right out-rotate-right"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit out-left out-rotate-left"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit out-flip-down"></div>
+            <div class="square" v-if="${data.toggled}" xyz="inherit out-right out-rotate-right"></div>
           </XyzTransitionGroup>
       - name: React
         content: |

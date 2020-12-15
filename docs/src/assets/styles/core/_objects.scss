@@ -66,6 +66,19 @@ svg {
   margin: 0 auto;
 }
 
+.square-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+
+  .square {
+    flex-shrink: 0;
+  }
+}
+
 .square-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -115,5 +128,9 @@ svg {
 
   &:focus {
     box-shadow: 0 0 0 2px $cyan;
+  }
+
+  & + & {
+    margin-left: $sp-xxs;
   }
 }

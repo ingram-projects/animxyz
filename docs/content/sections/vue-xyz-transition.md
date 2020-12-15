@@ -10,7 +10,7 @@ examples:
         content: |
           ##vue
           <XyzTransition appear xyz="fade rotate-right ease-out-back">
-            <div class="square" v-show="toggled"></div>
+            <div class="square" v-if="toggled"></div>
           </XyzTransition>
           <button @click="toggled = !toggled">Toggle</button>
   - name: Switch
@@ -42,7 +42,7 @@ examples:
         content: |
           ##vue
           <XyzTransition appear duration="auto" xyz="fade up-100 duration-10">
-            <div class="square-block" v-show="toggled">
+            <div class="square-block" v-if="toggled">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
             </div>
           </XyzTransition>
