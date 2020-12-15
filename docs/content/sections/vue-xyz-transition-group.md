@@ -32,7 +32,7 @@ examples:
           >
             <div
               class="square"
-              v-if="data.toggled"
+              v-if="${data.toggled}"
               v-for="index in 100"
               :key="index"
               :style="{ '--xyz-index-rev': Math.random() * 100 }"

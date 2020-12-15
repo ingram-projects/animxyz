@@ -10,7 +10,7 @@ examples:
         content: |
           ##vue
           <XyzTransition appear xyz="fade" v-xyz="xyzUtilities" v-on="data.listeners">
-            <div class="square" v-if="data.toggled"></div>
+            <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
           <input type="checkbox" v-model="xyzUtilities['down']" />
           <input type="checkbox" v-model="xyzUtilities['small']" />
@@ -32,7 +32,7 @@ examples:
                 'rotate-right': index % 3,
                 'flip-up': index % 5,
               }"
-              v-if="data.toggled"
+              v-if="${data.toggled"
               v-for="index in 100"
               :key="index"
             ></div>
