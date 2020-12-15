@@ -2,7 +2,6 @@
 
 export const xyzModes = ['in', 'out', 'appear']
 export const xyzModesAll = ['all', ...xyzModes]
-export const xyzModeMove = 'move'
 
 // LEVELS
 
@@ -139,17 +138,17 @@ export const xyzVariablesMap = {
 	ease: {
 		type: 'ease',
 		syntax: '<timing-function>',
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	duration: {
 		type: 'duration',
 		syntax: '<time>',
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	delay: {
 		type: 'delay',
 		syntax: '<time>',
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	stagger: {
 		type: 'stagger',
@@ -281,10 +280,7 @@ export function getXyzVariable(name, value = 'initial', mode = 'all') {
 	}
 }
 
-export function createXyzVariableRegex(
-	variables = Object.keys(xyzVariablesMap),
-	modes = [...xyzModesAll, xyzModeMove]
-) {
+export function createXyzVariableRegex(variables = Object.keys(xyzVariablesMap), modes = xyzModesAll) {
 	return new RegExp(`^--xyz-(?:(${modes.join('|')})-)?(${variables.join('|')})(?::\\s*(.+))?$`)
 }
 
@@ -315,21 +311,21 @@ export const xyzUtilitiesMap = {
 		vars: ['ease'],
 		default: 'var(--xyz-ease-default)',
 		levels: xyzEaseLevels,
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	duration: {
 		type: 'duration',
 		vars: ['duration'],
 		default: 'var(--xyz-duration-default)',
 		levels: xyzTimeLevels,
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	delay: {
 		type: 'delay',
 		vars: ['delay'],
 		default: 'var(--xyz-delay-default)',
 		levels: xyzTimeLevels,
-		modes: [...xyzModesAll, xyzModeMove],
+		modes: xyzModesAll,
 	},
 	stagger: {
 		type: 'stagger',
@@ -624,7 +620,7 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 	}
 }
 
-export function createXyzUtilityRegex(utilities = Object.keys(xyzUtilitiesMap), modes = [...xyzModesAll, xyzModeMove]) {
+export function createXyzUtilityRegex(utilities = Object.keys(xyzUtilitiesMap), modes = xyzModesAll) {
 	return new RegExp(`^(?:(${modes.join('|')})-)?(${utilities.join('|')})(?:-([\\w-]+))?$`)
 }
 

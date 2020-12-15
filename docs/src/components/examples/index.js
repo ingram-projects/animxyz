@@ -1,11 +1,13 @@
+import ExampleXyzTransitionToggle from './ExampleXyzTransitionToggle'
+import ExampleXyzTransitionSwitch from './ExampleXyzTransitionSwitch'
 import ExampleXyzTransitionKey from './ExampleXyzTransitionKey'
 import ExampleXyzTransitionNested from './ExampleXyzTransitionNested'
-import ExampleXyzTransitionSwitch from './ExampleXyzTransitionSwitch'
-import ExampleXyzTransitionToggle from './ExampleXyzTransitionToggle'
+import ExampleXyzTransitionGroupList from './ExampleXyzTransitionGroupList'
 
 export default {
+	ExampleXyzTransitionToggle,
+	ExampleXyzTransitionSwitch,
 	ExampleXyzTransitionKey,
 	ExampleXyzTransitionNested,
-	ExampleXyzTransitionSwitch,
-	ExampleXyzTransitionToggle,
+	ExampleXyzTransitionGroupList,
 }

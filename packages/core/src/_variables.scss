@@ -5,7 +5,6 @@
 
 $xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
 $xyz-modes-all: list.join('all', $xyz-modes);
-$xyz-mode-move: 'move';
 
 
 // LEVELS
@@ -142,15 +141,15 @@ $xyz-variables-map: (
   ),
   'ease': (
     'type': 'ease',
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'duration': (
     'type': 'duration',
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'delay': (
     'type': 'delay',
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'stagger': (
     'type': 'stagger',
@@ -246,21 +245,21 @@ $xyz-utilities-map: (
     'vars': ['ease'],
     'default': var(--xyz-ease-default),
     'levels': $xyz-ease-levels,
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'duration': (
     'type': 'duration',
     'vars': ['duration'],
     'default': var(--xyz-duration-default),
     'levels': $xyz-time-levels,
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'delay': (
     'type': 'delay',
     'vars': ['delay'],
     'default': var(--xyz-delay-default),
     'levels': $xyz-time-levels,
-    'modes': list.append($xyz-modes-all, 'move'),
+    'modes': $xyz-modes-all,
   ),
   'stagger': (
     'type': 'stagger',

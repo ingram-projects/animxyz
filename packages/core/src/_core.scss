@@ -107,14 +107,6 @@
       }
     }
 
-    // helper for FLIP transitions
-    .xyz-move {
-      $duration: var(--xyz-#{xyz-name('duration', $xyz-mode-move)}, 0s);
-      $ease: var(--xyz-#{xyz-name('ease', $xyz-mode-move)}, var(--xyz-ease-default));
-      $delay: var(--xyz-#{xyz-name('delay', $xyz-mode-move)}, 0s);
-      transition: transform #{$duration} #{$ease} #{$delay};
-    }
-
     // turns off animations
     %xyz-anim-none {
       animation: none;
@@ -145,10 +137,6 @@
         .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
           animation: none;
         }
-      }
-
-      .xyz-move {
-        transition: none;
       }
     }
   }
