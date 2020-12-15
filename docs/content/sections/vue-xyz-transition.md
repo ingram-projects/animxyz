@@ -69,7 +69,7 @@ Unlike the complexity of the Vue component, with `<XyzTransition>` you only need
 
 ### appear
 
-When set to `true` will trigger the xyz animation on initial render. Defaults to the **in** animation, however **appear**-specific behaviour can be set using the **appear**-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
+When set to `true` will animate elements in on initial render. You can set **appear**-specific behaviour using the **appear**-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
 
 You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Transitions-on-Initial-Render).
 
