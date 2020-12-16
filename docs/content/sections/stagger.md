@@ -37,14 +37,7 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
-            <div class="square" v-if="${data.toggled}"></div>
+            <div class="square" v-if="${data.toggled}" v-for="index in 8" :key="index"></div>
           </XyzTransitionGroup>
 
           ${data.variablesString && `
@@ -57,14 +50,7 @@ examples:
         content: |
           ##jsx
           <XyzTransitionGroup className="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
-            {${data.toggled} && <div className="square" />}
+            {${data.toggled} && [...Array(8)].map((_, index) => <div className="square" key={index} />)}
           </XyzTransitionGroup>
 
           ${data.variablesString && `
