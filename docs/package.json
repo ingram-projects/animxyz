@@ -11,8 +11,8 @@
   "dependencies": {
     "@animxyz/vue": "^0.1.1",
     "body-scroll-lock": "^3.1.5",
-    "fontsource-inconsolata": "3.0.5",
-    "gridsome": "^0.7.22",
+    "fontsource-inconsolata": "3.1.6",
+    "gridsome": "^0.7.23",
     "lodash": "^4.17.20",
     "query-string": "^6.13.7",
     "ress": "^3.0.0",
@@ -26,17 +26,17 @@
   "devDependencies": {
     "@gridsome/remark-prismjs": "^0.5.0",
     "@gridsome/source-filesystem": "^0.6.2",
-    "@gridsome/transformer-remark": "^0.6.3",
+    "@gridsome/transformer-remark": "^0.6.4",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-vue": "^7.1.0",
+    "eslint-plugin-vue": "^7.3.0",
     "gridsome-plugin-sass-resources-loader": "^0.0.3",
     "gridsome-plugin-svg": "^0.0.14",
     "http-server": "^0.12.3",
     "include-media": "^1.4.9",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "remark-containers": "^1.2.0",
-    "sass": "^1.29.0",
+    "sass": "^1.30.0",
     "sass-loader": "^10.1.0"
   }
 }
