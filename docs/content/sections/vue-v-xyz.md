@@ -32,7 +32,7 @@ examples:
                 'rotate-right': index % 3,
                 'flip-up': index % 5,
               }"
-              v-if="${data.toggled"
+              v-if="${data.toggled}"
               v-for="index in 100"
               :key="index"
             ></div>
