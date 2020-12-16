@@ -95,7 +95,8 @@ function getXyzAnimationHook(mode, duration) {
 		el.xyzAnimTimeout = setTimeout(() => {
 			xyzEls.forEach((xyzEl) => {
 				// Remove if element isnt visible
-				if (xyzEl.offsetParent === null) {
+				const visible = xyzEl.offsetParent || xyzEl.getClientRects().length
+				if (!visible) {
 					removeXyzEl(xyzEl)
 				}
 
