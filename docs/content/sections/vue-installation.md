@@ -13,7 +13,7 @@ VueAnimXYZ can be installed using your favorite package manager:
 npm install @animxyz/vue
 
 # with yarn
-yarn install @animxyz/vue
+yarn add @animxyz/vue
 ```
 
 After installation, you will need to import VueAnimXYZ into your project and tell the Vue instance to use the [plugin](https://vuejs.org/v2/guide/plugins.html). This has to be done before you instantiate your Vue app.
