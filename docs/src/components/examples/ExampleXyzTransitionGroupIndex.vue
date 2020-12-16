@@ -1,11 +1,10 @@
 <template>
 	<div class="example-wrap flex-col">
 		<XyzTransitionGroup
-			appear
-			class="square-grid square-grid-10"
-			xyz="fade small down"
+			class="square-grid square-grid-9"
+			xyz="fade small out-back-5"
+			:duration="2500"
 			:style="{
-				'--xyz-appear-stagger': '0.025s',
 				'--xyz-in-stagger': '0.025s',
 				'--xyz-out-stagger-rev': '0.025s',
 			}"
@@ -14,9 +13,9 @@
 			<div
 				class="square"
 				v-if="data.toggled"
-				v-for="index in 100"
+				v-for="index in 81"
 				:key="index"
-				:style="{ '--xyz-index-rev': Math.random() * 100 }"
+				:style="{ '--xyz-index-rev': Math.random() * 81 }"
 			></div>
 		</XyzTransitionGroup>
 	</div>

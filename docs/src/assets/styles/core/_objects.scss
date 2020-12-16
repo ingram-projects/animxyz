@@ -76,8 +76,8 @@ svg {
   }
 }
 
-.square-grid-10 {
-  grid-template-columns: repeat(10, 1fr);
+.square-grid-9 {
+  grid-template-columns: repeat(9, 1fr);
 
   .square {
     @include size(2rem);
