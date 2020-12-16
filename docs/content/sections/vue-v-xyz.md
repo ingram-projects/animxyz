@@ -15,7 +15,7 @@ examples:
           <input type="checkbox" v-model="xyzUtilities['down']" />
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
-  - name: ByIndex
+  - name: By Index
     component: ExampleVXyzByIndex
     code:
       - name: Vue
