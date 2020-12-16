@@ -60,7 +60,7 @@ Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only
 ```jsx
 <XyzTransitionGroup
 	appear={ boolean }
-	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
+	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	tag={ string }
 >
 	<child />

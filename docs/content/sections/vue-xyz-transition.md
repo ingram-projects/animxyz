@@ -57,7 +57,7 @@ Unlike the complexity of the Vue component, with `<XyzTransition>` you only need
 ```jsx
 <XyzTransition
 	appear={ boolean }
-	duration={ number | 'auto' | { appear: number | 'auto', enter: number | 'auto', leave: number | 'auto' } }
+	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	mode={ 'out-in' | 'in-out' }
 >
 	<child />
