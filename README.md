@@ -34,7 +34,7 @@ AnimXYZ can be installed using your favorite package manager:
 npm install @animxyz/core
 
 # with yarn
-yarn install @animxyz/core
+yarn add @animxyz/core
 ```
 
 After installation, you will need to import AnimXYZ into your project.
