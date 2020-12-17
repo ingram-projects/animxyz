@@ -6,6 +6,7 @@ import IconPresets from './IconPresets.svg'
 import IconReact from './IconReact.svg'
 import IconSandbox from './IconSandbox.svg'
 import IconSass from './IconSass.svg'
+import IconTwitter from './IconTwitter.svg'
 import IconVue from './IconVue.svg'
 
 export default {
@@ -17,5 +18,6 @@ export default {
 	IconReact,
 	IconSandbox,
 	IconSass,
+	IconTwitter,
 	IconVue,
 }
