@@ -554,6 +554,7 @@ export default {
 	text-align: center;
 	font-weight: 500;
 	font-size: $fs-s;
+	padding: 0 $sp-m;
 	margin: 0 auto;
 	margin-top: $sp-xxxl;
 	margin-bottom: 2.25rem;
