@@ -38,7 +38,6 @@ AnimXYZ is built in SASS and provides useful functions and mixins for customizat
 // --- Or for more control and granularity ---
 @include xyz-core;
 @include xyz-utilities;
-@include xyz-fancy;
 ```
 
 ---
