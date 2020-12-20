@@ -77,9 +77,9 @@
 
     <div class="animxyz-logo logo-scene"  xmlns="http://www.w3.org/1999/xhtml">
       <div class="logo-sides mini-xyz">
-        <div class="mini-xyz logo-side side--yellow"><div class="side-fill"></div></div>
-        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
         <div class="mini-xyz logo-side side--green"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--yellow"><div class="side-fill"></div></div>
       </div>
     </div>
   </foreignObject>
