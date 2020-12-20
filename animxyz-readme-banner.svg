@@ -40,6 +40,7 @@
       .logo-sides {
         --transform: rotateZ(135deg);
         transform: rotateX(54.75deg) rotateZ(45deg);
+        perspective: 99999px;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
       }
 
