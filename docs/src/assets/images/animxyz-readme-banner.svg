@@ -2,13 +2,17 @@
   <foreignObject width="100%" height="100%">
     <style>
       @keyframes transform {
-        to {
+        from {
           transform: var(--transform);
         }
       }
 
       .mini-xyz {
-        animation: transform 2s ease-in-out both;
+        --transform: initial;
+        --transform-delay: initial;
+        --transform-duration: 2s;
+        --transform-ease: ease-in-out;
+        animation: transform var(--transform-duration) var(--transform-ease) both;
         animation-delay: var(--transform-delay);
       }
 
@@ -16,7 +20,8 @@
         --red-rgb: 235,87,87;
         --green-rgb: 111,207,151;
         --yellow-rgb: 242,201,76;
-        --logo-size: 4rem;
+        --logo-size: 200px;
+        --logo-radius: calc(var(--logo-size) / 10);
 
         position: absolute;
         top: 50%;
@@ -27,7 +32,9 @@
       }
 
       .logo-sides {
-        --transform: rotateX(55deg) rotateZ(45deg);
+        --transform-delay: 2s;
+        --transform: rotateX(25deg) rotateZ(45deg);
+        transform: rotateX(55deg) rotateZ(45deg);
         transform-style: preserve-3d;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
       }
@@ -44,7 +51,7 @@
       .side-fill {
         width: 100%;
         height: 100%;
-        border-radius: 6px;
+        border-radius: var(--logo-radius);
         background-image: linear-gradient(
           var(--logo-gradient-direction, to top),
           rgba(var(--logo-side-color), 1),
@@ -53,19 +60,18 @@
       }
 
       .side--red {
-        --transform: rotateY(90deg);
+        --transform: rotateY(0.5deg);
         --logo-side-color: var(--red-rgb);
-        transform: rotateY(0.5deg);
+        transform: rotateY(90deg);
       }
 
       .side--yellow {
-        --transform: rotateX(90deg);
+        --transform: rotateX(0.5deg);
         --logo-side-color: var(--yellow-rgb);
-        transform: rotateX(0.5deg);
+        transform: rotateX(90deg);
       }
 
       .side--green {
-        --transform: initial;
         --logo-gradient-direction: to left;
         --logo-side-color: var(--green-rgb);
       }
