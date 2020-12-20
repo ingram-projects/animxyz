@@ -52,6 +52,7 @@ export default {
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
 			this.randomizeXRayCubeTransform()
+			this.$gtag.event('XYZ-Ray Toggled')
 		},
 		randomizeXRayCubeTransform() {
 			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${
