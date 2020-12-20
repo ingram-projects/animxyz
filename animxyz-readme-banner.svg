@@ -43,7 +43,6 @@
         display: flex;
         position: absolute;
         transform-origin: center;
-        transform: translateZ(0);
       }
 
       .side-fill {
@@ -58,28 +57,28 @@
       }
 
       .side--red {
-        --transform: rotateY(0.5deg);
         --logo-side-color: var(--red-rgb);
+        --transform: rotateY(0.5deg);
         transform: rotateY(90deg);
       }
 
       .side--yellow {
-        --transform: rotateX(0.5deg);
         --logo-side-color: var(--yellow-rgb);
+        --transform: rotateX(0.5deg);
         transform: rotateX(90deg);
       }
 
       .side--green {
-        --logo-gradient-direction: to left;
         --logo-side-color: var(--green-rgb);
+        --logo-gradient-direction: to left;
       }
     </style>
 
     <div class="animxyz-logo logo-scene"  xmlns="http://www.w3.org/1999/xhtml">
       <div class="logo-sides mini-xyz">
-        <div class="mini-xyz logo-side side--green"><div class="side-fill"></div></div>
-        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
         <div class="mini-xyz logo-side side--yellow"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--green"><div class="side-fill"></div></div>
       </div>
     </div>
   </foreignObject>
