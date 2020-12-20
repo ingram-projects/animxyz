@@ -1,4 +1,4 @@
-<div align="center"><a href="https://animxyz.com"><img src="https://raw.githubusercontent.com/ingram-projects/animxyz/readme-animation/docs/src/assets/images/animxyz-readme-banner.svg" alt="AnimXYZ Logo"><a></div>
+<div align="center"><a href="https://animxyz.com"><img src="https://raw.githubusercontent.com/ingram-projects/animxyz/readme-animation/docs/src/assets/images/animxyz-readme-banner.svg" width="320" height="320" alt="AnimXYZ Logo"><a></div>
 
 <!-- https://raw.githubusercontent.com/ingram-projects/animxyz/master/docs/src/assets/images/animxyz-readme-banner.svg -->
 
