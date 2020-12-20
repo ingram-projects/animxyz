@@ -30,7 +30,7 @@
         top: 50%;
         left: 50%;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
-        transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2)) scale(var(--logo-scale, 1));
+        transform: translate3d(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2), 0);
       }
       
       .logo-scene:hover .mini-xyz {
