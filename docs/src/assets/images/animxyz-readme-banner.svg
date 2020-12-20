@@ -1,0 +1,82 @@
+<svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <foreignObject width="100%" height="100%">
+    <style>
+      @keyframes transform {
+        to {
+          transform: var(--transform);
+        }
+      }
+
+      .mini-xyz {
+        animation: transform 2s ease-in-out both;
+        animation-delay: var(--transform-delay);
+      }
+
+      .logo-scene {
+        --red-rgb: 235,87,87;
+        --green-rgb: 111,207,151;
+        --yellow-rgb: 242,201,76;
+        --logo-size: 4rem;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-style: preserve-3d;
+        transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
+        transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2)) scale(var(--logo-scale, 1));
+      }
+
+      .logo-sides {
+        --transform: rotateX(55deg) rotateZ(45deg);
+        transform-style: preserve-3d;
+        transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
+      }
+
+      .logo-side {
+        width: var(--logo-size);
+        height: var(--logo-size);
+        display: flex;
+        position: absolute;
+        transform-origin: center;
+        transform: translateZ(0);
+      }
+
+      .side-fill {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        background-image: linear-gradient(
+          var(--logo-gradient-direction, to top),
+          rgba(var(--logo-side-color), 1),
+          rgba(var(--logo-side-color), 0.15)
+        );
+      }
+
+      .side--red {
+        --transform: rotateY(90deg);
+        --logo-side-color: var(--red-rgb);
+        transform: rotateY(0.5deg);
+      }
+
+      .side--yellow {
+        --transform: rotateX(90deg);
+        --logo-side-color: var(--yellow-rgb);
+        transform: rotateX(0.5deg);
+      }
+
+      .side--green {
+        --transform: initial;
+        --logo-gradient-direction: to left;
+        --logo-side-color: var(--green-rgb);
+      }
+    </style>
+
+    <div class="animxyz-logo logo-scene"  xmlns="http://www.w3.org/1999/xhtml">
+      <div class="logo-sides mini-xyz">
+        <div class="mini-xyz logo-side side--yellow"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
+        <div class="mini-xyz logo-side side--green"><div class="side-fill"></div></div>
+      </div>
+    </div>
+  </foreignObject>
+</svg>
