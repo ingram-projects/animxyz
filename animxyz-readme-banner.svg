@@ -13,7 +13,6 @@
         --transform-duration: 2s;
         --transform-ease: ease-in-out;
         transform-style: preserve-3d;
-        transition: transform var(--transform-duration) var(--transform-ease);
         animation: transform var(--transform-duration) var(--transform-ease) var(--transform-delay);
       }
 
@@ -30,17 +29,12 @@
         top: 50%;
         left: 50%;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
-        transform: translate3d(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2), 0);
-      }
-      
-      .logo-scene:hover .mini-xyz {
-        transform: var(--transform);
+        transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2));
       }
 
       .logo-sides {
         --transform: rotateZ(135deg);
         transform: rotateX(54.75deg) rotateZ(45deg);
-        perspective: 99999px;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
       }
 
