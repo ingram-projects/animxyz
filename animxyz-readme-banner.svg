@@ -10,9 +10,11 @@
       .mini-xyz {
         --transform: initial;
         --transform-delay: 0s;
-        --transform-duration: 3s;
+        --transform-duration: 2s;
         --transform-ease: ease-in-out;
-        animation: transform var(--transform-duration) var(--transform-ease) var(--transform-delay) both;
+        transform-style: preserve-3d;
+        transition: transform var(--transform-duration) var(--transform-ease);
+        animation: transform var(--transform-duration) var(--transform-ease) var(--transform-delay);
       }
 
       .logo-scene {
@@ -23,17 +25,21 @@
         --logo-radius: calc(var(--logo-size) / 10);
 
         position: absolute;
+        width: var(--logo-size);
+        height: var(--logo-size);
         top: 50%;
         left: 50%;
-        transform-style: preserve-3d;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
         transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2)) scale(var(--logo-scale, 1));
+      }
+      
+      .logo-scene:hover .mini-xyz {
+        transform: var(--transform);
       }
 
       .logo-sides {
         --transform: rotateZ(135deg);
         transform: rotateX(54.75deg) rotateZ(45deg);
-        transform-style: preserve-3d;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
       }
 
@@ -76,9 +82,9 @@
 
     <div class="animxyz-logo logo-scene"  xmlns="http://www.w3.org/1999/xhtml">
       <div class="logo-sides mini-xyz">
-        <div class="mini-xyz logo-side side--yellow"><div class="side-fill"></div></div>
-        <div class="mini-xyz logo-side side--red"><div class="side-fill"></div></div>
-        <div class="mini-xyz logo-side side--green"><div class="side-fill"></div></div>
+        <div class="logo-side side--yellow mini-xyz"><div class="side-fill"></div></div>
+        <div class="logo-side side--red mini-xyz"><div class="side-fill"></div></div>
+        <div class="logo-side side--green mini-xyz"><div class="side-fill"></div></div>
       </div>
     </div>
   </foreignObject>
