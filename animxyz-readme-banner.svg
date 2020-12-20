@@ -9,11 +9,10 @@
 
       .mini-xyz {
         --transform: initial;
-        --transform-delay: initial;
-        --transform-duration: 2s;
+        --transform-delay: 0s;
+        --transform-duration: 3s;
         --transform-ease: ease-in-out;
-        animation: transform var(--transform-duration) var(--transform-ease) both;
-        animation-delay: var(--transform-delay);
+        animation: transform var(--transform-duration) var(--transform-ease) var(--transform-delay) both;
       }
 
       .logo-scene {
@@ -32,9 +31,8 @@
       }
 
       .logo-sides {
-        --transform-delay: 2s;
-        --transform: rotateX(25deg) rotateZ(45deg);
-        transform: rotateX(55deg) rotateZ(45deg);
+        --transform: rotateZ(135deg);
+        transform: rotateX(54.75deg) rotateZ(45deg);
         transform-style: preserve-3d;
         transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
       }
