@@ -4,7 +4,7 @@ id: vue-xyz-transition
 
 examples:
   - name: Toggle
-    component: ExampleXyzTransitionToggle
+    component: XyzTransition_Toggle
     code:
       - name: Vue
         content: |
@@ -14,7 +14,7 @@ examples:
           </XyzTransition>
           <button @click="toggled = !toggled">Toggle</button>
   - name: Switch
-    component: ExampleXyzTransitionSwitch
+    component: XyzTransition_Switch
     code:
       - name: Vue
         content: |
@@ -26,7 +26,7 @@ examples:
           </XyzTransition>
           <button @click="changeShape">Click to switch</button>
   - name: Key
-    component: ExampleXyzTransitionKey
+    component: XyzTransition_Key
     code:
       - name: Vue
         content: |
@@ -36,7 +36,7 @@ examples:
           </XyzTransition>
           <button @click="key += 1">Click to increment</button>
   - name: Nested
-    component: ExampleXyzTransitionNested
+    component: XyzTransition_Nested
     code:
       - name: Vue
         content: |

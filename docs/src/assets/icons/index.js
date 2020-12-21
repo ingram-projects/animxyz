@@ -1,21 +1,11 @@
-import IconDocs from './IconDocs.svg'
-import IconGithub from './IconGithub.svg'
-import IconHtml from './IconHtml.svg'
-import IconLink from './IconLink.svg'
-import IconPresets from './IconPresets.svg'
-import IconReact from './IconReact.svg'
-import IconSandbox from './IconSandbox.svg'
-import IconSass from './IconSass.svg'
-import IconVue from './IconVue.svg'
+const icons = {}
 
-export default {
-	IconDocs,
-	IconGithub,
-	IconHtml,
-	IconLink,
-	IconPresets,
-	IconReact,
-	IconSandbox,
-	IconSass,
-	IconVue,
-}
+const requireContext = require.context('./', true, /\.svg$/)
+
+requireContext.keys().forEach((key) => {
+	const iconTrimmedPath = key.match(new RegExp('./(.*).svg'))[1]
+	const iconKey = iconTrimmedPath.replace('/', '_')
+	icons[iconKey] = requireContext(key)
+})
+
+export default icons

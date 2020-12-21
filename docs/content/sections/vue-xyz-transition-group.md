@@ -4,7 +4,7 @@ id: vue-xyz-transition-group
 
 examples:
   - name: List
-    component: ExampleXyzTransitionGroupList
+    component: XyzTransitionGroup_List
     code:
       - name: Vue
         content: |
@@ -15,7 +15,7 @@ examples:
           <button @click="addElement">Add Element</button>
           <button @click="removeElement">Remove Element</button>
   - name: Index
-    component: ExampleXyzTransitionGroupIndex
+    component: XyzTransitionGroup_Index
     code:
       - name: Vue
         content: |
@@ -38,7 +38,7 @@ examples:
             ></div>
           </XyzTransitionGroup>
   - name: Nested
-    component: ExampleXyzTransitionGroupNested
+    component: XyzTransitionGroup_Nested
     code:
       - name: Vue
         content: |

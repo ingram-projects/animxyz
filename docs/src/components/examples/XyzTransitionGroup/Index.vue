@@ -10,6 +10,7 @@
 			}"
 			v-on="data.listeners"
 		>
+			<!-- eslint-disable -->
 			<div
 				class="square"
 				v-if="data.toggled"
@@ -17,12 +18,13 @@
 				:key="index"
 				:style="{ '--xyz-index-rev': Math.random() * 81 }"
 			></div>
+			<!-- eslint-enable -->
 		</XyzTransitionGroup>
 	</div>
 </template>
 
 <script>
-import ExampleMixin from './ExampleMixin'
+import ExampleMixin from '../ExampleMixin'
 
 export default {
 	mixins: [ExampleMixin],
