@@ -4,7 +4,7 @@ id: vue-v-xyz
 
 examples:
   - name: Basic
-    component: ExampleVXyzBasic
+    component: VXyz_Basic
     code:
       - name: Vue
         content: |
@@ -16,7 +16,7 @@ examples:
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
   - name: By Index
-    component: ExampleVXyzByIndex
+    component: VXyz_ByIndex
     code:
       - name: Vue
         content: |

@@ -1,6 +1,7 @@
 <template>
 	<div class="example-wrap flex-col">
 		<XyzTransitionGroup class="square-grid square-grid-9" v-on="data.listeners">
+			<!-- eslint-disable -->
 			<div
 				class="square"
 				xyz="fade out-small-50 out-duration-30"
@@ -14,12 +15,13 @@
 				v-for="index in 81"
 				:key="index"
 			></div>
+			<!-- eslint-enable -->
 		</XyzTransitionGroup>
 	</div>
 </template>
 
 <script>
-import ExampleMixin from './ExampleMixin'
+import ExampleMixin from '../ExampleMixin'
 
 export default {
 	mixins: [ExampleMixin],

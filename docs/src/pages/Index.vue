@@ -114,10 +114,15 @@
 				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
-						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a> <a href="https://twitter.com/mattaningram" class="social-link" target="_blank"><IconTwitter></IconTwitter><span class="screen-reader-only"Twitter</span></a>.
+						<a href="https://mattaningram.com" target="_blank">Mattan Ingram</a>
+						<a href="https://twitter.com/mattaningram" class="social-link" target="_blank">
+							<IconTwitter></IconTwitter><span class="screen-reader-only">Twitter</span>
+						</a>
 					</p>
 					<p>
-						Built with <a href="https://vuejs.org/" target="_blank">Vue</a>, <a href="https://gridsome.org/" target="_blank">Gridsome</a>, and AnimXYZ. Hosted on <a href="https://www.netlify.com/" target="_blank">Netlify</a>.
+						Built with <a href="https://vuejs.org/" target="_blank">Vue</a>,
+						<a href="https://gridsome.org/" target="_blank">Gridsome</a>, and AnimXYZ. Hosted on
+						<a href="https://www.netlify.com/" target="_blank">Netlify</a>.
 					</p>
 				</footer>
 			</XyzTransition>

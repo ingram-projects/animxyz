@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ExampleMixin from './ExampleMixin'
+import ExampleMixin from '../ExampleMixin'
 
 export default {
 	mixins: [ExampleMixin],
