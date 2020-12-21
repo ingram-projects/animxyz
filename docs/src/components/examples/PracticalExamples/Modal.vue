@@ -1,8 +1,8 @@
 <template>
 	<div class="example-wrap">
 		<xyz-transition duration="auto" xyz="fade out-delay-5">
-			<div class="modal__overlay" v-if="customData.modalToggled" @click.stop="customData.modalToggled = false">
-				<div class="modal xyz-nested" xyz="fade short-100 in-delay-3 out-delay-3 ease-out-back">
+			<div class="modal__overlay" v-if="customData.modalToggled" @click="customData.modalToggled = false">
+				<div class="modal xyz-nested" xyz="fade short-100 delay-3 ease-out-back" @click.stop>
 					<div class="modal__header xyz-nested" xyz="up-100 in-delay-3">
 						<h1 class="xyz-nested" xyz="fade left in-delay-5">I am a modal</h1>
 						<button
@@ -27,7 +27,7 @@
 			</div>
 		</xyz-transition>
 		<button class="modal-toggle example-button mt-l" @click="customData.modalToggled = !customData.modalToggled">
-			{{ customData.modalToggled ? 'Hide' : 'Show' }} Modal
+			Show Modal
 		</button>
 	</div>
 </template>
@@ -104,7 +104,7 @@ export default {
 	transition-property: background-color, box-shadow;
 
 	svg {
-		@include size(.75rem);
+		@include size(0.75rem);
 		stroke-width: 3px;
 		transition: stroke-width 0.2s ease-in-out;
 	}
