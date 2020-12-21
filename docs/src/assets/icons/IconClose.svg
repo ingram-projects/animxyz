@@ -1,0 +1,5 @@
+<svg class="icon-svg icon-close" xmlns="http://www.w3.org/2000/svg" stroke="var(--icon-color, var(--primary-900)" stroke-linecap="round" stroke-width="2" width="14" height="14" viewBox="0 0 14 14">
+  <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+    <path d="M0 0L12 12M12-8.8817842e-16L0 12"/>
+  </g>
+</svg>

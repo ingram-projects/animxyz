@@ -582,7 +582,7 @@ export default {
 }
 
 .social-link {
-	--iconColor: #{primary-color(400)};
+	--icon-color: #{primary-color(400)};
 	display: inline-block;
 	vertical-align: middle;
 	margin-left: $sp-xxxs;
@@ -596,7 +596,7 @@ export default {
 	}
 
 	&:hover {
-		--iconColor: #{primary-color(700)};
+		--icon-color: #{primary-color(700)};
 	}
 }
 
