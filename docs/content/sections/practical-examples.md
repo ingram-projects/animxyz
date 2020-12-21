@@ -7,10 +7,6 @@ examples:
   - name: Modal
     component: PracticalExamples_Modal
     code:
-      - name: HTML
-        content: |
-          ##html
-          <div></div>
       - name: Vue
         content: |
           ##vue
@@ -19,6 +15,8 @@ examples:
         content: |
           ##jsx
           <div />
+  - name: Grid
+    component: 
 ---
 
 This is the practical examples section.

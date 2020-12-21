@@ -2,7 +2,7 @@
 	<div class="example-wrap">
 		<xyz-transition duration="auto" xyz="fade out-delay-5">
 			<div class="modal__overlay" v-if="customData.modalToggled" @click.stop="customData.modalToggled = false">
-				<div class="modal xyz-nested" xyz="fade short-100 in-delay-3 out-delay-3">
+				<div class="modal xyz-nested" xyz="fade short-100 in-delay-3 out-delay-3 ease-out-back">
 					<div class="modal__header xyz-nested" xyz="up-100 in-delay-3">
 						<h1 class="xyz-nested" xyz="fade left in-delay-5">I am a modal</h1>
 						<button
@@ -17,7 +17,7 @@
 					<div class="modal__footer xyz-nested" xyz="down-100 in-delay-3">
 						<button
 							class="modal__button xyz-nested"
-							xyz="flip-left narrow-50 in-delay-5"
+							xyz="fade in-right in-delay-5"
 							@click="customData.modalToggled = false"
 						>
 							Close
