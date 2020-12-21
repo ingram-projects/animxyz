@@ -30,6 +30,7 @@
   "license": "MIT",
   "files": [
     "dist",
+    "scripts",
     "src"
   ],
   "moduleName": "VueAnimXyz",
@@ -41,14 +42,18 @@
   "scripts": {
     "build": "run-s build:clean build:main",
     "build:clean": "rimraf dist",
-    "build:main": "bili"
+    "build:vue2": "bili src/vue2 -d dist/vue2",
+    "build:vue3": "bili src/vue3 -d dist/vue3",
+    "build:main": "run-p build:vue2 build:vue3",
+    "postbuild": "node scripts/installVersion.js vue2",
+    "postinstall": "node scripts/installVersion.js"
   },
   "dependencies": {
     "@animxyz/core": "^0.1.1",
     "clsx": "^1.1.1"
   },
   "peerDependencies": {
-    "vue": "^2.6.12"
+    "vue": "^2.0.0 || ^3.0.0"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",

@@ -9,8 +9,9 @@ module.exports = function (pkg) {
 
 	return {
 		banner,
-		input: 'src/index.js',
+		input: 'src',
 		output: {
+			dir: 'dist',
 			moduleName: pkg.moduleName,
 			fileName({ format }) {
 				if (format === 'umd') {
