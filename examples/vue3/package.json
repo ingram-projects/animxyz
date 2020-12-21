@@ -5,6 +5,9 @@
   "scripts": {
     "start": "vue-cli-service serve"
   },
+  "workspaces": {
+    "nohoist": ["@vue/**"]
+  },
   "dependencies": {
     "@animxyz/vue": "^0.1.1",
     "core-js": "^3.8.1",
@@ -18,8 +21,5 @@
     "@vue/compiler-sfc": "^3.0.4",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^7.3.0"
-  },
-  "workspaces": {
-    "nohoist": ["@vue/**"]
   }
 }

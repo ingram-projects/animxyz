@@ -56,7 +56,6 @@
     "bili": "^5.0.5",
     "eslint-plugin-vue": "^7.3.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "vue-template-compiler": "^2.6.12"
+    "rimraf": "^3.0.2"
   }
 }

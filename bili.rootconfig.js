@@ -12,34 +12,14 @@ module.exports = function (pkg) {
 		input: 'src/index.js',
 		output: {
 			moduleName: pkg.moduleName,
-			fileName({ format }, defaultFileName) {
+			fileName({ format }) {
 				if (format === 'umd') {
 					return `${pkg.moduleName}.js`
 				}
-				if (format === 'esm') {
-					return `${pkg.moduleName}.esm.js`
-				}
-				if (format === 'cjs') {
-					return `${pkg.moduleName}.cjs.js`
-				}
-				return defaultFileName
+				return `${pkg.moduleName}.[format].js`
 			},
-			format: ['umd', 'esm', 'cjs'],
-			sourceMapExcludeSources: true,
+			format: ['umd-min', 'esm', 'cjs'],
 		},
-		babel: {
-			minimal: true,
-		},
-		extendConfig(config, { format }) {
-			if (format === 'umd') {
-				config.output.minify = true
-				config.env = {
-					...config.env,
-					NODE_ENV: 'production',
-				}
-			}
-			return config
-		},
-		external: [...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
+		external: Object.keys(pkg.peerDependencies),
 	}
 }
