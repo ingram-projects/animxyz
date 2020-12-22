@@ -24,13 +24,14 @@ export function mergeData(data1 = {}, data2 = {}) {
 	}
 }
 
-export function getXyzTransitionData(data) {
-	const { appear, duration } = data.attrs || {}
+export function getXyzTransitionData({ props, data }) {
+	const { appear, duration } = props || {}
 
 	const animationHook = getXyzAnimationHook(duration)
 
 	const transitionData = {
 		attrs: {
+			...props,
 			css: true,
 			type: 'animation',
 			appearClass: xyzTransitionClasses.appearFrom,

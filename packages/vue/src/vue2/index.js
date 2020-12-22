@@ -24,4 +24,5 @@ if (GlobalVue) {
 	GlobalVue.use(VueAnimXyz)
 }
 
+export { XyzTransition, XyzTransitionGroup, XyzContext }
 export default VueAnimXyz

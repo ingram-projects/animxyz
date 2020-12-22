@@ -16,13 +16,7 @@ export default {
 		},
 	},
 	render(createElement, context) {
-		const data = getXyzTransitionData({
-			...context.data,
-			attrs: {
-				...context.data.attrs,
-				...context.props,
-			},
-		})
+		const data = getXyzTransitionData(context)
 
 		context.children.forEach((child, index) => {
 			child.data = mergeData(

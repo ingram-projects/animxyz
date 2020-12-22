@@ -13,4 +13,5 @@ const VueAnimXyz = {
 	},
 }
 
+export { XyzTransition, XyzTransitionGroup, XyzContext }
 export default VueAnimXyz

@@ -10,15 +10,12 @@ export default {
 		duration: {
 			type: [Number, String, Object],
 		},
+		mode: {
+			type: String,
+		},
 	},
 	render(createElement, context) {
-		const data = getXyzTransitionData({
-			...context.data,
-			attrs: {
-				...context.data.attrs,
-				...context.props,
-			},
-		})
+		const data = getXyzTransitionData(context)
 
 		context.children.forEach((child) => {
 			child.data = mergeData(
