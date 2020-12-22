@@ -1,26 +1,26 @@
 import { TransitionGroup, h } from 'vue'
-import { getXyzTransitionData, mergeData } from '../utils'
+import { getXyzTransitionData } from '../utils'
 
 function XyzTransitionGroup(props, context) {
 	const data = getXyzTransitionData({
 		...context.attrs,
 		...props,
 	})
-	const children = context.slots.default()
 
-	children.forEach((child, index) => {
-		child.data = mergeData(
-			{
-				style: {
-					'--xyz-index': index,
-					'--xyz-index-rev': children.length - index - 1,
-				},
-			},
-			child.data
-		)
-	})
+	const newChildren = () => {
+		if (!context.slots.default) return null
+		const children = context.slots.default()
+		children[0].children.forEach((child, index) => {
+			child.props.style = {
+				'--xyz-index': index,
+				'--xyz-index-rev': children.length - index - 1,
+				...child.props.style,
+			}
+		})
+		return children
+	}
 
-	return h(TransitionGroup, data, () => children)
+	return h(TransitionGroup, data, newChildren)
 }
 
 XyzTransitionGroup.props = {

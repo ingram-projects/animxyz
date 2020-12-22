@@ -1,25 +1,13 @@
 import { Transition, h } from 'vue'
-import { getXyzTransitionData, mergeData } from '../utils'
+import { getXyzTransitionData } from '../utils'
 
 function XyzTransition(props, context) {
 	const data = getXyzTransitionData({
 		...context.attrs,
 		...props,
 	})
-	const children = context.slots.default()
 
-	children.forEach((child) => {
-		child.data = mergeData(
-			{
-				directives: data.directives,
-				style: data.style,
-				xyz: data.xyz,
-			},
-			child.data
-		)
-	})
-
-	return h(Transition, data, () => children)
+	return h(Transition, data, context.slots)
 }
 
 XyzTransition.props = {

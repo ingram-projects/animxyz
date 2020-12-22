@@ -1,17 +1,5 @@
 import { xyzTransitionClasses, getXyzAnimationHook } from '../../../../utils'
 
-export function mergeData(data1 = {}, data2 = {}) {
-	return {
-		...data1,
-		...data2,
-		directives: [...(data1.directives || []), ...(data2.directives || [])],
-		style: {
-			...data1.style,
-			...data2.style,
-		},
-	}
-}
-
 export function getXyzTransitionData(data) {
 	const { appear, duration } = data || {}
 
@@ -37,7 +25,11 @@ export function getXyzTransitionData(data) {
 		transitionData.onAppear = animationHook
 	}
 
-	const mergedData = mergeData(data, transitionData)
+	const mergedData = {
+		...data,
+		...transitionData,
+	}
+
 	delete mergedData.duration
 	return mergedData
 }
