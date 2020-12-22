@@ -16,7 +16,16 @@ examples:
           ##jsx
           <div />
   - name: Grid
-    component: 
+    component: PracticalExamples_Grid
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <div></div>
+      - name: React
+        content: |
+          ##jsx
+          <div />
 ---
 
 This is the practical examples section.

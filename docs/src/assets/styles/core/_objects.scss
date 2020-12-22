@@ -57,6 +57,11 @@ svg {
   font-family: $font-stack-mono;
 }
 
+.square-image {
+  @include size(100%);
+  object-fit: cover;
+}
+
 .square-group {
   display: flex;
   align-items: center;
@@ -67,12 +72,17 @@ svg {
 }
 
 .square-grid {
+  --grid-columns: 4;
+  --grid-square-size: 4rem;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--grid-columns), var(--grid-square-size));
+  justify-content: center;
   margin: 0 auto;
+  width: 100%;
 
   .square {
-    @include size(4rem);
+    @include size(var(--grid-square-size));
   }
 }
 
