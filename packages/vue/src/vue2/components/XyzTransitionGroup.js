@@ -16,20 +16,27 @@ export default {
 		},
 	},
 	render(createElement, context) {
-		const data = getXyzTransitionData(context)
+		const data = getXyzTransitionData({
+			...context.data,
+			attrs: {
+				...context.data.attrs,
+				...context.props,
+			},
+		})
+		const children = context.children
 
-		context.children.forEach((child, index) => {
+		children.forEach((child, index) => {
 			child.data = mergeData(
 				{
 					staticStyle: {
 						'--xyz-index': index,
-						'--xyz-index-rev': context.children.length - index - 1,
+						'--xyz-index-rev': children.length - index - 1,
 					},
 				},
 				child.data
 			)
 		})
 
-		return createElement('transition-group', data, context.children)
+		return createElement('transition-group', data, children)
 	},
 }

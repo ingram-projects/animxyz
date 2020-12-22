@@ -1,7 +1,7 @@
-import { default as xyz } from 'clsx'
+import clsx from 'clsx'
 
 function updateDirective(el, binding) {
-	const xyzAttr = xyz(el.xyzStatic?.split(' '), binding.value)
+	const xyzAttr = clsx(el.xyzStatic?.split(' '), binding.value)
 	el.setAttribute('xyz', xyzAttr)
 }
 

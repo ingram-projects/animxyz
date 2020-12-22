@@ -1,35 +1,39 @@
+import { TransitionGroup, h } from 'vue'
 import { getXyzTransitionData, mergeData } from '../utils'
 
-export default {
-	name: 'XyzTransitionGroup',
-	functional: true,
-	props: {
-		appear: {
-			type: Boolean,
-		},
-		duration: {
-			type: [Number, String, Object],
-		},
-		tag: {
-			type: String,
-			default: 'div',
-		},
-	},
-	render(createElement, context) {
-		const data = getXyzTransitionData(context)
+function XyzTransitionGroup(props, context) {
+	const data = getXyzTransitionData({
+		...context.attrs,
+		...props,
+	})
+	const children = context.slots.default()
 
-		context.children.forEach((child, index) => {
-			child.data = mergeData(
-				{
-					staticStyle: {
-						'--xyz-index': index,
-						'--xyz-index-rev': context.children.length - index - 1,
-					},
+	children.forEach((child, index) => {
+		child.data = mergeData(
+			{
+				style: {
+					'--xyz-index': index,
+					'--xyz-index-rev': children.length - index - 1,
 				},
-				child.data
-			)
-		})
+			},
+			child.data
+		)
+	})
 
-		return createElement('transition-group', data, context.children)
+	return h(TransitionGroup, data, () => children)
+}
+
+XyzTransitionGroup.props = {
+	appear: {
+		type: Boolean,
+	},
+	duration: {
+		type: [Number, String, Object],
+	},
+	tag: {
+		type: String,
+		default: 'div',
 	},
 }
+
+export default XyzTransitionGroup

@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<!-- <XyzTransitionGroup appear xyz="fade down duration-10 stagger">
+		<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
 			<div v-for="index in 5" :key="index">Hello</div>
-		</XyzTransitionGroup> -->
+		</XyzTransitionGroup>
 
 		<XyzTransition
 			appear
 			style="--xyz-duration: 1s"
-			:style="{ '--xyz-delay': '1s' }"
+			:style="{ '--xyz-ease': 'ease-in-out' }"
 			v-xyz="{ up: true }"
 			mode="out-in"
 			xyz="fade rotate-right duration-10"

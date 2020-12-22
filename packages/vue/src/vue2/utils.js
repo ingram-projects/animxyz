@@ -9,6 +9,10 @@ export function mergeData(data1 = {}, data2 = {}) {
 			...data2.attrs,
 		},
 		directives: [...(data1.directives || []), ...(data2.directives || [])],
+		on: {
+			...data1.on,
+			...data2.on,
+		},
 		staticStyle: {
 			...data1.staticStyle,
 			...data2.staticStyle,
@@ -17,21 +21,16 @@ export function mergeData(data1 = {}, data2 = {}) {
 			...data1.style,
 			...data2.style,
 		},
-		on: {
-			...data1.on,
-			...data2.on,
-		},
 	}
 }
 
-export function getXyzTransitionData({ props, data }) {
-	const { appear, duration } = props || {}
+export function getXyzTransitionData(data) {
+	const { appear, duration } = data.attrs || {}
 
 	const animationHook = getXyzAnimationHook(duration)
 
 	const transitionData = {
 		attrs: {
-			...props,
 			css: true,
 			type: 'animation',
 			appearClass: xyzTransitionClasses.appearFrom,

@@ -1,36 +1,37 @@
+import { Transition, h } from 'vue'
 import { getXyzTransitionData, mergeData } from '../utils'
 
-export default {
-	name: 'XyzTransition',
-	functional: true,
-	props: {
-		appear: {
-			type: Boolean,
-		},
-		duration: {
-			type: [Number, String, Object],
-		},
-		mode: {
-			type: String,
-		},
+function XyzTransition(props, context) {
+	const data = getXyzTransitionData({
+		...context.attrs,
+		...props,
+	})
+	const children = context.slots.default()
+
+	children.forEach((child) => {
+		child.data = mergeData(
+			{
+				directives: data.directives,
+				style: data.style,
+				xyz: data.xyz,
+			},
+			child.data
+		)
+	})
+
+	return h(Transition, data, () => children)
+}
+
+XyzTransition.props = {
+	appear: {
+		type: Boolean,
 	},
-	render(createElement, context) {
-		const data = getXyzTransitionData(context)
-
-		context.children.forEach((child) => {
-			child.data = mergeData(
-				{
-					attrs: {
-						xyz: data.attrs.xyz,
-					},
-					directives: data.directives,
-					staticStyle: data.staticStyle,
-					style: data.style,
-				},
-				child.data
-			)
-		})
-
-		return createElement('transition', data, context.children)
+	duration: {
+		type: [Number, String, Object],
+	},
+	mode: {
+		type: String,
 	},
 }
+
+export default XyzTransition
