@@ -1,6 +1,6 @@
 <template>
 	<div class="example-wrap">
-		<xyz-transition duration="auto" xyz="fade out-delay-5">
+		<XyzTransition duration="auto" xyz="fade out-delay-5">
 			<div class="modal__overlay" v-if="customData.modalToggled" @click="customData.modalToggled = false">
 				<div class="modal xyz-nested" xyz="fade short-100 delay-3 ease-out-back" @click.stop>
 					<div class="modal__header xyz-nested" xyz="up-100 in-delay-3">
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</div>
-		</xyz-transition>
+		</XyzTransition>
 		<button class="modal-toggle example-button mt-l" @click="customData.modalToggled = !customData.modalToggled">
 			Show Modal
 		</button>

@@ -1,10 +1,22 @@
 <template>
-	<div class="example-wrap">
-		<xyz-transition-group class="square-grid cat-grid">
-			<div class="square" v-for="index in 15" :key="index">
-				<img class="square-image" :src="`https://cataas.com/cat?type=sq?id=${index}`" alt="Picture of a cat" />
+	<div class="example-wrap flex-col">
+		<XyzTransitionGroup
+			appear
+			class="square-grid cat-grid"
+			xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2"
+		>
+			<div class="square" v-for="index in customData.numCats" :key="index">
+				<img
+					class="square-image image-filter-mono"
+					:src="`https://cataas.com/cat?type=sm?id=${index}`"
+					alt="Picture of a cat"
+				/>
 			</div>
-		</xyz-transition-group>
+		</XyzTransitionGroup>
+		<div class="flex-row align-center mt-l">
+			<label for="numCatsInput" class="example-input-label">Number of Cats</label>
+			<input id="numCatsInput" type="number" class="example-input" v-model.number="customData.numCats" />
+		</div>
 	</div>
 </template>
 
@@ -15,7 +27,16 @@ export default {
 	mixins: [ExampleMixin],
 	data() {
 		return {
-			customData: {},
+			customData: {
+				numCats: 15,
+			},
+		}
+	},
+	watch: {
+		'customData.numCats'() {
+			if (this.customData.numCats > 15) {
+				this.customData.numCats = 15
+			}
 		}
 	},
 }
