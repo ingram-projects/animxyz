@@ -12,7 +12,7 @@
     "@animxyz/vue": "^0.1.1",
     "core-js": "^3.8.1",
     "normalize.css": "^8.0.1",
-    "vue": "^3.0.0"
+    "vue": "^3.0.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.9",
