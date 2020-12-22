@@ -30,8 +30,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "scripts",
-    "src"
+    "scripts"
   ],
   "moduleName": "VueAnimXyz",
   "main": "dist/VueAnimXyz.cjs.js",

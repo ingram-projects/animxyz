@@ -29,8 +29,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "moduleName": "ReactAnimXyz",
   "main": "dist/ReactAnimXyz.cjs.js",

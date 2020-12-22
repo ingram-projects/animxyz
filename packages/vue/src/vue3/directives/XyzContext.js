@@ -1,4 +1,4 @@
-import { xyz } from '../xyzUtils'
+import { default as xyz } from 'clsx'
 
 function updateDirective(el, binding) {
 	const xyzAttr = xyz(el.xyzStatic?.split(' '), binding.value)

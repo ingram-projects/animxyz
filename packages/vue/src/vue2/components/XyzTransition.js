@@ -1,4 +1,4 @@
-import { getXyzTransitionData, mergeData } from '../xyzUtils'
+import { getXyzTransitionData, mergeData } from '../utils'
 
 export default {
 	name: 'XyzTransition',
