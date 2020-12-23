@@ -24,8 +24,8 @@ export default {
 		})
 		const children = context.children
 
-		children.forEach((child) => {
-			child.data = mergeData(
+		children.forEach((node) => {
+			node.data = mergeData(
 				{
 					attrs: {
 						xyz: data.attrs.xyz,
@@ -34,7 +34,7 @@ export default {
 					staticStyle: data.staticStyle,
 					style: data.style,
 				},
-				child.data
+				node.data
 			)
 		})
 

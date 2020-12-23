@@ -1,38 +1,51 @@
 <template>
-	<div>
-		<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
-			<div v-for="index in 5" :key="index">Hello</div>
-		</XyzTransitionGroup>
-
-		<XyzTransition
-			appear
-			style="--xyz-duration: 1s"
-			:style="{ '--xyz-ease': 'ease-in-out' }"
-			v-xyz="{ up: true }"
-			mode="out-in"
-			xyz="fade rotate-right duration-10"
-		>
-			<button @click="randomState" :key="switchState">State {{ switchState }}</button>
-		</XyzTransition>
+	<div class="example-list">
+		<div class="example-item" v-for="example in examples" :key="example">
+			<h1 class="example-title mb-s">{{ example }}</h1>
+			<div class="example-content">
+				<component :is="example"></component>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
-const switchStates = ['one', 'two', 'three', 'four', 'five']
+import examples from './examples'
 
 export default {
 	name: 'App',
+	components: examples,
 	data() {
 		return {
-			switchState: switchStates[0],
+			examples: Object.keys(examples),
 		}
-	},
-	methods: {
-		randomState() {
-			this.switchState = switchStates[Math.floor(Math.random() * switchStates.length)]
-		},
 	},
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.example-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.example-item {
+	min-height: 400px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	padding: $sp-s;
+	border: 1px solid primary-color(800);
+}
+
+.example-title {
+	text-align: center;
+	font-size: $fs-xl;
+	color: primary-color(50);
+}
+
+.example-content {
+	flex-grow: 1;
+	display: flex;
+}
+</style>

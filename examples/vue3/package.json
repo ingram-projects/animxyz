@@ -11,7 +11,9 @@
   "dependencies": {
     "@animxyz/vue": "^0.1.1",
     "core-js": "^3.8.1",
-    "normalize.css": "^8.0.1",
+    "fontsource-inconsolata": "3.1.6",
+    "ress": "^3.0.0",
+    "typeface-inter": "^3.15.0",
     "vue": "^3.0.4"
   },
   "devDependencies": {
@@ -20,6 +22,7 @@
     "@vue/cli-plugin-eslint": "~4.5.9",
     "@vue/compiler-sfc": "^3.0.4",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-vue": "^7.3.0"
+    "eslint-plugin-vue": "^7.3.0",
+    "include-media": "^1.4.9"
   }
 }

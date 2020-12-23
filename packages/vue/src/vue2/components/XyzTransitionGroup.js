@@ -25,15 +25,15 @@ export default {
 		})
 		const children = context.children
 
-		children.forEach((child, index) => {
-			child.data = mergeData(
+		children.forEach((node, index) => {
+			node.data = mergeData(
 				{
 					staticStyle: {
 						'--xyz-index': index,
 						'--xyz-index-rev': children.length - index - 1,
 					},
 				},
-				child.data
+				node.data
 			)
 		})
 

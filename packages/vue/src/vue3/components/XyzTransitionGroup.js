@@ -10,13 +10,18 @@ function XyzTransitionGroup(props, context) {
 	const newChildren = () => {
 		if (!context.slots.default) return null
 		const children = context.slots.default()
-		children[0].children.forEach((child, index) => {
-			child.props.style = {
-				'--xyz-index': index,
-				'--xyz-index-rev': children.length - index - 1,
-				...child.props.style,
-			}
+		const rootNode = children.find((node) => {
+			return Array.isArray(node.children)
 		})
+		if (rootNode) {
+			rootNode.children.forEach((node, index) => {
+				node.props.style = {
+					'--xyz-index': index,
+					'--xyz-index-rev': rootNode.children.length - index - 1,
+					...node.props.style,
+				}
+			})
+		}
 		return children
 	}
 
