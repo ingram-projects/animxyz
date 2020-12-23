@@ -9,11 +9,16 @@ function XyzTransitionGroup(props, context) {
 
 	const newChildren = () => {
 		if (!context.slots.default) return null
+
 		const children = context.slots.default()
+
+		// Look for the actual root node with children
 		const rootNode = children.find((node) => {
 			return Array.isArray(node.children)
 		})
+
 		if (rootNode) {
+			// Iterate through children and apply xyz indexes
 			rootNode.children.forEach((node, index) => {
 				node.props.style = {
 					'--xyz-index': index,
@@ -22,6 +27,7 @@ function XyzTransitionGroup(props, context) {
 				}
 			})
 		}
+
 		return children
 	}
 

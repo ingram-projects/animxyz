@@ -1,4 +1,5 @@
-import { getXyzTransitionData, mergeData } from '../utils'
+import { mergeData } from 'vue-functional-data-merge'
+import { getXyzTransitionData } from '../utils'
 
 export default {
 	name: 'XyzTransitionGroup',
@@ -26,6 +27,7 @@ export default {
 		const children = context.children
 
 		children.forEach((node, index) => {
+			// Iterate through children and apply xyz indexes
 			node.data = mergeData(
 				{
 					staticStyle: {
@@ -33,7 +35,7 @@ export default {
 						'--xyz-index-rev': children.length - index - 1,
 					},
 				},
-				node.data
+				node.data || {}
 			)
 		})
 

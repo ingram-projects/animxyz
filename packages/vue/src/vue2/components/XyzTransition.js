@@ -1,4 +1,5 @@
-import { getXyzTransitionData, mergeData } from '../utils'
+import { mergeData } from 'vue-functional-data-merge'
+import { getXyzTransitionData } from '../utils'
 
 export default {
 	name: 'XyzTransition',
@@ -25,16 +26,19 @@ export default {
 		const children = context.children
 
 		children.forEach((node) => {
+			// Iterate through children and merge transition directives and styles
 			node.data = mergeData(
 				{
 					attrs: {
 						xyz: data.attrs.xyz,
 					},
-					directives: data.directives,
-					staticStyle: data.staticStyle,
+					class: data.class,
+					staticClass: data.staticClass,
 					style: data.style,
+					staticStyle: data.staticStyle,
+					directives: data.directives || [],
 				},
-				node.data
+				node.data || {}
 			)
 		})
 

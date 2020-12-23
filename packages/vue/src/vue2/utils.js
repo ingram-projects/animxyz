@@ -1,30 +1,7 @@
+import { mergeData } from 'vue-functional-data-merge'
 import { xyzTransitionClasses, getXyzAnimationHook } from '../../../../utils'
 
-export function mergeData(data1 = {}, data2 = {}) {
-	return {
-		...data1,
-		...data2,
-		attrs: {
-			...data1.attrs,
-			...data2.attrs,
-		},
-		directives: [...(data1.directives || []), ...(data2.directives || [])],
-		on: {
-			...data1.on,
-			...data2.on,
-		},
-		staticStyle: {
-			...data1.staticStyle,
-			...data2.staticStyle,
-		},
-		style: {
-			...data1.style,
-			...data2.style,
-		},
-	}
-}
-
-export function getXyzTransitionData(data) {
+export function getXyzTransitionData(data = {}) {
 	const { appear, duration } = data.attrs || {}
 
 	const animationHook = getXyzAnimationHook(duration)
