@@ -7,6 +7,6 @@ import 'typeface-inter'
 import 'fontsource-inconsolata'
 
 // Styles
-import '@/styles/_index.scss'
+import './styles/_index.scss'
 
 ReactDOM.render(<App />, document.getElementById('root'))

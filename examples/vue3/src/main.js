@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import VueAnimXyz from '@animxyz/vue/dist/vue3/VueAnimXyz.esm.js'
+import VueAnimXyz from '@animxyz/vue/src/vue3'
 import App from './App.vue'
 
 // Fonts
