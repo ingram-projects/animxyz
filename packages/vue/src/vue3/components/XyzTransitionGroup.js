@@ -8,8 +8,10 @@ function XyzTransitionGroup(props, context) {
 		...props,
 	})
 
-	const newChildren = () => {
-		const rawChildren = context.slots.default ? getTransitionRawChildren(context.slots.default()) : []
+	function childrenFn() {
+		const children = context.slots.default ? context.slots.default() : []
+
+		const rawChildren = getTransitionRawChildren(children)
 		rawChildren.forEach((node, index) => {
 			node.props.style = {
 				'--xyz-index': index,
@@ -17,10 +19,11 @@ function XyzTransitionGroup(props, context) {
 				...node.props.style,
 			}
 		})
-		return rawChildren
+
+		return children
 	}
 
-	return h(TransitionGroup, data, newChildren)
+	return h(TransitionGroup, data, childrenFn)
 }
 
 XyzTransitionGroup.props = {

@@ -1,6 +1,12 @@
 import { mergeData } from 'vue-functional-data-merge'
 import { getXyzTransitionData } from '../utils'
 
+function getTransitionRawChildren(children) {
+	return children.filter((node) => {
+		return node.tag && node.key != null && String(node.key).indexOf('__vlist') !== 0
+	})
+}
+
 export default {
 	name: 'XyzTransitionGroup',
 	functional: true,
@@ -24,9 +30,11 @@ export default {
 				...context.props,
 			},
 		})
+
 		const children = context.children
 
-		children.forEach((node, index) => {
+		const rawChildren = getTransitionRawChildren(children)
+		rawChildren.forEach((node, index) => {
 			// Iterate through children and apply xyz indexes
 			node.data = mergeData(
 				{
