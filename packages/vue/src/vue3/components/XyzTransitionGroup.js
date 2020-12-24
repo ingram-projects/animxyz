@@ -1,4 +1,5 @@
 import { TransitionGroup, h } from 'vue'
+import { getTransitionRawChildren } from '@vue/runtime-core'
 import { getXyzTransitionData } from '../utils'
 
 function XyzTransitionGroup(props, context) {
@@ -8,27 +9,15 @@ function XyzTransitionGroup(props, context) {
 	})
 
 	const newChildren = () => {
-		if (!context.slots.default) return null
-
-		const children = context.slots.default()
-
-		// Look for the actual root node with children
-		const rootNode = children.find((node) => {
-			return Array.isArray(node.children)
+		const rawChildren = context.slots.default ? getTransitionRawChildren(context.slots.default()) : []
+		rawChildren.forEach((node, index) => {
+			node.props.style = {
+				'--xyz-index': index,
+				'--xyz-index-rev': rawChildren.length - index - 1,
+				...node.props.style,
+			}
 		})
-
-		if (rootNode) {
-			// Iterate through children and apply xyz indexes
-			rootNode.children.forEach((node, index) => {
-				node.props.style = {
-					'--xyz-index': index,
-					'--xyz-index-rev': rootNode.children.length - index - 1,
-					...node.props.style,
-				}
-			})
-		}
-
-		return children
+		return rawChildren
 	}
 
 	return h(TransitionGroup, data, newChildren)
