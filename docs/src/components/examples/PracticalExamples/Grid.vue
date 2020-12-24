@@ -3,7 +3,7 @@
 		<XyzTransitionGroup
 			appear
 			class="square-grid cat-grid"
-			xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2"
+			xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0"
 		>
 			<div class="square" v-for="index in customData.numCats" :key="index">
 				<img
@@ -37,7 +37,7 @@ export default {
 			if (this.customData.numCats > 15) {
 				this.customData.numCats = 15
 			}
-		}
+		},
 	},
 }
 </script>
