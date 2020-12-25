@@ -1,11 +1,11 @@
-import React, { Children, cloneElement } from 'react'
+import React, { Children, cloneElement, isValidElement } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import XyzTransition from './XyzTransition'
 
 function XyzTransitionGroup(props) {
 	const { xyz, component = 'div', childFactory, className, style, children, ...rest } = props
 
-	const childArray = Children.toArray(children).filter(Boolean)
+	const childArray = Children.toArray(children).filter(isValidElement)
 
 	return (
 		<TransitionGroup component={component} xyz={xyz} className={className} style={style} childFactory={childFactory}>

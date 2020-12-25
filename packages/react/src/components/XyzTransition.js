@@ -1,4 +1,4 @@
-import React, { Children, cloneElement } from 'react'
+import React, { Children, cloneElement, isValidElement } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { CSSTransition } from 'react-transition-group'
@@ -9,7 +9,7 @@ function XyzTransition(props) {
 
 	const xyzTransitionProps = getXyzTransitionProps(rest)
 
-	const childArray = Children.toArray(children).filter(Boolean)
+	const childArray = Children.toArray(children).filter(isValidElement)
 
 	if (childArray.length !== 1) {
 		throw new Error('XyzTransition must have a single truthy child at all times')
