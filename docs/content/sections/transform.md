@@ -201,7 +201,7 @@ See the [variables](#variables) section to learn more.
       <tr>
         <th scope="row">Translate</th>
         <td>--xyz-translate-default</td>
-        <td>30px</td>
+        <td>25%</td>
       </tr>
       <tr>
         <th scope="row">Rotate</th>
