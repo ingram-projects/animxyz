@@ -240,7 +240,8 @@ export default {
 						},
 						{
 							title: '🎈 Yoink!',
-							variables: ['stagger: 0.2s', 'translate-y: 400%', 'scale-x: 0', 'ease: cubic-bezier(.26,2.05,.84,.38)'],
+							utilities: ['stagger-2', 'narrow-100'],
+							variables: ['translate-y: -350%', 'ease: cubic-bezier(0.5,-1.5,0.5,1.5)'],
 						},
 						{
 							title: '📺 Click',
