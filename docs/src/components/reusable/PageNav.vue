@@ -19,7 +19,7 @@
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-list__wrap" v-scroll-lock="$mq.below('tablet') && open">
-						<ul class="nav-list" xyz="fade left" style="--xyz-stagger: 0.05s">
+						<ul class="nav-list" xyz="fade left-3" style="--xyz-stagger: 0.05s">
 							<li class="nav-item xyz-in-nested" :style="{ '--xyz-index': 0 }" key="home">
 								<a class="nav-item__link link-home" href="/">
 									<div class="link-dot__wrap">

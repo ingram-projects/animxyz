@@ -3,7 +3,7 @@
 		class="variables__wrap"
 		body-scroll-lock-ignore
 		appear
-		xyz="fade down"
+		xyz="fade down-3"
 		style="--xyz-stagger: 0.05s"
 	>
 		<div class="variable" v-for="variable in computedVariables" :key="variable.string">

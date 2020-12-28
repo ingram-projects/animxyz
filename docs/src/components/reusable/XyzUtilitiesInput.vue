@@ -14,7 +14,7 @@
 				class="utilities-table__body"
 				appear
 				duration="auto"
-				xyz="fade down"
+				xyz="fade down-3"
 				style="--xyz-stagger: 0.05s"
 			>
 				<tr class="utility xyz-none" v-for="utility in computedUtilities" :key="utility.name">
