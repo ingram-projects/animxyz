@@ -95,7 +95,7 @@ You have control over everything you need to animate an element, even transform 
 [🎈 Yoink!](<?tab=examples&variables=stagger:0.2s;translate-y:-400%;scale-x:0;ease:cubic-bezier(.26,2.05,.84,.38)#variables>)  
 [📺 Click.](?tab=examples&variables=duration:0.6s;scale-x:1.25;scale-y:0#variables)  
 [🌀 It's gone spiral!](<?tab=examples&variables=rotate-z:1turn;origin:center -200%;duration:2s;scale-x:0;scale-y:0#variables>)  
-[💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:10px;translate-z:100px;translate-y:10vh#variables)  
+[💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:100px;translate-z:100px;translate-y:10vh#variables)  
 
 Keep in mind that CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
 

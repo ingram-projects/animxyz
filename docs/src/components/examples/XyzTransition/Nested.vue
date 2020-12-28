@@ -1,6 +1,6 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransition appear duration="auto" xyz="fade up-100 duration-10">
+		<XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
 			<div class="square-block" v-show="customData.buttonToggled">
 				<div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
 			</div>

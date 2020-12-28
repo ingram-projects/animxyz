@@ -32,7 +32,7 @@ examples:
   - name: Example 2
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade down flip-up-50" v-on="data.listeners">
+        <XyzTransition xyz="fade down flip-up-50%" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -40,17 +40,17 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade down flip-up-50"></div>
+          <div class="square ${data.mode}" xyz="fade down flip-up-50%"></div>
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade down flip-up-50">
+          <XyzTransition xyz="fade down flip-up-50%">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
         content: |
           ##jsx
-          <XyzTransition xyz="fade down flip-up-50">
+          <XyzTransition xyz="fade down flip-up-50%">
             {${data.toggled} && <div className="square"></div>}
           </XyzTransition>
 ---

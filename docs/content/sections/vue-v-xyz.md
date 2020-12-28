@@ -24,7 +24,7 @@ examples:
           <XyzTransitionGroup class="square-grid">
             <div
               class="square"
-              xyz="fade out-small-50 out-duration-30"
+              xyz="fade out-small-50% out-duration-30"
               v-xyz="{
                 'in-down in-right in-stagger-1': index <= 41,
                 'in-up in-left in-stagger-rev-1': index > 41,

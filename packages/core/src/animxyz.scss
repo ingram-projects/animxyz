@@ -2,14 +2,11 @@
 @forward 'functions';
 @forward 'core';
 @forward 'utilities';
-@forward 'fancy';
 
 @use 'core' as *;
 @use 'utilities' as *;
-@use 'fancy' as *;
 
 @mixin xyz-all() {
   @include xyz-core;
   @include xyz-utilities;
-  @include xyz-fancy;
 }

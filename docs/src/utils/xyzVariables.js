@@ -18,13 +18,59 @@ export const xyzEaseLevels = {
 	'in-out-back': 'cubic-bezier(0.680, -0.550, 0.265, 1.550)',
 }
 
-export const xyzTimeLevels = {
+export const xyzDurationLevels = {
 	0: '0s',
-	1: '.1s',
-	2: '.2s',
-	3: '.3s',
-	4: '.4s',
-	5: '.5s',
+	0.5: '0.05s',
+	1: '0.1s',
+	1.5: '0.15s',
+	2: '0.2s',
+	3: '0.3s',
+	4: '0.4s',
+	5: '0.5s',
+	6: '0.6s',
+	7: '0.7s',
+	8: '0.8s',
+	9: '0.9s',
+	10: '1s',
+	15: '1.5s',
+	20: '2s',
+	25: '2.5s',
+	30: '3s',
+}
+
+export const xyzDelayLevels = {
+	0: '0s',
+	0.5: '0.05s',
+	1: '0.1s',
+	1.5: '0.15s',
+	2: '0.2s',
+	3: '0.3s',
+	4: '0.4s',
+	5: '0.5s',
+	6: '0.6s',
+	7: '0.7s',
+	8: '0.8s',
+	9: '0.9s',
+	10: '1s',
+	15: '1.5s',
+	20: '2s',
+	25: '2.5s',
+	30: '3s',
+}
+
+export const xyzStaggerLevels = {
+	0: '0s',
+	0.5: '0.05s',
+	1: '0.1s',
+	1.5: '0.15s',
+	2: '0.2s',
+	3: '0.3s',
+	4: '0.4s',
+	5: '0.5s',
+	6: '0.6s',
+	7: '0.7s',
+	8: '0.8s',
+	9: '0.9s',
 	10: '1s',
 	15: '1.5s',
 	20: '2s',
@@ -55,10 +101,10 @@ export const xyzOriginLevels = {
 
 export const xyzOpacityLevels = {
 	0: '0',
-	25: '.25',
-	50: '.5',
-	75: '.75',
-	100: '1',
+	'25%': '0.25',
+	'50%': '0.5',
+	'75%': '0.75',
+	'100%': '1',
 }
 
 export const xyzPerspectiveLevels = {
@@ -77,19 +123,19 @@ export const xyzTranslateLevels = {
 	3: '30px',
 	4: '40px',
 	5: '50px',
-	25: '25%',
-	50: '50%',
-	75: '75%',
-	100: '100%',
+	'25%': '25%',
+	'50%': '50%',
+	'75%': '75%',
+	'100%': '100%',
 }
 
 export const xyzTranslateZLevels = {
 	0: '0px',
-	1: '10px',
-	2: '20px',
-	3: '30px',
-	4: '40px',
-	5: '50px',
+	1: '100px',
+	2: '200px',
+	3: '300px',
+	4: '400px',
+	5: '500px',
 }
 
 export const xyzRotateLevels = {
@@ -99,10 +145,10 @@ export const xyzRotateLevels = {
 	3: '30deg',
 	4: '40deg',
 	5: '50deg',
-	25: '.25turn',
-	50: '.50turn',
-	75: '.75turn',
-	100: '1turn',
+	'25%': '0.25turn',
+	'50%': '0.50turn',
+	'75%': '0.75turn',
+	'100%': '1turn',
 }
 
 export const xyzScaleLevels = {
@@ -112,10 +158,10 @@ export const xyzScaleLevels = {
 	3: '0.075',
 	4: '0.1',
 	5: '0.125',
-	25: '.25',
-	50: '.5',
-	75: '.75',
-	100: '1',
+	'25%': '0.25',
+	'50%': '0.5',
+	'75%': '0.75',
+	'100%': '1',
 }
 
 export const xyzSkewLevels = {
@@ -317,28 +363,28 @@ export const xyzUtilitiesMap = {
 		type: 'duration',
 		vars: ['duration'],
 		default: 'var(--xyz-duration-default)',
-		levels: xyzTimeLevels,
+		levels: xyzDurationLevels,
 		modes: xyzModesAll,
 	},
 	delay: {
 		type: 'delay',
 		vars: ['delay'],
 		default: 'var(--xyz-delay-default)',
-		levels: xyzTimeLevels,
+		levels: xyzDelayLevels,
 		modes: xyzModesAll,
 	},
 	stagger: {
 		type: 'stagger',
 		vars: ['stagger'],
 		default: 'var(--xyz-stagger-default)',
-		levels: xyzTimeLevels,
+		levels: xyzStaggerLevels,
 		modes: xyzModesAll,
 	},
 	'stagger-rev': {
 		type: 'stagger',
 		vars: ['stagger-rev'],
 		default: 'var(--xyz-stagger-default)',
-		levels: xyzTimeLevels,
+		levels: xyzStaggerLevels,
 		modes: xyzModesAll,
 	},
 	iterate: {
@@ -621,7 +667,7 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 }
 
 export function createXyzUtilityRegex(utilities = Object.keys(xyzUtilitiesMap), modes = xyzModesAll) {
-	return new RegExp(`^(?:(${modes.join('|')})-)?(${utilities.join('|')})(?:-([\\w-]+))?$`)
+	return new RegExp(`^(?:(${modes.join('|')})-)?(${utilities.join('|')})(?:-([\\w.%-]+))?$`)
 }
 
 export const xyzUtilityRegex = createXyzUtilityRegex()

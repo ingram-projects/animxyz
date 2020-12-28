@@ -224,11 +224,11 @@ export default {
 					presets: [
 						{
 							title: '🎓 Drop out',
-							utilities: ['fade', 'down-100', 'back-5'],
+							utilities: ['fade', 'down-100%', 'back-5'],
 						},
 						{
 							title: '🌪 Spinny',
-							utilities: ['fade', 'down-5', 'rotate-right-50', 'stagger'],
+							utilities: ['fade', 'down-5', 'rotate-right-50%', 'stagger'],
 						},
 						{
 							title: '⤵️ Flippy',
@@ -236,7 +236,7 @@ export default {
 						},
 						{
 							title: '💾 Floppy',
-							utilities: ['fade', 'front-5', 'flip-down-50', 'duration-10', 'stagger-5'],
+							utilities: ['fade', 'front-5', 'flip-down-50%', 'duration-10', 'stagger-5'],
 						},
 						{
 							title: '🎈 Yoink!',
@@ -258,7 +258,7 @@ export default {
 								'origin: -200%',
 								'stagger: 0.1s',
 								'duration: 0.75s',
-								'perspective: 10px',
+								'perspective: 100px',
 								'translate-z: 100px',
 								'translate-y: 10vh',
 							],
