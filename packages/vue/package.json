@@ -50,7 +50,6 @@
   "dependencies": {
     "@animxyz/core": "^0.1.2",
     "clsx": "^1.1.1",
-    "vue": "^3.0.4",
     "vue-functional-data-merge": "^3.1.0"
   },
   "peerDependencies": {
@@ -62,6 +61,7 @@
     "bili": "^5.0.5",
     "eslint-plugin-vue": "^7.3.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "vue": "^3.0.4"
   }
 }

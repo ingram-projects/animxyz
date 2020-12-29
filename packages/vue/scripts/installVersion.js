@@ -13,9 +13,11 @@ function loadModuleSafe(name) {
 }
 
 function copyFiles(from, to) {
-	fs.readdirSync(from).forEach((file) => {
-		fs.copyFileSync(path.join(from, file), path.join(to, file))
-	})
+	if (fs.existsSync(from)) {
+		fs.readdirSync(from).forEach((file) => {
+			fs.copyFileSync(path.join(from, file), path.join(to, file))
+		})
+	}
 }
 
 function installVersion(version) {
