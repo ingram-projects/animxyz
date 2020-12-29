@@ -90,7 +90,7 @@
 				</div>
 			</div>
 
-			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.6s">
+			<XyzTransition appear xyz="fade down ease-out delay-6">
 				<section class="used-by copy-content">
 					<h3>AnimXYZ is used by:</h3>
 					<ul class="used-by__list">
@@ -110,7 +110,7 @@
 				</section>
 			</XyzTransition>
 
-			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.7s">
+			<XyzTransition appear xyz="fade down ease-out delay-7">
 				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
@@ -344,7 +344,6 @@ export default {
 }
 
 .intro-text {
-	--xyz-duration: 0.7s;
 	color: primary-color(800);
 	font-size: $fs-xxxl;
 	font-weight: 650;

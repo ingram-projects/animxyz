@@ -2,7 +2,7 @@
 	<div class="code-block">
 		<TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
-		<XyzTransition mode="out-in" xyz="fade">
+		<XyzTransition xyz="fade" mode="out-in">
 			<div class="example-code__wrap" :key="activeCode.name">
 				<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
 					codeChunk.content

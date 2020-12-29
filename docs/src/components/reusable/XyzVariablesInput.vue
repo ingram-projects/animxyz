@@ -1,11 +1,5 @@
 <template>
-	<XyzTransitionGroup
-		class="variables__wrap"
-		body-scroll-lock-ignore
-		appear
-		xyz="fade down-3"
-		style="--xyz-stagger: 0.05s"
-	>
+	<XyzTransitionGroup class="variables__wrap" body-scroll-lock-ignore appear xyz="fade down-3 stagger-0.5">
 		<div class="variable" v-for="variable in computedVariables" :key="variable.string">
 			<label class="variable-label" :for="variable.id">{{ variable.string }}:</label>
 			<input
