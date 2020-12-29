@@ -1,5 +1,16 @@
 <template>
 	<div class="page__wrap">
+		<div class="alerts__wrap copy-content">
+			<div class="alert reduced-motion-alert">
+				<p>
+					AnimXYZ animations are disabled if your browser or OS has reduced motion setting turned on.
+					<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank">
+						Learn more here.
+					</a>
+				</p>
+			</div>
+		</div>
+
 		<div class="xray-toggle__wrap">
 			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 				<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
@@ -67,6 +78,61 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.alerts__wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	padding: $sp-m;
+	z-index: 9;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	@include media('<tablet') {
+		padding: $sp-s;
+	}
+}
+
+.alert {
+	font-size: $fs-s;
+	line-height: 1.125rem;
+	font-weight: 500;
+	padding: $sp-xxs $sp-xs;
+	border-radius: $br-m;
+
+	& + & {
+		margin-top: $sp-s;
+	}
+
+	p {
+		color: white;
+	}
+
+	a {
+		color: white;
+		font-weight: 700;
+
+		&::before {
+			--anchor-underline-color: white;
+		}
+
+		&:hover,
+		&:focus {
+			color: white;
+		}
+	}
+}
+
+.reduced-motion-alert {
+	display: none;
+	background-color: $red;
+
+	@media (prefers-reduced-motion: reduce) {
+		display: block;
+	}
+}
+
 .xray-toggle__wrap {
 	position: fixed;
 	bottom: $sp-xl;

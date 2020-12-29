@@ -200,15 +200,17 @@ h5 {
     transition: color 0.2s $ease-out;
 
     &::before {
+      --anchor-underline-color: #{$cyan};
       content: "";
       position: absolute;
-      bottom: -0.2em;
+      top: calc(100% + 0.15em);
       left: 0.2em;
       right: 0.2em;
       height: 0.15em;
-      background-color: transparentize($cyan, 0.35);
+      opacity: 0.65;
+      background-color: var(--anchor-underline-color);
       transition: 0.15s $ease-out;
-      transition-property: height, left, right, background-color;
+      transition-property: height, left, right, opacity;
     }
 
     &:hover,
@@ -218,48 +220,44 @@ h5 {
       &::before {
         left: -0.1em;
         right: -0.1em;
-        height: 0.25em;
-        background-color: $cyan;
+        height: 0.2em;
+        opacity: 1;
+      }
+    }
+  }
+
+  a[target="_blank"] {
+    &::before {
+      --anchor-underline-color: #{$green};
+    }
+
+    &::after {
+      content: attr(href);
+      background-color: primary-color(800);
+      color: primary-color(50);
+      padding: $sp-xxxs $sp-xxs;
+      border-radius: $br-m;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: $fs-xs;
+      z-index: 1;
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+
+      @include media("<laptop") {
+        display: none;
       }
     }
 
-    &[target="_blank"] {
-      &::before {
-        background-color: transparentize($green, 0.35);
-      }
-
+    &:hover,
+    &:focus {
       &::after {
-        content: attr(href);
-        background-color: primary-color(800);
-        color: primary-color(50);
-        padding: $sp-xxxs $sp-xxs;
-        border-radius: $br-m;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: $fs-xs;
-        z-index: 1;
-        opacity: 0;
-        visibility: hidden;
-        transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-
-        @include media("<laptop") {
-          display: none;
-        }
-      }
-
-      &:hover,
-      &:focus {
-        &::before {
-          background-color: $green;
-        }
-
-        &::after {
-          transform: translateX(-50%) translateY(#{$sp-xxs});
-          opacity: 1;
-          visibility: visible;
-        }
+        transform: translateX(-50%) translateY(#{$sp-xxs});
+        opacity: 1;
+        visibility: visible;
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publishConfig": {
     "access": "public"
   },
@@ -48,7 +48,7 @@
     "postinstall": "node scripts/installVersion.js"
   },
   "dependencies": {
-    "@animxyz/core": "^0.1.1",
+    "@animxyz/core": "^0.1.2",
     "clsx": "^1.1.1",
     "vue": "^3.0.4",
     "vue-functional-data-merge": "^3.1.0"
