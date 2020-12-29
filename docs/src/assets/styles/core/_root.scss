@@ -1,5 +1,6 @@
 body {
   background-color: var(--body-color);
+  transition: background-color 0.2s ease-in-out;
 }
 
 [data-server-rendered='true'] {

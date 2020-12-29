@@ -41,6 +41,13 @@
     background-color: transparentize(darken(#f92672, 10%), 0.95);
     padding: 0.125em 0.25em;
     border-radius: $br-s;
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, color;
+
+    .dark-mode & {
+      color: #f92672;
+      background-color: transparentize(lighten(#f92672, 10%), 0.9);
+    }
   }
 
   pre[class*="language-"] {
