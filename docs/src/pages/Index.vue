@@ -236,7 +236,7 @@ export default {
 						},
 						{
 							title: '💾 Floppy',
-							utilities: ['fade', 'front-5', 'flip-down-50%', 'duration-10', 'stagger-5'],
+							utilities: ['fade', 'front-3', 'flip-down-50%', 'duration-10', 'stagger-5'],
 						},
 						{
 							title: '🎈 Yoink!',
