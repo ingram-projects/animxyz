@@ -29,8 +29,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "moduleName": "ReactAnimXyz",
   "main": "dist/ReactAnimXyz.cjs.js",
@@ -50,7 +49,7 @@
     "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
-    "react": "^17.0.1"
+    "react": "^17.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

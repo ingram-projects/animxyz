@@ -1,11 +1,11 @@
-import React, { Children } from 'react'
+import React, { Children, isValidElement } from 'react'
 import { SwitchTransition } from 'react-transition-group'
 import XyzTransition from './XyzTransition'
 
 function XyzTransitionSwitch(props) {
 	const { mode, children, ...rest } = props
 
-	const childArray = Children.toArray(children).filter(Boolean)
+	const childArray = Children.toArray(children).filter(isValidElement)
 
 	if (childArray.length !== 1) {
 		throw new Error('XyzTransitionSwitch must have a single truthy child at all times')

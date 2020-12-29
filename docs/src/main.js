@@ -6,14 +6,13 @@ import 'typeface-inter'
 import 'fontsource-inconsolata'
 
 // Styles
-import 'ress'
 import '~/assets/styles/core/_index.scss'
 
 // Packages
 import 'prismjs'
 
 // Plugins
-import VueAnimXyz from '@animxyz/vue'
+import VueAnimXyz from '@animxyz/vue/src/vue2'
 import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
