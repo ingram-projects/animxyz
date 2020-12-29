@@ -13,7 +13,8 @@
       "allowBranch": "master"
     },
     "publish": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
     }
   }
 }
