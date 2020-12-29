@@ -277,7 +277,7 @@ export default {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background-color: primary-color(900);
+	background-color: var(--sandbox-color);
 
 	.sandbox {
 		width: 100%;

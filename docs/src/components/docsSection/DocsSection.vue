@@ -69,6 +69,10 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
 
+	.dark-mode & {
+		--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+	}
+
 	::v-deep {
 		.shadow-scroll,
 		.shadow-scroll-content {
@@ -94,9 +98,15 @@ $active-border-width: 0.5rem;
 		padding: $sp-xl;
 
 		.docs-section__wrap.active & {
+			--shadow-scroll-backdrop-color: white;
 			background-color: white;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
-			--shadow-scroll-backdrop-color: white;
+
+			.dark-mode & {
+				--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+				background-color: transparent;
+				box-shadow: 0 0 0 0.25rem primary-color(700);
+			}
 
 			::v-deep {
 				hr {
@@ -197,7 +207,6 @@ $active-border-width: 0.5rem;
 	font-size: 2rem;
 	line-height: 1;
 	font-weight: 640;
-	color: primary-color(700);
 
 	@include media('<phone') {
 		font-size: 1.5rem;

@@ -1,5 +1,5 @@
 body {
-  background-color: primary-color(50);
+  background-color: var(--body-color);
 }
 
 [data-server-rendered='true'] {

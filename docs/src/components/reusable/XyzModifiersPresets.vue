@@ -96,7 +96,7 @@ export default {
 
 <style lang="scss" scoped>
 .modifiers-presets {
-	background-color: primary-color(900);
+	background-color: var(--sandbox-color);
 }
 
 .presets-list {

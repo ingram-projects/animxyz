@@ -1,16 +1,3 @@
-h2,
-h3,
-h4,
-h5 {
-  color: primary-color(800);
-  margin-bottom: 0.5em;
-  font-weight: 600;
-
-  &:not(:first-child) {
-    margin-top: 1.5em;
-  }
-}
-
 .copy-content {
   font-size: 1.125rem;
 
@@ -129,6 +116,10 @@ h5 {
 
     thead {
       color: primary-color(800);
+
+      .dark-mode & {
+        color: primary-color(200);
+      }
     }
 
     th,
@@ -141,12 +132,20 @@ h5 {
       color: primary-color(800);
 			font-weight: 600;
 			font-size: $fs-s;
-			white-space: nowrap;
+      white-space: nowrap;
+      
+      .dark-mode & {
+        color: primary-color(200);
+      }
     }
 
     td {
       color: primary-color(700);
       line-height: 1.5rem;
+
+      .dark-mode & {
+        color: primary-color(300);
+      }
     }
 
     tbody {
@@ -157,6 +156,10 @@ h5 {
       tr {
         &:nth-child(odd) {
           background-color: primary-color(700, 0.05);
+
+          .dark-mode & {
+            background-color: primary-color(600, 0.05);
+          }
         }
       }
     }
@@ -199,6 +202,10 @@ h5 {
     color: primary-color(700);
     transition: color 0.2s $ease-out;
 
+    .dark-mode & {
+      color: primary-color(300);
+    }
+
     &::before {
       --anchor-underline-color: #{$cyan};
       content: "";
@@ -216,6 +223,10 @@ h5 {
     &:hover,
     &:focus {
       color: primary-color(800);
+
+      .dark-mode & {
+        color: primary-color(100);
+      }
 
       &::before {
         left: -0.1em;
@@ -322,6 +333,10 @@ h5 {
 
   pre[class*="language-"] {
     margin: 0;
+  }
+
+  .dark-mode & {
+    background-color: primary-color(500, 0.1);
   }
 }
 

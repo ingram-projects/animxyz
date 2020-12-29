@@ -355,7 +355,6 @@ export default {
 
 .intro-text {
 	--xyz-duration: 0.7s;
-	color: primary-color(800);
 	font-size: $fs-xxxl;
 	font-weight: 650;
 	line-height: 1.35;
@@ -493,7 +492,6 @@ export default {
 }
 
 .about-text {
-	--text-color: #{primary-color(700)};
 	font-size: $fs-l;
 	font-weight: 400;
 
@@ -515,7 +513,6 @@ export default {
 	p {
 		font-size: $fs-m;
 		line-height: 1.75;
-		color: primary-color(700);
 	}
 
 	@include media('<tablet') {
@@ -576,6 +573,10 @@ export default {
 
 	@include media('<phone') {
 		margin-bottom: $sp-xxxl;
+	}
+
+	.dark-mode & {
+		--text-color: #{primary-color(400)};
 	}
 }
 
