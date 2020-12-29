@@ -1,15 +1,17 @@
 {
   "name": "@animxyz/vue3-examples",
-  "version": "0.1.1",
+  "version": "0.2.0-alpha.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve"
   },
   "workspaces": {
-    "nohoist": ["@vue/**"]
+    "nohoist": [
+      "@vue/**"
+    ]
   },
   "dependencies": {
-    "@animxyz/vue": "^0.1.1",
+    "@animxyz/vue": "^0.2.0-alpha.0",
     "core-js": "^3.8.1",
     "fontsource-inconsolata": "3.1.6",
     "ress": "^3.0.0",
@@ -18,8 +20,8 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.9",
-    "@vue/cli-service": "~4.5.9",
     "@vue/cli-plugin-eslint": "~4.5.9",
+    "@vue/cli-service": "~4.5.9",
     "@vue/compiler-sfc": "^3.0.4",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^7.3.0",
