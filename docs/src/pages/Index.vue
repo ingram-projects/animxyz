@@ -65,6 +65,12 @@
 								</p>
 							</div>
 							<div class="feature xyz-nested">
+								<h3>Customizable</h3>
+								<p>
+									Out-of-the-box utilities not enough? Fine-tune any animation with CSS variables to your heart's content. Simple as: <code class="text--nowrap">--xyz-translate-y: 42%;</code>
+								</p>
+							</div>
+							<div class="feature xyz-nested">
 								<h3>Performant</h3>
 								<p>
 									Silky smooth animations out of the box. Only <code>2.68kB</code> for base functionality and
@@ -72,18 +78,21 @@
 								</p>
 							</div>
 							<div class="feature xyz-nested">
-								<h3>Customizable</h3>
+								<h3>Less Code</h3>
 								<p>
-									Use our provided animation utilities or make your own. Override any animation properties with simple
-									CSS variables. <code class="text--nowrap">--xyz-translate-y: 42%;</code>
+									Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more fun.
 								</p>
 							</div>
 							<div class="feature xyz-nested">
-								<h3>Nest &amp; Stagger</h3>
+								<h3>Nest & Stagger</h3>
 								<p>
 									Stagger lists of elements in both forward and reverse order, while animating nested items in sync with
 									their parents.
 								</p>
+							</div>
+							<div class="feature xyz-nested">
+								<h3>Plug & Play</h3>
+								<p>Works with HTML and CSS, or use our Vue and React (coming soon!) plugins for even more power.</p>
 							</div>
 						</section>
 					</XyzTransition>
