@@ -130,6 +130,11 @@ You can also change default values on an element, but keep in mind they will app
         <td>25%</td>
       </tr>
       <tr>
+        <th scope="row">Translate Z</th>
+        <td>--xyz-translate-z-default</td>
+        <td>300px</td>
+      </tr>
+      <tr>
         <th scope="row">Rotate</th>
         <td>--xyz-rotate-default</td>
         <td>0.25turn</td>

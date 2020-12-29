@@ -8,7 +8,7 @@
 				class="sections__wrap"
 				:class="{ active: activeTab === 'docs' }"
 				appear
-				xyz="fade down delay-1"
+				xyz="fade down-3 delay-1"
 			>
 				<div v-for="section in sections" :key="section.id">
 					<h1 class="section-group__header" v-if="section.header" :id="section.id">{{ section.title }}</h1>
