@@ -35,6 +35,7 @@ After installation, you will need to import VueAnimXYZ into your project and tel
 ```js
 import Vue from 'vue'
 import VueAnimXYZ from '@animxyz/vue'
+import '@animxyz/core' // Import css here if you haven't elsewhere
 
 Vue.use(VueAnimXYZ)
 
@@ -47,6 +48,7 @@ Vue.use(VueAnimXYZ)
 ```js
 import { createApp } from 'vue'
 import VueAnimXyz from '@animxyz/vue3'
+import '@animxyz/core' // Import css here if you haven't elsewhere
 import App from './App.vue' // Your entry component
 
 const app = createApp(App)
