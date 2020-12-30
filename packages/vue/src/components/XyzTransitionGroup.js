@@ -1,5 +1,4 @@
-import { mergeData } from 'vue-functional-data-merge'
-import { getXyzTransitionData } from '../utils'
+import { mergeData, xyzTransitionGroupProps, getXyzTransitionData } from '../utils'
 
 function getTransitionRawChildren(children) {
 	return children.filter((node) => {
@@ -10,28 +9,17 @@ function getTransitionRawChildren(children) {
 export default {
 	name: 'XyzTransitionGroup',
 	functional: true,
-	props: {
-		appear: {
-			type: Boolean,
-		},
-		duration: {
-			type: [Number, String, Object],
-		},
-		tag: {
-			type: String,
-			default: 'div',
-		},
-	},
+	props: xyzTransitionGroupProps,
 	render(createElement, context) {
-		const data = getXyzTransitionData({
-			...context.data,
+		const { data = {}, props = {}, children = [] } = context
+
+		const newData = getXyzTransitionData({
+			...data,
 			attrs: {
-				...context.data.attrs,
-				...context.props,
+				...data.attrs,
+				...props,
 			},
 		})
-
-		const children = context.children
 
 		const rawChildren = getTransitionRawChildren(children)
 		rawChildren.forEach((node, index) => {
@@ -43,10 +31,10 @@ export default {
 						'--xyz-index-rev': children.length - index - 1,
 					},
 				},
-				node.data || {}
+				node.data
 			)
 		})
 
-		return createElement('transition-group', data, children)
+		return createElement('transition-group', newData, children)
 	},
 }

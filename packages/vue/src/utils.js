@@ -1,8 +1,46 @@
-import { mergeData } from 'vue-functional-data-merge'
 import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+import { mergeData as vueFunctionalDataMerge } from 'vue-functional-data-merge'
 
-export function getXyzTransitionData(data = {}) {
-	const { appear, duration } = data.attrs || {}
+export const xyzTransitionProps = {
+	appear: Boolean,
+	duration: [Number, String, Object],
+	mode: String,
+	appearClass: String,
+	appearActiveClass: String,
+	appearToClass: String,
+	enterClass: String,
+	enterActiveClass: String,
+	enterToClass: String,
+	leaveClass: String,
+	leaveActiveClass: String,
+	leaveToClass: String,
+}
+
+export const xyzTransitionGroupProps = {
+	...xyzTransitionProps,
+	tag: {
+		type: String,
+		default: 'div',
+	},
+	moveClass: String,
+}
+
+export function mergeData(data1 = {}, data2 = {}) {
+	return vueFunctionalDataMerge(data1, data2)
+}
+
+function deleteUndefined(obj) {
+	Object.keys(obj).forEach((key) => {
+		if (obj[key] === undefined) {
+			delete obj[key]
+		}
+	})
+}
+
+export function getXyzTransitionData(data) {
+	deleteUndefined(data.attrs)
+
+	const { appear, duration } = data.attrs
 
 	const animationHook = getXyzAnimationHook(duration)
 
@@ -30,7 +68,8 @@ export function getXyzTransitionData(data = {}) {
 		transitionData.on.appear = animationHook
 	}
 
-	const mergedData = mergeData(data, transitionData)
+	const mergedData = mergeData(transitionData, data)
+
 	delete mergedData.attrs.duration
 	return mergedData
 }

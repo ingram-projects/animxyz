@@ -1,7 +1,44 @@
 import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+import clsx from 'clsx'
+
+export const xyzTransitionProps = {
+	appear: Boolean,
+	duration: [Number, String, Object],
+	mode: String,
+	appearFromClass: String,
+	appearActiveClass: String,
+	appearToClass: String,
+	enterFromClass: String,
+	enterActiveClass: String,
+	enterToClass: String,
+	leaveFromClass: String,
+	leaveActiveClass: String,
+	leaveToClass: String,
+}
+
+export const xyzTransitionGroupProps = {
+	...xyzTransitionProps,
+	tag: {
+		type: String,
+		default: 'div',
+	},
+	moveClass: String,
+}
+
+export function mergeData(data1 = {}, data2 = {}) {
+	return {
+		...data1,
+		...data2,
+		style: {
+			...data1.style,
+			...data2.style,
+		},
+		class: clsx(data1.class, data2.class),
+	}
+}
 
 export function getXyzTransitionData(data) {
-	const { appear, duration } = data || {}
+	const { appear, duration } = data
 
 	const animationHook = getXyzAnimationHook(duration)
 
@@ -25,10 +62,7 @@ export function getXyzTransitionData(data) {
 		transitionData.onAppear = animationHook
 	}
 
-	const mergedData = {
-		...data,
-		...transitionData,
-	}
+	const mergedData = mergeData(transitionData, data)
 
 	delete mergedData.duration
 	return mergedData

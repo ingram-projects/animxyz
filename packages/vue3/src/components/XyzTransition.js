@@ -1,5 +1,5 @@
 import { Transition, h } from 'vue'
-import { getXyzTransitionData } from '../utils'
+import { xyzTransitionProps, getXyzTransitionData } from '../utils'
 
 function XyzTransition(props, context) {
 	const data = getXyzTransitionData({
@@ -10,16 +10,6 @@ function XyzTransition(props, context) {
 	return h(Transition, data, context.slots)
 }
 
-XyzTransition.props = {
-	appear: {
-		type: Boolean,
-	},
-	duration: {
-		type: [Number, String, Object],
-	},
-	mode: {
-		type: String,
-	},
-}
+XyzTransition.props = xyzTransitionProps
 
 export default XyzTransition

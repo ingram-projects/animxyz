@@ -1,6 +1,6 @@
 import { TransitionGroup, h } from 'vue'
 import { getTransitionRawChildren } from '@vue/runtime-core'
-import { getXyzTransitionData } from '../utils'
+import { mergeData, getXyzTransitionData } from '../utils'
 
 function XyzTransitionGroup(props, context) {
 	const data = getXyzTransitionData({
@@ -13,11 +13,15 @@ function XyzTransitionGroup(props, context) {
 
 		const rawChildren = getTransitionRawChildren(children)
 		rawChildren.forEach((node, index) => {
-			node.props.style = {
-				'--xyz-index': index,
-				'--xyz-index-rev': rawChildren.length - index - 1,
-				...node.props.style,
-			}
+			node.props = mergeData(
+				{
+					style: {
+						'--xyz-index': index,
+						'--xyz-index-rev': rawChildren.length - index - 1,
+					},
+				},
+				node.props
+			)
 		})
 
 		return children
