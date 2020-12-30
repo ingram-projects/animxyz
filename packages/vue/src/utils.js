@@ -1,5 +1,5 @@
 import { mergeData } from 'vue-functional-data-merge'
-import { xyzTransitionClasses, getXyzAnimationHook } from '../../../../utils'
+import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
 
 export function getXyzTransitionData(data = {}) {
 	const { appear, duration } = data.attrs || {}

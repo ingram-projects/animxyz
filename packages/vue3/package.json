@@ -1,5 +1,5 @@
 {
-  "name": "@animxyz/react",
+  "name": "@animxyz/vue3",
   "version": "0.2.0-alpha.0",
   "publishConfig": {
     "access": "public"
@@ -22,7 +22,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ingram-projects/animxyz.git",
-    "directory": "packages/react"
+    "directory": "packages/vue"
   },
   "bugs": {
     "url": "https://github.com/ingram-projects/animxyz/issues"
@@ -32,12 +32,12 @@
     "dist",
     "src"
   ],
-  "moduleName": "ReactAnimXyz",
-  "main": "dist/ReactAnimXyz.cjs.js",
-  "module": "dist/ReactAnimXyz.esm.js",
-  "unpkg": "dist/ReactAnimXyz.js",
-  "jsdelivr": "dist/ReactAnimXyz.js",
-  "cdn": "dist/ReactAnimXyz.js",
+  "moduleName": "VueAnimXyz",
+  "main": "dist/VueAnimXyz.cjs.js",
+  "module": "dist/VueAnimXyz.esm.js",
+  "unpkg": "dist/VueAnimXyz.js",
+  "jsdelivr": "dist/VueAnimXyz.js",
+  "cdn": "dist/VueAnimXyz.js",
   "scripts": {
     "build": "run-s build:clean build:main",
     "build:clean": "rimraf dist",
@@ -45,18 +45,18 @@
   },
   "dependencies": {
     "@animxyz/core": "^0.1.2",
-    "clsx": "^1.1.1",
-    "prop-types": "^15.7.2",
-    "react-transition-group": "^4.4.1"
+    "clsx": "^1.1.1"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "bili": "^5.0.5",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-vue": "^7.3.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "vue": "^3.0.4"
   }
 }

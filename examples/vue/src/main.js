@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueAnimXyz from '@animxyz/vue/src/vue2'
+import VueAnimXyz from '@animxyz/vue'
 import App from './App.vue'
 
 // Fonts

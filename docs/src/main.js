@@ -12,7 +12,7 @@ import '~/assets/styles/core/_index.scss'
 import 'prismjs'
 
 // Plugins
-import VueAnimXyz from '@animxyz/vue/src/vue2'
+import VueAnimXyz from '@animxyz/vue'
 import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
