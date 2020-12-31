@@ -37,6 +37,21 @@ examples:
         content: |
           ##jsx
           <div />
+  - name: Page
+    component: PracticalExamples_Page
+    code:
+      - name: HTML
+        content: |
+          ##html
+          <div></div>
+      - name: Vue
+        content: |
+          ##vue
+          <div></div>
+      - name: React
+        content: |
+          ##jsx
+          <div />
 ---
 
 Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are some examples of common ways you can use AnimXYZ to make your UI more lively and interesting.
