@@ -10,7 +10,6 @@
 
 				<div class="code-buttons">
 					<button class="code-button" @click="copyCode">Copy</button>
-					<button class="code-button" @click="openEditor">Open Editor</button>
 				</div>
 			</div>
 		</XyzTransition>
@@ -202,7 +201,6 @@ export default {
 
 			copyToClipboard(codeText)
 		},
-		openEditor() {},
 	},
 }
 </script>
