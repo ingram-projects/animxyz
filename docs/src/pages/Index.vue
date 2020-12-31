@@ -101,7 +101,7 @@
 				</div>
 			</div>
 
-			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.6s">
+			<XyzTransition appear xyz="fade down ease-out delay-6">
 				<section class="used-by copy-content">
 					<h3>AnimXYZ is used by:</h3>
 					<ul class="used-by__list">
@@ -121,7 +121,7 @@
 				</section>
 			</XyzTransition>
 
-			<XyzTransition appear xyz="fade down ease-out" style="--xyz-delay: 0.7s">
+			<XyzTransition appear xyz="fade down ease-out delay-7">
 				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
@@ -235,11 +235,11 @@ export default {
 					presets: [
 						{
 							title: '🎓 Drop out',
-							utilities: ['fade', 'down-100', 'back-5'],
+							utilities: ['fade', 'down-100%', 'back-5'],
 						},
 						{
 							title: '🌪 Spinny',
-							utilities: ['fade', 'down-5', 'rotate-right-50', 'stagger'],
+							utilities: ['fade', 'down-5', 'rotate-right-50%', 'stagger'],
 						},
 						{
 							title: '⤵️ Flippy',
@@ -247,11 +247,11 @@ export default {
 						},
 						{
 							title: '💾 Floppy',
-							utilities: ['fade', 'front-5', 'flip-down-50', 'duration-10', 'stagger-5'],
+							utilities: ['fade', 'front-3', 'flip-down-50%', 'duration-10', 'stagger-5'],
 						},
 						{
 							title: '🎈 Yoink!',
-							utilities: ['stagger-2', 'narrow-100'],
+							utilities: ['stagger-2', 'narrow-100%'],
 							variables: ['translate-y: -350%', 'ease: cubic-bezier(0.5,-1.5,0.5,1.5)'],
 						},
 						{
@@ -270,7 +270,7 @@ export default {
 								'origin: -200%',
 								'stagger: 0.1s',
 								'duration: 0.75s',
-								'perspective: 10px',
+								'perspective: 100px',
 								'translate-z: 100px',
 								'translate-y: 10vh',
 							],
@@ -356,7 +356,6 @@ export default {
 }
 
 .intro-text {
-	--xyz-duration: 0.7s;
 	color: primary-color(800);
 	font-size: $fs-xxxl;
 	font-weight: 650;

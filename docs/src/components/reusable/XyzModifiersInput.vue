@@ -139,9 +139,9 @@ export default {
 		},
 		activeGroupIndex(newValue, oldValue) {
 			if (newValue > oldValue) {
-				this.tabDirectionXyz = 'out-left-100 in-right-100'
+				this.tabDirectionXyz = 'out-left-100% in-right-100%'
 			} else {
-				this.tabDirectionXyz = 'out-right-100 in-left-100'
+				this.tabDirectionXyz = 'out-right-100% in-left-100%'
 			}
 		},
 		computedGroups: {
