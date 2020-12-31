@@ -1,30 +1,34 @@
 <template>
 	<div class="example-wrap">
-		<div class="page-wrap">
-			<XyzTransition appear duration="auto" xyz="fade small stagger ease-out-back">
-				<div class="page-hero xyz-none">
-					<div class="hero-logo xyz-nested" xyz="fade small"></div>
-					<p class="hero-text xyz-nested" xyz="fade small">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+		<XyzTransition appear duration="auto">
+			<div class="page-wrap">
+				<div class="page-hero" xyz="fade small stagger ease-out-back">
+					<div class="hero-logo xyz-nested"></div>
+					<p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
 				</div>
-			</XyzTransition>
-			<XyzTransition appear duration="auto" xyz="fade down stagger duration-10 delay-2 ease-out-back">
-				<div class="page-thing1-wrap">
+				<div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
 					<div class="page-thing1 xyz-nested"></div>
 					<div class="page-thing1 xyz-nested"></div>
 					<div class="page-thing1 xyz-nested"></div>
 				</div>
-			</XyzTransition>
-			<XyzTransition appear duration="auto" xyz="fade small stagger delay-4 ease-in-out">
-				<div class="page-thing2-wrap">
-					<div class="page-thing2-left xyz-none" xyz="fade left stagger">
+				<div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
+					<div class="page-thing2-left" xyz="fade left stagger">
 						<div class="page-thing2 xyz-nested"></div>
 						<div class="page-thing2 xyz-nested"></div>
 						<div class="page-thing2 xyz-nested"></div>
 					</div>
 					<div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
 				</div>
-			</XyzTransition>
-		</div>
+				<div class="page-footer" xyz="fade bottom ease-in-out delay-10">
+					<div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
+					<div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+						<div class="page-thing2 xyz-nested"></div>
+						<div class="page-thing2 xyz-nested"></div>
+						<div class="page-thing2 xyz-nested"></div>
+					</div>
+				</div>
+			</div>
+		</XyzTransition>
 	</div>
 </template>
 
@@ -62,7 +66,7 @@ export default {
 
 .hero-logo {
 	@include circle(3rem);
-	background-color: primary-color(400);
+	background-color: $cyan;
 	margin-bottom: $sp-xs;
 }
 
@@ -113,10 +117,39 @@ export default {
 .page-thing2 {
 	background-color: primary-color(400);
 	height: 1rem;
+	flex-grow: 1;
 	border-radius: $br-m;
 
 	& + & {
 		margin-top: $sp-xs;
+	}
+}
+
+.page-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: primary-color(800);
+	padding: $sp-xxs $sp-xs;
+}
+
+.footer-logo {
+	@include circle(1rem);
+	background-color: $cyan;
+}
+
+.footer-right {
+	width: 50%;
+	display: flex;
+	align-items: center;
+
+	.page-thing2 {
+		height: 0.75rem;
+	}
+
+	.page-thing2 + .page-thing2 {
+		margin-left: $sp-xxs;
+		margin-top: 0;
 	}
 }
 </style>
