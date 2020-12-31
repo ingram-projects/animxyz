@@ -3,19 +3,19 @@
 		<XyzTransition appear mode="out-in">
 			<div
 				class="square"
-				xyz="fade left-100"
+				xyz="fade left-100%"
 				v-if="customData.shapes[customData.shapeIndex] === 'square'"
 				key="square"
 			></div>
 			<div
 				class="circle"
-				xyz="fade up-100"
+				xyz="fade up-100%"
 				v-else-if="customData.shapes[customData.shapeIndex] === 'circle'"
 				key="circle"
 			></div>
 			<div
 				class="triangle"
-				xyz="fade right-100"
+				xyz="fade right-100%"
 				v-else-if="customData.shapes[customData.shapeIndex] === 'triangle'"
 				key="triangle"
 			></div>

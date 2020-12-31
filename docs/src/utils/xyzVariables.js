@@ -114,11 +114,11 @@ export const xyzOpacityLevels = {
 
 export const xyzPerspectiveLevels = {
 	'0': '0px',
-	'1': '100px',
-	'2': '200px',
-	'3': '300px',
-	'4': '400px',
-	'5': '500px',
+	'1': '500px',
+	'2': '1000px',
+	'3': '1500px',
+	'4': '2000px',
+	'5': '2500px',
 }
 
 export const xyzTranslateLevels = {

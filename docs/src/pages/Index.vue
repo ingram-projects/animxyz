@@ -251,7 +251,7 @@ export default {
 						},
 						{
 							title: '🎈 Yoink!',
-							utilities: ['stagger-2', 'narrow-100'],
+							utilities: ['stagger-2', 'narrow-100%'],
 							variables: ['translate-y: -350%', 'ease: cubic-bezier(0.5,-1.5,0.5,1.5)'],
 						},
 						{
