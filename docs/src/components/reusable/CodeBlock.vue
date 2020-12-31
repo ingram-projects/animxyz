@@ -3,7 +3,8 @@
 		<TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
 		<XyzTransition xyz="fade" mode="out-in">
-			<div class="example-code__wrap" :key="activeCode.name">
+			<div class="code__wrap" :key="activeCode.name">
+				<button class="copy-button" @click="copyCode">Copy</button>
 				<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
 					codeChunk.content
 				}}</Prism>
@@ -21,6 +22,7 @@ import Prism from 'vue-prism-component'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-scss'
 import TabBar from '~/components/reusable/TabBar'
+import { copyToClipboard } from '~/utils'
 
 const languageOptions = {
 	html: {
@@ -187,6 +189,15 @@ export default {
 				return code.name === codeName
 			})
 		},
+		copyCode() {
+			const codeText = this.activeCodeChunks
+				.map((codeChunk) => {
+					return codeChunk.content
+				})
+				.join('\n')
+
+			copyToClipboard(codeText)
+		},
 	},
 }
 </script>
@@ -203,7 +214,8 @@ export default {
 	}
 }
 
-.example-code__wrap {
+.code__wrap {
+	position: relative;
 	overflow: auto;
 
 	pre[class*='language-'] {
@@ -214,5 +226,12 @@ export default {
 	pre + pre {
 		padding-top: 0;
 	}
+}
+
+.copy-button {
+	position: absolute;
+	top: $sp-s;
+	right: $sp-s;
+	background-color: primary-color(100);
 }
 </style>
