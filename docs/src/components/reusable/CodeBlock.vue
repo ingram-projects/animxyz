@@ -5,9 +5,13 @@
 		<XyzTransition xyz="fade" mode="out-in">
 			<div class="code__wrap" :key="activeCode.name">
 				<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
-					codeChunk.content
+					`${codeChunk.content}${index !== activeCodeChunks.length - 1 ? '\n' : ''}`
 				}}</Prism>
-				<button class="copy-button" @click="copyCode">Copy</button>
+
+				<div class="code-buttons">
+					<button class="code-button" @click="copyCode">Copy</button>
+					<button class="code-button" @click="openEditor">Open Editor</button>
+				</div>
 			</div>
 		</XyzTransition>
 	</div>
@@ -154,7 +158,7 @@ export default {
 					language: chunkLanguage,
 					prettier: chunkPrettierOptions,
 					prism: chunkPrismOptions,
-					content: chunkParsedContent + '\n',
+					content: chunkParsedContent,
 				})
 			}
 
@@ -198,6 +202,7 @@ export default {
 
 			copyToClipboard(codeText)
 		},
+		openEditor() {},
 	},
 }
 </script>
@@ -228,10 +233,18 @@ export default {
 	}
 }
 
-.copy-button {
+.code-buttons {
+	padding: $sp-xs;
+	display: flex;
+
+	.code-button + .code-button {
+		margin-left: $sp-xxs;
+	}
+}
+
+.code-button {
 	color: primary-color(200);
 	padding: $sp-xxs $sp-xs;
-	margin-left: $sp-xs;
 	font-size: $fs-s;
 	font-weight: 500;
 	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
