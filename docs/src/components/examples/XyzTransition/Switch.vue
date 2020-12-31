@@ -10,13 +10,13 @@
 			<div
 				class="circle"
 				xyz="fade up-100%"
-				v-if="customData.shapes[customData.shapeIndex] === 'circle'"
+				v-else-if="customData.shapes[customData.shapeIndex] === 'circle'"
 				key="circle"
 			></div>
 			<div
 				class="triangle"
 				xyz="fade right-100%"
-				v-if="customData.shapes[customData.shapeIndex] === 'triangle'"
+				v-else-if="customData.shapes[customData.shapeIndex] === 'triangle'"
 				key="triangle"
 			></div>
 		</XyzTransition>

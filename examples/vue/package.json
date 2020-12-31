@@ -1,14 +1,16 @@
 {
   "name": "@animxyz/vue-examples",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "@animxyz/vue": "^0.1.1",
+    "@animxyz/vue": "^0.2.0",
     "core-js": "^3.8.1",
-    "normalize.css": "^8.0.1",
+    "fontsource-inconsolata": "3.1.6",
+    "ress": "^3.0.0",
+    "typeface-inter": "^3.15.0",
     "vue": "^2.6.12"
   },
   "devDependencies": {
@@ -17,6 +19,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-vue": "^7.3.0",
+    "include-media": "^1.4.9",
     "vue-template-compiler": "^2.6.12"
   }
 }

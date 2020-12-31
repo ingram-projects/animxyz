@@ -1,0 +1,62 @@
+{
+  "name": "@animxyz/vue3",
+  "version": "0.2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "AnimXYZ is a composable animation library that makes your site shine",
+  "keywords": [
+    "animxyz",
+    "animation",
+    "sass",
+    "css",
+    "front-end",
+    "web"
+  ],
+  "homepage": "https://animxyz.com",
+  "author": "Ingram Projects (https://github.com/ingram-projects/animxyz/graphs/contributors)",
+  "contributors": [
+    "Miles Ingram <milesingrams@gmail.com> (https://milesingram.me/)",
+    "Mattan Ingram <mattaningram@gmail.com> (http://mattaningram.com/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingram-projects/animxyz.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/ingram-projects/animxyz/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "moduleName": "VueAnimXyz",
+  "main": "dist/VueAnimXyz.cjs.js",
+  "module": "dist/VueAnimXyz.esm.js",
+  "unpkg": "dist/VueAnimXyz.js",
+  "jsdelivr": "dist/VueAnimXyz.js",
+  "cdn": "dist/VueAnimXyz.js",
+  "scripts": {
+    "build": "run-s build:clean build:main",
+    "build:clean": "rimraf dist",
+    "build:main": "bili"
+  },
+  "dependencies": {
+    "@animxyz/core": "^0.1.2",
+    "clsx": "^1.1.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "bili": "^5.0.5",
+    "eslint-plugin-vue": "^7.3.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "vue": "^3.0.4"
+  }
+}

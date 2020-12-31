@@ -21,8 +21,8 @@ examples:
           ##vue
           <XyzTransition appear mode="out-in">
             <div class="square" xyz="fade left-100%" v-if="shape === 'square'" key="square"></div>
-            <div class="circle" xyz="fade up-100%" v-if="shape === 'circle'" key="circle"></div>
-            <div class="triangle" xyz="fade right-100%" v-if="shape === 'triangle'" key="triangle"></div>
+            <div class="circle" xyz="fade up-100%" v-else-if="shape === 'circle'" key="circle"></div>
+            <div class="triangle" xyz="fade right-100%" v-else-if="shape === 'triangle'" key="triangle"></div>
           </XyzTransition>
           <button @click="changeShape">Click to switch</button>
   - name: Key

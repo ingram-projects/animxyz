@@ -67,7 +67,8 @@
 							<div class="feature xyz-nested">
 								<h3>Customizable</h3>
 								<p>
-									Out-of-the-box utilities not enough? Fine-tune any animation with CSS variables to your heart's content. Simple as: <code class="text--nowrap">--xyz-translate-y: 42%;</code>
+									Out-of-the-box utilities not enough? Fine-tune any animation with CSS variables to your heart's
+									content. Simple as: <code class="text--nowrap">--xyz-translate-y: 42%;</code>
 								</p>
 							</div>
 							<div class="feature xyz-nested">
@@ -80,7 +81,8 @@
 							<div class="feature xyz-nested">
 								<h3>Less Code</h3>
 								<p>
-									Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more fun.
+									Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more
+									fun.
 								</p>
 							</div>
 							<div class="feature xyz-nested">

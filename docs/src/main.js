@@ -6,7 +6,6 @@ import 'typeface-inter'
 import 'fontsource-inconsolata'
 
 // Styles
-import 'ress'
 import '~/assets/styles/core/_index.scss'
 
 // Packages
