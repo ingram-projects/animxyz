@@ -4,10 +4,10 @@
 
 		<XyzTransition xyz="fade" mode="out-in">
 			<div class="code__wrap" :key="activeCode.name">
-				<button class="copy-button" @click="copyCode">Copy</button>
 				<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
 					codeChunk.content
 				}}</Prism>
+				<button class="copy-button" @click="copyCode">Copy</button>
 			</div>
 		</XyzTransition>
 	</div>
@@ -229,9 +229,24 @@ export default {
 }
 
 .copy-button {
-	position: absolute;
-	top: $sp-s;
-	right: $sp-s;
-	background-color: primary-color(100);
+	color: primary-color(200);
+	padding: $sp-xxs $sp-xs;
+	margin-left: $sp-xs;
+	font-size: $fs-s;
+	font-weight: 500;
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	border-radius: $br-m;
+	display: flex;
+	align-items: center;
+
+	&:hover,
+	&:focus {
+		background-color: primary-color(800, 0.5);
+		color: primary-color(50);
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px $cyan;
+	}
 }
 </style>
