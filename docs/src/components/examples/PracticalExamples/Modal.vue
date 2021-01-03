@@ -50,6 +50,7 @@ export default {
 <style lang="scss" scoped>
 .example-wrap {
 	perspective: initial;
+	min-height: 28rem;
 }
 
 .modal__overlay {

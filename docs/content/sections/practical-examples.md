@@ -219,6 +219,12 @@ examples:
               </div>
             </div>
           </XyzTransition>
+  - name: Tab
+    component: PracticalExamples_Tab
+    code:
+      - name: HTML
+        content: |
+          ##html
 ---
 
 Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are some examples of common ways you can use AnimXYZ to make your UI more lively and interesting.
