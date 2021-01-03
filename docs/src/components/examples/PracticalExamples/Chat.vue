@@ -94,10 +94,11 @@ export default {
 	position: relative;
 	color: primary-color(100);
 	font-weight: 500;
-	background-color: primary-color(800);
+	background-color: primary-color(800, 0.5);
 	padding: $sp-xxs $sp-xs;
 	border-radius: $br-l;
 	border-bottom-left-radius: 0;
+	box-shadow: inset 0 0 0 2px primary-color(700);
 	margin: $sp-s 0;
 
 	&::before {
@@ -106,8 +107,8 @@ export default {
 		right: 100%;
 		bottom: 0;
 		border: 0.25rem solid transparent;
-		border-bottom: 0.25rem solid primary-color(800);
-		border-right: 0.25rem solid primary-color(800);
+		border-bottom: 0.25rem solid primary-color(700);
+		border-right: 0.25rem solid primary-color(700);
 	}
 
 	.chat-avatar {
