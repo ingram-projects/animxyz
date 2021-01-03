@@ -49,18 +49,53 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <div></div>
+          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+            <div class="square" v-for="index in numCats" :key="index">
+              <img class="square-image" :src="\`https://cataas.com/cat?type=sm?id=\${index}\`" alt="Picture of a cat"
+              />
+            </div>
+          </XyzTransitionGroup>
       - name: React
         content: |
           ##jsx
-          <div />
+          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+            {[...Array(numCats)].map((_, index) => (
+              <div class="square" key={index}>
+                <img class="square-image" src={\`https://cataas.com/cat?type=sm?id=\${index}\`} alt="Picture of a cat"
+                />
+              </div>
+            ))}
+          </XyzTransitionGroup>
   - name: Chat
     component: PracticalExamples_Chat
     code:
       - name: Vue
         content: |
           ##vue
-          <div></div>
+          <div class="example-wrap">
+            <XyzTransitionGroup appear tag="ul" class="chat-list" duration="auto">
+              <li
+                class="chat-item"
+                :class="{ 'chat-item--user': chatMessage.isUser }"
+                v-for="chatMessage in chatMessages"
+                :key="chatMessage.timestamp"
+                xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
+                v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
+              >
+                <div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
+                {{ chatMessage.text }}
+              </li>
+            </XyzTransitionGroup>
+            <div class="flex-col mt-l">
+              <label for="chatListInput" class="example-input-label mb-xxs">Say Something!</label>
+              <input
+                id="chatListInput"
+                class="chat-input"
+                v-model="userMessage"
+                @keydown.enter="sendMessage"
+              />
+            </div>
+          </div>
       - name: React
         content: |
           ##jsx
@@ -71,15 +106,99 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div></div>
+          <XyzTransition appear duration="auto">
+            <div class="page-wrap">
+              <div class="page-hero" xyz="fade small stagger ease-out-back">
+                <div class="hero-logo xyz-nested"></div>
+                <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+              </div>
+              <div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+                <div class="page-thing1 xyz-nested"></div>
+                <div class="page-thing1 xyz-nested"></div>
+                <div class="page-thing1 xyz-nested"></div>
+              </div>
+              <div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
+                <div class="page-thing2-left" xyz="fade left stagger">
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                </div>
+                <div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
+              </div>
+              <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
+                <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
+                <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                </div>
+              </div>
+            </div>
+          </XyzTransition>
       - name: Vue
         content: |
           ##vue
-          <div></div>
+          <XyzTransition appear duration="auto">
+            <div class="page-wrap">
+              <div class="page-hero" xyz="fade small stagger ease-out-back">
+                <div class="hero-logo xyz-nested"></div>
+                <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+              </div>
+              <div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+                <div class="page-thing1 xyz-nested"></div>
+                <div class="page-thing1 xyz-nested"></div>
+                <div class="page-thing1 xyz-nested"></div>
+              </div>
+              <div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
+                <div class="page-thing2-left" xyz="fade left stagger">
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                </div>
+                <div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
+              </div>
+              <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
+                <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
+                <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                  <div class="page-thing2 xyz-nested"></div>
+                </div>
+              </div>
+            </div>
+          </XyzTransition>
       - name: React
         content: |
           ##jsx
-          <div />
+          <XyzTransition appear duration="auto">
+            <div className="page-wrap">
+              <div className="page-hero" xyz="fade small stagger ease-out-back">
+                <div className="hero-logo xyz-nested"></div>
+                <p className="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+              </div>
+              <div className="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+                <div className="page-thing1 xyz-nested"></div>
+                <div className="page-thing1 xyz-nested"></div>
+                <div className="page-thing1 xyz-nested"></div>
+              </div>
+              <div className="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
+                <div className="page-thing2-left" xyz="fade left stagger">
+                  <div className="page-thing2 xyz-nested"></div>
+                  <div className="page-thing2 xyz-nested"></div>
+                  <div className="page-thing2 xyz-nested"></div>
+                </div>
+                <div className="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
+              </div>
+              <div className="page-footer" xyz="fade bottom ease-in-out delay-10">
+                <div className="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
+                <div className="footer-right" xyz="fade up stagger ease-in-out delay-10">
+                  <div className="page-thing2 xyz-nested"></div>
+                  <div className="page-thing2 xyz-nested"></div>
+                  <div className="page-thing2 xyz-nested"></div>
+                </div>
+              </div>
+            </div>
+          </XyzTransition>
 ---
 
 Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are some examples of common ways you can use AnimXYZ to make your UI more lively and interesting.

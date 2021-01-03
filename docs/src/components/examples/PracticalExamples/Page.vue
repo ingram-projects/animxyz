@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
 .page-wrap {
 	color: primary-color(100);
-	box-shadow: 0 0 0 2px primary-color(300);
+	box-shadow: 0 0 0 2px primary-color(600);
 	border-radius: $br-l;
 	width: 100%;
 	max-width: 24rem;
