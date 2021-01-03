@@ -99,7 +99,27 @@ examples:
       - name: React
         content: |
           ##jsx
-          <div />
+          <div className="example-wrap">
+            <XyzTransitionGroup appear tag="ul" className="chat-list" duration="auto">
+              {chatMessages.map((chatMessage) => (
+                <li
+                  className={\`chat-item \${chatMessage.isUser && 'chat-item--user'}\` }
+                  key={chatMessage.timestamp}
+                  xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
+                >
+                  <div className="chat-avatar xyz-nested" xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
+                  { chatMessage.text }
+                </li>
+              ))}
+            </XyzTransitionGroup>
+            <div className="flex-col mt-l">
+              <label htmlFor="chatListInput" className="example-input-label mb-xxs">Say Something!</label>
+              <input
+                id="chatListInput"
+                className="chat-input"
+              />
+            </div>
+          </div>
   - name: Page
     component: PracticalExamples_Page
     code:
