@@ -7,6 +7,7 @@ import 'typeface-inter'
 import 'fontsource-inconsolata'
 
 // Styles
+import '@animxyz/core'
 import '@/styles/_index.scss'
 
 const app = createApp(App)

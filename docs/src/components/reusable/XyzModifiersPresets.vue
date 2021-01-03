@@ -6,8 +6,7 @@
 			body-scroll-lock-ignore
 			appear
 			duration="auto"
-			xyz="fade small"
-			:style="{ '--xyz-stagger': '0.15s' }"
+			xyz="fade small stagger-1.5"
 		>
 			<li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title">
 				<button

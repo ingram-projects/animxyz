@@ -7,7 +7,7 @@ examples:
   - name: Origin
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="small-100" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition xyz="small-100%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="small-100${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" xyz="small-100%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="small-100${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition xyz="small-100%${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -38,7 +38,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransition xyz="small-100${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition xyz="small-100%${data.utilitiesString && ' ' + data.utilitiesString}">
             {${data.toggled} && <div className="square" />}
           </XyzTransition>
 
@@ -61,7 +61,7 @@ modifiers:
 
 If you want to animate an element like a swinging door, or have it expand from a particular corner, use an origin utility to apply a [transform-origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin) during the animation. This should be used along with a rotate or scale animation.
 
-For example setting `xyz="small-100 origin-right"` on an element will scale it to its right center edge.
+For example setting `xyz="small-100% origin-right"` on an element will scale it to its right center edge.
 
 If you want to place the `transform-origin` in a more precise location than the utilities provide, override `--xyz-origin` with a custom value in your CSS or with inline styling for more granular control. For example `--xyz-origin: 50px 50px` will set the origin to a point 50px down and to the right from the top left.
 
