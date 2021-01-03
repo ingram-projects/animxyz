@@ -1,11 +1,6 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransitionGroup
-			appear
-			tag="ul"
-			class="chat-list list--no-style"
-			duration="auto"
-		>
+		<XyzTransitionGroup appear tag="ul" class="chat-list list--no-style" duration="auto">
 			<li
 				class="chat-item"
 				:class="{ 'chat-item--user': chatMessage.isUser }"
@@ -14,7 +9,7 @@
 				xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
 				v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
 			>
-				<div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{chatMessage.isUser ? '🐤' : '🐔'}}</div>
+				<div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
 				{{ chatMessage.text }}
 			</li>
 		</XyzTransitionGroup>
@@ -98,8 +93,9 @@ export default {
 .chat-item {
 	position: relative;
 	color: primary-color(100);
+	font-weight: 500;
 	background-color: primary-color(800);
-	padding: $sp-xxs;
+	padding: $sp-xxs $sp-xs;
 	border-radius: $br-l;
 	border-bottom-left-radius: 0;
 	margin: $sp-s 0;
@@ -133,7 +129,9 @@ export default {
 	margin-left: auto;
 	border-radius: $br-l;
 	border-bottom-right-radius: 0;
-	background-color: $cyan;
+	background-color: transparentize($cyan, 0.85);
+	color: $cyan;
+	box-shadow: inset 0 0 0 2px $cyan;
 
 	&::before {
 		right: initial;
@@ -143,7 +141,7 @@ export default {
 		border-left: 0.25rem solid $cyan;
 	}
 
-	.chat-avatar  {
+	.chat-avatar {
 		right: initial;
 		left: 100%;
 		margin-right: 0;
