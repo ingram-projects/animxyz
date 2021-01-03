@@ -21,7 +21,7 @@
 			<div xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="customData.tabDirectionXyz">
 				<XyzTransition appear>
 					<div class="example-tab-contents xyz-out-absolute" :key="customData.activeTab">
-						{{ customData.tabDirectionXyz }}
+						{{ customData.tabDirectionXyz || 'Changes direction with tab index!' }}
 					</div>
 				</XyzTransition>
 			</div>
@@ -39,7 +39,6 @@ export default {
 			customData: {
 				tabs: ['Tab 1', 'Tab 2', 'Tab 3'],
 				activeTab: 'Tab 1',
-				tabDirectionXyz: 'appear-short-100%',
 			},
 		}
 	},
