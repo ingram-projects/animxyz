@@ -1,22 +1,18 @@
 <template>
 	<div class="example-wrap">
 		<XyzTransition duration="auto" xyz="fade out-delay-5">
-			<div class="modal__overlay" v-if="customData.modalToggled" @click="customData.modalToggled = false">
+			<div class="modal-overlay" v-if="customData.modalToggled" @click="customData.modalToggled = false">
 				<div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
-					<div class="modal__header xyz-nested" xyz="up-100% in-delay-3">
+					<div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
 						<h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-						<button
-							xyz="fade small in-delay-7"
-							class="modal__close xyz-nested"
-							@click="customData.modalToggled = false"
-						>
+						<button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="customData.modalToggled = false">
 							<IconClose></IconClose>
 						</button>
 					</div>
-					<div class="modal__body"></div>
-					<div class="modal__footer xyz-nested" xyz="down-100% in-delay-3">
+					<div class="modal-body"></div>
+					<div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
 						<button
-							class="modal__button xyz-nested"
+							class="modal-button xyz-nested"
 							xyz="fade in-right in-delay-7"
 							@click="customData.modalToggled = false"
 						>
@@ -53,7 +49,7 @@ export default {
 	min-height: 28rem;
 }
 
-.modal__overlay {
+.modal-overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -80,7 +76,7 @@ export default {
 	overflow: hidden;
 }
 
-.modal__header {
+.modal-header {
 	padding: $sp-s;
 	display: flex;
 	align-items: center;
@@ -93,7 +89,7 @@ export default {
 	}
 }
 
-.modal__close {
+.modal-close {
 	--icon-color: #{$cyan};
 	@include circle(2rem);
 	display: flex;
@@ -120,11 +116,11 @@ export default {
 	}
 }
 
-.modal__body {
+.modal-body {
 	flex-grow: 1;
 }
 
-.modal__footer {
+.modal-footer {
 	border-top: 4px solid $cyan;
 	padding: $sp-s;
 	display: flex;
@@ -132,7 +128,7 @@ export default {
 	justify-content: flex-end;
 }
 
-.modal__button {
+.modal-button {
 	background-color: $cyan;
 	border-radius: $br-m;
 	color: primary-color(900);

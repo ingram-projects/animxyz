@@ -11,15 +11,15 @@ examples:
         content: |
           ##vue
           <XyzTransition duration="auto" xyz="fade out-delay-5">
-            <div class="modal__overlay" v-if="modalOpen" @click="modalOpen = false">
+            <div class="modal-overlay" v-if="modalOpen" @click="modalOpen = false">
               <div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
-                <div class="modal__header xyz-nested" xyz="up-100% in-delay-3">
+                <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
                   <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                  <button xyz="fade small in-delay-7" class="modal__close xyz-nested" @click="modalOpen = false"></button>
+                  <button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="modalOpen = false"></button>
                 </div>
-                <div class="modal__body"></div>
-                <div class="modal__footer xyz-nested" xyz="down-100% in-delay-3">
-                  <button class="modal__button xyz-nested" xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
+                <div class="modal-body"></div>
+                <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+                  <button class="modal-button xyz-nested" xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
                 </div>
               </div>
             </div>
@@ -29,15 +29,15 @@ examples:
           ##jsx
           <XyzTransition duration="auto" xyz="fade out-delay-5">
             { modalOpen && (
-              <div className="modal__overlay" onClick={openModal}>
+              <div className="modal-overlay" onClick={openModal}>
                 <div className="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back">
-                  <div className="modal__header xyz-nested" xyz="up-100% in-delay-3">
+                  <div className="modal-header xyz-nested" xyz="up-100% in-delay-3">
                     <h1 className="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                    <button xyz="fade small in-delay-7" className="modal__close xyz-nested" onClick={closeModal}></button>
+                    <button xyz="fade small in-delay-7" className="modal-close xyz-nested" onClick={closeModal}></button>
                   </div>
-                  <div className="modal__body"></div>
-                  <div className="modal__footer xyz-nested" xyz="down-100% in-delay-3">
-                    <button className="modal__button xyz-nested" xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
+                  <div className="modal-body"></div>
+                  <div className="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+                    <button className="modal-button xyz-nested" xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
                   </div>
                 </div>
               </div>
