@@ -4,122 +4,6 @@ id: practical-examples
 quote: TBD
 
 examples:
-  - name: Modal
-    component: PracticalExamples_Modal
-    code:
-      - name: Vue
-        content: |
-          ##vue
-          <XyzTransition duration="auto" xyz="fade out-delay-5">
-            <div class="modal-overlay" v-if="modalOpen" @click="modalOpen = false">
-              <div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
-                <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
-                  <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                  <button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="modalOpen = false"></button>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
-                  <button class="modal-button xyz-nested" xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
-                </div>
-              </div>
-            </div>
-          </XyzTransition>
-      - name: React
-        content: |
-          ##jsx
-          <XyzTransition duration="auto" xyz="fade out-delay-5">
-            { modalOpen && (
-              <div className="modal-overlay" onClick={openModal}>
-                <div className="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back">
-                  <div className="modal-header xyz-nested" xyz="up-100% in-delay-3">
-                    <h1 className="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                    <button xyz="fade small in-delay-7" className="modal-close xyz-nested" onClick={closeModal}></button>
-                  </div>
-                  <div className="modal-body"></div>
-                  <div className="modal-footer xyz-nested" xyz="down-100% in-delay-3">
-                    <button className="modal-button xyz-nested" xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
-                  </div>
-                </div>
-              </div>
-            )} 
-          </XyzTransition>
-  - name: Grid
-    component: PracticalExamples_Grid
-    code:
-      - name: Vue
-        content: |
-          ##vue
-          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
-            <div class="square" v-for="index in numCats" :key="index">
-              <img class="square-image" :src="\`https://cataas.com/cat?type=sm?id=\${index}\`" alt="Picture of a cat"
-              />
-            </div>
-          </XyzTransitionGroup>
-      - name: React
-        content: |
-          ##jsx
-          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
-            {[...Array(numCats)].map((_, index) => (
-              <div class="square" key={index}>
-                <img class="square-image" src={\`https://cataas.com/cat?type=sm?id=\${index}\`} alt="Picture of a cat"
-                />
-              </div>
-            ))}
-          </XyzTransitionGroup>
-  - name: Chat
-    component: PracticalExamples_Chat
-    code:
-      - name: Vue
-        content: |
-          ##vue
-          <div class="example-wrap">
-            <XyzTransitionGroup appear tag="ul" class="chat-list" duration="auto">
-              <li
-                class="chat-item"
-                :class="{ 'chat-item--user': chatMessage.isUser }"
-                v-for="chatMessage in chatMessages"
-                :key="chatMessage.timestamp"
-                xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
-                v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
-              >
-                <div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
-                {{ chatMessage.text }}
-              </li>
-            </XyzTransitionGroup>
-            <div class="flex-col mt-l">
-              <label for="chatListInput" class="example-input-label mb-xxs">Say Something!</label>
-              <input
-                id="chatListInput"
-                class="chat-input"
-                v-model="userMessage"
-                @keydown.enter="sendMessage"
-              />
-            </div>
-          </div>
-      - name: React
-        content: |
-          ##jsx
-          <div className="example-wrap">
-            <XyzTransitionGroup appear tag="ul" className="chat-list" duration="auto">
-              {chatMessages.map((chatMessage) => (
-                <li
-                  className={\`chat-item \${chatMessage.isUser && 'chat-item--user'}\` }
-                  key={chatMessage.timestamp}
-                  xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
-                >
-                  <div className="chat-avatar xyz-nested" xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
-                  { chatMessage.text }
-                </li>
-              ))}
-            </XyzTransitionGroup>
-            <div className="flex-col mt-l">
-              <label htmlFor="chatListInput" className="example-input-label mb-xxs">Say Something!</label>
-              <input
-                id="chatListInput"
-                className="chat-input"
-              />
-            </div>
-          </div>
   - name: Page
     component: PracticalExamples_Page
     code:
@@ -217,8 +101,70 @@ examples:
               </div>
             </div>
           </XyzTransition>
-  - name: Tab
-    component: PracticalExamples_Tab
+  - name: Grid
+    component: PracticalExamples_Grid
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+            <div class="square" v-for="index in numCats" :key="index">
+              <img class="square-image" :src="\`https://cataas.com/cat?type=sm?id=\${index}\`" alt="Picture of a cat"
+              />
+            </div>
+          </XyzTransitionGroup>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+            {[...Array(numCats)].map((_, index) => (
+              <div class="square" key={index}>
+                <img class="square-image" src={\`https://cataas.com/cat?type=sm?id=\${index}\`} alt="Picture of a cat"
+                />
+              </div>
+            ))}
+          </XyzTransitionGroup>
+  - name: Modal
+    component: PracticalExamples_Modal
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <XyzTransition duration="auto" xyz="fade out-delay-5">
+            <div class="modal-overlay" v-if="modalOpen" @click="modalOpen = false">
+              <div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
+                <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
+                  <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
+                  <button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="modalOpen = false"></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+                  <button class="modal-button xyz-nested" xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
+                </div>
+              </div>
+            </div>
+          </XyzTransition>
+      - name: React
+        content: |
+          ##jsx
+          <XyzTransition duration="auto" xyz="fade out-delay-5">
+            { modalOpen && (
+              <div className="modal-overlay" onClick={openModal}>
+                <div className="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back">
+                  <div className="modal-header xyz-nested" xyz="up-100% in-delay-3">
+                    <h1 className="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
+                    <button xyz="fade small in-delay-7" className="modal-close xyz-nested" onClick={closeModal}></button>
+                  </div>
+                  <div className="modal-body"></div>
+                  <div className="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+                    <button className="modal-button xyz-nested" xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
+                  </div>
+                </div>
+              </div>
+            )} 
+          </XyzTransition>
+  - name: Tabs
+    component: PracticalExamples_Tabs
     code:
       - name: Vue
         content: |
@@ -278,6 +224,60 @@ examples:
                   {\`xyz="\${tabDirectionXyz}"\`}
                 </div>
               </XyzTransition>
+            </div>
+          </div>
+  - name: Chat
+    component: PracticalExamples_Chat
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <div class="example-wrap">
+            <XyzTransitionGroup appear tag="ul" class="chat-list" duration="auto">
+              <li
+                class="chat-item"
+                :class="{ 'chat-item--user': chatMessage.isUser }"
+                v-for="chatMessage in chatMessages"
+                :key="chatMessage.timestamp"
+                xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
+                v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
+              >
+                <div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
+                {{ chatMessage.text }}
+              </li>
+            </XyzTransitionGroup>
+            <div class="flex-col mt-l">
+              <label for="chatListInput" class="example-input-label mb-xxs">Say Something!</label>
+              <input
+                id="chatListInput"
+                class="chat-input"
+                v-model="userMessage"
+                @keydown.enter="sendMessage"
+              />
+            </div>
+          </div>
+      - name: React
+        content: |
+          ##jsx
+          <div className="example-wrap">
+            <XyzTransitionGroup appear tag="ul" className="chat-list" duration="auto">
+              {chatMessages.map((chatMessage) => (
+                <li
+                  className={\`chat-item \${chatMessage.isUser && 'chat-item--user'}\` }
+                  key={chatMessage.timestamp}
+                  xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
+                >
+                  <div className="chat-avatar xyz-nested" xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
+                  { chatMessage.text }
+                </li>
+              ))}
+            </XyzTransitionGroup>
+            <div className="flex-col mt-l">
+              <label htmlFor="chatListInput" className="example-input-label mb-xxs">Say Something!</label>
+              <input
+                id="chatListInput"
+                className="chat-input"
+              />
             </div>
           </div>
 ---

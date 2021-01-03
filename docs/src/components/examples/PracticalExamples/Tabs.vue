@@ -21,11 +21,7 @@
 			<div xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="customData.tabDirectionXyz">
 				<XyzTransition appear>
 					<div class="example-tab-contents xyz-out-absolute" :key="customData.activeTab">
-						<span class="text--x">x</span><span class="text--y">y</span><span class="text--z">z</span>=<span
-							class="text--mark"
-							>"</span
-						><span class="text--value">{{ customData.tabDirectionXyz }}</span
-						><span class="text--mark">"</span>
+						{{ customData.tabDirectionXyz }}
 					</div>
 				</XyzTransition>
 			</div>
@@ -43,6 +39,7 @@ export default {
 			customData: {
 				tabs: ['Tab 1', 'Tab 2', 'Tab 3'],
 				activeTab: 'Tab 1',
+				tabDirectionXyz: 'appear-short-100%',
 			},
 		}
 	},
@@ -116,7 +113,7 @@ export default {
 	border: 2px solid $cyan;
 	border-radius: $br-l;
 	border-top-left-radius: 0;
-	color: primary-color(400);
+	color: primary-color(200);
 	font-family: $font-stack-mono;
 	font-weight: bold;
 	font-size: $fs-xl;
@@ -125,25 +122,5 @@ export default {
 	@include media('<phone') {
 		font-size: $fs-l;
 	}
-}
-
-.text--x {
-	color: $red;
-}
-
-.text--y {
-	color: $yellow;
-}
-
-.text--z {
-	color: $green;
-}
-
-.text--value {
-	color: primary-color(200);
-}
-
-.text--mark {
-	color: $cyan;
 }
 </style>
