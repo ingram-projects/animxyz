@@ -126,35 +126,33 @@ examples:
       - name: HTML
         content: |
           ##html
-          <XyzTransition appear duration="auto">
-            <div class="page-wrap">
-              <div class="page-hero" xyz="fade small stagger ease-out-back">
-                <div class="hero-logo xyz-nested"></div>
-                <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+          <div class="page-wrap xyz-in">
+            <div class="page-hero" xyz="fade small stagger ease-out-back">
+              <div class="hero-logo xyz-nested"></div>
+              <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
+            </div>
+            <div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+              <div class="page-thing1 xyz-nested"></div>
+              <div class="page-thing1 xyz-nested"></div>
+              <div class="page-thing1 xyz-nested"></div>
+            </div>
+            <div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
+              <div class="page-thing2-left" xyz="fade left stagger">
+                <div class="page-thing2 xyz-nested"></div>
+                <div class="page-thing2 xyz-nested"></div>
+                <div class="page-thing2 xyz-nested"></div>
               </div>
-              <div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
-                <div class="page-thing1 xyz-nested"></div>
-                <div class="page-thing1 xyz-nested"></div>
-                <div class="page-thing1 xyz-nested"></div>
-              </div>
-              <div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
-                <div class="page-thing2-left" xyz="fade left stagger">
-                  <div class="page-thing2 xyz-nested"></div>
-                  <div class="page-thing2 xyz-nested"></div>
-                  <div class="page-thing2 xyz-nested"></div>
-                </div>
-                <div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
-              </div>
-              <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
-                <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
-                <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
-                  <div class="page-thing2 xyz-nested"></div>
-                  <div class="page-thing2 xyz-nested"></div>
-                  <div class="page-thing2 xyz-nested"></div>
-                </div>
+              <div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
+            </div>
+            <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
+              <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
+              <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+                <div class="page-thing2 xyz-nested"></div>
+                <div class="page-thing2 xyz-nested"></div>
+                <div class="page-thing2 xyz-nested"></div>
               </div>
             </div>
-          </XyzTransition>
+          </div>
       - name: Vue
         content: |
           ##vue
@@ -222,9 +220,66 @@ examples:
   - name: Tab
     component: PracticalExamples_Tab
     code:
-      - name: HTML
+      - name: Vue
         content: |
-          ##html
+          ##vue
+          <div class="example-tabs-wrap">
+            <XyzTransitionGroup
+              class="example-tabs"
+              appear
+              duration="auto"
+              xyz="fade flip-down origin-bottom stagger-1 delay-5"
+            >
+              <button
+                class="example-tab"
+                :class="{ active: tab === activeTab }"
+                v-for="tab in tabs"
+                @click="activeTab = tab"
+                :key="tab"
+              >
+                {{ tab }}
+              </button>
+            </XyzTransitionGroup>
+
+            <div xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="tabDirectionXyz">
+              <XyzTransition appear>
+                <div class="example-tab-contents xyz-out-absolute" :key="activeTab">
+                  xyz="{{ tabDirectionXyz }}"
+                </div>
+              </XyzTransition>
+            </div>
+          </div>
+      - name: React
+        content: |
+          ##jsx
+          <div className="example-tabs-wrap">
+            <XyzTransitionGroup
+              className="example-tabs"
+              appear
+              duration="auto"
+              xyz="fade flip-down origin-bottom stagger-1 delay-5"
+            >
+              {tabs.map((tab) => (
+                <button
+                  className={\`example-tab \${tab === activeTab && 'active'}\`}
+                  onClick={() => setActiveTab(tab)}
+                  key={tab}
+                >
+                  { tab }
+                </button>
+              ))}
+            </XyzTransitionGroup>
+
+            <div
+              xyz={xyz('fade appear-short-100% origin-top ease-in-out duration-7', tabDirectionXyz)}
+            >
+              <XyzTransition appear>
+                <div className="example-tab-contents xyz-out-absolute" key={activeTab}>
+                  {\`xyz="\${tabDirectionXyz}"\`}
+                </div>
+              </XyzTransition>
+            </div>
+          </div>
 ---
 
 Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are some examples of common ways you can use AnimXYZ to make your UI more lively and interesting.
