@@ -106,6 +106,14 @@ $xyz-origin-levels: (
  'bottom-right': bottom right,
 ) !default;
 
+$xyz-opacity-levels: (
+  '0': 0,
+  '25%': 0.25,
+  '50%': 0.5,
+  '75%': 0.75,
+  '100%': 1,
+) !default;
+
 $xyz-perspective-levels: (
  '0': 0px,
  '1': 500px,
@@ -113,14 +121,6 @@ $xyz-perspective-levels: (
  '3': 1500px,
  '4': 2000px,
  '5': 2500px,
-) !default;
-
-$xyz-opacity-levels: (
-  '0': 0,
-  '25%': 0.25,
-  '50%': 0.5,
-  '75%': 0.75,
-  '100%': 1,
 ) !default;
 
 $xyz-translate-levels: (
@@ -261,6 +261,25 @@ $xyz-variables-map: (
     'type': 'skew',
     'axis': 'y',
   ),
+);
+
+
+// DEFAULTS
+
+$xyz-defaults-map: (
+  'ease': map.get($xyz-ease-levels, 'ease'),
+  'duration': map.get($xyz-duration-levels, '5'),
+  'delay': map.get($xyz-delay-levels, '0'),
+  'stagger': map.get($xyz-stagger-levels, '2.5'),
+  'iterate': map.get($xyz-iterate-levels, '1'),
+  'origin': map.get($xyz-origin-levels, 'center'),
+  'opacity': map.get($xyz-opacity-levels, '100%'),
+  'perspective': map.get($xyz-perspective-levels, '0'),
+  'translate': map.get($xyz-translate-levels, '25%'),
+  'translate-z': map.get($xyz-translate-z-levels, '3'),
+  'rotate': map.get($xyz-rotate-levels, '25%'),
+  'scale': map.get($xyz-scale-levels, '50%'),
+  'skew': map.get($xyz-skew-levels, '3'),
 );
 
 

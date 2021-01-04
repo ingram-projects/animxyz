@@ -336,6 +336,24 @@ export function getXyzVariableRegex(string) {
 	return getXyzVariable(name, value, mode)
 }
 
+// DEFAULTS
+
+export const xyzDefaultsMap = {
+  'ease': xyzEaseLevels['ease'],
+  'duration': xyzDurationLevels['5'],
+  'delay': xyzDelayLevels['0'],
+  'stagger': xyzStaggerLevels['2.5'],
+  'iterate': xyzIterateLevels['1'],
+  'origin': xyzOriginLevels['center'],
+  'opacity': xyzOpacityLevels['100%'],
+  'perspective': xyzPerspectiveLevels['0'],
+  'translate': xyzTranslateLevels['25%'],
+  'translate-z': xyzTranslateZLevels['3'],
+  'rotate': xyzRotateLevels['25%'],
+  'scale': xyzScaleLevels['50%'],
+  'skew': xyzSkewLevels['3'],
+};
+
 // UTILITIES
 
 export const xyzUtilitiesMap = {

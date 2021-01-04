@@ -63,6 +63,7 @@ export default {
 	data() {
 		return {
 			activeGroup: null,
+			tabDirectionXyz: null,
 		}
 	},
 	computed: {

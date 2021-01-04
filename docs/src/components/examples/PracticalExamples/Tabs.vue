@@ -39,6 +39,7 @@ export default {
 			customData: {
 				tabs: ['Tab 1', 'Tab 2', 'Tab 3'],
 				activeTab: 'Tab 1',
+				tabDirectionXyz: null,
 			},
 		}
 	},
