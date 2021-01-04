@@ -67,14 +67,6 @@ export default {
 		min-height: 2.5rem;
 	}
 
-	&:first-child {
-		border-top-left-radius: $br-l;
-	}
-
-	&:last-child {
-		border-top-right-radius: $br-l;
-	}
-
 	&.active,
 	&:hover,
 	&:focus {

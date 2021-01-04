@@ -102,6 +102,7 @@ export default {
 				'installation',
 				'the-basics',
 				'how-it-works',
+				'practical-examples',
 				{ header: true, title: 'Composing Animations', id: 'composing-animations' },
 				'contexts',
 				'utilities',
