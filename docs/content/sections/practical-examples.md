@@ -1,7 +1,7 @@
 ---
 title: Practical Examples
 id: practical-examples
-quote: TBD
+quote: Is this real life?
 
 examples:
   - name: Page
@@ -282,13 +282,15 @@ examples:
           </div>
 ---
 
-Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are some examples of common ways you can use AnimXYZ to make your UI more lively and interesting.
+Moving squares around is all well and good, but what do you use AnimXYZ for in the real world? Here are just a few examples of common ways you can use AnimXYZ to make your UI more lively and interesting.
 
-Fading in a modal might seem straightforward, but you can provide a nice staggered effect by adding an `in-delay` to the modal and an `out-delay` to the overlay.
+Emphasize what someone should look at first, or give a feature list some life. Animating the initial appearance of elements on a page is easy. Check out how the `xyz-nested` class and `delay` and `stagger` utilities allow you to orchestrate sequential animations. [Page Example](?tab=examples&example=Page#practical-examples)
+
+Media galleries can clearly show which items are being added or removed with a small animation in and out. `appear` specific utilities let you differentiate the initial animation from subsequent changes. [Grid Example](?tab=examples&example=Grid#practical-examples)
+
+Usually modals just fade in at the same time as the overlay, but by adding an `in-delay` to the modal and an `out-delay` to the overlay you can make the animation feel much more alive.
 [Modal Example](?tab=examples&example=Modal#practical-examples)
 
-Media galleries can show more clearly which items are being added or removed with a small animation in and out. [Grid Example](?tab=examples&example=Grid#practical-examples)
+Tabs imply content hidden off-screen to the left or right of the current tab. With a dynamic `xyz` property determined by the tab's index you can make tab content slide in and out from the direction you expect it to. [Tabs Example](?tab=examples&example=Tabs#practical-examples)
 
 A chat component feels much more natural if each text moves in from the side of its respective owner. [Chat Example](?tab=examples&example=Chat#practical-examples)
-
-Emphasize what someone should look at first, or give a feature list some life. Animating the initial appearance of elements on a page is easy. [Page Example](?tab=examples&example=Page#practical-examples)

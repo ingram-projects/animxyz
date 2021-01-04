@@ -133,7 +133,7 @@ $active-border-width: 0.5rem;
 	@include media('<laptop') {
 		background-color: primary-color(50);
 		margin: 0 (-$sp-s);
-		padding: $sp-s;
+		padding: $sp-xxs $sp-s;
 		position: sticky;
 		top: 0;
 	}
@@ -148,6 +148,7 @@ $active-border-width: 0.5rem;
 	display: flex;
 	align-items: center;
 	position: relative;
+	padding-right: $sp-xxs;
 }
 
 .section-anchor {
@@ -229,7 +230,9 @@ $active-border-width: 0.5rem;
 }
 
 .section-examples-button {
+	margin: $sp-xxxs;
 	margin-left: auto;
+	margin-righ: 0;
 	display: flex;
 	align-items: center;
 	height: 1.75rem;
