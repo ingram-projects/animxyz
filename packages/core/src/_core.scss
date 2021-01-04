@@ -99,14 +99,27 @@
       }
     }
 
+    // so elements dont take space during animation
+    %xyz-pos-absolute {
+      position: absolute;
+    }
+
     // turns off animations
     %xyz-anim-none {
       animation: none;
     }
 
-    // so elements dont take space during animation
-    %xyz-pos-absolute {
-      position: absolute;
+    // for reduced motion users
+    @media (prefers-reduced-motion: reduce) {
+      %xyz-reduced-motion {
+        animation: none;
+      }
+
+      @each $mode in $xyz-modes {
+        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+          @extend %xyz-reduced-motion;
+        }
+      }
     }
 
     xyz-context {
@@ -115,21 +128,12 @@
 
     // resets all xyz variables
     [xyz], xyz-context {
-      @include xyz-set-all();
+      @include xyz-set-all(initial);
     }
 
     // inherits all xyz variables
     [xyz~='inherit'] {
       @include xyz-set-all(inherit);
-    }
-
-    // for reduced motion users
-    @media (prefers-reduced-motion: reduce) {
-      @each $mode in $xyz-modes {
-        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-          animation: none;
-        }
-      }
     }
   }
 }

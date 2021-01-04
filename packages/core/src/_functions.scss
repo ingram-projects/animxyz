@@ -45,7 +45,7 @@
   }
 }
 
-@mixin xyz-set-all($val: initial) {
+@mixin xyz-set-all($val) {
   // For every variable and mode set to val
   @each $name, $variable in $xyz-variables-map {
     $variable-modes: map.get($variable, 'modes');
@@ -130,7 +130,7 @@
   }
 }
 
-@mixin xyz($utilities) {
+@mixin xyz-apply($utilities) {
   $utilities-list: xyz-str-split($utilities);
 
   @each $utility in $utilities-list {
