@@ -107,6 +107,23 @@
     content: "Bash";
   }
 
+  .code-label {
+    display: inline-block;
+    padding: $sp-xxxs $sp-xxs;
+    margin-left: -$sp-xxs;
+    background-color: primary-color(600);
+    color: primary-color(100);
+    font-size: $fs-s;
+    font-weight: 650;
+    border-top-left-radius: $br-l;
+    border-top-right-radius: $br-l;
+  }
+
+  .code-label + pre[class*="language-"] {
+    margin-top: 0;
+    border-top-left-radius: 0;
+  }
+
   table, .table-wrap {
     &:not(:last-child) {
       margin-bottom: 1.25rem;

@@ -1,17 +1,19 @@
 {
   "name": "@animxyz/react",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
   "description": "AnimXYZ is a composable animation library that makes your site shine",
   "keywords": [
-    "animxyz",
-    "animation",
-    "sass",
+    "react",
     "css",
-    "front-end",
-    "web"
+    "css-framework",
+    "functional-css",
+    "animation",
+    "css-animations",
+    "composable-animations",
+    "animxyz"
   ],
   "homepage": "https://animxyz.com",
   "author": "Ingram Projects (https://github.com/ingram-projects/animxyz/graphs/contributors)",
@@ -44,13 +46,13 @@
     "build:main": "bili"
   },
   "dependencies": {
-    "@animxyz/core": "^0.1.1",
+    "@animxyz/core": "^0.3.0",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.1"
   },
   "peerDependencies": {
-    "react": "^17.0.1"
+    "react": "^17.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -22,13 +22,62 @@ $xyz-ease-levels: (
   'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550),
 ) !default;
 
-$xyz-time-levels: (
+$xyz-duration-levels: (
   '0': 0s,
-  '1': .1s,
-  '2': .2s,
-  '3': .3s,
-  '4': .4s,
-  '5': .5s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
+  '10': 1s,
+  '15': 1.5s,
+  '20': 2s,
+  '25': 2.5s,
+  '30': 3s,
+) !default;
+
+$xyz-delay-levels: (
+  '0': 0s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
+  '10': 1s,
+  '15': 1.5s,
+  '20': 2s,
+  '25': 2.5s,
+  '30': 3s,
+) !default;
+
+$xyz-stagger-levels: (
+  '0': 0s,
+  '0.5': 0.05s,
+  '1': 0.1s,
+  '1.5': 0.15s,
+  '2': 0.2s,
+  '2.5': 0.25s,
+  '3': 0.3s,
+  '4': 0.4s,
+  '5': 0.5s,
+  '6': 0.6s,
+  '7': 0.7s,
+  '8': 0.8s,
+  '9': 0.9s,
   '10': 1s,
   '15': 1.5s,
   '20': 2s,
@@ -57,21 +106,21 @@ $xyz-origin-levels: (
  'bottom-right': bottom right,
 ) !default;
 
-$xyz-perspective-levels: (
- '0': 0px,
- '1': 100px,
- '2': 200px,
- '3': 300px,
- '4': 400px,
- '5': 500px,
-) !default;
-
 $xyz-opacity-levels: (
   '0': 0,
-  '25': .25,
-  '50': .5,
-  '75': .75,
-  '100': 1,
+  '25%': 0.25,
+  '50%': 0.5,
+  '75%': 0.75,
+  '100%': 1,
+) !default;
+
+$xyz-perspective-levels: (
+ '0': 0px,
+ '1': 500px,
+ '2': 1000px,
+ '3': 1500px,
+ '4': 2000px,
+ '5': 2500px,
 ) !default;
 
 $xyz-translate-levels: (
@@ -81,19 +130,19 @@ $xyz-translate-levels: (
   '3': 30px,
   '4': 40px,
   '5': 50px,
-  '25': 25%,
-  '50': 50%,
-  '75': 75%,
-  '100': 100%,
+  '25%': 25%,
+  '50%': 50%,
+  '75%': 75%,
+  '100%': 100%,
 ) !default;
 
 $xyz-translate-z-levels: (
   '0': 0px,
-  '1': 10px,
-  '2': 20px,
-  '3': 30px,
-  '4': 40px,
-  '5': 50px,
+  '1': 100px,
+  '2': 200px,
+  '3': 300px,
+  '4': 400px,
+  '5': 500px,
 ) !default;
 
 $xyz-rotate-levels: (
@@ -103,23 +152,23 @@ $xyz-rotate-levels: (
   '3': 30deg,
   '4': 40deg,
   '5': 50deg,
-  '25': .25turn,
-  '50': .50turn,
-  '75': .75turn,
-  '100': 1turn,
+  '25%': 0.25turn,
+  '50%': 0.50turn,
+  '75%': 0.75turn,
+  '100%': 1turn,
 ) !default;
 
 $xyz-scale-levels: (
   '0': 0,
-  '1': .025,
-  '2': .05,
-  '3': .075,
-  '4': .1,
-  '5': .125,
-  '25': .25,
-  '50': .5,
-  '75': .75,
-  '100': 1,
+  '1': 0.025,
+  '2': 0.05,
+  '3': 0.075,
+  '4': 0.1,
+  '5': 0.125,
+  '25%': 0.25,
+  '50%': 0.5,
+  '75%': 0.75,
+  '100%': 1,
 ) !default;
 
 $xyz-skew-levels: (
@@ -137,103 +186,100 @@ $xyz-skew-levels: (
 $xyz-variables-map: (
   'keyframes': (
     'type': 'keyframes',
-    'modes': $xyz-modes-all,
   ),
   'ease': (
     'type': 'ease',
-    'modes': $xyz-modes-all,
   ),
   'duration': (
     'type': 'duration',
-    'modes': $xyz-modes-all,
   ),
   'delay': (
     'type': 'delay',
-    'modes': $xyz-modes-all,
   ),
   'stagger': (
     'type': 'stagger',
-    'modes': $xyz-modes-all,
   ),
   'stagger-rev': (
     'type': 'stagger',
-    'modes': $xyz-modes-all,
   ),
   'iterate': (
     'type': 'iterate',
-    'modes': $xyz-modes-all,
   ),
   'origin': (
     'type': 'origin',
-    'modes': $xyz-modes-all,
   ),
   'opacity': (
     'type': 'opacity',
-    'modes': $xyz-modes-all,
   ),
   'transform': (
     'type': 'transform',
-    'modes': $xyz-modes-all,
   ),
   'perspective': (
     'type': 'perspective',
-    'modes': $xyz-modes-all,
   ),
   'translate-x': (
     'type': 'translate',
     'axis': 'x',
-    'modes': $xyz-modes-all,
   ),
   'translate-y': (
     'type': 'translate',
     'axis': 'y',
-    'modes': $xyz-modes-all,
   ),
   'translate-z': (
     'type': 'translate',
     'axis': 'z',
-    'modes': $xyz-modes-all,
   ),
   'rotate-x': (
     'type': 'rotate',
     'axis': 'x',
-    'modes': $xyz-modes-all,
   ),
   'rotate-y': (
     'type': 'rotate',
     'axis': 'y',
-    'modes': $xyz-modes-all,
   ),
   'rotate-z': (
     'type': 'rotate',
     'axis': 'z',
-    'modes': $xyz-modes-all,
   ),
   'scale-x': (
     'type': 'scale',
     'axis': 'x',
-    'modes': $xyz-modes-all,
   ),
   'scale-y': (
     'type': 'scale',
     'axis': 'y',
-    'modes': $xyz-modes-all,
   ),
   'scale-z': (
     'type': 'scale',
     'axis': 'z',
-    'modes': $xyz-modes-all,
   ),
   'skew-x': (
     'type': 'skew',
     'axis': 'x',
-    'modes': $xyz-modes-all,
   ),
   'skew-y': (
     'type': 'skew',
     'axis': 'y',
-    'modes': $xyz-modes-all,
   ),
+);
+
+
+// DEFAULTS
+
+$xyz-defaults-map: (
+  'ease': map.get($xyz-ease-levels, 'ease'),
+  'duration': map.get($xyz-duration-levels, '5'),
+  'delay': map.get($xyz-delay-levels, '0'),
+  'stagger': map.get($xyz-stagger-levels, '2.5'),
+  'iterate': map.get($xyz-iterate-levels, '1'),
+  'origin': map.get($xyz-origin-levels, 'center'),
+  'opacity': map.get($xyz-opacity-levels, '100%'),
+  'perspective': map.get($xyz-perspective-levels, '0'),
+  'translate': map.get($xyz-translate-levels, '25%'),
+  'translate-z': map.get($xyz-translate-z-levels, '3'),
+  'rotate': map.get($xyz-rotate-levels, '25%'),
+  'scale': map.get($xyz-scale-levels, '50%'),
+  'skew': map.get($xyz-skew-levels, '3'),
 );
 
 
@@ -245,56 +291,48 @@ $xyz-utilities-map: (
     'vars': ['ease'],
     'default': var(--xyz-ease-default),
     'levels': $xyz-ease-levels,
-    'modes': $xyz-modes-all,
   ),
   'duration': (
     'type': 'duration',
     'vars': ['duration'],
     'default': var(--xyz-duration-default),
-    'levels': $xyz-time-levels,
-    'modes': $xyz-modes-all,
+    'levels': $xyz-duration-levels,
   ),
   'delay': (
     'type': 'delay',
     'vars': ['delay'],
     'default': var(--xyz-delay-default),
-    'levels': $xyz-time-levels,
-    'modes': $xyz-modes-all,
+    'levels': $xyz-delay-levels,
   ),
   'stagger': (
     'type': 'stagger',
     'vars': ['stagger'],
     'default': var(--xyz-stagger-default),
-    'levels': $xyz-time-levels,
-    'modes': $xyz-modes-all,
+    'levels': $xyz-stagger-levels,
   ),
   'stagger-rev': (
     'type': 'stagger',
     'vars': ['stagger-rev'],
     'default': var(--xyz-stagger-default),
-    'levels': $xyz-time-levels,
-    'modes': $xyz-modes-all,
+    'levels': $xyz-stagger-levels,
   ),
   'iterate': (
     'type': 'iterate',
     'vars': ['iterate'],
     'default': var(--xyz-iterate-default),
     'levels': $xyz-iterate-levels,
-    'modes': $xyz-modes-all,
   ),
   'origin': (
     'type': 'origin',
     'vars': ['origin'],
     'default': var(--xyz-origin-default),
     'levels': $xyz-origin-levels,
-    'modes': $xyz-modes-all,
   ),
   'perspective': (
     'type': 'perspective',
     'vars': ['perspective'],
     'default': var(--xyz-perspective-default),
     'levels': $xyz-perspective-levels,
-    'modes': $xyz-modes-all,
   ),
   'fade': (
     'type': 'opacity',
@@ -302,7 +340,6 @@ $xyz-utilities-map: (
     'default': calc(1 - var(--xyz-opacity-default)),
     'levels': $xyz-opacity-levels,
     'transformer': 'xyz-one-minus-val',
-    'modes': $xyz-modes-all,
   ),
   'right': (
     'type': 'translate',
@@ -310,7 +347,6 @@ $xyz-utilities-map: (
     'vars': ['translate-x'],
     'default': var(--xyz-translate-default),
     'levels': $xyz-translate-levels,
-    'modes': $xyz-modes-all,
   ),
   'left': (
     'type': 'translate',
@@ -319,7 +355,6 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-translate-default) * -1),
     'levels': $xyz-translate-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'down': (
     'type': 'translate',
@@ -327,7 +362,6 @@ $xyz-utilities-map: (
     'vars': ['translate-y'],
     'default': var(--xyz-translate-default),
     'levels': $xyz-translate-levels,
-    'modes': $xyz-modes-all,
   ),
   'up': (
     'type': 'translate',
@@ -336,24 +370,21 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-translate-default) * -1),
     'levels': $xyz-translate-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'front': (
     'type': 'translate',
     'axis': 'z',
     'vars': ['translate-z'],
-    'default': var(--xyz-translate-default),
+    'default': var(--xyz-translate-z-default),
     'levels': $xyz-translate-z-levels,
-    'modes': $xyz-modes-all,
   ),
   'back': (
     'type': 'translate',
     'axis': 'z',
     'vars': ['translate-z'],
-    'default': calc(var(--xyz-translate-default) * -1),
+    'default': calc(var(--xyz-translate-z-default) * -1),
     'levels': $xyz-translate-z-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'flip-up': (
     'type': 'rotate',
@@ -361,7 +392,6 @@ $xyz-utilities-map: (
     'vars': ['rotate-x'],
     'default': var(--xyz-rotate-default),
     'levels': $xyz-rotate-levels,
-    'modes': $xyz-modes-all,
   ),
   'flip-down': (
     'type': 'rotate',
@@ -370,7 +400,6 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-rotate-default) * -1),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'flip-right': (
     'type': 'rotate',
@@ -378,7 +407,6 @@ $xyz-utilities-map: (
     'vars': ['rotate-y'],
     'default': var(--xyz-rotate-default),
     'levels': $xyz-rotate-levels,
-    'modes': $xyz-modes-all,
   ),
   'flip-left': (
     'type': 'rotate',
@@ -387,7 +415,6 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-rotate-default) * -1),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'rotate-right': (
     'type': 'rotate',
@@ -395,7 +422,6 @@ $xyz-utilities-map: (
     'vars': ['rotate-z'],
     'default': var(--xyz-rotate-default),
     'levels': $xyz-rotate-levels,
-    'modes': $xyz-modes-all,
   ),
   'rotate-left': (
     'type': 'rotate',
@@ -404,7 +430,6 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-rotate-default) * -1),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'small': (
     'type': 'scale',
@@ -413,7 +438,6 @@ $xyz-utilities-map: (
     'default': calc(1 - var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
-    'modes': $xyz-modes-all,
   ),
   'big': (
     'type': 'scale',
@@ -422,7 +446,6 @@ $xyz-utilities-map: (
     'default': calc(1 + var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
-    'modes': $xyz-modes-all,
   ),
   'narrow': (
     'type': 'scale',
@@ -431,7 +454,6 @@ $xyz-utilities-map: (
     'default': calc(1 - var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
-    'modes': $xyz-modes-all,
   ),
   'wide': (
     'type': 'scale',
@@ -440,7 +462,6 @@ $xyz-utilities-map: (
     'default': calc(1 + var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
-    'modes': $xyz-modes-all,
   ),
   'short': (
     'type': 'scale',
@@ -449,7 +470,6 @@ $xyz-utilities-map: (
     'default': calc(1 - var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
-    'modes': $xyz-modes-all,
   ),
   'tall': (
     'type': 'scale',
@@ -458,7 +478,6 @@ $xyz-utilities-map: (
     'default': calc(1 + var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
-    'modes': $xyz-modes-all,
   ),
   'thin': (
     'type': 'scale',
@@ -467,7 +486,6 @@ $xyz-utilities-map: (
     'default': calc(1 - var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
-    'modes': $xyz-modes-all,
   ),
   'thick': (
     'type': 'scale',
@@ -476,7 +494,6 @@ $xyz-utilities-map: (
     'default': calc(1 + var(--xyz-scale-default)),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
-    'modes': $xyz-modes-all,
   ),
   'skew-left': (
     'type': 'skew',
@@ -484,7 +501,6 @@ $xyz-utilities-map: (
     'vars': ['skew-x'],
     'default': var(--xyz-skew-default),
     'levels': $xyz-skew-levels,
-    'modes': $xyz-modes-all,
   ),
   'skew-right': (
     'type': 'skew',
@@ -493,7 +509,6 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-skew-default) * -1),
     'levels': $xyz-skew-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
   'skew-up': (
     'type': 'skew',
@@ -501,7 +516,6 @@ $xyz-utilities-map: (
     'vars': ['skew-y'],
     'default': var(--xyz-skew-default),
     'levels': $xyz-skew-levels,
-    'modes': $xyz-modes-all,
   ),
   'skew-down': (
     'type': 'skew',
@@ -510,6 +524,5 @@ $xyz-utilities-map: (
     'default': calc(var(--xyz-skew-default) * -1),
     'levels': $xyz-skew-levels,
     'transformer': 'xyz-negative-val',
-    'modes': $xyz-modes-all,
   ),
 );

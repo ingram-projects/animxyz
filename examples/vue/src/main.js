@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import VueAnimXyz from '@animxyz/vue'
 import App from './App.vue'
-import 'normalize.css'
+
+// Fonts
+import 'typeface-inter'
+import 'fontsource-inconsolata'
+
+// Styles
 import '@animxyz/core'
+import '@/styles/_index.scss'
 
 Vue.use(VueAnimXyz)
 

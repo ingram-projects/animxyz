@@ -22,7 +22,7 @@ examples:
           ##vue
           <XyzTransitionGroup
             class="square-grid"
-            xyz="fade small out-back-5"
+            xyz="fade small out-back-3"
             :duration="2500"
             :style="{
               '--xyz-in-stagger': '0.025s',
