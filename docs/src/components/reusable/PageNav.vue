@@ -361,6 +361,10 @@ export default {
 .toggle-text {
 	color: primary-color(800);
 
+	@include dark-mode {
+		color: primary-color(200);
+	}
+
 	.open & {
 		color: primary-color(50);
 	}

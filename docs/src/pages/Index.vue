@@ -396,8 +396,8 @@ export default {
 .cta-button {
 	--icon-color: #{primary-color(600)};
 	background-color: primary-color(100);
-	border-bottom: 3px solid primary-color(300);
 	color: primary-color(600);
+	border-bottom: 3px solid primary-color(300);
 	height: 3rem;
 	width: 16rem;
 	border-radius: $br-l;
@@ -410,6 +410,13 @@ export default {
 	text-decoration: none;
 	transition: 0.2s $ease-in-out;
 	transition-property: background-color, box-shadow, border;
+
+	@include dark-mode {
+		--icon-color: #{primary-color(200)};
+		background-color: primary-color(700);
+		color: primary-color(200);
+		border-color: primary-color(800);
+	}
 
 	& + & {
 		margin-left: $sp-s;
@@ -424,10 +431,17 @@ export default {
 	&:hover,
 	&:focus {
 		--icon-color: #{primary-color(700)};
-		border-color: primary-color(400);
+		background-color: primary-color(300);
 		color: primary-color(700);
+		border-color: primary-color(400);
 		outline: none;
-		background-color: primary-color(200, 0.75);
+
+		@include dark-mode {
+			--icon-color: #{primary-color(100)};
+			background-color: primary-color(600);
+			color: primary-color(100);
+			border-color: primary-color(700);
+		}
 
 		svg {
 			transform: scale(1.15);
@@ -435,7 +449,7 @@ export default {
 	}
 
 	&:focus {
-		box-shadow: 0 0 0 4px transparentize($cyan, 0.5);
+		box-shadow: 0 0 0 2px $cyan;
 	}
 
 	@include media('<tablet') {
@@ -468,17 +482,31 @@ export default {
 
 .docs-link {
 	--icon-color: #{primary-color(100)};
-	border-color: primary-color(700);
 	background-color: primary-color(600);
 	color: primary-color(100);
+	border-color: primary-color(700);
+
+	@include dark-mode {
+		--icon-color: #{primary-color(800)};
+		background-color: primary-color(300);
+		color: primary-color(800);
+		border-color: primary-color(500);
+	}
 
 	&:hover,
 	&:focus {
 		--icon-color: #{primary-color(50)};
+		background-color: primary-color(700);
 		color: primary-color(50);
 		border-color: primary-color(800);
 		outline: none;
-		background-color: primary-color(700);
+
+		@include dark-mode {
+			--icon-color: #{primary-color(800)};
+			background-color: primary-color(200);
+			color: primary-color(800);
+			border-color: primary-color(500);
+		}
 	}
 }
 
@@ -576,7 +604,7 @@ export default {
 		margin-bottom: $sp-xxxl;
 	}
 
-	.dark-mode & {
+	@include dark-mode {
 		--text-color: #{primary-color(400)};
 	}
 }

@@ -44,7 +44,7 @@
     transition: 0.2s ease-in-out;
     transition-property: background-color, color;
 
-    .dark-mode & {
+    @include dark-mode {
       color: #f92672;
       background-color: transparentize(lighten(#f92672, 10%), 0.9);
     }
@@ -141,7 +141,7 @@
     thead {
       color: primary-color(800);
 
-      .dark-mode & {
+      @include dark-mode {
         color: primary-color(200);
       }
     }
@@ -158,7 +158,7 @@
 			font-size: $fs-s;
       white-space: nowrap;
       
-      .dark-mode & {
+      @include dark-mode {
         color: primary-color(200);
       }
     }
@@ -167,7 +167,7 @@
       color: primary-color(700);
       line-height: 1.5rem;
 
-      .dark-mode & {
+      @include dark-mode {
         color: primary-color(300);
       }
     }
@@ -181,7 +181,7 @@
         &:nth-child(odd) {
           background-color: primary-color(700, 0.05);
 
-          .dark-mode & {
+          @include dark-mode {
             background-color: primary-color(600, 0.05);
           }
         }
@@ -226,7 +226,7 @@
     color: primary-color(700);
     transition: color 0.2s $ease-out;
 
-    .dark-mode & {
+    @include dark-mode {
       color: primary-color(300);
     }
 
@@ -248,7 +248,7 @@
     &:focus {
       color: primary-color(800);
 
-      .dark-mode & {
+      @include dark-mode {
         color: primary-color(100);
       }
 
@@ -302,7 +302,7 @@
     line-height: 1.5rem;
     display: inline-flex;
     color: primary-color(700);
-    background-color: primary-color(100, 0.75);
+    background-color: primary-color(100);
     font-size: $fs-m;
     font-family: $font-stack-mono;
     white-space: initial;
@@ -312,6 +312,11 @@
     margin-bottom: $sp-xxs;
     transition: 0.2s $ease-out;
     transition-property: background-color, color, box-shadow;
+
+    @include dark-mode {
+      background-color: primary-color(800);
+      color: primary-color(100);
+    }
 
     &::after {
       display: inline-block;
@@ -332,6 +337,11 @@
 
       &::after {
         transform: translateX(0.75rem);
+      }
+
+      @include dark-mode {
+        background-color: primary-color(700);
+        color: primary-color(50);
       }
     }
 
@@ -359,7 +369,7 @@
     margin: 0;
   }
 
-  .dark-mode & {
+  @include dark-mode {
     background-color: primary-color(500, 0.1);
   }
 }

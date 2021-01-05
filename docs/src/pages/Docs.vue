@@ -257,7 +257,7 @@ export default {
 
 .section-group__header {
 	text-align: center;
-	color: primary-color(600);
+	color: var(--group-header-color);
 	font-size: 2.5rem;
 	font-weight: 720;
 	padding: 2vw $sp-m;

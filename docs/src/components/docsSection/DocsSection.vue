@@ -69,7 +69,7 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
 
-	.dark-mode & {
+	@include dark-mode {
 		--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
 	}
 
@@ -77,6 +77,12 @@ $active-border-width: 0.5rem;
 		.shadow-scroll,
 		.shadow-scroll-content {
 			transition: box-shadow 0.8s $ease-out;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: var(--section-header-color);
 		}
 
 		hr {
@@ -91,6 +97,10 @@ $active-border-width: 0.5rem;
 			width: fit-content;
 			padding: 0 $sp-xs;
 			transition: background-color 0.8s $ease-out;
+
+			@include dark-mode {
+				background-color: primary-color(950);
+			}
 		}
 	}
 
@@ -102,7 +112,7 @@ $active-border-width: 0.5rem;
 			background-color: white;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 
-			.dark-mode & {
+			@include dark-mode {
 				--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
 				background-color: transparent;
 				box-shadow: 0 0 0 0.25rem primary-color(700);
@@ -115,6 +125,10 @@ $active-border-width: 0.5rem;
 
 				hr + h2 {
 					background-color: white;
+
+					@include dark-mode {
+						background-color: primary-color(950);
+					}
 				}
 			}
 		}
@@ -304,6 +318,10 @@ $active-border-width: 0.5rem;
 		padding-left: $sp-m;
 		margin-bottom: $sp-s;
 		font-size: 1rem;
+	}
+
+	@include dark-mode {
+		color: primary-color(500);
 	}
 }
 </style>

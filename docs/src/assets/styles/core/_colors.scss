@@ -39,12 +39,26 @@
   --body-color: #{primary-color(50)};
   --text-color: #{primary-color(700)};
   --header-color: #{primary-color(800)};
+  --group-header-color: #{primary-color(600)};
+  --section-header-color: #{primary-color(700)};
   --sandbox-color: #{primary-color(900)};
 }
 
-.dark-mode {
+@mixin dark-mode-colors {
   --body-color: #{primary-color(950)};
   --text-color: #{primary-color(200)};
   --header-color: #{primary-color(100)};
+  --group-header-color: #{primary-color(500)};
+  --section-header-color: #{primary-color(300)};
   --sandbox-color: #{primary-color(900)};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark-mode-colors;
+  }
+}
+
+.dark-mode {
+  @include dark-mode-colors;
 }

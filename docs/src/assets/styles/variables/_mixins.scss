@@ -84,3 +84,13 @@
     transform-style: preserve-3d;
   }
 }
+
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+
+  .dark-mode & {
+    @content;
+  }
+}
