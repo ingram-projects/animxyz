@@ -356,7 +356,6 @@ export default {
 }
 
 .intro-text {
-	color: primary-color(800);
 	font-size: $fs-xxxl;
 	font-weight: 650;
 	line-height: 1.35;
