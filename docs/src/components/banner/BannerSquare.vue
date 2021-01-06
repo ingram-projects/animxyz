@@ -1,6 +1,6 @@
 <template>
 	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
-		<XyzTransition duration="auto">
+		<XyzTransition duration="auto" @after-leave="randomizeXyz">
 			<div class="square-anim" v-if="show">
 				<p
 					class="anim-name xyz-nested"
@@ -69,13 +69,6 @@ export default {
 	computed: {
 		xyzUtilityStrings() {
 			return this.xyzUtilities.map((xyzUtility) => xyzUtility.string)
-		},
-	},
-	watch: {
-		show() {
-			if (this.show) {
-				this.randomizeXyz()
-			}
 		},
 	},
 	methods: {
