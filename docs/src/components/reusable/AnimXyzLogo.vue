@@ -19,22 +19,23 @@ $logo-size: 2.25rem;
 
 .logo-scene {
 	@include size(100%);
+	--logo-size: 2.25rem;
 	display: flex;
-	transform: translate(-$logo-size / 2, -$logo-size / 2) scale(var(--logo-scale, 1));
+	transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2)) scale(var(--logo-scale, 1));
 	transition: transform 0.3s $ease-out-back;
 	transform-style: preserve-3d;
-	transform-origin: $logo-size / 2 $logo-size / 2;
+	transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
 }
 
 .logo-sides {
 	transform-style: preserve-3d;
 	transform: rotateX(55deg) rotateZ(45deg);
 	transition: transform 0.3s $ease-out-back;
-	transform-origin: $logo-size / 2 $logo-size / 2;
+	transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
 }
 
 .logo-side {
-	@include size($logo-size);
+	@include size(var(--logo-size));
 	display: flex;
 	position: absolute;
 	transition: transform 0.3s $ease-in-out;
