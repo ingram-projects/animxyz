@@ -87,10 +87,12 @@
 
 @mixin dark-mode {
   @media (prefers-color-scheme: dark) {
-    @content;
+    body:not(.light-mode) & {
+      @content;
+    }
   }
 
-  .dark-mode & {
+  body.dark-mode & {
     @content;
   }
 }

@@ -35,20 +35,4 @@
   
   --cyan: #{$cyan};
   --cyan-rgb: #{$cyan-rgb};
-  
-  --text-color: #{primary-color(700)};
-}
-
-@mixin dark-mode-colors {
-  --text-color: #{primary-color(200)};
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark-mode-colors;
-  }
-}
-
-.dark-mode {
-  @include dark-mode-colors;
 }
