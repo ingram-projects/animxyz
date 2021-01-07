@@ -16,26 +16,18 @@
 				<span class="screen-reader-only">Toggle Dark/Light Mode</span>
 			</button>
 
-			<div class="xray__wrap">
+			<SpinToggle :toggled="xRayToggled" on-text="XYZ-ray On" off-text="XYZ-ray Off">
 				<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 					<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
 					<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
-				</button>
-
-				<div class="xray-tooltip__wrap">
-					<XyzTransition xyz mode="out-in">
-						<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
-						<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
+					<XyzTransition xyz duration="auto">
+						<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
+							<div class="xray-invert xyz-nested"></div>
+							<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
+						</div>
 					</XyzTransition>
-				</div>
-
-				<XyzTransition xyz duration="auto">
-					<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
-						<div class="xray-invert xyz-nested"></div>
-						<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
-					</div>
-				</XyzTransition>
-			</div>
+				</button>
+			</SpinToggle>
 		</div>
 
 		<div class="page-content__wrap" :class="{ 'xyz-xray': xRayToggled }">
@@ -54,10 +46,12 @@ query {
 
 <script>
 import Cube from '~/components/reusable/Cube'
+import SpinToggle from '~/components/reusable/SpinToggle'
 
 export default {
 	components: {
 		Cube,
+		SpinToggle,
 	},
 	data() {
 		return {
