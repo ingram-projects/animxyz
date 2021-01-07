@@ -1,7 +1,7 @@
 import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
 
-import XyzContext from './directives/XyzContext'
+import xyz from './directives/xyz'
 
 // Create module definition for app.use()
 const VueAnimXyz = {
@@ -9,9 +9,9 @@ const VueAnimXyz = {
 		app.component('XyzTransition', XyzTransition)
 		app.component('XyzTransitionGroup', XyzTransitionGroup)
 
-		app.directive('xyz', XyzContext)
+		app.directive('xyz', xyz)
 	},
 }
 
-export { XyzTransition, XyzTransitionGroup, XyzContext }
+export { XyzTransition, XyzTransitionGroup, xyz }
 export default VueAnimXyz
