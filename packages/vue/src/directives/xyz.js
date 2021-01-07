@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 function updateDirective(el, { value, oldValue }) {
-	if (!value === !oldValue) return
+	if (value === oldValue) return
 
 	const xyzAttr = clsx(el._xyzOriginal, value)
 	el.setAttribute('xyz', xyzAttr)
