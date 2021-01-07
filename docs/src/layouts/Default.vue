@@ -12,9 +12,11 @@
 		</div>
 
 		<div class="page-controls__wrap">
-			<button class="dark-mode-toggle" @click="toggleDarkLightMode">
-				<span class="screen-reader-only">Toggle Dark/Light Mode</span>
-			</button>
+			<SpinToggle class="dark-mode-toggle__wrap" :toggled="darkModeToggled" on-text="Dark Mode" off-text="Light Mode">
+				<button class="dark-mode-toggle" :class="{ active: darkModeToggled }" @click="toggleDarkLightMode">
+					<span class="screen-reader-only">Turn Dark Mode {{ darkModeToggled ? 'Off' : 'On' }}</span>
+				</button>
+			</SpinToggle>
 
 			<SpinToggle :toggled="xRayToggled" on-text="XYZ-ray On" off-text="XYZ-ray Off">
 				<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
@@ -55,7 +57,7 @@ export default {
 	},
 	data() {
 		return {
-			darkModeToggled: null,
+			darkModeToggled: false,
 			xRayToggled: false,
 			xRayCubeTransform: null,
 		}
@@ -75,12 +77,7 @@ export default {
 	},
 	methods: {
 		toggleDarkLightMode() {
-			if (this.darkModeToggled === null) {
-				const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
-				this.darkModeToggled = !prefersDarkMode
-			} else {
-				this.darkModeToggled = !this.darkModeToggled
-			}
+			this.darkModeToggled = !this.darkModeToggled
 		},
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
@@ -95,6 +92,7 @@ export default {
 	},
 	mounted() {
 		this.randomizeXRayCubeTransform()
+		this.darkModeToggled = window.matchMedia('(prefers-color-scheme: dark)').matches
 	},
 }
 </script>
@@ -174,28 +172,72 @@ export default {
 	}
 }
 
+.dark-mode-toggle__wrap {
+	margin-bottom: $sp-l;
+}
+
+@keyframes moon {
+	0% {
+		content: '🌒';
+	}
+	25% {
+		content: '🌓';
+	}
+	50% {
+		content: '🌔';
+	}
+	75% {
+		content: '🌕';
+	}
+	100% {
+		content: '🌖';
+	}
+}
+
+@keyframes moon-reverse {
+	0% {
+		content: '🌖';
+	}
+	25% {
+		content: '🌕';
+	}
+	50% {
+		content: '🌔';
+	}
+	75% {
+		content: '🌓';
+	}
+	100% {
+		content: '🌒';
+	}
+}
+
 .dark-mode-toggle {
 	@include circle(2.5rem);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 2rem;
-	margin-bottom: $sp-l;
-	transition: 0.3s ease-in-out;
-	transition-property: background-color;
+	font-size: 2.25rem;
+	transition: transform 0.3s $ease-out-back;
+
+	&:hover,
+	&:focus {
+		transform: scale(1.125);
+	}
 
 	&::before {
-		content: '🌖';
+		content: '';
+		animation: moon 1s both;
 	}
 
 	@include dark-mode {
 		&::before {
-			content: '🌒';
+			animation: moon-reverse 1s both;
 		}
 	}
 
 	@include media('<phone') {
-		font-size: 1.5rem;
+		font-size: 1.75rem;
 	}
 }
 
@@ -205,9 +247,9 @@ export default {
 
 .xray-toggle {
 	perspective: 10rem;
-	transition: transform 0.3s $ease-out-back;
 	padding: 1rem;
 	margin: -1rem;
+	transition: transform 0.3s $ease-out-back;
 
 	&:hover,
 	&:focus {
