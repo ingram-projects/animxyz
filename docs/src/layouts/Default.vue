@@ -11,25 +11,31 @@
 			</div>
 		</div>
 
-		<div class="xray-toggle__wrap">
-			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-				<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
-				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+		<div class="page-controls__wrap">
+			<button class="dark-mode-toggle" @click="toggleDarkLightMode">
+				<span class="screen-reader-only">Toggle Dark/Light Mode</span>
 			</button>
 
-			<div class="xray-tooltip__wrap">
-				<XyzTransition xyz mode="out-in">
-					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
-					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
+			<div class="xray__wrap">
+				<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
+					<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
+					<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+				</button>
+
+				<div class="xray-tooltip__wrap">
+					<XyzTransition xyz mode="out-in">
+						<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
+						<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
+					</XyzTransition>
+				</div>
+
+				<XyzTransition xyz duration="auto">
+					<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
+						<div class="xray-invert xyz-nested"></div>
+						<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
+					</div>
 				</XyzTransition>
 			</div>
-
-			<XyzTransition xyz duration="auto">
-				<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
-					<div class="xray-invert xyz-nested"></div>
-					<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
-				</div>
-			</XyzTransition>
 		</div>
 
 		<div class="page-content__wrap" :class="{ 'xyz-xray': xRayToggled }">
@@ -55,11 +61,33 @@ export default {
 	},
 	data() {
 		return {
+			darkModeToggled: null,
 			xRayToggled: false,
 			xRayCubeTransform: null,
 		}
 	},
+	watch: {
+		darkModeToggled() {
+			const bodyEl = document.querySelector('body')
+
+			bodyEl.classList.remove('dark-mode', 'light-mode')
+			if (this.darkModeToggled === true) {
+				bodyEl.classList.add('dark-mode')
+			}
+			if (this.darkModeToggled === false) {
+				bodyEl.classList.add('light-mode')
+			}
+		},
+	},
 	methods: {
+		toggleDarkLightMode() {
+			if (this.darkModeToggled === null) {
+				const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+				this.darkModeToggled = !prefersDarkMode
+			} else {
+				this.darkModeToggled = !this.darkModeToggled
+			}
+		},
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
 			this.randomizeXRayCubeTransform()
@@ -133,11 +161,14 @@ export default {
 	}
 }
 
-.xray-toggle__wrap {
+.page-controls__wrap {
 	position: fixed;
-	bottom: $sp-xl;
-	right: $sp-xl;
+	bottom: 2rem;
+	right: 2rem;
 	z-index: 4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	@include media('<tablet') {
 		right: initial;
@@ -147,11 +178,40 @@ export default {
 	}
 }
 
+.dark-mode-toggle {
+	@include circle(2.5rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2rem;
+	margin-bottom: $sp-l;
+	transition: 0.3s ease-in-out;
+	transition-property: background-color;
+
+	&::before {
+		content: '🌖';
+	}
+
+	@include dark-mode {
+		&::before {
+			content: '🌒';
+		}
+	}
+
+	@include media('<phone') {
+		font-size: 1.5rem;
+	}
+}
+
+.xray__wrap {
+	position: relative;
+}
+
 .xray-toggle {
 	perspective: 10rem;
 	transition: transform 0.3s $ease-out-back;
 	padding: 3rem;
-	margin: -3rem;
+	margin: -1.5rem;
 
 	&:hover,
 	&:focus {
@@ -161,8 +221,10 @@ export default {
 
 .xray-tooltip__wrap {
 	position: absolute;
-	right: $sp-xl;
-	top: 0rem;
+	right: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 1.25rem;
 	opacity: 0;
 	transition: opacity 0.3s ease-in;
 
@@ -172,7 +234,7 @@ export default {
 
 	@include media('<tablet') {
 		right: initial;
-		left: $sp-xl;
+		left: 100%;
 	}
 }
 
@@ -229,6 +291,8 @@ export default {
 .xray-invert {
 	@include size(1vmax);
 	position: absolute;
+	left: 50%;
+	top: 50%;
 	border-radius: 50%;
 	transform: translate(-50%, -50%) scale(283);
 
