@@ -160,6 +160,7 @@ $active-border-width: 0.5rem;
 
 	@include media('<laptop') {
 		background-color: primary-color(50);
+		transition: background-color 0.3s $ease-in-out;
 		margin: 0 (-$sp-s);
 		padding: $sp-xxs $sp-s;
 		position: sticky;
@@ -263,7 +264,7 @@ $active-border-width: 0.5rem;
 .section-examples-button {
 	margin: $sp-xxxs;
 	margin-left: auto;
-	margin-righ: 0;
+	margin-right: 0;
 	display: flex;
 	align-items: center;
 	height: 1.75rem;
