@@ -26,17 +26,19 @@ export default {
 
 <style lang="scss" scoped>
 .spin-toggle {
+	--toggle-center-offset: 3rem;
 	position: relative;
 }
 
 .toggle-tooltip__wrap {
 	position: absolute;
-	right: 100%;
+	right: 50%;
 	top: 50%;
+	margin: 0 var(--toggle-center-offset);
 	transform: translateY(-50%);
-	margin: 0 $sp-m;
 	opacity: 0;
 	transition: opacity 0.3s ease-in;
+	pointer-events: none;
 
 	.toggle-contents:hover + & {
 		opacity: 1;
@@ -44,14 +46,11 @@ export default {
 
 	@include media('<tablet') {
 		right: initial;
-		left: 100%;
+		left: 50%;
 	}
 }
 
 .toggle-tooltip {
-	--xyz-origin: 9.5rem center;
-	--xyz-in-rotate-z: 0.5turn;
-	--xyz-out-rotate-z: -0.5turn;
 	line-height: 2rem;
 	width: 6.5rem;
 	color: $cyan;
@@ -62,10 +61,12 @@ export default {
 	background-color: primary-color(900, 0.85);
 	backdrop-filter: invert(1);
 	border-radius: 1rem;
-	pointer-events: none;
+	--xyz-origin: calc(100% + var(--toggle-center-offset)) center;
+	--xyz-in-rotate-z: 0.5turn;
+	--xyz-out-rotate-z: -0.5turn;
 
 	@include media('<tablet') {
-		--xyz-origin: -3rem center;
+		--xyz-origin: calc(var(--toggle-center-offset) * -1) center;
 		--xyz-in-rotate-z: -0.5turn;
 		--xyz-out-rotate-z: 0.5turn;
 	}
