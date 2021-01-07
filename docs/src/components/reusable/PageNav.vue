@@ -299,27 +299,28 @@ export default {
 			opacity: 1;
 		}
 
-		::v-deep {
-			.logo-scene {
-				--logo-scale: 1.125;
+		.animxyz-logo {
+			--logo-scale: 1.125;
+			transform: scale(var(--logo-scale));
 
-				@include media('<tablet') {
-					--logo-scale: 1;
-				}
+			@include media('<tablet') {
+				--logo-scale: 1;
 			}
 		}
 	}
 
 	@include media('<laptop') {
+		left: $sp-m;
+		right: initial;
 		top: initial;
-		left: 2.5rem;
-		bottom: 2rem;
+		bottom: $sp-m;
 	}
 
 	@include media('<tablet') {
 		left: initial;
-		right: 2.5rem;
-		bottom: 2.5rem;
+		right: $sp-m;
+		top: initial;
+		bottom: $sp-m;
 	}
 
 	@include media('>=large') {
@@ -328,8 +329,7 @@ export default {
 }
 
 .logo-wrap {
-	margin-left: $sp-s;
-	margin-right: 1.25rem;
+	margin-right: $sp-xxs;
 
 	@include media('<tablet') {
 		@include size(initial);
@@ -341,7 +341,7 @@ export default {
 	font-family: $font-stack-mono;
 	font-size: $fs-xl;
 	font-weight: bold;
-	margin-left: $sp-s;
+	margin-left: $sp-xs;
 	opacity: 0.85;
 	transition: color 0.2s $ease-in-out, opacity 0.2s $ease-in-out, transform 0.3s $ease-out-back;
 

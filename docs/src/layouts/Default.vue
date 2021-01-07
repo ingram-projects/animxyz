@@ -116,6 +116,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	pointer-events: none;
 
 	@include media('<tablet') {
 		padding: $sp-s;
@@ -128,6 +129,7 @@ export default {
 	font-weight: 500;
 	padding: $sp-xxs $sp-xs;
 	border-radius: $br-m;
+	pointer-events: all;
 
 	& + & {
 		margin-top: $sp-s;
@@ -163,8 +165,8 @@ export default {
 
 .page-controls__wrap {
 	position: fixed;
-	bottom: 2rem;
-	right: 2rem;
+	bottom: $sp-m;
+	right: $sp-m;
 	z-index: 4;
 	display: flex;
 	flex-direction: column;
@@ -172,8 +174,8 @@ export default {
 
 	@include media('<tablet') {
 		right: initial;
-		left: 2.25rem;
-		bottom: 2.25rem;
+		left: $sp-m;
+		bottom: $sp-m;
 		z-index: 3;
 	}
 }
@@ -210,8 +212,8 @@ export default {
 .xray-toggle {
 	perspective: 10rem;
 	transition: transform 0.3s $ease-out-back;
-	padding: 3rem;
-	margin: -1.5rem;
+	padding: 1rem;
+	margin: -1rem;
 
 	&:hover,
 	&:focus {
@@ -224,7 +226,7 @@ export default {
 	right: 100%;
 	top: 50%;
 	transform: translateY(-50%);
-	margin: 0 1.25rem;
+	margin: 0 $sp-m;
 	opacity: 0;
 	transition: opacity 0.3s ease-in;
 
@@ -266,7 +268,7 @@ export default {
 	transition: transform 1s $ease-in-out-back;
 
 	::v-deep {
-		.cube__face {
+		.cube-side {
 			box-shadow: inset 0 0 0 1.5px primary-color(50), inset 0 0 0 1rem primary-color(400);
 			transition: 1s $ease-in-out;
 			transition-property: background-color, box-shadow;
