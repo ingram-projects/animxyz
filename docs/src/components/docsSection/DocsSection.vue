@@ -164,6 +164,10 @@ $active-border-width: 0.5rem;
 		padding: $sp-xxs $sp-s;
 		position: sticky;
 		top: 0;
+
+		@include dark-mode {
+			background-color: primary-color(950);
+		}
 	}
 }
 
