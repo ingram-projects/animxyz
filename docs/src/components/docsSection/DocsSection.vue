@@ -82,7 +82,11 @@ $active-border-width: 0.5rem;
 		h1,
 		h2,
 		h3 {
-			color: var(--section-header-color);
+			color: primary-color(700);
+
+			@include dark-mode {
+				color: primary-color(300);
+			}
 		}
 
 		hr {

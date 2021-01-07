@@ -6,8 +6,12 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--header-color);
+  color: primary-color(800);
   line-height: 1.25;
+
+  @include dark-mode {
+    color: primary-color(100);
+  }
 }
 
 h2,

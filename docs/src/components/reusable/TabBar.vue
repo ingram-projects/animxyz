@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .tab-bar {
-	background-color: var(--sandbox-color);
+	background-color: primary-color(900);
 	font-family: $font-stack-mono;
 	display: flex;
 	flex-shrink: 0;

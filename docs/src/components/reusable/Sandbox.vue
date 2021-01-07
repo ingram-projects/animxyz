@@ -120,7 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 .sandbox {
-	background: var(--sandbox-color);
+	background: primary-color(900);
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 5rem;

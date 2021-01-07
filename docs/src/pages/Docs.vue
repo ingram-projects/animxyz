@@ -257,13 +257,17 @@ export default {
 
 .section-group__header {
 	text-align: center;
-	color: var(--group-header-color);
+	color: primary-color(600);
 	font-size: 2.5rem;
 	font-weight: 720;
 	padding: 2vw $sp-m;
 
 	@include media('>=laptop') {
 		padding: 0;
+	}
+
+	@include dark-mode {
+		color: primary-color(500);
 	}
 }
 
@@ -275,7 +279,7 @@ export default {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	background-color: var(--sandbox-color);
+	background-color: primary-color(900);
 
 	.sandbox {
 		width: 100%;

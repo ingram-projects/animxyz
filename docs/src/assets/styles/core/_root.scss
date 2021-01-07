@@ -1,6 +1,10 @@
 body {
-  background-color: var(--body-color);
+  background-color: primary-color(50);
   transition: background-color 0.2s ease-in-out;
+
+  @include dark-mode {
+    background-color: primary-color(950);
+  }
 }
 
 [data-server-rendered='true'] {
