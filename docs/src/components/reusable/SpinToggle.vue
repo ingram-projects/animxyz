@@ -58,8 +58,7 @@ export default {
 	font-weight: 600;
 	text-align: center;
 	white-space: nowrap;
-	background-color: primary-color(900, 0.85);
-	backdrop-filter: invert(1);
+	background-color: primary-color(700);
 	border-radius: 1rem;
 	--xyz-origin: calc(100% + var(--toggle-center-offset)) center;
 	--xyz-in-rotate-z: 0.5turn;

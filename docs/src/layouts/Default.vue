@@ -92,7 +92,18 @@ export default {
 	},
 	mounted() {
 		this.randomizeXRayCubeTransform()
-		this.darkModeToggled = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+		const prefersColorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
+
+		function onPrefersColorSchemeChange(event) {
+			console.log(event)
+			this.darkModeToggled = event.matches
+		}
+
+		prefersColorSchemeMedia.addEventListener('change', onPrefersColorSchemeChange)
+		this.$on('hook:beforeDestroy', () => {
+			prefersColorSchemeMedia.removeEventListener('change', onPrefersColorSchemeChange)
+		})
 	},
 }
 </script>
