@@ -89,19 +89,18 @@ export default {
 				-0.5 + Math.random()
 			}turn)`
 		},
+		onPrefersColorSchemeChange(event) {
+			this.darkModeToggled = event.matches
+		},
 	},
 	mounted() {
 		this.randomizeXRayCubeTransform()
 
 		const prefersColorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
-
-		function onPrefersColorSchemeChange(event) {
-			this.darkModeToggled = event.matches
-		}
-
-		prefersColorSchemeMedia.addEventListener('change', onPrefersColorSchemeChange)
+		this.darkModeToggled = prefersColorSchemeMedia.matches
+		prefersColorSchemeMedia.addEventListener('change', this.onPrefersColorSchemeChange)
 		this.$on('hook:beforeDestroy', () => {
-			prefersColorSchemeMedia.removeEventListener('change', onPrefersColorSchemeChange)
+			prefersColorSchemeMedia.removeEventListener('change', this.onPrefersColorSchemeChange)
 		})
 	},
 }
