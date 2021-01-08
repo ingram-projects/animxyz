@@ -1,7 +1,7 @@
 <template>
 	<div class="example-wrap flex-col">
 		<XyzTransition xyz="fade duration-10" v-xyz="customData.xyzUtilities" v-on="data.listeners">
-			<div class="square" v-if="data.toggled"></div>
+			<div class="square" v-xyz-visible="data.toggled"></div>
 		</XyzTransition>
 		<div class="flex-row mt-l">
 			<label class="example-checkbox mt-l">

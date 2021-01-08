@@ -2,6 +2,7 @@ import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
 
 import xyz from './directives/xyz'
+import xyzVisible from './directives/xyzVisible'
 
 // Create module definition for Vue.use()
 const VueAnimXyz = {
@@ -10,6 +11,7 @@ const VueAnimXyz = {
 		Vue.component('XyzTransitionGroup', XyzTransitionGroup)
 
 		Vue.directive('xyz', xyz)
+		Vue.directive('xyz-visible', xyzVisible)
 	},
 }
 

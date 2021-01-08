@@ -1,16 +1,17 @@
 import clsx from 'clsx'
 
-function updateDirective(el, { value, oldValue }) {
-	if (value === oldValue) return
-
-	const xyzAttr = clsx(el._xyzOriginal, value)
-	el.setAttribute('xyz', xyzAttr)
-}
-
 export default {
-	bind(el) {
+	bind(el, { value }) {
 		el._xyzOriginal = el.getAttribute('xyz')
-		updateDirective(...arguments)
+		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
-	componentUpdated: updateDirective,
+	update(el, { value, oldValue }) {
+		if (value === oldValue) return
+		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
+	},
+	unbind(el) {
+		if (el) {
+			el.setAttribute('xyz', el._xyzOriginal)
+		}
+	},
 }
