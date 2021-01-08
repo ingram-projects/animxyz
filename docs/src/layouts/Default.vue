@@ -96,7 +96,6 @@ export default {
 		const prefersColorSchemeMedia = window.matchMedia('(prefers-color-scheme: dark)')
 
 		function onPrefersColorSchemeChange(event) {
-			console.log(event)
 			this.darkModeToggled = event.matches
 		}
 
