@@ -38,7 +38,7 @@ export default {
 
 .side-fill {
 	@include size(100%);
-	border-radius: $br-l;
+	border-radius: calc(var(--logo-size) / 6);
 	background-image: linear-gradient(
 		var(--logo-gradient-direction, to top),
 		rgba(var(--logo-side-color), 1),
