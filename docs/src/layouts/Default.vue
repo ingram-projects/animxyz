@@ -213,7 +213,8 @@ export default {
 	}
 
 	@include media('<phone') {
-		font-size: 1.75rem;
+		@include circle(2rem);
+		font-size: 2rem;
 	}
 }
 
