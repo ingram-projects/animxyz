@@ -1,4 +1,6 @@
-export function once(fn) {
+// Based on https://github.com/vuejs/vue/blob/dev/src/platforms/web/runtime/modules/transition.js
+
+function once(fn) {
 	let called = false
 	return function () {
 		if (!called) {
@@ -32,7 +34,7 @@ function removeTransitionClass(el, cls) {
 	el.classList.remove(cls)
 }
 
-export function enter(vnode, isAppear, toggleStyle) {
+export function enter(vnode, toggleStyle, isAppear = false) {
 	const el = vnode.elm
 
 	// call leave callback now
@@ -42,11 +44,7 @@ export function enter(vnode, isAppear, toggleStyle) {
 	}
 
 	const data = vnode.data.transition
-	if (!data) {
-		return
-	}
-
-	if (el._enterCb || el.nodeType !== 1) {
+	if (!data || el.nodeType !== 1 || el._enterCb) {
 		return
 	}
 
@@ -71,40 +69,40 @@ export function enter(vnode, isAppear, toggleStyle) {
 		return
 	}
 
-	const startClass = isAppear && appearClass ? appearClass : enterClass
+	const fromClass = isAppear && appearClass ? appearClass : enterClass
 	const activeClass = isAppear && appearActiveClass ? appearActiveClass : enterActiveClass
 	const toClass = isAppear && appearToClass ? appearToClass : enterToClass
 
-	const beforeEnterHook = isAppear ? beforeAppear || beforeEnter : beforeEnter
-	const enterHook = isAppear ? (typeof appear === 'function' ? appear : enter) : enter
-	const afterEnterHook = isAppear ? afterAppear || afterEnter : afterEnter
-	const enterCancelledHook = isAppear ? appearCancelled || enterCancelled : enterCancelled
+	const beforeHook = isAppear ? beforeAppear || beforeEnter : beforeEnter
+	const activeHook = isAppear ? (typeof appear === 'function' ? appear : enter) : enter
+	const afterHook = isAppear ? afterAppear || afterEnter : afterEnter
+	const cancelledHook = isAppear ? appearCancelled || enterCancelled : enterCancelled
 
 	const cb = (el._enterCb = once(() => {
 		removeTransitionClass(el, toClass)
 		removeTransitionClass(el, activeClass)
 		if (cb.cancelled) {
-			removeTransitionClass(el, startClass)
-			enterCancelledHook && enterCancelledHook(el)
+			removeTransitionClass(el, fromClass)
+			cancelledHook && cancelledHook(el)
 		} else {
-			afterEnterHook && afterEnterHook(el)
+			afterHook && afterHook(el)
 		}
 		el._enterCb = null
 	}))
 
 	// start enter transition
-	beforeEnterHook && beforeEnterHook(el)
-	addTransitionClass(el, startClass)
+	beforeHook && beforeHook(el)
+	addTransitionClass(el, fromClass)
 	addTransitionClass(el, activeClass)
 	nextFrame(() => {
-		removeTransitionClass(el, startClass)
+		removeTransitionClass(el, fromClass)
 		if (!cb.cancelled) {
 			addTransitionClass(el, toClass)
 		}
 	})
 
 	toggleStyle && toggleStyle()
-	enterHook && enterHook(el, cb)
+	activeHook && activeHook(el, cb)
 }
 
 export function leave(vnode, toggleStyle) {
