@@ -5,8 +5,7 @@ export default {
 		el._xyzOriginal = el.getAttribute('xyz')
 		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
-	update(el, { value, oldValue }) {
-		if (value === oldValue) return
+	update(el, { value }) {
 		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
 	unbind(el) {

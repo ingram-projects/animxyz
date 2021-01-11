@@ -20,15 +20,15 @@ function addTransitionClass(el, cls) {
 	const transitionClasses = el._transitionClasses || (el._transitionClasses = [])
 	if (transitionClasses.indexOf(cls) < 0) {
 		transitionClasses.push(cls)
-		el.classList.add(cls)
 	}
+	el.classList.add(cls)
 }
 
 function removeTransitionClass(el, cls) {
 	if (el._transitionClasses && el._transitionClasses.length) {
 		const index = el._transitionClasses.indexOf(cls)
 		if (index > -1) {
-			return el._transitionClasses.splice(index, 1)
+			el._transitionClasses.splice(index, 1)
 		}
 	}
 	el.classList.remove(cls)
@@ -65,7 +65,7 @@ export function enter(vnode, toggleStyle, isAppear = false) {
 		appearCancelled,
 	} = data
 
-	if (isAppear && !appear && appear !== '') {
+	if (isAppear && !appear) {
 		return
 	}
 

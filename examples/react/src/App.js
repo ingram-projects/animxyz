@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { xyz, XyzTransitionGroup, XyzTransitionSwitch } from '@animxyz/react'
+import { xyz, XyzTransitionGroup, XyzTransitionSwitch } from '@animxyz/react/src'
 import './App.scoped.scss'
 
 const switchStates = ['one', 'two', 'three', 'four', 'five']

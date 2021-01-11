@@ -1,4 +1,4 @@
-import { enter, leave } from '../transitionUtils'
+import { enter, leave } from '../transitionModule'
 
 // recursively search for possible transition defined inside the component root
 function locateNode(vnode) {
@@ -14,7 +14,6 @@ function setVisibility(el, value) {
 export default {
 	bind(el, { value }, vnode) {
 		el._originalVisibility = el.style.visibility === 'hidden' ? '' : el.style.visibility
-
 		vnode = locateNode(vnode)
 		const transition = vnode.data && vnode.data.transition
 
@@ -48,7 +47,7 @@ export default {
 	},
 	unbind(el) {
 		if (el) {
-			setVisibility(el, true)
+			el.style.visibility = el._originalVisibility
 		}
 	},
 }
