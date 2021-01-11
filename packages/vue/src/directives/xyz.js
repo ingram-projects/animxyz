@@ -8,8 +8,8 @@ export default {
 	update(el, { value }) {
 		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
-	unbind(el) {
-		if (el) {
+	unbind(el, binding, vnode, oldVnode, isDestroy) {
+		if (!isDestroy) {
 			el.setAttribute('xyz', el._xyzOriginal)
 		}
 	},

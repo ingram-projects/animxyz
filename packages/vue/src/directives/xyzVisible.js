@@ -45,8 +45,8 @@ export default {
 			setVisibility(el, value)
 		}
 	},
-	unbind(el) {
-		if (el) {
+	unbind(el, binding, vnode, oldVnode, isDestroy) {
+		if (!isDestroy) {
 			el.style.visibility = el._originalVisibility
 		}
 	},

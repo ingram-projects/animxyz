@@ -8,9 +8,7 @@ export default {
 	updated(el, { value }) {
 		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
-	unmounted(el) {
-		if (el) {
-			el.setAttribute('xyz', el._xyzOriginal)
-		}
+	beforeUnmount(el, { value }) {
+		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
 }
