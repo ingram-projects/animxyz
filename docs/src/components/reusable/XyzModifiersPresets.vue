@@ -94,10 +94,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.modifiers-presets {
-	background-color: primary-color(900);
-}
-
 .presets-list {
 	padding: $sp-m;
 	padding-right: 0;

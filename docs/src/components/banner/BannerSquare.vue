@@ -157,6 +157,10 @@ export default {
 	@include media('>=laptop') {
 		font-size: 1.25rem;
 	}
+
+	@include dark-mode {
+		background-color: primary-color(800);
+	}
 }
 
 .anim-name {

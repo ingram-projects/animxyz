@@ -1,16 +1,3 @@
-h2,
-h3,
-h4,
-h5 {
-  color: primary-color(800);
-  margin-bottom: 0.5em;
-  font-weight: 600;
-
-  &:not(:first-child) {
-    margin-top: 1.5em;
-  }
-}
-
 .copy-content {
   font-size: 1.125rem;
 
@@ -54,6 +41,13 @@ h5 {
     background-color: transparentize(darken(#f92672, 10%), 0.95);
     padding: 0.125em 0.25em;
     border-radius: $br-s;
+    transition: 0.2s ease-in-out;
+    transition-property: background-color, color;
+
+    @include dark-mode {
+      color: #f92672;
+      background-color: transparentize(lighten(#f92672, 10%), 0.9);
+    }
   }
 
   pre[class*="language-"] {
@@ -146,6 +140,10 @@ h5 {
 
     thead {
       color: primary-color(800);
+
+      @include dark-mode {
+        color: primary-color(200);
+      }
     }
 
     th,
@@ -158,12 +156,20 @@ h5 {
       color: primary-color(800);
 			font-weight: 600;
 			font-size: $fs-s;
-			white-space: nowrap;
+      white-space: nowrap;
+      
+      @include dark-mode {
+        color: primary-color(200);
+      }
     }
 
     td {
       color: primary-color(700);
       line-height: 1.5rem;
+
+      @include dark-mode {
+        color: primary-color(300);
+      }
     }
 
     tbody {
@@ -174,6 +180,10 @@ h5 {
       tr {
         &:nth-child(odd) {
           background-color: primary-color(700, 0.05);
+
+          @include dark-mode {
+            background-color: primary-color(600, 0.05);
+          }
         }
       }
     }
@@ -216,6 +226,10 @@ h5 {
     color: primary-color(700);
     transition: color 0.2s $ease-out;
 
+    @include dark-mode {
+      color: primary-color(300);
+    }
+
     &::before {
       --anchor-underline-color: #{$cyan};
       content: "";
@@ -233,6 +247,10 @@ h5 {
     &:hover,
     &:focus {
       color: primary-color(800);
+
+      @include dark-mode {
+        color: primary-color(100);
+      }
 
       &::before {
         left: -0.1em;
@@ -284,7 +302,7 @@ h5 {
     line-height: 1.5rem;
     display: inline-flex;
     color: primary-color(700);
-    background-color: primary-color(100, 0.75);
+    background-color: primary-color(100);
     font-size: $fs-m;
     font-family: $font-stack-mono;
     white-space: initial;
@@ -294,6 +312,11 @@ h5 {
     margin-bottom: $sp-xxs;
     transition: 0.2s $ease-out;
     transition-property: background-color, color, box-shadow;
+
+    @include dark-mode {
+      background-color: primary-color(800);
+      color: primary-color(100);
+    }
 
     &::after {
       display: inline-block;
@@ -314,6 +337,11 @@ h5 {
 
       &::after {
         transform: translateX(0.75rem);
+      }
+
+      @include dark-mode {
+        background-color: primary-color(700);
+        color: primary-color(50);
       }
     }
 
@@ -339,6 +367,10 @@ h5 {
 
   pre[class*="language-"] {
     margin: 0;
+  }
+
+  @include dark-mode {
+    background-color: primary-color(500, 0.1);
   }
 }
 

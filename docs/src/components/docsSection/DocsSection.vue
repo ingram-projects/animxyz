@@ -69,10 +69,24 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
 
+	@include dark-mode {
+		--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+	}
+
 	::v-deep {
 		.shadow-scroll,
 		.shadow-scroll-content {
 			transition: box-shadow 0.8s $ease-out;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: primary-color(700);
+
+			@include dark-mode {
+				color: primary-color(300);
+			}
 		}
 
 		hr {
@@ -87,6 +101,10 @@ $active-border-width: 0.5rem;
 			width: fit-content;
 			padding: 0 $sp-xs;
 			transition: background-color 0.8s $ease-out;
+
+			@include dark-mode {
+				background-color: primary-color(950);
+			}
 		}
 	}
 
@@ -94,9 +112,15 @@ $active-border-width: 0.5rem;
 		padding: $sp-xl;
 
 		.docs-section__wrap.active & {
+			--shadow-scroll-backdrop-color: white;
 			background-color: white;
 			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
-			--shadow-scroll-backdrop-color: white;
+
+			@include dark-mode {
+				--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+				background-color: transparent;
+				box-shadow: 0 0 0 0.25rem primary-color(700);
+			}
 
 			::v-deep {
 				hr {
@@ -105,6 +129,10 @@ $active-border-width: 0.5rem;
 
 				hr + h2 {
 					background-color: white;
+
+					@include dark-mode {
+						background-color: primary-color(950);
+					}
 				}
 			}
 		}
@@ -132,10 +160,15 @@ $active-border-width: 0.5rem;
 
 	@include media('<laptop') {
 		background-color: primary-color(50);
+		transition: background-color 0.3s $ease-in-out;
 		margin: 0 (-$sp-s);
 		padding: $sp-xxs $sp-s;
 		position: sticky;
 		top: 0;
+
+		@include dark-mode {
+			background-color: primary-color(950);
+		}
 	}
 }
 
@@ -198,7 +231,6 @@ $active-border-width: 0.5rem;
 	font-size: 2rem;
 	line-height: 1;
 	font-weight: 640;
-	color: primary-color(700);
 
 	@include media('<phone') {
 		font-size: 1.5rem;
@@ -232,7 +264,7 @@ $active-border-width: 0.5rem;
 .section-examples-button {
 	margin: $sp-xxxs;
 	margin-left: auto;
-	margin-righ: 0;
+	margin-right: 0;
 	display: flex;
 	align-items: center;
 	height: 1.75rem;
@@ -295,6 +327,10 @@ $active-border-width: 0.5rem;
 		padding-left: $sp-m;
 		margin-bottom: $sp-s;
 		font-size: 1rem;
+	}
+
+	@include dark-mode {
+		color: primary-color(500);
 	}
 }
 </style>

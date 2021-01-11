@@ -265,6 +265,10 @@ export default {
 	@include media('>=laptop') {
 		padding: 0;
 	}
+
+	@include dark-mode {
+		color: primary-color(500);
+	}
 }
 
 .sandbox__wrap {
