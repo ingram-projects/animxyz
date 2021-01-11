@@ -52,15 +52,13 @@
 							</li>
 						</ul>
 					</div>
-					<a
-						class="github-link xyz-in-nested"
-						xyz="fade delay-3 small ease-out-back"
-						href="https://github.com/ingram-projects/animxyz"
-						target="_blank"
-					>
-						<IconGithub></IconGithub>
-						<span>GitHub</span>
-					</a>
+					<div class="nav-extras" xyz="fade delay-3 small ease-out-back">
+						<a class="github-link xyz-in-nested" href="https://github.com/ingram-projects/animxyz" target="_blank">
+							<IconGithub></IconGithub>
+							<span>GitHub</span>
+						</a>
+						<DarkModeToggle class="xyz-in-nested"></DarkModeToggle>
+					</div>
 				</nav>
 			</XyzTransition>
 		</FocusLock>
@@ -70,6 +68,7 @@
 <script>
 import FocusLock from 'vue-focus-lock'
 import AnimXyzLogo from '~/components/reusable/AnimXyzLogo'
+import DarkModeToggle from '~/components/reusable/DarkModeToggle'
 
 export default {
 	name: 'PageNav',
@@ -80,6 +79,7 @@ export default {
 	},
 	components: {
 		AnimXyzLogo,
+		DarkModeToggle,
 		FocusLock,
 	},
 	computed: {
@@ -299,27 +299,28 @@ export default {
 			opacity: 1;
 		}
 
-		::v-deep {
-			.logo-scene {
-				--logo-scale: 1.125;
+		.animxyz-logo {
+			--logo-scale: 1.125;
+			transform: scale(var(--logo-scale));
 
-				@include media('<tablet') {
-					--logo-scale: 1;
-				}
+			@include media('<tablet') {
+				--logo-scale: 1;
 			}
 		}
 	}
 
 	@include media('<laptop') {
+		left: $sp-m;
+		right: initial;
 		top: initial;
-		left: 2.5rem;
-		bottom: 2rem;
+		bottom: $sp-m;
 	}
 
 	@include media('<tablet') {
 		left: initial;
-		right: 2.5rem;
-		bottom: 2.5rem;
+		right: $sp-m;
+		top: initial;
+		bottom: $sp-m;
 	}
 
 	@include media('>=large') {
@@ -328,8 +329,7 @@ export default {
 }
 
 .logo-wrap {
-	margin-left: $sp-s;
-	margin-right: 1.25rem;
+	margin-right: $sp-xxs;
 
 	@include media('<tablet') {
 		@include size(initial);
@@ -341,7 +341,7 @@ export default {
 	font-family: $font-stack-mono;
 	font-size: $fs-xl;
 	font-weight: bold;
-	margin-left: $sp-s;
+	margin-left: $sp-xs;
 	opacity: 0.85;
 	transition: color 0.2s $ease-in-out, opacity 0.2s $ease-in-out, transform 0.3s $ease-out-back;
 
@@ -361,6 +361,10 @@ export default {
 .toggle-text {
 	color: primary-color(800);
 
+	@include dark-mode {
+		color: primary-color(200);
+	}
+
 	.open & {
 		color: primary-color(50);
 	}
@@ -376,16 +380,30 @@ export default {
 	}
 }
 
+.nav-extras {
+	display: flex;
+	align-items: center;
+	margin: $sp-s;
+	flex-shrink: 0;
+
+	@include media('<laptop') {
+		order: 1;
+	}
+}
+
+.dark-mode-toggle {
+	margin-left: $sp-s;
+}
+
 .github-link {
 	--icon-color: #{primary-color(200)};
 	height: 3rem;
 	border-radius: $br-l;
 	padding: 0 $sp-s;
-	margin: $sp-s;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-shrink: 0;
+	flex-grow: 1;
 	z-index: 3;
 	background-color: primary-color(500, 0.2);
 	color: var(--icon-color);
@@ -412,10 +430,6 @@ export default {
 
 	&:focus {
 		box-shadow: 0 0 0 4px primary-color(200, 0.5);
-	}
-
-	@include media('<laptop') {
-		order: 1;
 	}
 }
 </style>

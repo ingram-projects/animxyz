@@ -1,5 +1,5 @@
 <template>
-	<div class="animxyz-logo logo-scene">
+	<div class="animxyz-logo">
 		<div class="logo-sides">
 			<div class="logo-side side--yellow"><div class="side-fill"></div></div>
 			<div class="logo-side side--red"><div class="side-fill"></div></div>
@@ -15,28 +15,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$logo-size: 2.25rem;
-
-.logo-scene {
-	@include size(100%);
+.animxyz-logo {
 	--logo-size: 2.25rem;
-	display: flex;
-	transform: translate(calc(var(--logo-size) / -2), calc(var(--logo-size) / -2)) scale(var(--logo-scale, 1));
-	transition: transform 0.3s $ease-out-back;
+	@include size(var(--logo-size));
 	transform-style: preserve-3d;
-	transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
+	transition: transform 0.3s $ease-out-back;
 }
 
 .logo-sides {
-	transform-style: preserve-3d;
+	@include size(100%);
 	transform: rotateX(55deg) rotateZ(45deg);
+	transform-style: preserve-3d;
 	transition: transform 0.3s $ease-out-back;
-	transform-origin: calc(var(--logo-size) / 2) calc(var(--logo-size) / 2);
 }
 
 .logo-side {
-	@include size(var(--logo-size));
-	display: flex;
+	@include size(100%);
 	position: absolute;
 	transition: transform 0.3s $ease-in-out;
 	transform-origin: center;
@@ -44,7 +38,7 @@ $logo-size: 2.25rem;
 
 .side-fill {
 	@include size(100%);
-	border-radius: $br-l;
+	border-radius: calc(var(--logo-size) / 6);
 	background-image: linear-gradient(
 		var(--logo-gradient-direction, to top),
 		rgba(var(--logo-side-color), 1),

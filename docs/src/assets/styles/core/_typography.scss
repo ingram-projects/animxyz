@@ -1,13 +1,29 @@
 html, body {
   font-family: $font-stack;
-  color: $textGray;
+  color: var(--text-color);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-900);
+  color: primary-color(800);
   line-height: 1.25;
+
+  @include dark-mode {
+    color: primary-color(100);
+  }
+}
+
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+
+  &:not(:first-child) {
+    margin-top: 1.5em;
+  }
 }
 
 p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {

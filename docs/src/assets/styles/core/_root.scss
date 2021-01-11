@@ -1,5 +1,19 @@
 body {
+  --text-color: #{primary-color(700)};
   background-color: primary-color(50);
+  transition: background-color 0.2s ease-in-out;
+
+  @media (prefers-color-scheme: dark) {
+    &:not(.light-mode) {
+      --text-color: #{primary-color(200)};
+      background-color: primary-color(950);
+    }
+  }
+
+  &.dark-mode {
+    --text-color: #{primary-color(200)};
+    background-color: primary-color(950);
+  }
 }
 
 [data-server-rendered='true'] {
