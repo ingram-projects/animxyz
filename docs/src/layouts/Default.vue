@@ -11,7 +11,7 @@
 			</div>
 		</div>
 
-		<div class="page-controls__wrap">
+		<div class="xray__wrap">
 			<SpinToggle :toggled="xRayToggled" on-text="XYZ-ray On" off-text="XYZ-ray Off">
 				<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
 					<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
@@ -131,7 +131,7 @@ export default {
 	}
 }
 
-.page-controls__wrap {
+.xray__wrap {
 	position: fixed;
 	bottom: $sp-m;
 	right: $sp-m;
@@ -146,10 +146,6 @@ export default {
 		bottom: $sp-m;
 		z-index: 3;
 	}
-}
-
-.xray__wrap {
-	position: relative;
 }
 
 .xray-toggle {
