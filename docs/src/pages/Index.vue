@@ -141,17 +141,21 @@
 			<div class="sandbox__wrap">
 				<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
 			</div>
+
+			<DarkModeToggle></DarkModeToggle>
 		</main>
 	</Layout>
 </template>
 
 <script>
 import Banner from '~/components/banner/Banner'
+import DarkModeToggle from '~/components/reusable/DarkModeToggle'
 import Sandbox from '~/components/reusable/Sandbox'
 
 export default {
 	components: {
 		Banner,
+		DarkModeToggle,
 		Sandbox,
 	},
 	data() {
@@ -634,5 +638,16 @@ export default {
 
 .sandbox {
 	min-height: 100vh;
+}
+
+.dark-mode-toggle {
+	position: absolute;
+	top: $sp-m;
+	right: $sp-m;
+
+	@include media('<phone') {
+		top: $sp-s;
+		right: $sp-s;
+	}
 }
 </style>
