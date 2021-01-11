@@ -15,6 +15,7 @@
 			<SpinToggle class="dark-mode-toggle__wrap" :toggled="darkModeToggled" on-text="Dark Mode" off-text="Light Mode">
 				<button class="dark-mode-toggle" :class="{ active: darkModeToggled }" @click="toggleDarkLightMode">
 					<span class="screen-reader-only">Turn Dark Mode {{ darkModeToggled ? 'Off' : 'On' }}</span>
+					<div class="dark-mode-toggle__contents">🌒🌓🌔🌕🌖</div>
 				</button>
 			</SpinToggle>
 
@@ -186,38 +187,14 @@ export default {
 }
 
 @keyframes moon {
-	0% {
-		content: '🌒';
-	}
-	25% {
-		content: '🌓';
-	}
-	50% {
-		content: '🌔';
-	}
-	75% {
-		content: '🌕';
-	}
-	100% {
-		content: '🌖';
+	to {
+		transform: translateX(-80%);
 	}
 }
 
-@keyframes moon-reverse {
-	0% {
-		content: '🌖';
-	}
-	25% {
-		content: '🌕';
-	}
-	50% {
-		content: '🌔';
-	}
-	75% {
-		content: '🌓';
-	}
-	100% {
-		content: '🌒';
+@keyframes moon-rev {
+	from {
+		transform: translateX(-80%);
 	}
 }
 
@@ -225,28 +202,27 @@ export default {
 	@include circle(2.5rem);
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	font-size: 2.25rem;
+	overflow: hidden;
+	font-size: 2.5rem;
 	transition: transform 0.3s $ease-out-back;
+	white-space: nowrap;
 
 	&:hover,
 	&:focus {
 		transform: scale(1.125);
 	}
 
-	&::before {
-		content: '';
-		animation: moon 1s both;
-	}
-
-	@include dark-mode {
-		&::before {
-			animation: moon-reverse 1s both;
-		}
-	}
-
 	@include media('<phone') {
 		font-size: 1.75rem;
+	}
+}
+
+.dark-mode-toggle__contents {
+	display: flex;
+	animation: moon 1s steps(4, end) both;
+
+	@include dark-mode {
+		animation: moon-rev 1s steps(4, end) both;
 	}
 }
 
