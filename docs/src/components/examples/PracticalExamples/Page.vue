@@ -6,25 +6,25 @@
 					<div class="hero-logo xyz-nested"></div>
 					<p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
 				</div>
-				<div class="page-thing1-wrap" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
-					<div class="page-thing1 xyz-nested"></div>
-					<div class="page-thing1 xyz-nested"></div>
-					<div class="page-thing1 xyz-nested"></div>
+				<div class="page-features" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+					<div class="feature-item xyz-nested"></div>
+					<div class="feature-item xyz-nested"></div>
+					<div class="feature-item xyz-nested"></div>
 				</div>
-				<div class="page-thing2-wrap" xyz="fade small stagger delay-4 ease-in-out">
-					<div class="page-thing2-left" xyz="fade left stagger">
-						<div class="page-thing2 xyz-nested"></div>
-						<div class="page-thing2 xyz-nested"></div>
-						<div class="page-thing2 xyz-nested"></div>
+				<div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
+					<div class="section-left" xyz="fade left stagger">
+						<div class="section-item xyz-nested"></div>
+						<div class="section-item xyz-nested"></div>
+						<div class="section-item xyz-nested"></div>
 					</div>
-					<div class="page-thing2-right xyz-nested" xyz="fade big delay-10"></div>
+					<div class="section-right xyz-nested" xyz="fade big delay-10"></div>
 				</div>
 				<div class="page-footer" xyz="fade bottom ease-in-out delay-10">
 					<div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
 					<div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
-						<div class="page-thing2 xyz-nested"></div>
-						<div class="page-thing2 xyz-nested"></div>
-						<div class="page-thing2 xyz-nested"></div>
+						<div class="footer-item xyz-nested"></div>
+						<div class="footer-item xyz-nested"></div>
+						<div class="footer-item xyz-nested"></div>
 					</div>
 				</div>
 			</div>
@@ -78,12 +78,12 @@ export default {
 	text-align: center;
 }
 
-.page-thing1-wrap {
+.page-features {
 	display: flex;
 	padding: $sp-m;
 }
 
-.page-thing1 {
+.feature-item {
 	background-color: primary-color(400);
 	height: 4rem;
 	flex-grow: 1;
@@ -94,7 +94,7 @@ export default {
 	}
 }
 
-.page-thing2-wrap {
+.page-section {
 	display: flex;
 	background-color: primary-color(800);
 	padding: $sp-m;
@@ -103,18 +103,18 @@ export default {
 	margin-bottom: $sp-m;
 }
 
-.page-thing2-left {
+.section-left {
 	flex-grow: 1;
 }
 
-.page-thing2-right {
+.section-right {
 	border-radius: $br-m;
 	flex-grow: 1;
 	background-color: primary-color(700);
 	margin-left: $sp-m;
 }
 
-.page-thing2 {
+.section-item {
 	background-color: primary-color(400);
 	height: 1rem;
 	flex-grow: 1;
@@ -143,11 +143,14 @@ export default {
 	display: flex;
 	align-items: center;
 
-	.page-thing2 {
+	.footer-item {
+		background-color: primary-color(400);
 		height: 0.75rem;
+		flex-grow: 1;
+		border-radius: $br-m;
 	}
 
-	.page-thing2 + .page-thing2 {
+	.footer-item + .footer-item {
 		margin-left: $sp-xxs;
 		margin-top: 0;
 	}

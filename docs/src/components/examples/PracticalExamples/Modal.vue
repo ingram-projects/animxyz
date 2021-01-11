@@ -1,11 +1,11 @@
 <template>
 	<div class="example-wrap">
 		<XyzTransition duration="auto" xyz="fade out-delay-5">
-			<div class="modal-overlay" v-if="customData.modalToggled" @click="customData.modalToggled = false">
+			<div class="modal-overlay" v-if="customData.modalOpen" @click="customData.modalOpen = false">
 				<div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
 					<div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
 						<h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-						<button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="customData.modalToggled = false">
+						<button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="customData.modalOpen = false">
 							<IconClose></IconClose>
 						</button>
 					</div>
@@ -14,7 +14,7 @@
 						<button
 							class="modal-button xyz-nested"
 							xyz="fade in-right in-delay-7"
-							@click="customData.modalToggled = false"
+							@click="customData.modalOpen = false"
 						>
 							Close
 						</button>
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</XyzTransition>
-		<button class="modal-toggle example-button mt-l" @click="customData.modalToggled = !customData.modalToggled">
+		<button class="modal-toggle example-button mt-l" @click="customData.modalOpen = !customData.modalOpen">
 			Show Modal
 		</button>
 	</div>
@@ -36,7 +36,7 @@ export default {
 	data() {
 		return {
 			customData: {
-				modalToggled: false,
+				modalOpen: false,
 			},
 		}
 	},
