@@ -26,8 +26,8 @@ export const xyzTransitionGroupProps = {
 	moveClass: String,
 }
 
-export function mergeData(data1 = {}, data2 = {}, data3 = {}) {
-	return vueFunctionalDataMerge(data1, data2, data3)
+export function mergeData(data1 = {}, data2 = {}) {
+	return vueFunctionalDataMerge(data1, data2)
 }
 
 function deleteUndefined(obj) {
@@ -41,9 +41,9 @@ function deleteUndefined(obj) {
 export function getXyzTransitionData(data) {
 	deleteUndefined(data.attrs)
 
-	const { appear, duration } = data.attrs
+	const { appear, appearVisible, duration } = data.attrs
 
-	const animationHook = getXyzAnimationHook(duration)
+	const animationHook = getXyzAnimationHook(duration, appearVisible)
 
 	const transitionData = {
 		attrs: {
@@ -65,7 +65,7 @@ export function getXyzTransitionData(data) {
 		},
 	}
 
-	if (appear) {
+	if (appear || appearVisible) {
 		transitionData.on.appear = animationHook
 	}
 

@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 export const xyzTransitionProps = {
 	appear: Boolean,
+	appearVisible: [Boolean, Object],
 	duration: [Number, String, Object],
 	mode: String,
 	appearFromClass: String,
@@ -38,9 +39,9 @@ export function mergeData(data1 = {}, data2 = {}) {
 }
 
 export function getXyzTransitionData(data) {
-	const { appear, duration } = data
+	const { appear, appearVisible, duration } = data
 
-	const animationHook = getXyzAnimationHook(duration)
+	const animationHook = getXyzAnimationHook(duration, appearVisible)
 
 	const transitionData = {
 		css: true,
@@ -58,7 +59,7 @@ export function getXyzTransitionData(data) {
 		onLeave: animationHook,
 	}
 
-	if (appear) {
+	if (appear || appearVisible) {
 		transitionData.onAppear = animationHook
 	}
 

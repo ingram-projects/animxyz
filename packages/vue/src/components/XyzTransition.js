@@ -1,4 +1,4 @@
-import { mergeData, xyzTransitionProps, getXyzTransitionData } from '../utils'
+import { xyzTransitionProps, mergeData, getXyzTransitionData } from '../utils'
 
 export default {
 	name: 'XyzTransition',
@@ -12,28 +12,12 @@ export default {
 			attrs: {
 				...data.attrs,
 				...props,
-				appear: props.appear || props.appearVisible,
 			},
 		})
 
-		const childDirectives = props.appearVisible
-			? [
-					{
-						name: 'xyz-appear-visible',
-						value: props.appearVisible,
-					},
-			  ]
-			: []
-
 		children.forEach((node) => {
 			// Iterate through children and merge transition directives and styles
-			node.data = mergeData(
-				{
-					directives: childDirectives,
-				},
-				data,
-				node.data
-			)
+			node.data = mergeData(data, node.data)
 		})
 
 		return createElement('transition', newData, children)

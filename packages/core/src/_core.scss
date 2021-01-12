@@ -90,22 +90,31 @@
         @include xyz-animation($mode);
 
         &.xyz-absolute, &.xyz-#{$mode}-absolute {
-          @extend %xyz-pos-absolute;
+          @extend %xyz-absolute;
+        }
+
+        &.xyz-paused, &.xyz-#{$mode}-paused {
+          @extend %xyz-paused;
         }
 
         &.xyz-none, &.xyz-#{$mode}-none {
-          @extend %xyz-anim-none;
+          @extend %xyz-none;
         }
       }
     }
 
     // so elements dont take space during animation
-    %xyz-pos-absolute {
+    %xyz-absolute {
       position: absolute;
     }
 
+    // pauses animations
+    %xyz-paused {
+      animation-play-state: paused;
+    }
+
     // turns off animations
-    %xyz-anim-none {
+    %xyz-none {
       animation: none;
     }
 

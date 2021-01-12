@@ -1,10 +1,5 @@
 <template>
-	<XyzTransitionGroup
-		class="example-list"
-		:appear-visible="{ once: false, threshold: 0.5 }"
-		duration="auto"
-		xyz="fade small"
-	>
+	<XyzTransitionGroup class="example-list" appear-visible xyz="fade small delay-1">
 		<div class="example-item" v-for="example in examples" :key="example">
 			<h1 class="example-title mb-s">{{ example }}</h1>
 			<div class="example-content">
