@@ -3,6 +3,7 @@ import { mergeData as vueFunctionalDataMerge } from 'vue-functional-data-merge'
 
 export const xyzTransitionProps = {
 	appear: Boolean,
+	appearVisible: [Boolean, Object],
 	duration: [Number, String, Object],
 	mode: String,
 	appearClass: String,
@@ -25,8 +26,8 @@ export const xyzTransitionGroupProps = {
 	moveClass: String,
 }
 
-export function mergeData(data1 = {}, data2 = {}) {
-	return vueFunctionalDataMerge(data1, data2)
+export function mergeData(data1 = {}, data2 = {}, data3 = {}) {
+	return vueFunctionalDataMerge(data1, data2, data3)
 }
 
 function deleteUndefined(obj) {

@@ -18,14 +18,25 @@ export default {
 			attrs: {
 				...data.attrs,
 				...props,
+				appear: props.appear || props.appearVisible,
 			},
 		})
+
+		const childDirectives = props.appearVisible
+			? [
+					{
+						name: 'xyz-appear-visible',
+						value: props.appearVisible,
+					},
+			  ]
+			: []
 
 		const rawChildren = getTransitionRawChildren(children)
 		rawChildren.forEach((node, index) => {
 			// Iterate through children and apply xyz indexes
 			node.data = mergeData(
 				{
+					directives: childDirectives,
 					staticStyle: {
 						'--xyz-index': index,
 						'--xyz-index-rev': children.length - index - 1,

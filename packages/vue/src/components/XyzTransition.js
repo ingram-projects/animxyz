@@ -12,12 +12,28 @@ export default {
 			attrs: {
 				...data.attrs,
 				...props,
+				appear: props.appear || props.appearVisible,
 			},
 		})
 
+		const childDirectives = props.appearVisible
+			? [
+					{
+						name: 'xyz-appear-visible',
+						value: props.appearVisible,
+					},
+			  ]
+			: []
+
 		children.forEach((node) => {
 			// Iterate through children and merge transition directives and styles
-			node.data = mergeData(data, node.data)
+			node.data = mergeData(
+				{
+					directives: childDirectives,
+				},
+				data,
+				node.data
+			)
 		})
 
 		return createElement('transition', newData, children)

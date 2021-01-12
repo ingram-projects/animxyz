@@ -34,6 +34,12 @@ function removeTransitionClass(el, cls) {
 	el.classList.remove(cls)
 }
 
+export function locateNode(vnode) {
+	return vnode.componentInstance && (!vnode.data || !vnode.data.transition)
+		? locateNode(vnode.componentInstance._vnode)
+		: vnode
+}
+
 export function enter(vnode, toggleStyle, isAppear = false) {
 	const el = vnode.elm
 
