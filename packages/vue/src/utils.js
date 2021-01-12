@@ -40,7 +40,7 @@ function deleteUndefined(obj) {
 
 export function getXyzTransitionData(data) {
 	deleteUndefined(data.attrs)
-
+	data.attrs.appear = Boolean(data.attrs.appear || data.attrs.appearVisible)
 	const { appear, appearVisible, duration } = data.attrs
 
 	const animationHook = getXyzAnimationHook(duration, appearVisible)
@@ -65,7 +65,7 @@ export function getXyzTransitionData(data) {
 		},
 	}
 
-	if (appear || appearVisible) {
+	if (appear) {
 		transitionData.on.appear = animationHook
 	}
 

@@ -39,6 +39,7 @@ export function mergeData(data1 = {}, data2 = {}) {
 }
 
 export function getXyzTransitionData(data) {
+	data.appear = Boolean(data.appear || data.appearVisible)
 	const { appear, appearVisible, duration } = data
 
 	const animationHook = getXyzAnimationHook(duration, appearVisible)
@@ -59,7 +60,7 @@ export function getXyzTransitionData(data) {
 		onLeave: animationHook,
 	}
 
-	if (appear || appearVisible) {
+	if (appear) {
 		transitionData.onAppear = animationHook
 	}
 
