@@ -77,6 +77,14 @@
       .xyz-#{$mode} {
         @extend %xyz-indexed;
         @extend %xyz-root-stagger-delay;
+
+        &.xyz-paused, &.xyz-#{$mode}-paused {
+          @extend %xyz-paused;
+
+          & .xyz-nested, .xyz-#{$mode}-nested {
+            @extend %xyz-paused;
+          }
+        }
       }
 
       // mode nested elements
@@ -91,10 +99,6 @@
 
         &.xyz-absolute, &.xyz-#{$mode}-absolute {
           @extend %xyz-absolute;
-        }
-
-        &.xyz-paused, &.xyz-#{$mode}-paused {
-          @extend %xyz-paused;
         }
 
         &.xyz-none, &.xyz-#{$mode}-none {

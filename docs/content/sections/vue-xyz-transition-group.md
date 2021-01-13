@@ -54,11 +54,12 @@ examples:
 
 The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `duration`, and `tag` props.
+Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appear-visible`, `duration`, and `tag` props.
 
 ```jsx
 <XyzTransitionGroup
-	appear={ boolean }
+  appear={ boolean }
+  appear-visible={ boolean | IntersectionObserverOptions }
 	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	tag={ string }
 >
@@ -73,6 +74,10 @@ Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only
 ## Properties
 
 ### appear
+
+Same as the `<XyzTransition>` component.
+
+### appear-visible
 
 Same as the `<XyzTransition>` component.
 
@@ -96,8 +101,13 @@ Specifies the tag to use for the wrapper element. Defaults to `'span'`.
 		<tbody>
 			<tr>
 				<th scope="row">appear</th>
-				<td>false</td>
+				<td>--</td>
 				<td>boolean</td>
+			</tr>
+      <tr>
+				<th scope="row">appear-visible</th>
+				<td>--</td>
+				<td>boolean | IntersectionObserverOptions</td>
 			</tr>
 			<tr>
 				<th scope="row">duration</th>

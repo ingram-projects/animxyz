@@ -26,9 +26,10 @@ export default function (duration, appearVisible) {
 		}
 
 		const mode = getXyzElementMode(el)
-		const modeDuration = getXyzDurationForMode(mode, duration)
 
 		function runAnim() {
+			const modeDuration = getXyzDurationForMode(mode, duration)
+
 			if (typeof modeDuration === 'number') {
 				el._xyzAnimTimeout = setTimeout(xyzAnimDone, modeDuration)
 				return
