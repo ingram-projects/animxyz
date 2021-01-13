@@ -55,6 +55,10 @@
       }
     }
 
+    %xyz-start-offset {
+      --xyz-start-offset: 0;
+    }
+
     // sets delay for root elements
     %xyz-root-stagger-delay {
       --xyz-root-stagger-delay: var(--xyz-stagger-delay, 0s);
@@ -75,6 +79,7 @@
     @each $mode in $xyz-modes {
       // root elements
       .xyz-#{$mode} {
+        @extend %xyz-start-offset;
         @extend %xyz-indexed;
         @extend %xyz-root-stagger-delay;
 

@@ -7,7 +7,6 @@ import 'typeface-inter'
 import 'fontsource-inconsolata'
 
 // Styles
-import '@animxyz/core'
 import '@/styles/_index.scss'
 
 Vue.use(VueAnimXyz)
