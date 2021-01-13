@@ -1,7 +1,7 @@
 body {
   --text-color: #{primary-color(700)};
   background-color: primary-color(50);
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 
   @media (prefers-color-scheme: dark) {
     &:not(.light-mode) {
