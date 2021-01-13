@@ -5,12 +5,11 @@
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
 			<XyzTransitionGroup tag="section" class="sections__wrap" :class="{ active: activeTab === 'docs' }" appear-visible>
 				<div
-					v-for="(section, index) in sections"
-					xyz="fade delay-1 ease-out-back"
+					v-for="section in sections"
+					xyz="fade delay-1 ease-out"
 					v-xyz="{
-						big: section.header,
-						left: !section.header && index % 2,
-						right: !section.header && !(index % 2),
+						'big-3': section.header,
+						'down-2': !section.header,
 					}"
 					:key="section.id"
 				>
