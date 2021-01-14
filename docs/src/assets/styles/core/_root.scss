@@ -20,8 +20,12 @@ body {
   opacity: 0;
 }
 
-:root {
+html:focus-within {
   scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion) {
+    scroll-behavior: auto;
+  }
 }
 
 // *, *:before, *:after {

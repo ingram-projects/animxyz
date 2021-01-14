@@ -24,7 +24,8 @@ import icons from '~/assets/icons'
 import examples from '~/components/examples'
 
 // Directives
-import ScrollLock from '~/directives/ScrollLock'
+import scrollLock from '~/directives/scrollLock'
+import xyzScrollSync from '~/directives/xyzScrollSync'
 
 // Layouts
 import DefaultLayout from '~/layouts/Default.vue'
@@ -58,7 +59,8 @@ export default function (Vue, { router, head }) {
 
 	Vue.component('Layout', DefaultLayout)
 
-	Vue.directive('scroll-lock', ScrollLock)
+	Vue.directive('scroll-lock', scrollLock)
+	Vue.directive('xyz-scroll-sync', xyzScrollSync)
 
 	Object.assign(head, {
 		titleTemplate: (titleChunk) => {
