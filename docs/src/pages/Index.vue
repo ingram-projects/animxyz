@@ -55,7 +55,7 @@
 						</section>
 					</XyzTransition>
 
-					<XyzTransition appear-visible xyz="fade down stagger-3 ease-out delay-2" duration="auto">
+					<XyzTransition appear-visible xyz="fade down stagger-2 ease-out delay-2" duration="auto">
 						<section class="features-section xyz-none">
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
@@ -138,11 +138,15 @@
 				</footer>
 			</XyzTransition>
 
-			<div class="sandbox__wrap">
-				<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
-			</div>
+			<XyzTransition appear-visible xyz="fade duration-10 delay-2">
+				<div class="sandbox__wrap">
+					<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
+				</div>
+			</XyzTransition>
 
-			<DarkModeToggle></DarkModeToggle>
+			<XyzTransition appear-visible xyz="fade duration-10 delay-2">
+				<DarkModeToggle></DarkModeToggle>
+			</XyzTransition>
 		</main>
 	</Layout>
 </template>
