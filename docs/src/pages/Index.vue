@@ -260,7 +260,7 @@ export default {
 						},
 						{
 							title: '📺 Click',
-							variables: ['duration: 0.6s', 'scale-x: 1.25', 'scale-y: 0'],
+							utilities: ['duration-6', 'short-100%', 'wide-25%'],
 						},
 						{
 							title: `🌀 It's gone spiral!`,
