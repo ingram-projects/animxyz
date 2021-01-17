@@ -73,6 +73,7 @@ $active-border-width: 0.5rem;
 		right: 0;
 		bottom: 0;
 		left: 0;
+		z-index: -1;
 		border-radius: $br-xl;
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
