@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz :style="data.variables" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz>
+          <div class="item-group" xyz>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -25,13 +25,13 @@ examples:
 
           ${data.variablesString && `
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz>
+          <XyzTransitionGroup class="item-group" xyz>
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
@@ -40,13 +40,13 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz>
+          <XyzTransitionGroup className="item-group" xyz>
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
@@ -55,7 +55,7 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
 

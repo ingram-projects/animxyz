@@ -56,7 +56,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade up out-down stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" xyz="inherit out-left out-rotate-left" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit out-flip-down" :key="2"></div>
             <div class="square xyz-nested" xyz="inherit out-right out-rotate-right" :key="3"></div>
@@ -67,7 +67,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade up out-down stagger">
+          <div class="item-group" xyz="fade up out-down stagger">
             <div class="square ${data.mode}" xyz="inherit out-left out-rotate-left"></div>
             <div class="square ${data.mode}" xyz="inherit out-flip-down"></div>
             <div class="square ${data.mode}" xyz="inherit out-right out-rotate-right"></div>
@@ -75,7 +75,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz="fade up out-down stagger">
+          <XyzTransitionGroup class="item-group" xyz="fade up out-down stagger">
             <div class="square" v-if="${data.toggled}" xyz="inherit out-left out-rotate-left"></div>
             <div class="square" v-if="${data.toggled}" xyz="inherit out-flip-down"></div>
             <div class="square" v-if="${data.toggled}" xyz="inherit out-right out-rotate-right"></div>
@@ -83,7 +83,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade up out-down stagger">
+          <XyzTransitionGroup className="item-group" xyz="fade up out-down stagger">
             {${data.toggled} && <div className="square" xyz="inherit out-left out-rotate-left" />}
             {${data.toggled} && <div className="square" xyz="inherit out-flip-down" />}
             {${data.toggled} && <div className="square" xyz="inherit out-right out-rotate-right" />}

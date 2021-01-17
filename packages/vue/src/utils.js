@@ -3,6 +3,7 @@ import { mergeData as vueFunctionalDataMerge } from 'vue-functional-data-merge'
 
 export const xyzTransitionProps = {
 	appear: Boolean,
+	appearVisible: [Boolean, Object],
 	duration: [Number, String, Object],
 	mode: String,
 	appearClass: String,
@@ -39,10 +40,10 @@ function deleteUndefined(obj) {
 
 export function getXyzTransitionData(data) {
 	deleteUndefined(data.attrs)
+	data.attrs.appear = Boolean(data.attrs.appear || data.attrs.appearVisible)
+	const { appear, appearVisible, duration } = data.attrs
 
-	const { appear, duration } = data.attrs
-
-	const animationHook = getXyzAnimationHook(duration)
+	const animationHook = getXyzAnimationHook(duration, appearVisible)
 
 	const transitionData = {
 		attrs: {

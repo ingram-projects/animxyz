@@ -51,13 +51,13 @@
     "vue-functional-data-merge": "^3.1.0"
   },
   "peerDependencies": {
-    "vue": "^2.0.0"
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "bili": "^5.0.5",
-    "eslint-plugin-vue": "^7.3.0",
+    "eslint-plugin-vue": "^7.4.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   }

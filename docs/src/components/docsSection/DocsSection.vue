@@ -46,8 +46,6 @@ $active-border-width: 0.5rem;
 	position: relative;
 	padding: 6vw 0;
 	min-height: 60vh;
-	// content-visibility: auto;
-	// contain-intrinsic-size: 100% 60vh;
 
 	@include media('>=laptop') {
 		padding: 4rem 0;
@@ -63,11 +61,24 @@ $active-border-width: 0.5rem;
 	width: 100%;
 	padding: $sp-m;
 	border-radius: $br-xl;
-	box-shadow: 0 0 0 primary-color(700, 0);
 	margin: auto;
-	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
+	transition: background-color 0.8s $ease-out;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border-radius: $br-xl;
+		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
+		opacity: 0;
+		transition: 1.2s ease-out 0.2s;
+		transition-property: opacity, box-shadow;
+	}
 
 	@include dark-mode {
 		--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
@@ -114,12 +125,18 @@ $active-border-width: 0.5rem;
 		.docs-section__wrap.active & {
 			--shadow-scroll-backdrop-color: white;
 			background-color: white;
-			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
+
+			&::before {
+				opacity: 1;
+			}
 
 			@include dark-mode {
 				--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
 				background-color: transparent;
-				box-shadow: 0 0 0 0.25rem primary-color(700);
+
+				&::before {
+					box-shadow: 0 0 0 0.25rem primary-color(700);
+				}
 			}
 
 			::v-deep {

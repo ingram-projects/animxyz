@@ -173,7 +173,7 @@
   $keyframes: xyz-var('keyframes', $mode, none);
   $ease: xyz-var('ease', $mode);
   $duration: xyz-var('duration', $mode);
-  $delay: xyz-var('delay', $mode, 0s);
+  $delay: xyz-var('delay', $mode);
   $stagger: xyz-var('stagger', $mode, 0s);
   $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
   $iterate: xyz-var('iterate', $mode);
@@ -187,14 +187,19 @@
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
+  // TODO: remove these when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-active-duration: #{$duration};
+  --xyz-active-delay: #{$delay};
+
   --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
+  --xyz-total-delay: calc(var(--xyz-stagger-delay, 0s) + var(--xyz-active-delay));
   transform-origin: #{$origin};
   backface-visibility: visible;
 
   animation:
-    #{$duration}
+    var(--xyz-active-duration)
     #{$ease}
-    calc(#{$delay} + var(--xyz-stagger-delay, 0s))
+    calc(var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + var(--xyz-active-duration)) * -1)
     #{$iterate}
     #{$direction}
     both;

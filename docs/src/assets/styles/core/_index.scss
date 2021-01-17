@@ -1,5 +1,8 @@
 @import 'ress'; // CSS Reset
 
+@import '@animxyz/core';
+@include xyz-all;
+
 @import 'animations';
 @import 'code';
 @import 'colors';

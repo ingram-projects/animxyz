@@ -1,6 +1,6 @@
 import { TransitionGroup, h } from 'vue'
 import { getTransitionRawChildren } from '@vue/runtime-core'
-import { mergeData, getXyzTransitionData } from '../utils'
+import { xyzTransitionGroupProps, mergeData, getXyzTransitionData } from '../utils'
 
 function XyzTransitionGroup(props, context) {
 	const data = getXyzTransitionData({
@@ -30,17 +30,6 @@ function XyzTransitionGroup(props, context) {
 	return h(TransitionGroup, data, childrenFn)
 }
 
-XyzTransitionGroup.props = {
-	appear: {
-		type: Boolean,
-	},
-	duration: {
-		type: [Number, String, Object],
-	},
-	tag: {
-		type: String,
-		default: 'div',
-	},
-}
+XyzTransitionGroup.props = xyzTransitionGroupProps
 
 export default XyzTransitionGroup

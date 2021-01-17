@@ -1,12 +1,12 @@
 <template>
-	<div class="example-list">
+	<XyzTransitionGroup class="example-list" appear-visible xyz="fade small delay-1">
 		<div class="example-item" v-for="example in examples" :key="example">
 			<h1 class="example-title mb-s">{{ example }}</h1>
 			<div class="example-content">
 				<component :is="example"></component>
 			</div>
 		</div>
-	</div>
+	</XyzTransitionGroup>
 </template>
 
 <script>

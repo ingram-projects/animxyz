@@ -7,11 +7,11 @@
 
 			<div class="landing-content">
 				<section class="hero__wrap">
-					<XyzTransition appear xyz="delay-4 fade small-2 duration-7 ease-out">
+					<XyzTransition appear-visible xyz="fade small-2 duration-7 ease-out delay-2">
 						<h1 class="intro-text">The first composable<br />CSS animation toolkit.</h1>
 					</XyzTransition>
 
-					<XyzTransition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+					<XyzTransition appear-visible xyz="fade down small-2 stagger-3 ease-out delay-2" duration="auto">
 						<div class="tech-logos__wrap xyz-none">
 							<IconVue class="xyz-nested"></IconVue>
 							<IconReact class="xyz-nested"></IconReact>
@@ -19,7 +19,7 @@
 						</div>
 					</XyzTransition>
 
-					<XyzTransition appear xyz="delay-5 stagger-3 fade down small-2 ease-out" duration="auto">
+					<XyzTransition appear-visible xyz="fade down small-2 stagger-3 ease-out delay-2" duration="auto">
 						<div class="links__wrap xyz-none">
 							<a
 								class="cta-button github-link xyz-nested"
@@ -42,8 +42,8 @@
 				</section>
 
 				<div class="copy__wrap copy-content">
-					<section class="about-section">
-						<XyzTransition appear xyz="delay-5 fade down ease-out">
+					<XyzTransition appear-visible xyz="fade down ease-out delay-2">
+						<section class="about-section">
 							<div class="about-text">
 								<p>
 									AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables
@@ -52,10 +52,10 @@
 									will bring your website to life.
 								</p>
 							</div>
-						</XyzTransition>
-					</section>
+						</section>
+					</XyzTransition>
 
-					<XyzTransition appear xyz="delay-5 fade down stagger-3 ease-out" duration="auto">
+					<XyzTransition appear-visible xyz="fade down stagger-2 ease-out delay-2" duration="auto">
 						<section class="features-section xyz-none">
 							<div class="feature xyz-nested">
 								<h3>Composable</h3>
@@ -101,7 +101,7 @@
 				</div>
 			</div>
 
-			<XyzTransition appear xyz="fade down ease-out delay-6">
+			<XyzTransition appear-visible xyz="fade down ease-out delay-2">
 				<section class="used-by copy-content">
 					<h3>AnimXYZ is used by:</h3>
 					<ul class="used-by__list">
@@ -121,7 +121,7 @@
 				</section>
 			</XyzTransition>
 
-			<XyzTransition appear xyz="fade down ease-out delay-7">
+			<XyzTransition appear-visible xyz="fade down ease-out delay-2">
 				<footer class="created-by copy-content">
 					<p>
 						Created by <a href="https://milesingram.me/" target="_blank">Miles Ingram</a> and
@@ -138,11 +138,15 @@
 				</footer>
 			</XyzTransition>
 
-			<div class="sandbox__wrap">
-				<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
-			</div>
+			<XyzTransition appear-visible xyz="fade duration-10 delay-2">
+				<div class="sandbox__wrap">
+					<Sandbox v-bind="sandboxProps" id="sandbox"></Sandbox>
+				</div>
+			</XyzTransition>
 
-			<DarkModeToggle></DarkModeToggle>
+			<XyzTransition appear-visible xyz="fade duration-10 delay-2">
+				<DarkModeToggle></DarkModeToggle>
+			</XyzTransition>
 		</main>
 	</Layout>
 </template>
@@ -168,7 +172,7 @@ export default {
 						template: `
 <div class="example-wrap">
 	<XyzTransition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-		<div class="square-group xyz-none" v-if="data.toggled">
+		<div class="item-group xyz-none" v-if="data.toggled">
 			<div class="square xyz-nested" v-for="index in 3" :key="index"></div>
 		</div>
 	</XyzTransition>
@@ -179,7 +183,7 @@ export default {
 								name: 'HTML',
 								content: `
 ##html
-<div class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<div class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	<div class="square \${data.mode}"></div>
 	<div class="square \${data.mode}"></div>
 	<div class="square \${data.mode}"></div>
@@ -187,7 +191,7 @@ export default {
 
 \${data.variablesString && \`
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,
@@ -196,7 +200,7 @@ export default {
 								name: 'Vue',
 								content: `
 ##vue
-<XyzTransitionGroup class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<XyzTransitionGroup class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	<div class="square" v-if="\${data.toggled}"></div>
 	<div class="square" v-if="\${data.toggled}"></div>
 	<div class="square" v-if="\${data.toggled}"></div>
@@ -205,7 +209,7 @@ export default {
 \${data.variablesString && \`
 ##html
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,
@@ -214,7 +218,7 @@ export default {
 								name: 'React',
 								content: `
 ##jsx
-<XyzTransitionGroup className="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<XyzTransitionGroup className="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	{\${data.toggled} && <div className="square" />}
 	{\${data.toggled} && <div className="square" />}
 	{\${data.toggled} && <div className="square" />}
@@ -223,7 +227,7 @@ export default {
 \${data.variablesString && \`
 ##html
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,

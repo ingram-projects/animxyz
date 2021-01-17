@@ -1,4 +1,4 @@
-import { mergeData, xyzTransitionGroupProps, getXyzTransitionData } from '../utils'
+import { xyzTransitionGroupProps, mergeData, getXyzTransitionData } from '../utils'
 
 function getTransitionRawChildren(children) {
 	return children.filter((node) => {

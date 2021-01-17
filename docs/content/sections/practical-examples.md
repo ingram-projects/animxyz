@@ -107,19 +107,19 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+          <XyzTransitionGroup appear class="item-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
             <div class="square" v-for="index in numCats" :key="index">
-              <img class="square-image" :src="\`https://cataas.com/cat?type=sm?id=\${index}\`" alt="Picture of a cat"
+              <img class="item-image" :src="\`https://cataas.com/cat?type=sm?id=\${index}\`" alt="Picture of a cat"
               />
             </div>
           </XyzTransitionGroup>
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup appear class="square-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+          <XyzTransitionGroup appear class="item-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
             {[...Array(numCats)].map((_, index) => (
               <div class="square" key={index}>
-                <img class="square-image" src={\`https://cataas.com/cat?type=sm?id=\${index}\`} alt="Picture of a cat"
+                <img class="item-image" src={\`https://cataas.com/cat?type=sm?id=\${index}\`} alt="Picture of a cat"
                 />
               </div>
             ))}

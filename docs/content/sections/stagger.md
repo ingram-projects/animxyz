@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-          <div class="square-grid xyz-none" v-if="data.toggled">
+          <div class="item-grid xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 8" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <div class="item-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -30,33 +30,33 @@ examples:
 
           ${data.variablesString && `
           <style>
-            .square-grid { ${data.variablesString} }
+            .item-grid { ${data.variablesString} }
           </style>
           `}
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup class="item-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}" v-for="index in 8" :key="index"></div>
           </XyzTransitionGroup>
 
           ${data.variablesString && `
           ##html
           <style>
-            .square-grid { ${data.variablesString} }
+            .item-grid { ${data.variablesString} }
           </style>
           `}
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup className="item-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             {${data.toggled} && [...Array(8)].map((_, index) => <div className="square" key={index} />)}
           </XyzTransitionGroup>
 
           ${data.variablesString && `
           ##html
           <style>
-            .square-grid { ${data.variablesString} }
+            .item-grid { ${data.variablesString} }
           </style>
           `}
 

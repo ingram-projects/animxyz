@@ -2,12 +2,12 @@
 	<div class="example-wrap flex-col">
 		<XyzTransitionGroup
 			appear
-			class="square-grid cat-grid"
+			class="item-grid cat-grid"
 			xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0"
 		>
 			<div class="square" v-for="index in customData.numCats" :key="index">
 				<img
-					class="square-image image-filter-mono"
+					class="item-image image-filter-mono"
 					:src="`https://cataas.com/cat?type=sm?id=${index}`"
 					alt="Picture of a cat"
 				/>
@@ -45,12 +45,12 @@ export default {
 <style lang="scss" scoped>
 .cat-grid {
 	--grid-columns: auto-fill;
-	--grid-square-size: 8rem;
+	--grid-item-size: 8rem;
 
 	gap: $sp-xxs;
 
 	@include media('<phone') {
-		--grid-square-size: 5.5rem;
+		--grid-item-size: 5.5rem;
 	}
 }
 </style>

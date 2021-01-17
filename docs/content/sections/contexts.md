@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade rotate-right" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade rotate-right">
+          <div class="item-group" xyz="fade rotate-right">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz="fade rotate-right">
+          <XyzTransitionGroup class="item-group" xyz="fade rotate-right">
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
@@ -33,7 +33,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade rotate-right">
+          <XyzTransitionGroup className="item-group" xyz="fade rotate-right">
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
@@ -42,7 +42,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="fade big" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
@@ -53,7 +53,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade small">
+          <div class="item-group" xyz="fade small">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}" xyz="fade big"></div>
             <div class="square ${data.mode}"></div>
@@ -61,7 +61,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz="fade small">
+          <XyzTransitionGroup class="item-group" xyz="fade small">
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}" xyz="fade big"></div>
             <div class="square" v-if="${data.toggled}"></div>
@@ -69,7 +69,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade small">
+          <XyzTransitionGroup className="item-group" xyz="fade small">
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" xyz="fade big" />}
             {${data.toggled} && <div className="square" />}
@@ -78,7 +78,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade up rotate-right duration-10 ease-out-back stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" :key="1"></div>
             <div class="square xyz-nested" xyz="inherit rotate-left" :key="2"></div>
             <div class="square xyz-nested" :key="3"></div>
@@ -89,7 +89,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+          <div class="item-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}" xyz="inherit rotate-left"></div>
             <div class="square ${data.mode}"></div>
@@ -97,7 +97,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+          <XyzTransitionGroup class="item-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}" xyz="inherit rotate-left"></div>
             <div class="square" v-if="${data.toggled}"></div>
@@ -105,7 +105,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
+          <XyzTransitionGroup className="item-group" xyz="fade up rotate-right duration-10 ease-out-back stagger">
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" xyz="inherit rotate-left" />}
             {${data.toggled} && <div className="square" />}
