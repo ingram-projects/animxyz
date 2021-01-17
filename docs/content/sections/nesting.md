@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
-          <div class="square-block" v-if="data.toggled">
+          <div class="item-block" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-block ${data.mode}" xyz="fade small">
+          <div class="item-block ${data.mode}" xyz="fade small">
             <div class="square xyz-nested"></div>
             <div class="square xyz-nested"></div>
             <div class="square xyz-nested"></div>
@@ -27,7 +27,7 @@ examples:
         content: |
           ##vue
           <XyzTransition xyz="fade small" duration="auto">
-            <div class="square-block" v-if="${data.toggled}">
+            <div class="item-block" v-if="${data.toggled}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
@@ -39,7 +39,7 @@ examples:
           ##jsx
           <XyzTransition xyz="fade small" timeout="auto">
             {${data.toggled} && (
-              <div className="square-block">
+              <div className="item-block">
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
@@ -51,7 +51,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small" v-on="data.listeners">
-          <div class="square-block" v-if="data.toggled">
+          <div class="item-block" v-if="data.toggled">
             <div class="square xyz-nested" xyz="up left rotate-left"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
@@ -63,7 +63,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-block ${data.mode}" xyz="fade small">
+          <div class="item-block ${data.mode}" xyz="fade small">
             <div class="square xyz-nested" xyz="up left rotate-left"></div>
             <div class="square xyz-nested" xyz="up right rotate-right"></div>
             <div class="square xyz-nested" xyz="down left rotate-right"></div>
@@ -73,7 +73,7 @@ examples:
         content: |
           ##vue
           <XyzTransition duration="auto" xyz="fade small">
-            <div class="square-block" v-if="${data.toggled}">
+            <div class="item-block" v-if="${data.toggled}">
               <div class="square xyz-nested" xyz="up left rotate-left"></div>
               <div class="square xyz-nested" xyz="up right rotate-right"></div>
               <div class="square xyz-nested" xyz="down left rotate-right"></div>
@@ -85,7 +85,7 @@ examples:
           ##jsx
           <XyzTransition timeout="auto" xyz="fade small">
             {${data.toggled} && (
-              <div className="square-block">
+              <div className="item-block">
                 <div className="square xyz-nested" xyz="up left rotate-left" />
                 <div className="square xyz-nested" xyz="up right rotate-right" />
                 <div className="square xyz-nested" xyz="down left rotate-right" />
@@ -96,8 +96,8 @@ examples:
   - name: Staggered
     template: |
       <div class="example-wrap">
-        <XyzTransitionGroup duration="auto" class="square-group" xyz="fade small stagger" v-on="data.listeners">
-          <div class="square-block" v-for="index in 3" v-if="data.toggled" :key="index">
+        <XyzTransitionGroup duration="auto" class="item-group" xyz="fade small stagger" v-on="data.listeners">
+          <div class="item-block" v-for="index in 3" v-if="data.toggled" :key="index">
             <div class="square xyz-nested" v-for="subIndex in 4" :key="subIndex"></div>
           </div>
         </XyzTransitionGroup>
@@ -106,20 +106,20 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade small stagger">
-            <div class="square-block ${data.mode}">
+          <div class="item-group" xyz="fade small stagger">
+            <div class="item-block ${data.mode}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
             </div>
-            <div class="square-block ${data.mode}">
+            <div class="item-block ${data.mode}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
             </div>
-            <div class="square-block ${data.mode}">
+            <div class="item-block ${data.mode}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
@@ -129,20 +129,20 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" duration="auto" xyz="fade small stagger">
-            <div class="square-block" v-if="${data.toggled}">
+          <XyzTransitionGroup class="item-group" duration="auto" xyz="fade small stagger">
+            <div class="item-block" v-if="${data.toggled}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
             </div>
-            <div class="square-block" v-if="${data.toggled}">
+            <div class="item-block" v-if="${data.toggled}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
             </div>
-            <div class="square-block" v-if="${data.toggled}">
+            <div class="item-block" v-if="${data.toggled}">
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
               <div class="square xyz-nested"></div>
@@ -152,9 +152,9 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" timeout="auto" xyz="fade small stagger">
+          <XyzTransitionGroup className="item-group" timeout="auto" xyz="fade small stagger">
             {${data.toggled} && (
-              <div className="square-block">
+              <div className="item-block">
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
@@ -162,7 +162,7 @@ examples:
               </div>
             )}
             {${data.toggled} && (
-              <div className="square-block">
+              <div className="item-block">
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
@@ -170,7 +170,7 @@ examples:
               </div>
             )}
             {${data.toggled} && (
-              <div className="square-block">
+              <div className="item-block">
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />
                 <div className="square xyz-nested" />

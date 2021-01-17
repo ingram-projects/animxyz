@@ -9,7 +9,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-grid" xyz="fade small out-down out-rotate-right appear-stagger">
+          <XyzTransitionGroup appear class="item-grid" xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
@@ -21,7 +21,7 @@ examples:
         content: |
           ##vue
           <XyzTransitionGroup
-            class="square-grid"
+            class="item-grid"
             xyz="fade small out-back-3"
             :duration="2500"
             :style="{
@@ -43,13 +43,19 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear duration="auto" class="square-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
-            <div class="square-block" v-for="index in numElements" :key="index">
+          <XyzTransitionGroup appear duration="auto" class="item-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
+            <div class="item-block" v-for="index in numElements" :key="index">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
             </div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
           <button @click="removeElement">Remove Element</button>
+  - name: Appear Visible
+    component: XyzTransitionGroup_AppearVisible
+    code:
+      - name: Vue
+        content: |
+          ##vue
 ---
 
 The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.

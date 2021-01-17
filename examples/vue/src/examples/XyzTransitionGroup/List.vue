@@ -1,6 +1,6 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransitionGroup appear class="square-grid" xyz="fade small out-down out-rotate-right appear-stagger">
+		<XyzTransitionGroup appear class="item-grid" xyz="fade small out-down out-rotate-right appear-stagger">
 			<div class="square" v-for="index in customData.numElements" :key="index"></div>
 		</XyzTransitionGroup>
 		<div class="flex-row">

@@ -3,10 +3,10 @@
 		<XyzTransitionGroup
 			appear
 			duration="auto"
-			class="square-grid"
+			class="item-grid"
 			xyz="fade flip-left origin-left duration-3 appear-stagger"
 		>
-			<div class="square-block" v-for="index in customData.numElements" :key="index">
+			<div class="item-block" v-for="index in customData.numElements" :key="index">
 				<div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
 			</div>
 		</XyzTransitionGroup>

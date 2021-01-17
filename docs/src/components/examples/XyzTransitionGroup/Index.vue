@@ -1,7 +1,7 @@
 <template>
 	<div class="example-wrap flex-col">
 		<XyzTransitionGroup
-			class="square-grid square-grid-9"
+			class="item-grid item-grid-9"
 			xyz="fade small out-back-3"
 			:duration="2500"
 			:style="{

@@ -1,6 +1,6 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransitionGroup class="square-grid square-grid-9" v-on="data.listeners">
+		<XyzTransitionGroup class="item-grid item-grid-9" v-on="data.listeners">
 			<!-- eslint-disable -->
 			<div
 				class="square"

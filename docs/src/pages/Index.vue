@@ -172,7 +172,7 @@ export default {
 						template: `
 <div class="example-wrap">
 	<XyzTransition duration="auto" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
-		<div class="square-group xyz-none" v-if="data.toggled">
+		<div class="item-group xyz-none" v-if="data.toggled">
 			<div class="square xyz-nested" v-for="index in 3" :key="index"></div>
 		</div>
 	</XyzTransition>
@@ -183,7 +183,7 @@ export default {
 								name: 'HTML',
 								content: `
 ##html
-<div class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<div class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	<div class="square \${data.mode}"></div>
 	<div class="square \${data.mode}"></div>
 	<div class="square \${data.mode}"></div>
@@ -191,7 +191,7 @@ export default {
 
 \${data.variablesString && \`
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,
@@ -200,7 +200,7 @@ export default {
 								name: 'Vue',
 								content: `
 ##vue
-<XyzTransitionGroup class="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<XyzTransitionGroup class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	<div class="square" v-if="\${data.toggled}"></div>
 	<div class="square" v-if="\${data.toggled}"></div>
 	<div class="square" v-if="\${data.toggled}"></div>
@@ -209,7 +209,7 @@ export default {
 \${data.variablesString && \`
 ##html
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,
@@ -218,7 +218,7 @@ export default {
 								name: 'React',
 								content: `
 ##jsx
-<XyzTransitionGroup className="square-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<XyzTransitionGroup className="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
 	{\${data.toggled} && <div className="square" />}
 	{\${data.toggled} && <div className="square" />}
 	{\${data.toggled} && <div className="square" />}
@@ -227,7 +227,7 @@ export default {
 \${data.variablesString && \`
 ##html
 <style>
-	.square-group { \${data.variablesString} }
+	.item-group { \${data.variablesString} }
 </style>
 \`}
 								`,
