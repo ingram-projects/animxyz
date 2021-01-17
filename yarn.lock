@@ -5262,9 +5262,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001173:
-  version "1.0.30001177"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001177.tgz#2c3b384933aafda03e29ccca7bb3d8c3389e1ece"
-  integrity sha512-6Ld7t3ifCL02jTj3MxPMM5wAYjbo4h/TAQGFTgv1inihP1tWnWp8mxxT4ut4JBEHLbpFXEXJJQ119JCJTBkYDw==
+  version "1.0.30001178"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001178.tgz#3ad813b2b2c7d585b0be0a2440e1e233c6eabdbc"
+  integrity sha512-VtdZLC0vsXykKni8Uztx45xynytOi71Ufx9T8kHptSw9AL4dpqailUJJHavttuzUe1KYuBYtChiWv+BAb7mPmQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -8081,9 +8081,9 @@ fast-glob@^2.0.2, fast-glob@^2.2.6:
     micromatch "^3.1.10"
 
 fast-glob@^3.0.3, fast-glob@^3.1.1:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.4.tgz#d20aefbf99579383e7f3cc66529158c9b98554d3"
-  integrity sha512-kr/Oo6PX51265qeuCYsyGypiO5uJFgBS0jksyG7FUeCyQzNwYnzrNIMR1NXfkZXsMYXYLRAHgISHBz8gQcxKHQ==
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.5.tgz#7939af2a656de79a4f1901903ee8adcaa7cb9661"
+  integrity sha512-2DtFcgT68wiTTiwZ2hNdJfcHNke9XOfnwmBRWXhmeKM8rF0TGwmC/Qto3S7RoZKp5cilZbxzO5iTNTQsJ+EeDg==
   dependencies:
     "@nodelib/fs.stat" "^2.0.2"
     "@nodelib/fs.walk" "^1.2.3"
