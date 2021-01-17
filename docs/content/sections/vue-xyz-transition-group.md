@@ -56,6 +56,11 @@ examples:
       - name: Vue
         content: |
           ##vue
+          <div class="scroll-wrap">
+            <XyzTransitionGroup appear-visible class="item-grid" xyz="delay-2 fade small rotate-right">
+              <div class="square" v-for="index in 200" :key="index"></div>
+            </XyzTransitionGroup>
+          </div>
 ---
 
 The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
