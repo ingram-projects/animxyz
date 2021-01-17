@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ingram-projects/animxyz/compare/v0.3.0...v0.4.0) (2021-01-17)
+
+
+### Features
+
+* added appear-visible prop to vue2 package ([5db7914](https://github.com/ingram-projects/animxyz/commit/5db791443036081f646230c3c989755d78785867))
+
+
+
+
+
 # [0.3.0](https://github.com/ingram-projects/animxyz/compare/v0.2.0...v0.3.0) (2020-12-31)
 
 **Note:** Version bump only for package @animxyz/vue3

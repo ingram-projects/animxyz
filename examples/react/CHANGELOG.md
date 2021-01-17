@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ingram-projects/animxyz/compare/v0.3.0...v0.4.0) (2021-01-17)
+
+
+### Bug Fixes
+
+* temporary workaround for postcss-calc bug ([3bbf7e4](https://github.com/ingram-projects/animxyz/commit/3bbf7e45bc8d16bdfb5b7a957b1c5bfd9b7e4393))
+
+
+
+
+
 # [0.3.0](https://github.com/ingram-projects/animxyz/compare/v0.2.0...v0.3.0) (2020-12-31)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publishConfig": {
     "access": "public"
   },
@@ -46,7 +46,7 @@
     "build:main": "bili"
   },
   "dependencies": {
-    "@animxyz/core": "^0.3.0",
+    "@animxyz/core": "^0.4.0",
     "clsx": "^1.1.1",
     "vue-functional-data-merge": "^3.1.0"
   },
