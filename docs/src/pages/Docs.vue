@@ -8,7 +8,7 @@
 					v-for="section in sections"
 					xyz="fade delay-1 ease-out"
 					v-xyz="{
-						'big-3': section.header,
+						'small-3': section.header,
 						'down-2': !section.header,
 					}"
 					:key="section.id"
