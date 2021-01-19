@@ -333,7 +333,7 @@ export default {
 		color: primary-color(200);
 
 		&::before {
-			transform: translateX(-0.75rem);
+			transform: translateX(-0.5rem);
 		}
 	}
 

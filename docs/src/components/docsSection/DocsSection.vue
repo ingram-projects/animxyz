@@ -82,7 +82,7 @@ $active-border-width: 0.5rem;
 	}
 
 	@include dark-mode {
-		--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+		--shadow-scroll-backdrop-color: #{primary-color(950)};
 	}
 
 	::v-deep {
@@ -180,7 +180,7 @@ $active-border-width: 0.5rem;
 		background-color: primary-color(50);
 		transition: background-color 0.3s $ease-in-out;
 		margin: 0 (-$sp-s);
-		padding: $sp-xxs $sp-s;
+		padding: $sp-xs $sp-s;
 		position: sticky;
 		top: 0;
 
@@ -287,14 +287,19 @@ $active-border-width: 0.5rem;
 	align-items: center;
 	height: 1.75rem;
 	color: primary-color(700);
-	background-color: primary-color(100);
+	border: 2px solid primary-color(500);
 	font-size: $fs-s;
-	font-weight: 500;
+	font-weight: 700;
 	text-decoration: none;
 	padding: 0 $sp-xxs;
 	border-radius: $br-m;
 	transition: 0.3s $ease-out;
-	transition-property: background-color, color, box-shadow;
+	transition-property: background-color, color, box-shadow, border;
+
+	@include dark-mode {
+		color: $cyan;
+		border-color: transparentize($cyan, 0.25);
+	}
 
 	&::after {
 		display: inline-block;
@@ -309,18 +314,31 @@ $active-border-width: 0.5rem;
 	}
 
 	&:hover {
-		background-color: primary-color(300);
+		background-color: primary-color(200);
 		color: primary-color(800);
 
 		&::after {
-			transform: translateX(0.75rem);
+			transform: translateX(0.5rem);
+		}
+
+		@include dark-mode {
+			color: $cyan;
+			background-color: transparentize($cyan, 0.75);
+			border-color: $cyan;
 		}
 	}
 
 	&:active {
-		background-color: primary-color(600);
+		background-color: primary-color(700);
+		border-color: primary-color(700);
 		color: primary-color(50);
 		box-shadow: none;
+		transition-duration: 0.1s;
+
+		@include dark-mode {
+			color: primary-color(900);
+			background-color: $cyan;
+		}
 	}
 
 	@include media('<phone') {
