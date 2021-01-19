@@ -75,8 +75,11 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 [😃 fade front-3 flip-down-50% duration-10 stagger-5](?tab=examples&utilities=fade;front-3;flip-down-50%;duration-10;stagger-5#utilities)  
 [🤪 fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger](?tab=examples&utilities=fade;up-100%;flip-down;flip-right-50%;rotate-left-100%;origin-bottom;duration-10;stagger#utilities) 
 
+### Direction Modes
+Utilities can be applied specifically to one of the animation direction modes **In**, **Out**, and **Appear** by prepending the utility with the mode name. For example if you wanted a longer duration and a different translate direction coming in versus out you could set `xyz="fade up out-down appear-big duration-5 in-duration-10"`. Check out the [active classes](#active-classes) section to learn more about using different utilities when animating in or out.
+
 ### Conflicts
-Certain utilities won't work with other utilities if they both change the same property. For example `xyz="up down"` will not work because both `up` and `down` change the `--xyz-translate-y` variable. Check out the [active classes](#active-classes) section to learn how to use different utilities when animating in or out.
+Certain utilities won't work with other utilities if they both change the same property. For example `xyz="up down"` will not work because both `up` and `down` change the `--xyz-translate-y` variable. 
 
 ### Variables
 Every utility sets one or more [AnimXYZ variables](#variables). If you manually set the variable on an element, it will take precedence over the value set by any utilities.
