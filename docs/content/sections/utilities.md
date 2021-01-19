@@ -73,8 +73,12 @@ AnimXYZ has the unique ability to mix and match animation utilities, letting you
 [🙂 fade flip-up flip-left](?tab=examples&utilities=fade;flip-up;flip-left#utilities)  
 [😀 fade down-5 rotate-right-50% stagger](?tab=examples&utilities=fade;down-5;rotate-right-50%;stagger#utilities)  
 [😃 fade front-3 flip-down-50% duration-10 stagger-5](?tab=examples&utilities=fade;front-3;flip-down-50%;duration-10;stagger-5#utilities)  
-[🤪 fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger](?tab=examples&utilities=fade;up-100%;flip-down;flip-right-50%;rotate-left-100%;origin-bottom;duration-10;stagger#utilities)  
+[🤪 fade up-100% flip-down flip-right-50% rotate-left-100% origin-bottom duration-10 stagger](?tab=examples&utilities=fade;up-100%;flip-down;flip-right-50%;rotate-left-100%;origin-bottom;duration-10;stagger#utilities) 
 
+### Conflicts
 Certain utilities won't work with other utilities if they both change the same property. For example `xyz="up down"` will not work because both `up` and `down` change the `--xyz-translate-y` variable. Check out the [active classes](#active-classes) section to learn how to use different utilities when animating in or out.
 
-You can also combine a utility with an animation variable for more custom animations. For example `xyz="fade tall" style="--xyz-rotate-z: 33deg"` will make an element fade and change height by their default amounts, and rotate in and out by 33 degrees. Scroll down to learn more about AnimXYZ variables.
+### Variables
+Every utility sets one or more [AnimXYZ variables](#variables). If you manually set the variable on an element, it will take precedence over the value set by any utilities.
+
+You can combine utilities with variables for more custom animations. For example `xyz="fade tall" style="--xyz-rotate-z: 33deg"` will make an element fade and change height by their default amounts, and rotate in and out by 33 degrees.
