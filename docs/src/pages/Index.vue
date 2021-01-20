@@ -334,6 +334,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.page__wrap {
+	overflow-x: hidden;
+}
+
 .page-content {
 	display: flex;
 	flex-direction: column;

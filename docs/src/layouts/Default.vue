@@ -74,14 +74,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page__wrap {
-	overflow-x: hidden;
-
-	&.docs-page {
-		overflow-x: initial;
-	}
-}
-
 .alerts__wrap {
 	position: fixed;
 	top: 0;
