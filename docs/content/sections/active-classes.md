@@ -102,5 +102,5 @@ You can combine direction-specific utilities and variables to achieve some very 
 [See example](<?tab=examples&example=Mixing it up#active-classes>)
 
 ::: note [Vue,React]
-The Vue and React libraries also expose an `.xyz-appear` class and a full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page.
+The Vue and React libraries add an appear mode with a corresponding `.xyz-appear` class and full set of **appear** utilities and variables that you can use to define a specific animation for when an element initially appears on the page. Additionally it can be set to trigger animations only once they have been scrolled into view.
 :::
