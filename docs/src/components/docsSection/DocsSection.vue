@@ -66,6 +66,10 @@ $active-border-width: 0.5rem;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
 
+	@include dark-mode {
+		--shadow-scroll-backdrop-color: #{primary-color(950)};
+	}
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -77,12 +81,14 @@ $active-border-width: 0.5rem;
 		border-radius: $br-xl;
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
+		transform: scale(0.85);
 		transition: 1.2s ease-out 0.2s;
-		transition-property: opacity, box-shadow;
-	}
+		transition-property: opacity, box-shadow, transform;
 
-	@include dark-mode {
-		--shadow-scroll-backdrop-color: #{primary-color(950)};
+		@include dark-mode {
+			box-shadow: 0 0 0 0.25rem primary-color(700);
+			transform: scale(0.95);
+		}
 	}
 
 	::v-deep {
@@ -97,7 +103,7 @@ $active-border-width: 0.5rem;
 			color: primary-color(700);
 
 			@include dark-mode {
-				color: primary-color(300);
+				color: primary-color(200);
 			}
 		}
 
@@ -129,6 +135,7 @@ $active-border-width: 0.5rem;
 
 			&::before {
 				opacity: 1;
+				transform: scale(1);
 			}
 
 			@include dark-mode {
