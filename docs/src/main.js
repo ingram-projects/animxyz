@@ -93,13 +93,12 @@ export default function (Vue, { router, head }) {
 		return null
 	}
 
-	if (process.env.NODE_ENV === 'production') {
-		Vue.use(
-			VueGtag,
-			{
-				config: { id: 'UA-177625453-1' },
-			},
-			router
-		)
-	}
+	Vue.use(
+		VueGtag,
+		{
+			config: { id: 'UA-177625453-1' },
+			enabled: process.env.NODE_ENV === 'production',
+		},
+		router
+	)
 }
