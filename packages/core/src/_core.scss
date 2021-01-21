@@ -55,62 +55,68 @@
       }
     }
 
-    // sets delay for root elements
-    %xyz-root-stagger-delay {
+    %xyz-root {
+      @extend %xyz-indexed;
       --xyz-root-stagger-delay: var(--xyz-stagger-delay, 0s);
       --xyz-nested-stagger-delay: initial;
-    }
-
-    // sets delay for nested elements
-    %xyz-nested-stagger-delay {
-      --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
-    }
-
-    // resets the start offset
-    %xyz-start-offset {
       --xyz-start-offset: initial;
     }
 
-    // all nested elements
-    .xyz-nested {
+    %xyz-nested {
       @extend %xyz-indexed;
-      @extend %xyz-nested-stagger-delay;
+      --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
     }
 
     @each $mode in $xyz-modes {
-      // root elements
-      .xyz-#{$mode} {
-        @extend %xyz-indexed;
-        @extend %xyz-root-stagger-delay;
-        @extend %xyz-start-offset;
-
-        &.xyz-paused, &.xyz-#{$mode}-paused {
-          @extend %xyz-paused;
-
-          & .xyz-nested, .xyz-#{$mode}-nested {
-            @extend %xyz-paused;
-          }
-        }
-      }
-
-      // mode nested elements
-      .xyz-#{$mode}-nested {
-        @extend %xyz-indexed;
-        @extend %xyz-nested-stagger-delay;
-      }
-
-      // all active elements
-      .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+      %xyz-active-#{$mode} {
         @include xyz-animation($mode);
 
         &.xyz-absolute, &.xyz-#{$mode}-absolute {
           @extend %xyz-absolute;
         }
 
+        &.xyz-paused, &.xyz-#{$mode}-paused {
+          @extend %xyz-paused;
+        }
+
         &.xyz-none, &.xyz-#{$mode}-none {
           @extend %xyz-none;
         }
       }
+
+      // active classes
+      .xyz-#{$mode} {
+        @extend %xyz-root;
+
+        @extend %xyz-active-#{$mode};
+        & .xyz-nested, .xyz-#{$mode}-nested {
+          @extend %xyz-active-#{$mode};
+        }
+
+        &.xyz-paused-all, &.xyz-#{$mode}-paused-all {
+          @extend %xyz-paused;
+          & .xyz-nested, .xyz-#{$mode}-nested {
+            @extend %xyz-paused;
+          }
+        }
+
+        &.xyz-none-all, &.xyz-#{$mode}-none-all {
+          @extend %xyz-none;
+          & .xyz-nested, .xyz-#{$mode}-nested {
+            @extend %xyz-none;
+          }
+        }
+      }
+
+      // active classes nested
+      .xyz-#{$mode}-nested {
+        @extend %xyz-nested;
+      }
+    }
+
+    // all nested
+    .xyz-nested {
+      @extend %xyz-nested;
     }
 
     // so elements dont take space during animation
@@ -141,12 +147,8 @@
       }
     }
 
-    xyz-context {
-      display: contents;
-    }
-
     // resets all xyz variables
-    [xyz], xyz-context {
+    [xyz] {
       @include xyz-set-all(initial);
     }
 
