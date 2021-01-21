@@ -3,13 +3,16 @@
 		<TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
 		<XyzTransition xyz="fade" mode="out-in">
-			<div class="code__wrap" :key="activeCode.name">
-				<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
-					`${codeChunk.content}${index !== activeCodeChunks.length - 1 ? '\n' : ''}`
-				}}</Prism>
-
+			<div :key="activeCode.name">
+				<div class="code__wrap">
+					<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
+						`${codeChunk.content}${index !== activeCodeChunks.length - 1 ? '\n' : ''}`
+					}}</Prism>
+				</div>
 				<div class="code-buttons">
-					<button class="code-button" @click="copyCode">Copy</button>
+					<button class="code-button" @click="copyCode">
+						{{ isCopied ? 'Copied' : 'Copy' }}
+					</button>
 				</div>
 			</div>
 		</XyzTransition>
@@ -97,6 +100,8 @@ export default {
 	data() {
 		return {
 			activeCode: null,
+			isCopied: false,
+			isCopiedTimout: null,
 		}
 	},
 	computed: {
@@ -166,6 +171,8 @@ export default {
 	},
 	watch: {
 		activeCode() {
+			clearTimeout(this.isCopiedTimout)
+			this.isCopied = false
 			this.$emit('language-changed', this.activeCode)
 		},
 		code: {
@@ -193,14 +200,24 @@ export default {
 			})
 		},
 		copyCode() {
-			const codeText = this.activeCodeChunks
-				.map((codeChunk) => {
-					return codeChunk.content
-				})
-				.join('\n')
+			if (!this.isCopied) {
+				const codeText = this.activeCodeChunks
+					.map((codeChunk) => {
+						return codeChunk.content
+					})
+					.join('\n')
 
-			copyToClipboard(codeText)
+				copyToClipboard(codeText)
+
+				this.isCopied = true
+				this.isCopiedTimout = setTimeout(() => {
+					this.isCopied = false
+				}, 2000)
+			}
 		},
+	},
+	beforeDestroy() {
+		clearTimeout(this.isCopiedTimout)
 	},
 }
 </script>

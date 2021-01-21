@@ -39,17 +39,14 @@ export default {
 
 <style lang="scss" scoped>
 .tab-bar {
+	position: sticky;
+	top: 0;
+	z-index: 2;
 	background-color: primary-color(900);
 	font-family: $font-stack-mono;
 	display: flex;
 	flex-shrink: 0;
 	overflow-x: auto;
-
-	@include media('<laptop') {
-		position: sticky;
-		top: 0;
-		z-index: 2;
-	}
 }
 
 .tab-bar__tab {
