@@ -87,7 +87,19 @@ $active-border-width: 0.5rem;
 
 		@include dark-mode {
 			box-shadow: 0 0 0 0.25rem primary-color(700);
-			transform: scale(0.95);
+			transform: scale(0.975);
+		}
+
+		@include media('<=x-large') {
+			border-radius: 0;
+		}
+
+		@include media('<large') {
+			border-radius: $br-xl;
+		}
+
+		@include media('<desktop') {
+			border-radius: 0;
 		}
 	}
 
