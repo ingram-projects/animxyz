@@ -45,6 +45,9 @@
     "build:main": "sass build.scss dist/animxyz.css",
     "build:stats": "node buildStats.js dist/animxyz.min.css"
   },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
   "devDependencies": {
     "autoprefixer": "^10.2.1",
     "clean-css-cli": "^4.3.0",
@@ -55,5 +58,8 @@
     "pretty-bytes": "^5.5.0",
     "rimraf": "^3.0.2",
     "sass": "^1.32.4"
+  },
+  "dependencies": {
+    "glob": "^7.1.6"
   }
 }
