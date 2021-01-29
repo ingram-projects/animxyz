@@ -7,7 +7,7 @@
   "description": "AnimXYZ is a composable animation library that makes your site shine",
   "keywords": [
     "css",
-    "scss",
+    "postcss",
     "animation",
     "css-animations",
     "composable-animations",
@@ -34,30 +34,27 @@
     "dist",
     "src"
   ],
-  "main": "dist/animxyz.css",
-  "sass": "src/animxyz.scss",
+  "moduleName": "animxyz",
+  "main": "dist/animxyz.cjs.js",
+  "module": "dist/animxyz.esm.js",
+  "unpkg": "dist/animxyz.css",
+  "jsdelivr": "dist/animxyz.css",
+  "cdn": "dist/animxyz.css",
   "style": "dist/animxyz.css",
   "scripts": {
-    "build": "run-s build:clean build:main build:autoprefix build:cleancss build:stats",
-    "build:autoprefix": "postcss --use autoprefixer --map false --output dist/animxyz.css dist/animxyz.css",
-    "build:cleancss": "cleancss -o dist/animxyz.min.css dist/animxyz.css",
+    "build": "run-s build:clean build:main",
     "build:clean": "rimraf dist",
-    "build:main": "sass build.scss dist/animxyz.css",
-    "build:stats": "node buildStats.js dist/animxyz.min.css"
+    "build:main": "bili"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.1",
-    "clean-css-cli": "^4.3.0",
-    "gzip-size": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "bili": "^5.0.5",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.2.4",
-    "postcss-cli": "^8.3.1",
-    "pretty-bytes": "^5.5.0",
-    "rimraf": "^3.0.2",
-    "sass": "^1.32.4"
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "glob": "^7.1.6"
