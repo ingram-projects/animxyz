@@ -44,7 +44,7 @@
   "scripts": {
     "build": "run-s build:clean build:main",
     "build:clean": "rimraf dist",
-    "build:main": "bili"
+    "build:main": "bili && node ./build.js"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"

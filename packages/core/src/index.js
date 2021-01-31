@@ -1,3 +1,3 @@
 import genecss from '../postcss/genecss'
 
-genecss()
+export default genecss
