@@ -10,6 +10,10 @@ const defaultConfig = {
 	genes: {},
 }
 
+function isEmptyObject(obj) {
+	return !obj || !Object.keys(obj).length
+}
+
 function resolveConfig(config) {
 	if (typeof config === 'object') {
 		return config
@@ -82,12 +86,13 @@ function getGeneRegex(gene, config, nameCaptures) {
 function getUsedSelectors(config) {
 	const { genes } = config
 
+	if (isEmptyObject(genes)) throw new Error('no genes are defined')
+
 	const geneRegexes = []
 	Object.entries(genes).forEach(([geneName, gene]) => {
 		const geneRegex = getGeneRegex(gene, config)
-		geneRegexes.push(`(?<gene_${geneName}>${geneRegex})`)
+		geneRegexes.push(`(?<${geneName}>${geneRegex})`)
 	})
-
 	const findGenesRegex = new RegExp(`${geneRegexes.join('|')}`)
 	console.log(findGenesRegex)
 	// iterateContent(content, processContent)

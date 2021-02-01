@@ -14,20 +14,21 @@ module.exports = {
 	},
 	genes: {
 		translate: {
+			layers: ['utilities', 'transforms'],
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
 					levels: {
-						down: { axis: 'y', multiplier: '1' },
-						up: { axis: 'y', multiplier: '-1' },
-						right: { axis: 'x', multiplier: '1' },
-						left: { axis: 'x', multiplier: '-1' },
-						front: { axis: 'z', multiplier: '1' },
-						back: { axis: 'z', multiplier: '-1' },
+						down: { axes: 'y', multiplier: '1' },
+						up: { axes: 'y', multiplier: '-1' },
+						right: { axes: 'x', multiplier: '1' },
+						left: { axes: 'x', multiplier: '-1' },
+						front: { axes: 'z', multiplier: '1' },
+						back: { axes: 'z', multiplier: '-1' },
 					},
 				},
 				value: {
-					matches: /@number|@length|@percentage/,
+					matches: /@length|@percentage|@integer/,
 					levels: {
 						0: '0px',
 						1: '10px',
@@ -42,29 +43,37 @@ module.exports = {
 					},
 				},
 			},
-			generates(match, { mode, type: { axis, multiplier }, value }) {
+			generates(match, { mode, type: { axes, multiplier }, value }) {
 				return `
 				[xyz~=${match}] {
-					--xyz-${mode && mode + '-'}translate-${axis}: calc(${value || 'var(--xyz-translate-default)'} * ${multiplier});
+					${axes
+						.split('')
+						.map((axis) => {
+							return `--xyz-${mode && mode + '-'}translate-${axis}: calc(${
+								value || 'var(--xyz-translate-default)'
+							} * ${multiplier});`
+						})
+						.join('\n')}
 				}
 				`
 			},
 		},
 		rotate: {
+			layers: ['utilities', 'transforms'],
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
 					levels: {
-						'flip-up': { axis: 'x', multiplier: '1' },
-						'flip-down': { axis: 'x', multiplier: '-1' },
-						'flip-right': { axis: 'y', multiplier: '1' },
-						'flip-left': { axis: 'y', multiplier: '-1' },
-						'rotate-right': { axis: 'z', multiplier: '1' },
-						'rotate-left': { axis: 'z', multiplier: '-1' },
+						'flip-up': { axes: 'x', multiplier: '1' },
+						'flip-down': { axes: 'x', multiplier: '-1' },
+						'flip-right': { axes: 'y', multiplier: '1' },
+						'flip-left': { axes: 'y', multiplier: '-1' },
+						'rotate-right': { axes: 'z', multiplier: '1' },
+						'rotate-left': { axes: 'z', multiplier: '-1' },
 					},
 				},
 				value: {
-					matches: /@number|@length|@percentage/,
+					matches: /@angle|@percentage|@integer/,
 					levels: {
 						0: '0deg',
 						1: '10deg',
@@ -79,10 +88,64 @@ module.exports = {
 					},
 				},
 			},
-			generates(match, { mode, type: { axis, multiplier }, value }) {
+			generates(match, { mode, type: { axes, multiplier }, value }) {
 				return `
 				[xyz~=${match}] {
-					--xyz-${mode && mode + '-'}rotate-${axis}: calc(${value || 'var(--xyz-rotate-default)'} * ${multiplier});
+					${axes
+						.split('')
+						.map((axis) => {
+							return `--xyz-${mode && mode + '-'}rotate-${axis}: calc(${
+								value || 'var(--xyz-rotate-default)'
+							} * ${multiplier});`
+						})
+						.join('\n')}
+				}
+				`
+			},
+		},
+		scale: {
+			layers: ['utilities', 'transforms'],
+			matches: /(<mode>-)?<type>(-<value>)?/,
+			captures: {
+				type: {
+					levels: {
+						small: { axes: 'xyz', multiplier: '-1' },
+						big: { axes: 'xyz', multiplier: '1' },
+						narrow: { axes: 'x', multiplier: '-1' },
+						wide: { axes: 'x', multiplier: '1' },
+						short: { axes: 'y', multiplier: '-1' },
+						tall: { axes: 'y', multiplier: '1' },
+						thin: { axes: 'z', multiplier: '-1' },
+						thick: { axes: 'z', multiplier: '1' },
+					},
+				},
+				value: {
+					matches: /@percentage|@number/,
+					levels: {
+						0: '0',
+						1: '0.025',
+						2: '0.05',
+						3: '0.075',
+						4: '0.1',
+						5: '0.125',
+						'25%': '0.25',
+						'50%': '0.5',
+						'75%': '0.75',
+						'100%': '1',
+					},
+				},
+			},
+			generates(match, { mode, type: { axes, multiplier }, value }) {
+				return `
+				[xyz~=${match}] {
+					${axes
+						.split('')
+						.map((axis) => {
+							return `--xyz-${mode && mode + '-'}scale-${axis}: calc(1 + ${
+								value || 'var(--xyz-scale-default)'
+							} * ${multiplier});`
+						})
+						.join('\n')}
 				}
 				`
 			},
