@@ -1,3 +1,12 @@
-import genecss from '../postcss/genecss'
+import genecss from '../genecss'
+import defaultConfig from './defaultConfig'
 
-export default genecss
+const animxyzPlugin = function () {
+	return {
+		...genecss([defaultConfig, './animxyz.config.js']),
+		postcssPlugin: 'animxyz',
+	}
+}
+animxyzPlugin.postcss = true
+
+export default animxyzPlugin
