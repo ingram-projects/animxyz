@@ -1,15 +1,16 @@
 import fs from 'fs'
 import glob from 'glob'
 
-export default async function (content, cb) {
+export default function (content) {
 	const contentArray = Array.isArray(content) ? content : [content]
 	const globfiles = contentArray.filter((item) => typeof item === 'string')
-	const rawcontents = contentArray.filter((item) => typeof item === 'object' && item.content)
+	const rawContents = contentArray.filter((item) => typeof item === 'object' && item.content)
+
+	const contentStrings = []
 
 	// extract file contents
 	for (const globfile of globfiles) {
 		let filesNames = []
-
 		try {
 			fs.access(globfile, fs.constants.F_OK)
 			filesNames.push(globfile)
@@ -19,13 +20,15 @@ export default async function (content, cb) {
 
 		for (const file of filesNames) {
 			const contentString = fs.readFile(file, 'utf-8')
-			await cb(contentString)
+			contentStrings.push(contentString)
 		}
 	}
 
 	// extract raw contents
-	for (const rawcontent of rawcontents) {
-		const contentString = rawcontent.content
-		await cb(contentString)
+	for (const rawContent of rawContents) {
+		const contentString = rawContent.content
+		contentStrings.push(contentString)
 	}
+
+	return contentStrings.join()
 }

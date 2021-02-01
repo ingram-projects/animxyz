@@ -1,11 +1,11 @@
 module.exports = {
 	content: [
 		{ content: 'asdsad appear-up-1 in-up out-up-4 up-25%' },
-		{ content: 'asdsad appear-up-1 in-up out-up-4 up-25%' },
+		{ content: 'asdasdas ds appear-rotate-right asd asd asd asd out-up as' },
 	],
 	captures: {
 		mode: {
-			levels: {
+			values: {
 				appear: 'appear',
 				in: 'in',
 				out: 'out',
@@ -18,7 +18,7 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					levels: {
+					values: {
 						down: { axes: 'y', multiplier: '1' },
 						up: { axes: 'y', multiplier: '-1' },
 						right: { axes: 'x', multiplier: '1' },
@@ -29,7 +29,7 @@ module.exports = {
 				},
 				value: {
 					matches: /@length|@percentage|@integer/,
-					levels: {
+					values: {
 						0: '0px',
 						1: '10px',
 						2: '20px',
@@ -63,7 +63,7 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					levels: {
+					values: {
 						'flip-up': { axes: 'x', multiplier: '1' },
 						'flip-down': { axes: 'x', multiplier: '-1' },
 						'flip-right': { axes: 'y', multiplier: '1' },
@@ -74,7 +74,7 @@ module.exports = {
 				},
 				value: {
 					matches: /@angle|@percentage|@integer/,
-					levels: {
+					values: {
 						0: '0deg',
 						1: '10deg',
 						2: '20deg',
@@ -108,7 +108,7 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					levels: {
+					values: {
 						small: { axes: 'xyz', multiplier: '-1' },
 						big: { axes: 'xyz', multiplier: '1' },
 						narrow: { axes: 'x', multiplier: '-1' },
@@ -121,7 +121,7 @@ module.exports = {
 				},
 				value: {
 					matches: /@percentage|@number/,
-					levels: {
+					values: {
 						0: '0',
 						1: '0.025',
 						2: '0.05',

@@ -1,23 +1,18 @@
 import getRegexString from './getRegexString'
 
 // Injects capture groups into regex string
-export default function (regexString, captures, nameCaptures) {
-	let newRegexString = regexString
+export default function (regex, captures) {
+	let newRegexString = getRegexString(regex)
 	Object.entries(captures).forEach(([captureName, capture]) => {
-		let captureRegexString
+		let captureRegex
 		if (capture.matches) {
-			captureRegexString = capture.matches
-		} else if (capture.levels) {
-			captureRegexString = Object.keys(capture.levels).join('|')
+			captureRegex = capture.matches
+		} else if (capture.values) {
+			captureRegex = Object.keys(capture.values).join('|')
 		} else {
-			throw new Error(`capture <${captureName}> must have a 'matches' and/or a 'levels property defined`)
+			throw new Error(`capture <${captureName}> must have a 'matches' and/or a 'values' property defined`)
 		}
-		newRegexString = newRegexString.replace(`<${captureName}>`, () => {
-			if (nameCaptures) {
-				return `(?<${captureName}>${getRegexString(captureRegexString)})`
-			}
-			return `(?:${getRegexString(captureRegexString)})`
-		})
+		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${getRegexString(captureRegex)})`)
 	})
-	return newRegexString
+	return new RegExp(newRegexString)
 }

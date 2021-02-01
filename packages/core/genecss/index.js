@@ -1,4 +1,4 @@
-import { getUsedSelectors, mergeConfigs, resolveConfig } from './utils'
+import { getContentMatches, mergeConfigs, resolveConfig } from './utils'
 import defaultConfig from './defaultConfig'
 
 const genecssPlugin = function (config) {
@@ -7,7 +7,7 @@ const genecssPlugin = function (config) {
 
 	const mergedConfig = mergeConfigs(defaultConfig, customConfig)
 
-	getUsedSelectors(mergedConfig)
+	getContentMatches(mergedConfig)
 
 	return {
 		postcssPlugin: 'genecss',
