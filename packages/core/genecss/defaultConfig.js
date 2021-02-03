@@ -4,5 +4,6 @@ export default {
 	content: [],
 	types,
 	captures: {},
+	modifiers: {},
 	genes: {},
 }

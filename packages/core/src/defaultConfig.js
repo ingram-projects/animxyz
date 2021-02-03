@@ -1,20 +1,51 @@
 module.exports = {
 	content: [
-		{ content: 'asdsad appear-up-1 in-up out-up-4 up-25%' },
-		{ content: 'asdasdas ds appear-rotate-right asd asd asd asd out-up as' },
+		{ content: 'asdsad lg:appear-up-1:hover in-up:hover out-up-4 up-25%' },
+		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd asd out-up as' },
 	],
 	captures: {
 		mode: {
 			values: {
-				appear: 'appear',
-				in: 'in',
-				out: 'out',
+				appear: true,
+				in: true,
+				out: true,
+			},
+		},
+	},
+	modifiers: {
+		media: {
+			type: 'prefix',
+			matches: /<query>:/,
+			captures: {
+				query: {
+					values: {
+						sm: 'min-width: 640px',
+						md: 'min-width: 768px',
+						lg: 'min-width: 1024px',
+						xl: 'min-width: 1280px',
+					},
+				},
+			},
+			modifies(node, { media }) {
+				return `
+				@media (${media}) {
+					${node}
+				}
+				`
+			},
+		},
+		hover: {
+			type: 'postfix',
+			matches: /:hover/,
+			modifies(node) {
+				return node.selector.append(':hover')
 			},
 		},
 	},
 	genes: {
 		translate: {
 			layers: ['utilities', 'transforms'],
+			modifiedBy: ['media', 'hover'],
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
@@ -30,16 +61,17 @@ module.exports = {
 				value: {
 					matches: /@length|@percentage|@integer/,
 					values: {
+						'': 'var(--xyz-translate-default)',
 						0: '0px',
 						1: '10px',
 						2: '20px',
 						3: '30px',
 						4: '40px',
 						5: '50px',
-						'25%': '25%',
-						'50%': '50%',
-						'75%': '75%',
-						'100%': '100%',
+						'25%': true,
+						'50%': true,
+						'75%': true,
+						'100%': true,
 					},
 				},
 			},
@@ -49,9 +81,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}translate-${axis}: calc(${
-								value || 'var(--xyz-translate-default)'
-							} * ${multiplier});`
+							return `--xyz-${mode && mode + '-'}translate-${axis}: calc(${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}
@@ -60,6 +90,7 @@ module.exports = {
 		},
 		rotate: {
 			layers: ['utilities', 'transforms'],
+			modifiedBy: ['media', 'hover'],
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
@@ -75,6 +106,7 @@ module.exports = {
 				value: {
 					matches: /@angle|@percentage|@integer/,
 					values: {
+						'': 'var(--xyz-rotate-default)',
 						0: '0deg',
 						1: '10deg',
 						2: '20deg',
@@ -94,9 +126,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}rotate-${axis}: calc(${
-								value || 'var(--xyz-rotate-default)'
-							} * ${multiplier});`
+							return `--xyz-${mode && mode + '-'}rotate-${axis}: calc(${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}
@@ -105,6 +135,7 @@ module.exports = {
 		},
 		scale: {
 			layers: ['utilities', 'transforms'],
+			modifiedBy: ['media', 'hover'],
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
@@ -122,6 +153,7 @@ module.exports = {
 				value: {
 					matches: /@percentage|@number/,
 					values: {
+						'': 'var(--xyz-scale-default)',
 						0: '0',
 						1: '0.025',
 						2: '0.05',
@@ -141,9 +173,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}scale-${axis}: calc(1 + ${
-								value || 'var(--xyz-scale-default)'
-							} * ${multiplier});`
+							return `--xyz-${mode && mode + '-'}scale-${axis}: calc(1 + ${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}

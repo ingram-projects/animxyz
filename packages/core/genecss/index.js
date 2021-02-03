@@ -1,4 +1,4 @@
-import { getContentMatches, mergeConfigs, resolveConfig } from './utils'
+import { getGeneNodes, mergeConfigs, resolveConfig } from './utils'
 import defaultConfig from './defaultConfig'
 
 const genecssPlugin = function (config) {
@@ -7,7 +7,7 @@ const genecssPlugin = function (config) {
 
 	const mergedConfig = mergeConfigs(defaultConfig, customConfig)
 
-	getContentMatches(mergedConfig)
+	getGeneNodes(mergedConfig)
 
 	return {
 		postcssPlugin: 'genecss',
