@@ -1,3 +1,4 @@
+import getEscapedString from './getEscapedString'
 import getRegexString from './getRegexString'
 
 // Injects capture groups into regex string
@@ -8,7 +9,10 @@ export default function (regex, captures) {
 		if (capture.matches) {
 			captureRegex = capture.matches
 		} else if (capture.values) {
-			captureRegex = Object.keys(capture.values).join('|')
+			captureRegex = Object.keys(capture.values)
+				.map(getEscapedString)
+				.filter((value) => value !== '')
+				.join('|')
 		} else {
 			throw new Error(`capture <${captureName}> must have a 'matches' and/or a 'values' property defined`)
 		}

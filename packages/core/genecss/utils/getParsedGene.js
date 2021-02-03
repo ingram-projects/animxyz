@@ -26,6 +26,8 @@ export default function (gene, config) {
 
 	const matches = injectTypes(injectCaptures(injectModifiers(gene.matches, modifiers), captures), types)
 
+	console.log(matches)
+
 	return {
 		...gene,
 		types,
