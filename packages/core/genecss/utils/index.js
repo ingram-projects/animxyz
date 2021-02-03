@@ -1,5 +1,4 @@
 export { default as getContentString } from './getContentString'
-export { default as getEscapedString } from './getEscapedString'
 export { default as getGeneNodes } from './getGeneNodes'
 export { default as getParsedGene } from './getParsedGene'
 export { default as getRegexString } from './getRegexString'

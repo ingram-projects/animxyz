@@ -5,11 +5,9 @@ module.exports = {
 	],
 	captures: {
 		mode: {
-			values: {
-				appear: true,
-				in: true,
-				out: true,
-			},
+			appear: true,
+			in: true,
+			out: true,
 		},
 	},
 	modifiers: {
@@ -18,12 +16,10 @@ module.exports = {
 			matches: /<query>:/,
 			captures: {
 				query: {
-					values: {
-						sm: 'min-width: 640px',
-						md: 'min-width: 768px',
-						lg: 'min-width: 1024px',
-						xl: 'min-width: 1280px',
-					},
+					sm: 'min-width: 640px',
+					md: 'min-width: 768px',
+					lg: 'min-width: 1024px',
+					xl: 'min-width: 1280px',
 				},
 			},
 			modifies(node, { media }) {
@@ -49,22 +45,18 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					values: {
-						down: { axes: 'y', multiplier: '1' },
-						up: { axes: 'y', multiplier: '-1' },
-						right: { axes: 'x', multiplier: '1' },
-						left: { axes: 'x', multiplier: '-1' },
-						front: { axes: 'z', multiplier: '1' },
-						back: { axes: 'z', multiplier: '-1' },
-					},
+					down: { axes: 'y', multiplier: '1' },
+					up: { axes: 'y', multiplier: '-1' },
+					right: { axes: 'x', multiplier: '1' },
+					left: { axes: 'x', multiplier: '-1' },
+					front: { axes: 'z', multiplier: '1' },
+					back: { axes: 'z', multiplier: '-1' },
 				},
 				value: {
-					values: {
-						'': 'var(--xyz-translate-default)',
-						'/@length/': true,
-						'/@percentage/': true,
-						'/@integer/': (value) => `${parseInt(value) * 10}px`,
-					},
+					'': 'var(--xyz-translate-default)',
+					'/@length/': true,
+					'/@percentage/': true,
+					'/@integer/': (v) => `${parseInt(v) * 10}px`,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
@@ -86,22 +78,18 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					values: {
-						'flip-up': { axes: 'x', multiplier: '1' },
-						'flip-down': { axes: 'x', multiplier: '-1' },
-						'flip-right': { axes: 'y', multiplier: '1' },
-						'flip-left': { axes: 'y', multiplier: '-1' },
-						'rotate-right': { axes: 'z', multiplier: '1' },
-						'rotate-left': { axes: 'z', multiplier: '-1' },
-					},
+					'flip-up': { axes: 'x', multiplier: '1' },
+					'flip-down': { axes: 'x', multiplier: '-1' },
+					'flip-right': { axes: 'y', multiplier: '1' },
+					'flip-left': { axes: 'y', multiplier: '-1' },
+					'rotate-right': { axes: 'z', multiplier: '1' },
+					'rotate-left': { axes: 'z', multiplier: '-1' },
 				},
 				value: {
-					values: {
-						'': 'var(--xyz-rotate-default)',
-						'/@angle/': true,
-						'/@percentage/': (value) => `${parseFloat(value) / 100}turn`,
-						'/@integer/': (value) => `${parseInt(value) * 10}deg`,
-					},
+					'': 'var(--xyz-rotate-default)',
+					'/@angle/': true,
+					'/@percentage/': (v) => `${parseFloat(v) / 100}turn`,
+					'/@integer/': (v) => `${parseInt(v) * 10}deg`,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
@@ -123,23 +111,19 @@ module.exports = {
 			matches: /(<mode>-)?<type>(-<value>)?/,
 			captures: {
 				type: {
-					values: {
-						small: { axes: 'xyz', multiplier: '-1' },
-						big: { axes: 'xyz', multiplier: '1' },
-						narrow: { axes: 'x', multiplier: '-1' },
-						wide: { axes: 'x', multiplier: '1' },
-						short: { axes: 'y', multiplier: '-1' },
-						tall: { axes: 'y', multiplier: '1' },
-						thin: { axes: 'z', multiplier: '-1' },
-						thick: { axes: 'z', multiplier: '1' },
-					},
+					small: { axes: 'xyz', multiplier: '-1' },
+					big: { axes: 'xyz', multiplier: '1' },
+					narrow: { axes: 'x', multiplier: '-1' },
+					wide: { axes: 'x', multiplier: '1' },
+					short: { axes: 'y', multiplier: '-1' },
+					tall: { axes: 'y', multiplier: '1' },
+					thin: { axes: 'z', multiplier: '-1' },
+					thick: { axes: 'z', multiplier: '1' },
 				},
 				value: {
-					values: {
-						'': 'var(--xyz-scale-default)',
-						'/@percentage/': (value) => parseFloat(value) / 100,
-						'/@integer/': (value) => parseInt(value) * 0.025,
-					},
+					'': 'var(--xyz-scale-default)',
+					'/@percentage/': (v) => parseFloat(v) / 100,
+					'/@integer/': (v) => parseInt(v) * 0.025,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {

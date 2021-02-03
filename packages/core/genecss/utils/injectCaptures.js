@@ -1,22 +1,19 @@
-import getEscapedString from './getEscapedString'
 import getRegexString from './getRegexString'
 
 // Injects capture groups into regex string
 export default function (regex, captures) {
 	let newRegexString = getRegexString(regex)
 	Object.entries(captures).forEach(([captureName, capture]) => {
-		let captureRegex
-		if (capture.matches) {
-			captureRegex = capture.matches
-		} else if (capture.values) {
-			captureRegex = Object.keys(capture.values)
-				.map(getEscapedString)
+		let captureRegexString
+		if (capture instanceof RegExp || typeof capture === 'string') {
+			captureRegexString = getRegexString(capture)
+		} else if (typeof capture === 'object') {
+			captureRegexString = Object.keys(capture)
+				.map(getRegexString)
 				.filter((value) => value !== '')
 				.join('|')
-		} else {
-			throw new Error(`capture <${captureName}> must have a 'matches' and/or a 'values' property defined`)
 		}
-		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${getRegexString(captureRegex)})`)
+		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${captureRegexString})`)
 	})
 	return new RegExp(newRegexString)
 }

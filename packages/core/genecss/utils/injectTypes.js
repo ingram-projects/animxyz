@@ -8,7 +8,7 @@ function injectTypes(regex, types) {
 		newRegexString = newRegexString.replace(new RegExp(`@${typeName}`, 'g'), `(?:${getRegexString(type)})`)
 	})
 	// Recurse until all types have been replaced
-	if (newRegexString !== regexString) return injectTypes(newRegexString, types)
+	if (newRegexString !== regexString) return injectTypes(new RegExp(newRegexString), types)
 	return new RegExp(newRegexString)
 }
 
