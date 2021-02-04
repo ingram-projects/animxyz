@@ -1,6 +1,6 @@
 import isEmptyObject from './isEmptyObject'
 import getContentString from './getContentString'
-import getParsedGene from './getParsedGene'
+import parseGene from './parseGene'
 
 export default function (config) {
 	const { content, genes } = config
@@ -11,7 +11,7 @@ export default function (config) {
 	const capturedGenes = {}
 
 	Object.entries(genes).forEach(([geneName, gene]) => {
-		const parsedGene = getParsedGene(
+		const parsedGene = parseGene(
 			{
 				name: geneName,
 				...gene,

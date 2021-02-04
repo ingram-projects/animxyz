@@ -1,15 +1,35 @@
-import getRegexString from './getRegexString'
+import isEmptyObject from './isEmptyObject'
+import stringifyRegex from './stringifyRegex'
+import joinRegexes from './joinRegexes'
 
 // Injects modifiers into regex string
 export default function (regex, modifiers) {
-	let newRegexString = getRegexString(regex)
+	if (isEmptyObject(modifiers)) return regex
 
-	const prefixes = Object.values(modifiers).filter((modifier) => modifier.type === 'prefix')
-	const postfixes = Object.values(modifiers).filter((modifier) => modifier.type === 'postfix')
+	let newRegexString = stringifyRegex(regex)
 
-	const prefixRegex = prefixes.map((prefix) => getRegexString(prefix.matches)).join('|')
-	const postfixRegex = postfixes.map((postfix) => getRegexString(postfix.matches)).join('|')
+	const prefixRegexes = []
+	const postfixRegexes = []
+	Object.entries(modifiers).forEach(([modifierName, modifier]) => {
+		if (modifier.matches) {
+			switch (modifier.type) {
+				case 'prefix':
+					prefixRegexes.push(modifier.matches)
+					break
+				case 'postfix':
+					postfixRegexes.push(modifier.matches)
+					break
+				default:
+					throw new Error(`modifier ${modifierName} must have a 'type' property of either 'prefix' or 'postfix'`)
+			}
+		} else {
+			throw new Error(`modifier ${modifierName} must have a defined 'matches' property`)
+		}
+	})
 
-	newRegexString = `(?:${prefixRegex})?${newRegexString}(?:${postfixRegex})?`
+	const prefixRegexString = stringifyRegex(joinRegexes(...prefixRegexes))
+	const postfixRegexString = stringifyRegex(joinRegexes(...postfixRegexes))
+
+	newRegexString = `(?:${prefixRegexString})?${newRegexString}(?:${postfixRegexString})?`
 	return new RegExp(newRegexString)
 }
