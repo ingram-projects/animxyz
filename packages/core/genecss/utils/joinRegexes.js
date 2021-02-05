@@ -10,7 +10,7 @@ export default function (...regexes) {
 		regexString = regexes
 			.map(stringifyRegex)
 			.filter((regexString) => regexString !== '')
-			.map((regexString) => `(${regexString})`)
+			.map((regexString) => `(?:${regexString})`)
 			.join('|')
 	}
 
