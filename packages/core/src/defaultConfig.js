@@ -42,7 +42,7 @@ module.exports = {
 		translate: {
 			layers: ['utilities', 'transforms'],
 			modifiedBy: ['media', 'hover'],
-			matches: /(<mode>-)?<type>(-<value>)?/,
+			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
 					down: { axes: 'y', multiplier: '1' },
@@ -75,7 +75,7 @@ module.exports = {
 		rotate: {
 			layers: ['utilities', 'transforms'],
 			modifiedBy: ['media', 'hover'],
-			matches: /(<mode>-)?<type>(-<value>)?/,
+			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
 					'flip-up': { axes: 'x', multiplier: '1' },
@@ -108,7 +108,7 @@ module.exports = {
 		scale: {
 			layers: ['utilities', 'transforms'],
 			modifiedBy: ['media', 'hover'],
-			matches: /(<mode>-)?<type>(-<value>)?/,
+			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
 					small: { axes: 'xyz', multiplier: '-1' },

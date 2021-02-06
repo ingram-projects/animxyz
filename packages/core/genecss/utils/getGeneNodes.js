@@ -23,6 +23,7 @@ export default function (config) {
 
 		let result
 		while ((result = geneRegexGlobal.exec(contentString)) !== null) {
+			console.log(result)
 			const match = result[0]
 			const existingMatch = capturedGene[match]
 			if (existingMatch) {
