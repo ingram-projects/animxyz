@@ -35,6 +35,7 @@
     "src"
   ],
   "moduleName": "VueAnimXyz",
+  "types": "src/index.d.ts",
   "main": "dist/VueAnimXyz.cjs.js",
   "module": "dist/VueAnimXyz.esm.js",
   "unpkg": "dist/VueAnimXyz.js",

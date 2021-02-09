@@ -35,6 +35,7 @@
     "src"
   ],
   "moduleName": "ReactAnimXyz",
+  "types": "src/index.d.ts",
   "main": "dist/ReactAnimXyz.cjs.js",
   "module": "dist/ReactAnimXyz.esm.js",
   "unpkg": "dist/ReactAnimXyz.js",
