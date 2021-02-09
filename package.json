@@ -24,7 +24,7 @@
   "scripts": {
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --fix",
-    "lint-all": "yarn run lint --ext .js,.jsx,.ts,.tsx,.vue .",
+    "lint-all": "yarn run lint --ext .js,.jsx,.vue .",
     "publish": "lerna run build && lerna publish",
     "publish-prerelease": "yarn run publish --conventional-prerelease",
     "publish-graduate": "yarn run publish --conventional-graduate"
@@ -48,7 +48,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue}": [
+    "*.{js,jsx,vue}": [
       "yarn run lint"
     ]
   }
