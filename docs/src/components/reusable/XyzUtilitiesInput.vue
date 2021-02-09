@@ -14,8 +14,7 @@
 				class="utilities-table__body"
 				appear
 				duration="auto"
-				xyz="fade down"
-				style="--xyz-stagger: 0.05s"
+				xyz="fade down-3 stagger-0.5"
 			>
 				<tr class="utility xyz-none" v-for="utility in computedUtilities" :key="utility.name">
 					<th class="utility__header xyz-nested" scope="row">
@@ -73,7 +72,15 @@ export default {
 					levelsMap[level] = true
 				})
 			})
-			return ['default', ...Object.keys(levelsMap)]
+			const levels = Object.keys(levelsMap).sort((a, b) => {
+				const aNum = Number(a)
+				const bNum = Number(b)
+				if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
+					return aNum - bNum
+				}
+				return 0
+			})
+			return ['default', ...levels]
 		},
 		computedUtilities() {
 			return this.utilityObjs.map((utility) => {

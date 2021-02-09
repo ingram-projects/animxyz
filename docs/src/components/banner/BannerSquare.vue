@@ -1,5 +1,8 @@
 <template>
 	<div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
+		<div class="square-content">
+			<slot></slot>
+		</div>
 		<XyzTransition duration="auto">
 			<div class="square-anim" v-if="show">
 				<p
@@ -119,6 +122,14 @@ export default {
 	position: relative;
 	width: 100%;
 	padding-top: 100%;
+	font-family: $font-stack-mono;
+}
+
+.square-content {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .square-anim {
@@ -131,7 +142,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	border-radius: $br-l;
-	font-family: $font-stack-mono;
 
 	font-size: 2.5vw;
 	padding: 1em;
@@ -146,6 +156,10 @@ export default {
 
 	@include media('>=laptop') {
 		font-size: 1.25rem;
+	}
+
+	@include dark-mode {
+		background-color: primary-color(800);
 	}
 }
 

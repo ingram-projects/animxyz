@@ -3,14 +3,16 @@
 		<PageNav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></PageNav>
 
 		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
-			<XyzTransitionGroup
-				tag="section"
-				class="sections__wrap"
-				:class="{ active: activeTab === 'docs' }"
-				appear
-				xyz="fade down delay-1"
-			>
-				<div v-for="section in sections" :key="section.id">
+			<XyzTransitionGroup tag="section" class="sections__wrap" :class="{ active: activeTab === 'docs' }" appear-visible>
+				<div
+					v-for="section in sections"
+					xyz="fade delay-1 ease-out"
+					v-xyz="{
+						'small-3': section.header,
+						'down-2': !section.header,
+					}"
+					:key="section.id"
+				>
 					<h1 class="section-group__header" v-if="section.header" :id="section.id">{{ section.title }}</h1>
 					<DocsSection
 						v-if="!section.header"
@@ -102,6 +104,7 @@ export default {
 				'installation',
 				'the-basics',
 				'how-it-works',
+				'practical-examples',
 				{ header: true, title: 'Composing Animations', id: 'composing-animations' },
 				'contexts',
 				'utilities',
@@ -118,9 +121,6 @@ export default {
 				'timing',
 				'stagger',
 				'iterate',
-				// { header: true, title: 'Customizing AnimXYZ' },
-				// 'modifying-utilities',
-				// 'adding-keyframes',
 				{ header: true, title: 'Vue Integration', id: 'vue-integration' },
 				'vue-installation',
 				'vue-xyz-transition',
@@ -267,6 +267,10 @@ export default {
 	@include media('>=laptop') {
 		padding: 0;
 	}
+
+	@include dark-mode {
+		color: primary-color(500);
+	}
 }
 
 .sandbox__wrap {
@@ -329,7 +333,7 @@ export default {
 		color: primary-color(200);
 
 		&::before {
-			transform: translateX(-0.75rem);
+			transform: translateX(-0.5rem);
 		}
 	}
 

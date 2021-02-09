@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz :style="data.variables" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 3" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz>
+          <div class="item-group" xyz>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -25,13 +25,13 @@ examples:
 
           ${data.variablesString && `
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz>
+          <XyzTransitionGroup class="item-group" xyz>
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
             <div class="square" v-if="${data.toggled}"></div>
@@ -40,13 +40,13 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz>
+          <XyzTransitionGroup className="item-group" xyz>
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
             {${data.toggled} && <div className="square" />}
@@ -55,7 +55,7 @@ examples:
           ${data.variablesString && `
           ##html
           <style>
-            .square-group { ${data.variablesString} }
+            .item-group { ${data.variablesString} }
           </style>
           `}
 
@@ -87,17 +87,18 @@ modifiers:
       types: [stagger]
 ---
 
-You can set the CSS variables that drive the core AnimXYZ animations to customize and create your own. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width.
+To completely customize and create your own animations beyond what the [utilities](#utilities) provide you can set the CSS variables that drive every AnimXYZ animation. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width.
 
-You have control over everything you need to animate an element, even transform origin, duration, or staggering. This lets you create unique animations beyond what the [utilities](#utilities) can provide:
+This gives you control over everything you need to animate an element, including transform-origin, duration, stagger delays, and more:
 
 [🐞 vw units](?tab=examples&variables=translate-x:-100vw#variables)  
-[🎈 Yoink!](<?tab=examples&variables=stagger:0.2s;translate-y:-400%;scale-x:0;ease:cubic-bezier(.26,2.05,.84,.38)#variables>)  
+[🎈 Yoink!](<?tab=examples&variables=stagger:0.2s;translate-y:-350%;scale-x:0;ease:cubic-bezier(0.5,-1.5,0.5,1.5)#variables>)  
 [📺 Click.](?tab=examples&variables=duration:0.6s;scale-x:1.25;scale-y:0#variables)  
 [🌀 It's gone spiral!](<?tab=examples&variables=rotate-z:1turn;origin:center -200%;duration:2s;scale-x:0;scale-y:0#variables>)  
-[💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:10px;translate-z:100px;translate-y:10vh#variables)  
+[💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:100px;translate-z:100px;translate-y:10vh#variables)  
 
-Keep in mind that CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
+### Inheritance
+CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
 
 <div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">

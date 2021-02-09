@@ -2,11 +2,20 @@
 	<div class="code-block">
 		<TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
-		<div class="example-code__wrap">
-			<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
-				codeChunk.content
-			}}</Prism>
-		</div>
+		<XyzTransition xyz="fade" mode="out-in">
+			<div :key="activeCode.name">
+				<div class="code__wrap">
+					<Prism v-for="(codeChunk, index) in activeCodeChunks" :language="codeChunk.prism.language" :key="index">{{
+						`${codeChunk.content}${index !== activeCodeChunks.length - 1 ? '\n' : ''}`
+					}}</Prism>
+				</div>
+				<div class="code-buttons">
+					<button class="code-button" @click="copyCode">
+						{{ isCopied ? 'Copied' : 'Copy' }}
+					</button>
+				</div>
+			</div>
+		</XyzTransition>
 	</div>
 </template>
 
@@ -19,6 +28,7 @@ import Prism from 'vue-prism-component'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-scss'
 import TabBar from '~/components/reusable/TabBar'
+import { copyToClipboard } from '~/utils'
 
 const languageOptions = {
 	html: {
@@ -90,6 +100,8 @@ export default {
 	data() {
 		return {
 			activeCode: null,
+			isCopied: false,
+			isCopiedTimout: null,
 		}
 	},
 	computed: {
@@ -150,7 +162,7 @@ export default {
 					language: chunkLanguage,
 					prettier: chunkPrettierOptions,
 					prism: chunkPrismOptions,
-					content: chunkParsedContent + '\n',
+					content: chunkParsedContent,
 				})
 			}
 
@@ -159,6 +171,8 @@ export default {
 	},
 	watch: {
 		activeCode() {
+			clearTimeout(this.isCopiedTimout)
+			this.isCopied = false
 			this.$emit('language-changed', this.activeCode)
 		},
 		code: {
@@ -185,6 +199,25 @@ export default {
 				return code.name === codeName
 			})
 		},
+		copyCode() {
+			if (!this.isCopied) {
+				const codeText = this.activeCodeChunks
+					.map((codeChunk) => {
+						return codeChunk.content
+					})
+					.join('\n')
+
+				copyToClipboard(codeText)
+
+				this.isCopied = true
+				this.isCopiedTimout = setTimeout(() => {
+					this.isCopied = false
+				}, 2000)
+			}
+		},
+	},
+	beforeDestroy() {
+		clearTimeout(this.isCopiedTimout)
 	},
 }
 </script>
@@ -201,7 +234,8 @@ export default {
 	}
 }
 
-.example-code__wrap {
+.code__wrap {
+	position: relative;
 	overflow: auto;
 
 	pre[class*='language-'] {
@@ -211,6 +245,36 @@ export default {
 
 	pre + pre {
 		padding-top: 0;
+	}
+}
+
+.code-buttons {
+	padding: $sp-xs;
+	display: flex;
+
+	.code-button + .code-button {
+		margin-left: $sp-xxs;
+	}
+}
+
+.code-button {
+	color: primary-color(200);
+	padding: $sp-xxs $sp-xs;
+	font-size: $fs-s;
+	font-weight: 500;
+	transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+	border-radius: $br-m;
+	display: flex;
+	align-items: center;
+
+	&:hover,
+	&:focus {
+		background-color: primary-color(800, 0.5);
+		color: primary-color(50);
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px $cyan;
 	}
 }
 </style>

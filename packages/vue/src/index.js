@@ -1,7 +1,7 @@
 import XyzTransition from './components/XyzTransition'
 import XyzTransitionGroup from './components/XyzTransitionGroup'
 
-import XyzContext from './directives/XyzContext'
+import xyz from './directives/xyz'
 
 // Create module definition for Vue.use()
 const VueAnimXyz = {
@@ -9,7 +9,7 @@ const VueAnimXyz = {
 		Vue.component('XyzTransition', XyzTransition)
 		Vue.component('XyzTransitionGroup', XyzTransitionGroup)
 
-		Vue.directive('xyz', XyzContext)
+		Vue.directive('xyz', xyz)
 	},
 }
 
@@ -24,4 +24,5 @@ if (GlobalVue) {
 	GlobalVue.use(VueAnimXyz)
 }
 
+export { XyzTransition, XyzTransitionGroup, xyz }
 export default VueAnimXyz

@@ -4,7 +4,7 @@ id: vue-v-xyz
 
 examples:
   - name: Basic
-    component: ExampleVXyzBasic
+    component: VXyz_Basic
     code:
       - name: Vue
         content: |
@@ -16,18 +16,18 @@ examples:
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
   - name: By Index
-    component: ExampleVXyzByIndex
+    component: VXyz_ByIndex
     code:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-grid">
+          <XyzTransitionGroup class="item-grid">
             <div
               class="square"
-              xyz="fade out-small-50 out-duration-30"
+              xyz="fade out-small-50% out-duration-30"
               v-xyz="{
-                'in-down in-right in-stagger-1': index <= 41,
-                'in-up in-left in-stagger-rev-1': index > 41,
+                'in-down-50% in-right-50% in-stagger-1': index <= 41,
+                'in-up-50% in-left-50% in-stagger-rev-1': index > 41,
                 'out-rotate-right-5': index % 2,
                 'out-rotate-left-5': (index + 1) % 2,
               }"

@@ -1,24 +1,29 @@
 <template>
 	<div class="page__wrap">
-		<div class="xray-toggle__wrap">
-			<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
-				<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
-				<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
-			</button>
-
-			<div class="xray-tooltip__wrap">
-				<XyzTransition xyz mode="out-in">
-					<div class="xray-tooltip" key="xray-tooltip-on" v-if="xRayToggled">XYZ-ray On</div>
-					<div class="xray-tooltip" key="xray-tooltip-off" v-if="!xRayToggled">XYZ-ray Off</div>
-				</XyzTransition>
+		<div class="alerts__wrap copy-content">
+			<div class="alert reduced-motion-alert">
+				<p>
+					AnimXYZ animations are disabled if your browser or OS has reduced motion setting turned on.
+					<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" target="_blank">
+						Learn more here.
+					</a>
+				</p>
 			</div>
+		</div>
 
-			<XyzTransition xyz duration="auto">
-				<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
-					<div class="xray-invert xyz-nested"></div>
-					<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
-				</div>
-			</XyzTransition>
+		<div class="xray__wrap">
+			<SpinToggle :toggled="xRayToggled" on-text="XYZ-ray On" off-text="XYZ-ray Off">
+				<button class="xray-toggle" :class="{ active: xRayToggled }" @click="toggleXRay(!xRayToggled)">
+					<Cube class="xray-cube" :style="{ transform: xRayCubeTransform }"></Cube>
+					<span class="screen-reader-only">Turn X-Ray {{ xRayToggled ? 'Off' : 'On' }}</span>
+					<XyzTransition xyz duration="auto">
+						<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
+							<div class="xray-invert xyz-nested"></div>
+							<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
+						</div>
+					</XyzTransition>
+				</button>
+			</SpinToggle>
 		</div>
 
 		<div class="page-content__wrap" :class="{ 'xyz-xray': xRayToggled }">
@@ -37,10 +42,12 @@ query {
 
 <script>
 import Cube from '~/components/reusable/Cube'
+import SpinToggle from '~/components/reusable/SpinToggle'
 
 export default {
 	components: {
 		Cube,
+		SpinToggle,
 	},
 	data() {
 		return {
@@ -52,6 +59,7 @@ export default {
 		toggleXRay(toggled) {
 			this.xRayToggled = toggled
 			this.randomizeXRayCubeTransform()
+			this.$gtag.event('XYZ-Ray Toggled')
 		},
 		randomizeXRayCubeTransform() {
 			this.xRayCubeTransform = `rotateX(${-0.5 + Math.random()}turn) rotateY(${-0.5 + Math.random()}turn) rotateZ(${
@@ -66,25 +74,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.xray-toggle__wrap {
+.alerts__wrap {
 	position: fixed;
-	bottom: $sp-xl;
-	right: $sp-xl;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	padding: $sp-m;
+	z-index: 9;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	pointer-events: none;
+
+	@include media('<tablet') {
+		padding: $sp-s;
+	}
+}
+
+.alert {
+	font-size: $fs-s;
+	line-height: 1.125rem;
+	font-weight: 500;
+	padding: $sp-xxs $sp-xs;
+	border-radius: $br-m;
+	pointer-events: all;
+
+	& + & {
+		margin-top: $sp-s;
+	}
+
+	p {
+		color: white;
+	}
+
+	a {
+		color: white;
+		font-weight: 700;
+
+		&::before {
+			--anchor-underline-color: white;
+		}
+
+		&:hover,
+		&:focus {
+			color: white;
+		}
+	}
+}
+
+.reduced-motion-alert {
+	display: none;
+	background-color: $red;
+
+	@media (prefers-reduced-motion: reduce) {
+		display: block;
+	}
+}
+
+.xray__wrap {
+	position: fixed;
+	bottom: $sp-m;
+	right: $sp-m;
 	z-index: 4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	@include media('<tablet') {
 		right: initial;
-		left: 2.25rem;
-		bottom: 2.25rem;
+		left: $sp-m;
+		bottom: $sp-m;
 		z-index: 3;
 	}
 }
 
 .xray-toggle {
 	perspective: 10rem;
+	padding: 1rem;
+	margin: -1rem;
 	transition: transform 0.3s $ease-out-back;
-	padding: 3rem;
-	margin: -3rem;
 
 	&:hover,
 	&:focus {
@@ -94,8 +162,10 @@ export default {
 
 .xray-tooltip__wrap {
 	position: absolute;
-	right: $sp-xl;
-	top: 0rem;
+	right: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 $sp-m;
 	opacity: 0;
 	transition: opacity 0.3s ease-in;
 
@@ -105,7 +175,7 @@ export default {
 
 	@include media('<tablet') {
 		right: initial;
-		left: $sp-xl;
+		left: 100%;
 	}
 }
 
@@ -137,7 +207,7 @@ export default {
 	transition: transform 1s $ease-in-out-back;
 
 	::v-deep {
-		.cube__face {
+		.cube-side {
 			box-shadow: inset 0 0 0 1.5px primary-color(50), inset 0 0 0 1rem primary-color(400);
 			transition: 1s $ease-in-out;
 			transition-property: background-color, box-shadow;
@@ -162,6 +232,8 @@ export default {
 .xray-invert {
 	@include size(1vmax);
 	position: absolute;
+	left: 50%;
+	top: 50%;
 	border-radius: 50%;
 	transform: translate(-50%, -50%) scale(283);
 

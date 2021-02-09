@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
         <XyzTransition duration="auto" xyz="fade stagger" v-on="data.listeners">
-          <div class="square-group xyz-none" v-if="data.toggled">
+          <div class="item-group xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" xyz="inherit left"></div>
             <div class="square xyz-nested" xyz="inherit up"></div>
             <div class="square xyz-nested" xyz="inherit down"></div>
@@ -19,7 +19,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square-group" xyz="fade stagger">
+          <div class="item-group" xyz="fade stagger">
             <div class="square ${data.mode}" xyz="inherit left"></div>
             <div class="square ${data.mode}" xyz="inherit up"></div>
             <div class="square ${data.mode}" xyz="inherit down"></div>
@@ -35,7 +35,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="square-group" xyz="fade stagger">
+          <XyzTransitionGroup class="item-group" xyz="fade stagger">
             <div class="square" v-if="${data.toggled}" xyz="inherit left"></div>
             <div class="square" v-if="${data.toggled}" xyz="inherit up"></div>
             <div class="square" v-if="${data.toggled}" xyz="inherit down"></div>
@@ -52,7 +52,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransitionGroup className="square-group" xyz="fade stagger">
+          <XyzTransitionGroup className="item-group" xyz="fade stagger">
             {${data.toggled} && <div className="square" xyz="inherit left" />}
             {${data.toggled} && <div className="square" xyz="inherit up" />}
             {${data.toggled} && <div className="square" xyz="inherit down" />}
@@ -127,7 +127,12 @@ You can also change default values on an element, but keep in mind they will app
       <tr>
         <th scope="row">Translate</th>
         <td>--xyz-translate-default</td>
-        <td>30px</td>
+        <td>25%</td>
+      </tr>
+      <tr>
+        <th scope="row">Translate Z</th>
+        <td>--xyz-translate-z-default</td>
+        <td>300px</td>
       </tr>
       <tr>
         <th scope="row">Rotate</th>

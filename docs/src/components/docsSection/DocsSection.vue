@@ -46,8 +46,6 @@ $active-border-width: 0.5rem;
 	position: relative;
 	padding: 6vw 0;
 	min-height: 60vh;
-	// content-visibility: auto;
-	// contain-intrinsic-size: 100% 60vh;
 
 	@include media('>=laptop') {
 		padding: 4rem 0;
@@ -63,16 +61,44 @@ $active-border-width: 0.5rem;
 	width: 100%;
 	padding: $sp-m;
 	border-radius: $br-xl;
-	box-shadow: 0 0 0 primary-color(700, 0);
 	margin: auto;
-	transition: background-color 0.8s $ease-out, box-shadow 1.2s $ease-out;
+	transition: background-color 0.8s $ease-out;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		border-radius: $br-xl;
+		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
+		opacity: 0;
+		transition: 1.2s ease-out 0.2s;
+		transition-property: opacity, box-shadow;
+	}
+
+	@include dark-mode {
+		--shadow-scroll-backdrop-color: #{primary-color(950)};
+	}
 
 	::v-deep {
 		.shadow-scroll,
 		.shadow-scroll-content {
 			transition: box-shadow 0.8s $ease-out;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: primary-color(700);
+
+			@include dark-mode {
+				color: primary-color(300);
+			}
 		}
 
 		hr {
@@ -87,6 +113,10 @@ $active-border-width: 0.5rem;
 			width: fit-content;
 			padding: 0 $sp-xs;
 			transition: background-color 0.8s $ease-out;
+
+			@include dark-mode {
+				background-color: primary-color(950);
+			}
 		}
 	}
 
@@ -94,9 +124,21 @@ $active-border-width: 0.5rem;
 		padding: $sp-xl;
 
 		.docs-section__wrap.active & {
-			background-color: white;
-			box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 			--shadow-scroll-backdrop-color: white;
+			background-color: white;
+
+			&::before {
+				opacity: 1;
+			}
+
+			@include dark-mode {
+				--shadow-scroll-backdrop-color: #{primary-color(950, 0.25)};
+				background-color: transparent;
+
+				&::before {
+					box-shadow: 0 0 0 0.25rem primary-color(700);
+				}
+			}
 
 			::v-deep {
 				hr {
@@ -105,6 +147,10 @@ $active-border-width: 0.5rem;
 
 				hr + h2 {
 					background-color: white;
+
+					@include dark-mode {
+						background-color: primary-color(950);
+					}
 				}
 			}
 		}
@@ -132,10 +178,15 @@ $active-border-width: 0.5rem;
 
 	@include media('<laptop') {
 		background-color: primary-color(50);
+		transition: background-color 0.3s $ease-in-out;
 		margin: 0 (-$sp-s);
-		padding: $sp-s;
+		padding: $sp-xs $sp-s;
 		position: sticky;
 		top: 0;
+
+		@include dark-mode {
+			background-color: primary-color(950);
+		}
 	}
 }
 
@@ -148,6 +199,7 @@ $active-border-width: 0.5rem;
 	display: flex;
 	align-items: center;
 	position: relative;
+	padding-right: $sp-xxs;
 }
 
 .section-anchor {
@@ -197,7 +249,6 @@ $active-border-width: 0.5rem;
 	font-size: 2rem;
 	line-height: 1;
 	font-weight: 640;
-	color: primary-color(700);
 
 	@include media('<phone') {
 		font-size: 1.5rem;
@@ -229,19 +280,26 @@ $active-border-width: 0.5rem;
 }
 
 .section-examples-button {
+	margin: $sp-xxxs;
 	margin-left: auto;
+	margin-right: 0;
 	display: flex;
 	align-items: center;
 	height: 1.75rem;
 	color: primary-color(700);
-	background-color: primary-color(100);
+	border: 2px solid primary-color(500);
 	font-size: $fs-s;
-	font-weight: 500;
+	font-weight: 700;
 	text-decoration: none;
 	padding: 0 $sp-xxs;
 	border-radius: $br-m;
 	transition: 0.3s $ease-out;
-	transition-property: background-color, color, box-shadow;
+	transition-property: background-color, color, box-shadow, border;
+
+	@include dark-mode {
+		color: $cyan;
+		border-color: transparentize($cyan, 0.25);
+	}
 
 	&::after {
 		display: inline-block;
@@ -256,18 +314,31 @@ $active-border-width: 0.5rem;
 	}
 
 	&:hover {
-		background-color: primary-color(300);
+		background-color: primary-color(200);
 		color: primary-color(800);
 
 		&::after {
-			transform: translateX(0.75rem);
+			transform: translateX(0.5rem);
+		}
+
+		@include dark-mode {
+			color: $cyan;
+			background-color: transparentize($cyan, 0.75);
+			border-color: $cyan;
 		}
 	}
 
 	&:active {
-		background-color: primary-color(600);
+		background-color: primary-color(700);
+		border-color: primary-color(700);
 		color: primary-color(50);
 		box-shadow: none;
+		transition-duration: 0.1s;
+
+		@include dark-mode {
+			color: primary-color(900);
+			background-color: $cyan;
+		}
 	}
 
 	@include media('<phone') {
@@ -292,6 +363,10 @@ $active-border-width: 0.5rem;
 		padding-left: $sp-m;
 		margin-bottom: $sp-s;
 		font-size: 1rem;
+	}
+
+	@include dark-mode {
+		color: primary-color(500);
 	}
 }
 </style>

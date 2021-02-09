@@ -3,28 +3,30 @@
 	<div class="modifiers__wrap">
 		<TabBar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></TabBar>
 
-		<XyzTransitionGroup class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
-			<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
-				<XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
-			</div>
-			<div class="modifiers-sections" v-if="activeGroup.name !== 'Presets'" :key="activeGroup.name">
-				<XyzUtilitiesInput
-					v-if="showUtilities"
-					class="modifiers-utilities modifiers-section"
-					:utilities="this.activeGroup.utilityNames"
-					:multiple="this.modifiers.utilities.multiple"
-					v-model="value.utilities"
-				></XyzUtilitiesInput>
+		<div class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
+			<XyzTransition class="xyz-out-absolute">
+				<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
+					<XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
+				</div>
+				<div class="modifiers-sections" v-else :key="activeGroup.name">
+					<XyzUtilitiesInput
+						v-if="showUtilities"
+						class="modifiers-utilities modifiers-section"
+						:utilities="this.activeGroup.utilityNames"
+						:multiple="this.modifiers.utilities.multiple"
+						v-model="value.utilities"
+					></XyzUtilitiesInput>
 
-				<XyzVariablesInput
-					v-if="showVariables"
-					class="modifiers-variables modifiers-section"
-					:variables="this.activeGroup.variableNames"
-					v-model="value.variables"
-					:style="{ '--xyz-delay': `${this.activeGroup.utilityNames.length * 0.05}s` }"
-				></XyzVariablesInput>
-			</div>
-		</XyzTransitionGroup>
+					<XyzVariablesInput
+						v-if="showVariables"
+						class="modifiers-variables modifiers-section"
+						:variables="this.activeGroup.variableNames"
+						v-model="value.variables"
+						:style="{ '--xyz-delay': `${this.activeGroup.utilityNames.length * 0.05}s` }"
+					></XyzVariablesInput>
+				</div>
+			</XyzTransition>
+		</div>
 
 		<XyzTransition appear xyz="fade right skew-right-3 ease-out-back">
 			<button v-if="numActiveModifiers" class="clear-modifiers" @click="clearModifiers">
@@ -137,11 +139,11 @@ export default {
 		activeGroup() {
 			this.$emit('group-changed', this.activeGroup)
 		},
-		activeGroupIndex(newValue, oldValue) {
-			if (newValue > oldValue) {
-				this.tabDirectionXyz = 'out-left-100 in-right-100'
+		activeGroupIndex(newIndex, oldIndex) {
+			if (newIndex > oldIndex) {
+				this.tabDirectionXyz = 'out-left-100% in-right-100%'
 			} else {
-				this.tabDirectionXyz = 'out-right-100 in-left-100'
+				this.tabDirectionXyz = 'out-right-100% in-left-100%'
 			}
 		},
 		computedGroups: {
@@ -210,10 +212,6 @@ export default {
 
 .modifiers-sections {
 	width: 100%;
-
-	&.xyz-out {
-		position: absolute;
-	}
 }
 
 .modifiers-section {

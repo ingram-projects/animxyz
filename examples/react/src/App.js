@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { xyz, XyzTransitionGroup, XyzTransitionSwitch } from '@animxyz/react'
+import { xyz, XyzTransitionGroup, XyzTransitionSwitch } from '@animxyz/react/src'
+import './App.scoped.scss'
 
 const switchStates = ['one', 'two', 'three', 'four', 'five']
 
@@ -18,7 +19,7 @@ function App() {
 				})}
 			</XyzTransitionGroup>
 
-			<XyzTransitionSwitch appear mode="out-in" xyz={xyz(['fade', 'rotate-right', 'duration-10', 'big-100'])}>
+			<XyzTransitionSwitch appear mode="out-in" xyz={xyz(['fade', 'rotate-right', 'duration-10', 'big-100%'])}>
 				<button onClick={randomState} key={switchState}>
 					State {switchState}
 				</button>

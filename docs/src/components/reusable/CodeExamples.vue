@@ -154,7 +154,7 @@ export default {
 	position: relative;
 	min-height: 10rem;
 	flex-grow: 1;
-	padding: $sp-s;
+	padding: $sp-m;
 	display: flex;
 	align-items: center;
 	justify-content: center;

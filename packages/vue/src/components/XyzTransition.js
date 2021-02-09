@@ -1,39 +1,25 @@
-import { getXyzTransitionData, mergeData } from '../xyzUtils'
+import { xyzTransitionProps, mergeData, getXyzTransitionData } from '../utils'
 
 export default {
 	name: 'XyzTransition',
 	functional: true,
-	props: {
-		appear: {
-			type: Boolean,
-		},
-		duration: {
-			type: [Number, String, Object],
-		},
-	},
+	props: xyzTransitionProps,
 	render(createElement, context) {
-		const data = getXyzTransitionData({
-			...context.data,
+		const { data = {}, props = {}, children = [] } = context
+
+		const newData = getXyzTransitionData({
+			...data,
 			attrs: {
-				...context.data.attrs,
-				...context.props,
+				...data.attrs,
+				...props,
 			},
 		})
 
-		context.children.forEach((child) => {
-			child.data = mergeData(
-				{
-					attrs: {
-						xyz: data.attrs.xyz,
-					},
-					directives: data.directives,
-					staticStyle: data.staticStyle,
-					style: data.style,
-				},
-				child.data
-			)
+		children.forEach((node) => {
+			// Iterate through children and merge transition directives and styles
+			node.data = mergeData(data, node.data)
 		})
 
-		return createElement('transition', data, context.children)
+		return createElement('transition', newData, children)
 	},
 }

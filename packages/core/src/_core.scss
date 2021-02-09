@@ -9,6 +9,7 @@
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
         $opacity: xyz-var('opacity', $mode, 1);
+        
         $perspective: xyz-var('perspective', $mode, 0);
         $translate-x: xyz-var('translate-x', $mode, 0);
         $translate-y: xyz-var('translate-y', $mode, 0);
@@ -35,20 +36,11 @@
       }
     }
 
-    // sets comfortable defaults for xyz variables
+    // sets defaults for xyz variables
     :root {
-      --xyz-ease-default: #{map.get($xyz-ease-levels, 'ease')};
-      --xyz-duration-default: #{map.get($xyz-time-levels, '5')};
-      --xyz-delay-default: #{map.get($xyz-time-levels, '0')};
-      --xyz-stagger-default: #{map.get($xyz-time-levels, '3')};
-      --xyz-iterate-default: #{map.get($xyz-iterate-levels, '1')};
-      --xyz-origin-default: #{map.get($xyz-origin-levels, 'center')};
-      --xyz-opacity-default: #{map.get($xyz-opacity-levels, '100')};
-      --xyz-perspective-default: #{map.get($xyz-perspective-levels, '0')};
-      --xyz-translate-default: #{map.get($xyz-translate-levels, '3')};
-      --xyz-rotate-default: #{map.get($xyz-rotate-levels, '25')};
-      --xyz-scale-default: #{map.get($xyz-scale-levels, '50')};
-      --xyz-skew-default: #{map.get($xyz-skew-levels, '3')};
+      @each $name, $val in $xyz-defaults-map {
+        --xyz-#{$name}-default: #{$val};
+      }
     }
 
     // gives elements an xyz-index based on nth child
@@ -74,6 +66,11 @@
       --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
     }
 
+    // resets the start offset
+    %xyz-start-offset {
+      --xyz-start-offset: initial;
+    }
+
     // all nested elements
     .xyz-nested {
       @extend %xyz-indexed;
@@ -85,6 +82,15 @@
       .xyz-#{$mode} {
         @extend %xyz-indexed;
         @extend %xyz-root-stagger-delay;
+        @extend %xyz-start-offset;
+
+        &.xyz-paused, &.xyz-#{$mode}-paused {
+          @extend %xyz-paused;
+
+          & .xyz-nested, .xyz-#{$mode}-nested {
+            @extend %xyz-paused;
+          }
+        }
       }
 
       // mode nested elements
@@ -98,23 +104,41 @@
         @include xyz-animation($mode);
 
         &.xyz-absolute, &.xyz-#{$mode}-absolute {
-          @extend %xyz-pos-absolute;
+          @extend %xyz-absolute;
         }
 
         &.xyz-none, &.xyz-#{$mode}-none {
-          @extend %xyz-anim-none;
+          @extend %xyz-none;
         }
       }
     }
 
+    // so elements dont take space during animation
+    %xyz-absolute {
+      position: absolute;
+    }
+
+    // pauses animations
+    %xyz-paused {
+      animation-play-state: paused;
+    }
+
     // turns off animations
-    %xyz-anim-none {
+    %xyz-none {
       animation: none;
     }
 
-    // so elements dont take space during animation
-    %xyz-pos-absolute {
-      position: absolute;
+    // for reduced motion users
+    @media (prefers-reduced-motion: reduce) {
+      %xyz-reduced-motion {
+        animation: none;
+      }
+
+      @each $mode in $xyz-modes {
+        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+          @extend %xyz-reduced-motion;
+        }
+      }
     }
 
     xyz-context {
@@ -123,21 +147,12 @@
 
     // resets all xyz variables
     [xyz], xyz-context {
-      @include xyz-set-all();
+      @include xyz-set-all(initial);
     }
 
     // inherits all xyz variables
     [xyz~='inherit'] {
       @include xyz-set-all(inherit);
-    }
-
-    // for reduced motion users
-    @media (prefers-reduced-motion: reduce) {
-      @each $mode in $xyz-modes {
-        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-          animation: none;
-        }
-      }
     }
   }
 }

@@ -4,7 +4,7 @@ id: vue-xyz-transition
 
 examples:
   - name: Toggle
-    component: ExampleXyzTransitionToggle
+    component: XyzTransition_Toggle
     code:
       - name: Vue
         content: |
@@ -14,19 +14,19 @@ examples:
           </XyzTransition>
           <button @click="toggled = !toggled">Toggle</button>
   - name: Switch
-    component: ExampleXyzTransitionSwitch
+    component: XyzTransition_Switch
     code:
       - name: Vue
         content: |
           ##vue
           <XyzTransition appear mode="out-in">
-            <div class="square" xyz="fade left-100" v-if="shape === 'square'" key="square"></div>
-            <div class="circle" xyz="fade up-100" v-if="shape === 'circle'" key="circle"></div>
-            <div class="triangle" xyz="fade right-100" v-if="shape === 'triangle'" key="triangle"></div>
+            <div class="square" xyz="fade left-100%" v-if="shape === 'square'" key="square"></div>
+            <div class="circle" xyz="fade up-100%" v-else-if="shape === 'circle'" key="circle"></div>
+            <div class="triangle" xyz="fade right-100%" v-else-if="shape === 'triangle'" key="triangle"></div>
           </XyzTransition>
           <button @click="changeShape">Click to switch</button>
   - name: Key
-    component: ExampleXyzTransitionKey
+    component: XyzTransition_Key
     code:
       - name: Vue
         content: |
@@ -36,13 +36,13 @@ examples:
           </XyzTransition>
           <button @click="key += 1">Click to increment</button>
   - name: Nested
-    component: ExampleXyzTransitionNested
+    component: XyzTransition_Nested
     code:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition appear duration="auto" xyz="fade up-100 duration-10">
-            <div class="square-block" v-if="toggled">
+          <XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
+            <div class="item-block" v-if="toggled">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
             </div>
           </XyzTransition>
@@ -52,11 +52,12 @@ examples:
 
 The `<XyzTransition>` component is an extended version of the [&lt;Transition&gt;](https://vuejs.org/v2/api/#transition) Vue component used to animate single elements in and out of the page or to animate switching between elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<XyzTransition>` you only need to care about the `appear`, `duration`, and `mode` props.
+Unlike the complexity of the Vue component, with `<XyzTransition>` you only need to care about the `appear`, `appear-visible`, `duration`, and `mode` props.
 
 ```jsx
 <XyzTransition
-	appear={ boolean }
+  appear={ boolean }
+  appear-visible={ boolean | IntersectionObserverOptions }
 	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	mode={ 'out-in' | 'in-out' }
 >
@@ -69,9 +70,13 @@ Unlike the complexity of the Vue component, with `<XyzTransition>` you only need
 
 ### appear
 
-When set to `true` will animate elements in on initial render. You can set **appear**-specific behaviour using the **appear**-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
+When set to `true` will animate elements in on initial render. You can set appear-specific behaviour using the appear-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
 
 You can learn more about using this property in the [Vue docs](https://vuejs.org/v2/guide/transitions.html#Transitions-on-Initial-Render).
+
+### appear-visible
+
+You can use this property instead of `appear` to pause the appear animation until the element is visible within the viewport. This uses an [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) behind the scenes which can be customized by passing the `IntersectionObserver` options to the property such as `:appear-visible="{ threshold: 0.5, rootMargin: '50px' }"`.
 
 ### duration
 
@@ -101,8 +106,13 @@ You can learn more about using this property in the [Vue docs](https://vuejs.org
 		<tbody>
 			<tr>
 				<th scope="row">appear</th>
-				<td>false</td>
+				<td>--</td>
 				<td>boolean</td>
+			</tr>
+      <tr>
+				<th scope="row">appear-visible</th>
+				<td>--</td>
+				<td>boolean | IntersectionObserverOptions</td>
 			</tr>
 			<tr>
 				<th scope="row">duration</th>

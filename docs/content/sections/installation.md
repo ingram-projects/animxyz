@@ -30,7 +30,14 @@ import '@animxyz/core'
 AnimXYZ is built in SASS and provides useful functions and mixins for customization. Import it anywhere in your SASS code:
 
 ```scss
+// Import the functions/mixins
 @import '@animxyz/core';
+
+// Add all the core/utilities selectors
+@include xyz-all;
+// --- Or for more control and granularity ---
+@include xyz-core;
+@include xyz-utilities;
 ```
 
 ---
@@ -39,7 +46,7 @@ AnimXYZ is built in SASS and provides useful functions and mixins for customizat
 To add AnimXYZ using a CDN put this link in the `<head>` of your `index.html` file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@animxyz/core@0.1.1/dist/animxyz.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@animxyz/core@0.4.0/dist/animxyz.min.css">
 ```
 
 ---

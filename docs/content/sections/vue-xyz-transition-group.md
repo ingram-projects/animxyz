@@ -4,25 +4,25 @@ id: vue-xyz-transition-group
 
 examples:
   - name: List
-    component: ExampleXyzTransitionGroupList
+    component: XyzTransitionGroup_List
     code:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="square-grid" xyz="fade small out-down out-rotate-right appear-stagger">
+          <XyzTransitionGroup appear class="item-grid" xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
           <button @click="removeElement">Remove Element</button>
   - name: Index
-    component: ExampleXyzTransitionGroupIndex
+    component: XyzTransitionGroup_Index
     code:
       - name: Vue
         content: |
           ##vue
           <XyzTransitionGroup
-            class="square-grid"
-            xyz="fade small out-back-5"
+            class="item-grid"
+            xyz="fade small out-back-3"
             :duration="2500"
             :style="{
               '--xyz-in-stagger': '0.025s',
@@ -38,27 +38,39 @@ examples:
             ></div>
           </XyzTransitionGroup>
   - name: Nested
-    component: ExampleXyzTransitionGroupNested
+    component: XyzTransitionGroup_Nested
     code:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear duration="auto" class="square-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
-            <div class="square-block" v-for="index in numElements" :key="index">
+          <XyzTransitionGroup appear duration="auto" class="item-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
+            <div class="item-block" v-for="index in numElements" :key="index">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
             </div>
           </XyzTransitionGroup>
           <button @click="addElement">Add Element</button>
           <button @click="removeElement">Remove Element</button>
+  - name: Appear Visible
+    component: XyzTransitionGroup_AppearVisible
+    code:
+      - name: Vue
+        content: |
+          ##vue
+          <div class="scroll-wrap">
+            <XyzTransitionGroup appear-visible class="item-grid" xyz="delay-2 fade small rotate-right">
+              <div class="square" v-for="index in 200" :key="index"></div>
+            </XyzTransitionGroup>
+          </div>
 ---
 
 The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `duration`, and `tag` props.
+Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appear-visible`, `duration`, and `tag` props.
 
 ```jsx
 <XyzTransitionGroup
-	appear={ boolean }
+  appear={ boolean }
+  appear-visible={ boolean | IntersectionObserverOptions }
 	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	tag={ string }
 >
@@ -73,6 +85,10 @@ Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only
 ## Properties
 
 ### appear
+
+Same as the `<XyzTransition>` component.
+
+### appear-visible
 
 Same as the `<XyzTransition>` component.
 
@@ -96,8 +112,13 @@ Specifies the tag to use for the wrapper element. Defaults to `'span'`.
 		<tbody>
 			<tr>
 				<th scope="row">appear</th>
-				<td>false</td>
+				<td>--</td>
 				<td>boolean</td>
+			</tr>
+      <tr>
+				<th scope="row">appear-visible</th>
+				<td>--</td>
+				<td>boolean | IntersectionObserverOptions</td>
 			</tr>
 			<tr>
 				<th scope="row">duration</th>

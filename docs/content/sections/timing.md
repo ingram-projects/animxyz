@@ -7,7 +7,7 @@ examples:
   - name: Timing
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade rotate-right-50" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition xyz="fade rotate-right-50%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade rotate-right-50${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade rotate-right-50${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -38,7 +38,7 @@ examples:
       - name: React
         content: |
           ##jsx
-          <XyzTransition xyz="fade rotate-right-50${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}">
             {${data.toggled} && <div className="square" />}
           </XyzTransition>
 

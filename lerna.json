@@ -2,10 +2,18 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.1.1",
+  "version": "0.4.0",
   "npmClient": "yarn",
   "npmClientArgs": [
     "--no-lockfile"
   ],
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "allowBranch": "master"
+    },
+    "publish": {
+      "conventionalCommits": true
+    }
+  }
 }

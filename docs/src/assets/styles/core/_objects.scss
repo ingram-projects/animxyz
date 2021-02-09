@@ -14,24 +14,32 @@ svg {
 // EXAMPLES -------------------------------------
 
 .example-wrap {
-  perspective: 200px;
+  perspective: 1000px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.circle {
-  border-radius: 50%;
-  @include size(5.5rem);
-  margin: -.25rem 0;
-	background-color: $cyan;
+.square, .circle, .triangle {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: primary-color(900);
   font-size: $fs-m;
   font-weight: 600;
   font-family: $font-stack-mono;
+}
+
+.square {
+	@include size(5rem);
+	background-color: $cyan;
+}
+
+.circle {
+  @include size(5rem);
+  border-radius: 50%;
+	background-color: $cyan;
 }
 
 .triangle {
@@ -46,18 +54,17 @@ svg {
   border-right: calc(var(--triangle-height, 0) * 0.577) solid transparent;
 }
 
-.square {
-	@include size(5rem);
-	background-color: $cyan;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: $fs-m;
-  font-weight: 600;
-  font-family: $font-stack-mono;
+.item-image {
+  @include size(100%);
+  object-fit: cover;
 }
 
-.square-group {
+.image-filter-mono {
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(200%);
+}
+
+.item-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,25 +73,30 @@ svg {
   margin: 0 auto;
 }
 
-.square-grid {
+.item-grid {
+  --grid-columns: 4;
+  --grid-item-size: 4rem;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--grid-columns), var(--grid-item-size));
+  justify-content: center;
   margin: 0 auto;
+  width: 100%;
 
-  .square {
-    @include size(4rem);
+  .square,
+  .circle,
+  .triangle,
+  .item-block {
+    @include size(var(--grid-item-size));
   }
 }
 
-.square-grid-9 {
-  grid-template-columns: repeat(9, 1fr);
-
-  .square {
-    @include size(2rem);
-  }
+.item-grid-9 {
+  --grid-columns: 9;
+  --grid-item-size: 2rem;
 }
 
-.square-block {
+.item-block {
   @include size(5rem);
   border: 2px solid $cyan;
   flex-shrink: 0;
@@ -94,7 +106,9 @@ svg {
   grid-gap: .5rem;
   padding: .5rem;
 
-  .square {
+  .square,
+  .circle,
+  .triangle {
     @include size(100%);
   }
 }
@@ -170,5 +184,33 @@ svg {
     &:checked:focus + span {
       box-shadow: inset 0 0 0 48px primary-color(100), 0 0 0 2px $cyan;
     }
+  }
+}
+
+.example-input-label {
+  color: primary-color(200);
+  margin-right: $sp-xs;
+  font-weight: 500;
+}
+
+.example-input {
+  background-color: primary-color(800);
+  border-radius: $br-m;
+  color: primary-color(100);
+  font-weight: 600;
+  font-size: $fs-l;
+  height: 2.5rem;
+  width: 12rem;
+  padding: 0 $sp-xs;
+  transition: 0.3s ease-in-out;
+  transition-property: background-color, box-shadow;
+
+  &:hover {
+    background-color: primary-color(700);
+  }
+
+  &:focus {
+    background-color: primary-color(700);
+    box-shadow: 0 0 0 2px $cyan;
   }
 }
