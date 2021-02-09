@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/docs",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "scripts": {
     "build": "gridsome build",
@@ -9,7 +9,7 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "@animxyz/vue": "^0.4.0",
+    "@animxyz/vue": "^0.4.1",
     "body-scroll-lock": "^3.1.5",
     "fontsource-inconsolata": "4.0.0",
     "gridsome": "^0.7.23",

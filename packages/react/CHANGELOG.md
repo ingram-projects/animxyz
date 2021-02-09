@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ingram-projects/animxyz/compare/v0.4.0...v0.4.1) (2021-02-09)
+
+
+### Bug Fixes
+
+* add types declaration file ([9838dc0](https://github.com/ingram-projects/animxyz/commit/9838dc04a15f74da351113588ea14cb65e3cda01))
+* tweaked peer dependencies ([b5db20b](https://github.com/ingram-projects/animxyz/commit/b5db20bb59efdf2069c9bc152a638b8b0da289b9))
+
+
+
+
+
 # [0.4.0](https://github.com/ingram-projects/animxyz/compare/v0.3.0...v0.4.0) (2021-01-17)
 
 **Note:** Version bump only for package @animxyz/react
