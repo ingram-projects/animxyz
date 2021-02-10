@@ -5,13 +5,13 @@ body {
 
   @media (prefers-color-scheme: dark) {
     &:not(.light-mode) {
-      --text-color: #{primary-color(200)};
+      --text-color: #{primary-color(300)};
       background-color: primary-color(950);
     }
   }
 
   &.dark-mode {
-    --text-color: #{primary-color(200)};
+    --text-color: #{primary-color(300)};
     background-color: primary-color(950);
   }
 }

@@ -8,7 +8,7 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small-100%" v-on="data.listeners">
-          <div class="item-grid item-grid-2 xyz-none" v-if="data.toggled">
+          <div class="example-grid example-grid-2 xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
           </div>
         </XyzTransition>
@@ -17,17 +17,41 @@ examples:
       - name: HTML
         content: |
           ##html
+          <div class="example-wrap">
+            <div xyz="fade small-100%">
+              <div class="example-grid example-grid-2 xyz-none ${data.mode}">
+                <div class="square xyz-nested"></div>
+                <div class="square xyz-nested"></div>
+                <div class="square xyz-nested"></div>
+                <div class="square xyz-nested"></div>
+              </div>
+            </div>
+          </div>
       - name: Vue
         content: |
           ##vue
+          <div class="example-wrap">
+            <XyzTransition duration="auto" xyz="fade small-100%">
+              <div class="example-grid example-grid-2 xyz-none" v-if="${data.toggled}">
+                <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
+              </div>
+            </XyzTransition>
+          </div>
       - name: React
         content: |
           ##jsx
+          <div class="example-wrap">
+            <XyzTransition duration="auto" xyz="fade small-100%">
+              <div class="example-grid example-grid-2 xyz-none">
+                {${data.toggled} && [...Array(4)].map((_, index) => <div className="square xyz-nested" key={index} />)}
+              </div>
+            </XyzTransition>
+          </div>
   - name: xyz-absolute
     template: |
       <div class="example-wrap">
         <XyzTransition duration="auto" xyz="fade small-100%" v-on="data.listeners">
-          <div class="item-grid item-grid-2 xyz-none" v-if="data.toggled">
+          <div class="example-grid example-grid-2 xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
           </div>
         </XyzTransition>
