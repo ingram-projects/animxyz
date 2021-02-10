@@ -10,6 +10,7 @@ export const xyzModesAll = ['all', ...xyzModes]
 export const xyzIndexLevels = 20
 
 export const xyzEaseLevels = {
+	'default': 'var(--xyz-ease-default)',
 	'ease': 'ease',
 	'linear': 'linear',
 	'in': 'ease-in',
@@ -21,6 +22,7 @@ export const xyzEaseLevels = {
 }
 
 export const xyzDurationLevels = {
+	'default': 'var(--xyz-duration-default)',
 	'0': '0s',
 	'0.5': '0.05s',
 	'1': '0.1s',
@@ -42,6 +44,7 @@ export const xyzDurationLevels = {
 }
 
 export const xyzDelayLevels = {
+	'default': 'var(--xyz-delay-default)',
 	'0': '0s',
 	'0.5': '0.05s',
 	'1': '0.1s',
@@ -63,6 +66,7 @@ export const xyzDelayLevels = {
 }
 
 export const xyzStaggerLevels = {
+	'default': 'var(--xyz-stagger-default)',
 	'0': '0s',
 	'0.5': '0.05s',
 	'1': '0.1s',
@@ -84,6 +88,7 @@ export const xyzStaggerLevels = {
 }
 
 export const xyzIterateLevels = {
+	'default': 'var(--xyz-iterate-default)',
 	'1': '1',
 	'2': '2',
 	'3': '3',
@@ -92,7 +97,16 @@ export const xyzIterateLevels = {
 	'infinite': 'infinite',
 }
 
+export const xyzDirectionLevels = {
+	'default': 'var(--xyz-direction-default)',
+	'normal': 'normal',
+	'reverse': 'reverse',
+	'alternate': 'alternate',
+	'alternate-reverse': 'alternate-reverse',
+}
+
 export const xyzOriginLevels = {
+	'default': 'var(--xyz-origin-default)',
 	'center': 'center',
 	'top': 'top',
 	'bottom': 'bottom',
@@ -105,6 +119,7 @@ export const xyzOriginLevels = {
 }
 
 export const xyzOpacityLevels = {
+	'default': 'var(--xyz-opacity-default)',
 	'0': '0',
 	'25%': '0.25',
 	'50%': '0.5',
@@ -113,6 +128,7 @@ export const xyzOpacityLevels = {
 }
 
 export const xyzPerspectiveLevels = {
+	'default': 'var(--xyz-perspective-default)',
 	'0': '0px',
 	'1': '500px',
 	'2': '1000px',
@@ -122,6 +138,7 @@ export const xyzPerspectiveLevels = {
 }
 
 export const xyzTranslateLevels = {
+	'default': 'var(--xyz-translate-default)',
 	'0': '0px',
 	'1': '10px',
 	'2': '20px',
@@ -135,6 +152,7 @@ export const xyzTranslateLevels = {
 }
 
 export const xyzTranslateZLevels = {
+	'default': 'var(--xyz-translate-z-default)',
 	'0': '0px',
 	'1': '100px',
 	'2': '200px',
@@ -144,6 +162,7 @@ export const xyzTranslateZLevels = {
 }
 
 export const xyzRotateLevels = {
+	'default': 'var(--xyz-rotate-default)',
 	'0': '0deg',
 	'1': '10deg',
 	'2': '20deg',
@@ -157,6 +176,7 @@ export const xyzRotateLevels = {
 }
 
 export const xyzScaleLevels = {
+	'default': 'var(--xyz-scale-default)',
 	'0': '0',
 	'1': '0.025',
 	'2': '0.05',
@@ -170,6 +190,7 @@ export const xyzScaleLevels = {
 }
 
 export const xyzSkewLevels = {
+	'default': 'var(--xyz-skew-default)',
 	'0': '0deg',
 	'1': '10deg',
 	'2': '20deg',
@@ -208,6 +229,10 @@ export const xyzVariablesMap = {
 	'iterate': {
 		type: 'iterate',
 		syntax: 'infinite | <number>',
+	},
+	'direction': {
+		type: 'direction',
+		syntax: '<animation-direction>',
 	},
 	'origin': {
 		type: 'origin',
@@ -344,6 +369,8 @@ export const xyzDefaultsMap = {
   'delay': xyzDelayLevels['0'],
   'stagger': xyzStaggerLevels['2.5'],
   'iterate': xyzIterateLevels['1'],
+	'direction': xyzDirectionLevels['normal'],
+	'out-direction': xyzDirectionLevels['reverse'],
   'origin': xyzOriginLevels['center'],
   'opacity': xyzOpacityLevels['100%'],
   'perspective': xyzPerspectiveLevels['0'],
@@ -361,45 +388,43 @@ export const xyzUtilitiesMap = {
 	'ease': {
 		type: 'ease',
 		vars: ['ease'],
-		default: 'var(--xyz-ease-default)',
 		levels: xyzEaseLevels,
 	},
 	'duration': {
 		type: 'duration',
 		vars: ['duration'],
-		default: 'var(--xyz-duration-default)',
 		levels: xyzDurationLevels,
 	},
 	'delay': {
 		type: 'delay',
 		vars: ['delay'],
-		default: 'var(--xyz-delay-default)',
 		levels: xyzDelayLevels,
 	},
 	'stagger': {
 		type: 'stagger',
 		vars: ['stagger'],
-		default: 'var(--xyz-stagger-default)',
 		levels: xyzStaggerLevels,
 	},
 	'stagger-rev': {
 		type: 'stagger',
 		vars: ['stagger-rev'],
-		default: 'var(--xyz-stagger-default)',
 		levels: xyzStaggerLevels,
 	},
 	'iterate': {
 		type: 'iterate',
 		vars: ['iterate'],
-		default: 'var(--xyz-iterate-default)',
 		levels: xyzIterateLevels,
+	},
+	'direction': {
+		type: 'direction',
+		vars: ['direction'],
+		levels: xyzDirectionLevels,
 	},
 
 	// Origins
 	'origin': {
 		type: 'origin',
 		vars: ['origin'],
-		default: 'var(--xyz-origin-default)',
 		levels: xyzOriginLevels,
 	},
 
@@ -407,7 +432,6 @@ export const xyzUtilitiesMap = {
 	'fade': {
 		type: 'opacity',
 		vars: ['opacity'],
-		default: 'calc(1 - var(--xyz-opacity-default))',
 		levels: xyzOpacityLevels,
 		transformer: 'xyz-one-minus-val',
 	},
@@ -416,7 +440,6 @@ export const xyzUtilitiesMap = {
 	'perspective': {
 		type: 'perspective',
 		vars: ['perspective'],
-		default: 'var(--xyz-perspective-default)',
 		levels: xyzPerspectiveLevels,
 	},
 
@@ -425,14 +448,12 @@ export const xyzUtilitiesMap = {
 		type: 'translate',
 		axis: 'x',
 		vars: ['translate-x'],
-		default: 'var(--xyz-translate-default)',
 		levels: xyzTranslateLevels,
 	},
 	'left': {
 		type: 'translate',
 		axis: 'x',
 		vars: ['translate-x'],
-		default: 'calc(var(--xyz-translate-default) * -1)',
 		levels: xyzTranslateLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -440,14 +461,12 @@ export const xyzUtilitiesMap = {
 		type: 'translate',
 		axis: 'y',
 		vars: ['translate-y'],
-		default: 'var(--xyz-translate-default)',
 		levels: xyzTranslateLevels,
 	},
 	'up': {
 		type: 'translate',
 		axis: 'y',
 		vars: ['translate-y'],
-		default: 'calc(var(--xyz-translate-default) * -1)',
 		levels: xyzTranslateLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -455,14 +474,12 @@ export const xyzUtilitiesMap = {
 		type: 'translate',
 		axis: 'z',
 		vars: ['translate-z'],
-		default: 'var(--xyz-translate-z-default)',
 		levels: xyzTranslateZLevels,
 	},
 	'back': {
 		type: 'translate',
 		axis: 'z',
 		vars: ['translate-z'],
-		default: 'calc(var(--xyz-translate-z-default) * -1)',
 		levels: xyzTranslateZLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -472,14 +489,12 @@ export const xyzUtilitiesMap = {
 		type: 'rotate',
 		axis: 'x',
 		vars: ['rotate-x'],
-		default: 'var(--xyz-rotate-default)',
 		levels: xyzRotateLevels,
 	},
 	'flip-down': {
 		type: 'rotate',
 		axis: 'x',
 		vars: ['rotate-x'],
-		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -487,14 +502,12 @@ export const xyzUtilitiesMap = {
 		type: 'rotate',
 		axis: 'y',
 		vars: ['rotate-y'],
-		default: 'var(--xyz-rotate-default)',
 		levels: xyzRotateLevels,
 	},
 	'flip-right': {
 		type: 'rotate',
 		axis: 'y',
 		vars: ['rotate-y'],
-		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -502,14 +515,12 @@ export const xyzUtilitiesMap = {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],
-		default: 'var(--xyz-rotate-default)',
 		levels: xyzRotateLevels,
 	},
 	'rotate-left': {
 		type: 'rotate',
 		axis: 'z',
 		vars: ['rotate-z'],
-		default: 'calc(var(--xyz-rotate-default) * -1)',
 		levels: xyzRotateLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -517,17 +528,15 @@ export const xyzUtilitiesMap = {
 	// Scales
 	'small': {
 		type: 'scale',
-		axis: 'all',
+		axis: 'xyz',
 		vars: ['scale-x', 'scale-y', 'scale-z'],
-		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-minus-val',
 	},
 	'big': {
 		type: 'scale',
-		axis: 'all',
+		axis: 'xyz',
 		vars: ['scale-x', 'scale-y', 'scale-z'],
-		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-plus-val',
 	},
@@ -535,7 +544,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'x',
 		vars: ['scale-x'],
-		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-minus-val',
 	},
@@ -543,7 +551,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'x',
 		vars: ['scale-x'],
-		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-plus-val',
 	},
@@ -551,7 +558,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'y',
 		vars: ['scale-y'],
-		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-minus-val',
 	},
@@ -559,7 +565,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'y',
 		vars: ['scale-y'],
-		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-plus-val',
 	},
@@ -567,7 +572,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'z',
 		vars: ['scale-z'],
-		default: 'calc(1 - var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-minus-val',
 	},
@@ -575,7 +579,6 @@ export const xyzUtilitiesMap = {
 		type: 'scale',
 		axis: 'z',
 		vars: ['scale-z'],
-		default: 'calc(1 + var(--xyz-scale-default))',
 		levels: xyzScaleLevels,
 		transformer: 'xyz-one-plus-val',
 	},
@@ -583,14 +586,12 @@ export const xyzUtilitiesMap = {
 		type: 'skew',
 		axis: 'x',
 		vars: ['skew-x'],
-		default: 'var(--xyz-skew-default)',
 		levels: xyzSkewLevels,
 	},
 	'skew-right': {
 		type: 'skew',
 		axis: 'x',
 		vars: ['skew-x'],
-		default: 'calc(var(--xyz-skew-default) * -1)',
 		levels: xyzSkewLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -598,14 +599,12 @@ export const xyzUtilitiesMap = {
 		type: 'skew',
 		axis: 'y',
 		vars: ['skew-y'],
-		default: 'var(--xyz-skew-default)',
 		levels: xyzSkewLevels,
 	},
 	'skew-down': {
 		type: 'skew',
 		axis: 'y',
 		vars: ['skew-y'],
-		default: 'calc(var(--xyz-skew-default) * -1)',
 		levels: xyzSkewLevels,
 		transformer: 'xyz-negative-val',
 	},
@@ -629,7 +628,7 @@ export function getXyzUtility(name, level = 'default', mode = 'all') {
 	if (level !== 'default') components.push(level)
 	const string = components.join('-')
 
-	const valid = modes.includes(mode) && (level === 'default' || utilityObj.levels[level])
+	const valid = modes.includes(mode) && utilityObj.levels[level]
 
 	return {
 		name,

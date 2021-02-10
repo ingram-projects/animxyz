@@ -73,6 +73,8 @@ export default {
 				})
 			})
 			const levels = Object.keys(levelsMap).sort((a, b) => {
+				if (a === 'default') return -1
+				if (b === 'default') return 1
 				const aNum = Number(a)
 				const bNum = Number(b)
 				if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
@@ -80,7 +82,7 @@ export default {
 				}
 				return 0
 			})
-			return ['default', ...levels]
+			return levels
 		},
 		computedUtilities() {
 			return this.utilityObjs.map((utility) => {
