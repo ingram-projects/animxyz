@@ -113,7 +113,7 @@ export default {
 				{ header: true, title: 'Controlling Animations', id: 'controlling-animations' },
 				'active-classes',
 				'nesting',
-				'special',
+				'special-classes',
 				{ header: true, title: 'Animations', id: 'animations' },
 				'fade',
 				'transform',

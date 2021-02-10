@@ -1,6 +1,6 @@
 ---
-title: Special
-id: special
+title: Special Classes
+id: special-classes
 quote: 
 
 examples:
@@ -68,9 +68,9 @@ examples:
           ##jsx
 ---
 
-All the following classes and variables also have **in**, **out**, and **appear** versions as well.
+All the following classes have **in**, **out**, and **appear** variants as well.
 ### xyz-none
-The `xyz-none` class will turn off animations for the element it is on. This is useful when you are using `xyz-nested` and don't want the parent element which is setting the `xyz` attribute and trigger classes to animate. [See how it works](?tab=examples&example=xyz-none#special)
+The `xyz-none` class will turn off animations for the element it is on. This is useful when you are using `xyz-nested` and don't want the parent element which is setting the `xyz` attribute and trigger classes to animate. [See how it works](?tab=examples&example=xyz-none#special-classes)
 
 ### xyz-none-all
 The `xyz-none-all` class will turn off AnimXYZ animations for the element it is on and all nested elements. This is useful if you want to provide your users with a control to disable all animations on your site for example.
