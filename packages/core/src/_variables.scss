@@ -94,16 +94,23 @@ $xyz-iterate-levels: (
   'infinite': infinite,
 ) !default;
 
+$xyz-direction-levels: (
+  'normal': normal,
+  'reverse': reverse,
+  'alternate': alternate,
+  'alternate-reverse': alternate-reverse,
+) !default;
+
 $xyz-origin-levels: (
- 'center': center,
- 'top': top,
- 'bottom': bottom,
- 'left': left,
- 'right': right,
- 'top-left': top left,
- 'top-right': top right,
- 'bottom-left': bottom left,
- 'bottom-right': bottom right,
+  'center': center,
+  'top': top,
+  'bottom': bottom,
+  'left': left,
+  'right': right,
+  'top-left': top left,
+  'top-right': top right,
+  'bottom-left': bottom left,
+  'bottom-right': bottom right,
 ) !default;
 
 $xyz-opacity-levels: (
@@ -205,6 +212,9 @@ $xyz-variables-map: (
   'iterate': (
     'type': 'iterate',
   ),
+  'direction': (
+    'type': 'direction',
+  ),
   'origin': (
     'type': 'origin',
   ),
@@ -267,11 +277,14 @@ $xyz-variables-map: (
 // DEFAULTS
 
 $xyz-defaults-map: (
+  'keyframes': none,
   'ease': map.get($xyz-ease-levels, 'ease'),
   'duration': map.get($xyz-duration-levels, '5'),
   'delay': map.get($xyz-delay-levels, '0'),
   'stagger': map.get($xyz-stagger-levels, '2.5'),
   'iterate': map.get($xyz-iterate-levels, '1'),
+  'direction': map.get($xyz-direction-levels, 'normal'),
+  'out-direction': map.get($xyz-direction-levels, 'reverse'),
   'origin': map.get($xyz-origin-levels, 'center'),
   'opacity': map.get($xyz-opacity-levels, '100%'),
   'perspective': map.get($xyz-perspective-levels, '0'),
@@ -321,6 +334,12 @@ $xyz-utilities-map: (
     'vars': ['iterate'],
     'default': var(--xyz-iterate-default),
     'levels': $xyz-iterate-levels,
+  ),
+  'direction': (
+    'type': 'direction',
+    'vars': ['direction'],
+    'default': var(--xyz-direction-default),
+    'levels': $xyz-direction-levels,
   ),
   'origin': (
     'type': 'origin',
