@@ -21,7 +21,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="item-grid">
+          <XyzTransitionGroup class="example-grid">
             <div
               class="square"
               xyz="fade out-small-50% out-duration-30"
