@@ -325,6 +325,14 @@ export default {
 							name: 'Stagger',
 							types: ['stagger'],
 						},
+						{
+							name: 'Iterate',
+							types: ['iterate'],
+						},
+						{
+							name: 'Direction',
+							types: ['direction'],
+						},
 					],
 				},
 			},

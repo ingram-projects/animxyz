@@ -65,6 +65,10 @@ modifiers:
       types: [ease]
     - name: Stagger
       types: [stagger]
+    - name: Iterate
+      types: [iterate]
+    - name: Direction
+      types: [direction]
 ---
 
 AnimXYZ has the unique ability to mix and match animation utilities, letting you compose an enormous variety of animations without any extra code. For example `xyz="up left small"` will make an element move to and from the upper left while expanding in and contracting out. Spin an element while collapsing it to a sliver, expand an element while it swings in from its corner, the possibilities are endless! Here are just a few of the many combinations you can do:

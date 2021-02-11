@@ -85,6 +85,10 @@ modifiers:
       types: [ease]
     - name: Stagger
       types: [stagger]
+    - name: Iterate
+      types: [iterate]
+    - name: Direction
+      types: [direction]
 ---
 
 To completely customize and create your own animations beyond what the [utilities](#utilities) provide you can set the CSS variables that drive every AnimXYZ animation. For example set the value of `--xyz-translate-x` to `-42%` to animate an element to and from the left by 42% of it's width.
