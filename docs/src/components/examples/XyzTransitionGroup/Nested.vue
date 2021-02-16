@@ -3,7 +3,7 @@
 		<XyzTransitionGroup
 			appear
 			duration="auto"
-			class="item-grid"
+			class="example-grid"
 			xyz="fade flip-left origin-left duration-3 appear-stagger"
 		>
 			<div class="item-block" v-for="index in customData.numElements" :key="index">
