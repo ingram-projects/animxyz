@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ingram-projects/animxyz/compare/v0.4.1...v0.5.0) (2021-02-16)
+
+
+### Features
+
+* added animation-direction utilities ([9597ffb](https://github.com/ingram-projects/animxyz/commit/9597ffba63fd59cbeee8911ed34a8a9f22c418f1))
+
+
+
+
+
 ## [0.4.1](https://github.com/ingram-projects/animxyz/compare/v0.4.0...v0.4.1) (2021-02-09)
 
 
