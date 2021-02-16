@@ -43,7 +43,7 @@ const scaleYClasses = xyzUtilities.filter((xyzUtility) => {
 })
 
 const scaleAllClasses = xyzUtilities.filter((xyzUtility) => {
-	return xyzUtility.type === 'scale' && xyzUtility.axis === 'all'
+	return xyzUtility.type === 'scale' && xyzUtility.axis === 'xyz'
 })
 
 const rotateXClasses = xyzUtilities.filter((xyzUtility) => {
@@ -179,7 +179,7 @@ export default {
 	color: $green;
 }
 
-.color-axis-all {
+.color-axis-xyz {
 	color: primary-color(50);
 }
 </style>
