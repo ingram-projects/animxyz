@@ -59,7 +59,7 @@ modifiers:
 
 ---
 
-The direction utilities and variables set the [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) of an animation. 
+The direction utilities and variables set the [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) of an animation. By default animations run `normal` for the **in** and **appear** variants and `reverse` for the **out** variant. While these defaults cover the majority of use-cases, there may be times you want to override them such as when using an animation that runs infinitely. For instance if you wanted to have an element grow and shrink indefinitely you could use `xyz="big iterate-infinite direction-alternate"`.
 
 ---
 ## Variables
@@ -89,26 +89,3 @@ The direction utilities and variables set the [animation-direction](https://deve
 
 See the [variables](#variables) section to learn more.
 
----
-## Defaults
-
-<div class="variables-table table-wrap shadow-scroll">
-  <table class="shadow-scroll-content">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Variable</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Direction</th>
-        <td>--xyz-direction-default</td>
-        <td>1</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-See the [defaults](#defaults) section to learn more.
