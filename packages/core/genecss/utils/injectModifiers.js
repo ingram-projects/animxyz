@@ -30,6 +30,6 @@ export default function (regex, modifiers) {
 	const prefixRegexString = stringifyRegex(joinRegexes(...prefixRegexes))
 	const postfixRegexString = stringifyRegex(joinRegexes(...postfixRegexes))
 
-	newRegexString = `(?:${prefixRegexString})?${newRegexString}(?:${postfixRegexString})?`
+	newRegexString = `(?:${prefixRegexString})*${newRegexString}(?:${postfixRegexString})*`
 	return new RegExp(newRegexString)
 }
