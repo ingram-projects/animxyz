@@ -2,7 +2,7 @@
 	<div class="example-wrap flex-col">
 		<XyzTransitionGroup
 			appear
-			class="item-grid cat-grid"
+			class="example-grid cat-grid"
 			xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0"
 		>
 			<div class="square" v-for="index in customData.numCats" :key="index">

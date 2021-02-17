@@ -121,6 +121,7 @@ export default {
 				'timing',
 				'stagger',
 				'iterate',
+				'direction',
 				{ header: true, title: 'Vue Integration', id: 'vue-integration' },
 				'vue-installation',
 				'vue-xyz-transition',

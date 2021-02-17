@@ -31,10 +31,20 @@
 
 // VARIABLES
 
+@function xyz-default-var($name, $mode: 'all') {
+  // Make sure return variable cascades by mode
+  @if $mode == 'all' {
+    @return var(--xyz-#{$name}-default);
+  } @else {
+    @return var(--xyz-#{xyz-name($name, $mode)}-default, var(--xyz-#{$name}-default));
+  }
+}
+
+
 @function xyz-var($name, $mode: 'all', $fallback: 'default') {
   // If fallback is default remap it to default variable
   @if $fallback == 'default' {
-    $fallback: var(--xyz-#{$name}-default);
+    $fallback: xyz-default-var($name, $mode);
   }
 
   // Make sure return variable cascades by mode
@@ -66,24 +76,18 @@
 @mixin xyz-utility($name, $mode: 'all', $level: 'default') {
   $utility: map.get($xyz-utilities-map, $name);
   $vars: map.get($utility, 'vars');
-  $default: map.get($utility, 'default');
   $levels: map.get($utility, 'levels');
   $transformer: map.get($utility, 'transformer');
 
-  $val: null;
-  @if $level == 'default' {
-    $val: $default;
-  } @else {
-    $val: map.get($levels, $level);
+  $val: map.get($levels, $level);
 
-    @if $val == null {
-      @error '#{$level} is not a valid level for the #{$name} utility.';
-    }
+  @if $val == null {
+    @error '#{$level} is not a valid level for the #{$name} utility.';
+  }
 
-    @if $transformer {
-      $transformer-func: meta.get-function($transformer);
-      $val: meta.call($transformer-func, $val);
-    }
+  @if $transformer {
+    $transformer-func: meta.get-function($transformer);
+    $val: meta.call($transformer-func, $val);
   }
 
   @each $var in $vars {
@@ -100,7 +104,7 @@
   }
 
   @each $mode in $utility-modes {
-    @each $level in list.join('default', map.keys($levels)) {
+    @each $level in map.keys($levels) {
       @if $level == 'default' {
         [xyz~='#{xyz-name($name, $mode)}'] {
           @include xyz-utility($name, $mode, $level);
@@ -170,36 +174,35 @@
 // ANIMATIONS
 
 @mixin xyz-animation($mode) {
-  $keyframes: xyz-var('keyframes', $mode, none);
+  $keyframes: xyz-var('keyframes', $mode);
   $ease: xyz-var('ease', $mode);
   $duration: xyz-var('duration', $mode);
   $delay: xyz-var('delay', $mode);
   $stagger: xyz-var('stagger', $mode, 0s);
   $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
   $iterate: xyz-var('iterate', $mode);
+  $direction: xyz-var('direction', $mode);
   $origin: xyz-var('origin', $mode);
-
-  $direction: normal;
-  @if $mode == 'out' {
-    $direction: reverse;
-  }
 
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
-  // TODO: remove these when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
-  --xyz-active-duration: #{$duration};
-  --xyz-active-delay: #{$delay};
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-stagger-delay-calc: var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev};
+  --xyz-total-delay-calc: var(--xyz-stagger-delay, 0s) + #{$delay};
 
-  --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
-  --xyz-total-delay: calc(var(--xyz-stagger-delay, 0s) + var(--xyz-active-delay));
+  --xyz-stagger-delay: calc(var(--xyz-stagger-delay-calc));
+  --xyz-total-delay: calc(var(--xyz-total-delay-calc));
   transform-origin: #{$origin};
   backface-visibility: visible;
 
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-delay-calc: var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + #{$duration}) * -1;
+
   animation:
-    var(--xyz-active-duration)
+    #{$duration}
     #{$ease}
-    calc(var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + var(--xyz-active-duration)) * -1)
+    calc(var(--xyz-delay-calc))
     #{$iterate}
     #{$direction}
     both;
