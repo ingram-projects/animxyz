@@ -8,13 +8,13 @@ export default function (regex, captures) {
 
 	let newRegexString = stringifyRegex(regex)
 	Object.entries(captures).forEach(([captureName, capture]) => {
-		let captureRegexString
+		let captureRegex
 		if (capture instanceof RegExp || typeof capture === 'string') {
-			captureRegexString = stringifyRegex(capture)
+			captureRegex = capture
 		} else if (typeof capture === 'object') {
-			captureRegexString = stringifyRegex(joinRegexes(...Object.keys(capture)))
+			captureRegex = joinRegexes(...Object.keys(capture))
 		}
-		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${captureRegexString})`)
+		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${stringifyRegex(captureRegex)})`)
 	})
 	return new RegExp(newRegexString)
 }

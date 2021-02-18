@@ -27,9 +27,9 @@ export default function (regex, modifiers) {
 		}
 	})
 
-	const prefixRegexString = stringifyRegex(joinRegexes(...prefixRegexes))
-	const postfixRegexString = stringifyRegex(joinRegexes(...postfixRegexes))
+	const prefixRegex = joinRegexes(...prefixRegexes)
+	const postfixRegex = joinRegexes(...postfixRegexes)
 
-	newRegexString = `(?:${prefixRegexString})*${newRegexString}(?:${postfixRegexString})*`
+	newRegexString = `(?:${stringifyRegex(prefixRegex)})*${newRegexString}(?:${stringifyRegex(postfixRegex)})*`
 	return new RegExp(newRegexString)
 }
