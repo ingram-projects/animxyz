@@ -23,18 +23,17 @@ export default function (config) {
 
 		let result
 		while ((result = geneRegexGlobal.exec(contentString)) !== null) {
-			console.log(result)
 			const match = result[0]
-			const existingMatch = capturedGene[match]
-			if (existingMatch) {
-				existingMatch.count += 1
-			} else {
-				capturedGene[match] = {
+			let existingMatch = capturedGene[match]
+			if (!existingMatch) {
+				existingMatch = {
 					gene: parsedGene,
-					captured: result.groups,
-					count: 1,
+					groups: result.groups,
+					count: 0,
 				}
+				capturedGene[match] = existingMatch
 			}
+			existingMatch.count += 1
 		}
 	})
 
