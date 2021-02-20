@@ -12,14 +12,7 @@ export default function (config) {
 	const generatedGenes = {}
 
 	for (const [geneName, gene] of Object.entries(genes)) {
-		const parsedGene = parseGene(
-			{
-				name: geneName,
-				...gene,
-			},
-			config
-		)
-
+		const parsedGene = parseGene(geneName, gene, config)
 		const contentMatches = contentString.match(globalizeRegex(parsedGene.matches))
 
 		if (contentMatches) {

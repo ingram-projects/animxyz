@@ -6,9 +6,14 @@ import injectTypes from './injectTypes'
 import parseNode from './parseNode'
 
 // Parses gene by merging global modifiers, types, and captures
-export default function (gene, config) {
-	if (!gene.matches) throw new Error(`gene '${gene.name}' must have a 'matches' property defined`)
-	if (!gene.generates) throw new Error(`gene '${gene.name}' must have a 'generates' property defined`)
+export default function (geneName, gene, config) {
+	if (typeof gene === 'string') {
+		gene = {
+			generates: gene,
+		}
+	}
+
+	if (!gene.generates) throw new Error(`gene '${geneName}' must have a 'generates' property defined`)
 
 	const { types: globalTypes, captures: globalCaptures, modifiers: globalModifiers } = config
 
@@ -18,7 +23,7 @@ export default function (gene, config) {
 	if (gene.modifiedBy) {
 		for (const modifierName of gene.modifiedBy) {
 			const modifier = globalModifiers[modifierName]
-			if (!modifier) throw new Error(`gene '${gene.name}' cannot use undefined modifier '${modifierName}'`)
+			if (!modifier) throw new Error(`gene '${geneName}' cannot use undefined modifier '${modifierName}'`)
 			modifiers[modifierName] = modifier
 			Object.assign(modifierTypes, modifier.types)
 			Object.assign(modifierCaptures, modifier.captures)
@@ -29,19 +34,22 @@ export default function (gene, config) {
 
 	const captures = { ...globalCaptures, ...modifierCaptures, ...gene.captures }
 
-	const matches = injectTypes(injectCaptures(injectModifiers(gene.matches, modifiers), captures), types)
+	const matches = injectTypes(injectCaptures(injectModifiers(gene.matches || geneName, modifiers), captures), types)
 
 	const generates = (matchStr) => {
 		const exactMatch = exactifyRegex(matches)
 		const matchObj = matchStr.match(exactMatch)
-		if (!matchObj) throw new Error(`string '${matchStr}' does not match gene '${gene.name}'`)
+		if (!matchObj) throw new Error(`string '${matchStr}' does not match gene '${geneName}'`)
+
 		const capturedValues = {}
-		for (const [groupName, groupValue] of Object.entries(matchObj.groups)) {
-			const capture = captures[groupName]
-			capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
+		if (matchObj.groups) {
+			for (const [groupName, groupValue] of Object.entries(matchObj.groups)) {
+				const capture = captures[groupName]
+				capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
+			}
 		}
 
-		let node = parseNode(gene.generates(matchStr, capturedValues))
+		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(matchStr, capturedValues))
 
 		for (const [modifierName, modifier] of Object.entries(modifiers)) {
 			if (matchObj.groups[`__modifier__${modifierName}`]) {
