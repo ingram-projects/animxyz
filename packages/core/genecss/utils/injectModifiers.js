@@ -10,7 +10,7 @@ export default function (regex, modifiers) {
 
 	const prefixRegexes = []
 	const postfixRegexes = []
-	Object.entries(modifiers).forEach(([modifierName, modifier]) => {
+	for (const [modifierName, modifier] of Object.entries(modifiers)) {
 		if (modifier.matches) {
 			switch (modifier.type) {
 				case 'prefix':
@@ -25,7 +25,7 @@ export default function (regex, modifiers) {
 		} else {
 			throw new Error(`modifier ${modifierName} must have a defined 'matches' property`)
 		}
-	})
+	}
 
 	const prefixRegex = joinRegexes(...prefixRegexes)
 	const postfixRegex = joinRegexes(...postfixRegexes)

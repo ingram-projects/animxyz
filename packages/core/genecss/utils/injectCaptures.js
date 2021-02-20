@@ -7,7 +7,7 @@ export default function (regex, captures) {
 	if (isEmptyObject(captures)) return regex
 
 	let newRegexString = stringifyRegex(regex)
-	Object.entries(captures).forEach(([captureName, capture]) => {
+	for (const [captureName, capture] of Object.entries(captures)) {
 		let captureRegex
 		if (capture instanceof RegExp || typeof capture === 'string') {
 			captureRegex = capture
@@ -15,6 +15,6 @@ export default function (regex, captures) {
 			captureRegex = joinRegexes(...Object.keys(capture))
 		}
 		newRegexString = newRegexString.replace(`<${captureName}>`, `(?<${captureName}>${stringifyRegex(captureRegex)})`)
-	})
+	}
 	return new RegExp(newRegexString)
 }

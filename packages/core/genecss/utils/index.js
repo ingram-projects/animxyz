@@ -1,5 +1,7 @@
+export { default as exactifyRegex } from './exactifyRegex'
 export { default as getContentString } from './getContentString'
-export { default as getGeneNodes } from './getGeneNodes'
+export { default as getGeneratedGenes } from './getGeneratedGenes'
+export { default as globalizeRegex } from './globalizeRegex'
 export { default as injectCaptures } from './injectCaptures'
 export { default as injectModifiers } from './injectModifiers'
 export { default as injectTypes } from './injectTypes'

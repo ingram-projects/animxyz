@@ -1,7 +1,7 @@
 export default function (...configs) {
 	const mergedConfig = {}
-	configs.forEach((config) => {
+	for (const config of configs) {
 		Object.assign(mergedConfig, config)
-	})
+	}
 	return mergedConfig
 }

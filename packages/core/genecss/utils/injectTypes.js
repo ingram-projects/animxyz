@@ -8,9 +8,9 @@ function injectTypes(regex, types) {
 	const regexString = stringifyRegex(regex)
 	let newRegexString = regexString
 
-	Object.entries(types).forEach(([typeName, type]) => {
+	for (const [typeName, type] of Object.entries(types)) {
 		newRegexString = newRegexString.replace(new RegExp(`@${typeName}`, 'g'), `(?:${stringifyRegex(type)})`)
-	})
+	}
 	// Recurse until all types have been replaced
 	if (newRegexString !== regexString) return injectTypes(new RegExp(newRegexString), types)
 	return new RegExp(newRegexString)
