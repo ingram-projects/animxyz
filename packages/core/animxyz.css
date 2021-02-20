@@ -1,1 +1,7 @@
-@genecss utilities;
+@gene-layer utilities;
+
+@gene /(?<type>margin|padding)-(?<value>@length|@percentage)/ {
+	.$match {
+		$type: $value;
+	}
+}

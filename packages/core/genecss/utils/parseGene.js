@@ -1,5 +1,4 @@
 import applyCaptureMap from './applyCaptureMap'
-import exactifyRegex from './exactifyRegex'
 import injectCaptures from './injectCaptures'
 import injectModifiers from './injectModifiers'
 import injectTypes from './injectTypes'
@@ -15,7 +14,7 @@ export default function (geneName, gene, config) {
 
 	if (!gene.generates) throw new Error(`gene '${geneName}' must have a 'generates' property defined`)
 
-	const { types: globalTypes, captures: globalCaptures, modifiers: globalModifiers } = config
+	const { types: globalTypes, captures: globalCaptures, modifiers: globalModifiers, sortedBy: globalSortedBy } = config
 
 	const modifiers = {}
 	const modifierTypes = {}
@@ -36,29 +35,27 @@ export default function (geneName, gene, config) {
 
 	const matches = injectTypes(injectCaptures(injectModifiers(gene.matches || geneName, modifiers), captures), types)
 
-	const generates = (matchStr) => {
-		const exactMatch = exactifyRegex(matches)
-		const matchObj = matchStr.match(exactMatch)
-		if (!matchObj) throw new Error(`string '${matchStr}' does not match gene '${geneName}'`)
-
+	const generates = (match, groups) => {
 		const capturedValues = {}
-		if (matchObj.groups) {
-			for (const [groupName, groupValue] of Object.entries(matchObj.groups)) {
+		if (groups) {
+			for (const [groupName, groupValue] of Object.entries(groups)) {
 				const capture = captures[groupName]
 				capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
 			}
 		}
 
-		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(matchStr, capturedValues))
+		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(match, capturedValues))
 
 		for (const [modifierName, modifier] of Object.entries(modifiers)) {
-			if (matchObj.groups[`__modifier__${modifierName}`]) {
+			if (groups[`__modifier__${modifierName}`]) {
 				node = parseNode(modifier.modifies(node, capturedValues))
 			}
 		}
 
 		return node
 	}
+
+	const sortedBy = gene.sortedBy || globalSortedBy
 
 	return {
 		...gene,
@@ -67,5 +64,6 @@ export default function (geneName, gene, config) {
 		captures,
 		matches,
 		generates,
+		sortedBy,
 	}
 }
