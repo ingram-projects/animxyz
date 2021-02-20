@@ -12,12 +12,13 @@ export default function (regex, modifiers) {
 	const postfixRegexes = []
 	for (const [modifierName, modifier] of Object.entries(modifiers)) {
 		if (modifier.matches) {
+			const modifierMatches = new RegExp(`(?<__modifier__${modifierName}>${stringifyRegex(modifier.matches)})`)
 			switch (modifier.type) {
 				case 'prefix':
-					prefixRegexes.push(modifier.matches)
+					prefixRegexes.push(modifierMatches)
 					break
 				case 'postfix':
-					postfixRegexes.push(modifier.matches)
+					postfixRegexes.push(modifierMatches)
 					break
 				default:
 					throw new Error(`modifier ${modifierName} must have a 'type' property of either 'prefix' or 'postfix'`)

@@ -1,30 +1,9 @@
-import postcss from 'postcss'
-
+import applyCaptureMap from './applyCaptureMap'
 import exactifyRegex from './exactifyRegex'
 import injectCaptures from './injectCaptures'
 import injectModifiers from './injectModifiers'
 import injectTypes from './injectTypes'
-
-function applyCaptureMap(value, capture, types) {
-	if (typeof capture === 'object') {
-		for (const [mappingKey, mapping] of Object.entries(capture)) {
-			let matchesKey = false
-
-			if (value !== undefined) {
-				const mappingMatches = exactifyRegex(injectTypes(mappingKey, types))
-				matchesKey = mappingMatches.test(value)
-			} else if (mappingKey === '') {
-				matchesKey = true
-			}
-
-			if (matchesKey) {
-				if (typeof mapping === 'boolean') return mapping ? value : undefined
-				if (typeof mapping === 'function') return mapping(value)
-				return mapping
-			}
-		}
-	}
-}
+import parseNode from './parseNode'
 
 // Parses gene by merging global modifiers, types, and captures
 export default function (gene, config) {
@@ -62,18 +41,12 @@ export default function (gene, config) {
 			capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
 		}
 
-		let node = gene.generates(matchStr, capturedValues)
-		if (typeof node === 'string') {
-			node = postcss.parse(node)
-		}
-		node.cleanRaws()
+		let node = parseNode(gene.generates(matchStr, capturedValues))
 
-		for (const modifier of Object.values(modifiers)) {
-			node = modifier.modifies(node, capturedValues)
-			if (typeof node === 'string') {
-				node = postcss.parse(node)
+		for (const [modifierName, modifier] of Object.entries(modifiers)) {
+			if (matchObj.groups[`__modifier__${modifierName}`]) {
+				node = parseNode(modifier.modifies(node, capturedValues))
 			}
-			node.cleanRaws()
 		}
 
 		return node
