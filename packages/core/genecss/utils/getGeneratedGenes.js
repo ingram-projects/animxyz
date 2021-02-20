@@ -26,9 +26,13 @@ export default function (config) {
 			for (const match of contentMatches) {
 				let generatedGene = generatedGenes[match]
 				if (!generatedGene) {
+					const node = parsedGene.generates(match)
+
+					console.log(node.toString())
+
 					generatedGene = {
 						gene,
-						node: parsedGene.generates(match),
+						node,
 						count: 0,
 					}
 					generatedGenes[match] = generatedGene
@@ -37,6 +41,4 @@ export default function (config) {
 			}
 		}
 	}
-
-	console.log(generatedGenes)
 }

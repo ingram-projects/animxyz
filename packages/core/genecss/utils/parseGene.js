@@ -5,9 +5,9 @@ import injectCaptures from './injectCaptures'
 import injectModifiers from './injectModifiers'
 import injectTypes from './injectTypes'
 
-function applyValueMap(value, valueMap, types) {
-	if (typeof valueMap === 'object') {
-		for (const [mappingKey, mapping] of Object.entries(valueMap)) {
+function applyCaptureMap(value, capture, types) {
+	if (typeof capture === 'object') {
+		for (const [mappingKey, mapping] of Object.entries(capture)) {
 			let matchesKey = false
 
 			if (value !== undefined) {
@@ -18,7 +18,7 @@ function applyValueMap(value, valueMap, types) {
 			}
 
 			if (matchesKey) {
-				if (typeof mapping === 'boolean') return mapping ? mappingKey : undefined
+				if (typeof mapping === 'boolean') return mapping ? value : undefined
 				if (typeof mapping === 'function') return mapping(value)
 				return mapping
 			}
@@ -55,16 +55,27 @@ export default function (gene, config) {
 	const generates = (matchStr) => {
 		const exactMatch = exactifyRegex(matches)
 		const matchObj = matchStr.match(exactMatch)
+		if (!matchObj) throw new Error(`string '${matchStr}' does not match gene '${gene.name}'`)
 		const capturedValues = {}
 		for (const [groupName, groupValue] of Object.entries(matchObj.groups)) {
 			const capture = captures[groupName]
-			capturedValues[groupName] = capture ? applyValueMap(groupValue, capture, types) : groupValue
+			capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
 		}
 
 		let node = gene.generates(matchStr, capturedValues)
 		if (typeof node === 'string') {
 			node = postcss.parse(node)
 		}
+		node.cleanRaws()
+
+		for (const modifier of Object.values(modifiers)) {
+			node = modifier.modifies(node, capturedValues)
+			if (typeof node === 'string') {
+				node = postcss.parse(node)
+			}
+			node.cleanRaws()
+		}
+
 		return node
 	}
 

@@ -22,10 +22,10 @@ module.exports = {
 					xl: 'min-width: 1280px',
 				},
 			},
-			modifies(node, { media }) {
+			modifies(node, { query }) {
 				return `
-				@media (${media}) {
-					${node}
+				@media (${query}) {
+					${node.toString()}
 				}
 				`
 			},
@@ -34,14 +34,17 @@ module.exports = {
 			type: 'postfix',
 			matches: /:hover/,
 			modifies(node) {
-				return node.selector.append(':hover')
+				node.walkRules((rule) => {
+					rule.selector = `${rule.selector}:hover`
+				})
+				return node
 			},
 		},
 	},
 	genes: {
 		translate: {
 			layers: ['utilities', 'transforms'],
-			modifiedBy: ['media', 'hover'],
+			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -65,7 +68,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}translate-${axis}: calc(${value} * ${multiplier});`
+							return `--xyz-${mode ? `${mode}-` : ''}translate-${axis}: calc(${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}
@@ -74,7 +77,7 @@ module.exports = {
 		},
 		rotate: {
 			layers: ['utilities', 'transforms'],
-			modifiedBy: ['media', 'hover'],
+			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -98,7 +101,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}rotate-${axis}: calc(${value} * ${multiplier});`
+							return `--xyz-${mode ? `${mode}-` : ''}rotate-${axis}: calc(${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}
@@ -107,7 +110,7 @@ module.exports = {
 		},
 		scale: {
 			layers: ['utilities', 'transforms'],
-			modifiedBy: ['media', 'hover'],
+			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -132,7 +135,7 @@ module.exports = {
 					${axes
 						.split('')
 						.map((axis) => {
-							return `--xyz-${mode && mode + '-'}scale-${axis}: calc(1 + ${value} * ${multiplier});`
+							return `--xyz-${mode ? `${mode}-` : ''}scale-${axis}: calc(1 + ${value} * ${multiplier});`
 						})
 						.join('\n')}
 				}
