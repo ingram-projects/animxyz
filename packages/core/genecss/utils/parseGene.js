@@ -1,4 +1,5 @@
 import applyCaptureMap from './applyCaptureMap'
+import exactifyRegex from './exactifyRegex'
 import injectCaptures from './injectCaptures'
 import injectModifiers from './injectModifiers'
 import injectTypes from './injectTypes'
@@ -35,20 +36,39 @@ export default function (geneName, gene, config) {
 
 	const matches = injectTypes(injectCaptures(injectModifiers(gene.matches || geneName, modifiers), captures), types)
 
-	const generates = (match, groups) => {
-		const capturedValues = {}
+	const matchesString = (matchStr) => {
+		const exactMatch = exactifyRegex(matches)
+		const matchObj = matchStr.match(exactMatch)
+		if (!matchObj) return null
+
+		const match = matchObj[0]
+		const groups = matchObj.groups
+
+		const captured = {}
 		if (groups) {
 			for (const [groupName, groupValue] of Object.entries(groups)) {
 				const capture = captures[groupName]
-				capturedValues[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
+				captured[groupName] = capture ? applyCaptureMap(groupValue, capture, types) : groupValue
 			}
 		}
 
-		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(match, capturedValues))
+		return {
+			match,
+			captured,
+		}
+	}
+
+	const generates = (matchStr) => {
+		const matchObj = matchesString(matchStr)
+		if (!matchObj) return null
+
+		const { match, captured } = matchObj
+
+		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(match, captured))
 
 		for (const [modifierName, modifier] of Object.entries(modifiers)) {
-			if (groups[`__modifier__${modifierName}`]) {
-				node = parseNode(modifier.modifies(node, capturedValues))
+			if (captured[`__modifier__${modifierName}`]) {
+				node = parseNode(modifier.modifies(node, captured))
 			}
 		}
 
@@ -63,6 +83,7 @@ export default function (geneName, gene, config) {
 		types,
 		captures,
 		matches,
+		matchesString,
 		generates,
 		sortedBy,
 	}

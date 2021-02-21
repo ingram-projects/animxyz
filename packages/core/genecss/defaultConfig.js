@@ -1,7 +1,7 @@
 import * as types from './types'
 
-function defaultSortedBy(a, b) {
-	return a.match.localeCompare(b.match)
+function defaultSortedBy([a], [b]) {
+	return a.localeCompare(b)
 }
 
 export default {

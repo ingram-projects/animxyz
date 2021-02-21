@@ -13,33 +13,35 @@ export default function (config) {
 
 	for (const [geneName, gene] of Object.entries(genes)) {
 		const parsedGene = parseGene(geneName, gene, config)
-		const contentMatches = contentString.matchAll(globalizeRegex(parsedGene.matches))
+		const contentMatched = contentString.match(globalizeRegex(parsedGene.matches))
 
-		if (contentMatches) {
-			let generatedGene = {}
-
-			for (const matchObj of contentMatches) {
-				const match = matchObj[0]
-				const groups = matchObj.groups
-
-				let generatedGeneMatch = generatedGene[match]
-				if (!generatedGeneMatch) {
-					const node = parsedGene.generates(match, groups)
-					generatedGeneMatch = {
-						gene: parsedGene,
-						node,
-						match,
-						groups,
-						count: 0,
-					}
-					console.log(groups)
-					generatedGene[match] = generatedGeneMatch
-				}
-				generatedGeneMatch.count += 1
+		if (contentMatched) {
+			let generatedGene = {
+				gene: parsedGene,
+				matched: {},
 			}
 
-			generatedGene = Object.fromEntries(
-				Object.entries(generatedGene).sort(([, a], [, b]) => parsedGene.sortedBy(a, b))
+			for (const match of contentMatched) {
+				const { captured } = parsedGene.matchesString(match)
+
+				let geneMatch = generatedGene.matched[match]
+				if (!geneMatch) {
+					const node = parsedGene.generates(match, captured)
+					geneMatch = {
+						match,
+						captured,
+						node,
+						count: 0,
+					}
+					generatedGene.matched[match] = geneMatch
+				}
+				geneMatch.count += 1
+			}
+
+			generatedGene.matched = Object.fromEntries(
+				Object.entries(generatedGene.matched).sort(([, a], [, b]) => {
+					return parsedGene.sortedBy([a.match, a.captured], [b.match, b.captured])
+				})
 			)
 
 			generatedGenes[geneName] = generatedGene
