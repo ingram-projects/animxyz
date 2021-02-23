@@ -48,5 +48,5 @@ export default function (config) {
 		}
 	}
 
-	console.log(generatedGenes)
+	return generatedGenes
 }

@@ -64,7 +64,7 @@ module.exports = {
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
 				return `
-				[xyz~=${match}] {
+				[xyz~='${match}'] {
 					${axes
 						.split('')
 						.map((axis) => {
@@ -97,7 +97,7 @@ module.exports = {
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
 				return `
-				[xyz~=${match}] {
+				[xyz~='${match}'] {
 					${axes
 						.split('')
 						.map((axis) => {
@@ -131,7 +131,7 @@ module.exports = {
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
 				return `
-				[xyz~=${match}] {
+				[xyz~='${match}'] {
 					${axes
 						.split('')
 						.map((axis) => {

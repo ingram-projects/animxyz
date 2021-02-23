@@ -7,11 +7,27 @@ const genecssPlugin = function (config) {
 
 	const mergedConfig = mergeConfigs(defaultConfig, customConfig)
 
-	getGeneratedGenes(mergedConfig)
+	const generatedGenes = getGeneratedGenes(mergedConfig)
+
+	console.log(generatedGenes)
 
 	return {
 		postcssPlugin: 'genecss',
-		Once() {},
+		AtRule: {
+			// gene(atRule) {
+			// 	console.log(atRule)
+			// },
+			'gene-layer'(atRule) {
+				const layerNodes = []
+				Object.values(generatedGenes).forEach((generatedGene) => {
+					if (generatedGene.gene.layers.includes(atRule.params)) {
+						const geneNodes = Object.values(generatedGene.matched).map((match) => match.node)
+						layerNodes.push(...geneNodes)
+					}
+				})
+				atRule.replaceWith(layerNodes)
+			},
+		},
 	}
 }
 genecssPlugin.postcss = true

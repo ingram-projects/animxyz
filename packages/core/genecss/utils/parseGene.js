@@ -65,12 +65,12 @@ export default function (geneName, gene, config) {
 		const { match, captured } = matchObj
 
 		let node = parseNode(typeof gene.generates === 'string' ? gene.generates : gene.generates(match, captured))
-
 		for (const [modifierName, modifier] of Object.entries(modifiers)) {
 			if (captured[`__modifier__${modifierName}`]) {
 				node = parseNode(modifier.modifies(node, captured))
 			}
 		}
+		node.cleanRaws()
 
 		return node
 	}
