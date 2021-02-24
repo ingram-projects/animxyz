@@ -1,7 +1,17 @@
 @gene-layer utilities;
 
-@gene /(?<type>margin|padding)-(?<value>@length|@percentage)/ {
+@gene spacings {
+	@modified-by media;
+	@matches /(?<type>(margin|padding)(-(left|right|top|bottom))?)-(?<value>@length|@percentage)/;
+	@generates {
+		.$match {
+			$type: $value;
+		}
+	}
+}
+
+@gene test {
 	.$match {
-		$type: $value;
+		foo: bar;
 	}
 }

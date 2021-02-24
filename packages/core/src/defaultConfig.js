@@ -1,7 +1,7 @@
 module.exports = {
 	content: [
-		{ content: 'asdsad lg:appear-up-1:hover in-up:hover out-up-4 up-25%' },
-		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd asd out-up as' },
+		{ content: 'asdsad lg:appear-up-1:hover in-up:hover out-up-4 up-25% margin-10px lg:padding-left-5%' },
+		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd test out-up as' },
 	],
 	captures: {
 		mode: {
@@ -9,6 +9,17 @@ module.exports = {
 			in: true,
 			out: true,
 		},
+	},
+	layers: {
+		core: {
+			generates(node) {
+				return `
+					// this is the core layer
+					${node.toString()}
+				`
+			},
+		},
+		utilities: true,
 	},
 	modifiers: {
 		media: {
@@ -43,7 +54,7 @@ module.exports = {
 	},
 	genes: {
 		translate: {
-			layers: ['utilities', 'transforms'],
+			layers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
@@ -76,7 +87,7 @@ module.exports = {
 			},
 		},
 		rotate: {
-			layers: ['utilities', 'transforms'],
+			layers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
@@ -109,7 +120,7 @@ module.exports = {
 			},
 		},
 		scale: {
-			layers: ['utilities', 'transforms'],
+			layers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {

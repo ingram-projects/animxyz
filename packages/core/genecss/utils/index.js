@@ -1,4 +1,5 @@
 export { default as applyCaptureMap } from './applyCaptureMap'
+export { default as createRootWithNodes } from './createRootWithNodes'
 export { default as exactifyRegex } from './exactifyRegex'
 export { default as getContentString } from './getContentString'
 export { default as getGeneratedGenes } from './getGeneratedGenes'

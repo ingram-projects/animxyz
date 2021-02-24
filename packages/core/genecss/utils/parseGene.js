@@ -7,7 +7,9 @@ import parseNode from './parseNode'
 
 // Parses gene by merging global modifiers, types, and captures
 export default function (geneName, gene, config) {
-	if (typeof gene === 'string') {
+	const { types: globalTypes, captures: globalCaptures, modifiers: globalModifiers, sortedBy: globalSortedBy } = config
+
+	if (typeof gene === 'string' || typeof gene === 'function') {
 		gene = {
 			generates: gene,
 		}
@@ -15,7 +17,7 @@ export default function (geneName, gene, config) {
 
 	if (!gene.generates) throw new Error(`gene '${geneName}' must have a 'generates' property defined`)
 
-	const { types: globalTypes, captures: globalCaptures, modifiers: globalModifiers, sortedBy: globalSortedBy } = config
+	const layers = gene.layers || []
 
 	const modifiers = {}
 	const modifierTypes = {}
@@ -79,6 +81,7 @@ export default function (geneName, gene, config) {
 
 	return {
 		...gene,
+		layers,
 		modifiers,
 		types,
 		captures,

@@ -3,8 +3,8 @@ import getContentString from './getContentString'
 import globalizeRegex from './globalizeRegex'
 import parseGene from './parseGene'
 
-export default function (config) {
-	const { content, genes } = config
+export default function (genes, config) {
+	const { content } = config
 
 	if (isEmptyObject(genes)) throw new Error('no genes are defined')
 
