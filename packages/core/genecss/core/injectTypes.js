@@ -1,5 +1,4 @@
-import isEmptyObject from './isEmptyObject'
-import stringifyRegex from './stringifyRegex'
+import { isEmptyObject, stringifyRegex } from '../utils'
 
 // Injects types into regex string
 function injectTypes(regex, types) {

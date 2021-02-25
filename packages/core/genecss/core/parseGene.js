@@ -1,9 +1,8 @@
+import { exactifyRegex, parseNode } from '../utils'
 import applyCaptureMap from './applyCaptureMap'
-import exactifyRegex from './exactifyRegex'
 import injectCaptures from './injectCaptures'
 import injectModifiers from './injectModifiers'
 import injectTypes from './injectTypes'
-import parseNode from './parseNode'
 
 // Parses gene by merging global modifiers, types, and captures
 export default function (geneName, gene, config) {

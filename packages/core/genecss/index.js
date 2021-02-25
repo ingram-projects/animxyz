@@ -1,30 +1,29 @@
-import { createRootWithNodes, getGeneratedGenes, mergeConfigs, resolveConfig } from './utils'
-import defaultConfig from './defaultConfig'
+import { parseConfig } from './config'
+import { extractContentString, generateGene, generateGenes } from './core'
+import { createRootWithNodes } from './utils'
 
 const genecssPlugin = function (config) {
-	const customConfig = resolveConfig(config ? config : './genecss.config.js')
-	if (!customConfig) return
+	const parsedConfig = parseConfig(config)
 
-	const mergedConfig = mergeConfigs(defaultConfig, customConfig)
+	const contentString = extractContentString(parsedConfig.content)
+	const generatedGenes = generateGenes(parsedConfig.genes, contentString, parsedConfig)
 
 	return {
 		postcssPlugin: 'genecss',
-		Once(root) {
-			const inlineGenes = {}
-			root.walkAtRules('gene', (atRule) => {
-				const geneName = atRule.params
+		AtRule: {
+			gene(atRule) {
+				const gene = {}
 
-				const inlineGene = {}
 				let generatesString
 				atRule.each((childNode) => {
 					if (childNode.type === 'atrule') {
 						switch (childNode.name) {
 							case 'modified-by':
-								inlineGene.modifiedBy = childNode.params.split(',').map((str) => str.trim())
+								gene.modifiedBy = childNode.params.split(',').map((str) => str.trim())
 								childNode.remove()
 								break
 							case 'matches':
-								inlineGene.matches = childNode.params
+								gene.matches = childNode.params
 								childNode.remove()
 								break
 							case 'generates':
@@ -39,7 +38,7 @@ const genecssPlugin = function (config) {
 					generatesString = createRootWithNodes(atRule.nodes).toString()
 				}
 
-				inlineGene.generates = (match, captured) => {
+				gene.generates = (match, captured) => {
 					let node = generatesString
 					const replaceTerms = {
 						match,
@@ -51,13 +50,12 @@ const genecssPlugin = function (config) {
 					return node
 				}
 
-				inlineGenes[geneName] = inlineGene
-			})
+				const generatedGene = generateGene(atRule.params, gene, contentString, parsedConfig)
+				const geneNodes = Object.values(generatedGene.matched).map((match) => match.node)
 
-			const mergedGenes = { ...mergedConfig.genes, ...inlineGenes }
-			const generatedGenes = getGeneratedGenes(mergedGenes, mergedConfig)
-
-			root.walkAtRules('gene-layer', (atRule) => {
+				atRule.replaceWith(geneNodes)
+			},
+			'gene-layer'(atRule) {
 				const layerNodes = []
 				for (const generatedGene of Object.values(generatedGenes)) {
 					if (atRule.params === '*' || generatedGene.gene.layers.includes(atRule.params)) {
@@ -66,7 +64,7 @@ const genecssPlugin = function (config) {
 					}
 				}
 				atRule.replaceWith(layerNodes)
-			})
+			},
 		},
 	}
 }

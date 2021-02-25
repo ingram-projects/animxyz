@@ -1,4 +1,4 @@
-import exactifyRegex from './exactifyRegex'
+import { exactifyRegex } from '../utils'
 import injectTypes from './injectTypes'
 
 export default function (value, capture, types) {

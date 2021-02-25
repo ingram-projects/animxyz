@@ -1,6 +1,4 @@
-import isEmptyObject from './isEmptyObject'
-import stringifyRegex from './stringifyRegex'
-import joinRegexes from './joinRegexes'
+import { isEmptyObject, joinRegexes, stringifyRegex } from '../utils'
 
 // Injects modifiers into regex string
 export default function (regex, modifiers) {

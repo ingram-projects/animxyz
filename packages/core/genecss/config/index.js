@@ -1,0 +1,5 @@
+export { default as defaultConfig } from './defaultConfig'
+export { default as mergeConfigs } from './mergeConfigs'
+export { default as parseConfig } from './parseConfig'
+export { default as resolveConfig } from './resolveConfig'
+export { default as defaultTypes } from './defaultTypes'

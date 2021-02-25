@@ -1,4 +1,4 @@
-import * as types from './types'
+import * as defaultTypes from './defaultTypes'
 
 function defaultSortedBy([a], [b]) {
 	return a.localeCompare(b)
@@ -6,7 +6,7 @@ function defaultSortedBy([a], [b]) {
 
 export default {
 	content: [],
-	types,
+	types: defaultTypes,
 	captures: {},
 	modifiers: {},
 	genes: {},
