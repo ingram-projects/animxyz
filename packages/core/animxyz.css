@@ -1,4 +1,4 @@
-@gene-layer utilities;
+@gene-layers core, utilities;
 
 @gene spacings {
 	@modified-by media;

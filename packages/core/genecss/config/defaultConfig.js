@@ -10,5 +10,6 @@ export default {
 	captures: {},
 	modifiers: {},
 	genes: {},
+	layers: {},
 	sortedBy: defaultSortedBy,
 }

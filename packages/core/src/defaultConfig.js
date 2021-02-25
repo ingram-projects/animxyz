@@ -12,10 +12,10 @@ module.exports = {
 	},
 	layers: {
 		core: {
-			generates(node) {
+			generates(nodes) {
 				return `
-					// this is the core layer
-					${node.toString()}
+					/* this is the core layer */
+					${nodes.toString()}
 				`
 			},
 		},
@@ -54,7 +54,7 @@ module.exports = {
 	},
 	genes: {
 		translate: {
-			layers: ['utilities'],
+			inLayers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
@@ -87,7 +87,7 @@ module.exports = {
 			},
 		},
 		rotate: {
-			layers: ['utilities'],
+			inLayers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
@@ -120,7 +120,7 @@ module.exports = {
 			},
 		},
 		scale: {
-			layers: ['utilities'],
+			inLayers: ['utilities'],
 			modifiedBy: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {

@@ -16,8 +16,6 @@ export default function (geneName, gene, config) {
 
 	if (!gene.generates) throw new Error(`gene '${geneName}' must have a 'generates' property defined`)
 
-	const layers = gene.layers || []
-
 	const modifiers = {}
 	const modifierTypes = {}
 	const modifierCaptures = {}
@@ -78,15 +76,17 @@ export default function (geneName, gene, config) {
 
 	const sortedBy = gene.sortedBy || globalSortedBy
 
+	const inLayers = gene.inLayers || []
+
 	return {
 		...gene,
-		layers,
-		modifiers,
 		types,
 		captures,
+		modifiers,
 		matches,
 		matchesString,
 		generates,
 		sortedBy,
+		inLayers,
 	}
 }

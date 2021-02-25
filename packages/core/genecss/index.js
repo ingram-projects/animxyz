@@ -1,5 +1,5 @@
 import { parseConfig } from './config'
-import { extractContentString, generateGenes, processGeneAtRule, processGeneLayerAtRule } from './core'
+import { extractContentString, generateGenes, processGeneAtRule, processGeneLayersAtRule } from './core'
 
 const genecssPlugin = function (config) {
 	const parsedConfig = parseConfig(config)
@@ -13,8 +13,8 @@ const genecssPlugin = function (config) {
 			gene(atRule) {
 				processGeneAtRule(atRule, contentString, parsedConfig)
 			},
-			'gene-layer'(atRule) {
-				processGeneLayerAtRule(atRule, generatedGenes)
+			'gene-layers'(atRule) {
+				processGeneLayersAtRule(atRule, generatedGenes, parsedConfig)
 			},
 		},
 	}
