@@ -3,11 +3,55 @@ module.exports = {
 		{ content: 'asdsad lg:appear-up-1:hover in-up:hover out-up-4 up-25% margin-10px lg:padding-left-5%' },
 		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd test out-up as' },
 	],
-	captures: {
-		mode: {
+	theme: {
+		modes: {
 			appear: true,
 			in: true,
 			out: true,
+		},
+		queries: {
+			sm: 'min-width: 640px',
+			md: 'min-width: 768px',
+			lg: 'min-width: 1024px',
+			xl: 'min-width: 1280px',
+		},
+		translate: {
+			multiplier: '10px',
+		},
+		rotate: {
+			multipler: '5deg',
+		},
+		scale: {
+			multiplier: '0.025',
+		},
+	},
+	captures: {
+		mode: (theme) => theme('modes'),
+	},
+	modifiers: {
+		media: (theme) => ({
+			type: 'prefix',
+			matches: /<query>:/,
+			captures: {
+				query: theme('queries'),
+			},
+			modifies(node, { query }) {
+				return `
+				@media (${query}) {
+					${node.toString()}
+				}
+				`
+			},
+		}),
+		hover: {
+			type: 'postfix',
+			matches: /:hover/,
+			modifies(node) {
+				node.walkRules((rule) => {
+					rule.selector = `${rule.selector}:hover`
+				})
+				return node
+			},
 		},
 	},
 	layers: {
@@ -21,41 +65,10 @@ module.exports = {
 		},
 		utilities: true,
 	},
-	modifiers: {
-		media: {
-			type: 'prefix',
-			matches: /<query>:/,
-			captures: {
-				query: {
-					sm: 'min-width: 640px',
-					md: 'min-width: 768px',
-					lg: 'min-width: 1024px',
-					xl: 'min-width: 1280px',
-				},
-			},
-			modifies(node, { query }) {
-				return `
-				@media (${query}) {
-					${node.toString()}
-				}
-				`
-			},
-		},
-		hover: {
-			type: 'postfix',
-			matches: /:hover/,
-			modifies(node) {
-				node.walkRules((rule) => {
-					rule.selector = `${rule.selector}:hover`
-				})
-				return node
-			},
-		},
-	},
 	genes: {
-		translate: {
-			inLayers: ['utilities'],
-			modifiedBy: ['hover', 'media'],
+		translate: (theme) => ({
+			layers: ['utilities'],
+			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -70,7 +83,7 @@ module.exports = {
 					'': 'var(--xyz-translate-default)',
 					'/@length/': true,
 					'/@percentage/': true,
-					'/@integer/': (v) => `${parseInt(v) * 10}px`,
+					'/@integer/': (value) => `calc(${value} * ${theme('translate.multiplier')})`,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
@@ -85,10 +98,10 @@ module.exports = {
 				}
 				`
 			},
-		},
-		rotate: {
-			inLayers: ['utilities'],
-			modifiedBy: ['hover', 'media'],
+		}),
+		rotate: (theme) => ({
+			layers: ['utilities'],
+			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -102,8 +115,8 @@ module.exports = {
 				value: {
 					'': 'var(--xyz-rotate-default)',
 					'/@angle/': true,
-					'/@percentage/': (v) => `${parseFloat(v) / 100}turn`,
-					'/@integer/': (v) => `${parseInt(v) * 10}deg`,
+					'/@percentage/': (value) => `${parseFloat(value) / 100}turn`,
+					'/@integer/': (value) => `calc(${value} * ${theme('rotate.multiplier')})`,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
@@ -118,10 +131,10 @@ module.exports = {
 				}
 				`
 			},
-		},
-		scale: {
-			inLayers: ['utilities'],
-			modifiedBy: ['hover', 'media'],
+		}),
+		scale: (theme) => ({
+			layers: ['utilities'],
+			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
 			captures: {
 				type: {
@@ -136,8 +149,8 @@ module.exports = {
 				},
 				value: {
 					'': 'var(--xyz-scale-default)',
-					'/@percentage/': (v) => parseFloat(v) / 100,
-					'/@integer/': (v) => parseInt(v) * 0.025,
+					'/@percentage/': (value) => parseFloat(value) / 100,
+					'/@integer/': (value) => `calc(${value} * ${theme('scale.multiplier')})`,
 				},
 			},
 			generates(match, { mode, type: { axes, multiplier }, value }) {
@@ -152,6 +165,6 @@ module.exports = {
 				}
 				`
 			},
-		},
+		}),
 	},
 }

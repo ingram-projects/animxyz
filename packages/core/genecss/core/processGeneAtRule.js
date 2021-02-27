@@ -8,8 +8,8 @@ export default function (atRule, contentString, config) {
 	atRule.each((childNode) => {
 		if (childNode.type === 'atrule') {
 			switch (childNode.name) {
-				case 'modified-by':
-					gene.modifiedBy = childNode.params.split(',').map((str) => str.trim())
+				case 'modifiers':
+					gene.modifiers = childNode.params.split(',').map((str) => str.trim())
 					childNode.remove()
 					break
 				case 'matches':

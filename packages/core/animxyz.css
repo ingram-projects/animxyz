@@ -1,7 +1,7 @@
 @gene-layers core, utilities;
 
 @gene spacings {
-	@modified-by media;
+	@modifiers media;
 	@matches /(?<type>(margin|padding)(-(left|right|top|bottom))?)-(?<value>@length|@percentage)/;
 	@generates {
 		.$match {

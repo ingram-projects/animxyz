@@ -13,7 +13,7 @@ export default function (atRule, generatedGenes, config) {
 
 		const childNodes = []
 		for (const generatedGene of Object.values(generatedGenes)) {
-			if (isAllLayer || generatedGene.gene.inLayers.includes(atRuleLayer)) {
+			if (isAllLayer || generatedGene.gene.layers.includes(atRuleLayer)) {
 				const geneNodes = Object.values(generatedGene.matched).map((match) => match.node)
 				childNodes.push(...geneNodes)
 			}

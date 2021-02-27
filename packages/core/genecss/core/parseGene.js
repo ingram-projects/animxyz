@@ -19,8 +19,8 @@ export default function (geneName, gene, config) {
 	const modifiers = {}
 	const modifierTypes = {}
 	const modifierCaptures = {}
-	if (gene.modifiedBy) {
-		for (const modifierName of gene.modifiedBy) {
+	if (gene.modifiers) {
+		for (const modifierName of gene.modifiers) {
 			const modifier = globalModifiers[modifierName]
 			if (!modifier) throw new Error(`gene '${geneName}' cannot use undefined modifier '${modifierName}'`)
 			modifiers[modifierName] = modifier
@@ -76,7 +76,7 @@ export default function (geneName, gene, config) {
 
 	const sortedBy = gene.sortedBy || globalSortedBy
 
-	const inLayers = gene.inLayers || []
+	const layers = gene.layers || []
 
 	return {
 		...gene,
@@ -87,6 +87,6 @@ export default function (geneName, gene, config) {
 		matchesString,
 		generates,
 		sortedBy,
-		inLayers,
+		layers,
 	}
 }

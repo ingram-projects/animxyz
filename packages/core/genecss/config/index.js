@@ -1,4 +1,5 @@
 export { default as defaultConfig } from './defaultConfig'
+export { default as injectTheme } from './injectTheme'
 export { default as mergeConfigs } from './mergeConfigs'
 export { default as parseConfig } from './parseConfig'
 export { default as resolveConfig } from './resolveConfig'

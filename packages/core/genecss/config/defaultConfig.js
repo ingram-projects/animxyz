@@ -6,10 +6,11 @@ function defaultSortedBy([a], [b]) {
 
 export default {
 	content: [],
+	theme: {},
 	types: defaultTypes,
 	captures: {},
 	modifiers: {},
-	genes: {},
 	layers: {},
+	genes: {},
 	sortedBy: defaultSortedBy,
 }
