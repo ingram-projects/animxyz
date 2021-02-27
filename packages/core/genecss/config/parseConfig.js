@@ -1,5 +1,5 @@
 import defaultConfig from './defaultConfig'
-import injectTheme from './injectTheme'
+import injectHelpers from './injectHelpers'
 import resolveConfig from './resolveConfig'
 import mergeConfigs from './mergeConfigs'
 
@@ -9,7 +9,7 @@ export default function (config) {
 
 	const { theme, captures, modifiers, layers, genes } = mergedConfig
 	for (const obj of [theme, captures, modifiers, layers, genes]) {
-		injectTheme(obj, theme)
+		injectHelpers(obj, mergedConfig)
 	}
 
 	return mergedConfig

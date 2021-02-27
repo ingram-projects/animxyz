@@ -1,4 +1,4 @@
-import { createRootWithNodes, parseNode } from '../utils'
+import { createRootWithNodes, processNode } from '../utils'
 
 export default function (atRule, generatedGenes, config) {
 	const { layers } = config
@@ -21,14 +21,14 @@ export default function (atRule, generatedGenes, config) {
 
 		let layerNode
 		if (layer && layer.generates) {
-			layerNode = parseNode(layer.generates(childNodes))
+			layerNode = processNode(layer.generates(childNodes))
 		} else {
 			layerNode = createRootWithNodes(childNodes)
 		}
-		layerNode.cleanRaws()
 
 		layerNodes.push(layerNode)
 	}
 
-	atRule.replaceWith(layerNodes)
+	const rootNode = createRootWithNodes(layerNodes)
+	atRule.replaceWith(rootNode)
 }

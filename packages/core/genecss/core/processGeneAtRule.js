@@ -1,5 +1,5 @@
 import generateGene from './generateGene'
-import { createRootWithNodes } from '../utils'
+import { createRootWithNodes, escapeCSS } from '../utils'
 
 export default function (atRule, contentString, config) {
 	const gene = {}
@@ -35,7 +35,9 @@ export default function (atRule, contentString, config) {
 			...captured,
 		}
 		for (const [replaceKey, replaceValue] of Object.entries(replaceTerms)) {
-			node = node.replace(`$${replaceKey}`, replaceValue)
+			node = node.replace(new RegExp(`\\$\\$(~)?${replaceKey}`, 'g'), (match, escaped) => {
+				return escaped ? escapeCSS(replaceValue) : replaceValue
+			})
 		}
 		return node
 	}
@@ -43,5 +45,6 @@ export default function (atRule, contentString, config) {
 	const generatedGene = generateGene(atRule.params, gene, contentString, config)
 	const geneNodes = Object.values(generatedGene.matched).map((match) => match.node)
 
-	atRule.replaceWith(geneNodes)
+	const rootNode = createRootWithNodes(geneNodes)
+	atRule.replaceWith(rootNode)
 }

@@ -1,7 +1,7 @@
 module.exports = {
 	content: [
 		{ content: 'asdsad lg:appear-up-1:hover in-up:hover out-up-4 up-25% margin-10px lg:padding-left-5%' },
-		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd test out-up as' },
+		{ content: 'asdasdas ds md:appear-rotate-right asd asd asd css-in-js nested-css out-up as' },
 	],
 	theme: {
 		modes: {
@@ -26,10 +26,10 @@ module.exports = {
 		},
 	},
 	captures: {
-		mode: (theme) => theme('modes'),
+		mode: ({ theme }) => theme('modes'),
 	},
 	modifiers: {
-		media: (theme) => ({
+		media: ({ theme }) => ({
 			type: 'prefix',
 			matches: /<query>:/,
 			captures: {
@@ -66,7 +66,7 @@ module.exports = {
 		utilities: true,
 	},
 	genes: {
-		translate: (theme) => ({
+		translate: ({ theme }) => ({
 			layers: ['utilities'],
 			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
@@ -99,7 +99,7 @@ module.exports = {
 				`
 			},
 		}),
-		rotate: (theme) => ({
+		rotate: ({ theme }) => ({
 			layers: ['utilities'],
 			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
@@ -132,7 +132,7 @@ module.exports = {
 				`
 			},
 		}),
-		scale: (theme) => ({
+		scale: ({ theme }) => ({
 			layers: ['utilities'],
 			modifiers: ['hover', 'media'],
 			matches: /(?:<mode>-)?<type>(?:-<value>)?/,
@@ -166,5 +166,20 @@ module.exports = {
 				`
 			},
 		}),
+		'css-in-js': {
+			generates: {
+				'.$$~match': {
+					color: 'blue',
+					marginTop: 5,
+				},
+			},
+		},
+		'nested-css': `
+			.$$~match {
+				.child {
+					foo: bar;
+				}
+			}
+		`,
 	},
 }
