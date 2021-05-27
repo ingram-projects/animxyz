@@ -2,13 +2,11 @@ import React, { useState } from 'react'
 import { xyz, XyzTransitionGroup, XyzTransition } from '@animxyz/react'
 import './App.scoped.scss'
 
-const switchStates = ['one', 'two', 'three', 'four', 'five']
-
 function App() {
-	const [switchState, setSwitchState] = useState(switchStates[0])
+	const [switchState, setSwitchState] = useState(0)
 
-	function randomState() {
-		setSwitchState(switchStates[Math.floor(Math.random() * switchStates.length)])
+	function changeState() {
+		setSwitchState(switchState < 3 ? switchState + 1 : 0)
 	}
 
 	return (
@@ -19,11 +17,10 @@ function App() {
 				})}
 			</XyzTransitionGroup>
 
-			<XyzTransition appear mode="out-in" xyz={xyz(['fade', 'rotate-right', 'duration-10', 'big-100%'])}>
-				<button onClick={randomState} key={switchState}>
-					State {switchState}
-				</button>
+			<XyzTransition appear mode="out-in" xyz={xyz(['fade'])}>
+				{switchState && <div key={switchState}>State {switchState}</div>}
 			</XyzTransition>
+			<button onClick={changeState}>changeState</button>
 		</div>
 	)
 }

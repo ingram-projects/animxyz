@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement } from 'react'
+import React, { Children, Fragment, cloneElement, isValidElement } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { CSSTransition } from 'react-transition-group'
@@ -11,11 +11,11 @@ function XyzTransitionBase(props) {
 
 	const childArray = Children.toArray(children).filter(isValidElement)
 
-	if (childArray.length !== 1) {
-		throw new Error('XyzTransition must have a single truthy child at all times')
+	if (childArray.length > 1) {
+		throw new Error('XyzTransition can have no more than one child at any point')
 	}
 
-	const child = childArray[0]
+	const child = childArray.length === 1 ? childArray[0] : <Fragment />
 
 	return (
 		<CSSTransition {...xyzTransitionProps}>
