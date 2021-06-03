@@ -1,27 +1,20 @@
-import React, { useState } from 'react'
-import { xyz, XyzTransitionGroup, XyzTransition } from '@animxyz/react'
+import React from 'react'
+import { XyzTransitionGroup } from '@animxyz/react'
+import examples from './examples'
 import './App.scoped.scss'
 
 function App() {
-	const [switchState, setSwitchState] = useState(0)
-
-	function changeState() {
-		setSwitchState(switchState < 3 ? switchState + 1 : 0)
-	}
-
 	return (
-		<div>
-			<XyzTransitionGroup appear xyz="fade down duration-10 stagger">
-				{[...Array(5)].map((e, index) => {
-					return <div key={index}>Hello</div>
-				})}
-			</XyzTransitionGroup>
-
-			<XyzTransition appear mode="out-in" xyz={xyz(['fade'])}>
-				{switchState && <div key={switchState}>State {switchState}</div>}
-			</XyzTransition>
-			<button onClick={changeState}>changeState</button>
-		</div>
+		<XyzTransitionGroup className="example-list" appearVisible xyz="fade small delay-1">
+			{Object.entries(examples).map(([exampleName, Example]) => (
+				<div className="example-item" key={exampleName}>
+					<h1 className="example-title mb-s">{exampleName}</h1>
+					<div className="example-content">
+						<Example />
+					</div>
+				</div>
+			))}
+		</XyzTransitionGroup>
 	)
 }
 
