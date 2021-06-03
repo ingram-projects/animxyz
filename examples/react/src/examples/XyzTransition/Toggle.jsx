@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { XyzTransition } from '@animxyz/react'
 
 export default function ToggleExample() {
-	const [buttonToggled, setButtonToggled] = useState(false)
+	const [buttonToggled, setButtonToggled] = useState(true)
 
 	return (
 		<div className="example-wrap flex-col">
