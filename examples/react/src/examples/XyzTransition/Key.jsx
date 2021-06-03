@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { XyzTransition } from '@animxyz/react'
 
-export default function ToggleExample() {
+export default function Example() {
 	const [key, setKey] = useState(1)
 
 	return (

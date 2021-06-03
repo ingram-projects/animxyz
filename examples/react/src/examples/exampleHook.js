@@ -19,20 +19,20 @@ export default function exampleHook() {
 	}
 
 	function beforeAnim() {
-		const newAnimCount = animCount - 1
-		setAnimCount(newAnimCount)
+		setAnimCount((oldAnimCount) => oldAnimCount + 1)
 	}
 
 	function afterAnim() {
-		const newAnimCount = animCount - 1
-		setAnimCount(newAnimCount)
-		if (newAnimCount === 0) {
-			toggleExample()
-		}
+		setAnimCount((oldAnimCount) => oldAnimCount - 1)
 	}
 
 	useEffect(() => {
-		toggleExample()
+		if (animCount === 0) {
+			toggleExample()
+		}
+	}, [animCount])
+
+	useEffect(() => {
 		return () => {
 			clearToggleTimeout()
 		}
@@ -40,14 +40,11 @@ export default function exampleHook() {
 
 	return {
 		toggled: toggled,
-		beforeAppear: beforeAnim,
-		beforeEnter: beforeAnim,
-		beforeLeave: beforeAnim,
-		afterAppear: afterAnim,
-		afterEnter: afterAnim,
-		afterLeave: afterAnim,
-		appearCancelled: afterAnim,
-		enterCancelled: afterAnim,
-		leaveCancelled: afterAnim,
+		listeners: {
+			onEnter: beforeAnim,
+			onEntered: afterAnim,
+			onExit: beforeAnim,
+			onExited: afterAnim,
+		},
 	}
 }
