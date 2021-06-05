@@ -1,0 +1,140 @@
+---
+title: XyzTransition
+id: react-xyz-transition
+
+examples:
+  - name: Toggle
+    component: XyzTransition_Toggle
+    code:
+      - name: React
+        content: |
+          ##jsx
+          <>
+            <XyzTransition appear xyz="fade rotate-right ease-out-back">
+              {buttonToggled && <div className="square" />}
+            </XyzTransition>
+            <button onClick={() => setButtonToggled(!buttonToggled)}>Click to toggle</button>
+          </>
+  - name: Switch
+    component: XyzTransition_Switch
+    code:
+      - name: React
+        content: |
+          ##jsx
+          <>
+            <XyzTransition appear mode="out-in">
+              {shapes[shapeIndex] === 'square' && <div className="square" xyz="fade left-100%" key="square" />}
+              {shapes[shapeIndex] === 'circle' && <div className="circle" xyz="fade up-100%" key="circle" />}
+              {shapes[shapeIndex] === 'triangle' && <div className="triangle" xyz="fade right-100%" key="triangle" />}
+            </XyzTransition>
+            <button onClick={changeShape}>Click to switch</button>
+          </>
+  - name: Key
+    component: XyzTransition_Key
+    code:
+      - name: React
+        content: |
+          ##jsx
+          <>
+            <XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
+              <div className="square" key={key}>{key}</div>
+            </XyzTransition>
+            <button onClick={() => setKey(key + 1)}>Click to increment</button>
+          </>
+  - name: Nested
+    component: XyzTransition_Nested
+    code:
+      - name: React
+        content: |
+          ##jsx
+          <>
+            <XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
+              {buttonToggled && (
+                <div className="item-block">
+                  {[...Array(4)].map((_, index) => (
+                    <div className="square xyz-nested" xyz="fade small stagger" key={index} />
+                  ))}
+                </div>
+              )}
+            </XyzTransition>
+            <button onClick={() => setButtonToggled(!buttonToggled)}>Click to toggle</button>
+          </>
+---
+
+The `<XyzTransition>` component is an extended version of the [&lt;SwitchTransition&gt;](https://reactcommunity.org/react-transition-group/switch-transition) React component used to animate single elements in and out of the page or to animate switching between elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+
+Unlike the complexity of the React component, with `<XyzTransition>` you only need to care about the `appear`, `appearVisible`, `duration`, and `mode` props.
+
+```jsx
+<XyzTransition
+  appear={ boolean }
+  appearVisible={ boolean | IntersectionObserverOptions }
+	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
+	mode={ 'out-in' | 'in-out' }
+>
+	<child />
+</XyzTransition>
+```
+
+---
+## Properties
+
+### appear
+
+When set to `true` will animate elements in on initial render. You can set appear-specific behaviour using the appear-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
+
+You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Transitions-on-Initial-Render).
+
+### appearVisible
+
+You can use this property instead of `appear` to pause the appear animation until the element is visible within the viewport. This uses an [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) behind the scenes which can be customized by passing the `IntersectionObserver` options to the property such as `appearVisible={{ threshold: 0.5, rootMargin: '50px' }}`.
+
+### duration
+
+Sets the behavior of how long to apply the [active class](#active-classes) for the animation. By default the class will be applied only for the duration of the animation, however if you have [nested animations](#nesting) you will want them to complete before removing the class. To do this we've added `duration="auto"` which conviently waits for all nested animations to finish before removing the class.
+
+To apply the class for a specific amount of time you can use a number in milliseconds like `:duration="2000"`.
+
+You can also specify direction-specific behavior using an object describing the behavior for each direction such as `duration={{ appear: 'auto', in: 2000, out: 1000 }}`.
+
+You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Explicit-Transition-Durations).
+
+### mode
+
+Sets the sequencing of element switch transitions. By default the new element will transition **in** simultanously to the old element transitioning **out**. Setting `mode="out-in"` will transition the old element **out** first and setting `mode="in-out"` will transition the new element **in** first.
+
+You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Transition-Modes).
+
+<div class="properties-table table-wrap">
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Default</th>
+				<th>Syntax</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">appear</th>
+				<td>--</td>
+				<td>boolean</td>
+			</tr>
+      <tr>
+				<th scope="row">appearVisible</th>
+				<td>--</td>
+				<td>boolean | IntersectionObserverOptions</td>
+			</tr>
+			<tr>
+				<th scope="row">duration</th>
+				<td>--</td>
+				<td>number | 'auto' | { in: number | 'auto', out: number | 'auto', appear: number | 'auto' }</td>
+			</tr>
+			<tr>
+				<th scope="row">mode</th>
+				<td>--</td>
+				<td>'out-in' | 'in-out'</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

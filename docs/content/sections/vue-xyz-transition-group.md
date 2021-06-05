@@ -98,7 +98,7 @@ Same as the `<XyzTransition>` component.
 
 ### tag
 
-Specifies the tag to use for the wrapper element. Defaults to `'span'`.
+Specifies the tag to use for the wrapper element. Defaults to `'div'`.
 
 <div class="properties-table table-wrap">
 	<table>
