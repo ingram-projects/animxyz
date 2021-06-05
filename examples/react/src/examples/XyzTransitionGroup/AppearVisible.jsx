@@ -6,7 +6,7 @@ export default function Example() {
 	return (
 		<div className="example-wrap">
 			<div className="scroll-wrap">
-				<XyzTransitionGroup appearVisible class="example-grid" xyz="delay-2 fade small rotate-right">
+				<XyzTransitionGroup appearVisible className="example-grid" xyz="delay-2 fade small rotate-right">
 					{[...Array(200)].map((_, index) => (
 						<div className="square" key={index} />
 					))}

@@ -126,9 +126,9 @@ export default {
 				'vue-installation',
 				'vue-xyz-transition',
 				'vue-xyz-transition-group',
-				'vue-v-xyz',
+				'vue-dynamic-xyz',
 				{ header: true, title: 'React Integration', id: 'react-integration' },
-				'react',
+				'react-installation',
 			],
 		}
 	},

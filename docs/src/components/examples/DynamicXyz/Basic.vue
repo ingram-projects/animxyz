@@ -31,7 +31,7 @@ export default {
 				xyzUtilities: {
 					down: false,
 					small: false,
-					rotate: false,
+					'rotate-right': false,
 				},
 			},
 		}

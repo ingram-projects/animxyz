@@ -1,10 +1,10 @@
 ---
-title: v-xyz
-id: vue-v-xyz
+title: Dynamic Xyz
+id: vue-dynamic-xyz
 
 examples:
   - name: Basic
-    component: VXyz_Basic
+    component: DynamicXyz_Basic
     code:
       - name: Vue
         content: |
@@ -16,7 +16,7 @@ examples:
           <input type="checkbox" v-model="xyzUtilities['small']" />
           <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
   - name: By Index
-    component: VXyz_ByIndex
+    component: DynamicXyz_ByIndex
     code:
       - name: Vue
         content: |
