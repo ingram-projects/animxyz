@@ -8,12 +8,13 @@ examples:
     code:
       - name: Vue
         content: |
+          ##javascript
+          const numElements = ${data.numElements}
+          
           ##vue
           <XyzTransitionGroup appear class="example-grid" xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
-          <button @click="addElement">Add Element</button>
-          <button @click="removeElement">Remove Element</button>
   - name: Index
     component: XyzTransitionGroup_Index
     code:
@@ -42,14 +43,15 @@ examples:
     code:
       - name: Vue
         content: |
+          ##javascript
+          const numElements = ${data.numElements}
+          
           ##vue
           <XyzTransitionGroup appear duration="auto" class="example-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
             <div class="item-block" v-for="index in numElements" :key="index">
               <div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
             </div>
           </XyzTransitionGroup>
-          <button @click="addElement">Add Element</button>
-          <button @click="removeElement">Remove Element</button>
   - name: Appear Visible
     component: XyzTransitionGroup_AppearVisible
     code:

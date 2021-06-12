@@ -8,33 +8,42 @@ examples:
     code:
       - name: React
         content: |
+          ##javascript   
+          import { xyz, XyzTransition } from '@animxyz/react'
+
+          const xyzUtilities = {
+            'down': ${data.xyzUtilities && data.xyzUtilities['down']},
+            'small': ${data.xyzUtilities && data.xyzUtilities['small']},
+            'rotate-right': ${data.xyzUtilities && data.xyzUtilities['rotate-right']},
+          }
+          
           ##jsx
-          <XyzTransition xyz="fade" v-xyz="xyzUtilities">
-            <div class="square" v-if="${data.toggled}"></div>
+          <XyzTransition xyz={xyz('fade duration-10', xyzUtilities)}>
+            {${data.toggled} && <div className="square" />}
           </XyzTransition>
-          <input type="checkbox" v-model="xyzUtilities['down']" />
-          <input type="checkbox" v-model="xyzUtilities['small']" />
-          <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
   - name: By Index
     component: DynamicXyz_ByIndex
     code:
       - name: React
         content: |
+          ##javascript   
+          import { xyz, XyzTransitionGroup } from '@animxyz/react'
+
           ##jsx
-          <XyzTransitionGroup class="example-grid">
-            <div
-              class="square"
-              xyz="fade out-small-50% out-duration-30"
-              v-xyz="{
-                'in-down-50% in-right-50% in-stagger-1': index <= 41,
-                'in-up-50% in-left-50% in-stagger-rev-1': index > 41,
-                'out-rotate-right-5': index % 2,
-                'out-rotate-left-5': (index + 1) % 2,
-              }"
-              v-if="${data.toggled}"
-              v-for="index in 81"
-              :key="index"
-            ></div>
+          <XyzTransitionGroup className="example-grid">
+          {${data.toggled} &&
+            [...Array(81)].map((_, index) => (
+              <div
+                className="square"
+                xyz={xyz('fade out-small-50% out-duration-30', {
+                  'in-down in-right in-stagger-1': index <= 41,
+                  'in-up in-left in-stagger-rev-1': index > 41,
+                  'out-rotate-right-5': index % 2,
+                  'out-rotate-left-5': (index + 1) % 2,
+                })}
+                key={index}
+              />
+            ))}
           </XyzTransitionGroup>
 ---
 

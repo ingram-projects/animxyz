@@ -8,13 +8,17 @@ examples:
     code:
       - name: Vue
         content: |
+          ##javascript          
+          const xyzUtilities = {
+            'down': ${data.xyzUtilities && data.xyzUtilities['down']},
+            'small': ${data.xyzUtilities && data.xyzUtilities['small']},
+            'rotate-right': ${data.xyzUtilities && data.xyzUtilities['rotate-right']},
+          }
+
           ##vue
-          <XyzTransition xyz="fade" v-xyz="xyzUtilities">
+          <XyzTransition xyz="fade duration-10" v-xyz="xyzUtilities">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
-          <input type="checkbox" v-model="xyzUtilities['down']" />
-          <input type="checkbox" v-model="xyzUtilities['small']" />
-          <input type="checkbox" v-model="xyzUtilities['rotate-right']" />
   - name: By Index
     component: DynamicXyz_ByIndex
     code:

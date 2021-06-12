@@ -8,62 +8,65 @@ examples:
     code:
       - name: React
         content: |
+          ##javascript
+          import { XyzTransitionGroup } from '@animxyz/react'
+
+          const numElements = ${data.numElements}
+
           ##jsx
-          <>
-            <XyzTransitionGroup appear className="example-grid" xyz="fade small out-down out-rotate-right appear-stagger">
-              {[...Array(numElements)].map((_, index) => (
-                <div className="square" key={index} />
-              ))}
-            </XyzTransitionGroup>
-            <button onClick={addElement}>Add Element</button>
-            <button onClick={removeElement}>Remove Element</button>
-          </>
+          <XyzTransitionGroup appear className="example-grid" xyz="fade small out-down out-rotate-right appear-stagger">
+            {[...Array(numElements)].map((_, index) => (
+              <div className="square" key={index} />
+            ))}
+          </XyzTransitionGroup>
   - name: Index
     component: XyzTransitionGroup_Index
     code:
       - name: React
         content: |
+          ##javascript
+          import { XyzTransitionGroup } from '@animxyz/react'
+
           ##jsx
-          <>
-            <XyzTransitionGroup
-              className="example-grid"
-              xyz="fade small out-back-5"
-              duration={2500}
-              style={{
-                '--xyz-in-stagger': '0.025s',
-                '--xyz-out-stagger-rev': '0.025s',
-              }}
-            >
-              {${data.toggled} &&
-                [...Array(81)].map((_, index) => (
-                  <div className="square" key={index} style={{ '--xyz-index-rev': Math.random() * 81 }} />
-                ))}
-            </XyzTransitionGroup>
-          </>
+          <XyzTransitionGroup
+            className="example-grid"
+            xyz="fade small out-back-5"
+            duration={2500}
+            style={{
+              '--xyz-in-stagger': '0.025s',
+              '--xyz-out-stagger-rev': '0.025s',
+            }}
+          >
+            {${data.toggled} &&
+              [...Array(81)].map((_, index) => (
+                <div className="square" key={index} style={{ '--xyz-index-rev': Math.random() * 81 }} />
+              ))}
+          </XyzTransitionGroup>
   - name: Nested
     component: XyzTransitionGroup_Nested
     code:
       - name: React
         content: |
+          ##javascript
+          import { XyzTransitionGroup } from '@animxyz/react'
+
+          const numElements = ${data.numElements}
+
           ##jsx
-          <>
-            <XyzTransitionGroup
-              appear
-              duration="auto"
-              className="example-grid"
-              xyz="fade flip-left origin-left duration-3 appear-stagger"
-            >
-              {[...Array(numElements)].map((_, index) => (
-                <div className="item-block" key={index}>
-                  {[...Array(4)].map((_, subIndex) => (
-                    <div className="square xyz-nested" xyz="fade small stagger" key={subIndex} />
-                  ))}
-                </div>
-              ))}
-            </XyzTransitionGroup>
-            <button onClick={addElement}>Add Element</button>
-            <button onClick={removeElement}>Remove Element</button>
-          </>
+          <XyzTransitionGroup
+            appear
+            duration="auto"
+            className="example-grid"
+            xyz="fade flip-left origin-left duration-3 appear-stagger"
+          >
+            {[...Array(numElements)].map((_, index) => (
+              <div className="item-block" key={index}>
+                {[...Array(4)].map((_, subIndex) => (
+                  <div className="square xyz-nested" xyz="fade small stagger" key={subIndex} />
+                ))}
+              </div>
+            ))}
+          </XyzTransitionGroup>
   - name: Appear Visible
     component: XyzTransitionGroup_AppearVisible
     code:

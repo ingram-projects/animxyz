@@ -8,57 +8,65 @@ examples:
     code:
       - name: React
         content: |
+          ##javascript   
+          import { XyzTransition } from '@animxyz/react'
+
+          const toggled = ${data.buttonToggled}
+
           ##jsx
-          <>
-            <XyzTransition appear xyz="fade rotate-right ease-out-back">
-              {buttonToggled && <div className="square" />}
-            </XyzTransition>
-            <button onClick={() => setButtonToggled(!buttonToggled)}>Click to toggle</button>
-          </>
+          <XyzTransition appear xyz="fade rotate-right ease-out-back">
+            {toggled && <div className="square" />}
+          </XyzTransition>
   - name: Switch
     component: XyzTransition_Switch
     code:
       - name: React
         content: |
+          ##javascript   
+          import { XyzTransition } from '@animxyz/react'
+
+          const shape = '${data.shapes && data.shapes[data.shapeIndex]}'
+
           ##jsx
-          <>
-            <XyzTransition appear mode="out-in">
-              {shapes[shapeIndex] === 'square' && <div className="square" xyz="fade left-100%" key="square" />}
-              {shapes[shapeIndex] === 'circle' && <div className="circle" xyz="fade up-100%" key="circle" />}
-              {shapes[shapeIndex] === 'triangle' && <div className="triangle" xyz="fade right-100%" key="triangle" />}
-            </XyzTransition>
-            <button onClick={changeShape}>Click to switch</button>
-          </>
+          <XyzTransition appear mode="out-in">
+            {shape === 'square' && <div className="square" xyz="fade left-100%" key="square" />}
+            {shape === 'circle' && <div className="circle" xyz="fade up-100%" key="circle" />}
+            {shape === 'triangle' && <div className="triangle" xyz="fade right-100%" key="triangle" />}
+          </XyzTransition>
   - name: Key
     component: XyzTransition_Key
     code:
       - name: React
         content: |
+          ##javascript   
+          import { XyzTransition } from '@animxyz/react'
+
+          const key = ${data.key}
+
           ##jsx
-          <>
-            <XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
-              <div className="square" key={key}>{key}</div>
-            </XyzTransition>
-            <button onClick={() => setKey(key + 1)}>Click to increment</button>
-          </>
+          <XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
+            <div className="square" key={key}>{key}</div>
+          </XyzTransition>
   - name: Nested
     component: XyzTransition_Nested
     code:
       - name: React
         content: |
+          ##javascript
+          import { XyzTransition } from '@animxyz/react'
+
+          const toggled = ${data.buttonToggled}
+
           ##jsx
-          <>
-            <XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
-              {buttonToggled && (
-                <div className="item-block">
-                  {[...Array(4)].map((_, index) => (
-                    <div className="square xyz-nested" xyz="fade small stagger" key={index} />
-                  ))}
-                </div>
-              )}
-            </XyzTransition>
-            <button onClick={() => setButtonToggled(!buttonToggled)}>Click to toggle</button>
-          </>
+          <XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
+            {toggled && (
+              <div className="item-block">
+                {[...Array(4)].map((_, index) => (
+                  <div className="square xyz-nested" xyz="fade small stagger" key={index} />
+                ))}
+              </div>
+            )}
+          </XyzTransition>
 ---
 
 The `<XyzTransition>` component is an extended version of the [&lt;SwitchTransition&gt;](https://reactcommunity.org/react-transition-group/switch-transition) React component used to animate single elements in and out of the page or to animate switching between elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
