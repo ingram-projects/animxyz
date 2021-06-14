@@ -1,19 +1,19 @@
 <template>
 	<div class="example-wrap flex-col">
-		<XyzTransition xyz="fade duration-10" v-xyz="customData.xyzUtilities" v-on="data.listeners">
+		<XyzTransition xyz="fade duration-10" v-xyz="xyzUtilities" v-on="data.listeners">
 			<div class="square" v-if="data.toggled"></div>
 		</XyzTransition>
 		<div class="flex-row mt-l">
 			<label class="example-checkbox mt-l">
-				<input type="checkbox" v-model="customData.xyzUtilities['down']" />
+				<input type="checkbox" v-model="xyzUtilities['down']" />
 				<span>down</span>
 			</label>
 			<label class="example-checkbox mt-l">
-				<input type="checkbox" v-model="customData.xyzUtilities['small']" />
+				<input type="checkbox" v-model="xyzUtilities['small']" />
 				<span>small</span>
 			</label>
 			<label class="example-checkbox mt-l">
-				<input type="checkbox" v-model="customData.xyzUtilities['rotate-right']" />
+				<input type="checkbox" v-model="xyzUtilities['rotate-right']" />
 				<span>rotate-right</span>
 			</label>
 		</div>
@@ -27,12 +27,10 @@ export default {
 	mixins: [ExampleMixin],
 	data() {
 		return {
-			customData: {
-				xyzUtilities: {
-					down: false,
-					small: false,
-					'rotate-right': false,
-				},
+			xyzUtilities: {
+				down: false,
+				small: false,
+				'rotate-right': false,
 			},
 		}
 	},

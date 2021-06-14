@@ -6,7 +6,7 @@
 			class="example-grid"
 			xyz="fade flip-left origin-left duration-3 appear-stagger"
 		>
-			<div class="item-block" v-for="index in customData.numElements" :key="index">
+			<div class="item-block" v-for="index in numElements" :key="index">
 				<div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
 			</div>
 		</XyzTransitionGroup>
@@ -18,24 +18,19 @@
 </template>
 
 <script>
-import ExampleMixin from '../ExampleMixin'
-
 export default {
-	mixins: [ExampleMixin],
 	data() {
 		return {
-			customData: {
-				numElements: 3,
-			},
+			numElements: 3,
 		}
 	},
 	methods: {
 		addElement() {
-			this.customData.numElements += 1
+			this.numElements += 1
 		},
 		removeElement() {
-			if (this.customData.numElements > 0) {
-				this.customData.numElements -= 1
+			if (this.numElements > 0) {
+				this.numElements -= 1
 			}
 		},
 	},

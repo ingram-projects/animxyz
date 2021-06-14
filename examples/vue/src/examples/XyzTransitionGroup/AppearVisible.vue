@@ -9,11 +9,7 @@
 </template>
 
 <script>
-import ExampleMixin from '../ExampleMixin'
-
-export default {
-	mixins: [ExampleMixin],
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
