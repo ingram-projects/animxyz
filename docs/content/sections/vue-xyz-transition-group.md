@@ -67,7 +67,7 @@ examples:
 
 The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group) Vue component used to animate groups/lists of elements. The component exposes the same props and events as the Vue component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appear-visible`, `duration`, and `tag` props.
+Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appear-visible`, `duration`, and `tag` props. Most props available on the [Vue &lt;TransitionGroup&gt;](https://vuejs.org/v2/api/#transition-group)  component can also be used but likely wont be needed in the majority of cases.
 
 ```jsx
 <XyzTransitionGroup

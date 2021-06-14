@@ -82,11 +82,13 @@ examples:
           </div>
 ---
 
-The `<XyzTransitionGroup>` component is an extended version of the [&lt;TransitionGroup&gt;](https://reactcommunity.org/react-transition-group/transition-group) React component used to animate groups/lists of elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+The `<XyzTransitionGroup>` component is an extended version of the [ReactTransitionGroup &lt;TransitionGroup&gt;](https://reactcommunity.org/react-transition-group/transition-group) component used to animate groups/lists of elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the React component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appearVisible`, `duration`, and `tag` props.
+Unlike the complexity of the React component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appearVisible`, `duration`, and `tag` props. Most props available on the [ReactTransitionGroup &lt;Transition&gt;](https://reactcommunity.org/react-transition-group/transition) component can also be used but likely wont be needed in the majority of cases.
 
 ```jsx
+import { XyzTransitionGroup } from '@animxyz/react'
+
 <XyzTransitionGroup
   appear={ boolean }
   appearVisible={ boolean | IntersectionObserverOptions }

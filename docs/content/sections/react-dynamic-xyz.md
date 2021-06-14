@@ -47,20 +47,17 @@ examples:
           </XyzTransitionGroup>
 ---
 
-The `v-xyz` directive allows you to dynamically set the `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings. For instance you can conditionally apply a transform on an element like so:
+If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `xyz(...)` helper function.
 
-```html
-<div v-xyz="{ 'left-5': isTransformed }"></div>
-```
+```jsx
+import { xyz } from '@animxyz/react'
 
-Or set the utility level dynamically:
+// Conditionally apply a transform on an element like so:
+<div xyz={xyz({ 'left-5': isLeftTransformed, 'right-5': !isLeftTransformed })}></div>
 
-```html
-<div v-xyz="[`left-${utilityLevel}`]"></div>
-```
+// Set the utility level dynamically
+<div xyz={xyz(`left-${leftTransformUtilityLevel}`)></div>
 
-To dynamically set XYZ variables simply use the existing dynamic `:style` binding:
-
-```html
-<div :style="{ '--xyz-translate-x': translateAmount }"></div>
+// To dynamically set XYZ variables simply use the `style` prop
+<div style={{ '--xyz-translate-x': translateXAmount }}></div>
 ```

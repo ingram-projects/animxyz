@@ -69,11 +69,13 @@ examples:
           </XyzTransition>
 ---
 
-The `<XyzTransition>` component is an extended version of the [&lt;SwitchTransition&gt;](https://reactcommunity.org/react-transition-group/switch-transition) React component used to animate single elements in and out of the page or to animate switching between elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
+The `<XyzTransition>` component is an extended version of the [ReactTransitionGroup &lt;SwitchTransition&gt;](https://reactcommunity.org/react-transition-group/switch-transition) component used to animate single elements in and out of the page or to animate switching between elements. The component exposes similar props and events as the React component with some presets to work seamlessly with AnimXYZ and some quality of life improvements.
 
-Unlike the complexity of the React component, with `<XyzTransition>` you only need to care about the `appear`, `appearVisible`, `duration`, and `mode` props.
+Unlike the complexity of the ReactTransitionGroup component, with `<XyzTransition>` you only need to care about the `appear`, `appearVisible`, `duration`, and `mode` props. Most props available on the [ReactTransitionGroup &lt;Transition&gt;](https://reactcommunity.org/react-transition-group/transition) component can also be used but likely wont be needed in the majority of cases.
 
 ```jsx
+import { XyzTransition } from '@animxyz/react'
+
 <XyzTransition
   appear={ boolean }
   appearVisible={ boolean | IntersectionObserverOptions }
@@ -91,8 +93,6 @@ Unlike the complexity of the React component, with `<XyzTransition>` you only ne
 
 When set to `true` will animate elements in on initial render. You can set appear-specific behaviour using the appear-specific xyz utilities and variables. See [active classes](#active-classes) for more information.
 
-You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Transitions-on-Initial-Render).
-
 ### appearVisible
 
 You can use this property instead of `appear` to pause the appear animation until the element is visible within the viewport. This uses an [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver) behind the scenes which can be customized by passing the `IntersectionObserver` options to the property such as `appearVisible={{ threshold: 0.5, rootMargin: '50px' }}`.
@@ -101,17 +101,13 @@ You can use this property instead of `appear` to pause the appear animation unti
 
 Sets the behavior of how long to apply the [active class](#active-classes) for the animation. By default the class will be applied only for the duration of the animation, however if you have [nested animations](#nesting) you will want them to complete before removing the class. To do this we've added `duration="auto"` which conviently waits for all nested animations to finish before removing the class.
 
-To apply the class for a specific amount of time you can use a number in milliseconds like `:duration="2000"`.
+To apply the class for a specific amount of time you can use a number in milliseconds like `duration={2000}`.
 
 You can also specify direction-specific behavior using an object describing the behavior for each direction such as `duration={{ appear: 'auto', in: 2000, out: 1000 }}`.
-
-You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Explicit-Transition-Durations).
 
 ### mode
 
 Sets the sequencing of element switch transitions. By default the new element will transition **in** simultanously to the old element transitioning **out**. Setting `mode="out-in"` will transition the old element **out** first and setting `mode="in-out"` will transition the new element **in** first.
-
-You can learn more about using this property in the [React docs](https://vuejs.org/v2/guide/transitions.html#Transition-Modes).
 
 <div class="properties-table table-wrap">
 	<table>
