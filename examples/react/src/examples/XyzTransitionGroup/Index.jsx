@@ -9,7 +9,7 @@ export default function Example() {
 		<div className="example-wrap flex-col">
 			<XyzTransitionGroup
 				className="example-grid example-grid-9"
-				xyz="fade small out-back-5"
+				xyz="fade small out-back-3"
 				duration={2500}
 				style={{
 					'--xyz-in-stagger': '0.025s',

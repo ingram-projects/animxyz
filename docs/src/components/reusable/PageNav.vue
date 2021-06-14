@@ -106,7 +106,6 @@ export default {
 						if (this.$refs.activeLink) {
 							this.$refs.activeLink[0].scrollIntoView({
 								block: 'center',
-								behavior: 'smooth',
 							})
 						}
 					})
