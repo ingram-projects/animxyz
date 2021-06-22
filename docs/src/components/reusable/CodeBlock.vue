@@ -225,7 +225,7 @@ export default {
 <style lang="scss" scoped>
 .code-block__tabs {
 	::v-deep {
-		@include media('>tablet') {
+		@include media('>=tablet') {
 			.tab-bar__tab {
 				flex-grow: initial;
 				padding: 0 $sp-m;

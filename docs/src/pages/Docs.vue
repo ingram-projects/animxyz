@@ -29,7 +29,7 @@
 				</a>
 				<XyzTransition appear xyz="fade" mode="out-in">
 					<Sandbox
-						v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')"
+						v-if="hasSandbox && ($mq.aboveEq('laptop') || activeTab === 'examples')"
 						v-bind="sandboxProps"
 						v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
 						:key="activeSection.id"

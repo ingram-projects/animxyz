@@ -10,16 +10,18 @@ const VueMQ = {
 		}
 
 		function media(options) {
-			const { min, max, direction = 'width', defaultTo = true } = options
+			const { min, max, equal = false, direction = 'width', defaultTo = true } = options
 
 			if (typeof window === 'undefined') return defaultTo
 
 			const components = []
 			if (min) {
-				components.push(`(min-${direction}: ${getBreakpoint(min)})`)
+				const val = getBreakpoint(min)
+				components.push(`(min-${direction}: ${equal ? val - 1 : val}px)`)
 			}
 			if (max) {
-				components.push(`(max-${direction}: ${getBreakpoint(max)})`)
+				const val = getBreakpoint(max)
+				components.push(`(max-${direction}: ${equal ? val + 1 : val}px)`)
 			}
 			if (!components.length) return false
 
@@ -34,12 +36,16 @@ const VueMQ = {
 			return media({ max, ...options })
 		}
 
+		function belowEq(max, options) {
+			return media({ max, equal: true, ...options })
+		}
+
 		function above(min, options) {
 			return media({ min, ...options })
 		}
 
-		function between(min, max, options) {
-			return media({ min, max, ...options })
+		function aboveEq(min, options) {
+			return media({ min, equal: true, ...options })
 		}
 
 		const data = {}
@@ -50,8 +56,9 @@ const VueMQ = {
 			data.mq = {
 				media,
 				below,
+				belowEq,
 				above,
-				between,
+				aboveEq,
 			}
 		}
 

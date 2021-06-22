@@ -1,5 +1,5 @@
 ---
-title: Dynamic Xyz
+title: Dynamic xyz
 id: vue-dynamic-xyz
 
 examples:

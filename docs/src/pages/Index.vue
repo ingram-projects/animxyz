@@ -94,7 +94,7 @@
 							</div>
 							<div class="feature xyz-nested">
 								<h3>Plug & Play</h3>
-								<p>Works with HTML and CSS, or use our Vue and React (coming soon!) plugins for even more power.</p>
+								<p>Works with HTML and CSS, or use our Vue and React integrations for even more power.</p>
 							</div>
 						</section>
 					</XyzTransition>

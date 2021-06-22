@@ -156,7 +156,7 @@ $active-border-width: 0.5rem;
 		}
 	}
 
-	@include media('<=x-large') {
+	@include media('<x-large') {
 		border-radius: 0;
 	}
 
@@ -346,7 +346,7 @@ $active-border-width: 0.5rem;
 		font-weight: 600;
 	}
 
-	@include media('>laptop') {
+	@include media('>=laptop') {
 		display: none;
 	}
 }
