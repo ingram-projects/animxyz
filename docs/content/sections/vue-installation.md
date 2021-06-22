@@ -66,11 +66,11 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 <div class="code-label">Vue 2.x</div>
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.5.0/dist/VueAnimXyz.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue@0.6.0/dist/VueAnimXyz.js"></script>
 ```
 
 <div class="code-label">Vue 3.x</div>
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue3@0.5.0/dist/VueAnimXyz.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@animxyz/vue3@0.6.0/dist/VueAnimXyz.js"></script>
 ```
