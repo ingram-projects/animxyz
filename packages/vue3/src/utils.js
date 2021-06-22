@@ -38,7 +38,16 @@ export function mergeData(data1 = {}, data2 = {}) {
 	}
 }
 
+function deleteUndefined(obj) {
+	Object.keys(obj).forEach((key) => {
+		if (obj[key] === undefined) {
+			delete obj[key]
+		}
+	})
+}
+
 export function getXyzTransitionData(data) {
+	deleteUndefined(data)
 	data.appear = Boolean(data.appear || data.appearVisible)
 	const { appear, appearVisible, duration } = data
 
@@ -66,6 +75,7 @@ export function getXyzTransitionData(data) {
 
 	const mergedData = mergeData(transitionData, data)
 
+	delete mergedData.appearVisible
 	delete mergedData.duration
 	return mergedData
 }

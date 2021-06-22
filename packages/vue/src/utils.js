@@ -71,6 +71,7 @@ export function getXyzTransitionData(data) {
 
 	const mergedData = mergeData(transitionData, data)
 
+	delete mergedData.attrs.appearVisible
 	delete mergedData.attrs.duration
 	return mergedData
 }
