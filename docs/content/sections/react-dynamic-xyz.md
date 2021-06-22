@@ -47,7 +47,7 @@ examples:
           </XyzTransitionGroup>
 ---
 
-If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `xyz(...)` helper function.
+If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `xyz()` helper function.
 
 ```jsx
 import { xyz } from '@animxyz/react'
