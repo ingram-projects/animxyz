@@ -29,7 +29,7 @@
 				</a>
 				<XyzTransition appear xyz="fade" mode="out-in">
 					<Sandbox
-						v-if="hasSandbox && ($mq.above('laptop') || activeTab === 'examples')"
+						v-if="hasSandbox && ($mq.aboveEq('laptop') || activeTab === 'examples')"
 						v-bind="sandboxProps"
 						v-scroll-lock="$mq.below('laptop') && activeTab === 'examples'"
 						:key="activeSection.id"
@@ -126,9 +126,12 @@ export default {
 				'vue-installation',
 				'vue-xyz-transition',
 				'vue-xyz-transition-group',
-				'vue-v-xyz',
+				'vue-dynamic-xyz',
 				{ header: true, title: 'React Integration', id: 'react-integration' },
-				'react',
+				'react-installation',
+				'react-xyz-transition',
+				'react-xyz-transition-group',
+				'react-dynamic-xyz',
 			],
 		}
 	},

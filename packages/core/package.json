@@ -46,15 +46,15 @@
     "build:stats": "node buildStats.js dist/animxyz.min.css"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.1",
-    "cssnano": "^4.1.10",
+    "autoprefixer": "^10.2.6",
+    "cssnano": "^5.0.6",
     "gzip-size": "^6.0.0",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.2.4",
+    "postcss": "^8.3.5",
     "postcss-calc": "^8.0.0",
     "postcss-cli": "^8.3.1",
-    "pretty-bytes": "^5.5.0",
+    "pretty-bytes": "^5.6.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.32.4"
+    "sass": "^1.35.1"
   }
 }

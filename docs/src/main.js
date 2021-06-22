@@ -37,14 +37,14 @@ export default function (Vue, { router, head }) {
 	Vue.use(VueAnimXyz)
 	Vue.use(VueMQ, {
 		breakpoints: {
-			small: '375px',
-			phone: '540px',
-			tablet: '768px',
-			laptop: '1024px',
-			desktop: '1248px',
-			large: '1440px',
-			'x-large': '1600px',
-			huge: '1920px',
+			small: 375,
+			phone: 540,
+			tablet: 768,
+			laptop: 1024,
+			desktop: 1248,
+			large: 1440,
+			'x-large': 1600,
+			huge: 1920,
 		},
 	})
 	Vue.use(VueObserveVisibility)

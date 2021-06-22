@@ -1,51 +1,30 @@
-import React, { Children, cloneElement, isValidElement } from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
-import { CSSTransition } from 'react-transition-group'
-import { getXyzTransitionProps } from '../utils'
+import React, { Children, Fragment, isValidElement } from 'react'
+import { SwitchTransition } from 'react-transition-group'
+import XyzTransitionBase from './XyzTransitionBase'
 
 function XyzTransition(props) {
-	const { xyz, className, style, children, ...rest } = props
-
-	const xyzTransitionProps = getXyzTransitionProps(rest)
+	const { mode, children, ...rest } = props
 
 	const childArray = Children.toArray(children).filter(isValidElement)
 
-	if (childArray.length !== 1) {
-		throw new Error('XyzTransition must have a single truthy child at all times')
+	if (childArray.length > 1) {
+		throw new Error('XyzTransition can have no more than one child at any point')
 	}
 
-	const child = childArray[0]
+	const child = childArray.length === 1 ? childArray[0] : <Fragment />
 
 	return (
-		<CSSTransition {...xyzTransitionProps}>
-			{cloneElement(child, {
-				xyz,
-				...child.props,
-				className: clsx(className, child.props.className),
-				style: {
-					...style,
-					...child.props.style,
-				},
-			})}
-		</CSSTransition>
+		<SwitchTransition mode={mode}>
+			<XyzTransitionBase {...rest} key={child.key}>
+				{child}
+			</XyzTransitionBase>
+		</SwitchTransition>
 	)
 }
 
 XyzTransition.propTypes = {
-	...CSSTransition.propTypes,
-	xyz: PropTypes.string,
-	duration: PropTypes.oneOfType([
-		PropTypes.number,
-		PropTypes.oneOf(['auto']),
-		PropTypes.shape({
-			appear: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-			in: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-			out: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
-		}),
-	]),
-	children: PropTypes.node,
+	...SwitchTransition.propTypes,
+	...XyzTransitionBase.propTypes,
 }
-delete XyzTransition.propTypes.timeout
 
 export default XyzTransition

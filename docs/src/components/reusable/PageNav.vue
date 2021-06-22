@@ -2,7 +2,7 @@
 	<div class="page-nav__wrap" :class="{ open }">
 		<FocusLock :disabled="isMediaLarge || !open">
 			<XyzTransition appear xyz="fade delay-4">
-				<button class="nav-button" @click="toggle(!open)">
+				<button class="nav-button" @click="toggle(!open)" :disabled="isMediaLarge">
 					<div class="logo-wrap">
 						<AnimXyzLogo></AnimXyzLogo>
 					</div>
@@ -15,7 +15,7 @@
 				appear
 				duration="auto"
 				xyz="ease-in-out duration-3"
-				v-xyz="{ 'left-100%': $mq.above('tablet'), 'down-100%': $mq.below('tablet') }"
+				v-xyz="{ 'left-100%': $mq.aboveEq('tablet'), 'down-100%': $mq.below('tablet') }"
 			>
 				<nav class="page-nav" v-show="open">
 					<div class="nav-list__wrap" v-scroll-lock="$mq.below('tablet') && open">
@@ -84,7 +84,7 @@ export default {
 	},
 	computed: {
 		isMediaLarge() {
-			return this.$mq.above('large')
+			return this.$mq.aboveEq('large')
 		},
 	},
 	watch: {
@@ -106,7 +106,6 @@ export default {
 						if (this.$refs.activeLink) {
 							this.$refs.activeLink[0].scrollIntoView({
 								block: 'center',
-								behavior: 'smooth',
 							})
 						}
 					})
@@ -116,7 +115,9 @@ export default {
 	},
 	methods: {
 		toggle(toggled) {
-			this.$emit('toggle', toggled)
+			if (toggled || !this.isMediaLarge) {
+				this.$emit('toggle', toggled)
+			}
 		},
 		onSectionClick() {
 			this.toggle(false)
@@ -323,7 +324,7 @@ export default {
 		bottom: $sp-m;
 	}
 
-	@include media('>=large') {
+	&[disabled] {
 		pointer-events: none;
 	}
 }

@@ -1,7 +1,8 @@
 import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
 
-export function getXyzTransitionProps(props) {
-	const { duration } = props || {}
+export function getXyzTransitionProps(props = {}) {
+	props.appear = Boolean(props.appear || props.appearVisible)
+	const { appearVisible, duration } = props
 
 	const transitionProps = {
 		classNames: {
@@ -15,7 +16,7 @@ export function getXyzTransitionProps(props) {
 			exitActive: xyzTransitionClasses.outActive,
 			exitDone: xyzTransitionClasses.outTo,
 		},
-		addEndListener: getXyzAnimationHook(duration),
+		addEndListener: getXyzAnimationHook(duration, appearVisible),
 	}
 
 	const mergedProps = {
@@ -27,6 +28,7 @@ export function getXyzTransitionProps(props) {
 		},
 	}
 
+	delete mergedProps.appearVisible
 	delete mergedProps.duration
 	return mergedProps
 }
