@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ingram-projects/animxyz/compare/v0.5.0...v0.6.0) (2021-06-22)
+
+
+### Bug Fixes
+
+* fixed an issue where vue3 wasn't adding the essential classes in latest version ([1a23a54](https://github.com/ingram-projects/animxyz/commit/1a23a54ae8e6edba183afc094552924ef1429921))
+
+
+### Features
+
+* Added official react integration ([0d99ba1](https://github.com/ingram-projects/animxyz/commit/0d99ba1ccdf8473330a36bff40025c8f929b375d))
+
+
+
+
+
 # [0.5.0](https://github.com/ingram-projects/animxyz/compare/v0.4.1...v0.5.0) (2021-02-16)
 
 
