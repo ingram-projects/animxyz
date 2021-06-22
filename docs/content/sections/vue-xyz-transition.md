@@ -1,5 +1,5 @@
 ---
-title: XyzTransition
+title: <XyzTransition>
 id: vue-xyz-transition
 
 examples:

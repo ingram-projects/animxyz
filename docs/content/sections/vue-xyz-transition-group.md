@@ -1,5 +1,5 @@
 ---
-title: XyzTransitionGroup
+title: <XyzTransitionGroup>
 id: vue-xyz-transition-group
 
 examples:

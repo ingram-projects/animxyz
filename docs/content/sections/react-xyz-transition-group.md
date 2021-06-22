@@ -1,5 +1,5 @@
 ---
-title: XyzTransitionGroup
+title: <XyzTransitionGroup>
 id: react-xyz-transition-group
 
 examples:
