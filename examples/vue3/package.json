@@ -5,14 +5,9 @@
   "scripts": {
     "start": "vue-cli-service serve"
   },
-  "workspaces": {
-    "nohoist": [
-      "@vue/**"
-    ]
-  },
   "dependencies": {
     "@animxyz/vue3": "^0.5.0",
-    "core-js": "^3.13.0",
+    "core-js": "^3.15.1",
     "fontsource-inconsolata": "4.0.0",
     "ress": "^4.0.0",
     "typeface-inter": "^3.18.1",
@@ -22,9 +17,9 @@
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-service": "~4.5.13",
-    "@vue/compiler-sfc": "^3.0.11",
+    "@vue/compiler-sfc": "^3.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-vue": "^7.9.0",
+    "eslint-plugin-vue": "^7.11.1",
     "include-media": "^1.4.10"
   }
 }
