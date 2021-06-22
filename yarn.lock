@@ -13263,12 +13263,13 @@ optimize-css-assets-webpack-plugin@5.0.4:
     last-call-webpack-plugin "^3.0.0"
 
 optimize-css-assets-webpack-plugin@^5.0.1:
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.6.tgz#abad0c6c11a632201794f75ddba3ce13e32ae80e"
-  integrity sha512-JAYw7WrIAIuHWoKeSBB3lJ6ZG9PSDK3JJduv/FMpIY060wvbA8Lqn/TCtxNGICNlg0X5AGshLzIhpYrkltdq+A==
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.7.tgz#0d66bb9817d7b4b433153352b4778ee137d58fc7"
+  integrity sha512-d4WLZ6dBSYIFfi84bNm+IlOymkI2iKWNiBswnZB8/ySnNZY3r0IL+Blb7VKeATt5dOSC79G7beiDalsCbd6zCg==
   dependencies:
-    cssnano "^4.1.10"
+    cssnano "^5.0.6"
     last-call-webpack-plugin "^3.0.0"
+    postcss "^8.2.1"
 
 optionator@^0.8.1:
   version "0.8.3"
@@ -14999,7 +15000,7 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postcss@^8.1.0, postcss@^8.1.10, postcss@^8.3.5:
+postcss@^8.1.0, postcss@^8.1.10, postcss@^8.2.1, postcss@^8.3.5:
   version "8.3.5"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.5.tgz#982216b113412bc20a86289e91eb994952a5b709"
   integrity sha512-NxTuJocUhYGsMiMFHDUkmjSKT3EdH4/WbGF6GCi1NDGk+vbcUTun4fpbOqaPtD8IIsztA2ilZm2DhYCuyN58gA==
