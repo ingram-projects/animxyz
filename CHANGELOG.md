@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ingram-projects/animxyz/compare/v0.6.0...v0.6.1) (2021-06-23)
+
+
+### Bug Fixes
+
+* fixed StrictMode findDOMNode error with react transition group ([862b643](https://github.com/ingram-projects/animxyz/commit/862b64350cd27e83f7a35f0118f063c955a33b42))
+
+
+
+
+
 # [0.6.0](https://github.com/ingram-projects/animxyz/compare/v0.5.0...v0.6.0) (2021-06-22)
 
 
