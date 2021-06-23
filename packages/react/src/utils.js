@@ -1,8 +1,22 @@
-import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+import { deleteUndefined, xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+
+function mergeProps(props1 = {}, props2 = {}) {
+	return {
+		...props1,
+		...props2,
+		classNames: {
+			...props1.classNames,
+			...props2.classNames,
+		},
+	}
+}
 
 export function getXyzTransitionProps(props = {}) {
+	deleteUndefined(props)
 	props.appear = Boolean(props.appear || props.appearVisible)
-	const { appearVisible, duration } = props
+	const { appearVisible, duration, nodeRef } = props
+
+	const animationHook = getXyzAnimationHook(duration, appearVisible)
 
 	const transitionProps = {
 		classNames: {
@@ -16,17 +30,10 @@ export function getXyzTransitionProps(props = {}) {
 			exitActive: xyzTransitionClasses.outActive,
 			exitDone: xyzTransitionClasses.outTo,
 		},
-		addEndListener: getXyzAnimationHook(duration, appearVisible),
+		addEndListener: (done) => animationHook(nodeRef.current, done),
 	}
 
-	const mergedProps = {
-		...props,
-		...transitionProps,
-		classNames: {
-			...props.classNames,
-			...transitionProps.classNames,
-		},
-	}
+	const mergedProps = mergeProps(transitionProps, props)
 
 	delete mergedProps.appearVisible
 	delete mergedProps.duration

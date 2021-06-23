@@ -1,4 +1,4 @@
-import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+import { deleteUndefined, xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
 import clsx from 'clsx'
 
 export const xyzTransitionProps = {
@@ -36,14 +36,6 @@ export function mergeData(data1 = {}, data2 = {}) {
 		},
 		class: clsx(data1.class, data2.class),
 	}
-}
-
-function deleteUndefined(obj) {
-	Object.keys(obj).forEach((key) => {
-		if (obj[key] === undefined) {
-			delete obj[key]
-		}
-	})
 }
 
 export function getXyzTransitionData(data) {

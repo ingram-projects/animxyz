@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement } from 'react'
+import React, { Children, cloneElement, isValidElement, useRef } from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { CSSTransition } from 'react-transition-group'
@@ -7,8 +7,6 @@ import { getXyzTransitionProps } from '../utils'
 function XyzTransitionBase(props) {
 	const { xyz, className, style, children, ...rest } = props
 
-	const xyzTransitionProps = getXyzTransitionProps(rest)
-
 	const childArray = Children.toArray(children).filter(isValidElement)
 
 	if (childArray.length !== 1) {
@@ -16,6 +14,15 @@ function XyzTransitionBase(props) {
 	}
 
 	const child = childArray[0]
+
+	const fallbackRef = useRef(null)
+
+	const nodeRef = child.ref || fallbackRef
+
+	const xyzTransitionProps = getXyzTransitionProps({
+		nodeRef,
+		...rest,
+	})
 
 	return (
 		<CSSTransition {...xyzTransitionProps}>
@@ -27,6 +34,7 @@ function XyzTransitionBase(props) {
 					...style,
 					...child.props.style,
 				},
+				ref: nodeRef,
 			})}
 		</CSSTransition>
 	)

@@ -1,4 +1,4 @@
-import { xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
+import { deleteUndefined, xyzTransitionClasses, getXyzAnimationHook } from '../../../utils'
 import { mergeData as vueFunctionalDataMerge } from 'vue-functional-data-merge'
 
 export const xyzTransitionProps = {
@@ -28,14 +28,6 @@ export const xyzTransitionGroupProps = {
 
 export function mergeData(data1 = {}, data2 = {}) {
 	return vueFunctionalDataMerge(data1, data2)
-}
-
-function deleteUndefined(obj) {
-	Object.keys(obj).forEach((key) => {
-		if (obj[key] === undefined) {
-			delete obj[key]
-		}
-	})
 }
 
 export function getXyzTransitionData(data) {
