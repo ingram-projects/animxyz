@@ -45,6 +45,27 @@ module.exports = {
 		remark: {
 			slug: false,
 			plugins: [
+				[
+					'remark-codesandbox',
+					{
+						mode: 'meta',
+						customTemplates: {
+							'animxyz-vue-2': {
+								extends: 'animxyz-vue-2-w0xg5',
+								entry: 'src/App.vue',
+							},
+							'animxyz-vue-3': {
+								extends: 'animxyz-vue-3-ltb7u',
+								entry: 'src/App.vue',
+							},
+							'animxyz-react': {
+								extends: 'animxyz-react-tgwrc',
+								entry: 'src/App.js',
+							},
+						},
+					},
+				],
+				require('./remark-codesandbox-modifier'),
 				'@gridsome/remark-prismjs',
 				[
 					'remark-containers',
