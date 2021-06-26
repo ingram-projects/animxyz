@@ -11,14 +11,24 @@
     margin: $sp-l 0;
   }
 
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin-bottom: 0.5em;
+    font-weight: 650;
+
+    &:not(:first-child) {
+      margin-top: 1.5em;
+    }
+  }
+
   h2 {
     font-size: 1.25rem;
   }
 
   h3 {
     font-size: 1.125rem;
-    font-weight: 650;
-    margin-bottom: $sp-xxxs;
   }
 
   p,
