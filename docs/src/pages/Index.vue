@@ -68,11 +68,6 @@
 					<XyzTransition appear-visible xyz="fade front-1 stagger-2 ease-out delay-2" duration="auto">
 						<section class="features-section xyz-none">
 							<div class="feature feature-composable xyz-nested">
-								<!-- <div class="feature-anim xyz-nested" xyz="fade small up stagger-3 ease-out-back delay-3">
-									<div class="square"></div>
-									<div class="circle"></div>
-									<div class="triangle"></div>
-								</div> -->
 								<h3>Composable</h3>
 								<p>
 									Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it
@@ -90,7 +85,10 @@
 							</div>
 							<div class="feature feature-plug-play xyz-nested">
 								<h3>Plug & Play</h3>
-								<p>Works with HTML and CSS, or use our <a href="/docs#vue-installation">Vue</a> and <a href="/docs#react-installation">React</a> integrations for even more power.</p>
+								<p>
+									Works with HTML and CSS, or use our <a href="/docs#vue-installation">Vue</a> and
+									<a href="/docs#react-installation">React</a> integrations for even more power.
+								</p>
 								<Shine></Shine>
 							</div>
 							<div class="feature feature-nest-stagger xyz-nested">
@@ -608,54 +606,26 @@ export default {
 	}
 }
 
-.feature-composable {
-	grid-column: span 3;
-}
-
-.feature-customizable {
-	grid-column: span 3;
-}
-
-.feature-performant {
-	grid-column: span 4;
-}
-
-.feature-less-code {
-	grid-column: span 2;
-}
-
-.feature-nest-stagger {
-	grid-column: span 4;
-}
-
-.feature-plug-play {
-	grid-column: span 2;
-}
-
 .feature {
 	box-shadow: inset 0 0 0 4px primary-color(500, 0.15);
 	padding: $sp-m;
-	// padding-top: 0;
 	border-radius: $br-m;
 	position: relative;
+	grid-column: span 3;
+
+	&:nth-child(even) {
+		top: $sp-m;
+	}
 
 	h3 {
 		position: relative;
-
-		// &::before {
-		// 	content: '';
-		// 	background-color: $cyan;
-		// 	width: 4px;
-		// 	border-radius: 2px;
-		// 	position: absolute;
-		// 	top: 0;
-		// 	bottom: 0;
-		// 	left: -$sp-m;
-		// }
 	}
 
 	@include media('<tablet') {
 		grid-column: span 1;
+		&:nth-child(even) {
+			top: initial;
+		}
 	}
 
 	.shine {
@@ -667,22 +637,6 @@ export default {
 		box-shadow: inset 0 0 0 4px $cyan;
 		border-radius: $br-m;
 		pointer-events: none;
-	}
-}
-
-.feature-anim {
-	display: flex;
-	gap: $sp-xs;
-	margin-top: -1rem;
-
-	.square,
-	.circle {
-		@include size(2rem);
-	}
-
-	.triangle {
-		--triangle-height: 2rem;
-		margin-left: -$sp-xxxs;
 	}
 }
 
