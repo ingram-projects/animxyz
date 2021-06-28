@@ -113,19 +113,19 @@
       }
     }
 
-    // so elements dont take space during animation
+    // so elements don't take space during animation
     %xyz-absolute {
-      position: absolute;
+      position: absolute !important;
     }
 
     // pauses animations
     %xyz-paused {
-      animation-play-state: paused;
+      animation-play-state: paused !important;
     }
 
     // turns off animations
     %xyz-none {
-      animation: none;
+      animation: none !important;
     }
 
     // for reduced motion users
