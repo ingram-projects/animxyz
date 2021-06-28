@@ -83,6 +83,8 @@ export default {
 
 	&.has-content {
 		.tab-text {
+			font-weight: 600;
+
 			&::after {
 				background-color: primary-color(500);
 			}
