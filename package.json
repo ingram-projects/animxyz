@@ -25,6 +25,9 @@
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --fix",
     "lint-all": "yarn run lint --ext .js,.jsx,.vue .",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "commit-msg": "npx --no-install commitlint --edit \"$1\"",
     "publish": "lerna run build && lerna publish",
     "publish-prerelease": "yarn run publish --conventional-prerelease",
     "publish-graduate": "yarn run publish --conventional-graduate"
@@ -39,14 +42,7 @@
     "husky": "^6.0.0",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "^2.3.1",
-    "yorkie": "^2.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+    "prettier": "^2.3.1"
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
