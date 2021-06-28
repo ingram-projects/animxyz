@@ -50,10 +50,9 @@ examples:
   - name: xyz-absolute
     template: |
       <div class="example-wrap">
-        <XyzTransition duration="auto" xyz="fade small-100%" v-on="data.listeners">
-          <div class="example-grid example-grid-2 xyz-none" v-if="data.toggled">
-            <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
-          </div>
+        <XyzTransition v-on="data.listeners">
+          <div class="square xyz-absolute" xyz="fade up-100%" v-if="data.toggled" key="1"></div>
+          <div class="square xyz-absolute" xyz="fade down-100%" v-if="!data.toggled" key="2"></div>
         </XyzTransition>
       </div>
     code:
@@ -76,10 +75,10 @@ The `xyz-none` class will turn off animations for the element it is on. This is 
 The `xyz-none-all` class will turn off AnimXYZ animations for the element it is on and all nested elements. This is useful if you want to provide your users with a control to disable all animations on your site for example.
 
 ### xyz-absolute
-The `xyz-absolute` class will apply `position: absolute;` to the element it is on while an AnimXYZ animation is active on that element.
+The `xyz-absolute` class will apply `position: absolute;` to the element it is on while an AnimXYZ animation is active on that element. This is useful when switching elements in the same position, or animating elements in a list.
 
 ### xyz-paused
 The `xyz-paused` class will pause any AnimXYZ animations on an element it is on. This is useful when combined with the `--xyz-start-offset` variable to allow precise control of animation playback state.
 
 ### xyz-paused-all
-The `xyz-paused-all` class will pause any AnimXYZ animations on an element it is on as well as any AnimXYz animations on nested elements.
+The `xyz-paused-all` class will pause any AnimXYZ animations on an element it is on as well as any AnimXYZ animations on nested elements.

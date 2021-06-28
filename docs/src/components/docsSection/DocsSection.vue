@@ -53,6 +53,7 @@ $active-border-width: 0.5rem;
 }
 
 .docs-section {
+	--docs-section-br: #{$br-xl};
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -60,7 +61,7 @@ $active-border-width: 0.5rem;
 	max-width: 48rem;
 	width: 100%;
 	padding: $sp-m;
-	border-radius: $br-xl;
+	border-radius: var(--docs-section-br);
 	margin: auto;
 	transition: background-color 0.8s $ease-out;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
@@ -78,7 +79,7 @@ $active-border-width: 0.5rem;
 		bottom: 0;
 		left: 0;
 		z-index: -1;
-		border-radius: $br-xl;
+		border-radius: var(--docs-section-br);
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
 		transform: scale(0.85);
@@ -88,18 +89,6 @@ $active-border-width: 0.5rem;
 		@include dark-mode {
 			box-shadow: 0 0 0 0.25rem primary-color(700);
 			transform: scale(0.975);
-		}
-
-		@include media('<=x-large') {
-			border-radius: 0;
-		}
-
-		@include media('<large') {
-			border-radius: $br-xl;
-		}
-
-		@include media('<desktop') {
-			border-radius: 0;
 		}
 	}
 
@@ -176,15 +165,15 @@ $active-border-width: 0.5rem;
 	}
 
 	@include media('<x-large') {
-		border-radius: 0;
+		--docs-section-br: 0;
 	}
 
 	@include media('<large') {
-		border-radius: $br-xl;
+		--docs-section-br: $br-xl;
 	}
 
 	@include media('<desktop') {
-		border-radius: 0;
+		--docs-section-br: 0;
 	}
 }
 

@@ -79,9 +79,7 @@ svg {
 
   display: grid;
   grid-template-columns: repeat(var(--grid-columns), var(--grid-item-size));
-  justify-content: center;
   margin: 0 auto;
-  width: 100%;
 
   .square,
   .circle,
