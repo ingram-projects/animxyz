@@ -20,7 +20,7 @@ yarn add @animxyz/react
 To install ReactAnimXYZ using a CDN put this script in the `<head>` of your `index.html` file:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@animxyz/react@0.6.1/dist/ReactAnimXyz.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@animxyz/react"></script>
 ```
 
 ### CodeSandbox template
