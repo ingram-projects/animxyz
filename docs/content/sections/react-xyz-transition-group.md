@@ -86,6 +86,18 @@ The `<XyzTransitionGroup>` component is an extended version of the [ReactTransit
 
 Unlike the complexity of the React component, with `<XyzTransitionGroup>` you only need to care about the `appear`, `appearVisible`, `duration`, and `tag` props. Most props available on the [ReactTransitionGroup &lt;Transition&gt;](https://reactcommunity.org/react-transition-group/transition) component can also be used but likely wont be needed in the majority of cases.
 
+::: note [Warning]
+Due to the [deprecation of React.findDOMNode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) and the need for internal usage of node refs it can be complicated to transition React Components as direct children of `<XyzTransitionGroup>`. In order to make this work the React Component must use [ref forwarding](https://reactjs.org/docs/forwarding-refs.html). Often you may be using components from an external library and don't have the ability to add ref forwarding. For this reason we recommend the workaround of wrapping the child components in an HTML element such as a `div` as shown here:
+
+```jsx
+<XyzTransitionGroup>
+  <div key="1"><MyReactComponent /></div>
+  <div key="2"><MyReactComponent /></div>
+  <div key="3"><MyReactComponent /></div>
+</XyzTransitionGroup>
+```
+:::
+
 ```jsx
 import { XyzTransitionGroup } from '@animxyz/react'
 
@@ -95,9 +107,9 @@ import { XyzTransitionGroup } from '@animxyz/react'
 	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	tag={ string }
 >
-	<child />
-	<child />
-	<child />
+	<child key="1" />
+	<child key="2" />
+	<child key="3" />
 	...
 </XyzTransitionGroup>
 ```

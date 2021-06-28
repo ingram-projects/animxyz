@@ -76,9 +76,9 @@ Unlike the complexity of the Vue component, with `<XyzTransitionGroup>` you only
 	duration={ number | 'auto' | { appear: number | 'auto', in: number | 'auto', out: number | 'auto' } }
 	tag={ string }
 >
-	<child />
-	<child />
-	<child />
+	<child key="1" />
+	<child key="2" />
+	<child key="3" />
 	...
 </XyzTransitionGroup>
 ```

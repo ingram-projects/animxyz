@@ -20,8 +20,8 @@ function XyzTransitionBase(props) {
 	const nodeRef = child.ref || fallbackRef
 
 	const xyzTransitionProps = getXyzTransitionProps({
-		nodeRef,
 		...rest,
+		nodeRef,
 	})
 
 	return (
