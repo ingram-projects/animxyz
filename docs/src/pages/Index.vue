@@ -7,7 +7,7 @@
 
 			<div class="landing-content">
 				<section class="hero__wrap">
-					<XyzTransition appear-visible xyz="fade small-2 duration-7 ease-out delay-2">
+					<XyzTransition appear-visible xyz="fade small-2 duration-7 ease-out delay-1">
 						<h1 class="intro-text">The first composable<br />CSS animation toolkit.</h1>
 					</XyzTransition>
 
@@ -19,26 +19,36 @@
 						</div>
 					</XyzTransition>
 
-					<XyzTransition appear-visible xyz="fade down small-2 stagger-3 ease-out delay-2" duration="auto">
-						<div class="links__wrap xyz-none">
-							<a
-								class="cta-button github-link xyz-nested"
-								href="https://github.com/ingram-projects/animxyz"
-								target="_blank"
-							>
+					<XyzTransitionGroup
+						class="links__wrap"
+						appear-visible
+						xyz="fade narrow-100% stagger-3 ease-out delay-3"
+						duration="auto"
+					>
+						<a
+							class="cta-button github-link"
+							href="https://github.com/ingram-projects/animxyz"
+							target="_blank"
+							key="github"
+						>
+							<div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
 								<IconGithub></IconGithub>
 								<span>GitHub</span>
-							</a>
-							<a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+							</div>
+						</a>
+						<a class="cta-button sandbox-link" href="#sandbox" key="sandbox">
+							<div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
 								<IconSandbox></IconSandbox>
 								<span>Try it out</span>
-							</a>
-							<a class="cta-button docs-link xyz-nested" href="/docs">
+							</div>
+						</a>
+						<a class="cta-button docs-link" href="/docs" key="documentation">
+							<div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
 								<IconDocs></IconDocs>
 								<span>Documentation</span>
-							</a>
-						</div>
-					</XyzTransition>
+							</div>
+						</a>
+					</XyzTransitionGroup>
 				</section>
 
 				<div class="copy__wrap copy-content">
@@ -55,46 +65,55 @@
 						</section>
 					</XyzTransition>
 
-					<XyzTransition appear-visible xyz="fade down stagger-2 ease-out delay-2" duration="auto">
+					<XyzTransition appear-visible xyz="fade front-1 stagger-2 ease-out delay-2" duration="auto">
 						<section class="features-section xyz-none">
-							<div class="feature xyz-nested">
+							<div class="feature feature-composable xyz-nested">
 								<h3>Composable</h3>
 								<p>
 									Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it
 									from the top! <code class="text--nowrap">xyz="fade small up"</code>
 								</p>
+								<Shine></Shine>
 							</div>
-							<div class="feature xyz-nested">
+							<div class="feature feature-customizable xyz-nested">
 								<h3>Customizable</h3>
 								<p>
 									Out-of-the-box utilities not enough? Fine-tune any animation with CSS variables to your heart's
 									content. Simple as: <code class="text--nowrap">--xyz-translate-y: 42%;</code>
 								</p>
+								<Shine></Shine>
 							</div>
-							<div class="feature xyz-nested">
-								<h3>Performant</h3>
+							<div class="feature feature-plug-play xyz-nested">
+								<h3>Plug & Play</h3>
 								<p>
-									Silky smooth animations out of the box. Only <code>2.68kB</code> for base functionality and
-									<code>11.4kB</code> if you include convenient utilities.
+									Works with HTML and CSS, or use our <a href="/docs#vue-installation">Vue</a> and
+									<a href="/docs#react-installation">React</a> integrations for even more power.
 								</p>
+								<Shine></Shine>
 							</div>
-							<div class="feature xyz-nested">
-								<h3>Less Code</h3>
-								<p>
-									Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more
-									fun.
-								</p>
-							</div>
-							<div class="feature xyz-nested">
+							<div class="feature feature-nest-stagger xyz-nested">
 								<h3>Nest & Stagger</h3>
 								<p>
 									Stagger lists of elements in both forward and reverse order, while animating nested items in sync with
 									their parents.
 								</p>
+								<Shine></Shine>
 							</div>
-							<div class="feature xyz-nested">
-								<h3>Plug & Play</h3>
-								<p>Works with HTML and CSS, or use our Vue and React integrations for even more power.</p>
+							<div class="feature feature-performant xyz-nested">
+								<h3>Performant</h3>
+								<p>
+									Silky smooth animations out of the box. Only <code>2.68kB</code> for base functionality and
+									<code>11.4kB</code> if you include convenient utilities.
+								</p>
+								<Shine></Shine>
+							</div>
+							<div class="feature feature-less-code xyz-nested">
+								<h3>Less Code</h3>
+								<p>
+									Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more
+									fun.
+								</p>
+								<Shine></Shine>
 							</div>
 						</section>
 					</XyzTransition>
@@ -155,12 +174,14 @@
 import Banner from '~/components/banner/Banner'
 import DarkModeToggle from '~/components/reusable/DarkModeToggle'
 import Sandbox from '~/components/reusable/Sandbox'
+import Shine from '~/components/reusable/Shine'
 
 export default {
 	components: {
 		Banner,
 		DarkModeToggle,
 		Sandbox,
+		Shine,
 	},
 	data() {
 		return {
@@ -365,8 +386,14 @@ export default {
 }
 
 .landing-content {
-	max-width: 90%;
+	width: 100%;
+	max-width: 48rem;
+	padding: 0 $sp-s;
 	margin: 0 auto;
+
+	@include media('<phone') {
+		padding: 0 $sp-xs;
+	}
 }
 
 .hero__wrap {
@@ -379,7 +406,6 @@ export default {
 	font-size: $fs-xxxl;
 	font-weight: 650;
 	line-height: 1.35;
-	max-width: 48rem;
 	text-align: center;
 	margin: 0 auto;
 
@@ -420,6 +446,7 @@ export default {
 	border-bottom: 3px solid primary-color(300);
 	height: 3rem;
 	width: 16rem;
+	overflow: hidden;
 	border-radius: $br-l;
 	padding: 0 $sp-s;
 	display: flex;
@@ -439,13 +466,12 @@ export default {
 	}
 
 	& + & {
-		margin-left: $sp-s;
+		margin-left: $sp-xs;
 	}
 
 	svg {
 		@include size(1.5rem);
 		transition: transform 0.3s $ease-out-back;
-		margin-right: $sp-xs;
 	}
 
 	&:hover,
@@ -474,6 +500,7 @@ export default {
 
 	@include media('<tablet') {
 		flex: 1;
+		font-size: 1rem;
 
 		& + & {
 			margin-top: 0;
@@ -482,14 +509,11 @@ export default {
 	}
 
 	@include media('<phone') {
-		flex-direction: column;
 		padding: $sp-xxs;
 		height: auto;
 		font-size: $fs-s;
 
 		svg {
-			margin-right: 0;
-			margin-bottom: $sp-xxxs;
 			flex-shrink: 0;
 		}
 
@@ -497,6 +521,17 @@ export default {
 			margin-top: 0;
 			margin-left: $sp-xxs;
 		}
+	}
+}
+
+.cta-content {
+	display: flex;
+	align-items: center;
+	gap: $sp-xs;
+
+	@include media('<phone') {
+		flex-direction: column;
+		gap: $sp-xxxs;
 	}
 }
 
@@ -532,7 +567,6 @@ export default {
 
 .copy__wrap {
 	width: 100%;
-	max-width: 44rem;
 	margin: 0 auto;
 }
 
@@ -555,21 +589,53 @@ export default {
 
 .features-section {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-gap: $sp-xl;
+	grid-template-columns: repeat(6, 1fr);
+	grid-gap: $sp-xs;
 	margin-bottom: $sp-xxl;
+	perspective: 1000px;
 
 	p {
-		font-size: $fs-m;
+		font-size: $fs-s;
+
 		line-height: 1.75;
 	}
 
 	@include media('<tablet') {
 		grid-template-columns: 1fr;
 	}
+}
 
-	@include media('<phone') {
-		grid-gap: $sp-l;
+.feature {
+	box-shadow: inset 0 0 0 4px primary-color(500, 0.15);
+	padding: $sp-m;
+	border-radius: $br-m;
+	position: relative;
+	grid-column: span 3;
+
+	&:nth-child(even) {
+		top: $sp-m;
+	}
+
+	h3 {
+		position: relative;
+	}
+
+	@include media('<tablet') {
+		grid-column: span 1;
+		&:nth-child(even) {
+			top: initial;
+		}
+	}
+
+	.shine {
+		--shine-size: 75%;
+		--shine-strength: 0.5;
+		--shine-diffuse: 0.25;
+		position: absolute;
+		inset: 0;
+		box-shadow: inset 0 0 0 4px $cyan;
+		border-radius: $br-m;
+		pointer-events: none;
 	}
 }
 

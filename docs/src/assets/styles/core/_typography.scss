@@ -14,18 +14,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-h2,
-h3,
-h4,
-h5 {
-  margin-bottom: 0.5em;
-  font-weight: 600;
-
-  &:not(:first-child) {
-    margin-top: 1.5em;
-  }
-}
-
 p, a, label, h1, h2, h3, h4, h5, h6, ul, ol, dl {
   transition: color .3s $ease-in-out;
 }
