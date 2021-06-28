@@ -25,10 +25,10 @@
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --fix",
     "lint-all": "yarn run lint --ext .js,.jsx,.vue .",
-    "prepare": "husky install",
+    "prepare": "husky install && yarn run build",
     "pre-commit": "lint-staged",
     "commit-msg": "npx --no-install commitlint --edit \"$1\"",
-    "publish": "lerna run build && lerna publish",
+    "publish": "lerna publish",
     "publish-prerelease": "yarn run publish --conventional-prerelease",
     "publish-graduate": "yarn run publish --conventional-graduate"
   },
