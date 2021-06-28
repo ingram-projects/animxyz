@@ -17,11 +17,19 @@ const VueMQ = {
 			const components = []
 			if (min) {
 				const val = getBreakpoint(min)
-				components.push(`(min-${direction}: ${equal ? val - 1 : val}px)`)
+				if (equal) {
+					components.push(`(min-${direction}: ${val}px)`)
+				} else {
+					components.push(`(not (max-${direction}: ${val}px))`)
+				}
 			}
 			if (max) {
 				const val = getBreakpoint(max)
-				components.push(`(max-${direction}: ${equal ? val + 1 : val}px)`)
+				if (equal) {
+					components.push(`(max-${direction}: ${val}px)`)
+				} else {
+					components.push(`(not (min-${direction}: ${val}px))`)
+				}
 			}
 			if (!components.length) return false
 
