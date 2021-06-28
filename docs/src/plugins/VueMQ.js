@@ -10,30 +10,24 @@ const VueMQ = {
 		}
 
 		function media(options) {
-			const { min, max, equal = false, direction = 'width', defaultTo = true } = options
+			const { min, max, direction = 'width', defaultTo = true } = options
 
 			if (typeof window === 'undefined') return defaultTo
 
-			const components = []
+			let mediaQuery = null
+
 			if (min) {
 				const val = getBreakpoint(min)
-				if (equal) {
-					components.push(`(min-${direction}: ${val}px)`)
-				} else {
-					components.push(`(not (max-${direction}: ${val}px))`)
-				}
+				mediaQuery = `(min-${direction}: ${val}px)`
 			}
+
 			if (max) {
 				const val = getBreakpoint(max)
-				if (equal) {
-					components.push(`(max-${direction}: ${val}px)`)
-				} else {
-					components.push(`(not (min-${direction}: ${val}px))`)
-				}
+				mediaQuery = `not all and (min-${direction}: ${val}px)`
 			}
-			if (!components.length) return false
 
-			const mediaQuery = components.join(' and ')
+			if (!mediaQuery) return false
+
 			if (!data.cached[mediaQuery]) {
 				data.cached[mediaQuery] = matchMedia(mediaQuery).matches
 			}
@@ -44,16 +38,8 @@ const VueMQ = {
 			return media({ max, ...options })
 		}
 
-		function belowEq(max, options) {
-			return media({ max, equal: true, ...options })
-		}
-
 		function above(min, options) {
 			return media({ min, ...options })
-		}
-
-		function aboveEq(min, options) {
-			return media({ min, equal: true, ...options })
 		}
 
 		const data = {}
@@ -62,11 +48,8 @@ const VueMQ = {
 			data.cached = {}
 
 			data.mq = {
-				media,
 				below,
-				belowEq,
 				above,
-				aboveEq,
 			}
 		}
 
