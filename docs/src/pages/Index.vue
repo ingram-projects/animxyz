@@ -176,7 +176,6 @@ import DarkModeToggle from '~/components/reusable/DarkModeToggle'
 import Sandbox from '~/components/reusable/Sandbox'
 import Shine from '~/components/reusable/Shine'
 
-
 export default {
 	components: {
 		Banner,
