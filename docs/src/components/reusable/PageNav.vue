@@ -1,5 +1,5 @@
 <template>
-	<div class="page-nav__wrap" :class="{ open }">
+	<div class="page-nav__wrap" :class="{ open }" v-click-outside="onClickOutside">
 		<FocusLock :disabled="isMediaLarge || !open">
 			<XyzTransition appear xyz="fade delay-4">
 				<button class="nav-button" @click="toggle(!open)" :disabled="isMediaLarge">
@@ -120,6 +120,9 @@ export default {
 			}
 		},
 		onSectionClick() {
+			this.toggle(false)
+		},
+		onClickOutside() {
 			this.toggle(false)
 		},
 	},

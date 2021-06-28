@@ -2,7 +2,7 @@
 	<Layout :class="`tab--${activeTab}`">
 		<PageNav :sections="sections" :active-section="activeSection" :open="navOpen" @toggle="toggleNav"></PageNav>
 
-		<main class="page-content" :class="{ 'nav-open': navOpen }" @click="toggleNav(false)">
+		<main class="page-content" :class="{ 'nav-open': navOpen }">
 			<XyzTransitionGroup tag="section" class="sections__wrap" :class="{ active: activeTab === 'docs' }" appear-visible>
 				<div
 					v-for="section in sections"
@@ -186,9 +186,7 @@ export default {
 	},
 	methods: {
 		toggleNav(toggled) {
-			if (toggled || this.$mq.below('large')) {
-				this.navOpen = toggled
-			}
+			this.navOpen = toggled
 		},
 		setTab(tab) {
 			this.activeTab = tab

@@ -13,6 +13,7 @@ import 'prismjs'
 
 // Plugins
 import VueAnimXyz from '@animxyz/vue'
+import VueClickOutside from 'v-click-outside'
 import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
@@ -35,6 +36,7 @@ import { openGraphMeta } from '~/utils'
 
 export default function (Vue, { router, head }) {
 	Vue.use(VueAnimXyz)
+	Vue.use(VueClickOutside)
 	Vue.use(VueMQ, {
 		breakpoints: {
 			small: 375,

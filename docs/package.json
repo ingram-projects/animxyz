@@ -17,6 +17,7 @@
     "query-string": "^7.0.1",
     "ress": "^4.0.0",
     "typeface-inter": "^3.18.1",
+    "v-click-outside": "^3.1.2",
     "vue-client-only": "^2.1.0",
     "vue-focus-lock": "^1.4.1",
     "vue-gtag": "^1.16.1",
