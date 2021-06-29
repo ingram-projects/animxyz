@@ -48,6 +48,7 @@ export default {
 	--grid-item-size: 8rem;
 
 	gap: $sp-xxs;
+	width: 100%;
 
 	@include media('<phone') {
 		--grid-item-size: 5.5rem;

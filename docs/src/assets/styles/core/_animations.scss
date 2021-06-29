@@ -52,13 +52,3 @@
     padding: 0;
   }
 }
-
-.xyz-paused {
-  animation-play-state: paused !important;
-
-  @each $mode in $xyz-modes {
-    .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-		   animation-play-state: paused !important;
-    }
-	}
-}

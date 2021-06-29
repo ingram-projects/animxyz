@@ -35,7 +35,7 @@ function viewportValue(v, axis) {
 
 function updateDirective(el, { value = {} }) {
 	removeDirective(el)
-	el.classList.add('xyz-paused')
+	el.classList.add('xyz-paused-all')
 
 	const { axis = 'y', compare = 'start', offset = 0 } = value
 	const offsetPx = viewportValue(offset, axis)
@@ -66,7 +66,7 @@ function updateDirective(el, { value = {} }) {
 }
 
 function removeDirective(el) {
-	el.classList.remove('xyz-paused')
+	el.classList.remove('xyz-paused-all')
 	el.style.removeProperty('--xyz-start-offset')
 	window.removeEventListener('scroll', el._xyzScrollSyncCallback)
 	window.addEventListener('resize', el._xyzScrollSyncCallback)

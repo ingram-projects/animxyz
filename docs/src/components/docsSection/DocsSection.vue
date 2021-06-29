@@ -53,6 +53,7 @@ $active-border-width: 0.5rem;
 }
 
 .docs-section {
+	--docs-section-br: #{$br-xl};
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -60,11 +61,15 @@ $active-border-width: 0.5rem;
 	max-width: 48rem;
 	width: 100%;
 	padding: $sp-m;
-	border-radius: $br-xl;
+	border-radius: var(--docs-section-br);
 	margin: auto;
 	transition: background-color 0.8s $ease-out;
 	--shadow-scroll-color: #{primary-color(900, 0.25)};
 	--shadow-scroll-backdrop-color: #{primary-color(50)};
+
+	@include dark-mode {
+		--shadow-scroll-backdrop-color: #{primary-color(950)};
+	}
 
 	&::before {
 		content: '';
@@ -74,31 +79,21 @@ $active-border-width: 0.5rem;
 		bottom: 0;
 		left: 0;
 		z-index: -1;
-		border-radius: $br-xl;
+		border-radius: var(--docs-section-br);
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
 		transition: 1.2s ease-out 0.2s;
 		transition-property: opacity, box-shadow;
-	}
 
-	@include dark-mode {
-		--shadow-scroll-backdrop-color: #{primary-color(950)};
+		@include dark-mode {
+			box-shadow: 0 0 0 0.25rem primary-color(700);
+		}
 	}
 
 	::v-deep {
 		.shadow-scroll,
 		.shadow-scroll-content {
 			transition: box-shadow 0.8s $ease-out;
-		}
-
-		h1,
-		h2,
-		h3 {
-			color: primary-color(700);
-
-			@include dark-mode {
-				color: primary-color(300);
-			}
 		}
 
 		hr {
@@ -157,15 +152,15 @@ $active-border-width: 0.5rem;
 	}
 
 	@include media('<x-large') {
-		border-radius: 0;
+		--docs-section-br: 0;
 	}
 
 	@include media('<large') {
-		border-radius: $br-xl;
+		--docs-section-br: $br-xl;
 	}
 
 	@include media('<desktop') {
-		border-radius: 0;
+		--docs-section-br: 0;
 	}
 }
 

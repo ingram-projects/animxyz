@@ -81,7 +81,6 @@ svg {
   grid-template-columns: repeat(var(--grid-columns), var(--grid-item-size));
   justify-content: center;
   margin: 0 auto;
-  width: 100%;
 
   .square,
   .circle,
@@ -89,6 +88,10 @@ svg {
   .item-block {
     @include size(var(--grid-item-size));
   }
+}
+
+.example-grid-2 {
+  --grid-columns: 2;
 }
 
 .example-grid-9 {
@@ -123,7 +126,7 @@ svg {
   letter-spacing: 0.025em;
   padding: $sp-xxs $sp-s;
   transition: 0.2s ease-in-out;
-  transition-property: background-color, box-shadow, color;
+  transition-property: opacity, background-color, box-shadow, color;
 
   &:hover {
     background-color: primary-color(700);
@@ -136,6 +139,10 @@ svg {
 
   &:focus {
     box-shadow: 0 0 0 2px $cyan;
+  }
+
+  &:disabled {
+    opacity: 0.5;
   }
 
   & + & {

@@ -79,11 +79,11 @@ export default function (duration, appearVisible) {
 
 		if (mode === 'appear' && appearVisible) {
 			const observerOptions = { ...appearVisible }
-			el.classList.add('xyz-paused')
+			el.classList.add('xyz-paused-all')
 			el._xyzAppearObserver = new IntersectionObserver((entries, observer) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						el.classList.remove('xyz-paused')
+						el.classList.remove('xyz-paused-all')
 						observer.disconnect()
 						runAnim()
 					}
