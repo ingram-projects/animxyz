@@ -91,32 +91,58 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="example-wrap">
-            <div class="square xyz-absolute ${data.toggled ? 'xyz-in' : 'xyz-out'}" xyz="fade up-100%"></div>
-            <div class="square xyz-absolute ${data.toggled ? 'xyz-out' : 'xyz-in'}" xyz="fade down-100%"></div>
+          <div
+            class="example-grid"
+            xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+          >
+            <div
+              class="square ${data.mode}${data.paused ? ' xyz-paused' : ''}"
+            ></div>
+            <div
+              class="square ${data.mode}${data.paused ? ' xyz-paused' : ''}"
+            ></div>
+            <div
+              class="square ${data.mode}${data.paused ? ' xyz-paused' : ''}"
+            ></div>
+            <div
+              class="square ${data.mode}${data.paused ? ' xyz-paused' : ''}"
+            ></div> 
           </div>
       - name: Vue
         content: |
           ##vue
-          <div class="example-wrap">
-            <XyzTransition>
-              <div class="square xyz-absolute" xyz="fade up-100%" v-if="${data.toggled}" key="1"></div>
-              <div class="square xyz-absolute" xyz="fade down-100%" v-if="${!data.toggled}" key="2"></div>
-            </XyzTransition>
-          </div>
+          <XyzTransitionGroup
+            class="example-grid"
+            appear
+            duration="auto"
+            xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+          >
+            <div
+              class="square"
+              :class="{ 'xyz-paused': ${data.paused} }"
+              v-for="index in 4"
+              v-if="${data.toggled}"
+              :key="index"
+            ></div>
+          </XyzTransitionGroup>
       - name: React
         content: |
           ##jsx
-          <div className="example-wrap">
-            <XyzTransition>
-              {${data.toggled} && (
-                <div className="square xyz-absolute" xyz="fade up-100%" key="1"></div>
-              )}
-              {${!data.toggled} && (
-                <div className="square xyz-absolute" xyz="fade down-100%" key="2"></div>
-              )}
-            </XyzTransition>
-          </div>
+          <XyzTransitionGroup
+            className="example-grid"
+            appear
+            duration="auto"
+            xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+          >
+            {${data.toggled} &&
+              [...Array(4)].map((_, index) => (
+                <div
+                  className={\`square \${${data.paused} ? 'xyz-paused' : ''}\`}
+                  key={index}
+                ></div>
+              )
+            )}
+          </XyzTransitionGroup>
 ---
 
 All the following classes have **in**, **out**, and **appear** variants as well.
