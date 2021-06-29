@@ -98,16 +98,6 @@ $active-border-width: 0.5rem;
 			transition: box-shadow 0.8s $ease-out;
 		}
 
-		h1,
-		h2,
-		h3 {
-			color: primary-color(700);
-
-			@include dark-mode {
-				color: primary-color(200);
-			}
-		}
-
 		hr {
 			margin: $sp-xl (-$sp-m);
 		}

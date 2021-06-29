@@ -85,6 +85,38 @@ examples:
               )}
             </XyzTransition>
           </div>
+  - name: xyz-paused
+    component: SpecialClasses_Paused
+    code:
+      - name: HTML
+        content: |
+          ##html
+          <div class="example-wrap">
+            <div class="square xyz-absolute ${data.toggled ? 'xyz-in' : 'xyz-out'}" xyz="fade up-100%"></div>
+            <div class="square xyz-absolute ${data.toggled ? 'xyz-out' : 'xyz-in'}" xyz="fade down-100%"></div>
+          </div>
+      - name: Vue
+        content: |
+          ##vue
+          <div class="example-wrap">
+            <XyzTransition>
+              <div class="square xyz-absolute" xyz="fade up-100%" v-if="${data.toggled}" key="1"></div>
+              <div class="square xyz-absolute" xyz="fade down-100%" v-if="${!data.toggled}" key="2"></div>
+            </XyzTransition>
+          </div>
+      - name: React
+        content: |
+          ##jsx
+          <div className="example-wrap">
+            <XyzTransition>
+              {${data.toggled} && (
+                <div className="square xyz-absolute" xyz="fade up-100%" key="1"></div>
+              )}
+              {${!data.toggled} && (
+                <div className="square xyz-absolute" xyz="fade down-100%" key="2"></div>
+              )}
+            </XyzTransition>
+          </div>
 ---
 
 All the following classes have **in**, **out**, and **appear** variants as well.
@@ -103,6 +135,11 @@ You can use `xyz-out-absolute` to set `position: absolute` on exiting elements a
 
 ### xyz-paused
 The `xyz-paused` class will pause any AnimXYZ animations on an element it is on. This is useful when combined with the `--xyz-start-offset` variable to allow precise control of animation playback state.
+[See how it works](?tab=examples&example=xyz-paused#special-classes)
+
+::: note [Vue, React]
+Due to how Vue and React transition components work, only `xyz-appear` and `xyz-in` animations can be paused during the animation. 
+:::
 
 ### xyz-paused-all
 The `xyz-paused-all` class will pause any AnimXYZ animations on an element it is on as well as any AnimXYZ animations on nested elements.
