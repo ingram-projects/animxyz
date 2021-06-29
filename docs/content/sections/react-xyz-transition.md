@@ -74,13 +74,15 @@ The `<XyzTransition>` component is an extended version of the [ReactTransitionGr
 Unlike the complexity of the ReactTransitionGroup component, with `<XyzTransition>` you only need to care about the `appear`, `appearVisible`, `duration`, and `mode` props. Most props available on the [ReactTransitionGroup &lt;Transition&gt;](https://reactcommunity.org/react-transition-group/transition) component can also be used but likely wont be needed in the majority of cases.
 
 ::: note [Warning]
-Due to the [deprecation of React.findDOMNode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) and the need for internal usage of node refs it can be complicated to transition React Components as direct children of `<XyzTransition>`. In order to make this work the React Component must use [ref forwarding](https://reactjs.org/docs/forwarding-refs.html). Often you may be using components from an external library and don't have the ability to add ref forwarding. For this reason we recommend the workaround of wrapping the child components in an HTML element such as a `div` as shown here:
+Due to the [deprecation of React.findDOMNode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage) and the need for internal usage of node refs it can be complicated to transition React Components as direct children of `<XyzTransition>`. For this reason we recommend the workaround of wrapping the child components in an HTML element such as a `div` as shown here:
 
 ```jsx
 <XyzTransition>
   <div><MyReactComponent /></div>
 </XyzTransition>
 ```
+
+If rendering an extra element disrupts your layout you can add the now widely supported [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display) style to the element.
 :::
 
 ```jsx

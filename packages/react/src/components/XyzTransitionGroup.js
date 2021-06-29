@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement } from 'react'
+import React, { Children, isValidElement } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import XyzTransitionBase from './XyzTransitionBase'
 function XyzTransitionGroup(props) {
@@ -37,14 +37,15 @@ function XyzTransitionGroup(props) {
 	return (
 		<TransitionGroup {...rest}>
 			{childArray.map((child, index) => (
-				<XyzTransitionBase {...baseProps} key={child.key}>
-					{cloneElement(child, {
-						style: {
-							'--xyz-index': index,
-							'--xyz-index-rev': childArray.length - index - 1,
-							...child.props.style,
-						},
-					})}
+				<XyzTransitionBase
+					{...baseProps}
+					style={{
+						'--xyz-index': index,
+						'--xyz-index-rev': childArray.length - index - 1,
+					}}
+					key={child.key}
+				>
+					{child}
 				</XyzTransitionBase>
 			))}
 		</TransitionGroup>
