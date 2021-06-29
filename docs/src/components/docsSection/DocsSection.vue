@@ -83,11 +83,10 @@ $active-border-width: 0.5rem;
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
 		transition: 1.2s ease-out 0.2s;
-		transition-property: opacity, box-shadow, transform;
+		transition-property: opacity, box-shadow;
 
 		@include dark-mode {
 			box-shadow: 0 0 0 0.25rem primary-color(700);
-			transform: scale(0.975);
 		}
 	}
 
@@ -125,7 +124,6 @@ $active-border-width: 0.5rem;
 
 			&::before {
 				opacity: 1;
-				transform: scale(1);
 			}
 
 			@include dark-mode {
