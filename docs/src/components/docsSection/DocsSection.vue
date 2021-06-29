@@ -82,7 +82,6 @@ $active-border-width: 0.5rem;
 		border-radius: var(--docs-section-br);
 		box-shadow: 0 0.25rem 1.5rem primary-color(700, 0.15);
 		opacity: 0;
-		transform: scale(0.85);
 		transition: 1.2s ease-out 0.2s;
 		transition-property: opacity, box-shadow, transform;
 
