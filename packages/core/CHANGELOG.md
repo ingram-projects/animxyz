@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ingram-projects/animxyz/compare/v0.6.1...v0.6.2) (2021-06-29)
+
+
+### Bug Fixes
+
+* make xyz utility classes !important ([03503f5](https://github.com/ingram-projects/animxyz/commit/03503f59c3b8f83730c3d91bd27bc4c3b1b0d691))
+
+
+
+
+
 # [0.6.0](https://github.com/ingram-projects/animxyz/compare/v0.5.0...v0.6.0) (2021-06-22)
 
 **Note:** Version bump only for package @animxyz/core

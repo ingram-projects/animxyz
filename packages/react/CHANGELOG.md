@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ingram-projects/animxyz/compare/v0.6.1...v0.6.2) (2021-06-29)
+
+
+### Bug Fixes
+
+* addressed issue with findDOMNode ([1776347](https://github.com/ingram-projects/animxyz/commit/1776347a4d2e7e8bca70743bfb2126268e439646))
+* small improvement to react package ([917c25f](https://github.com/ingram-projects/animxyz/commit/917c25fea0e593d870af8b5a0f3499290f5a7ade))
+
+
+
+
+
 ## [0.6.1](https://github.com/ingram-projects/animxyz/compare/v0.6.0...v0.6.1) (2021-06-23)
 
 
