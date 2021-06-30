@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ingram-projects/animxyz/compare/v0.6.2...v0.6.3) (2021-06-30)
+
+
+### Bug Fixes
+
+* fixed wierd issue blocking monorepo build process ([3bf7489](https://github.com/ingram-projects/animxyz/commit/3bf748949583a975b355b1e235d51f30f9cd6e88))
+
+
+
+
+
 ## [0.6.2](https://github.com/ingram-projects/animxyz/compare/v0.6.1...v0.6.2) (2021-06-29)
 
 
