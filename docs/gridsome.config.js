@@ -60,7 +60,7 @@ module.exports = {
 							},
 							'animxyz-react': {
 								extends: 'animxyz-react-tgwrc',
-								entry: 'src/App.js',
+								entry: 'src/App.jsx',
 							},
 							'animxyz-vue-2-router': {
 								extends: 'animxyz-vue-2-router-0l48w',
@@ -72,7 +72,7 @@ module.exports = {
 							},
 							'animxyz-react-router': {
 								extends: 'animxyz-react-router-oe4w8',
-								entry: 'src/App.js',
+								entry: 'src/App.jsx',
 							},
 						},
 					},
