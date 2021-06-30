@@ -23,9 +23,14 @@ To install ReactAnimXYZ using a CDN put this script in the `<head>` of your `ind
 <script src="https://cdn.jsdelivr.net/npm/@animxyz/react"></script>
 ```
 
-### CodeSandbox template
+### CodeSandbox templates
 
 If you just want to fiddle around with the library here is a CodeSandbox starter template for React AnimXYZ:
 
 ```js codesandbox=animxyz-react?overrideEntry=false&buttonTitle=AnimXYZ%20React%20Template
+```
+
+And here is a CodeSandbox for how to use AnimXYZ with React Router:
+
+```js codesandbox=animxyz-react-router?overrideEntry=false&buttonTitle=AnimXYZ%20React%20Router%20Template
 ```

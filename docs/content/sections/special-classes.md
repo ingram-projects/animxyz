@@ -1,7 +1,7 @@
 ---
 title: Special Classes
 id: special-classes
-quote: 
+quote: All the bells and whistles
 
 examples:
   - name: xyz-none

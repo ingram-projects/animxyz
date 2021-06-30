@@ -62,6 +62,18 @@ module.exports = {
 								extends: 'animxyz-react-tgwrc',
 								entry: 'src/App.js',
 							},
+							'animxyz-vue-2-router': {
+								extends: 'animxyz-vue-2-router-0l48w',
+								entry: 'src/App.vue',
+							},
+							'animxyz-vue-3-router': {
+								extends: 'animxyz-vue-3-router-ojlrb',
+								entry: 'src/App.vue',
+							},
+							'animxyz-react-router': {
+								extends: 'animxyz-react-router-oe4w8',
+								entry: 'src/App.js',
+							},
 						},
 					},
 				],
