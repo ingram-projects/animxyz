@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue3",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "build:main": "bili"
   },
   "dependencies": {
-    "@animxyz/core": "^0.6.3",
+    "@animxyz/core": "^0.6.4",
     "clsx": "^1.1.1"
   },
   "peerDependencies": {
