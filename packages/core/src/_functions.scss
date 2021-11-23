@@ -118,22 +118,6 @@
   }
 }
 
-@mixin xyz-make-keyframes($name, $make-utilities: true) {
-  @each $mode in $xyz-modes {
-    @keyframes xyz-#{xyz-name($name, $mode)} {
-      @content($mode);
-    }
-  }
-
-  @if $make-utilities {
-    @each $mode in $xyz-modes {
-      [xyz~=#{$name}], [xyz~=#{xyz-name($name, $mode)}] {
-        --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{xyz-name($name, $mode)};
-      }
-    }
-  }
-}
-
 @mixin xyz-apply($utilities) {
   $utilities-list: xyz-str-split($utilities);
 
@@ -171,7 +155,54 @@
 }
 
 
+// STATESA
+
+@mixin xyz-state($mode) {
+  $opacity: xyz-var('opacity', $mode, 1);
+        
+  $perspective: xyz-var('perspective', $mode, 0);
+  $translate-x: xyz-var('translate-x', $mode, 0);
+  $translate-y: xyz-var('translate-y', $mode, 0);
+  $translate-z: xyz-var('translate-z', $mode, 0);
+  $rotate-x: xyz-var('rotate-x', $mode, 0);
+  $rotate-y: xyz-var('rotate-y', $mode, 0);
+  $rotate-z: xyz-var('rotate-z', $mode, 0);
+  $scale-x: xyz-var('scale-x', $mode, 1);
+  $scale-y: xyz-var('scale-y', $mode, 1);
+  $scale-z: xyz-var('scale-z', $mode, 1);
+  $skew-x: xyz-var('skew-x', $mode, 0);
+  $skew-y: xyz-var('skew-y', $mode, 0);
+
+  $transform: xyz-var('transform', $mode,
+    perspective(#{$perspective})
+    translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
+    rotateX(#{$rotate-x}) rotateY(#{$rotate-y}) rotateZ(#{$rotate-z})
+    scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})
+    skew(#{$skew-x}, #{$skew-y})
+  );
+
+  opacity: $opacity;
+  transform: $transform;
+}
+
+
 // ANIMATIONS
+
+@mixin xyz-make-keyframes($name, $make-utilities: true) {
+  @each $mode in $xyz-modes-animation {
+    @keyframes xyz-#{xyz-name($name, $mode)} {
+      @content($mode);
+    }
+  }
+
+  @if $make-utilities {
+    @each $mode in $xyz-modes-animation {
+      [xyz~=#{$name}], [xyz~=#{xyz-name($name, $mode)}] {
+        --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{xyz-name($name, $mode)};
+      }
+    }
+  }
+}
 
 @mixin xyz-animation($mode) {
   $keyframes: xyz-var('keyframes', $mode);
@@ -208,4 +239,39 @@
     both;
 
   animation-name: xyz-#{xyz-name('keyframes', $mode)}, #{$keyframes};
+}
+
+
+// TRANSITIONS
+
+@mixin xyz-transition($mode) {
+  $transitions: xyz-var('transitions', $mode);
+  $ease: xyz-var('ease', $mode);
+  $duration: xyz-var('duration', $mode);
+  $delay: xyz-var('delay', $mode);
+  $stagger: xyz-var('stagger', $mode, 0s);
+  $stagger-rev: xyz-var('stagger-rev', $mode, 0s);
+  $origin: xyz-var('origin', $mode);
+
+  $index: var(--xyz-index, 0);
+  $index-rev: var(--xyz-index-rev, 0);
+
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-stagger-delay-calc: var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev};
+  --xyz-total-delay-calc: var(--xyz-stagger-delay, 0s) + #{$delay};
+
+  --xyz-stagger-delay: calc(var(--xyz-stagger-delay-calc));
+  --xyz-total-delay: calc(var(--xyz-total-delay-calc));
+  transform-origin: #{$origin};
+  backface-visibility: visible;
+
+  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
+  --xyz-delay-calc: var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + #{$duration}) * -1;
+
+  transition:
+    #{$duration}
+    #{$ease}
+    calc(var(--xyz-delay-calc));
+
+  transition-property: opacity, transform, #{$transitions};
 }

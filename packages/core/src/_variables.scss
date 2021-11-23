@@ -3,8 +3,11 @@
 
 // MODES
 
-$xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
-$xyz-modes-all: list.join('all', $xyz-modes);
+$xyz-modes-animation: ('in', 'out', 'appear',);
+$xyz-modes-animation-all: ('in', 'out', 'appear', 'all',);
+$xyz-modes-transition: ('hover',);
+$xyz-modes-transition-all: ('hover', 'all',);
+$xyz-modes-all: ('in', 'out', 'appear', 'hover', 'all',);
 
 
 // LEVELS
@@ -207,6 +210,7 @@ $xyz-skew-levels: (
 $xyz-variables-map: (
   'keyframes': (
     'type': 'keyframes',
+    'modes': $xyz-modes-animation-all,
   ),
   'ease': (
     'type': 'ease',
@@ -225,9 +229,11 @@ $xyz-variables-map: (
   ),
   'iterate': (
     'type': 'iterate',
+    'modes': $xyz-modes-animation-all,
   ),
   'direction': (
     'type': 'direction',
+    'modes': $xyz-modes-animation-all,
   ),
   'origin': (
     'type': 'origin',
@@ -315,212 +321,214 @@ $xyz-defaults-map: (
 $xyz-utilities-map: (
   'ease': (
     'type': 'ease',
-    'vars': ['ease'],
+    'vars': ('ease'),
     'levels': $xyz-ease-levels,
   ),
   'duration': (
     'type': 'duration',
-    'vars': ['duration'],
+    'vars': ('duration'),
     'levels': $xyz-duration-levels,
   ),
   'delay': (
     'type': 'delay',
-    'vars': ['delay'],
+    'vars': ('delay'),
     'levels': $xyz-delay-levels,
   ),
   'stagger': (
     'type': 'stagger',
-    'vars': ['stagger'],
+    'vars': ('stagger'),
     'levels': $xyz-stagger-levels,
   ),
   'stagger-rev': (
     'type': 'stagger',
-    'vars': ['stagger-rev'],
+    'vars': ('stagger-rev'),
     'levels': $xyz-stagger-levels,
   ),
   'iterate': (
     'type': 'iterate',
-    'vars': ['iterate'],
+    'vars': ('iterate'),
     'levels': $xyz-iterate-levels,
+    'modes': $xyz-modes-animation-all,
   ),
   'direction': (
     'type': 'direction',
-    'vars': ['direction'],
+    'vars': ('direction'),
     'levels': $xyz-direction-levels,
+    'modes': $xyz-modes-animation-all,
   ),
   'origin': (
     'type': 'origin',
-    'vars': ['origin'],
+    'vars': ('origin'),
     'levels': $xyz-origin-levels,
   ),
   'perspective': (
     'type': 'perspective',
-    'vars': ['perspective'],
+    'vars': ('perspective'),
     'levels': $xyz-perspective-levels,
   ),
   'fade': (
     'type': 'opacity',
-    'vars': ['opacity'],
+    'vars': ('opacity'),
     'levels': $xyz-opacity-levels,
     'transformer': 'xyz-one-minus-val',
   ),
   'right': (
     'type': 'translate',
     'axis': 'x',
-    'vars': ['translate-x'],
+    'vars': ('translate-x'),
     'levels': $xyz-translate-levels,
   ),
   'left': (
     'type': 'translate',
     'axis': 'x',
-    'vars': ['translate-x'],
+    'vars': ('translate-x'),
     'levels': $xyz-translate-levels,
     'transformer': 'xyz-negative-val',
   ),
   'down': (
     'type': 'translate',
     'axis': 'y',
-    'vars': ['translate-y'],
+    'vars': ('translate-y'),
     'levels': $xyz-translate-levels,
   ),
   'up': (
     'type': 'translate',
     'axis': 'y',
-    'vars': ['translate-y'],
+    'vars': ('translate-y'),
     'levels': $xyz-translate-levels,
     'transformer': 'xyz-negative-val',
   ),
   'front': (
     'type': 'translate',
     'axis': 'z',
-    'vars': ['translate-z'],
+    'vars': ('translate-z'),
     'levels': $xyz-translate-z-levels,
   ),
   'back': (
     'type': 'translate',
     'axis': 'z',
-    'vars': ['translate-z'],
+    'vars': ('translate-z'),
     'levels': $xyz-translate-z-levels,
     'transformer': 'xyz-negative-val',
   ),
   'flip-up': (
     'type': 'rotate',
     'axis': 'x',
-    'vars': ['rotate-x'],
+    'vars': ('rotate-x'),
     'levels': $xyz-rotate-levels,
   ),
   'flip-down': (
     'type': 'rotate',
     'axis': 'x',
-    'vars': ['rotate-x'],
+    'vars': ('rotate-x'),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
   ),
   'flip-right': (
     'type': 'rotate',
     'axis': 'y',
-    'vars': ['rotate-y'],
+    'vars': ('rotate-y'),
     'levels': $xyz-rotate-levels,
   ),
   'flip-left': (
     'type': 'rotate',
     'axis': 'y',
-    'vars': ['rotate-y'],
+    'vars': ('rotate-y'),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
   ),
   'rotate-right': (
     'type': 'rotate',
     'axis': 'z',
-    'vars': ['rotate-z'],
+    'vars': ('rotate-z'),
     'levels': $xyz-rotate-levels,
   ),
   'rotate-left': (
     'type': 'rotate',
     'axis': 'z',
-    'vars': ['rotate-z'],
+    'vars': ('rotate-z'),
     'levels': $xyz-rotate-levels,
     'transformer': 'xyz-negative-val',
   ),
   'small': (
     'type': 'scale',
     'axis': 'xyz',
-    'vars': ['scale-x', 'scale-y', 'scale-z'],
+    'vars': ('scale-x', 'scale-y', 'scale-z'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
   ),
   'big': (
     'type': 'scale',
     'axis': 'xyz',
-    'vars': ['scale-x', 'scale-y', 'scale-z'],
+    'vars': ('scale-x', 'scale-y', 'scale-z'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
   ),
   'narrow': (
     'type': 'scale',
     'axis': 'x',
-    'vars': ['scale-x'],
+    'vars': ('scale-x'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
   ),
   'wide': (
     'type': 'scale',
     'axis': 'x',
-    'vars': ['scale-x'],
+    'vars': ('scale-x'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
   ),
   'short': (
     'type': 'scale',
     'axis': 'y',
-    'vars': ['scale-y'],
+    'vars': ('scale-y'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
   ),
   'tall': (
     'type': 'scale',
     'axis': 'y',
-    'vars': ['scale-y'],
+    'vars': ('scale-y'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
   ),
   'thin': (
     'type': 'scale',
     'axis': 'z',
-    'vars': ['scale-z'],
+    'vars': ('scale-z'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-minus-val',
   ),
   'thick': (
     'type': 'scale',
     'axis': 'z',
-    'vars': ['scale-z'],
+    'vars': ('scale-z'),
     'levels': $xyz-scale-levels,
     'transformer': 'xyz-one-plus-val',
   ),
   'skew-left': (
     'type': 'skew',
     'axis': 'x',
-    'vars': ['skew-x'],
+    'vars': ('skew-x'),
     'levels': $xyz-skew-levels,
   ),
   'skew-right': (
     'type': 'skew',
     'axis': 'x',
-    'vars': ['skew-x'],
+    'vars': ('skew-x'),
     'levels': $xyz-skew-levels,
     'transformer': 'xyz-negative-val',
   ),
   'skew-up': (
     'type': 'skew',
     'axis': 'y',
-    'vars': ['skew-y'],
+    'vars': ('skew-y'),
     'levels': $xyz-skew-levels,
   ),
   'skew-down': (
     'type': 'skew',
     'axis': 'y',
-    'vars': ['skew-y'],
+    'vars': ('skew-y'),
     'levels': $xyz-skew-levels,
     'transformer': 'xyz-negative-val',
   ),
