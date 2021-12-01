@@ -1,12 +1,12 @@
 {
   "name": "@animxyz/vue-examples",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "@animxyz/vue": "^0.6.4",
+    "@animxyz/vue": "^0.6.5",
     "core-js": "^3.15.1",
     "fontsource-inconsolata": "4.0.0",
     "ress": "^4.0.0",

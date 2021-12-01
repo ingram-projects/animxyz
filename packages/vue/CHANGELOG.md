@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.5](https://github.com/ingram-projects/animxyz/compare/v0.6.4...v0.6.5) (2021-12-01)
+
+
+### Bug Fixes
+
+* fixed unmount with vue3 directive and ssr error in mergeData function ([93f58e9](https://github.com/ingram-projects/animxyz/commit/93f58e9aa540ba74611a66bf1c9dec2530c5dfdd))
+
+
+
+
+
 ## [0.6.4](https://github.com/ingram-projects/animxyz/compare/v0.6.3...v0.6.4) (2021-06-30)
 
 **Note:** Version bump only for package @animxyz/vue
