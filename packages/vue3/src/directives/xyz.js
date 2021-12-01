@@ -5,11 +5,9 @@ function updateDirective(el, { value }) {
 }
 
 export default {
-	beforeMount(el, { value }) {
+	beforeMount(el) {
 		el._xyzOriginal = el.getAttribute('xyz')
 		updateDirective(...arguments)
-		el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 	},
 	updated: updateDirective,
-	beforeUnmount: updateDirective,
 }

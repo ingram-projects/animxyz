@@ -10,9 +10,4 @@ export default {
 		updateDirective(...arguments)
 	},
 	update: updateDirective,
-	unbind(el, binding, vnode, oldVnode, isDestroy) {
-		if (!isDestroy) {
-			el.setAttribute('xyz', el._xyzOriginal)
-		}
-	},
 }

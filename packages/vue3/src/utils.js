@@ -31,10 +31,10 @@ export function mergeData(data1 = {}, data2 = {}) {
 		...data1,
 		...data2,
 		style: {
-			...data1.style,
-			...data2.style,
+			...data1?.style,
+			...data2?.style,
 		},
-		class: clsx(data1.class, data2.class),
+		class: clsx(data1?.class, data2?.class),
 	}
 }
 
