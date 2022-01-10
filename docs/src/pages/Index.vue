@@ -716,6 +716,7 @@ export default {
 
 .sandbox__wrap {
 	position: relative;
+	color-scheme: dark;
 }
 
 .sandbox {

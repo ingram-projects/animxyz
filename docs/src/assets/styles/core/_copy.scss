@@ -68,6 +68,7 @@
     margin: 0 (-$sp-xxs);
     font-size: inherit;
     overflow: initial;
+    color-scheme: dark;
 
     &::before {
       position: absolute;
@@ -134,7 +135,8 @@
     border-top-left-radius: 0;
   }
 
-  table, .table-wrap {
+  table,
+  .table-wrap {
     &:not(:last-child) {
       margin-bottom: 1.25rem;
     }
@@ -164,10 +166,10 @@
 
     th {
       color: primary-color(800);
-			font-weight: 600;
-			font-size: $fs-s;
+      font-weight: 600;
+      font-size: $fs-s;
       white-space: nowrap;
-      
+
       @include dark-mode {
         color: primary-color(200);
       }
@@ -273,7 +275,7 @@
 
   a[target="_blank"] {
     position: relative;
-    
+
     &::before {
       --anchor-underline-color: #{$green};
     }

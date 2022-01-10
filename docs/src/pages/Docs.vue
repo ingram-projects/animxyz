@@ -285,6 +285,7 @@ export default {
 	top: 0;
 	bottom: 0;
 	background-color: primary-color(900);
+	color-scheme: dark;
 
 	.sandbox {
 		width: 100%;
