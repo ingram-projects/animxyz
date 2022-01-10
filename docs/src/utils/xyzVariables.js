@@ -373,7 +373,7 @@ export const xyzDefaultsMap = {
 	'out-direction': xyzDirectionLevels['reverse'],
   'origin': xyzOriginLevels['center'],
   'opacity': xyzOpacityLevels['100%'],
-  'perspective': xyzPerspectiveLevels['0'],
+  'perspective': xyzPerspectiveLevels['none'],
   'translate': xyzTranslateLevels['25%'],
   'translate-z': xyzTranslateZLevels['3'],
   'rotate': xyzRotateLevels['25%'],

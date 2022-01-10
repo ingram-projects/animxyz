@@ -301,7 +301,7 @@ $xyz-defaults-map: (
   'out-direction': map.get($xyz-direction-levels, 'reverse'),
   'origin': map.get($xyz-origin-levels, 'center'),
   'opacity': map.get($xyz-opacity-levels, '100%'),
-  'perspective': map.get($xyz-perspective-levels, '0'),
+  'perspective': map.get($xyz-perspective-levels, 'none'),
   'translate': map.get($xyz-translate-levels, '25%'),
   'translate-z': map.get($xyz-translate-z-levels, '3'),
   'rotate': map.get($xyz-rotate-levels, '25%'),
