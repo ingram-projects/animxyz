@@ -129,6 +129,7 @@ export const xyzOpacityLevels = {
 
 export const xyzPerspectiveLevels = {
 	'default': 'var(--xyz-perspective-default)',
+	'none': 'none',
 	'0': '0px',
 	'1': '500px',
 	'2': '1000px',
