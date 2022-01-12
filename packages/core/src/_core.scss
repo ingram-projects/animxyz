@@ -5,12 +5,13 @@
 
 @mixin xyz-core() {
   @include xyz-include-once('core') {
+    
     // generates core keyframes
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
         $opacity: xyz-var('opacity', $mode, 1);
         
-        $perspective: xyz-var('perspective', $mode, 0);
+        $perspective: xyz-var('perspective', $mode, var(--xyz-perspective-none));
         $translate-x: xyz-var('translate-x', $mode, 0);
         $translate-y: xyz-var('translate-y', $mode, 0);
         $translate-z: xyz-var('translate-z', $mode, 0);
@@ -38,6 +39,12 @@
 
     // sets defaults for xyz variables
     :root {
+      --xyz-perspective-none: 0;
+
+      @supports (transform: perspective(none)) {
+        --xyz-perspective-none: none;
+      }
+
       @each $name, $val in $xyz-defaults-map {
         --xyz-#{$name}-default: #{$val};
       }
