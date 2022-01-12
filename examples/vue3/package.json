@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/vue3-examples",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "private": true,
   "workspaces": {
     "nohoist": [
@@ -11,7 +11,7 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "@animxyz/vue3": "^0.6.5",
+    "@animxyz/vue3": "^0.6.6",
     "core-js": "^3.15.1",
     "fontsource-inconsolata": "4.0.0",
     "ress": "^4.0.0",

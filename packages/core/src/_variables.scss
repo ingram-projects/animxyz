@@ -131,7 +131,7 @@ $xyz-opacity-levels: (
 
 $xyz-perspective-levels: (
   'default': var(--xyz-perspective-default),
-  '0': 0px,
+  '0': var(--xyz-perspective-none),
   '1': 500px,
   '2': 1000px,
   '3': 1500px,
