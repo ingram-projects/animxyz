@@ -131,8 +131,7 @@ $xyz-opacity-levels: (
 
 $xyz-perspective-levels: (
   'default': var(--xyz-perspective-default),
-  'none': none,
-  '0': 0px,
+  '0': var(--xyz-perspective-none),
   '1': 500px,
   '2': 1000px,
   '3': 1500px,
@@ -302,7 +301,7 @@ $xyz-defaults-map: (
   'out-direction': map.get($xyz-direction-levels, 'reverse'),
   'origin': map.get($xyz-origin-levels, 'center'),
   'opacity': map.get($xyz-opacity-levels, '100%'),
-  'perspective': map.get($xyz-perspective-levels, 'none'),
+  'perspective': map.get($xyz-perspective-levels, '0'),
   'translate': map.get($xyz-translate-levels, '25%'),
   'translate-z': map.get($xyz-translate-z-levels, '3'),
   'rotate': map.get($xyz-rotate-levels, '25%'),

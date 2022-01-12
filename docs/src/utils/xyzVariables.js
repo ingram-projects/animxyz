@@ -129,8 +129,7 @@ export const xyzOpacityLevels = {
 
 export const xyzPerspectiveLevels = {
 	'default': 'var(--xyz-perspective-default)',
-	'none': 'none',
-	'0': '0px',
+	'0': 'none',
 	'1': '500px',
 	'2': '1000px',
 	'3': '1500px',
@@ -374,7 +373,7 @@ export const xyzDefaultsMap = {
 	'out-direction': xyzDirectionLevels['reverse'],
   'origin': xyzOriginLevels['center'],
   'opacity': xyzOpacityLevels['100%'],
-  'perspective': xyzPerspectiveLevels['none'],
+  'perspective': xyzPerspectiveLevels['0'],
   'translate': xyzTranslateLevels['25%'],
   'translate-z': xyzTranslateZLevels['3'],
   'rotate': xyzRotateLevels['25%'],
