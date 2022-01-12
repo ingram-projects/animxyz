@@ -68,17 +68,19 @@ export default {
 }
 
 .dark-mode-toggle {
+	--xyz-rotate-z: 24deg;
 	@include circle(2.25rem);
 	display: flex;
 	align-items: center;
 	overflow: hidden;
 	font-size: 2.25rem;
+	transform: rotate(var(--xyz-rotate-z));
 	transition: transform 0.3s $ease-out-back;
 	white-space: nowrap;
 
 	&:hover,
 	&:focus {
-		transform: scale(1.125);
+		transform: rotate(var(--xyz-rotate-z)) scale(1.125);
 	}
 
 	@include media('<phone') {
