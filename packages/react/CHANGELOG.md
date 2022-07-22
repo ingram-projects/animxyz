@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.7](https://github.com/ingram-projects/animxyz/compare/v0.6.6...v0.6.7) (2022-07-22)
+
+
+### Bug Fixes
+
+* changed peer dependencies to allow a broader range of vue and react versions ([b480537](https://github.com/ingram-projects/animxyz/commit/b4805372797cf0bd0da353cd9bb4b23c27902d4a))
+
+
+
+
+
 ## [0.6.6](https://github.com/ingram-projects/animxyz/compare/v0.6.5...v0.6.6) (2022-01-12)
 
 **Note:** Version bump only for package @animxyz/react

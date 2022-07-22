@@ -1,12 +1,12 @@
 {
   "name": "@animxyz/react-examples",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "private": true,
   "scripts": {
     "start": "PORT=8080 SKIP_PREFLIGHT_CHECK=true craco start"
   },
   "dependencies": {
-    "@animxyz/react": "^0.6.6",
+    "@animxyz/react": "^0.6.7",
     "fontsource-inconsolata": "4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
