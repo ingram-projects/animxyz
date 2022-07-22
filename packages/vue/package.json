@@ -52,7 +52,7 @@
     "vue-functional-data-merge": "^3.1.0"
   },
   "peerDependencies": {
-    "vue": "^2.6.14"
+    "vue": ">= 2 < 3"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
