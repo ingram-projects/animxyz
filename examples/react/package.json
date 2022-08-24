@@ -1,26 +1,26 @@
 {
   "name": "@animxyz/react-examples",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "private": true,
   "scripts": {
     "start": "PORT=8080 SKIP_PREFLIGHT_CHECK=true craco start"
   },
   "dependencies": {
-    "@animxyz/react": "^0.6.6",
+    "@animxyz/react": "^0.6.7",
     "fontsource-inconsolata": "4.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "ress": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ress": "^5.0.2",
     "typeface-inter": "^3.18.1"
   },
   "devDependencies": {
-    "@craco/craco": "^6.1.2",
+    "@craco/craco": "^6.4.5",
     "babel-eslint": "^10.1.0",
     "craco-plugin-scoped-css": "^1.1.1",
     "craco-sass-resources-loader": "^1.1.0",
-    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react": "^7.30.1",
     "include-media": "^1.4.10",
-    "react-scripts": "4.0.3",
-    "sass": "^1.35.1"
+    "react-scripts": "5.0.1",
+    "sass": "^1.53.0"
   }
 }
