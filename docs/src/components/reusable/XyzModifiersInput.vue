@@ -114,7 +114,7 @@ export default {
 
 			if (this.modifiers.presets) {
 				const presetsGroup = {
-					name: 'Presets',
+					name: 'Examples',
 					icon: 'IconPresets',
 					presets: this.modifiers.presets,
 				}
