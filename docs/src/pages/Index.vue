@@ -664,7 +664,7 @@ export default {
 	justify-content: center;
 	flex-wrap: wrap;
 	list-style: none;
-	margin-top: $sp-m;
+	margin-top: $sp-xl;
 	gap: $sp-m;
 }
 
