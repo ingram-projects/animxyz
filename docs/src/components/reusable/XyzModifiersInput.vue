@@ -5,7 +5,7 @@
 
 		<div class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
 			<XyzTransition class="xyz-out-absolute">
-				<div class="modifiers-sections" v-if="activeGroup.name === 'Presets'" :key="activeGroup.name">
+				<div class="modifiers-sections" v-if="activeGroup.presets" key="Presets">
 					<XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
 				</div>
 				<div class="modifiers-sections" v-else :key="activeGroup.name">
