@@ -129,11 +129,23 @@
 								<GImage
 									src="@/assets/images/yaherd-logo.svg"
 									alt="Yaherd Logo"
-									width="240"
-									height="54"
+									width="690"
+									height="156"
 									:immediate="true"
 								/>
 								<span class="screen-reader-only">YaHerd</span>
+							</a>
+						</li>
+						<li class="used-by__item">
+							<a href="https://visible.page/" target="_blank">
+								<GImage
+									src="@/assets/images/visible-logo.svg"
+									alt="Visible Logo"
+									width="247"
+									height="64"
+									:immediate="true"
+								/>
+								<span class="screen-reader-only">Visible</span>
 							</a>
 						</li>
 					</ul>
@@ -673,6 +685,8 @@ export default {
 
 	img {
 		display: block;
+		height: 4rem;
+		width: auto;
 	}
 }
 
