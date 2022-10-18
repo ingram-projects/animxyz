@@ -665,10 +665,10 @@ export default {
 	flex-wrap: wrap;
 	list-style: none;
 	margin-top: $sp-m;
+	gap: $sp-m;
 }
 
 .used-by__item {
-	margin-bottom: $sp-s;
 	padding: 0 $sp-s;
 
 	a {
@@ -685,7 +685,7 @@ export default {
 
 	img {
 		display: block;
-		height: 4rem;
+		height: 3.5rem;
 		width: auto;
 	}
 }
