@@ -82,6 +82,12 @@ export default function (Vue, { router, head }) {
 		content: 'width=device-width, initial-scale=1.0',
 	})
 
+	head.script.push({
+		src: 'https://beamanalytics.b-cdn.net/beam.min.js',
+		'data-token': 'd87546f1-7825-45bb-9a4e-7fbb12ed65b4',
+		async: true,
+	})
+
 	router.options.scrollBehavior = function (to, from, savedPosition) {
 		if (savedPosition) {
 			return savedPosition
