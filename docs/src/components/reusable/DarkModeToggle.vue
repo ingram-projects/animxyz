@@ -37,7 +37,7 @@ export default {
 	methods: {
 		toggleDarkLightMode() {
 			this.darkModeToggled = !this.darkModeToggled
-			this.$gtag.event('Dark/Light Mode Toggled')
+			// this.$gtag.event('Dark/Light Mode Toggled')
 		},
 		onPrefersColorSchemeChange(event) {
 			this.darkModeToggled = event.matches

@@ -14,7 +14,6 @@ import 'prismjs'
 // Plugins
 import VueAnimXyz from '@animxyz/vue'
 import VueClickOutside from 'v-click-outside'
-import VueGtag from 'vue-gtag'
 import VueMQ from '~/plugins/VueMQ'
 import VueObserveVisibility from 'vue-observe-visibility'
 
@@ -102,11 +101,11 @@ export default function (Vue, { router, head }) {
 	}
 
 	Vue.use(
-		VueGtag,
-		{
-			config: { id: 'UA-177625453-1' },
-			enabled: process.env.NODE_ENV === 'production',
-		},
+		// VueGtag,
+		// {
+		// 	config: { id: "UA-177625453-1" },
+		// 	enabled: process.env.NODE_ENV === "production",
+		// },
 		router
 	)
 }
