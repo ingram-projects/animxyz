@@ -1,0 +1,39 @@
+{
+  "name": "@animxyz/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AnimXYZ documentation site (Astro + Vue 3 islands)",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "astro check"
+  },
+  "dependencies": {
+    "@animxyz/core": "*",
+    "@animxyz/vue3": "*",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/vue": "^5.0.13",
+    "@fontsource/inconsolata": "^5.1.0",
+    "@fontsource/inter": "^5.1.0",
+    "astro": "^5.1.1",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "include-media": "^2.0.0",
+    "lodash": "^4.17.21",
+    "prettier": "^2.3.1",
+    "prismjs": "^1.29.0",
+    "query-string": "^9.1.1",
+    "rehype-prism-plus": "^2.0.0",
+    "remark-codesandbox": "^0.10.1",
+    "remark-containers": "^1.2.0",
+    "ress": "^5.0.2",
+    "sass": "^1.83.0",
+    "typescript": "^5.7.2",
+    "unist-builder": "^4.0.0",
+    "unist-util-visit": "^5.0.0",
+    "vite-svg-loader": "^5.1.0",
+    "vue": "^3.5.13"
+  }
+}

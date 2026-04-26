@@ -1,0 +1,125 @@
+---
+import '@fontsource/inter'
+import '@fontsource/inconsolata'
+import 'ress/ress.css'
+import 'prismjs/themes/prism-tomorrow.css'
+import '~/styles/core/_index.scss'
+
+import XrayToggle from '~/components/vue/reusable/XrayToggle.vue'
+
+interface Props {
+  title?: string
+  description?: string
+  url?: string
+  image?: string
+  bodyClass?: string
+}
+
+const {
+  title = 'AnimXYZ',
+  description = 'The first composable CSS animation toolkit',
+  url = 'https://animxyz.com',
+  image = 'https://animxyz.com/animxyz-link-preview.png',
+  bodyClass = '',
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <link rel="icon" type="image/png" href="/animxyz-logo.png" />
+    <link rel="apple-touch-icon" href="/animxyz-logo-touch.png" />
+  </head>
+  <body class={bodyClass}>
+    <div class="page__wrap">
+      <div class="alerts__wrap copy-content">
+        <div class="alert reduced-motion-alert">
+          <p>
+            AnimXYZ animations are disabled if your browser or OS has reduced motion setting turned on.
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn more here.
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <XrayToggle client:load />
+
+      <div class="page-content__wrap">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
+
+<style lang="scss">
+  .alerts__wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: $sp-m;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    pointer-events: none;
+
+    @include media('<tablet') {
+      padding: $sp-s;
+    }
+  }
+
+  .alert {
+    font-size: $fs-s;
+    line-height: 1.125rem;
+    font-weight: 500;
+    padding: $sp-xxs $sp-xs;
+    border-radius: $br-m;
+    pointer-events: all;
+
+    & + & {
+      margin-top: $sp-s;
+    }
+
+    p {
+      color: white;
+    }
+
+    a {
+      color: white;
+      font-weight: 700;
+
+      &::before {
+        --anchor-underline-color: white;
+      }
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    }
+  }
+
+  .reduced-motion-alert {
+    display: none;
+    background-color: $red;
+
+    @media (prefers-reduced-motion: reduce) {
+      display: block;
+    }
+  }
+</style>

@@ -14,37 +14,60 @@
     "url": "git+https://github.com/ingram-projects/animxyz.git"
   },
   "license": "MIT",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "examples/*",
-      "docs"
-    ]
-  },
+  "packageManager": "npm@11.8.0",
+  "workspaces": [
+    "packages/*",
+    "examples/*",
+    "site"
+  ],
   "scripts": {
-    "build": "lerna run build",
-    "lint": "eslint --ignore-path .gitignore --fix",
-    "lint-all": "yarn run lint --ext .js,.jsx,.vue .",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "lint-files": "eslint --ignore-path .gitignore --fix",
+    "lint-all": "npm run lint-files -- --ext .js,.jsx,.vue,.ts,.tsx,.astro .",
     "pre-commit": "lint-staged",
     "commit-msg": "npx --no-install commitlint --edit \"$1\"",
-    "publish": "lerna run build && lerna publish",
-    "publish-prerelease": "yarn run publish --conventional-prerelease",
-    "publish-graduate": "yarn run publish --conventional-graduate"
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.9",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@commitlint/config-lerna-scopes": "^12.1.4",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.1",
+    "turbo": "^2.3.3",
+    "vue": "^3.5.13"
+  },
+  "overrides": {
+    "@astrojs/vue": {
+      "vue": "^3.5.13"
+    },
+    "@vitejs/plugin-vue": {
+      "vue": "^3.5.13"
+    },
+    "@vitejs/plugin-vue-jsx": {
+      "vue": "^3.5.13"
+    },
+    "vite-plugin-vue-devtools": {
+      "vue": "^3.5.13"
+    },
+    "vite-svg-loader": {
+      "vue": "^3.5.13"
+    },
+    "@vue/server-renderer": {
+      "vue": "^3.5.13"
+    }
   },
   "lint-staged": {
-    "*.{js,jsx,vue}": [
-      "yarn run lint"
+    "*.{js,jsx,vue,ts,tsx,astro}": [
+      "npm run lint-files"
     ]
   }
 }

@@ -1,0 +1,13 @@
+---
+import Default from '~/layouts/Default.astro'
+import IndexApp from '~/components/vue/pages/IndexApp.vue'
+---
+
+<Default
+  title="AnimXYZ"
+  description="The first composable CSS animation toolkit"
+  url="https://animxyz.com"
+  bodyClass="page--index"
+>
+  <IndexApp client:load />
+</Default>

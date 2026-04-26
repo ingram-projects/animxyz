@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from 'astro:content'
+import { experimental_AstroContainer as AstroContainer } from 'astro/container'
+import Default from '~/layouts/Default.astro'
+import DocsApp from '~/components/vue/pages/DocsApp.vue'
+
+const sectionEntries = await getCollection('sections')
+const container = await AstroContainer.create()
+
+const sectionsData = await Promise.all(
+  sectionEntries.map(async (entry) => {
+    const { Content } = await render(entry)
+    const html = await container.renderToString(Content)
+    return {
+      id: entry.data.id,
+      title: entry.data.title,
+      quote: entry.data.quote,
+      examples: entry.data.examples ?? [],
+      modifiers: entry.data.modifiers ?? null,
+      content: html,
+    }
+  })
+)
+---
+
+<Default
+  title="Docs | AnimXYZ"
+  description="The first composable CSS animation toolkit"
+  url="https://animxyz.com/docs"
+  bodyClass="page--docs"
+>
+  <DocsApp client:load sectionsData={sectionsData} />
+</Default>
