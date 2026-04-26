@@ -25,7 +25,6 @@
     "build": "lerna run build",
     "lint": "eslint --ignore-path .gitignore --fix",
     "lint-all": "yarn run lint --ext .js,.jsx,.vue .",
-    "prepare": "husky install",
     "pre-commit": "lint-staged",
     "commit-msg": "npx --no-install commitlint --edit \"$1\"",
     "publish": "lerna run build && lerna publish",
@@ -39,7 +38,6 @@
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^6.0.0",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.1"
