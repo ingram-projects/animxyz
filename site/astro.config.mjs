@@ -54,7 +54,25 @@ export default defineConfig({
     rehypePlugins: [[rehypePrismPlus, { ignoreMissing: true }]],
   },
   vite: {
-    plugins: [svgLoader({ defaultImport: 'component' })],
+    plugins: [
+      svgLoader({
+        defaultImport: 'component',
+        svgoConfig: {
+          plugins: [
+            {
+              name: 'preset-default',
+              params: {
+                overrides: {
+                  // Keep viewBox so SVGs scale correctly when width/height
+                  // are overridden via CSS (e.g. `svg { @include size(1.5rem) }`).
+                  removeViewBox: false,
+                },
+              },
+            },
+          ],
+        },
+      }),
+    ],
     resolve: {
       alias: [
         // DynamicTemplate compiles templates at runtime, which requires the
