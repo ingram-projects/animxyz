@@ -20,7 +20,7 @@ body {
   opacity: 0;
 }
 
-html:focus-within {
+html {
   scroll-behavior: smooth;
 
   @media (prefers-reduced-motion) {
