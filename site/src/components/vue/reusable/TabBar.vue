@@ -10,7 +10,7 @@
     <button
       type="button"
       class="tab-bar__tab"
-      :class="{ active: tab === modelValue, 'has-content': tab.hasContent }"
+      :class="{ active: tab.name === modelValue?.name, 'has-content': tab.hasContent }"
       v-for="tab in tabs"
       :ref="(el) => setTabRef(el, tab)"
       :key="tab.name"

@@ -9,7 +9,7 @@
             v-for="(codeChunk, index) in activeCodeChunks"
             :key="index"
             :class="`language-${codeChunk.prism.language}`"
-          ><code v-html="codeChunk.html"></code></pre>
+          ><code :class="`language-${codeChunk.prism.language}`" v-html="codeChunk.html"></code></pre>
         </div>
         <div class="code-buttons" v-if="activeCode">
           <button class="code-button" @click="copyCode">
