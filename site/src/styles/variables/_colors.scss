@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // THEME COLORS -------------------------------------
 
 $siteBG: #e9ebef;
@@ -24,16 +26,23 @@ $cyan: #56CCF2; $cyan-rgb: hexToRGB($cyan);
 $white: #ffffff; $white-rgb: hexToRGB($white);
 $black: #000000; $black-rgb: hexToRGB($black);
 
-$gray50:  darken($white, 3%);
-$gray100: darken($white, 6%);
-$gray200: darken($white, 17%);
-$gray300: darken($white, 28%);
-$gray400: darken($white, 39%);
-$gray500: darken($white, 50%);
-$gray600: darken($white, 61%);
-$gray700: darken($white, 72%);
-$gray800: darken($white, 83%);
-$gray900: darken($white, 94%);
+$gray50:  color.adjust($white, $lightness: -3%);
+$gray100: color.adjust($white, $lightness: -6%);
+$gray200: color.adjust($white, $lightness: -17%);
+$gray300: color.adjust($white, $lightness: -28%);
+$gray400: color.adjust($white, $lightness: -39%);
+$gray500: color.adjust($white, $lightness: -50%);
+$gray600: color.adjust($white, $lightness: -61%);
+$gray700: color.adjust($white, $lightness: -72%);
+$gray800: color.adjust($white, $lightness: -83%);
+$gray900: color.adjust($white, $lightness: -94%);
+
+// COMPUTED COLORS (pre-computed for partials that can't use @use sass:color directly) -----
+
+$cyan-xray-text: color.adjust($cyan, $lightness: -50%);
+$code-inline-color: color.adjust(color.adjust(#f92672, $lightness: -12%), $saturation: -8%);
+$code-inline-bg: color.adjust(color.adjust(#f92672, $lightness: -10%), $alpha: -0.95);
+$code-inline-bg-dark: color.adjust(color.adjust(#f92672, $lightness: 10%), $alpha: -0.9);
 
 // LOGO COLORS -------------------------------------
 

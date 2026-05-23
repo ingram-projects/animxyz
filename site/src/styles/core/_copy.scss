@@ -44,11 +44,11 @@
   }
 
   code:not([class*="language-"]) {
-    color: desaturate(darken(#f92672, 12%), 8%);
+    color: $code-inline-color;
     font-family: $font-stack-mono;
     font-size: inherit;
     font-weight: bold;
-    background-color: transparentize(darken(#f92672, 10%), 0.95);
+    background-color: $code-inline-bg;
     padding: 0.125em 0.25em;
     border-radius: $br-s;
     transition: 0.2s ease-in-out;
@@ -56,7 +56,7 @@
 
     @include dark-mode {
       color: #f92672;
-      background-color: transparentize(lighten(#f92672, 10%), 0.9);
+      background-color: $code-inline-bg-dark;
     }
   }
 

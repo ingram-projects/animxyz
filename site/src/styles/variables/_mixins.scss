@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:math";
+
 // SHAPE -------------------------------------
 
 @mixin size($size) {
@@ -8,7 +11,7 @@
 @mixin circle($size) {
   width: $size;
   height: $size;
-  border-radius: $size / 2;
+  border-radius: math.div($size, 2);
 }
 
 // BORDERS -------------------------------------
@@ -26,17 +29,17 @@
 // COLORS -------------------------------------
 
 @function hexToRGB($colorHex) {
-  @return #{red($colorHex)}, #{green($colorHex)}, #{blue($colorHex)};
+  @return #{color.channel($colorHex, "red", $space: rgb)}, #{color.channel($colorHex, "green", $space: rgb)}, #{color.channel($colorHex, "blue", $space: rgb)};
 }
 
 // Add percentage of white to a color
 @function tint($color, $percent){
-  @return mix(white, $color, $percent);
+  @return color.mix(white, $color, $percent);
 }
 
 // Add percentage of black to a color
 @function shade($color, $percent){
-  @return mix(black, $color, $percent);
+  @return color.mix(black, $color, $percent);
 }
 
 @function primary-color($value: 500, $opacity: null) {

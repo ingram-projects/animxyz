@@ -14,11 +14,11 @@
   "dependencies": {
     "@animxyz/core": "*",
     "@animxyz/vue3": "*",
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/vue": "^5.0.13",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/vue": "^6.0.1",
     "@fontsource/inconsolata": "^5.1.0",
     "@fontsource/inter": "^5.1.0",
-    "astro": "^5.1.1",
+    "astro": "^6.3.3",
     "body-scroll-lock": "^4.0.0-beta.0",
     "include-media": "^2.0.0",
     "lodash": "^4.17.21",
@@ -29,11 +29,11 @@
     "remark-codesandbox": "^0.10.1",
     "remark-containers": "^1.2.0",
     "ress": "^5.0.2",
-    "sass": "^1.83.0",
+    "sass": "^1.99.0",
     "typescript": "^5.7.2",
     "unist-builder": "^4.0.0",
     "unist-util-visit": "^5.0.0",
-    "vite-svg-loader": "^5.1.0",
+    "vite-svg-loader": "^5.1.1",
     "vue": "^3.5.13"
   }
 }
