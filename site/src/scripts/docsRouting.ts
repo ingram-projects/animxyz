@@ -50,7 +50,8 @@ export function initDocsRouting() {
 
     event.preventDefault()
 
-    if (url.href !== window.location.href) {
+    const urlChanged = url.href !== window.location.href
+    if (urlChanged) {
       window.history.pushState({}, '', url.href)
     }
 
@@ -62,6 +63,15 @@ export function initDocsRouting() {
       if (targetEl) {
         targetEl.scrollIntoView({ block: 'start' })
       }
+    }
+
+    // `pushState` doesn't fire hashchange/popstate, so listeners that re-read
+    // `location.search` (notably the Sandbox component, which applies the
+    // `example` / `utilities` / `variables` / `group` query params) wouldn't
+    // pick up the new URL when the user stayed on the same section. Manually
+    // dispatch a popstate to let them resync.
+    if (urlChanged) {
+      window.dispatchEvent(new PopStateEvent('popstate'))
     }
   }
 
