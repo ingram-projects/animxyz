@@ -3,6 +3,7 @@ import vue from '@astrojs/vue'
 import { fileURLToPath } from 'node:url'
 import remarkCodesandbox from 'remark-codesandbox'
 import rehypePrismPlus from 'rehype-prism-plus'
+import rehypeExternalLinks from 'rehype-external-links'
 import svgLoader from 'vite-svg-loader'
 import remarkCodesandboxModifier from './src/markdown/remark-codesandbox-modifier.mjs'
 import remarkNoteContainers from './src/markdown/remark-note-containers.mjs'
@@ -51,7 +52,10 @@ export default defineConfig({
       remarkCodesandboxModifier,
       remarkNoteContainers,
     ],
-    rehypePlugins: [[rehypePrismPlus, { ignoreMissing: true }]],
+    rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank' }],
+      [rehypePrismPlus, { ignoreMissing: true }],
+    ],
   },
   vite: {
     plugins: [
