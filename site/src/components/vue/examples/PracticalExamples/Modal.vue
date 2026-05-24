@@ -30,9 +30,13 @@
 
 <script>
 import ExampleMixin from '~/components/vue/examples/exampleMixin'
+import IconClose from '~/assets/icons/IconClose.svg?component'
 
 export default {
   mixins: [ExampleMixin],
+  components: {
+    IconClose,
+  },
   data() {
     return {
       customData: {

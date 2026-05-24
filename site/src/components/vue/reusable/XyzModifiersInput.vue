@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import IconPresets from '~/assets/icons/IconPresets.svg?component'
 import TabBar from '~/components/vue/reusable/TabBar.vue'
 import XyzModifiersPresets from '~/components/vue/reusable/XyzModifiersPresets.vue'
 import XyzUtilitiesInput from '~/components/vue/reusable/XyzUtilitiesInput.vue'
@@ -121,7 +122,7 @@ export default {
       if (this.modifiers.presets) {
         const presetsGroup = {
           name: 'Examples',
-          icon: 'IconPresets',
+          icon: IconPresets,
           presets: this.modifiers.presets,
         }
         return [presetsGroup, ...computedGroups]

@@ -38,6 +38,17 @@ const {
     <meta property="og:image" content={image} />
     <link rel="icon" type="image/png" href="/animxyz-logo.png" />
     <link rel="apple-touch-icon" href="/animxyz-logo-touch.png" />
+    <noscript>
+      <style>
+        /* Without JS, the appear-visible IntersectionObserver never removes
+           xyz-paused-all, leaving content stuck at the start of the animation
+           (opacity 0, transformed off-screen, etc.). Let the animations play
+           immediately so users with JS disabled still see the page. */
+        .xyz-paused-all {
+          animation-play-state: running !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body class={bodyClass}>
     <div class="page__wrap">
@@ -62,6 +73,14 @@ const {
         <slot />
       </div>
     </div>
+
+    <script>
+      import { initAppearVisible } from '~/scripts/appearVisible'
+      import { initShine } from '~/scripts/shine'
+
+      initAppearVisible()
+      initShine()
+    </script>
   </body>
 </html>
 

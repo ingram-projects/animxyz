@@ -29,8 +29,17 @@ import parserPostCSS from 'prettier/parser-postcss'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-scss'
+import IconHtml from '~/assets/icons/IconHtml.svg?component'
+import IconReact from '~/assets/icons/IconReact.svg?component'
+import IconVue from '~/assets/icons/IconVue.svg?component'
 import TabBar from '~/components/vue/reusable/TabBar.vue'
 import { copyToClipboard } from '~/utils'
+
+const tabIcons = {
+  HTML: IconHtml,
+  Vue: IconVue,
+  React: IconReact,
+}
 
 const languageOptions = {
   html: {
@@ -108,24 +117,10 @@ export default {
   },
   computed: {
     computedCode() {
-      return this.code.map((code) => {
-        let icon
-        switch (code.name) {
-          case 'HTML':
-            icon = 'IconHtml'
-            break
-          case 'Vue':
-            icon = 'IconVue'
-            break
-          case 'React':
-            icon = 'IconReact'
-        }
-
-        return {
-          icon,
-          ...code,
-        }
-      })
+      return this.code.map((code) => ({
+        icon: tabIcons[code.name],
+        ...code,
+      }))
     },
     activeCodeChunks() {
       if (!this.activeCode) return []
