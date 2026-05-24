@@ -1,5 +1,6 @@
 import { activeSectionId, navOpen } from '~/stores/docs'
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { waitForXyzAnimation, type XyzAnimationHandle } from './xyzAnimation'
 
 // Replaces the toggle/open/close + click-outside + active-link logic that
 // used to live in PageNav.vue. Operates on the static markup emitted by
@@ -27,14 +28,47 @@ export function initPageNav() {
   const tabletMq = window.matchMedia(TABLET_QUERY)
 
   let bodyLocked = false
+  let pendingAnim: XyzAnimationHandle | null = null
+
+  function runXyzAnim(cls: 'xyz-in' | 'xyz-out', onDone: () => void) {
+    if (pendingAnim) {
+      pendingAnim.cancel()
+      pendingAnim = null
+    }
+    navEl!.classList.remove('xyz-in', 'xyz-out')
+    // Force reflow so removing + adding the class re-triggers the animation.
+    void navEl!.offsetWidth
+    navEl!.classList.add(cls)
+
+    pendingAnim = waitForXyzAnimation(navEl!, `${cls}-keyframes`, () => {
+      navEl!.classList.remove(cls)
+      pendingAnim = null
+      onDone()
+    })
+  }
 
   function applyNavState() {
     const open = navOpen.get()
-    root!.classList.toggle('open', open)
+    const wasOpen = root!.classList.contains('open')
     button!.disabled = largeMq.matches
     if (toggleText) {
       toggleText.textContent = open ? 'Close' : 'Menu'
     }
+
+    if (open !== wasOpen) {
+      root!.classList.toggle('open', open)
+      if (largeMq.matches) {
+        // No animation on the desktop layout — the nav is always visible.
+        if (pendingAnim) {
+          pendingAnim.cancel()
+          pendingAnim = null
+        }
+        navEl!.classList.remove('xyz-in', 'xyz-out')
+      } else {
+        runXyzAnim(open ? 'xyz-in' : 'xyz-out', () => {})
+      }
+    }
+
     const shouldLock = tabletMq.matches && open
     if (shouldLock && !bodyLocked) {
       disableBodyScroll(navListWrap!, {
