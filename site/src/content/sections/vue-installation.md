@@ -74,22 +74,3 @@ To install VueAnimXYZ using a CDN put this script in the `<head>` of your `index
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@animxyz/vue3"></script>
 ```
-
-### CodeSandbox templates
-
-If you just want to fiddle around with the library here are some CodeSandbox starter templates for Vue AnimXYZ:
-
-```js codesandbox=animxyz-vue-2?overrideEntry=false&buttonTitle=AnimXYZ%20Vue%202.x%20Template
-```
-
-```js codesandbox=animxyz-vue-3?overrideEntry=false&buttonTitle=AnimXYZ%20Vue%203.x%20Template
-```
-
-
-And here is a CodeSandbox for how to use AnimXYZ with Vue Router:
-
-```js codesandbox=animxyz-vue-2-router?overrideEntry=false&buttonTitle=AnimXYZ%20Vue%202%20Router%20Template
-```
-
-```js codesandbox=animxyz-vue-3-router?overrideEntry=false&buttonTitle=AnimXYZ%20Vue%203%20Router%20Template
-```

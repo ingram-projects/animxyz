@@ -1,11 +1,9 @@
 import { defineConfig } from 'astro/config'
 import vue from '@astrojs/vue'
 import { fileURLToPath } from 'node:url'
-import remarkCodesandbox from 'remark-codesandbox'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeExternalLinks from 'rehype-external-links'
 import svgLoader from 'vite-svg-loader'
-import remarkCodesandboxModifier from './src/markdown/remark-codesandbox-modifier.mjs'
 import remarkNoteContainers from './src/markdown/remark-note-containers.mjs'
 
 const r = (p) => fileURLToPath(new URL(p, import.meta.url))
@@ -16,42 +14,7 @@ export default defineConfig({
   integrations: [vue({ appEntrypoint: '/src/vue-app' })],
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [
-      [
-        remarkCodesandbox,
-        {
-          mode: 'meta',
-          customTemplates: {
-            'animxyz-vue-2': {
-              extends: 'animxyz-vue-2-w0xg5',
-              entry: 'src/App.vue',
-            },
-            'animxyz-vue-3': {
-              extends: 'animxyz-vue-3-ltb7u',
-              entry: 'src/App.vue',
-            },
-            'animxyz-react': {
-              extends: 'animxyz-react-tgwrc',
-              entry: 'src/App.jsx',
-            },
-            'animxyz-vue-2-router': {
-              extends: 'animxyz-vue-2-router-0l48w',
-              entry: 'src/App.vue',
-            },
-            'animxyz-vue-3-router': {
-              extends: 'animxyz-vue-3-router-ojlrb',
-              entry: 'src/App.vue',
-            },
-            'animxyz-react-router': {
-              extends: 'animxyz-react-router-oe4w8',
-              entry: 'src/App.jsx',
-            },
-          },
-        },
-      ],
-      remarkCodesandboxModifier,
-      remarkNoteContainers,
-    ],
+    remarkPlugins: [remarkNoteContainers],
     rehypePlugins: [
       [rehypeExternalLinks, { target: '_blank' }],
       [rehypePrismPlus, { ignoreMissing: true }],
