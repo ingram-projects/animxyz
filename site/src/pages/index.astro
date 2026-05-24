@@ -21,7 +21,9 @@ import { indexSandboxProps } from '~/data/indexSandbox'
 >
   <main class="page-content">
     <div class="banner__wrap">
-      <Banner client:visible />
+      <div class="banner__aspect">
+        <Banner client:only="vue" />
+      </div>
     </div>
 
     <div class="landing-content">
@@ -220,6 +222,15 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     @include media('<phone') {
       margin: $sp-l auto;
       max-width: 80vw;
+    }
+  }
+
+  .banner__aspect {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+
+    @include media('<phone') {
+      aspect-ratio: 1 / 2;
     }
   }
 
