@@ -162,6 +162,47 @@ export default {
       const params = new URLSearchParams(window.location.search)
       this.setTab(params.get('tab') || 'docs')
     },
+    onInternalLinkClick(event) {
+      if (event.defaultPrevented) return
+      if (event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+
+      const anchor = event.target.closest('a')
+      if (!anchor || !anchor.href) return
+      if (anchor.target && anchor.target !== '_self') return
+      if (anchor.hasAttribute('download')) return
+
+      let url
+      try {
+        url = new URL(anchor.href, window.location.href)
+      } catch {
+        return
+      }
+
+      if (url.origin !== window.location.origin) return
+
+      // Only intercept navigation that stays on the current page (same pathname,
+      // ignoring an optional trailing slash). Lets us keep the URL in sync with
+      // tab + section without triggering a full page reload.
+      const samePath = url.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '')
+      if (!samePath) return
+
+      event.preventDefault()
+
+      if (url.href !== window.location.href) {
+        window.history.pushState({}, '', url.href)
+      }
+
+      this.onLocationChange()
+
+      if (url.hash) {
+        const id = decodeURIComponent(url.hash.slice(1))
+        const target = id && document.getElementById(id)
+        if (target) {
+          target.scrollIntoView({ block: 'start' })
+        }
+      }
+    },
     onWindowScroll() {
       if (typeof window === 'undefined') return
       let activeSectionId
@@ -186,12 +227,14 @@ export default {
     window.addEventListener('resize', this.onWindowScroll)
     window.addEventListener('hashchange', this.onLocationChange)
     window.addEventListener('popstate', this.onLocationChange)
+    document.addEventListener('click', this.onInternalLinkClick)
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.onWindowScroll)
     window.removeEventListener('resize', this.onWindowScroll)
     window.removeEventListener('hashchange', this.onLocationChange)
     window.removeEventListener('popstate', this.onLocationChange)
+    document.removeEventListener('click', this.onInternalLinkClick)
   },
 }
 </script>
