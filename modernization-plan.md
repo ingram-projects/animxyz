@@ -26,6 +26,8 @@ work briefs, each intended for one subagent in its own git worktree.
 A1 (test infra)  ──►  A2 (xyz-apply)      ──►  merge to master
               └──►  A3 (build hygiene)   ──►  merge to master
 A4 (animationcancel fix, independent)    ──►  merge to master
+A5 (vue wrapper fixes, independent)      ──►  merge to master
+A6 (react wrapper fixes, independent)    ──►  merge to master
                                               │
 master (with A1–A3) ──► create/rebase v1 ─────┘
    v1 ──► B1 (data-xyz, core+wrappers+docs)   [independent]
@@ -160,6 +162,11 @@ transition state, React equivalent likewise).
 
 **Fix:**
 1. Rename both usages to `animationcancel`.
+1b. While in this file's orbit: harden `utils/getXyzDurationForMode.js` to coerce
+   numeric strings — `duration="500"` in a Vue template (no `v-bind`) is a string
+   and silently takes the event path instead of a 500 ms timeout. Coerce with
+   `parseFloat` when the string is fully numeric; keep `'auto'` and mode-object
+   behavior unchanged.
 2. Do NOT rely on the event alone: Chromium did not fire `animationcancel` at all
    for many years. Add a safety-net timeout to the `'auto'` path — e.g. compute a
    worst-case bound from the elements' computed `animation-duration` +
@@ -171,9 +178,84 @@ transition state, React equivalent likewise).
    confirm the transition completes instead of hanging. Note the verification in
    the PR.
 
-**Acceptance:** both event names corrected; auto-path timeout in place; manual
-cancel scenario verified in at least one wrapper example; no change to compiled CSS
-(snapshot untouched).
+**Acceptance:** both event names corrected; auto-path timeout in place; numeric-string
+durations take the timeout path; manual cancel scenario verified in at least one
+wrapper example; no change to compiled CSS (snapshot untouched).
+
+---
+
+### A5 · `fix/vue-wrappers` — Vue 2/3 wrapper bugs
+
+**Goal:** fix three verified bugs in the Vue packages plus per-package hygiene.
+All patch-safe. Independent of A1–A4 (no SCSS, no shared-utils overlap with A4).
+
+1. **Vue 2 reverse-stagger off-by-N** (`packages/vue/src/components/XyzTransitionGroup.js:31`):
+   `--xyz-index-rev` is computed from the UNFILTERED `children.length` while the
+   forward index iterates the filtered `rawChildren`. Any filtered node (text/
+   whitespace, `v-if` comment placeholder, unkeyed node) skews every reverse index.
+   Fix: `rawChildren.length - index - 1` (matching the Vue 3 implementation).
+2. **Vue 3 listener clobbering** (`packages/vue3/src/utils.js:29–39, 68`):
+   `mergeData` is a plain object spread, so a user's `@enter`/`@leave`/`@appear`
+   on `<XyzTransition>` REPLACES the internal animation hook (which owns
+   `duration="auto"`, nested end-detection, and `appearVisible`). Vue 2 composes
+   handlers via `vue-functional-data-merge`. Fix: compose same-named `on*`
+   handlers in `mergeData` (call both; the internal hook owns the `done`
+   callback). Also fix the style merge to normalize string/array `style` values
+   before spreading (a child with `style="color: red"` currently gets its style
+   destroyed by `{...'color: red'}`).
+3. **Vue 3 undeclared internal dependency**
+   (`packages/vue3/src/components/XyzTransitionGroup.js:2`): imports
+   `getTransitionRawChildren` from `@vue/runtime-core`, which is (a) not in
+   `dependencies` — works only via hoisting, breaks under strict pnpm layouts —
+   and (b) an undocumented internal export. Fix: vendor a small local filter
+   (the Vue 2 package already has one to model) and drop the import.
+4. **Hygiene:** real `index.d.ts` typings for both packages (both are currently
+   one-line `declare module` stubs — every consumer gets `any`); add
+   `unbind`/`unmounted` cleanup calling the hook's clear routine so
+   `appearVisible` IntersectionObservers and pending timeouts don't outlive
+   unmounted elements (coordinate the small export needed from
+   `utils/getXyzAnimationHook.js` with A4 — rebase whichever lands second).
+
+**Verification:** in `examples/vue` and `examples/vue3`: a keyed list containing a
+`v-if` placeholder shows correct `stagger-rev` ordering; a `<XyzTransition @enter>`
+user handler fires AND `duration="auto"` still completes; vue3 example installs
+cleanly with pnpm (or `yarn --flat` equivalent check). Note results in the PR.
+
+**Acceptance:** fixes in both packages; typings compile against the examples'
+usage; no compiled-CSS change.
+
+---
+
+### A6 · `fix/react-wrapper` — ref handling and the empty-state path
+
+**Goal:** the React wrapper survives callback refs and empty children.
+
+1. **Callback refs crash the end listener**
+   (`packages/react/src/components/XyzTransitionBase.js:20`, `utils.js:33`):
+   `child.ref || fallbackRef` assumes an object ref. A callback ref makes
+   `nodeRef` a function: `CSSTransition` receives an invalid `nodeRef` and
+   `addEndListener` invokes the animation hook with `nodeRef.current === undefined`,
+   which throws in `clearXyzElementProperties`. Fix: always pass the internal ref
+   object to `CSSTransition`, and compose it with the child's ref (handle object
+   AND callback forms) when cloning.
+2. **Empty-state `Fragment` path** (`XyzTransition.js:14` + `XyzTransitionBase.js:29`):
+   with no child, `<Fragment/>` flows into `cloneElement(child, { xyz, className,
+   style, ref })` — Fragments accept only key/children, so React warns, the ref
+   never attaches, and the end listener fires the hook with a null element (same
+   TypeError as #1). FIRST STEP: build a repro (toggle `<XyzTransition>` to empty
+   under `mode="out-in"`) to confirm severity, then fix — likely by rendering a
+   real empty element (or guarding the hook against a missing node AND skipping
+   prop injection for Fragments). Guard `animationHook` against null element
+   regardless (defense in depth; also covers #1).
+3. **Hygiene:** real `index.d.ts` typings (currently a one-line stub); clear
+   observer/timeout on `onExited`/unmount (coordinate with A4/A5 as above).
+
+**Verification:** repro from #2 recorded in the PR (before/after); a child with a
+callback ref transitions without throwing; `examples/react` runs clean with no
+console warnings from the wrapper.
+
+**Acceptance:** no crashes or React warnings across the ref/empty scenarios;
+typings compile; no compiled-CSS change.
 
 ---
 
@@ -209,6 +291,8 @@ Clean break — v1.0 CSS matches `[data-xyz~='…']` only. Selector count stays 
 
 **Gotcha:** grep for `[xyz]` attribute selectors in docs' own stylesheets and the
 sandbox components — the docs site styles hook into the attribute in places.
+Also: A5/A6 edit the same wrapper files (directives, XyzTransitionBase) — make sure
+`v1` has been rebased on master with A5/A6 merged before starting, or coordinate.
 
 **Acceptance:** snapshot regenerated (every selector renamed — diff should be
 mechanical and complete: zero remaining `[xyz` selectors); wrapper examples in
@@ -323,7 +407,9 @@ snapshot-neutral.
 1. Docs site: browser-support section (Baseline 2024 floor, sibling-index
    enhancement matrix), `@layer` override contract, `xyz-apply` docs (from A2)
    verified against v1, `data-xyz` everywhere (B1 did the mechanical sweep; this
-   brief does editorial review).
+   brief does editorial review). Add a note that `XyzTransitionGroup` (all
+   frameworks) sets `--xyz-index` inline, so the CSS sibling-index/ladder cap
+   does not apply when using the wrapper components.
 2. Finish `MIGRATION-v1.md`: data-xyz, browser floor, @layer override behavior
    change, removed `!important`s, removed `-calc` vars, `backface-visibility`,
    `$xyz-attribute`/`$xyz-layer` escape hatches.
