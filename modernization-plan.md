@@ -25,6 +25,7 @@ work briefs, each intended for one subagent in its own git worktree.
 ```
 A1 (test infra)  ──►  A2 (xyz-apply)      ──►  merge to master
               └──►  A3 (build hygiene)   ──►  merge to master
+A4 (animationcancel fix, independent)    ──►  merge to master
                                               │
 master (with A1–A3) ──► create/rebase v1 ─────┘
    v1 ──► B1 (data-xyz, core+wrappers+docs)   [independent]
@@ -138,6 +139,41 @@ move with the v1.0 briefs.
 
 **Acceptance:** zero sass warnings; snapshot diff shows ONLY the `-calc` variable
 removal; size budget still green; time-map override test green.
+
+---
+
+### A4 · `fix/animation-cancel` — wrapper hook listens for a nonexistent event
+
+**Goal:** the framework wrappers' animation-done hook survives cancelled animations.
+(Found by external review; verified. JS bug, not SCSS — independent of A1–A3.)
+
+**The bug** (`utils/getXyzAnimationHook.js`, shared by the Vue/Vue3/React packages):
+lines 12 and 77 use the event name `animationcancelled`. The DOM event is
+`animationcancel` — the listener has never fired in any browser.
+
+**Impact:** completion normally arrives via `animationend`, but a cancelled
+animation (element hidden, `animation-name` overridden, `xyz-none` applied
+mid-flight) never fires `animationend`. The numeric-duration path recovers via its
+`setTimeout`, but the default `'auto'` path has NO timeout fallback — `done()` is
+never called and the wrapper transition hangs (Vue `<XyzTransition>` stuck in its
+transition state, React equivalent likewise).
+
+**Fix:**
+1. Rename both usages to `animationcancel`.
+2. Do NOT rely on the event alone: Chromium did not fire `animationcancel` at all
+   for many years. Add a safety-net timeout to the `'auto'` path — e.g. compute a
+   worst-case bound from the elements' computed `animation-duration` +
+   `animation-delay` once animations are running, falling back to a generous
+   constant — so `done()` always eventually fires even where cancel events are
+   missing.
+3. Verify manually in `examples/vue` (or vue3): toggle an `<XyzTransition>` and
+   force-cancel mid-animation (set `display:none` or add `xyz-none` via devtools);
+   confirm the transition completes instead of hanging. Note the verification in
+   the PR.
+
+**Acceptance:** both event names corrected; auto-path timeout in place; manual
+cancel scenario verified in at least one wrapper example; no change to compiled CSS
+(snapshot untouched).
 
 ---
 
