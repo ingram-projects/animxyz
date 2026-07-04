@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AnimXYZ SCSS — Architecture Analysis</title>
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --bg: #f5f5fa;
+  --surface: #ffffff;
+  --surface-2: #ececf4;
+  --ink: #232640;
+  --muted: #62667f;
+  --line: #d8d9e6;
+  --code-bg: #1a1d31;
+  --code-ink: #dfe2f5;
+  --code-muted: #7d83a8;
+
+  --in: #0c8fa5;        /* mode: in  (cyan) */
+  --out: #d63b6d;       /* mode: out (rose) */
+  --appear: #b0731a;    /* mode: appear (amber) */
+  --violet: #5d4fd3;    /* custom-property plumbing */
+  --bug: #c93a3a;
+  --ok: #1e8f5f;
+
+  --in-soft: #0c8fa518;
+  --out-soft: #d63b6d16;
+  --appear-soft: #b0731a16;
+  --violet-soft: #5d4fd314;
+  --bug-soft: #c93a3a14;
+
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, "Liberation Mono", monospace;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  --radius: 8px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1220;
+    --surface: #171b2e;
+    --surface-2: #1e2340;
+    --ink: #e9ebf7;
+    --muted: #9aa0bd;
+    --line: #2b3050;
+    --code-bg: #131629;
+    --code-ink: #dfe2f5;
+    --code-muted: #767ca3;
+
+    --in: #4fd8e8;
+    --out: #ff6d92;
+    --appear: #ffc555;
+    --violet: #948cf5;
+    --bug: #ff6d6d;
+    --ok: #5fd39a;
+
+    --in-soft: #4fd8e816;
+    --out-soft: #ff6d9216;
+    --appear-soft: #ffc55514;
+    --violet-soft: #948cf514;
+    --bug-soft: #ff6d6d14;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1220; --surface: #171b2e; --surface-2: #1e2340;
+  --ink: #e9ebf7; --muted: #9aa0bd; --line: #2b3050;
+  --code-bg: #131629; --code-ink: #dfe2f5; --code-muted: #767ca3;
+  --in: #4fd8e8; --out: #ff6d92; --appear: #ffc555; --violet: #948cf5;
+  --bug: #ff6d6d; --ok: #5fd39a;
+  --in-soft: #4fd8e816; --out-soft: #ff6d9216; --appear-soft: #ffc55514;
+  --violet-soft: #948cf514; --bug-soft: #ff6d6d14;
+}
+:root[data-theme="light"] {
+  --bg: #f5f5fa; --surface: #ffffff; --surface-2: #ececf4;
+  --ink: #232640; --muted: #62667f; --line: #d8d9e6;
+  --code-bg: #1a1d31; --code-ink: #dfe2f5; --code-muted: #7d83a8;
+  --in: #0c8fa5; --out: #d63b6d; --appear: #b0731a; --violet: #5d4fd3;
+  --bug: #c93a3a; --ok: #1e8f5f;
+  --in-soft: #0c8fa518; --out-soft: #d63b6d16; --appear-soft: #b0731a16;
+  --violet-soft: #5d4fd314; --bug-soft: #c93a3a14;
+}
+
+/* ============ BASE ============ */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+main { max-width: 960px; margin: 0 auto; padding: 0 24px 96px; }
+p, ul, ol { max-width: 72ch; }
+a { color: var(--violet); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+h1, h2, h3, h4 { font-family: var(--mono); text-wrap: balance; line-height: 1.25; }
+h1 { font-size: clamp(1.7rem, 4.4vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em; margin: 0.4em 0 0.35em; }
+h2 { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 0.6em; }
+h3 { font-size: 1.05rem; font-weight: 700; margin: 2.2em 0 0.5em; }
+code, pre, .mono { font-family: var(--mono); }
+code { font-size: 0.86em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 0.08em 0.35em; }
+pre {
+  background: var(--code-bg); color: var(--code-ink);
+  border-radius: var(--radius); padding: 16px 18px;
+  overflow-x: auto; font-size: 0.82rem; line-height: 1.6;
+  border: 1px solid var(--line);
+}
+pre code { background: none; border: none; padding: 0; font-size: inherit; color: inherit; }
+pre .c { color: var(--code-muted); font-style: italic; }
+pre .v { color: var(--violet); }
+pre .k { color: var(--in); }
+pre .s { color: var(--appear); }
+pre .e { color: var(--bug); font-weight: 600; }
+hr { border: none; border-top: 1px solid var(--line); margin: 0; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 4px;
+}
+.eyebrow b { color: var(--violet); font-weight: 600; }
+
+section { padding-top: 64px; }
+.section-head { display: flex; align-items: baseline; gap: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+.section-head .num { font-family: var(--mono); color: var(--muted); font-size: 0.85rem; }
+
+.panel {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px; margin: 20px 0;
+}
+.panel.scroll { overflow-x: auto; }
+figcaption, .caption { font-size: 0.8rem; color: var(--muted); margin-top: 10px; max-width: 72ch; }
+figure { margin: 20px 0; }
+
+.chip {
+  display: inline-block; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px; vertical-align: 2px;
+}
+.chip.bug { color: var(--bug); background: var(--bug-soft); border: 1px solid var(--bug); }
+.chip.risk { color: var(--appear); background: var(--appear-soft); border: 1px solid var(--appear); }
+.chip.smell { color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); }
+.chip.ok { color: var(--ok); border: 1px solid var(--ok); background: none; }
+.chip.mode-in { color: var(--in); background: var(--in-soft); border: 1px solid var(--in); }
+.chip.mode-out { color: var(--out); background: var(--out-soft); border: 1px solid var(--out); }
+.chip.mode-appear { color: var(--appear); background: var(--appear-soft); border: 1px solid var(--appear); }
+
+.fileref { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+/* ============ HERO ============ */
+header.hero { padding-top: 56px; }
+.stat-strip {
+  display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 22px 0 8px;
+  font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+}
+.stat-strip b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.08rem; color: var(--muted); max-width: 64ch; }
+
+/* ============ DEMO ============ */
+.demo { margin-top: 34px; }
+.demo-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.demo-controls .lbl { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); align-self: center; margin-right: 4px; letter-spacing: 0.1em; text-transform: uppercase; }
+.tog {
+  font-family: var(--mono); font-size: 0.8rem; cursor: pointer;
+  background: var(--surface-2); color: var(--muted);
+  border: 1px solid var(--line); border-radius: 99px; padding: 5px 14px;
+}
+.tog[aria-pressed="true"] { background: var(--violet-soft); color: var(--violet); border-color: var(--violet); }
+.tog.play { background: var(--ink); color: var(--bg); border-color: var(--ink); font-weight: 700; }
+.demo-grid {
+  display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px;
+  perspective: 900px; padding: 8px 0;
+}
+.tile {
+  aspect-ratio: 1; border-radius: 7px;
+  background: oklch(0.72 0.13 var(--h, 280));
+  display: grid; place-items: center;
+  color: rgba(0,0,0,0.55); font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+}
+/* The AnimXYZ trick, miniaturized: one keyframe, every dial is a custom property */
+@keyframes mini-in {
+  from {
+    opacity: var(--m-opacity, 1);
+    transform:
+      translate3d(0, var(--m-ty, 0px), 0)
+      rotateY(var(--m-ry, 0))
+      scale3d(var(--m-s, 1), var(--m-s, 1), 1);
+  }
+}
+.demo-grid.play .tile {
+  animation: mini-in 0.55s cubic-bezier(0.25, 0.8, 0.35, 1.2)
+    calc(var(--m-stagger, 0s) * var(--m-i, 0)) both;
+}
+.demo-grid.u-fade   { --m-opacity: 0; }
+.demo-grid.u-up     { --m-ty: 38px; }
+.demo-grid.u-big    { --m-s: 1.6; }
+.demo-grid.u-flip   { --m-ry: -0.25turn; }
+.demo-grid.u-stagger{ --m-stagger: 0.07s; }
+@media (prefers-reduced-motion: reduce) {
+  .demo-grid.play .tile { animation: none; }
+}
+@media (max-width: 560px) { .demo-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* ============ TOC ============ */
+nav.toc { margin-top: 40px; }
+nav.toc ol {
+  list-style: none; margin: 0; padding: 0; max-width: none;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px;
+}
+nav.toc a {
+  display: flex; gap: 10px; align-items: baseline; text-decoration: none;
+  font-family: var(--mono); font-size: 0.82rem; color: var(--ink);
+  border: 1px solid var(--line); background: var(--surface);
+  border-radius: 6px; padding: 9px 12px;
+}
+nav.toc a:hover { border-color: var(--violet); color: var(--violet); }
+nav.toc .num { color: var(--muted); font-size: 0.72rem; }
+
+/* ============ FILE TABLE ============ */
+table { border-collapse: collapse; width: 100%; font-size: 0.87rem; }
+th, td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-top: none; }
+td:first-child { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; }
+tr.dead td { color: var(--muted); }
+tr.dead td:first-child { color: var(--bug); }
+
+/* ============ SVG DIAGRAMS ============ */
+svg text { font-family: var(--mono); fill: var(--ink); }
+svg .box { fill: var(--surface-2); stroke: var(--line); rx: 6; }
+svg .box-entry { fill: var(--violet-soft); stroke: var(--violet); }
+svg .box-dead { fill: var(--bug-soft); stroke: var(--bug); stroke-dasharray: 4 3; }
+svg .wire { stroke: var(--muted); fill: none; stroke-width: 1.2; }
+svg .wire-fwd { stroke: var(--violet); }
+svg .wire-legacy { stroke: var(--bug); stroke-dasharray: 5 3; }
+svg .tag { font-size: 10px; fill: var(--muted); }
+svg .tag-bad { fill: var(--bug); }
+svg .name { font-size: 12.5px; font-weight: 600; }
+svg .sub { font-size: 10px; fill: var(--muted); }
+
+/* ============ PIPELINE ============ */
+.pipe { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
+.pipe-step {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px; display: grid; grid-template-columns: 130px 1fr; gap: 16px;
+  border-left: 3px solid var(--step, var(--violet));
+}
+.pipe-step + .pipe-step { margin-top: 34px; position: relative; }
+.pipe-step + .pipe-step::before {
+  content: ""; position: absolute; left: 50%; top: -35px; height: 34px;
+  border-left: 2px solid var(--line);
+}
+.pipe-step + .pipe-step::after {
+  content: ""; position: absolute; left: 50%; top: -9px; margin-left: -5px;
+  border: 5px solid transparent; border-top-color: var(--muted); border-bottom: none;
+}
+.pipe-step .who { font-family: var(--mono); font-size: 0.72rem; color: var(--step, var(--violet)); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 3px; }
+.pipe-step .who small { display: block; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; margin-top: 4px; }
+.pipe-step .what { min-width: 0; }
+.pipe-step .what p { margin: 0 0 8px; font-size: 0.9rem; }
+.pipe-step pre { margin: 0; }
+@media (max-width: 620px) { .pipe-step { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ============ LADDER (var resolution) ============ */
+.ladder { display: flex; flex-direction: column; gap: 8px; font-family: var(--mono); font-size: 0.8rem; }
+.rung {
+  display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center;
+  border: 1px solid var(--line); border-left: 3px solid var(--tier, var(--line));
+  background: var(--surface); border-radius: 6px; padding: 9px 14px;
+}
+.rung .n { color: var(--muted); font-size: 0.7rem; }
+.rung .who { color: var(--muted); font-size: 0.7rem; text-align: right; font-family: var(--body); }
+.rung b { font-weight: 600; color: var(--tier, var(--ink)); }
+.ladder .drop { text-align: center; color: var(--muted); font-size: 0.75rem; padding: 0 0 0 2px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+/* ============ ISSUES ============ */
+.issue { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 18px 20px; margin: 14px 0; }
+.issue > h3 { margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 0.95rem; }
+.issue p { font-size: 0.92rem; margin: 8px 0; }
+.issue pre { font-size: 0.78rem; }
+
+/* ============ THEN/NOW ============ */
+.then-now { display: grid; grid-template-columns: 1fr 34px 1fr auto; gap: 0 12px; align-items: center; border-top: 1px solid var(--line); padding: 13px 0; }
+.then-now:first-of-type { border-top: none; }
+.then-now .t, .then-now .n2 { font-size: 0.88rem; min-width: 0; }
+.then-now .t { color: var(--muted); }
+.then-now .arr { color: var(--violet); font-family: var(--mono); text-align: center; }
+.then-now code { white-space: nowrap; }
+.badge {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: 4px; padding: 3px 7px; white-space: nowrap; font-weight: 700; justify-self: end;
+}
+.badge.now { color: var(--ok); border: 1px solid var(--ok); }
+.badge.base { color: var(--in); border: 1px solid var(--in); }
+.badge.edge { color: var(--appear); border: 1px solid var(--appear); }
+.badge.watch { color: var(--muted); border: 1px solid var(--line); }
+@media (max-width: 700px) {
+  .then-now { grid-template-columns: 1fr; gap: 4px; }
+  .then-now .arr { text-align: left; }
+  .badge { justify-self: start; }
+}
+
+/* ============ VERDICT ============ */
+.verdict {
+  border: 1px solid var(--violet); background: var(--violet-soft);
+  border-radius: var(--radius); padding: 22px 24px; margin: 24px 0;
+}
+.verdict h3 { margin-top: 0; }
+.verdict p:last-child { margin-bottom: 0; }
+
+footer { border-top: 1px solid var(--line); margin-top: 80px; padding-top: 18px; font-size: 0.78rem; color: var(--muted); font-family: var(--mono); }
+footer p { max-width: none; }
+</style>
+</head>
+<body>
+<main>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <p class="eyebrow"><b>@animxyz/core</b> v0.6.6 · scss source analysis · packages/core/src</p>
+  <h1>One keyframe, a thousand dials</h1>
+  <p class="lede">
+    AnimXYZ's SCSS doesn't ship a library of animations — it ships a single parametric
+    animation per mode whose every property is a CSS custom property, plus 1,441 tiny
+    selectors that turn those dials. This is a walkthrough of how that engine works,
+    where it creaks, and how much of it the platform can now do on its own.
+  </p>
+
+  <div class="stat-strip">
+    <span><b>1,016</b> lines of SCSS in</span>
+    <span><b>6,353</b> lines of CSS out</span>
+    <span><b>3</b> @keyframes total</span>
+    <span><b>1,441</b> [xyz~=…] selectors</span>
+    <span><b>13.2&nbsp;KB</b> gzipped</span>
+  </div>
+
+  <!-- Live demo: the library's mechanism, miniaturized -->
+  <figure class="panel demo">
+    <div class="demo-controls" role="group" aria-label="Animation utility toggles">
+      <span class="lbl">utilities</span>
+      <button class="tog" data-u="u-fade" aria-pressed="true">fade</button>
+      <button class="tog" data-u="u-up" aria-pressed="true">up</button>
+      <button class="tog" data-u="u-big" aria-pressed="false">big</button>
+      <button class="tog" data-u="u-flip" aria-pressed="false">flip-left</button>
+      <button class="tog" data-u="u-stagger" aria-pressed="true">stagger</button>
+      <button class="tog play" id="replay">▶ replay</button>
+    </div>
+    <div class="demo-grid u-fade u-up u-stagger play" id="demoGrid" aria-hidden="true">
+      <div class="tile" style="--m-i:0; --h:275">1</div>
+      <div class="tile" style="--m-i:1; --h:262">2</div>
+      <div class="tile" style="--m-i:2; --h:249">3</div>
+      <div class="tile" style="--m-i:3; --h:236">4</div>
+      <div class="tile" style="--m-i:4; --h:223">5</div>
+      <div class="tile" style="--m-i:5; --h:210">6</div>
+      <div class="tile" style="--m-i:6; --h:197">7</div>
+      <div class="tile" style="--m-i:7; --h:184">8</div>
+    </div>
+    <figcaption>
+      AnimXYZ's core trick in ~20 lines of CSS, live. Each toggle sets <em>one custom property</em>
+      on the container (<code>--m-opacity</code>, <code>--m-ty</code>, <code>--m-s</code>, <code>--m-ry</code>);
+      a single keyframe reads them all with identity fallbacks, so any combination composes into one
+      transform. That is the entire library, scaled up. (Honors <code>prefers-reduced-motion</code>.)
+    </figcaption>
+  </figure>
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#shape"><span class="num">01</span> The shape of the package</a></li>
+      <li><a href="#engine"><span class="num">02</span> The engine: dials, triggers, keyframes</a></li>
+      <li><a href="#cascade"><span class="num">03</span> The custom-property cascade</a></li>
+      <li><a href="#stagger"><span class="num">04</span> Stagger &amp; the delay math</a></li>
+      <li><a href="#issues"><span class="num">05</span> Issues found</a></li>
+      <li><a href="#modern"><span class="num">06</span> Modernization &amp; the Sass question</a></li>
+    </ol>
+  </nav>
+</header>
+
+<!-- ================= 01 SHAPE ================= -->
+<section id="shape">
+  <div class="section-head"><span class="num">01</span><h2>The shape of the package</h2></div>
+  <p>
+    <code>@animxyz/core</code> is nine SCSS files that compile to one CSS file. Consumers almost never
+    run the Sass themselves — the published <code>main</code> is <code>dist/animxyz.css</code> — but the
+    <code>sass</code> field also exposes the source for people who want to customize the level maps or use
+    the mixins. The module graph is clean, modern <code>@use</code>/<code>@forward</code>… with two exceptions,
+    both visible below.
+  </p>
+
+  <figure class="panel scroll">
+    <svg viewBox="0 0 880 400" width="880" role="img" aria-label="Module dependency map of the animxyz core SCSS files" style="min-width:760px; max-width:100%; height:auto; display:block; margin:0 auto;">
+      <!-- entry column -->
+      <rect class="box box-dead" x="20" y="30" width="180" height="52" rx="6"/>
+      <text class="name" x="36" y="52">build.scss</text>
+      <text class="sub" x="36" y="68">dist entry (build only)</text>
+      <text class="tag tag-bad" x="20" y="20">⚠ uses deprecated @import</text>
+
+      <rect class="box box-entry" x="20" y="170" width="180" height="52" rx="6"/>
+      <text class="name" x="36" y="192">animxyz.scss</text>
+      <text class="sub" x="36" y="208">public barrel · xyz-all()</text>
+
+      <!-- legacy import wire -->
+      <path class="wire wire-legacy" d="M110 82 L110 170"/>
+      <text class="tag tag-bad" x="118" y="130">@import</text>
+
+      <!-- forwarded column -->
+      <rect class="box" x="330" y="20" width="200" height="52" rx="6"/>
+      <text class="name" x="346" y="42">_variables.scss</text>
+      <text class="sub" x="346" y="58">level maps · utility schema</text>
+
+      <rect class="box" x="330" y="112" width="200" height="52" rx="6"/>
+      <text class="name" x="346" y="134">_functions.scss</text>
+      <text class="sub" x="346" y="150">var chains · codegen mixins</text>
+
+      <rect class="box" x="330" y="204" width="200" height="52" rx="6"/>
+      <text class="name" x="346" y="226">_core.scss</text>
+      <text class="sub" x="346" y="242">keyframes · triggers · resets</text>
+
+      <rect class="box" x="330" y="296" width="200" height="52" rx="6"/>
+      <text class="name" x="346" y="318">_utilities.scss</text>
+      <text class="sub" x="346" y="334">loops schema → selectors</text>
+
+      <!-- forward wires -->
+      <path class="wire wire-fwd" d="M200 186 C 262 186, 258 46, 330 46"/>
+      <path class="wire wire-fwd" d="M200 192 C 262 192, 258 138, 330 138"/>
+      <path class="wire wire-fwd" d="M200 200 C 262 200, 258 230, 330 230"/>
+      <path class="wire wire-fwd" d="M200 208 C 262 208, 258 322, 330 322"/>
+      <text class="tag" x="238" y="186" fill="var(--violet)">@forward ×4</text>
+
+      <!-- internals column -->
+      <rect class="box" x="660" y="66" width="200" height="52" rx="6"/>
+      <text class="name" x="676" y="88">_transformers.scss</text>
+      <text class="sub" x="676" y="104">3 calc() wrappers</text>
+
+      <rect class="box" x="660" y="180" width="200" height="52" rx="6"/>
+      <text class="name" x="676" y="202">_internal.scss</text>
+      <text class="sub" x="676" y="218">include-once guard</text>
+
+      <rect class="box box-dead" x="660" y="296" width="200" height="52" rx="6"/>
+      <text class="name" x="676" y="318">_fancy.scss</text>
+      <text class="sub" x="676" y="334">7 bonus keyframe sets</text>
+      <text class="tag tag-bad" x="660" y="288">⚠ never imported — unreachable</text>
+
+      <!-- internal wires -->
+      <path class="wire" d="M530 130 C 600 130, 600 92, 660 92"/>
+      <path class="wire" d="M530 222 C 600 222, 600 206, 660 206"/>
+      <path class="wire" d="M530 316 C 600 316, 600 212, 660 212"/>
+      <text class="tag" x="562" y="120">@use</text>
+    </svg>
+    <figcaption>
+      Solid violet edges are <code>@forward</code> from the public barrel; grey edges are internal
+      <code>@use</code>. The two dashed red boxes are the two module-level defects: the build entry still
+      uses legacy <code>@import</code>, and <code>_fancy.scss</code> is orphaned — nothing forwards or
+      includes it, so its seven extra effects (expand-width/height, blur, grayscale, box-shadow,
+      stroke-draw…) are unreachable dead code.
+    </figcaption>
+  </figure>
+
+  <div class="panel scroll">
+    <table>
+      <thead><tr><th>File</th><th>Lines</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>_variables.scss</td><td>527</td><td>Pure data. Level maps (<code>$xyz-duration-levels</code>…), the variable registry (<code>$xyz-variables-map</code>, 24 entries), and the utility schema (<code>$xyz-utilities-map</code>, 34 utilities declaring type, axis, target vars, levels, and an optional value transformer). All <code>!default</code> — this is the theming API.</td></tr>
+        <tr><td>_functions.scss</td><td>210</td><td>The engine. Builds the <code>var()</code> fallback chains (<code>xyz-var</code>, <code>xyz-default-var</code>), generates utility selectors (<code>xyz-make-utilities</code>) and per-mode keyframes (<code>xyz-make-keyframes</code>), assembles the <code>animation</code> shorthand (<code>xyz-animation</code>), plus consumer mixins <code>xyz-utility</code> / <code>xyz-apply</code>.</td></tr>
+        <tr><td>_core.scss</td><td>167</td><td>Emits everything that isn't a utility: the 3 master keyframes, <code>:root</code> defaults, the nth-child index ladder, trigger classes (<code>.xyz-in/out/appear</code> + nested/paused/none/absolute variants), reduced-motion handling, and the <code>[xyz]</code> variable reset.</td></tr>
+        <tr><td>_utilities.scss</td><td>13</td><td>One loop: schema → 1,441 attribute selectors.</td></tr>
+        <tr><td>_transformers.scss</td><td>11</td><td><code>calc(v·−1)</code>, <code>calc(1−v)</code>, <code>calc(1+v)</code> — how <code>up</code> derives from <code>down</code>, <code>small</code>/<code>big</code> from scale.</td></tr>
+        <tr><td>_internal.scss</td><td>12</td><td>Global-flag guard so <code>xyz-core</code>/<code>xyz-utilities</code> emit once even if included twice.</td></tr>
+        <tr><td>animxyz.scss</td><td>12</td><td>Barrel: forwards the four public modules, defines <code>xyz-all()</code>.</td></tr>
+        <tr class="dead"><td>_fancy.scss</td><td>64</td><td>Orphaned. Never forwarded, never included, not mentioned in docs.</td></tr>
+        <tr class="dead"><td>build.scss</td><td>3</td><td><code>@import 'src/animxyz'; @include xyz-all;</code> — the only legacy-syntax file.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 02 ENGINE ================= -->
+<section id="engine">
+  <div class="section-head"><span class="num">02</span><h2>The engine: dials, triggers, keyframes</h2></div>
+  <p>
+    Most animation libraries are combinatorial: <em>fadeInUp</em>, <em>fadeInDown</em>,
+    <em>zoomInLeft</em>… one keyframe block per combination. AnimXYZ inverts this. There are exactly
+    <strong>three</strong> <code>@keyframes</code> in the whole compiled output — one per mode
+    (<span class="chip mode-in">in</span> <span class="chip mode-out">out</span>
+    <span class="chip mode-appear">appear</span>) — and every property inside them is a
+    <code>var()</code> with an <em>identity fallback</em>: translate falls back to <code>0</code>,
+    scale to <code>1</code>, opacity to <code>1</code>. An unset dial contributes nothing;
+    a set dial composes into the shared transform. Composition happens in the browser's
+    custom-property resolution, not in the preprocessor.
+  </p>
+  <p>Trace one element through the three layers:</p>
+
+  <div class="pipe">
+    <div class="pipe-step" style="--step: var(--muted)">
+      <div class="who">markup<small>author writes</small></div>
+      <div class="what">
+        <pre><code>&lt;div <span class="k">class</span>=<span class="s">"xyz-in"</span> <span class="k">xyz</span>=<span class="s">"fade up-100% duration-10"</span>&gt;</code></pre>
+        <p style="margin-top:8px">The <code>xyz</code> attribute is a space-separated utility list — queried with
+        <code>[xyz~='…']</code>, exactly like <code>class</code>. The class is the trigger; the attribute is pure configuration.</p>
+      </div>
+    </div>
+
+    <div class="pipe-step" style="--step: var(--violet)">
+      <div class="who">layer 1 · dials<small>_utilities.scss → schema loop</small></div>
+      <div class="what">
+        <p>Each utility selector sets custom properties — <em>nothing else</em>. Generated from
+        <code>$xyz-utilities-map</code>: 34 utilities × 4 modes × ~10 levels ⇒ 1,441 selectors.</p>
+        <pre><code>[xyz~=<span class="s">'fade'</span>]         { <span class="v">--xyz-opacity</span>: calc(1 - var(<span class="v">--xyz-opacity-default</span>)); }
+[xyz~=<span class="s">'up-100%'</span>]      { <span class="v">--xyz-translate-y</span>: calc(100% * -1); }
+[xyz~=<span class="s">'duration-10'</span>]  { <span class="v">--xyz-duration</span>: 1s; }</code></pre>
+      </div>
+    </div>
+
+    <div class="pipe-step" style="--step: var(--in)">
+      <div class="who">layer 2 · trigger<small>_core.scss → xyz-animation()</small></div>
+      <div class="what">
+        <p>The mode class applies <em>one</em> animation whose timing slots all read the dial
+        variables. Note the two animation names: the generated mode keyframes, plus a user-supplied
+        keyframes hook (<code>--xyz-keyframes</code>) so custom animations ride the same timing.</p>
+        <pre><code>.xyz-in {
+  animation: <span class="v">$duration</span> <span class="v">$ease</span> calc(var(<span class="v">--xyz-delay-calc</span>)) <span class="v">$iterate</span> <span class="v">$direction</span> both;
+  animation-name: <span class="k">xyz-in-keyframes</span>, var(<span class="v">--xyz-in-keyframes</span>, var(<span class="v">--xyz-keyframes</span>, …));
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="pipe-step" style="--step: var(--out)">
+      <div class="who">layer 3 · keyframes<small>_core.scss:10–38</small></div>
+      <div class="what">
+        <p>The single <code>from</code> frame composes <em>every possible dial</em> with identity
+        fallbacks. Set none: nothing happens. Set any subset: they merge into one transform.</p>
+        <pre><code>@keyframes <span class="k">xyz-in-keyframes</span> {
+  from {
+    opacity: var(<span class="v">--xyz-in-opacity</span>, var(<span class="v">--xyz-opacity</span>, <span class="s">1</span>));
+    transform: perspective(<span class="v">…</span>)
+      translate3d(<span class="v">…tx, 0</span>, <span class="v">…ty, 0</span>, <span class="v">…tz, 0</span>)
+      rotateX(<span class="v">…, 0</span>) rotateY(<span class="v">…, 0</span>) rotateZ(<span class="v">…, 0</span>)
+      scale3d(<span class="v">…, 1</span>, <span class="v">…, 1</span>, <span class="v">…, 1</span>)
+      skew(<span class="v">…, 0</span>, <span class="v">…, 0</span>);
+  }
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    This is the architectural insight worth naming: <strong>Sass never composes anything.</strong>
+    It only enumerates dial names and prints selectors. The composability that gives the library its
+    identity is a pure CSS-custom-property mechanism — which matters a lot when we ask, later,
+    whether Sass is still needed.
+  </p>
+  <p>
+    It also explains a subtle strength over the obvious "modern" alternative. You might reach for
+    <code>animation-composition: accumulate</code> with one keyframe per utility — but
+    <code>animation-name</code> lists don't merge across independent selectors, so
+    <code>[xyz~='fade']</code> and <code>[xyz~='up']</code> could never <em>each</em> contribute an
+    animation to the same element. Variables merge across selectors for free. The var-dial design
+    isn't a preprocessor-era workaround; it's still the right architecture today.
+  </p>
+</section>
+
+<!-- ================= 03 CASCADE ================= -->
+<section id="cascade">
+  <div class="section-head"><span class="num">03</span><h2>The custom-property cascade</h2></div>
+  <p>
+    Every dial resolves through a fallback chain built by <code>xyz-var()</code>
+    <span class="fileref">(_functions.scss:44)</span>. The chain encodes the precedence rules:
+    mode-specific beats generic, element beats default, default beats identity. Two chain shapes exist:
+  </p>
+
+  <div class="two-col">
+    <figure>
+      <div class="ladder" role="img" aria-label="Four-tier fallback chain for timing variables">
+        <div class="rung" style="--tier: var(--in)"><span class="n">1</span><span><b>--xyz-in-duration</b></span><span class="who">set by <code>in-duration-N</code> utility</span></div>
+        <div class="drop">↓ unset? fall back</div>
+        <div class="rung" style="--tier: var(--violet)"><span class="n">2</span><span><b>--xyz-duration</b></span><span class="who">set by <code>duration-N</code> utility</span></div>
+        <div class="drop">↓</div>
+        <div class="rung" style="--tier: var(--muted)"><span class="n">3</span><span><b>--xyz-in-duration-default</b></span><span class="who">user theming hook</span></div>
+        <div class="drop">↓</div>
+        <div class="rung" style="--tier: var(--muted)"><span class="n">4</span><span><b>--xyz-duration-default</b> = 0.5s</span><span class="who">:root, from <code>$xyz-defaults-map</code></span></div>
+      </div>
+      <figcaption>Timing &amp; behavior dials (duration, delay, ease, stagger, iterate, direction, origin, keyframes): a 4-tier chain ending at a themable <code>:root</code> default.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="ladder" role="img" aria-label="Three-tier fallback chain for transform variables">
+        <div class="rung" style="--tier: var(--in)"><span class="n">1</span><span><b>--xyz-in-translate-y</b></span><span class="who">set by <code>in-up</code>/<code>in-down</code></span></div>
+        <div class="drop">↓</div>
+        <div class="rung" style="--tier: var(--violet)"><span class="n">2</span><span><b>--xyz-translate-y</b></span><span class="who">set by <code>up</code>/<code>down</code></span></div>
+        <div class="drop">↓</div>
+        <div class="rung" style="--tier: var(--ok)"><span class="n">3</span><span><b>identity: 0</b> (scale: 1, opacity: 1)</span><span class="who">hardcoded in the keyframe</span></div>
+      </div>
+      <figcaption>Transform dials inside the keyframes: a 3-tier chain ending at the identity value, so unused utilities are no-ops inside the shared transform.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Scoping: the [xyz] firewall</h3>
+  <p>
+    Custom properties inherit — normally a bug for a system like this, but AnimXYZ turns it into the
+    nesting model, then contains it. Setting <code>xyz="fade up"</code> on a parent means nested
+    children <em>inherit</em> those dials, which is how <code>.xyz-nested</code> elements animate from a
+    single parent config. The containment half: every element carrying an <code>xyz</code> attribute
+    resets <strong>all 96 dial variables</strong> (24 names × 4 mode prefixes) to <code>initial</code>
+    <span class="fileref">(_core.scss:158)</span> — so an inner <code>xyz</code> attribute is a clean
+    override boundary rather than an accidental mix with ancestors. <code>xyz="inherit …"</code>
+    flips the same 96 declarations to <code>inherit</code> for deliberate composition across the boundary.
+  </p>
+  <p>
+    It works, and it's clever — but it means every configured element carries ~96 declarations of
+    plumbing, and it's a place where modern CSS (<code>@property</code>) can't simply swap in:
+    registering these as non-inherited would kill the nesting feature. Inheritance here is
+    load-bearing.
+  </p>
+</section>
+
+<!-- ================= 04 STAGGER ================= -->
+<section id="stagger">
+  <div class="section-head"><span class="num">04</span><h2>Stagger &amp; the delay math</h2></div>
+  <p>
+    CSS has no <code>sibling-index()</code> in 2020, so AnimXYZ brute-forces one
+    <span class="fileref">(_core.scss:54)</span>: a loop stamps
+    <code>:nth-child(1…20)</code> → <code>--xyz-index: 0…19</code> and
+    <code>:nth-last-child(1…20)</code> → <code>--xyz-index-rev</code> onto every trigger and nested
+    element. Forty rules, each carrying a large <code>@extend</code>-merged selector list — and a
+    silent cliff: the 21st sibling has no index, falls back to <code>0</code>, and animates in sync
+    with the first.
+  </p>
+  <p>The delay each element actually gets is assembled from three calc layers:</p>
+
+  <figure class="panel">
+    <pre style="margin:0"><code><span class="c">// per element (xyz-animation, _functions.scss:176)</span>
+stagger-delay = inherited-nested-delay + stagger·<span class="v">index</span> + stagger-rev·<span class="v">index-rev</span>
+total-delay   = inherited-stagger-delay + delay
+final delay   = total-delay − <span class="v">start-offset</span> · (total-delay + duration)</code></pre>
+    <figcaption>
+      <code>--xyz-start-offset</code> lets the framework wrappers (Vue/React) start an animation
+      mid-flight — offset 1 means "begin as if already finished," used when appear-animating elements
+      that mounted late.
+    </figcaption>
+  </figure>
+
+  <h3>The variable relay across the inheritance boundary</h3>
+  <p>
+    Nested staggering has a trap: a child can't define <code>--xyz-stagger-delay</code> in terms of the
+    <em>inherited</em> <code>--xyz-stagger-delay</code> — a custom property referencing its own name is
+    a cycle, and the whole thing goes invalid. The library threads it with a rename relay
+    <span class="fileref">(_core.scss:65–75)</span>:
+  </p>
+  <figure class="panel">
+    <div class="ladder">
+      <div class="rung" style="--tier: var(--in)"><span class="n">root</span><span><b>--xyz-stagger-delay</b> = computed from own index</span><span class="who">.xyz-in element</span></div>
+      <div class="drop">↓ aliased on the same element</div>
+      <div class="rung" style="--tier: var(--in)"><span class="n">root</span><span><b>--xyz-root-stagger-delay</b>: var(--xyz-stagger-delay)</span><span class="who">new name = no cycle</span></div>
+      <div class="drop">⇣ inherits into children ⇣</div>
+      <div class="rung" style="--tier: var(--out)"><span class="n">child</span><span><b>--xyz-nested-stagger-delay</b>: var(--xyz-root-stagger-delay)</span><span class="who">.xyz-nested element</span></div>
+      <div class="drop">↓ feeds the child's own calc</div>
+      <div class="rung" style="--tier: var(--out)"><span class="n">child</span><span><b>--xyz-stagger-delay</b> = nested + stagger·own-index</span><span class="who">fresh value, parent's baked in</span></div>
+    </div>
+    <figcaption>
+      Each generation re-derives <code>--xyz-stagger-delay</code> from a differently-named copy of the
+      parent's value. The root also sets <code>--xyz-nested-stagger-delay: initial</code> on itself so it
+      never consumes a grandparent's relay. Genuinely elegant custom-property engineering — and completely
+      undocumented in the code; it deserves a comment.
+    </figcaption>
+  </figure>
+</section>
+
+<!-- ================= 05 ISSUES ================= -->
+<section id="issues">
+  <div class="section-head"><span class="num">05</span><h2>Issues found</h2></div>
+  <p>
+    Ordered by severity. Everything tagged <span class="chip bug">bug</span> was reproduced against
+    this working tree with Dart Sass 1.101.
+  </p>
+
+  <div class="issue">
+    <h3><span class="chip bug">bug · confirmed</span> <code>xyz-apply</code> is broken for every input</h3>
+    <p>
+      The public mixin for baking utilities into your own selectors passes its arguments in the wrong
+      order <span class="fileref">(_functions.scss:169)</span>. The signature is
+      <code>xyz-utility($name, $mode, $level)</code> <span class="fileref">(:76)</span>, but the call
+      sends <code>($name, $level, $mode)</code> — so the level lands in the mode slot and vice versa,
+      and the level lookup fails:
+    </p>
+    <pre><code>@include xyz-apply(<span class="s">'fade up'</span>);
+<span class="e">Error: "all is not a valid level for the fade utility."</span></code></pre>
+    <p>
+      Two more faults hide behind the swap: mode detection uses substring matching, so
+      <code>thin</code> and <code>origin</code> (both contain <code>in</code>) would resolve to mode
+      <code>in</code>; and utility-name matching keeps the <em>last</em> map-order hit, working for
+      <code>flip-up</code> vs <code>up</code> only because of the map's accidental ordering. The mixin
+      appears in no docs, examples, or tests — which is presumably how it shipped broken. Fix the
+      argument order and switch parsing to prefix/exact-token matching, or delete it.
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip bug">bug · time-fused</span> <code>build.scss</code> still uses <code>@import</code></h3>
+    <p>
+      The one legacy-syntax file in the package is the build entry. Dart Sass warns on every build
+      today and removes <code>@import</code> in 3.0 — at which point <code>yarn build</code> stops
+      working. The fix is one line: <code>@use 'src/animxyz' as *;</code>. (The <code>xyz-include-once</code>
+      guard in <code>_internal.scss</code> exists partly to defend against double-emission under
+      <code>@import</code> semantics; with modules everywhere it becomes nearly vestigial.)
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip bug">bug · dead code</span> <code>_fancy.scss</code> is unreachable</h3>
+    <p>
+      Seven extra keyframe sets (expand-width, expand-height, expand-border-radius, filter-blur,
+      filter-grayscale, box-shadow, stroke-draw) behind an <code>xyz-fancy()</code> mixin that nothing
+      forwards, includes, or documents. Either wire it into the barrel as an opt-in module — SVG
+      <code>stroke-draw</code> alone is a compelling utility — or remove it.
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip risk">limitation</span> Stagger silently caps at 20 siblings</h3>
+    <p>
+      <code>$xyz-index-levels: 20</code> bounds the nth-child ladder. Child 21 gets
+      <code>--xyz-index: 0</code> and fires with child 1 — no warning, no wrap. Raising the number is a
+      size trade: each extra level is 2 more rules dragging the full extend selector list.
+      <code>sibling-index()</code> (§06) removes the cliff entirely where supported.
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip risk">weight</span> The [xyz] reset is ~200 shipped declarations</h3>
+    <p>
+      The inheritance firewall (§03) costs 96 declarations for <code>[xyz]</code> plus 96 more for
+      <code>[xyz~='inherit']</code>, and the browser re-evaluates that block for every configured
+      element. It's a necessary consequence of the design, but it's the single biggest fixed cost in
+      the stylesheet, and worth remembering when weighing <code>@property</code> adoption — inheritance
+      can't just be turned off (nesting depends on it).
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip risk">stale workaround</span> Internal <code>*-calc</code> variables ship to production</h3>
+    <p>
+      <code>xyz-animation</code> splits every delay expression into a <code>--xyz-*-calc</code> variable
+      plus a <code>calc(var(…))</code> consumer, flagged <code>TODO</code> against
+      postcss-calc bug #77 <span class="fileref">(_functions.scss:190, 199)</span>. That bug was fixed
+      upstream years ago. The workaround doubles the delay plumbing in the shipped CSS and leaks
+      internals into the public variable namespace. Modern option: drop postcss-calc from the pipeline
+      entirely — with <code>var()</code> everywhere, it has almost nothing left to safely fold.
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip risk">fragility</span> Cascade correctness by source order and <code>!important</code></h3>
+    <p>
+      <code>$xyz-modes: ['in', 'out', 'appear']</code> carries the comment
+      <em>"Appear must come last for specificity"</em> — appear wins over in/out only because its rules
+      are printed later. Meanwhile <code>paused</code>/<code>none</code>/<code>absolute</code> reach for
+      <code>!important</code> to beat the trigger rules <span class="fileref">(_core.scss:130–142)</span>.
+      Both are source-order load-bearing walls; user CSS with equal specificity can knock them over.
+      Cascade layers give this a real structure (§06).
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip smell">smell</span> Data duplication in the schema</h3>
+    <p>
+      <code>$xyz-duration-levels</code>, <code>$xyz-delay-levels</code>, and
+      <code>$xyz-stagger-levels</code> are three byte-identical 18-entry maps; the 24-entry
+      variables map and 34-entry utilities map repeat near-identical per-axis stanzas. One shared
+      time scale plus a small loop would more than halve <code>_variables.scss</code> — and since these
+      maps are the public theming API, dedup means users override one scale, not three.
+    </p>
+  </div>
+
+  <div class="issue">
+    <h3><span class="chip smell">smell</span> Small stuff</h3>
+    <p>
+      Hand-rolled <code>xyz-str-split</code> <span class="fileref">(_functions.scss:10)</span> —
+      <code>string.split()</code> has been in Dart Sass since 1.57. The
+      <code>@supports (transform: perspective(none))</code> probe <span class="fileref">(_core.scss:44)</span>
+      targets browsers that are now years obsolete. <code>backface-visibility: visible</code> sets the
+      property's default value. And the bare <code>xyz</code> attribute is non-conforming HTML —
+      harmless in practice, but <code>data-xyz</code> would validate and appease JSX tooling; worth
+      considering (with an alias period) if there's ever a v1.0 break.
+    </p>
+  </div>
+</section>
+
+<!-- ================= 06 MODERNIZATION ================= -->
+<section id="modern">
+  <div class="section-head"><span class="num">06</span><h2>Modernization — and does it still need Sass?</h2></div>
+  <p>
+    The library was designed in 2020 against 2020 browsers, yet its core mechanism — dials as custom
+    properties, one parametric keyframe — is exactly how you'd design it <em>today</em>. What's dated
+    is the scaffolding around that mechanism. Each row below maps a 2020 workaround to its 2026
+    replacement; badges show how deployable each is.
+  </p>
+
+  <div class="panel">
+    <div class="then-now">
+      <div class="t"><code>@import</code> build entry</div><div class="arr">→</div>
+      <div class="n2"><code>@use</code>, finishing the module migration</div>
+      <span class="badge now">ready now</span>
+    </div>
+    <div class="then-now">
+      <div class="t">Hand-rolled string splitter</div><div class="arr">→</div>
+      <div class="n2"><code>string.split()</code> (Dart Sass ≥ 1.57)</div>
+      <span class="badge now">ready now</span>
+    </div>
+    <div class="then-now">
+      <div class="t">postcss-calc + <code>*-calc</code> shim variables</div><div class="arr">→</div>
+      <div class="n2">Delete both; write the <code>calc()</code> directly</div>
+      <span class="badge now">ready now</span>
+    </div>
+    <div class="then-now">
+      <div class="t">Source-order specificity + <code>!important</code> overrides</div><div class="arr">→</div>
+      <div class="n2"><code>@layer xyz.triggers, xyz.modes, xyz.overrides</code> — explicit precedence, and users can layer <em>around</em> the library</div>
+      <span class="badge base">baseline 2022</span>
+    </div>
+    <div class="then-now">
+      <div class="t"><code>:root</code> default variables + <code>perspective(none)</code> @supports probe</div><div class="arr">→</div>
+      <div class="n2"><code>@property</code> registration: typed dials, <code>initial-value</code> replaces the identity-fallback chains, syntax errors fail predictably, and registered properties become individually transitionable. Keep <code>inherits: true</code> — nesting depends on it.</div>
+      <span class="badge base">baseline 2024</span>
+    </div>
+    <div class="then-now">
+      <div class="t">40-rule <code>:nth-child</code> index ladder, capped at 20</div><div class="arr">→</div>
+      <div class="n2"><code>--xyz-index: sibling-index()</code> — two declarations, no cap. Chromium shipped 2025; keep the ladder as fallback until it's cross-engine</div>
+      <span class="badge edge">chromium 138+</span>
+    </div>
+    <div class="then-now">
+      <div class="t">Monolithic <code>transform</code> in the keyframe</div><div class="arr">→</div>
+      <div class="n2">Individual <code>translate</code> / <code>rotate</code> / <code>scale</code> properties — frees <code>transform</code> for user code and composes with it instead of clobbering it (skew stays in <code>transform</code>)</div>
+      <span class="badge base">baseline 2022</span>
+    </div>
+    <div class="then-now">
+      <div class="t">Mode classes toggled by JS wrappers for enter/exit</div><div class="arr">→</div>
+      <div class="n2"><code>@starting-style</code> + <code>transition-behavior: allow-discrete</code>: entry/exit styling with no keyframes and no mount-timing JS — a candidate for a whole new trigger mode</div>
+      <span class="badge base">baseline 2024</span>
+    </div>
+    <div class="then-now">
+      <div class="t">Time-based triggers only</div><div class="arr">→</div>
+      <div class="n2"><code>animation-timeline: view()</code> — scroll-driven <code>xyz</code> utilities (<code>xyz="fade up timeline-view"</code>) reusing the exact same keyframes and dials</div>
+      <span class="badge edge">chromium + safari 26</span>
+    </div>
+    <div class="then-now">
+      <div class="t">1,441 enumerated level selectors</div><div class="arr">→</div>
+      <div class="n2">Typed <code>attr()</code>: <code>--xyz-translate-y: attr(data-xyz-up type(*), …)</code> reads levels straight off the attribute — the endgame that deletes most of the generated CSS</div>
+      <span class="badge watch">watch · chromium only</span>
+    </div>
+  </div>
+
+  <p>
+    Two modern features are deliberately <em>absent</em> from the table as replacements:
+    <code>animation-composition</code> can't replace the var-dial design (independent attribute
+    selectors can't each append an animation-name, as noted in §02), and non-inherited
+    <code>@property</code> registration would break nested composition. Both are cases where the
+    2020 architecture already beat the 2026 feature.
+  </p>
+
+  <div class="verdict">
+    <h3>Does it still need SCSS?</h3>
+    <p>
+      <strong>Not to run — only to be written.</strong> Nothing Sass does here survives to the
+      browser: the runtime engine is entirely custom properties, <code>calc()</code>, and three
+      keyframes, and the published artifact is already plain CSS. Sass performs exactly three jobs:
+      <strong>(1)</strong> enumeration — expanding a 34-entry schema into 1,441 selectors;
+      <strong>(2)</strong> theming — the <code>!default</code> level maps users override at build
+      time; <strong>(3)</strong> a mixin API for Sass consumers (<code>xyz-animation</code>,
+      <code>xyz-utility</code>, the level maps). Jobs it once did — nesting, math, vendor juggling —
+      are gone or native.
+    </p>
+    <p>
+      A ~100-line Node script could emit the same stylesheet, and typed <code>attr()</code> will
+      eventually shrink even the enumeration. But job 3 is a real public API and job 2 is the
+      documented customization story, so dropping Sass today would break users to save a dependency
+      that costs almost nothing. The pragmatic path: <strong>keep SCSS as the generator, but treat it
+      as an implementation detail</strong> — fix the entry file, registered <code>@property</code>
+      dials, cascade layers, <code>sibling-index()</code> behind a fallback — and spend the real
+      innovation budget on the new capabilities column: <code>@starting-style</code> enter/exit and
+      scroll-driven timelines are the features that would make AnimXYZ feel new in 2026, and both
+      snap cleanly onto the dial architecture it already has.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Method: analysis of <span class="mono">packages/core/src</span> at v0.6.6. Output measured by
+    compiling <span class="mono">build.scss</span> with Dart Sass 1.101.0 (expanded: 6,353 lines /
+    122&nbsp;KB; 13.2&nbsp;KB gzipped; selector and keyframe counts from the compiled artifact).
+    The <span class="mono">xyz-apply</span> failure was reproduced, not inferred. Browser-support
+    labels as of July 2026.
+  </p>
+</footer>
+
+</main>
+
+<script>
+(function () {
+  var grid = document.getElementById('demoGrid');
+  var replay = document.getElementById('replay');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function run() {
+    if (reduced.matches) return;
+    grid.classList.remove('play');
+    // force reflow so the animation restarts
+    void grid.offsetWidth;
+    grid.classList.add('play');
+  }
+
+  document.querySelectorAll('.tog[data-u]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var on = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', String(!on));
+      grid.classList.toggle(btn.dataset.u, !on);
+      run();
+    });
+  });
+  replay.addEventListener('click', run);
+})();
+</script>
+</body>
+</html>
