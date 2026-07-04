@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config'
+import { unified } from '@astrojs/markdown-remark'
 import vue from '@astrojs/vue'
 import { fileURLToPath } from 'node:url'
 import rehypePrismPlus from 'rehype-prism-plus'
@@ -13,12 +14,15 @@ export default defineConfig({
   site: 'https://animxyz.com',
   integrations: [vue({ appEntrypoint: '/src/vue-app' })],
   markdown: {
+    // Astro 7 defaults to Sätteri; keep unified for remark/rehype plugins.
+    processor: unified({
+      remarkPlugins: [remarkNoteContainers],
+      rehypePlugins: [
+        [rehypeExternalLinks, { target: '_blank' }],
+        [rehypePrismPlus, { ignoreMissing: true }],
+      ],
+    }),
     syntaxHighlight: false,
-    remarkPlugins: [remarkNoteContainers],
-    rehypePlugins: [
-      [rehypeExternalLinks, { target: '_blank' }],
-      [rehypePrismPlus, { ignoreMissing: true }],
-    ],
   },
   vite: {
     plugins: [

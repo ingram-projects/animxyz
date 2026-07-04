@@ -8,7 +8,7 @@
       <div class="square" v-for="index in customData.numCats" :key="index">
         <img
           class="item-image image-filter-mono"
-          :src="`https://cataas.com/cat?type=sm?id=${index}`"
+          :src="`https://cataas.com/cat?type=small&id=${index}`"
           alt="Picture of a cat"
         />
       </div>
