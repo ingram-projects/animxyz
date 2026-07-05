@@ -1,0 +1,6 @@
+// Fixture for the xyz-animation() mixin.
+@use '../../src/functions' as *;
+
+.xyz-animation-fixture {
+  @include xyz-animation('in');
+}

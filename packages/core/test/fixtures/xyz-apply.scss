@@ -1,0 +1,16 @@
+// Fixture for the xyz-apply() mixin.
+//
+// KNOWN BUG (tracked by work brief A2 · fix/xyz-apply): xyz-apply() calls
+// xyz-utility($utility-name, $utility-level, $utility-mode) but xyz-utility's
+// signature is xyz-utility($name, $mode, $level) -- level and mode are
+// swapped, so every invocation currently errors with
+// "<level> is not a valid level for the <name> utility."
+//
+// This fixture is intentionally expected to FAIL to compile today. Once A2
+// lands, flip the corresponding test in test/mixin-api.test.js from asserting
+// this failure to asserting a successful compile with the expected output.
+@use '../../src/functions' as *;
+
+.xyz-apply-fixture {
+  @include xyz-apply('fade up-100% in-rotate-right');
+}

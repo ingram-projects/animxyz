@@ -1,0 +1,8 @@
+// Fixture for the xyz-make-keyframes() mixin.
+@use '../../src/functions' as *;
+
+@include xyz-make-keyframes('fade') using ($mode) {
+  from {
+    opacity: xyz-var('in-opacity', $mode, 0);
+  }
+}

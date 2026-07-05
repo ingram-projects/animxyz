@@ -43,7 +43,9 @@
     "build:cssnano": "postcss --use cssnano --map false --output dist/animxyz.min.css dist/animxyz.css",
     "build:clean": "rimraf dist",
     "build:sass": "sass build.scss dist/animxyz.css",
-    "build:stats": "node buildStats.js dist/animxyz.min.css"
+    "build:stats": "node buildStats.js dist/animxyz.min.css",
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:update-snapshot": "node test/update-snapshot.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

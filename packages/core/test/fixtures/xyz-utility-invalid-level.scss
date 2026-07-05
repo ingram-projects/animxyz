@@ -1,0 +1,6 @@
+// Fixture asserting xyz-utility() raises a Sass @error for an unknown level.
+@use '../../src/functions' as *;
+
+.xyz-utility-invalid-level {
+  @include xyz-utility('duration', 'all', 'not-a-real-level');
+}
