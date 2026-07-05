@@ -50,11 +50,9 @@ changes shared mechanics for all briefs:
 - **commitlint still enforced** (root `commit-msg` + `lint-staged`, now also linting
   `.astro`). Conventional-commit rule stands.
 
-**Caveat to reconcile:** `.changeset/config.json` sets `"baseBranch": "main"`, but the
-repo's default branch is `master`. Changesets uses `baseBranch` to detect changed
-packages; if it's wrong, `changeset status`/`version` can misbehave. Flag to the
-maintainer — either the default branch is being renamed to `main`, or the config
-should say `master`. Whichever it resolves to is the branch these briefs base off.
+**Base branch:** `master`. (`.changeset/config.json` `baseBranch` was corrected to
+`master`, matching the repo default, so `changeset status`/`version` detect changed
+packages correctly. All briefs base off `master` post-#123.)
 
 ## Sequencing
 
@@ -491,10 +489,8 @@ snapshot-neutral.
    `@animxyz/vue3`, `@animxyz/react`); `@animxyz/site` is ignored/unpublished.
    `updateInternalDependencies: patch` handles wrapper→core version bumps.
    Run `npx changeset version` on a release branch and review the generated
-   CHANGELOGs (Changesets writes them — don't hand-author). Confirm the
-   `.changeset/config.json` `baseBranch` caveat (main vs master) is resolved so
-   `changeset status` is accurate. Regenerate size stats (`buildStats.js`) and update
-   any size claims in READMEs and `site/` content.
+   CHANGELOGs (Changesets writes them — don't hand-author). Regenerate size stats
+   (`buildStats.js`) and update any size claims in READMEs and `site/` content.
 4. Update `animxyz-scss-analysis.html`'s Issues section footnotes if kept in-repo
    (optional: mark resolved items). Note its "76 doc examples" figure is pre-#123 and
    now ~321 in `site/`.
