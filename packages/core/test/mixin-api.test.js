@@ -17,6 +17,21 @@ test('xyz-var: emits cascading var() chains', () => {
   assert.match(result.stdout, /--test-fallback: var\(--xyz-duration, 0s\);/)
 })
 
+// A3 (fix/build-hygiene) dedups $xyz-duration-levels / $xyz-delay-levels /
+// $xyz-stagger-levels by deriving them all from a shared $xyz-time-levels
+// map, while keeping every one of the three public names independently
+// !default-overridable. This proves a consumer who overrides just
+// $xyz-delay-levels still gets that override applied, and that it doesn't
+// leak into the sibling duration/stagger maps.
+test('$xyz-delay-levels: remains independently overridable after the time-map dedup', () => {
+  const result = compileSass('test/fixtures/xyz-time-levels-override.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-delay-override \{\n\s*--xyz-delay: 42s;/)
+  assert.match(result.stdout, /\.xyz-duration-unaffected \{\n\s*--xyz-duration: 0\.5s;/)
+  assert.match(result.stdout, /\.xyz-stagger-unaffected \{\n\s*--xyz-stagger: 0\.5s;/)
+})
+
 test('xyz-set-all: sets every variable/mode combination to the given value', () => {
   const result = compileSass('test/fixtures/xyz-set-all.scss')
 
@@ -59,9 +74,14 @@ test('xyz-animation: emits the delay chain, transform-origin, and animation shor
   const result = compileSass('test/fixtures/xyz-animation.scss')
 
   assert.equal(result.status, 0, result.stderr)
-  assert.match(result.stdout, /--xyz-stagger-delay-calc:/)
-  assert.match(result.stdout, /--xyz-total-delay-calc:/)
-  assert.match(result.stdout, /--xyz-stagger-delay: calc\(var\(--xyz-stagger-delay-calc\)\);/)
+  // A3 (fix/build-hygiene) removed the undocumented --xyz-*-calc shim
+  // variables (a postcss-calc workaround no longer needed); the calc()
+  // expressions are now written directly into these custom properties.
+  assert.match(result.stdout, /--xyz-stagger-delay: calc\(var\(--xyz-nested-stagger-delay,/)
+  assert.match(result.stdout, /--xyz-total-delay: calc\(var\(--xyz-stagger-delay,/)
+  assert.doesNotMatch(result.stdout, /--xyz-stagger-delay-calc/)
+  assert.doesNotMatch(result.stdout, /--xyz-total-delay-calc/)
+  assert.doesNotMatch(result.stdout, /--xyz-delay-calc/)
   assert.match(result.stdout, /transform-origin: var\(--xyz-in-origin,/)
   assert.match(result.stdout, /backface-visibility: visible;/)
   assert.match(result.stdout, /animation:\n?\s*var\(--xyz-in-duration,/)

@@ -1,0 +1,29 @@
+// Fixture proving the $xyz-time-levels dedup (A3 · fix/build-hygiene)
+// preserves independent !default overridability of the three public time
+// maps. A consumer overriding just $xyz-delay-levels (without touching
+// $xyz-time-levels, $xyz-duration-levels, or $xyz-stagger-levels) must see
+// that override take effect, and must NOT see it bleed into the sibling
+// maps.
+@use '../../src/variables' as * with (
+  $xyz-delay-levels: (
+    'default': var(--xyz-delay-default),
+    'custom': 42s,
+  )
+);
+@use '../../src/functions' as *;
+
+.xyz-delay-override {
+  // 'custom' only exists because $xyz-delay-levels was overridden above.
+  @include xyz-utility('delay', 'all', 'custom');
+}
+
+.xyz-duration-unaffected {
+  // $xyz-duration-levels was NOT overridden -- its normal levels must still
+  // resolve, proving the override didn't bleed across the derived maps.
+  @include xyz-utility('duration', 'all', '5');
+}
+
+.xyz-stagger-unaffected {
+  // Same check for $xyz-stagger-levels.
+  @include xyz-utility('stagger', 'all', '5');
+}
