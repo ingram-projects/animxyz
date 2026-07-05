@@ -7,18 +7,12 @@
 
 // HELPERS
 
+// Thin wrapper around the built-in string.split() (Dart Sass >= 1.57), kept
+// under its original name so existing call sites (e.g. xyz-apply) are
+// unaffected. Previously a hand-rolled split loop; string.split() didn't
+// exist in the Sass version this library originally targeted.
 @function xyz-str-split($string, $separator: ' ') {
-  $split-list: ();
-  $index : string.index($string, $separator);
-  @while $index != null {
-    $item: string.slice($string, 1, $index - 1);
-    $split-list: list.append($split-list, $item);
-    $string: string.slice($string, $index + 1);
-    $index : string.index($string, $separator);
-  }
-  $split-list: list.append($split-list, $string);
-
-  @return $split-list;
+  @return string.split($string, $separator);
 }
 
 @function xyz-name($name, $mode: 'all') {
@@ -187,22 +181,15 @@
   $index: var(--xyz-index, 0);
   $index-rev: var(--xyz-index-rev, 0);
 
-  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
-  --xyz-stagger-delay-calc: var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev};
-  --xyz-total-delay-calc: var(--xyz-stagger-delay, 0s) + #{$delay};
-
-  --xyz-stagger-delay: calc(var(--xyz-stagger-delay-calc));
-  --xyz-total-delay: calc(var(--xyz-total-delay-calc));
+  --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
+  --xyz-total-delay: calc(var(--xyz-stagger-delay, 0s) + #{$delay});
   transform-origin: #{$origin};
   backface-visibility: visible;
-
-  // TODO: remove these -calc variables when postcss-calc bug is fixed: https://github.com/postcss/postcss-calc/issues/77
-  --xyz-delay-calc: var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + #{$duration}) * -1;
 
   animation:
     #{$duration}
     #{$ease}
-    calc(var(--xyz-delay-calc))
+    calc(var(--xyz-total-delay, 0s) + var(--xyz-start-offset, 0) * (var(--xyz-total-delay, 0s) + #{$duration}) * -1)
     #{$iterate}
     #{$direction}
     both;

@@ -28,10 +28,8 @@ against freshly built output.
 What's covered:
 
 - **Compile test** (`test/compile.test.js`) — `build.scss` compiles without
-  errors. A second, currently-`todo` assertion checks for zero Sass
-  deprecation warnings; it's expected to fail until work brief A3
-  (`fix/build-hygiene`) replaces `build.scss`'s `@import` with `@use`, at
-  which point that assertion should be flipped to enforcing.
+  errors, and without any Sass deprecation warnings (`build.scss` uses
+  `@use`, not `@import`).
 - **Mixin API tests** (`test/mixin-api.test.js`) — small fixture `.scss`
   files under `test/fixtures/` `@use` the source directly and invoke the
   public mixins/functions (`xyz-utility`, `xyz-var`, `xyz-set-all`,
@@ -40,7 +38,10 @@ What's covered:
   **known bug** (tracked by work brief A2, `fix/xyz-apply`): the mixin
   currently always errors due to swapped constructor arguments. Once A2
   lands, flip that test from asserting the `@error` to asserting a
-  successful compile.
+  successful compile. `test/fixtures/xyz-time-levels-override.scss` proves
+  that `$xyz-duration-levels` / `$xyz-delay-levels` / `$xyz-stagger-levels`
+  remain independently `!default`-overridable after being derived from the
+  shared `$xyz-time-levels` map (work brief A3).
 - **Snapshot test** (`test/snapshot.test.js`) — compiles `build.scss`
   (expanded), normalizes it (strips comments, collapses whitespace, reflows
   to one declaration per line for reviewable diffs), and compares it against
@@ -62,3 +63,8 @@ What's covered:
 
 This package requires **Dart Sass** to compile `src/*.scss` (see `sass` in
 `devDependencies`).
+
+**Minimum Dart Sass version: 1.57.0.** The source uses `sass:string`'s
+`string.split()`, which was added in Dart Sass 1.57. If you `@use` this
+package's `src/*.scss` directly (rather than consuming the prebuilt
+`dist/animxyz.css`), make sure your own Sass compiler is at least 1.57.

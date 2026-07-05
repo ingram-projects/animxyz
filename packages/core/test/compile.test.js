@@ -16,19 +16,11 @@ test('build.scss compiles without errors', () => {
   assert.ok(result.stdout.length > 0, 'expected compiled CSS output')
 })
 
-// TODO(A3 · fix/build-hygiene): build.scss currently uses `@import` (see
-// build.scss), which Dart Sass reports as a DEPRECATION WARNING on every
-// compile. A3 replaces it with `@use 'src/animxyz' as *;`, which removes the
-// warning. Until that lands, this assertion is written as an allowed-fail
-// (todo) so CI doesn't go red on a known, already-scheduled issue -- but the
-// warning is captured here so this test starts failing (i.e. the todo
-// becomes provably stale) the moment someone re-introduces `@import`
-// elsewhere or the warning otherwise reappears after A3 merges.
-test(
-  'build.scss compiles without deprecation warnings',
-  { todo: 'enforced once A3 (fix/build-hygiene) replaces @import with @use in build.scss' },
-  () => {
-    const result = compileSass('build.scss')
-    assert.doesNotMatch(result.stderr, /DEPRECATION WARNING/)
-  }
-)
+// A3 (fix/build-hygiene) replaced build.scss's `@import` with
+// `@use 'src/animxyz' as *;`, which removes the Dart Sass deprecation
+// warning. This assertion now enforces zero deprecation warnings on every
+// compile of the entry point.
+test('build.scss compiles without deprecation warnings', () => {
+  const result = compileSass('build.scss')
+  assert.doesNotMatch(result.stderr, /DEPRECATION WARNING/)
+})
