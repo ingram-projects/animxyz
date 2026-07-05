@@ -17,12 +17,16 @@ Build hygiene cleanup (work brief A3, `fix/build-hygiene`):
   them directly (e.g. in a custom override), update to the public
   `--xyz-stagger-delay` / `--xyz-total-delay` variables instead.
 - Dropped the `postcss-calc` step from `build:postcss` (no longer needed
-  now that the shim variables are gone). `build:cssnano` now runs with a
-  scoped config (`.postcss-cssnano/postcss.config.js`) that disables
-  cssnano's bundled `calc` sub-plugin, which pins an old `postcss-calc`
-  version that cannot parse the resulting nested `var()`-in-`calc()`
-  expressions; everything else in cssnano's default minification preset is
-  unaffected.
+  now that the shim variables are gone).
+- Upgraded the build's minifier from `cssnano` 5 to **cssnano 8** (latest
+  stable) and bumped `postcss` to `^8.5.15` to satisfy its peer range.
+  cssnano 8 bundles `postcss-calc@10`, which correctly parses the nested
+  `var()`-fallback-in-`calc()` expressions produced by `xyz-var()` — the
+  exact shape the removed `-calc` shim variables were avoiding — so calc
+  folding runs with the full default preset. `build:cssnano` uses a scoped
+  config (`.postcss-cssnano/postcss.config.js`) purely to pin resolution to
+  this package's own cssnano (postcss-cli's `--use cssnano` otherwise picks
+  up an older copy hoisted by the Vue/React example tooling).
 - Replaced the hand-rolled `xyz-str-split()` loop with `string.split()`
   (Dart Sass >= 1.57), keeping the same function name/signature for
   existing call sites. Bumped the `sass` devDependency to `^1.57.0` and

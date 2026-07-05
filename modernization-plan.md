@@ -139,7 +139,8 @@ Shared rules for every brief:
    against fresh output). `turbo run test` from the root must run it.
 3. `.github/workflows/ci.yml` (net-new — no workflow exists yet, even on
    `astro-refactor`): `npm ci`, then `turbo run lint test` on push/PR to `master`
-   and `v1`. Node 20+, `actions/setup-node` with `cache: npm`. No publishing (release
+   and `v1`. Node 22 (current Active LTS; the core build's cssnano 8 requires
+   Node >= 22.11), `actions/setup-node` with `cache: npm`. No publishing (release
    is a separate changeset flow).
 
 **Toolchain note:** base off post-#123 `master` (npm + Turborepo). Use `npm`, not
