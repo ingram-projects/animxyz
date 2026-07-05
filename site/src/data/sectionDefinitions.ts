@@ -16,6 +16,7 @@ export const sectionDefinitions: SectionDefinition[] = [
   'contexts',
   'utilities',
   'variables',
+  'sass-apply',
   'defaults',
   { header: true, title: 'Controlling Animations', id: 'controlling-animations' },
   'active-classes',

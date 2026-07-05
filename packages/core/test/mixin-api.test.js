@@ -79,21 +79,91 @@ test('xyz-make-keyframes: emits per-mode @keyframes and utility selectors', () =
   assert.match(result.stdout, /--xyz-in-keyframes: xyz-in-fade;/)
 })
 
-// KNOWN BUG -- see test/fixtures/xyz-apply.scss and work brief
-// A2 · fix/xyz-apply in modernization-plan.md.
-//
-// xyz-apply() calls xyz-utility($utility-name, $utility-level, $utility-mode)
-// but xyz-utility's signature is xyz-utility($name, $mode, $level) --
-// level/mode are swapped, so the mixin currently always errors. Once A2 fixes
-// the argument order (and the substring-matching bugs described in the plan),
-// flip this test to assert a SUCCESSFUL compile with the expected declarations
-// instead of asserting the current @error.
-test(
-  'xyz-apply: KNOWN BUG -- currently errors due to swapped level/mode arguments (A2 will fix)',
-  () => {
-    const result = compileSass('test/fixtures/xyz-apply.scss')
+// xyz-apply() -- repaired by work brief A2 · fix/xyz-apply. The parser turns a
+// space-separated attribute string into xyz-utility() calls. These assertions
+// cover the happy paths plus regressions for the three original bugs (swapped
+// level/mode args, substring mode detection, substring name detection).
 
-    assert.notEqual(result.status, 0, 'expected xyz-apply to currently fail to compile')
-    assert.match(result.stderr, /all is not a valid level for the fade utility\./)
-  }
-)
+test('xyz-apply: bare utility resolves to its default-level declaration', () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(
+    result.stdout,
+    /\.xyz-apply-bare \{\n\s*--xyz-opacity: calc\(1 - var\(--xyz-opacity-default\)\);/
+  )
+})
+
+test('xyz-apply: leveled utility resolves to its mapped level value', () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-apply-leveled \{\n\s*--xyz-opacity: calc\(1 - 0\.5\);/)
+})
+
+test('xyz-apply: mode prefix namespaces the emitted variable (bug 1 regression)', () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(
+    result.stdout,
+    /\.xyz-apply-moded \{\n\s*--xyz-in-opacity: calc\(1 - var\(--xyz-opacity-default\)\);/
+  )
+})
+
+test('xyz-apply: mode + level parse together, not swapped (bug 1 regression)', () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-apply-moded-leveled \{\n\s*--xyz-in-opacity: calc\(1 - 0\.5\);/)
+})
+
+test('xyz-apply: multiple tokens in one string each emit their own declaration', () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  // 'fade up-100% in-rotate-right'
+  assert.match(
+    result.stdout,
+    /\.xyz-apply-multi \{\n\s*--xyz-opacity: calc\(1 - var\(--xyz-opacity-default\)\);\n\s*--xyz-translate-y: calc\(100% \* -1\);\n\s*--xyz-in-rotate-z: var\(--xyz-rotate-default\);/
+  )
+})
+
+test("xyz-apply: 'thin' is a utility, not mode 'in' (bug 2 regression)", () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-apply-thin \{\n\s*--xyz-scale-z: calc\(1 - var\(--xyz-scale-default\)\);/)
+  // Must NOT be mis-namespaced as an 'in' mode variable.
+  assert.doesNotMatch(result.stdout, /\.xyz-apply-thin \{\n\s*--xyz-in-/)
+})
+
+test("xyz-apply: 'origin' is a utility, not mode 'in' (bug 2 regression)", () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-apply-origin \{\n\s*--xyz-origin: top;/)
+})
+
+test("xyz-apply: 'flip-up' wins over 'up' (bug 3 regression)", () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  // flip-up-100% -> rotate-x 1turn, NOT translate-y.
+  assert.match(result.stdout, /\.xyz-apply-flip-up \{\n\s*--xyz-rotate-x: 1turn;/)
+  assert.doesNotMatch(result.stdout, /\.xyz-apply-flip-up \{\n\s*--xyz-translate-y:/)
+})
+
+test("xyz-apply: bare 'up' still resolves to translate-y (bug 3 regression)", () => {
+  const result = compileSass('test/fixtures/xyz-apply.scss')
+
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /\.xyz-apply-up \{\n\s*--xyz-translate-y: calc\(100% \* -1\);/)
+})
+
+test('xyz-apply: unknown utility token raises a Sass @error', () => {
+  const result = compileSass('test/fixtures/xyz-apply-invalid.scss')
+
+  assert.notEqual(result.status, 0, 'expected an unknown utility token to fail to compile')
+  assert.match(result.stderr, /notautility is not a valid xyz utility\./)
+})

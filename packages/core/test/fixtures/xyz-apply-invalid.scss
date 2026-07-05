@@ -1,0 +1,7 @@
+// Fixture asserting xyz-apply() rejects an unknown utility token with a Sass
+// @error (work brief A2 · fix/xyz-apply). Expected to FAIL to compile.
+@use '../../src/functions' as *;
+
+.xyz-apply-invalid {
+  @include xyz-apply('notautility');
+}
