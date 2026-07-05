@@ -135,38 +135,61 @@
 }
 
 @mixin xyz-apply($utilities) {
+  // Parse each space-separated token deterministically:
+  //   [<mode>-]<name>[-<level>]
+  // where <mode> is one of the trigger modes (in / out / appear) matched as an
+  // exact prefix, <name> is a utility-map key matched by exact match first then
+  // longest prefix ending on a '-' boundary, and <level> is whatever remains
+  // after 'name-' (or 'default' when absent). Prefix/boundary matching (rather
+  // than substring matching) is what keeps 'thin'/'origin' from being read as
+  // mode 'in' and 'up' from shadowing 'flip-up'.
   $utilities-list: xyz-str-split($utilities);
 
   @each $utility in $utilities-list {
-    $utility-mode: null;
-    $utility-name: null;
-    $utility-level: null;
+    $utility-mode: 'all';
+    $remainder: $utility;
 
-    @each $name in map.keys($xyz-utilities-map) {
-      @if string.index($utility, $name) {
-        $utility-name: $name;
+    // (a) Strip an exact mode prefix ('in-' / 'out-' / 'appear-').
+    @each $mode in $xyz-modes {
+      $prefix: $mode + '-';
+      @if $utility-mode == 'all' and string.index($remainder, $prefix) == 1 {
+        $utility-mode: $mode;
+        $remainder: string.slice($remainder, string.length($prefix) + 1);
+      }
+    }
+
+    // (b) Resolve the utility name: exact match first, else the longest map key
+    //     that is a prefix of the remainder followed by a '-' boundary.
+    $utility-name: null;
+    @if map.has-key($xyz-utilities-map, $remainder) {
+      $utility-name: $remainder;
+    } @else {
+      @each $name in map.keys($xyz-utilities-map) {
+        $name-prefix: $name + '-';
+        @if string.index($remainder, $name-prefix) == 1 {
+          @if $utility-name == null or string.length($name) > string.length($utility-name) {
+            $utility-name: $name;
+          }
+        }
       }
     }
 
     @if $utility-name == null {
-      @error '#{$utility} is not a valid xyz utility.';
+      @error '#{$utility} is not a valid xyz utility. Valid utilities are: #{map.keys($xyz-utilities-map)}.';
     }
 
-    $utility-level: string.slice($utility, string.index($utility, $utility-name) + string.length($utility-name) + 1);
-    @if string.length($utility-level) == 0 {
-      $utility-level: 'default';
+    // (c) The rest after 'name-' is the level, else 'default'.
+    $utility-level: 'default';
+    @if string.length($remainder) > string.length($utility-name) {
+      $utility-level: string.slice($remainder, string.length($utility-name) + 2);
     }
 
-    @each $mode in $xyz-modes-all {
-      @if string.index($utility, $mode) {
-        $utility-mode: $mode;
-      }
-    }
-    @if $utility-mode == null {
-      $utility-mode: 'all';
+    $levels: map.get(map.get($xyz-utilities-map, $utility-name), 'levels');
+    @if not map.has-key($levels, $utility-level) {
+      @error '#{$utility-level} is not a valid level for the #{$utility-name} utility. Valid levels are: #{map.keys($levels)}.';
     }
 
-    @include xyz-utility($utility-name, $utility-level, $utility-mode);
+    @include xyz-utility($utility-name, $utility-mode, $utility-level);
   }
 }
 
