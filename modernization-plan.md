@@ -20,6 +20,42 @@ work briefs, each intended for one subagent in its own git worktree.
 | Testing | **Compile + snapshot tests + GitHub Actions** (no browser visual tests) |
 | Branching | Track A worktrees branch from `master`, PR → `master`. Create long-lived `v1` branch from `master`; Track B worktrees branch from `v1`, PR → `v1`. `v1` → `master` when v1.0 ships |
 
+## Baseline branch & toolchain (updated for the Astro refactor)
+
+**All briefs base off the docs Astro refactor** (PR #123, branch `astro-refactor`),
+which is merging to `master` imminently. Base every worktree on `master` **once #123
+has merged**; if you must start before then, branch from `origin/astro-refactor`
+instead. That refactor does not touch `packages/core/**` at all (verified: the only
+package change is a `vue` devDep bump in `packages/vue3`), so every SCSS brief below
+applies verbatim — but it replaces the repo tooling and moves the docs site, which
+changes shared mechanics for all briefs:
+
+- **Package manager: Yarn → npm.** npm workspaces (`packages/*`, `examples/*`, `site`),
+  `package-lock.json`, `.npmrc`, `packageManager: npm@11.8.0`. `yarn.lock` and
+  `lerna.json` are gone. Use `npm` everywhere the briefs say "yarn".
+- **Task runner: Lerna → Turborepo.** Root scripts are `turbo run build|dev|lint|test`.
+  `turbo.json` defines a `test` task (`dependsOn: ["^build"]`). A package participates
+  by defining its own `test`/`lint` scripts; turbo discovers them.
+- **Versioning/release: Lerna → Changesets.** `@changesets/cli`, `.changeset/config.json`,
+  scripts `changeset` / `version-packages` (`changeset version`) / `release`
+  (`turbo run build && changeset publish`). **Every brief must add a changeset**
+  (`npx changeset`) describing its version bump — that is now how versions move.
+  Track A entries are `patch`/`minor`; Track B (v1.0) entries are `major`.
+  `@animxyz/site` is in the changeset `ignore` list (unpublished).
+- **Docs site: `docs/` (Gridsome) → `site/` (Astro + Vue 3 islands).** `docs/` is
+  fully removed. Doc prose is now markdown in `site/src/content/sections/*.md`
+  (27 section files); interactive demos are Vue 3 SFCs in `site/src/components/vue/`;
+  the site consumes `@animxyz/core` and `@animxyz/vue3` via workspace `*`. Any brief
+  that touched `docs/` now targets `site/`.
+- **commitlint still enforced** (root `commit-msg` + `lint-staged`, now also linting
+  `.astro`). Conventional-commit rule stands.
+
+**Caveat to reconcile:** `.changeset/config.json` sets `"baseBranch": "main"`, but the
+repo's default branch is `master`. Changesets uses `baseBranch` to detect changed
+packages; if it's wrong, `changeset status`/`version` can misbehave. Flag to the
+maintainer — either the default branch is being renamed to `main`, or the config
+should say `master`. Whichever it resolves to is the branch these briefs base off.
+
 ## Sequencing
 
 ```
@@ -43,10 +79,14 @@ review the diff).
 
 Shared rules for every brief:
 - Branch names as given; worktree per branch; conventional commits (repo uses commitlint).
+- Add a changeset (`npx changeset`) in every PR: Track A = `patch`/`minor`,
+  Track B = `major`.
 - "Snapshot diff reviewed" means: regenerate the CSS snapshot, and the PR description
   must summarize what changed in the output and why every change is intended.
 - Never edit `dist/` by hand; it is build output.
-- The repo is a Lerna/Yarn-workspaces monorepo; run package scripts from the package dir.
+- The repo is an **npm-workspaces + Turborepo** monorepo (post-#123). Install at the
+  root with `npm install`; run a package's scripts from its dir or via
+  `npm run <script> -w <workspace>` / `turbo run <task>`.
 
 ---
 
@@ -70,15 +110,25 @@ Shared rules for every brief:
    - **Snapshot test**: compile `build.scss` (expanded), normalize (strip comments,
      collapse whitespace), commit as `test/__snapshots__/animxyz.css`. Test recompiles
      and diffs; nonzero diff fails with instructions to regenerate via a
-     `yarn test:update-snapshot` script.
+     `test:update-snapshot` npm script.
    - **Size budget**: gzipped size of minified build must stay under a threshold
      (current: ~13.2 KB gzip for expanded; measure the actual min.css gzip and set
      budget = measured + 10%).
-2. `.github/workflows/ci.yml`: install (yarn), run core tests on push/PR to `master`
-   and `v1`. Node 20+. No publishing.
+2. Wire it into the toolchain: add a `test` script to `packages/core/package.json`
+   (turbo's `test` task already `dependsOn: ["^build"]`, so the snapshot compiles
+   against fresh output). `turbo run test` from the root must run it.
+3. `.github/workflows/ci.yml` (net-new — no workflow exists yet, even on
+   `astro-refactor`): `npm ci`, then `turbo run lint test` on push/PR to `master`
+   and `v1`. Node 20+, `actions/setup-node` with `cache: npm`. No publishing (release
+   is a separate changeset flow).
 
-**Acceptance:** `yarn test` green locally and in Actions; snapshot committed; README
-note in `packages/core` on running/updating tests.
+**Toolchain note:** base off post-#123 `master` (npm + Turborepo). Use `npm`, not
+`yarn`, throughout. Add a `patch` changeset (test infra is not user-facing but keeps
+the changeset habit consistent, or use `npx changeset --empty`).
+
+**Acceptance:** `turbo run test` (and `npm test -w @animxyz/core`) green locally and
+in Actions; snapshot committed; README note in `packages/core` on running/updating
+tests.
 
 ---
 
@@ -106,8 +156,10 @@ level, else `'default'`. Keep `@error` messages listing valid names/levels. Use
 **Also:** flip A1's known-bug fixture to positive assertions covering: bare utility,
 leveled, mode-prefixed, mode+level, `thin`/`origin` (regression for bug 2),
 `flip-up` vs `up` (regression for bug 3), and an invalid token asserting the `@error`.
-Add a short "Using with Sass" docs section for `xyz-apply` in `docs/` where the other
-utility docs live, with a copy-paste example.
+Add a short "Using with Sass" docs section for `xyz-apply` as a new markdown file in
+`site/src/content/sections/` (Astro content collection — model it on the existing
+`utilities.md`/`variables.md`, and register it in whatever section index/ordering the
+site uses) with a copy-paste example.
 
 **Acceptance:** all new tests green; snapshot unchanged (this mixin emits nothing
 unless called); docs entry renders.
@@ -206,9 +258,10 @@ All patch-safe. Independent of A1–A4 (no SCSS, no shared-utils overlap with A4
 3. **Vue 3 undeclared internal dependency**
    (`packages/vue3/src/components/XyzTransitionGroup.js:2`): imports
    `getTransitionRawChildren` from `@vue/runtime-core`, which is (a) not in
-   `dependencies` — works only via hoisting, breaks under strict pnpm layouts —
-   and (b) an undocumented internal export. Fix: vendor a small local filter
-   (the Vue 2 package already has one to model) and drop the import.
+   `dependencies` — it resolves today only because npm hoists Vue's transitive
+   copy, and breaks for any consumer whose layout doesn't hoist it — and (b) an
+   undocumented internal export Vue can move without notice. Fix: vendor a small
+   local filter (the Vue 2 package already has one to model) and drop the import.
 4. **Hygiene:** real `index.d.ts` typings for both packages (both are currently
    one-line `declare module` stubs — every consumer gets `any`); add
    `unbind`/`unmounted` cleanup calling the hook's clear routine so
@@ -218,8 +271,10 @@ All patch-safe. Independent of A1–A4 (no SCSS, no shared-utils overlap with A4
 
 **Verification:** in `examples/vue` and `examples/vue3`: a keyed list containing a
 `v-if` placeholder shows correct `stagger-rev` ordering; a `<XyzTransition @enter>`
-user handler fires AND `duration="auto"` still completes; vue3 example installs
-cleanly with pnpm (or `yarn --flat` equivalent check). Note results in the PR.
+user handler fires AND `duration="auto"` still completes. The Vue 3 fixes are also
+exercised by the docs site (`site/` consumes `@animxyz/vue3`) — sanity-check
+`npm run dev -w @animxyz/site` renders transitions without console errors. Note
+results in the PR.
 
 **Acceptance:** fixes in both packages; typings compile against the examples'
 usage; no compiled-CSS change.
@@ -283,20 +338,38 @@ Clean break — v1.0 CSS matches `[data-xyz~='…']` only. Selector count stays 
    Keep the `xyz` prop name (it's ergonomic and now legal since it renders data-*).
    Update `index.d.ts` typings in all three wrapper packages if they reference the
    attribute.
-4. **Docs + examples:** migrate all `xyz="…"` usages (76 in `docs/src`, plus
-   `examples/`) and any prose that names the attribute.
+4. **Docs site (`site/`) + examples:** migrate every `xyz="…"` usage. Post-#123
+   counts (verified on `astro-refactor`): **~321 occurrences in `site/`** — 247 in
+   `site/src/content/sections/*.md`, 83 in `*.vue`, 18 in `*.astro` — plus **47 in
+   `examples/`**. This is NOT a blind find/replace:
+   - Some `xyz="…"` are live demo attributes; others are attribute strings inside
+     displayed code samples (both should read `data-xyz` for a consistent v1 story,
+     but confirm you're not breaking a code sample that's deliberately showing legacy).
+   - **Interactive sandbox** components build the attribute string dynamically —
+     `site/src/components/vue/reusable/Sandbox.vue`, `XyzModifiersInput.vue`,
+     `XyzModifiersPresets.vue` (and the `v-xyz` directive usages like
+     `v-xyz="data.utilities"`). These need code changes to emit `data-xyz`, not text
+     swaps. The `v-xyz` directive NAME stays; what it writes is fixed in core/wrapper
+     (steps 1–3). Trace the sandbox's generated-markup path end to end.
+   - **Site's own SCSS hooks the attribute:** `site/src/styles/core/_animations.scss`
+     lines ~22 (`[xyz] {`) and ~51 (`[xyz='']:hover::after`) must become `[data-xyz…]`.
+     (Note: a `[xyzUtility]` match in `BannerSquare.vue` is JS array destructuring —
+     not an attribute selector, leave it.)
 5. **Migration guide:** `MIGRATION-v1.md` at repo root — find/replace guidance
    (`xyz="` → `data-xyz="`), wrapper behavior notes, and the `$xyz-attribute`
    escape hatch for Sass users.
 
-**Gotcha:** grep for `[xyz]` attribute selectors in docs' own stylesheets and the
-sandbox components — the docs site styles hook into the attribute in places.
-Also: A5/A6 edit the same wrapper files (directives, XyzTransitionBase) — make sure
-`v1` has been rebased on master with A5/A6 merged before starting, or coordinate.
+**Gotchas:**
+- A5/A6 edit the same wrapper files (directives, XyzTransitionBase) — make sure `v1`
+  has been rebased on master with A5/A6 merged before starting, or coordinate.
+- The docs render via `@animxyz/vue3` (Astro Vue islands), so the site is a live
+  integration test for the attribute change — build it and click through, don't just
+  grep-and-commit.
 
-**Acceptance:** snapshot regenerated (every selector renamed — diff should be
-mechanical and complete: zero remaining `[xyz` selectors); wrapper examples in
-`examples/` run against the rebuilt core CSS; tests green.
+**Acceptance:** core snapshot regenerated (every selector renamed — diff should be
+mechanical and complete: zero remaining `[xyz` selectors in the compiled CSS);
+`site/` builds (`npm run build -w @animxyz/site`) and demos animate; wrapper
+examples in `examples/` run against the rebuilt core CSS; tests green.
 
 ---
 
@@ -413,11 +486,18 @@ snapshot-neutral.
 2. Finish `MIGRATION-v1.md`: data-xyz, browser floor, @layer override behavior
    change, removed `!important`s, removed `-calc` vars, `backface-visibility`,
    `$xyz-attribute`/`$xyz-layer` escape hatches.
-3. CHANGELOG entries for all packages; Lerna version coordination check (v1.0.0
-   across core + wrappers); regenerate size stats (`buildStats.js`) and update any
-   size claims in READMEs/docs.
+3. **Release via Changesets, not Lerna.** Ensure a `major` changeset exists for each
+   published package taken to v1.0.0 (`@animxyz/core`, `@animxyz/vue`,
+   `@animxyz/vue3`, `@animxyz/react`); `@animxyz/site` is ignored/unpublished.
+   `updateInternalDependencies: patch` handles wrapper→core version bumps.
+   Run `npx changeset version` on a release branch and review the generated
+   CHANGELOGs (Changesets writes them — don't hand-author). Confirm the
+   `.changeset/config.json` `baseBranch` caveat (main vs master) is resolved so
+   `changeset status` is accurate. Regenerate size stats (`buildStats.js`) and update
+   any size claims in READMEs and `site/` content.
 4. Update `animxyz-scss-analysis.html`'s Issues section footnotes if kept in-repo
-   (optional: mark resolved items).
+   (optional: mark resolved items). Note its "76 doc examples" figure is pre-#123 and
+   now ~321 in `site/`.
 
 **Acceptance:** docs build passes; every item in the decisions record is either
 shipped or explicitly listed in the backlog below.
