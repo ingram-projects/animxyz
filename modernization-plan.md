@@ -75,6 +75,26 @@ harness. B1/B2/B3 are mutually independent and can run in parallel; expect small
 snapshot-fixture merge conflicts when they land (resolution: regenerate the snapshot,
 review the diff).
 
+## Agent model & effort assignments
+
+Driver: how much of the work is subtle, correctness-critical reasoning (Opus) vs.
+well-specified scaffolding or mechanical sweeps (Sonnet). Everything in Track A/B
+below ships in published packages, so correctness-dense briefs get Opus.
+
+| Brief | Model | Effort | Rationale |
+|---|---|---|---|
+| A1 · test-infra | Sonnet | high | Net-new harness/CI/snapshot, but the design is spelled out; judgment on normalization/thresholds, not deep reasoning. |
+| A2 · xyz-apply | Opus | high | Parser rewrite whose original bugs are substring collisions (`thin`/`origin`, `up`/`flip-up`); easy to pass the happy path and reintroduce them. |
+| A3 · build-hygiene | Sonnet | high | Mostly mechanical; the one trap is preserving `!default` overridability during the time-map dedup. |
+| A4 · animation-cancel | Opus | high | Async lifecycle + browser-quirk reasoning (cancel event never fired, worst-case timeout bound, numeric-string coercion); a wrong fallback reintroduces the hang. |
+| A5 · vue-wrappers | Opus | high | Three framework-internals bugs across Vue 2/3 merge semantics; easy to "fix" listener composition by clobbering the internal hook again. |
+| A6 · react-wrapper | Opus | high | Ref composition (object + callback) and Fragment edge case, repro-first; genuine React reasoning. |
+| B1 · data-xyz | Sonnet | high | ~370-occurrence sweep is breadth not depth; the one hard part (dynamic sandbox attribute generation) is well-scoped in the brief. |
+| B2 · @property | Opus | xhigh | Densest reasoning in the plan: per-var `syntax`, `initial-value` independence, `inherits: true` invariant, level tables that must not fail to parse. Most silent failure modes → most headroom. |
+| B3 · @layer | Opus | high | Cascade architecture; remove `!important` without regressing reduced-motion precedence. Systemic reasoning across the whole output. |
+| B4 · sibling-index | Opus | high | `@supports` always-true trap + specificity/precedence trap dependent on B3's layers; small surface, every step is a trap. |
+| B5 · docs-release | Sonnet | medium | Editorial review + Changesets orchestration; low reasoning depth (bump to high only for the browser-support matrix). |
+
 Shared rules for every brief:
 - Branch names as given; worktree per branch; conventional commits (repo uses commitlint).
 - Add a changeset (`npx changeset`) in every PR: Track A = `patch`/`minor`,
@@ -91,6 +111,8 @@ Shared rules for every brief:
 ## Track A — fixes on 0.x
 
 ### A1 · `fix/test-infra` — compile + snapshot tests, CI
+
+**Agent:** Sonnet / high effort.
 
 **Goal:** a safety net that catches compile errors, output regressions, and size creep.
 
@@ -132,6 +154,8 @@ tests.
 
 ### A2 · `fix/xyz-apply` — repair and document the broken mixin
 
+**Agent:** Opus / high effort.
+
 **Goal:** `xyz-apply('fade up-100% in-rotate-right')` works.
 
 **The bugs** (all in `packages/core/src/_functions.scss`, mixin at line 137):
@@ -166,6 +190,8 @@ unless called); docs entry renders.
 
 ### A3 · `fix/build-hygiene` — module entry, dead workarounds, data dedup
 
+**Agent:** Sonnet / high effort.
+
 **Goal:** remove the 2020-era build scaffolding that has no runtime effect.
 
 1. **`packages/core/build.scss`**: `@import 'src/animxyz';` → `@use 'src/animxyz' as *;`.
@@ -195,6 +221,8 @@ removal; size budget still green; time-map override test green.
 ---
 
 ### A4 · `fix/animation-cancel` — wrapper hook listens for a nonexistent event
+
+**Agent:** Opus / high effort.
 
 **Goal:** the framework wrappers' animation-done hook survives cancelled animations.
 (Found by external review; verified. JS bug, not SCSS — independent of A1–A3.)
@@ -235,6 +263,8 @@ wrapper example; no change to compiled CSS (snapshot untouched).
 ---
 
 ### A5 · `fix/vue-wrappers` — Vue 2/3 wrapper bugs
+
+**Agent:** Opus / high effort.
 
 **Goal:** fix three verified bugs in the Vue packages plus per-package hygiene.
 All patch-safe. Independent of A1–A4 (no SCSS, no shared-utils overlap with A4).
@@ -281,6 +311,8 @@ usage; no compiled-CSS change.
 
 ### A6 · `fix/react-wrapper` — ref handling and the empty-state path
 
+**Agent:** Opus / high effort.
+
 **Goal:** the React wrapper survives callback refs and empty children.
 
 1. **Callback refs crash the end listener**
@@ -318,6 +350,9 @@ Setup (whoever starts first): `git branch v1 master && git push -u origin v1`
 after A1–A3 have merged to master.
 
 ### B1 · `v1/data-xyz` — attribute rename, core + wrappers + docs
+
+**Agent:** Sonnet / high effort. (Consider handing the dynamic sandbox-attribute
+tracing in step 4 to Opus if run as a sub-task.)
 
 **Goal:** the configuration attribute becomes standards-conforming `data-xyz`.
 Clean break — v1.0 CSS matches `[data-xyz~='…']` only. Selector count stays ~1,441.
@@ -373,6 +408,9 @@ examples in `examples/` run against the rebuilt core CSS; tests green.
 
 ### B2 · `v1/property-registration` — typed dials via `@property`
 
+**Agent:** Opus / xhigh effort (most invariants to hold simultaneously; most silent
+failure modes).
+
 **Goal:** register the dial variables for type safety and individually
 transitionable custom properties. Browser floor becomes Baseline July 2024
 (document in README).
@@ -414,6 +452,8 @@ adjusted if needed (registrations add bytes — measure and update with justific
 
 ### B3 · `v1/cascade-layers` — `@layer` architecture
 
+**Agent:** Opus / high effort.
+
 **Goal:** cascade correctness by declaration, not source order or `!important`.
 
 1. Layer plan (single top-level `xyz` layer with sublayers, declared up front):
@@ -445,6 +485,8 @@ order, not source order, decides); docs updated; snapshot diff reviewed.
 
 ### B4 · `v1/sibling-index` — uncapped stagger + leftovers *(after B3 merges)*
 
+**Agent:** Opus / high effort.
+
 **Goal:** `sibling-index()` where supported; ladder fallback elsewhere; misc cleanup.
 
 1. **Feature-detect correctly:** `@supports (--x: sibling-index())` is ALWAYS true —
@@ -472,6 +514,8 @@ snapshot-neutral.
 ---
 
 ### B5 · `v1/docs-release` — docs site, migration guide, release prep *(last)*
+
+**Agent:** Sonnet / medium effort (bump to high for the browser-support matrix).
 
 **Goal:** v1.0 is explainable and shippable.
 
