@@ -28,7 +28,7 @@ export default {
 				{
 					staticStyle: {
 						'--xyz-index': index,
-						'--xyz-index-rev': children.length - index - 1,
+						'--xyz-index-rev': rawChildren.length - index - 1,
 					},
 				},
 				node.data
