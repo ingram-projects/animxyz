@@ -1,0 +1,14 @@
+@import 'ress/ress.css'; // CSS Reset (explicit path: Vite 8 ignores package `main` for Sass)
+
+@import '@animxyz/core';
+@include xyz-all;
+
+@import 'animations';
+@import 'code';
+@import 'colors';
+@import 'typography';
+@import 'root';
+@import 'copy';
+@import 'inputs';
+@import 'objects';
+@import 'utilities';

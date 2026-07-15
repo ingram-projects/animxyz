@@ -1,0 +1,6 @@
+// Fixture for the xyz-set-all() mixin.
+@use '../../src/functions' as *;
+
+.xyz-set-all-fixture {
+  @include xyz-set-all(unset);
+}

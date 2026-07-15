@@ -1,0 +1,51 @@
+@use "sass:color";
+
+// THEME COLORS -------------------------------------
+
+$siteBG: #e9ebef;
+
+$primary50: #EFF4FF; $primary50-rgb: hexToRGB($primary50);
+$primary100: #DBE3F8; $primary100-rgb: hexToRGB($primary100);
+$primary200: #C8D3F0; $primary200-rgb: hexToRGB($primary200);
+$primary300: #B0BEE4; $primary300-rgb: hexToRGB($primary300);
+$primary400: #98A7D4; $primary400-rgb: hexToRGB($primary400);
+$primary500: #7E8DC0; $primary500-rgb: hexToRGB($primary500);
+$primary600: #6372A5; $primary600-rgb: hexToRGB($primary600);
+$primary700: #485584; $primary700-rgb: hexToRGB($primary700);
+$primary800: #2E375C; $primary800-rgb: hexToRGB($primary800);
+$primary900: #171C33; $primary900-rgb: hexToRGB($primary900);
+$primary950: #111528; $primary950-rgb: hexToRGB($primary950);
+
+$red: #EB5757; $red-rgb: hexToRGB($red);
+$yellow: #F2C94C; $yellow-rgb: hexToRGB($yellow);
+$green: #6FCF97; $green-rgb: hexToRGB($green);
+$cyan: #56CCF2; $cyan-rgb: hexToRGB($cyan);
+
+// GRAYSCALE -------------------------------------
+
+$white: #ffffff; $white-rgb: hexToRGB($white);
+$black: #000000; $black-rgb: hexToRGB($black);
+
+$gray50:  color.adjust($white, $lightness: -3%);
+$gray100: color.adjust($white, $lightness: -6%);
+$gray200: color.adjust($white, $lightness: -17%);
+$gray300: color.adjust($white, $lightness: -28%);
+$gray400: color.adjust($white, $lightness: -39%);
+$gray500: color.adjust($white, $lightness: -50%);
+$gray600: color.adjust($white, $lightness: -61%);
+$gray700: color.adjust($white, $lightness: -72%);
+$gray800: color.adjust($white, $lightness: -83%);
+$gray900: color.adjust($white, $lightness: -94%);
+
+// COMPUTED COLORS (pre-computed for partials that can't use @use sass:color directly) -----
+
+$cyan-xray-text: color.adjust($cyan, $lightness: -50%);
+$code-inline-color: color.adjust(color.adjust(#f92672, $lightness: -12%), $saturation: -8%);
+$code-inline-bg: color.adjust(color.adjust(#f92672, $lightness: -10%), $alpha: -0.95);
+$code-inline-bg-dark: color.adjust(color.adjust(#f92672, $lightness: 10%), $alpha: -0.9);
+
+// LOGO COLORS -------------------------------------
+
+$color-vue: #41B883;
+$color-react: #61DAFB;
+$color-sass: #CD6799;

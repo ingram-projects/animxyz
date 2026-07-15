@@ -1,0 +1,160 @@
+---
+import { getCollection, render } from 'astro:content'
+import { experimental_AstroContainer as AstroContainer } from 'astro/container'
+import Default from '~/layouts/Default.astro'
+import DocsSection from '~/components/astro/DocsSection.astro'
+import PageNav from '~/components/astro/PageNav.astro'
+import DocsSandbox from '~/components/vue/reusable/DocsSandbox.vue'
+import { sectionDefinitions } from '~/data/sectionDefinitions'
+
+const sectionEntries = await getCollection('sections')
+const container = await AstroContainer.create()
+
+const sectionsData = await Promise.all(
+  sectionEntries.map(async (entry) => {
+    const { Content } = await render(entry)
+    const html = await container.renderToString(Content)
+    return {
+      id: entry.data.id,
+      title: entry.data.title,
+      quote: entry.data.quote,
+      examples: entry.data.examples ?? [],
+      modifiers: entry.data.modifiers ?? null,
+      content: html,
+    }
+  })
+)
+
+const sectionsById = new Map(sectionsData.map((section) => [section.id, section]))
+
+type ResolvedSection =
+  | { type: 'header'; title: string; id: string }
+  | { type: 'section'; section: (typeof sectionsData)[number] }
+
+const resolvedSections: ResolvedSection[] = []
+for (const definition of sectionDefinitions) {
+  if (typeof definition === 'object' && definition.header) {
+    resolvedSections.push({ type: 'header', title: definition.title, id: definition.id })
+  } else if (typeof definition === 'string') {
+    const section = sectionsById.get(definition)
+    if (section) {
+      resolvedSections.push({ type: 'section', section })
+    }
+  }
+}
+
+const navSections = resolvedSections.map((entry) =>
+  entry.type === 'header'
+    ? { header: true as const, title: entry.title, id: entry.id }
+    : { id: entry.section.id, title: entry.section.title }
+)
+
+const sandboxMap: Record<string, { name: string; examples: unknown[]; modifiers: unknown } | null> = {}
+const sectionTitles: Record<string, string> = {}
+for (const section of sectionsData) {
+  sectionTitles[section.id] = section.title
+  if (section.examples && section.examples.length > 0) {
+    sandboxMap[section.id] = {
+      name: section.id,
+      examples: section.examples,
+      modifiers: section.modifiers,
+    }
+  } else {
+    sandboxMap[section.id] = null
+  }
+}
+---
+
+<Default
+  title="Docs | AnimXYZ"
+  description="The first composable CSS animation toolkit"
+  url="https://animxyz.com/docs"
+  bodyClass="page--docs"
+>
+  <div class="docs-root tab--docs">
+    <PageNav sections={navSections} />
+
+    <main class="page-content">
+      <section class="sections__wrap">
+        {
+          resolvedSections.map((entry) =>
+            entry.type === 'header' ? (
+              <div
+                class="docs-section-header xyz-appear xyz-paused-all"
+                xyz="fade small-3 delay-1 ease-out"
+              >
+                <h1 class="section-group__header" id={entry.id}>
+                  {entry.title}
+                </h1>
+              </div>
+            ) : (
+              <DocsSection section={entry.section} />
+            )
+          )
+        }
+      </section>
+
+      <DocsSandbox client:visible sandboxMap={sandboxMap} sectionTitles={sectionTitles} />
+    </main>
+  </div>
+</Default>
+
+<script>
+  import { initScrollSpy } from '~/scripts/scrollSpy'
+  import { initDocsRouting } from '~/scripts/docsRouting'
+  import { initPageNav } from '~/scripts/pageNav'
+
+  initScrollSpy()
+  initDocsRouting()
+  initPageNav()
+</script>
+
+<style lang="scss">
+  .docs-root {
+    display: contents;
+  }
+
+  .page-content {
+    display: flex;
+  }
+
+  :global(.page-nav__wrap.open) ~ .page-content {
+    @include media('>=large') {
+      padding-left: $desktop-menu-width;
+    }
+  }
+
+  .sections__wrap {
+    padding-top: 4rem;
+    padding-right: 40vw;
+    width: 100%;
+
+    @include media('<laptop') {
+      padding-right: 0;
+      transform: translateX(-100vw);
+      transition: transform 0.3s $ease-in-out;
+    }
+  }
+
+  .docs-root.tab--docs .sections__wrap {
+    @include media('<laptop') {
+      transform: none;
+    }
+  }
+
+  .section-group__header {
+    text-align: center;
+    color: primary-color(600);
+    font-size: 2.5rem;
+    font-weight: 720;
+    padding: 2vw $sp-m;
+
+    @include media('>=laptop') {
+      padding: 0;
+    }
+
+    @include dark-mode {
+      color: primary-color(500);
+    }
+  }
+</style>

@@ -4,6 +4,8 @@ dist
 .temp
 .cache
 .eslintcache
+.turbo
+.astro
 
 # local env files
 .env.local

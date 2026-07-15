@@ -1,0 +1,596 @@
+---
+import Default from '~/layouts/Default.astro'
+import Banner from '~/components/vue/banner/Banner.vue'
+import DarkModeToggle from '~/components/vue/reusable/DarkModeToggle.vue'
+import Sandbox from '~/components/vue/reusable/Sandbox.vue'
+import IconVue from '~/assets/icons/IconVue.svg?raw'
+import IconReact from '~/assets/icons/IconReact.svg?raw'
+import IconSass from '~/assets/icons/IconSass.svg?raw'
+import IconGithub from '~/assets/icons/IconGithub.svg?raw'
+import IconSandbox from '~/assets/icons/IconSandbox.svg?raw'
+import IconDocs from '~/assets/icons/IconDocs.svg?raw'
+import IconTwitter from '~/assets/icons/IconTwitter.svg?raw'
+import { indexSandboxProps } from '~/data/indexSandbox'
+---
+
+<Default
+  title="AnimXYZ"
+  description="The first composable CSS animation toolkit"
+  url="https://animxyz.com"
+  bodyClass="page--index"
+>
+  <main class="page-content">
+    <div class="banner__wrap">
+      <div class="banner__aspect">
+        <Banner client:only="vue" />
+      </div>
+    </div>
+
+    <div class="landing-content">
+      <section class="hero__wrap">
+        <h1
+          class="intro-text xyz-appear xyz-paused-all"
+          xyz="fade small-2 duration-7 ease-out delay-1"
+        >
+          The first composable{" "}<br />CSS animation toolkit.
+        </h1>
+
+        <div
+          class="tech-logos__wrap xyz-none xyz-appear xyz-paused-all"
+          xyz="fade down small-2 stagger-3 ease-out delay-2"
+        >
+          <Fragment set:html={IconVue.replace('<svg', '<svg class="icon-svg icon-vue xyz-nested"')} />
+          <Fragment set:html={IconReact.replace('<svg', '<svg class="icon-svg icon-react xyz-nested"')} />
+          <Fragment set:html={IconSass.replace('<svg', '<svg class="icon-svg icon-sass xyz-nested"')} />
+        </div>
+
+        <div
+          class="links__wrap xyz-appear xyz-paused-all"
+          xyz="fade narrow-100% stagger-3 ease-out delay-3"
+        >
+          <a
+            class="cta-button github-link xyz-nested"
+            href="https://github.com/ingram-projects/animxyz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+              <Fragment set:html={IconGithub} />
+              <span>GitHub</span>
+            </div>
+          </a>
+          <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
+            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+              <Fragment set:html={IconSandbox} />
+              <span>Try it out</span>
+            </div>
+          </a>
+          <a class="cta-button docs-link xyz-nested" href="/docs">
+            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+              <Fragment set:html={IconDocs} />
+              <span>Documentation</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <div class="copy__wrap copy-content">
+        <section
+          class="about-section xyz-appear xyz-paused-all"
+          xyz="fade down ease-out delay-2"
+        >
+          <div class="about-text">
+            <p>
+              AnimXYZ helps you create, customize, and compose animations for your website. Powered by CSS variables
+              to allow a nearly limitless number of unique animations without writing a single keyframe. Save time
+              and have complete control over how your elements move. Built for Vue, React, SCSS, and CSS, AnimXYZ
+              will bring your website to life.
+            </p>
+          </div>
+        </section>
+
+        <section
+          class="features-section xyz-none xyz-appear xyz-paused-all"
+          xyz="fade front-1 stagger-2 ease-out delay-2"
+        >
+          <div class="feature feature-composable xyz-nested">
+            <h3>Composable</h3>
+            <p>
+              Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it
+              from the top! <code class="text--nowrap">xyz="fade small up"</code>
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+          <div class="feature feature-customizable xyz-nested">
+            <h3>Customizable</h3>
+            <p>
+              Out-of-the-box utilities not enough? Fine-tune any animation with CSS variables to your heart's
+              content. Simple as: <code class="text--nowrap">--xyz-translate-y: 42%;</code>
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+          <div class="feature feature-plug-play xyz-nested">
+            <h3>Plug & Play</h3>
+            <p>
+              Works with HTML and CSS, or use our <a href="/docs#vue-installation">Vue</a> and
+              <a href="/docs#react-installation">React</a> integrations for even more power.
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+          <div class="feature feature-nest-stagger xyz-nested">
+            <h3>Nest & Stagger</h3>
+            <p>
+              Stagger lists of elements in both forward and reverse order, while animating nested items in sync with
+              their parents.
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+          <div class="feature feature-performant xyz-nested">
+            <h3>Performant</h3>
+            <p>
+              Silky smooth animations out of the box. Only <code>2.68kB</code> for base functionality and
+              <code>11.4kB</code> if you include convenient utilities.
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+          <div class="feature feature-less-code xyz-nested">
+            <h3>Less Code</h3>
+            <p>
+              Powerful CSS animations without custom keyframes for every subtle animation need. Less fuss = more
+              fun.
+            </p>
+            <div class="shine" data-shine></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section
+      class="used-by copy-content xyz-appear xyz-paused-all"
+      xyz="fade down ease-out delay-2"
+    >
+      <h3>AnimXYZ is used by:</h3>
+      <ul class="used-by__list">
+        <li class="used-by__item">
+          <a href="https://yaherd.co/" target="_blank" rel="noopener noreferrer">
+            <img src="/yaherd-logo.svg" alt="Yaherd Logo" width="690" height="156" />
+            <span class="screen-reader-only">YaHerd</span>
+          </a>
+        </li>
+        <li class="used-by__item">
+          <a href="https://visible.page/" target="_blank" rel="noopener noreferrer">
+            <img src="/visible-logo.svg" alt="Visible Logo" width="247" height="64" />
+            <span class="screen-reader-only">Visible</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <footer
+      class="created-by copy-content xyz-appear xyz-paused-all"
+      xyz="fade down ease-out delay-2"
+    >
+      <p>
+        Created by <a href="https://milesingram.me/" target="_blank" rel="noopener noreferrer">Miles Ingram</a>
+        and
+        <a href="https://mattaningram.com" target="_blank" rel="noopener noreferrer">Mattan Ingram</a>
+        <a
+          href="https://twitter.com/mattaningram"
+          class="social-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Fragment set:html={IconTwitter} /><span class="screen-reader-only">Twitter</span>
+        </a>
+      </p>
+      <p>
+        Built with <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">Vue</a>,
+        <a href="https://astro.build/" target="_blank" rel="noopener noreferrer">Astro</a>, and AnimXYZ. Hosted on
+        <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer">Netlify</a>.
+      </p>
+    </footer>
+
+    <div class="sandbox__wrap xyz-appear xyz-paused-all" xyz="fade duration-10 delay-2">
+      <Sandbox
+        client:visible
+        id="sandbox"
+        name={indexSandboxProps.name}
+        examples={indexSandboxProps.examples}
+        modifiers={indexSandboxProps.modifiers}
+      />
+    </div>
+
+    <div class="dark-mode-toggle__wrap xyz-appear xyz-paused-all" xyz="fade duration-10 delay-2">
+      <DarkModeToggle client:idle />
+    </div>
+  </main>
+</Default>
+
+<style lang="scss">
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .banner__wrap {
+    margin: 12vh auto;
+    padding: 0 $sp-m;
+    width: 100%;
+    max-width: 64rem;
+
+    @include media('<phone') {
+      margin: $sp-l auto;
+      max-width: 80vw;
+    }
+  }
+
+  .banner__aspect {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+
+    @include media('<phone') {
+      aspect-ratio: 1 / 2;
+    }
+  }
+
+  .landing-content {
+    width: 100%;
+    max-width: 48rem;
+    padding: 0 $sp-s;
+    margin: 0 auto;
+
+    @include media('<phone') {
+      padding: 0 $sp-xs;
+    }
+  }
+
+  .hero__wrap {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: $sp-xxl;
+  }
+
+  .intro-text {
+    font-size: $fs-xxxl;
+    font-weight: 650;
+    line-height: 1.35;
+    text-align: center;
+    margin: 0 auto;
+
+    @include media('<tablet') {
+      font-size: 2.5rem;
+    }
+
+    @include media('<phone') {
+      font-size: 1.75rem;
+    }
+  }
+
+  .tech-logos__wrap {
+    display: flex;
+    justify-content: center;
+    margin: $sp-l 0;
+
+    :global(.icon-svg) {
+      @include size(3rem);
+    }
+
+    :global(.icon-svg + .icon-svg) {
+      margin-left: $sp-m;
+    }
+  }
+
+  .links__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: $sp-l auto;
+  }
+
+  .cta-button {
+    --icon-color: #{primary-color(600)};
+    background-color: primary-color(100);
+    color: primary-color(600);
+    border-bottom: 3px solid primary-color(300);
+    height: 3rem;
+    width: 16rem;
+    overflow: hidden;
+    border-radius: $br-l;
+    padding: 0 $sp-s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: 0.2s $ease-in-out;
+    transition-property: background-color, box-shadow, border;
+
+    @include dark-mode {
+      --icon-color: #{primary-color(200)};
+      background-color: primary-color(700);
+      color: primary-color(200);
+      border-color: primary-color(800);
+    }
+
+    & + & {
+      margin-left: $sp-xs;
+    }
+
+    :global(svg) {
+      @include size(1.5rem);
+      transition: transform 0.3s $ease-out-back;
+    }
+
+    &:hover,
+    &:focus {
+      --icon-color: #{primary-color(700)};
+      background-color: primary-color(300);
+      color: primary-color(700);
+      border-color: primary-color(400);
+      outline: none;
+
+      @include dark-mode {
+        --icon-color: #{primary-color(100)};
+        background-color: primary-color(600);
+        color: primary-color(100);
+        border-color: primary-color(700);
+      }
+
+      :global(svg) {
+        transform: scale(1.15);
+      }
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px $cyan;
+    }
+
+    @include media('<tablet') {
+      flex: 1;
+      font-size: 1rem;
+
+      & + & {
+        margin-top: 0;
+        margin-left: $sp-xs;
+      }
+    }
+
+    @include media('<phone') {
+      padding: $sp-xxs;
+      height: auto;
+      font-size: $fs-s;
+
+      :global(svg) {
+        flex-shrink: 0;
+      }
+
+      & + & {
+        margin-top: 0;
+        margin-left: $sp-xxs;
+      }
+    }
+  }
+
+  .cta-content {
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+
+    @include media('<phone') {
+      flex-direction: column;
+      gap: $sp-xxxs;
+    }
+  }
+
+  .docs-link {
+    --icon-color: #{primary-color(100)};
+    background-color: primary-color(600);
+    color: primary-color(100);
+    border-color: primary-color(700);
+
+    @include dark-mode {
+      --icon-color: #{primary-color(800)};
+      background-color: primary-color(300);
+      color: primary-color(800);
+      border-color: primary-color(500);
+    }
+
+    &:hover,
+    &:focus {
+      --icon-color: #{primary-color(50)};
+      background-color: primary-color(700);
+      color: primary-color(50);
+      border-color: primary-color(800);
+      outline: none;
+
+      @include dark-mode {
+        --icon-color: #{primary-color(800)};
+        background-color: primary-color(200);
+        color: primary-color(800);
+        border-color: primary-color(500);
+      }
+    }
+  }
+
+  .copy__wrap {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .about-section {
+    margin-bottom: $sp-xxl;
+  }
+
+  .about-text {
+    font-size: $fs-l;
+    font-weight: 400;
+
+    p {
+      line-height: 1.65;
+    }
+
+    @include media('<phone') {
+      font-size: 1.125rem;
+    }
+  }
+
+  .features-section {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: $sp-xs;
+    margin-bottom: $sp-xxl;
+    perspective: 1000px;
+
+    p {
+      font-size: $fs-s;
+      line-height: 1.75;
+    }
+
+    @include media('<tablet') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature {
+    box-shadow: inset 0 0 0 4px primary-color(500, 0.15);
+    padding: $sp-m;
+    border-radius: $br-m;
+    position: relative;
+    grid-column: span 3;
+
+    &:nth-child(even) {
+      top: $sp-m;
+    }
+
+    h3 {
+      position: relative;
+    }
+
+    @include media('<tablet') {
+      grid-column: span 1;
+      &:nth-child(even) {
+        top: initial;
+      }
+    }
+
+    .shine {
+      --shine-size: 75%;
+      --shine-strength: 0.5;
+      --shine-diffuse: 0.25;
+      position: absolute;
+      inset: 0;
+      box-shadow: inset 0 0 0 4px $cyan;
+      border-radius: $br-m;
+      pointer-events: none;
+      mask-image:
+        radial-gradient(
+          100% 100% at var(--mouseX, 0) var(--mouseY, 0),
+          rgba(0, 0, 0, var(--shine-strength, 1)) 0%,
+          rgba(0, 0, 0, 0) var(--shine-size, 100%)
+        ),
+        radial-gradient(
+          circle at var(--mouseX, 0) var(--mouseY, 0),
+          rgba(0, 0, 0, var(--shine-strength, 1)) calc(-200% * var(--shine-diffuse, 0)),
+          rgba(0, 0, 0, 0) calc(200% * var(--shine-diffuse, 0))
+        );
+    }
+  }
+
+  .used-by {
+    margin: 0 auto;
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .used-by__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    margin-top: $sp-xl;
+    gap: $sp-m;
+  }
+
+  .used-by__item {
+    padding: 0 $sp-s;
+
+    a {
+      display: block;
+
+      &::before {
+        display: none;
+      }
+
+      &:focus {
+        outline: 2px auto $cyan;
+      }
+    }
+
+    img {
+      display: block;
+      height: 3.5rem;
+      width: auto;
+    }
+  }
+
+  .created-by {
+    --text-color: #{primary-color(600)};
+    text-align: center;
+    font-weight: 500;
+    font-size: $fs-s;
+    padding: 0 $sp-m;
+    margin: 0 auto;
+    margin-top: $sp-xxxl;
+    margin-bottom: 2.25rem;
+
+    @include media('<phone') {
+      margin-bottom: $sp-xxxl;
+    }
+
+    @include dark-mode {
+      --text-color: #{primary-color(400)};
+    }
+  }
+
+  .social-link {
+    --icon-color: #{primary-color(400)};
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: $sp-xxxs;
+
+    :global(svg) {
+      @include size(1.125rem);
+    }
+
+    &::before {
+      display: none;
+    }
+
+    &:hover {
+      --icon-color: #{primary-color(700)};
+    }
+  }
+
+  .sandbox__wrap {
+    position: relative;
+  }
+
+  .sandbox__wrap :global(.sandbox) {
+    min-height: 100vh;
+  }
+
+  .dark-mode-toggle__wrap {
+    position: absolute;
+    top: $sp-m;
+    right: $sp-m;
+
+    @include media('<phone') {
+      top: $sp-s;
+      right: $sp-s;
+    }
+  }
+</style>

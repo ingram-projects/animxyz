@@ -23,8 +23,13 @@ $xyz-ease-levels: (
   'in-out-back': cubic-bezier(0.680, -0.550, 0.265, 1.550),
 ) !default;
 
-$xyz-duration-levels: (
-  'default': var(--xyz-duration-default),
+// Shared level ladder for all three time-based utilities (duration, delay,
+// stagger/stagger-rev). Every one of them uses an identical set of numeric
+// levels; only the '-default' fallback var differs. $xyz-duration-levels,
+// $xyz-delay-levels, and $xyz-stagger-levels are derived from this map below,
+// each independently !default-overridable so a consumer overriding just one
+// of the three public maps still sees identical behavior to before the dedup.
+$xyz-time-levels: (
   '0': 0s,
   '0.5': 0.05s,
   '1': 0.1s,
@@ -45,48 +50,19 @@ $xyz-duration-levels: (
   '30': 3s,
 ) !default;
 
-$xyz-delay-levels: (
-  'default': var(--xyz-delay-default),
-  '0': 0s,
-  '0.5': 0.05s,
-  '1': 0.1s,
-  '1.5': 0.15s,
-  '2': 0.2s,
-  '2.5': 0.25s,
-  '3': 0.3s,
-  '4': 0.4s,
-  '5': 0.5s,
-  '6': 0.6s,
-  '7': 0.7s,
-  '8': 0.8s,
-  '9': 0.9s,
-  '10': 1s,
-  '15': 1.5s,
-  '20': 2s,
-  '25': 2.5s,
-  '30': 3s,
+$xyz-duration-levels: map.merge(
+  ('default': var(--xyz-duration-default)),
+  $xyz-time-levels
 ) !default;
 
-$xyz-stagger-levels: (
-  'default': var(--xyz-stagger-default),
-  '0': 0s,
-  '0.5': 0.05s,
-  '1': 0.1s,
-  '1.5': 0.15s,
-  '2': 0.2s,
-  '2.5': 0.25s,
-  '3': 0.3s,
-  '4': 0.4s,
-  '5': 0.5s,
-  '6': 0.6s,
-  '7': 0.7s,
-  '8': 0.8s,
-  '9': 0.9s,
-  '10': 1s,
-  '15': 1.5s,
-  '20': 2s,
-  '25': 2.5s,
-  '30': 3s,
+$xyz-delay-levels: map.merge(
+  ('default': var(--xyz-delay-default)),
+  $xyz-time-levels
+) !default;
+
+$xyz-stagger-levels: map.merge(
+  ('default': var(--xyz-stagger-default)),
+  $xyz-time-levels
 ) !default;
 
 $xyz-iterate-levels: (

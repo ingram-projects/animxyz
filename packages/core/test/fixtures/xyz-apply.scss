@@ -1,0 +1,54 @@
+// Fixture for the xyz-apply() mixin (repaired by work brief A2 · fix/xyz-apply).
+//
+// xyz-apply() parses a space-separated attribute-style string into
+// xyz-utility() calls. The cases below exercise the deterministic token parser
+// and guard the three original bugs:
+//   - swapped level/mode arguments (bug 1)
+//   - substring mode detection mis-reading 'thin'/'origin' as mode 'in' (bug 2)
+//   - substring name detection letting 'up' shadow 'flip-up' (bug 3)
+@use '../../src/functions' as *;
+
+// Bare utility -> default level, 'all' mode.
+.xyz-apply-bare {
+  @include xyz-apply('fade');
+}
+
+// Leveled utility.
+.xyz-apply-leveled {
+  @include xyz-apply('fade-50%');
+}
+
+// Mode-prefixed utility.
+.xyz-apply-moded {
+  @include xyz-apply('in-fade');
+}
+
+// Mode + level.
+.xyz-apply-moded-leveled {
+  @include xyz-apply('in-fade-50%');
+}
+
+// Multiple tokens in one string, including the brief's headline example.
+.xyz-apply-multi {
+  @include xyz-apply('fade up-100% in-rotate-right');
+}
+
+// Regression for bug 2: 'thin' contains 'in' but must not be read as mode 'in'.
+.xyz-apply-thin {
+  @include xyz-apply('thin');
+}
+
+// Regression for bug 2: 'origin' contains 'in' but must not be read as mode 'in'.
+.xyz-apply-origin {
+  @include xyz-apply('origin-top');
+}
+
+// Regression for bug 3: 'flip-up' must win over 'up'.
+.xyz-apply-flip-up {
+  @include xyz-apply('flip-up-100%');
+}
+
+// Regression for bug 3: bare 'up' still resolves to the translate-y utility.
+.xyz-apply-up {
+  @include xyz-apply('up-100%');
+}

@@ -1,0 +1,15 @@
+// Fixture for the xyz-utility() mixin.
+@use '../../src/functions' as *;
+
+.xyz-utility-default {
+  // no explicit level -> 'default'
+  @include xyz-utility('duration');
+}
+
+.xyz-utility-leveled {
+  @include xyz-utility('duration', 'all', '5');
+}
+
+.xyz-utility-moded {
+  @include xyz-utility('duration', 'in', '5');
+}

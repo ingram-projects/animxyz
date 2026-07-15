@@ -30,7 +30,20 @@ export function getXyzTransitionProps(props = {}) {
 			exitActive: xyzTransitionClasses.outActive,
 			exitDone: xyzTransitionClasses.outTo,
 		},
-		addEndListener: (done) => animationHook(nodeRef.current, done),
+		addEndListener: (done) => {
+			// `nodeRef` is always the internal ref OBJECT (see XyzTransitionBase), so
+			// `nodeRef.current` is the DOM node — or null/undefined when no element is
+			// attached (empty-state Fragment, or a transition resolved before mount).
+			// Guard the hook against a missing element: without a node there is no
+			// animation to wait on, so resolve immediately instead of dereferencing
+			// `el.classList` and throwing. Defense in depth for both A6 failure paths.
+			const el = nodeRef && nodeRef.current
+			if (!el) {
+				done()
+				return
+			}
+			animationHook(el, done)
+		},
 	}
 
 	const mergedProps = mergeProps(transitionProps, props)

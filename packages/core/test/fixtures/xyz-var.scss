@@ -1,0 +1,14 @@
+// Fixture for xyz-var() and xyz-default-var() functions.
+@use '../../src/functions' as *;
+
+.xyz-var-fixture {
+  // mode: 'all' -> single var() with fallback to the -default custom property
+  --test-all: #{xyz-var('duration')};
+
+  // explicit mode -> cascades through the mode-specific var, then the
+  // unmoded var, then the fallback
+  --test-mode: #{xyz-var('duration', 'in')};
+
+  // custom fallback overrides the default-var remap
+  --test-fallback: #{xyz-var('duration', 'all', 0s)};
+}
