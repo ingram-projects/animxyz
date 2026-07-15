@@ -1,6 +1,6 @@
 {
   "name": "@animxyz/react",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "publishConfig": {
     "access": "public"
   },
@@ -47,7 +47,7 @@
     "build:main": "bili"
   },
   "dependencies": {
-    "@animxyz/core": "^0.6.6",
+    "@animxyz/core": "^0.6.7",
     "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
     "react-transition-group": "^4.4.2"
