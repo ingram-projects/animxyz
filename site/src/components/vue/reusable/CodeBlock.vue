@@ -232,7 +232,7 @@ export default {
 <style lang="scss" scoped>
 .code-block__tabs {
   :deep(.tab-bar__tab) {
-    @include media('>=tablet') {
+    @media (width >= $bp-tablet) {
       flex-grow: initial;
       padding: 0 $sp-m;
     }

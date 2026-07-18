@@ -219,7 +219,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     width: 100%;
     max-width: 64rem;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       margin: $sp-l auto;
       max-width: 80vw;
     }
@@ -229,7 +229,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     width: 100%;
     aspect-ratio: 2 / 1;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       aspect-ratio: 1 / 2;
     }
   }
@@ -240,7 +240,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     padding: 0 $sp-s;
     margin: 0 auto;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       padding: 0 $sp-xs;
     }
   }
@@ -258,11 +258,11 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     text-align: center;
     margin: 0 auto;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       font-size: 2.5rem;
     }
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       font-size: 1.75rem;
     }
   }
@@ -347,7 +347,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       box-shadow: 0 0 0 2px $cyan;
     }
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       flex: 1;
       font-size: 1rem;
 
@@ -357,7 +357,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       }
     }
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       padding: $sp-xxs;
       height: auto;
       font-size: $fs-s;
@@ -378,7 +378,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     align-items: center;
     gap: $sp-xs;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       flex-direction: column;
       gap: $sp-xxxs;
     }
@@ -431,7 +431,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       line-height: 1.65;
     }
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       font-size: 1.125rem;
     }
   }
@@ -448,7 +448,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       line-height: 1.75;
     }
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       grid-template-columns: 1fr;
     }
   }
@@ -468,7 +468,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       position: relative;
     }
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       grid-column: span 1;
       &:nth-child(even) {
         top: initial;
@@ -547,7 +547,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     margin-top: $sp-xxxl;
     margin-bottom: 2.25rem;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       margin-bottom: $sp-xxxl;
     }
 
@@ -588,7 +588,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
     top: $sp-m;
     right: $sp-m;
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       top: $sp-s;
       right: $sp-s;
     }

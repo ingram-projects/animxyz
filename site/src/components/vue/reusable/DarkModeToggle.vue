@@ -79,7 +79,7 @@ export default {
     transform: scale(1.125);
   }
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     @include circle(2rem);
     font-size: 2rem;
   }

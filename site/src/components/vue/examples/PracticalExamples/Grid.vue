@@ -50,7 +50,7 @@ export default {
   gap: $sp-xxs;
   width: 100%;
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     --grid-item-size: 5.5rem;
   }
 }

@@ -1,7 +1,9 @@
+@use '../variables/index' as *;
+
 .copy-content {
   font-size: 1.125rem;
 
-  @include media("<phone") {
+  @media (width < $bp-phone) {
     font-size: $fs-m;
   }
 
@@ -298,7 +300,7 @@
       visibility: hidden;
       transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 
-      @include media("<laptop") {
+      @media (width < $bp-laptop) {
         display: none;
       }
     }

@@ -1,15 +1,13 @@
 // BREAKPOINTS -------------------------------------
 
-$breakpoints: (
-  'small': 375px,
-  'phone': 540px,
-  'tablet': 768px,
-  'laptop': 1024px,
-  'desktop': 1280px,
-  'large': 1440px,
-  'x-large': 1680px,
-  'huge': 1920px
-);
+$bp-small: 375px;
+$bp-phone: 540px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1280px;
+$bp-large: 1440px;
+$bp-x-large: 1680px;
+$bp-huge: 1920px;
 
 // FONT SIZE -------------------------------------
 

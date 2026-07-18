@@ -130,7 +130,7 @@ export default {
   margin-left: auto;
   border-radius: $br-l;
   border-bottom-right-radius: 0;
-  background-color: transparentize($cyan, 0.85);
+  background-color: fade($cyan, 0.85);
   color: $cyan;
   box-shadow: inset 0 0 0 2px $cyan;
 

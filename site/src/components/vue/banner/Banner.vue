@@ -59,7 +59,7 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-auto-flow: column;
@@ -79,10 +79,10 @@ export default {
   }
 
   font-size: 12vw;
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     font-size: 20vw;
   }
-  @include media('>=laptop') {
+  @media (width >= $bp-laptop) {
     font-size: 8rem;
   }
 }

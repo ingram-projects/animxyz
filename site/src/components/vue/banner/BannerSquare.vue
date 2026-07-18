@@ -127,11 +127,11 @@ export default {
     margin-top: 0.75em;
   }
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     font-size: 4vw;
   }
 
-  @include media('>=laptop') {
+  @media (width >= $bp-laptop) {
     font-size: 1.25rem;
   }
 

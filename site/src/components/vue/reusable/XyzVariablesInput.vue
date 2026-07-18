@@ -84,7 +84,7 @@ export default {
   padding: $sp-s 0;
   overflow-x: auto;
 
-  @include media('<laptop') {
+  @media (width < $bp-laptop) {
     padding: $sp-xxs 0;
   }
 }

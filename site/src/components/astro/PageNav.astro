@@ -106,7 +106,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     z-index: 3;
     --xyz-translate-x: -100%;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       left: 0;
       right: 0;
       width: auto;
@@ -128,13 +128,13 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     flex-grow: 1;
     overflow-y: auto;
 
-    @include media('<laptop') {
+    @media (width < $bp-laptop) {
       margin-top: 0;
       margin-bottom: 5.5rem;
       order: 2;
     }
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       display: block;
       margin-bottom: 0;
       padding-bottom: 2rem;
@@ -147,7 +147,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     list-style: none;
     --xyz-stagger: 0.025s;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       margin: 0;
     }
   }
@@ -262,20 +262,20 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
         --logo-scale: 1.125;
         transform: scale(var(--logo-scale));
 
-        @include media('<tablet') {
+        @media (width < $bp-tablet) {
           --logo-scale: 1;
         }
       }
     }
 
-    @include media('<laptop') {
+    @media (width < $bp-laptop) {
       left: $sp-m;
       right: initial;
       top: initial;
       bottom: $sp-m;
     }
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       left: initial;
       right: $sp-m;
       top: initial;
@@ -290,7 +290,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
   .logo-wrap {
     margin-right: $sp-xxs;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       @include size(initial);
       margin: 0;
     }
@@ -307,7 +307,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
       opacity 0.2s $ease-in-out,
       transform 0.3s $ease-out-back;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       display: none;
     }
   }
@@ -315,7 +315,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
   .logo-text {
     color: primary-color(50);
 
-    @include media('<large') {
+    @media (width < $bp-large) {
       display: none;
     }
   }
@@ -332,12 +332,12 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     }
 
     :global(.tab--examples) & {
-      @include media('<laptop') {
+      @media (width < $bp-laptop) {
         color: primary-color(300);
       }
     }
 
-    @include media('>=large') {
+    @media (width >= $bp-large) {
       display: none;
     }
   }
@@ -348,7 +348,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     margin: $sp-s;
     flex-shrink: 0;
 
-    @include media('<laptop') {
+    @media (width < $bp-laptop) {
       order: 1;
     }
   }

@@ -161,7 +161,7 @@ export default {
 .example-code {
   font-size: 1.125rem;
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     font-size: $fs-m;
   }
 }

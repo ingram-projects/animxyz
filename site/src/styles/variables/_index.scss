@@ -1,6 +1,4 @@
-@import 'include-media/dist/_include-media.scss';
-@import '@animxyz/core';
-
-@import './mixins';
-@import './variables';
-@import './colors';
+@forward '@animxyz/core';
+@forward './mixins';
+@forward './variables';
+@forward './colors';
