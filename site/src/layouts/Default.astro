@@ -23,7 +23,7 @@ const {
   bodyClass = '',
 } = Astro.props
 
-const isDev = import.meta.env.DEV
+const isProd = import.meta.env.PROD
 ---
 
 <!doctype html>
@@ -40,7 +40,7 @@ const isDev = import.meta.env.DEV
     <meta property="og:image" content={image} />
     <link rel="icon" type="image/png" href="/animxyz-logo.png" />
     <link rel="apple-touch-icon" href="/animxyz-logo-touch.png" />
-    {isDev && (
+    {isProd && (
       <script
         src="https://cdn.visitors.now/v.js"
         data-token="1b4748de-8d72-4eb5-b63e-9d8c379cb851"
