@@ -19,8 +19,12 @@ function parseMaxCssTime(value) {
 
 // Idempotent teardown for a single element: clears the safety-net timeout, the
 // event listeners, and the appear IntersectionObserver. Safe to call multiple
-// times and after the element has already completed. A5 (Vue wrappers) and A6
-// (React wrapper) call this from their unbind/unmounted/onExited cleanup.
+// times and after the element has already completed. The React wrapper calls
+// this from its onExited/unmount cleanup, which runs only after the transition
+// has resolved. The Vue wrappers deliberately do NOT call it from directive
+// unbind/unmounted hooks — Vue fires those during the unmount flush while the
+// leave transition is still animating, so clearing there kills the listeners
+// that would call `done()` and the transition hangs forever.
 export function clearXyzElement(el) {
 	if (!el) return
 	if (el._xyzAppearObserver) {
@@ -87,19 +91,35 @@ export default function (duration, appearVisible) {
 				// `animation-name` overridden, `xyz-none` applied mid-flight — may
 				// never fire `animationend` either, leaving `done()` uncalled and the
 				// wrapper transition hung. Compute a worst-case bound from the
-				// elements' computed animation-duration + animation-delay and always
-				// resolve by then. Falls back to a generous constant when nothing is
+				// elements' computed animation-duration × iteration-count +
+				// animation-delay and resolve by then — unless any animation iterates
+				// infinitely, in which case there is no bound and no safety timeout
+				// (see below). Falls back to a generous constant when nothing is
 				// readable.
 				let maxAnimMs = 0
+				let unbounded = false
 				xyzEls.forEach((xyzEl) => {
 					const style = window.getComputedStyle(xyzEl)
+					const iterationValue = style.getPropertyValue('animation-iteration-count')
+					if (iterationValue.indexOf('infinite') !== -1) {
+						unbounded = true
+						return
+					}
+					const iterations = iterationValue.split(',').reduce((max, part) => {
+						const num = parseFloat(part)
+						return isNaN(num) ? max : Math.max(max, num)
+					}, 1)
 					const durationMs = parseMaxCssTime(style.getPropertyValue('animation-duration'))
 					const delayMs = parseMaxCssTime(style.getPropertyValue('animation-delay'))
-					maxAnimMs = Math.max(maxAnimMs, durationMs + Math.max(delayMs, 0))
+					maxAnimMs = Math.max(maxAnimMs, durationMs * iterations + Math.max(delayMs, 0))
 				})
-				// Small buffer so the event path wins in the normal (uncancelled) case.
-				const safetyMs = (maxAnimMs > 0 ? maxAnimMs + 100 : XYZ_AUTO_SAFETY_TIMEOUT)
-				el._xyzAnimSafetyTimeout = setTimeout(xyzAnimDone, safetyMs)
+				// An infinite animation legitimately never fires `animationend` — the
+				// transition is meant to stay active, so no safety net for it.
+				if (!unbounded) {
+					// Small buffer so the event path wins in the normal (uncancelled) case.
+					const safetyMs = (maxAnimMs > 0 ? maxAnimMs + 100 : XYZ_AUTO_SAFETY_TIMEOUT)
+					el._xyzAnimSafetyTimeout = setTimeout(xyzAnimDone, safetyMs)
+				}
 
 				xyzEls.forEach((xyzEl) => {
 					// Remove if element isnt visible

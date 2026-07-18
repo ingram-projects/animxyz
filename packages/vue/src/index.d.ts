@@ -36,8 +36,7 @@ export const XyzTransition: Component<unknown, unknown, unknown, XyzTransitionPr
 
 export const XyzTransitionGroup: Component<unknown, unknown, unknown, XyzTransitionGroupProps>
 
-/** `v-xyz` directive: merges the bound value into the element's `xyz` attribute
- *  and tears down any pending animation observers/timeouts on unbind. */
+/** `v-xyz` directive: merges the bound value into the element's `xyz` attribute. */
 export const xyz: DirectiveOptions
 
 declare const VueAnimXyz: PluginObject<never>
