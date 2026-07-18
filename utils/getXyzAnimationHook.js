@@ -91,15 +91,29 @@ export default function (duration, appearVisible) {
 				// resolve by then. Falls back to a generous constant when nothing is
 				// readable.
 				let maxAnimMs = 0
+				let unbounded = false
 				xyzEls.forEach((xyzEl) => {
 					const style = window.getComputedStyle(xyzEl)
+					const iterationValue = style.getPropertyValue('animation-iteration-count')
+					if (iterationValue.indexOf('infinite') !== -1) {
+						unbounded = true
+						return
+					}
+					const iterations = iterationValue.split(',').reduce((max, part) => {
+						const num = parseFloat(part)
+						return isNaN(num) ? max : Math.max(max, num)
+					}, 1)
 					const durationMs = parseMaxCssTime(style.getPropertyValue('animation-duration'))
 					const delayMs = parseMaxCssTime(style.getPropertyValue('animation-delay'))
-					maxAnimMs = Math.max(maxAnimMs, durationMs + Math.max(delayMs, 0))
+					maxAnimMs = Math.max(maxAnimMs, durationMs * iterations + Math.max(delayMs, 0))
 				})
-				// Small buffer so the event path wins in the normal (uncancelled) case.
-				const safetyMs = (maxAnimMs > 0 ? maxAnimMs + 100 : XYZ_AUTO_SAFETY_TIMEOUT)
-				el._xyzAnimSafetyTimeout = setTimeout(xyzAnimDone, safetyMs)
+				// An infinite animation legitimately never fires `animationend` — the
+				// transition is meant to stay active, so no safety net for it.
+				if (!unbounded) {
+					// Small buffer so the event path wins in the normal (uncancelled) case.
+					const safetyMs = (maxAnimMs > 0 ? maxAnimMs + 100 : XYZ_AUTO_SAFETY_TIMEOUT)
+					el._xyzAnimSafetyTimeout = setTimeout(xyzAnimDone, safetyMs)
+				}
 
 				xyzEls.forEach((xyzEl) => {
 					// Remove if element isnt visible

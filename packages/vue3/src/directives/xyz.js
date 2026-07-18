@@ -1,19 +1,18 @@
 import clsx from 'clsx'
-import { clearXyzElement } from '../../../../utils'
 
 function updateDirective(el, { value }) {
 	el.setAttribute('xyz', clsx(el._xyzOriginal, value))
 }
 
+// NOTE: no `unmounted` cleanup here. Vue runs directive `unmounted` hooks in
+// the same post-render flush as the unmount, while a <Transition> leave is
+// still animating the element — calling clearXyzElement there tears down the
+// animation hook's listeners/timeouts so `done()` never fires and the leave
+// hangs forever. The hook cleans up after itself when the animation resolves.
 export default {
 	beforeMount(el) {
 		el._xyzOriginal = el.getAttribute('xyz')
 		updateDirective(...arguments)
 	},
 	updated: updateDirective,
-	unmounted(el) {
-		// Tear down any appearVisible IntersectionObserver and pending animation
-		// timeouts so they don't outlive the unmounted element.
-		clearXyzElement(el)
-	},
 }
