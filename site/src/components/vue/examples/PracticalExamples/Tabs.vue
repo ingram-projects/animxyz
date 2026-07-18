@@ -119,7 +119,7 @@ export default {
   font-size: $fs-xl;
   line-height: 1.25;
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     font-size: $fs-l;
   }
 }

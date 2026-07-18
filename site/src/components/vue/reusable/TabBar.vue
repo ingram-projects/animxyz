@@ -71,7 +71,7 @@ export default {
   transition: 0.2s $ease-in-out;
   transition-property: background-color, color;
 
-  @include media('<laptop') {
+  @media (width < $bp-laptop) {
     min-height: 2.5rem;
   }
 

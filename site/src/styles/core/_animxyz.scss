@@ -1,0 +1,3 @@
+// Emits AnimXYZ utilities at this @use site (preserves cascade order vs site partials)
+@use '@animxyz/core' as *;
+@include xyz-all;

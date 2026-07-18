@@ -1,3 +1,5 @@
+@use '../variables/index' as *;
+
 body {
   --text-color: #{primary-color(700)};
   background-color: primary-color(50);

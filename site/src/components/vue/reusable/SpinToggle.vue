@@ -44,7 +44,7 @@ export default {
     opacity: 1;
   }
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     right: initial;
     left: 50%;
   }
@@ -64,7 +64,7 @@ export default {
   --xyz-in-rotate-z: 0.5turn;
   --xyz-out-rotate-z: -0.5turn;
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     --xyz-origin: calc(var(--toggle-center-offset) * -1) center;
     --xyz-in-rotate-z: -0.5turn;
     --xyz-out-rotate-z: 0.5turn;

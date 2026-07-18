@@ -111,7 +111,7 @@ export default {
   }
 
   &:hover {
-    background-color: transparentize($cyan, 0.85);
+    background-color: fade($cyan, 0.85);
     box-shadow: 0 0 0 4px $cyan;
 
     svg {

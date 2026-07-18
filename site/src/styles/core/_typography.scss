@@ -1,3 +1,5 @@
+@use '../variables/index' as *;
+
 html, body {
   font-family: $font-stack;
   color: var(--text-color);

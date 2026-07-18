@@ -1,4 +1,5 @@
-@import '@animxyz/core';
+@use '@animxyz/core' as *;
+@use '../variables/index' as *;
 
 @keyframes xyz-xray-in {
   0%, 50% {

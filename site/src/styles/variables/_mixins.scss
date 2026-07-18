@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "sass:math";
+@use './variables' as *;
 
 // SHAPE -------------------------------------
 
@@ -40,6 +41,11 @@
 // Add percentage of black to a color
 @function shade($color, $percent){
   @return color.mix(black, $color, $percent);
+}
+
+// Reduce a color's alpha by $amount (0–1), replaces deprecated transparentize()
+@function fade($color, $amount) {
+  @return color.adjust($color, $alpha: -$amount);
 }
 
 @function primary-color($value: 500, $opacity: null) {

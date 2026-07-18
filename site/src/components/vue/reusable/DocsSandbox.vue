@@ -98,7 +98,7 @@ export default {
     overflow-y: auto;
   }
 
-  @include media('<laptop') {
+  @media (width < $bp-laptop) {
     width: 100vw;
     transform: translateX(100vw);
     transition: transform 0.3s $ease-in-out;
@@ -146,7 +146,7 @@ export default {
     }
   }
 
-  @include media('>laptop') {
+  @media (width > $bp-laptop) {
     display: none;
   }
 }

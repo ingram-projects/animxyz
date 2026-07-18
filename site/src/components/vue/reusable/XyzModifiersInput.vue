@@ -224,7 +224,7 @@ export default {
     padding-top: 0;
   }
 
-  @include media('<laptop') {
+  @media (width < $bp-laptop) {
     padding: $sp-xxs 0;
   }
 }

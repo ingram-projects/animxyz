@@ -100,7 +100,7 @@ export default {
   display: flex;
   list-style: none;
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     padding: $sp-s;
   }
 }
@@ -108,7 +108,7 @@ export default {
 .preset-item__wrap {
   padding-right: $sp-s;
 
-  @include media('>=tablet') {
+  @media (width >= $bp-tablet) {
     &:last-child {
       padding-right: $sp-m;
     }
@@ -127,12 +127,12 @@ export default {
   border-radius: $br-xl;
   transition: box-shadow 0.2s $ease-in-out;
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     height: 7rem;
     width: 12rem;
   }
 
-  @include media('<phone') {
+  @media (width < $bp-phone) {
     height: auto;
     width: auto;
     min-width: 12rem;
@@ -144,11 +144,11 @@ export default {
     background-color: primary-color(200, 0.65);
     transition: background-color 0.2s $ease-in-out;
 
-    @include media('<tablet') {
+    @media (width < $bp-tablet) {
       @include size(2.5rem);
     }
 
-    @include media('<phone') {
+    @media (width < $bp-phone) {
       display: none;
     }
   }
@@ -175,7 +175,7 @@ export default {
   color: primary-color(300);
   transition: color 0.2s $ease-in-out;
 
-  @include media('>=phone') {
+  @media (width >= $bp-phone) {
     text-align: left;
     padding-bottom: 0;
   }

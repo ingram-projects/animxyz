@@ -71,7 +71,7 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  @include media('<tablet') {
+  @media (width < $bp-tablet) {
     right: initial;
     left: $sp-m;
     bottom: $sp-m;
@@ -101,7 +101,7 @@ export default {
     transition-property: background-color, box-shadow;
 
     .xray-toggle.active & {
-      background-color: transparentize($cyan, 0.9);
+      background-color: fade($cyan, 0.9);
       box-shadow: inset 0 0 0 2px $cyan;
     }
   }
