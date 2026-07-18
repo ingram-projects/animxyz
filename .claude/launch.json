@@ -7,6 +7,12 @@
       "runtimeArgs": ["run", "dev", "--prefix", "site"],
       "port": 4321,
       "autoPort": true
+    },
+    {
+      "name": "react-example",
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["BROWSER=none", "npm", "start", "--prefix", "examples/react"],
+      "port": 8080
     }
   ]
 }

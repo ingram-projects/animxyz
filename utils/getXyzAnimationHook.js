@@ -19,8 +19,12 @@ function parseMaxCssTime(value) {
 
 // Idempotent teardown for a single element: clears the safety-net timeout, the
 // event listeners, and the appear IntersectionObserver. Safe to call multiple
-// times and after the element has already completed. A5 (Vue wrappers) and A6
-// (React wrapper) call this from their unbind/unmounted/onExited cleanup.
+// times and after the element has already completed. The React wrapper calls
+// this from its onExited/unmount cleanup, which runs only after the transition
+// has resolved. The Vue wrappers deliberately do NOT call it from directive
+// unbind/unmounted hooks — Vue fires those during the unmount flush while the
+// leave transition is still animating, so clearing there kills the listeners
+// that would call `done()` and the transition hangs forever.
 export function clearXyzElement(el) {
 	if (!el) return
 	if (el._xyzAppearObserver) {
@@ -87,8 +91,10 @@ export default function (duration, appearVisible) {
 				// `animation-name` overridden, `xyz-none` applied mid-flight — may
 				// never fire `animationend` either, leaving `done()` uncalled and the
 				// wrapper transition hung. Compute a worst-case bound from the
-				// elements' computed animation-duration + animation-delay and always
-				// resolve by then. Falls back to a generous constant when nothing is
+				// elements' computed animation-duration × iteration-count +
+				// animation-delay and resolve by then — unless any animation iterates
+				// infinitely, in which case there is no bound and no safety timeout
+				// (see below). Falls back to a generous constant when nothing is
 				// readable.
 				let maxAnimMs = 0
 				let unbounded = false
