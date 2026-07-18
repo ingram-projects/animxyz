@@ -22,6 +22,8 @@ const {
   image = 'https://animxyz.com/animxyz-link-preview.png',
   bodyClass = '',
 } = Astro.props
+
+const isDev = import.meta.env.DEV
 ---
 
 <!doctype html>
@@ -38,6 +40,13 @@ const {
     <meta property="og:image" content={image} />
     <link rel="icon" type="image/png" href="/animxyz-logo.png" />
     <link rel="apple-touch-icon" href="/animxyz-logo-touch.png" />
+    {isDev && (
+      <script
+        src="https://cdn.visitors.now/v.js"
+        data-token="1b4748de-8d72-4eb5-b63e-9d8c379cb851"
+        defer
+      />
+    )}
     <noscript>
       <style>
         /* Without JS, the appear-visible IntersectionObserver never removes
