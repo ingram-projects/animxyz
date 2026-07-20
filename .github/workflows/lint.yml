@@ -1,0 +1,33 @@
+# Runs on every push/PR with no path filter — unlike tests, lint is cheap and
+# currently covers the site (astro check), which the test workflow's
+# paths-ignore would otherwise skip for site-only changes.
+name: Lint
+
+on:
+  push:
+    branches:
+      - master
+      - v1
+  pull_request:
+    branches:
+      - master
+      - v1
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npx turbo run lint

@@ -1,4 +1,6 @@
-name: CI
+# Tests are skipped for site-only and docs-only changes (they exercise the
+# packages, which the site can't affect). Lint runs unfiltered in lint.yml.
+name: Test
 
 on:
   push:
@@ -17,7 +19,7 @@ on:
       - '**.md'
 
 jobs:
-  lint-test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -45,5 +47,5 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium firefox webkit
 
-      - name: Lint and test
-        run: npx turbo run lint test
+      - name: Test
+        run: npx turbo run test
