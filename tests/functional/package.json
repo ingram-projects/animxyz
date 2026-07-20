@@ -1,0 +1,22 @@
+{
+	"name": "@animxyz/functional-tests",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Cross-framework browser tests that verify AnimXYZ features work in plain HTML/CSS, Vue 2, Vue 3, and React",
+	"scripts": {
+		"test": "npm run build:fixtures && playwright test",
+		"build:fixtures": "node scripts/build-fixtures.mjs"
+	},
+	"devDependencies": {
+		"@animxyz/core": "*",
+		"@animxyz/react": "*",
+		"@animxyz/vue": "*",
+		"@animxyz/vue3": "*",
+		"@playwright/test": "^1.54.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"vite": "^6.3.5",
+		"vue": "^3.5.13",
+		"vue2": "npm:vue@^2.7.16"
+	}
+}

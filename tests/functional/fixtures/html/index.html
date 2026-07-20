@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AnimXYZ core fixture</title>
+<link rel="stylesheet" href="./animxyz.css">
+<style>
+	.box { width: 40px; height: 40px; background: #4d4dff; margin: 4px; }
+	.row { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- Mode classes attach the core keyframe animations -->
+<section id="modes">
+	<div id="mode-in" class="box xyz-in xyz-paused" xyz="fade"></div>
+	<div id="mode-out" class="box xyz-out xyz-paused" xyz="fade"></div>
+	<div id="mode-appear" class="box xyz-appear xyz-paused" xyz="fade"></div>
+</section>
+
+<!-- Utilities set --xyz-* custom properties via [xyz~=...] selectors -->
+<section id="utilities">
+	<div id="u-fade" xyz="fade"></div>
+	<div id="u-fade-level" xyz="fade-50%"></div>
+	<div id="u-translate" xyz="up right-2 back-4"></div>
+	<div id="u-translate-level" xyz="down-3 left-100% front-2"></div>
+	<div id="u-rotate" xyz="flip-up-2 flip-left rotate-right-50%"></div>
+	<div id="u-scale" xyz="big"></div>
+	<div id="u-scale-small" xyz="small-25%"></div>
+	<div id="u-scale-x" xyz="wide-3"></div>
+	<div id="u-scale-y" xyz="tall-100%"></div>
+	<div id="u-scale-z" xyz="thick-2"></div>
+	<div id="u-skew" xyz="skew-left-3 skew-down-2"></div>
+	<div id="u-timing" xyz="duration-10 delay-2 stagger-3 stagger-rev-1 iterate-3 ease-linear direction-alternate origin-top perspective-2"></div>
+	<div id="u-mode-scoped" xyz="in-fade out-up-100% appear-duration-20"></div>
+</section>
+
+<!-- Computed animation shorthand values on an active element -->
+<section id="animation">
+	<div id="anim-active" class="box xyz-in xyz-paused" xyz="fade duration-10 delay-2 ease-linear"></div>
+	<div id="anim-iterate" class="box xyz-in xyz-paused" xyz="fade iterate-3"></div>
+</section>
+
+<!-- Stagger: nested children get increasing animation-delay by nth-child index -->
+<section id="stagger">
+	<div id="stagger-root" class="row xyz-in xyz-paused-all" xyz="fade stagger-2">
+		<div class="box xyz-nested"></div>
+		<div class="box xyz-nested"></div>
+		<div class="box xyz-nested"></div>
+		<div class="box xyz-nested"></div>
+	</div>
+	<div id="stagger-rev-root" class="row xyz-in xyz-paused-all" xyz="fade stagger-rev-2">
+		<div class="box xyz-nested"></div>
+		<div class="box xyz-nested"></div>
+		<div class="box xyz-nested"></div>
+	</div>
+</section>
+
+<!-- Nested elements animate with (and only with) their parent's mode -->
+<section id="nesting">
+	<div id="nested-root" class="xyz-in xyz-paused-all" xyz="fade">
+		<div id="nested-child" class="box xyz-nested"></div>
+		<div id="nested-in-child" class="box xyz-in-nested"></div>
+		<div id="nested-out-child" class="box xyz-out-nested"></div>
+		<div id="nested-plain" class="box"></div>
+	</div>
+</section>
+
+<!-- Variable scoping: [xyz] resets, [xyz~='inherit'] opts back in -->
+<section id="scoping">
+	<div id="scope-root" xyz="fade">
+		<div id="scope-plain"></div>
+		<div id="scope-reset" xyz="up"></div>
+		<div id="scope-inherit" xyz="inherit up"></div>
+	</div>
+</section>
+
+<!-- Behavior toggles -->
+<section id="toggles">
+	<div id="toggle-paused" class="box xyz-in xyz-paused" xyz="fade"></div>
+	<div id="toggle-none" class="box xyz-in xyz-none" xyz="fade"></div>
+	<div id="toggle-absolute" class="box xyz-out xyz-paused xyz-absolute" xyz="fade"></div>
+</section>
+
+<!-- Dynamically-triggered animations, driven from the spec -->
+<section id="dynamic">
+	<div id="dyn-box" class="box" xyz="fade small duration-1"></div>
+	<div id="dyn-nested-root" xyz="fade duration-1 stagger-0.5">
+		<div id="dyn-nested-1" class="box xyz-nested"></div>
+		<div id="dyn-nested-2" class="box xyz-nested"></div>
+	</div>
+</section>
+
+<script>
+	window.animEvents = []
+	document.addEventListener('animationend', function (event) {
+		window.animEvents.push({ id: event.target.id, name: event.animationName })
+	})
+	window.trigger = function (id, className) {
+		document.getElementById(id).classList.add(className)
+	}
+</script>
+
+</body>
+</html>
