@@ -25,11 +25,16 @@ specs/
   react.spec.js    React wrapper assertions
 ```
 
-The suite runs in headless Chromium via [Playwright Test](https://playwright.dev/).
-Real rendering matters here: the tests assert computed styles (animation
-names, staggered `animation-delay`, `--xyz-*` custom properties) and real
-`animationend`-driven behavior (transitions completing, elements being removed,
-`appearVisible` IntersectionObserver pausing), none of which work in jsdom.
+The suite runs headless in Chromium, Firefox, and WebKit via
+[Playwright Test](https://playwright.dev/). Real rendering matters here: the
+tests assert computed styles (animation names, staggered `animation-delay`,
+`--xyz-*` custom properties) and real `animationend`-driven behavior
+(transitions completing, elements being removed, `appearVisible`
+IntersectionObserver pausing), none of which work in jsdom.
+
+CI always runs all three browsers. Locally, Firefox and WebKit are included
+only when they're installed — a Chromium-only checkout skips them with a
+warning instead of failing.
 
 ## Running
 
@@ -40,11 +45,12 @@ npx turbo run test
 # just the functional tests (packages must already be built)
 npm run test -w @animxyz/functional-tests
 
-# one suite, headed, from tests/functional/
-npx playwright test specs/react.spec.js --headed
+# one suite, one browser, headed, from tests/functional/
+npx playwright test specs/react.spec.js --project=chromium --headed
 ```
 
-First-time setup needs a browser: `npx playwright install chromium`.
+First-time setup needs at least one browser: `npx playwright install chromium`
+(add `firefox webkit` to match CI's full matrix).
 
 ## What's covered
 

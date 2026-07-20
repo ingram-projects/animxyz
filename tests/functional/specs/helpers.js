@@ -16,4 +16,11 @@ async function expectVar(page, expect, selector, property, expected) {
 	expect(normalizeCalc(value), `${selector} ${property}`).toBe(expected)
 }
 
-module.exports = { computed, normalizeCalc, expectVar }
+// A custom property reset via `initial` computes to guaranteed-invalid; engines
+// serialize that as an empty string, but be lenient about the literal keyword.
+async function expectVarUnset(page, expect, selector, property) {
+	const value = await computed(page, selector, property)
+	expect(['', 'initial'], `${selector} ${property} should be unset`).toContain(normalizeCalc(value))
+}
+
+module.exports = { computed, normalizeCalc, expectVar, expectVarUnset }

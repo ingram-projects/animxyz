@@ -24,6 +24,26 @@ function resolveChromiumExecutablePath() {
 	return undefined // let Playwright raise its usual "run playwright install" error
 }
 
+// Firefox and WebKit always run in CI. Locally they run only when installed
+// (npx playwright install firefox webkit), so a Chromium-only checkout still
+// gets a green run instead of a missing-executable error.
+function optionalBrowserProject(name, device) {
+	const project = { name, use: { ...devices[device] } }
+	if (process.env.CI) {
+		return project
+	}
+	try {
+		const browserType = require('playwright-core')[name]
+		if (fs.existsSync(browserType.executablePath())) {
+			return project
+		}
+	} catch {
+		// treat as not installed
+	}
+	console.warn(`Skipping ${name}: browser not installed locally. Run "npx playwright install ${name}" to include it.`)
+	return null
+}
+
 const PORT = process.env.XYZ_TEST_PORT || 4173
 
 module.exports = defineConfig({
@@ -46,7 +66,9 @@ module.exports = defineConfig({
 				},
 			},
 		},
-	],
+		optionalBrowserProject('firefox', 'Desktop Firefox'),
+		optionalBrowserProject('webkit', 'Desktop Safari'),
+	].filter(Boolean),
 	webServer: {
 		command: `node scripts/serve.mjs ${PORT}`,
 		url: `http://127.0.0.1:${PORT}/html/`,

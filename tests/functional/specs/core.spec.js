@@ -1,7 +1,7 @@
 'use strict'
 
 const { test, expect } = require('@playwright/test')
-const { computed, expectVar } = require('./helpers')
+const { computed, expectVar, expectVarUnset } = require('./helpers')
 
 test.describe('@animxyz/core in plain HTML/CSS', () => {
 	test.beforeEach(async ({ page }) => {
@@ -77,8 +77,8 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-out-translate-y', 'calc(100% * -1)')
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-appear-duration', '2s')
 			// the unscoped variables must stay untouched
-			await expectVar(page, expect, '#u-mode-scoped', '--xyz-opacity', '')
-			await expectVar(page, expect, '#u-mode-scoped', '--xyz-translate-y', '')
+			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-opacity')
+			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-translate-y')
 		})
 	})
 
@@ -116,7 +116,7 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		})
 
 		test('an xyz attribute resets inherited variables', async ({ page }) => {
-			await expectVar(page, expect, '#scope-reset', '--xyz-opacity', '')
+			await expectVarUnset(page, expect, '#scope-reset', '--xyz-opacity')
 			await expectVar(page, expect, '#scope-reset', '--xyz-translate-y', 'calc(25% * -1)')
 		})
 

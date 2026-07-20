@@ -5,10 +5,16 @@ on:
     branches:
       - master
       - v1
+    paths-ignore:
+      - 'site/**'
+      - '**.md'
   pull_request:
     branches:
       - master
       - v1
+    paths-ignore:
+      - 'site/**'
+      - '**.md'
 
 jobs:
   lint-test:
@@ -34,10 +40,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+          key: playwright-browsers-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
 
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Lint and test
         run: npx turbo run lint test
