@@ -17,9 +17,17 @@ function resolveChromiumExecutablePath() {
 	} catch {
 		// fall through to the provisioned browser
 	}
+	// The provisioned path is the chrome binary itself (a symlink to it in this
+	// sandbox), not a directory. Verify it resolves to a real file — statSync
+	// follows the symlink and throws if it dangles — so we never hand Playwright
+	// a path that isn't a runnable executable.
 	const provisioned = path.join(process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/pw-browsers', 'chromium')
-	if (fs.existsSync(provisioned)) {
-		return provisioned
+	try {
+		if (fs.statSync(provisioned).isFile()) {
+			return provisioned
+		}
+	} catch {
+		// not present / dangling symlink — fall through
 	}
 	return undefined // let Playwright raise its usual "run playwright install" error
 }
