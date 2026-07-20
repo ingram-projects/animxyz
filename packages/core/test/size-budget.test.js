@@ -17,18 +17,18 @@ const BUDGET_BYTES = 13205
 const MIN_CSS_PATH = path.join(__dirname, '..', 'dist', 'animxyz.min.css')
 
 test('minified build stays under the gzip size budget', () => {
-  assert.ok(
-    fs.existsSync(MIN_CSS_PATH),
-    `${MIN_CSS_PATH} not found. Run "npm run build -w @animxyz/core" (or "turbo run build") first ` +
-      '-- the test task depends on the build task, so this should already exist under turbo/CI.'
-  )
+	assert.ok(
+		fs.existsSync(MIN_CSS_PATH),
+		`${MIN_CSS_PATH} not found. Run "npm run build -w @animxyz/core" (or "turbo run build") first ` +
+			'-- the test task depends on the build task, so this should already exist under turbo/CI.'
+	)
 
-  const gzipped = gzipSize.fileSync(MIN_CSS_PATH)
+	const gzipped = gzipSize.fileSync(MIN_CSS_PATH)
 
-  assert.ok(
-    gzipped <= BUDGET_BYTES,
-    `dist/animxyz.min.css gzipped is ${gzipped} bytes, exceeding the ${BUDGET_BYTES}-byte budget. ` +
-      'If this growth is intentional, re-measure and update BUDGET_BYTES in ' +
-      'test/size-budget.test.js with justification in the PR description.'
-  )
+	assert.ok(
+		gzipped <= BUDGET_BYTES,
+		`dist/animxyz.min.css gzipped is ${gzipped} bytes, exceeding the ${BUDGET_BYTES}-byte budget. ` +
+			'If this growth is intentional, re-measure and update BUDGET_BYTES in ' +
+			'test/size-budget.test.js with justification in the PR description.'
+	)
 })
