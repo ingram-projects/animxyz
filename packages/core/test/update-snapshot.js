@@ -15,21 +15,21 @@ const { normalizeCss } = require('./helpers/normalize-css')
 const SNAPSHOT_PATH = path.join(__dirname, '__snapshots__', 'animxyz.css')
 
 function main() {
-  const result = compileSass('build.scss')
+	const result = compileSass('build.scss')
 
-  if (result.status !== 0) {
-    console.error('Failed to compile build.scss:')
-    console.error(result.stderr)
-    process.exit(result.status || 1)
-  }
+	if (result.status !== 0) {
+		console.error('Failed to compile build.scss:')
+		console.error(result.stderr)
+		process.exit(result.status || 1)
+	}
 
-  const normalized = normalizeCss(result.stdout)
+	const normalized = normalizeCss(result.stdout)
 
-  fs.mkdirSync(path.dirname(SNAPSHOT_PATH), { recursive: true })
-  fs.writeFileSync(SNAPSHOT_PATH, `${normalized}\n`, 'utf8')
+	fs.mkdirSync(path.dirname(SNAPSHOT_PATH), { recursive: true })
+	fs.writeFileSync(SNAPSHOT_PATH, `${normalized}\n`, 'utf8')
 
-  console.log(`Updated snapshot: ${SNAPSHOT_PATH}`)
-  console.log('Review the diff (git diff -- test/__snapshots__/animxyz.css) before committing.')
+	console.log(`Updated snapshot: ${SNAPSHOT_PATH}`)
+	console.log('Review the diff (git diff -- test/__snapshots__/animxyz.css) before committing.')
 }
 
 main()

@@ -6,6 +6,8 @@ dist
 .eslintcache
 .turbo
 .astro
+test-results
+playwright-report
 
 # local env files
 .env.local

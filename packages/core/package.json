@@ -44,6 +44,7 @@
     "build:clean": "rimraf dist",
     "build:sass": "sass build.scss dist/animxyz.css",
     "build:stats": "node buildStats.js dist/animxyz.min.css",
+    "lint": "eslint --ignore-path ../../.gitignore buildStats.js test",
     "test": "node --test \"test/**/*.test.js\"",
     "test:update-snapshot": "node test/update-snapshot.js"
   },

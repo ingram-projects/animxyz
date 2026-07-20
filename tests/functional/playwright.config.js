@@ -1,0 +1,85 @@
+'use strict'
+
+const fs = require('node:fs')
+const path = require('node:path')
+const { defineConfig, devices } = require('@playwright/test')
+
+// Prefer the Chromium build Playwright manages. In sandboxes that pre-provision
+// a browser at PLAYWRIGHT_BROWSERS_PATH but with a different revision than this
+// @playwright/test release expects, fall back to the provisioned executable so
+// the suite runs without a network download.
+function resolveChromiumExecutablePath() {
+	try {
+		const { chromium } = require('playwright-core')
+		if (fs.existsSync(chromium.executablePath())) {
+			return undefined // managed browser is present; let Playwright use it
+		}
+	} catch {
+		// fall through to the provisioned browser
+	}
+	// The provisioned path is the chrome binary itself (a symlink to it in this
+	// sandbox), not a directory. Verify it resolves to a real file — statSync
+	// follows the symlink and throws if it dangles — so we never hand Playwright
+	// a path that isn't a runnable executable.
+	const provisioned = path.join(process.env.PLAYWRIGHT_BROWSERS_PATH || '/opt/pw-browsers', 'chromium')
+	try {
+		if (fs.statSync(provisioned).isFile()) {
+			return provisioned
+		}
+	} catch {
+		// not present / dangling symlink — fall through
+	}
+	return undefined // let Playwright raise its usual "run playwright install" error
+}
+
+// Firefox and WebKit always run in CI. Locally they run only when installed
+// (npx playwright install firefox webkit), so a Chromium-only checkout still
+// gets a green run instead of a missing-executable error.
+function optionalBrowserProject(name, device) {
+	const project = { name, use: { ...devices[device] } }
+	if (process.env.CI) {
+		return project
+	}
+	try {
+		const browserType = require('playwright-core')[name]
+		if (fs.existsSync(browserType.executablePath())) {
+			return project
+		}
+	} catch {
+		// treat as not installed
+	}
+	console.warn(`Skipping ${name}: browser not installed locally. Run "npx playwright install ${name}" to include it.`)
+	return null
+}
+
+const PORT = process.env.XYZ_TEST_PORT || 4173
+
+module.exports = defineConfig({
+	testDir: './specs',
+	fullyParallel: true,
+	forbidOnly: Boolean(process.env.CI),
+	retries: process.env.CI ? 2 : 0,
+	reporter: process.env.CI ? [['list'], ['github']] : 'list',
+	use: {
+		baseURL: `http://127.0.0.1:${PORT}`,
+		trace: 'retain-on-failure',
+	},
+	projects: [
+		{
+			name: 'chromium',
+			use: {
+				...devices['Desktop Chrome'],
+				launchOptions: {
+					executablePath: resolveChromiumExecutablePath(),
+				},
+			},
+		},
+		optionalBrowserProject('firefox', 'Desktop Firefox'),
+		optionalBrowserProject('webkit', 'Desktop Safari'),
+	].filter(Boolean),
+	webServer: {
+		command: `node scripts/serve.mjs ${PORT}`,
+		url: `http://127.0.0.1:${PORT}/html/`,
+		reuseExistingServer: !process.env.CI,
+	},
+})

@@ -44,7 +44,8 @@
   "scripts": {
     "build": "run-s build:clean build:main",
     "build:clean": "rimraf dist",
-    "build:main": "bili"
+    "build:main": "bili",
+    "lint": "eslint --ignore-path ../../.gitignore --ext .js src"
   },
   "dependencies": {
     "@animxyz/core": "^0.6.7",
