@@ -1,183 +1,189 @@
 <template>
-  <div class="modifiers-presets">
-    <XyzTransitionGroup
-      tag="ul"
-      class="presets-list"
-      body-scroll-lock-ignore
-      appear
-      duration="auto"
-      xyz="fade small stagger-1.5"
-    >
-      <li class="preset-item__wrap" v-for="preset in computedPresets" :key="preset.title">
-        <button
-          class="preset-item example-wrap"
-          @click="onPresetClick(preset)"
-          @mouseenter="onPresetMouseEnter(preset)"
-          @mouseleave="onPresetMouseLeave"
-        >
-          <div class="preset-title">{{ preset.title }}</div>
-          <div
-            class="square xyz-nested"
-            :class="{ [mode]: hoveredPreset === preset.title }"
-            v-xyz="preset.utilities"
-            :style="preset.style"
-            @animationend="onPresetAnimationEnd"
-          ></div>
-        </button>
-      </li>
-    </XyzTransitionGroup>
-  </div>
+	<div class="modifiers-presets">
+		<XyzTransitionGroup
+			tag="ul"
+			class="presets-list"
+			body-scroll-lock-ignore
+			appear
+			duration="auto"
+			xyz="fade small stagger-1.5"
+		>
+			<li
+				class="preset-item__wrap"
+				v-for="preset in computedPresets"
+				:key="preset.title"
+			>
+				<button
+					class="preset-item example-wrap"
+					@click="onPresetClick(preset)"
+					@mouseenter="onPresetMouseEnter(preset)"
+					@mouseleave="onPresetMouseLeave"
+					data-visitors-event="sandbox-preset-select"
+					data-visitors-event-value="{{ preset.title }}"
+				>
+					<div class="preset-title">{{ preset.title }}</div>
+					<div
+						class="square xyz-nested"
+						:class="{ [mode]: hoveredPreset === preset.title }"
+						v-xyz="preset.utilities"
+						:style="preset.style"
+						@animationend="onPresetAnimationEnd"
+					></div>
+				</button>
+			</li>
+		</XyzTransitionGroup>
+	</div>
 </template>
 
 <script>
 export default {
-  name: 'XyzModifiersPresets',
-  props: {
-    presets: Array,
-  },
-  emits: ['select-preset'],
-  data() {
-    return {
-      hoveredPreset: null,
-      toggled: false,
-      toggleTimeout: null,
-    }
-  },
-  computed: {
-    mode() {
-      return this.toggled ? 'xyz-in' : 'xyz-out'
-    },
-    computedPresets() {
-      return this.presets.map((preset) => {
-        const style = {}
-        if (preset.variables) {
-          preset.variables.forEach((variable) => {
-            const [name, value] = variable.split(':')
-            style[`--xyz-${name}`] = value.trim()
-          })
-        }
-        return {
-          ...preset,
-          style,
-        }
-      })
-    },
-  },
-  methods: {
-    clearToggleTimeout() {
-      clearTimeout(this.toggleTimeout)
-      this.toggleTimeout = null
-    },
-    onPresetClick(preset) {
-      this.$emit('select-preset', preset)
-    },
-    onPresetMouseEnter(preset) {
-      this.hoveredPreset = preset.title
-    },
-    onPresetMouseLeave() {
-      this.hoveredPreset = null
-      this.toggled = false
-      this.clearToggleTimeout()
-    },
-    onPresetAnimationEnd() {
-      this.clearToggleTimeout()
-      this.toggleTimeout = setTimeout(() => {
-        this.toggled = !this.toggled
-      }, 500)
-    },
-  },
-  beforeUnmount() {
-    this.clearToggleTimeout()
-  },
-}
+	name: "XyzModifiersPresets",
+	props: {
+		presets: Array,
+	},
+	emits: ["select-preset"],
+	data() {
+		return {
+			hoveredPreset: null,
+			toggled: false,
+			toggleTimeout: null,
+		};
+	},
+	computed: {
+		mode() {
+			return this.toggled ? "xyz-in" : "xyz-out";
+		},
+		computedPresets() {
+			return this.presets.map((preset) => {
+				const style = {};
+				if (preset.variables) {
+					preset.variables.forEach((variable) => {
+						const [name, value] = variable.split(":");
+						style[`--xyz-${name}`] = value.trim();
+					});
+				}
+				return {
+					...preset,
+					style,
+				};
+			});
+		},
+	},
+	methods: {
+		clearToggleTimeout() {
+			clearTimeout(this.toggleTimeout);
+			this.toggleTimeout = null;
+		},
+		onPresetClick(preset) {
+			this.$emit("select-preset", preset);
+		},
+		onPresetMouseEnter(preset) {
+			this.hoveredPreset = preset.title;
+		},
+		onPresetMouseLeave() {
+			this.hoveredPreset = null;
+			this.toggled = false;
+			this.clearToggleTimeout();
+		},
+		onPresetAnimationEnd() {
+			this.clearToggleTimeout();
+			this.toggleTimeout = setTimeout(() => {
+				this.toggled = !this.toggled;
+			}, 500);
+		},
+	},
+	beforeUnmount() {
+		this.clearToggleTimeout();
+	},
+};
 </script>
 
 <style lang="scss" scoped>
 .presets-list {
-  padding: $sp-m;
-  padding-right: 0;
-  overflow-x: auto;
-  display: flex;
-  list-style: none;
+	padding: $sp-m;
+	padding-right: 0;
+	overflow-x: auto;
+	display: flex;
+	list-style: none;
 
-  @media (width < $bp-tablet) {
-    padding: $sp-s;
-  }
+	@media (width < $bp-tablet) {
+		padding: $sp-s;
+	}
 }
 
 .preset-item__wrap {
-  padding-right: $sp-s;
+	padding-right: $sp-s;
 
-  @media (width >= $bp-tablet) {
-    &:last-child {
-      padding-right: $sp-m;
-    }
-  }
+	@media (width >= $bp-tablet) {
+		&:last-child {
+			padding-right: $sp-m;
+		}
+	}
 }
 
 .preset-item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  align-items: stretch;
-  height: 9rem;
-  width: 14rem;
-  box-shadow: inset 0 0 0 2px primary-color(800);
-  border-radius: $br-xl;
-  transition: box-shadow 0.2s $ease-in-out;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	align-items: stretch;
+	height: 9rem;
+	width: 14rem;
+	box-shadow: inset 0 0 0 2px primary-color(800);
+	border-radius: $br-xl;
+	transition: box-shadow 0.2s $ease-in-out;
 
-  @media (width < $bp-tablet) {
-    height: 7rem;
-    width: 12rem;
-  }
+	@media (width < $bp-tablet) {
+		height: 7rem;
+		width: 12rem;
+	}
 
-  @media (width < $bp-phone) {
-    height: auto;
-    width: auto;
-    min-width: 12rem;
-  }
+	@media (width < $bp-phone) {
+		height: auto;
+		width: auto;
+		min-width: 12rem;
+	}
 
-  .square {
-    @include size(3.5rem);
-    margin: auto;
-    background-color: primary-color(200, 0.65);
-    transition: background-color 0.2s $ease-in-out;
+	.square {
+		@include size(3.5rem);
+		margin: auto;
+		background-color: primary-color(200, 0.65);
+		transition: background-color 0.2s $ease-in-out;
 
-    @media (width < $bp-tablet) {
-      @include size(2.5rem);
-    }
+		@media (width < $bp-tablet) {
+			@include size(2.5rem);
+		}
 
-    @media (width < $bp-phone) {
-      display: none;
-    }
-  }
+		@media (width < $bp-phone) {
+			display: none;
+		}
+	}
 
-  &:hover,
-  &:focus,
-  &:active {
-    box-shadow: inset 0 0 0 4px primary-color(700);
+	&:hover,
+	&:focus,
+	&:active {
+		box-shadow: inset 0 0 0 4px primary-color(700);
 
-    .preset-title {
-      color: primary-color(100);
-    }
+		.preset-title {
+			color: primary-color(100);
+		}
 
-    .square {
-      background-color: $cyan;
-    }
-  }
+		.square {
+			background-color: $cyan;
+		}
+	}
 }
 
 .preset-title {
-  font-family: $font-stack-mono;
-  padding: $sp-xs;
-  line-height: 1;
-  color: primary-color(300);
-  transition: color 0.2s $ease-in-out;
+	font-family: $font-stack-mono;
+	padding: $sp-xs;
+	line-height: 1;
+	color: primary-color(300);
+	transition: color 0.2s $ease-in-out;
 
-  @media (width >= $bp-phone) {
-    text-align: left;
-    padding-bottom: 0;
-  }
+	@media (width >= $bp-phone) {
+		text-align: left;
+		padding-bottom: 0;
+	}
 }
 </style>
