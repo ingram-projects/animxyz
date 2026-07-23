@@ -83,7 +83,9 @@ test('xyz-animation: emits the delay chain, transform-origin, and animation shor
 	assert.doesNotMatch(result.stdout, /--xyz-total-delay-calc/)
 	assert.doesNotMatch(result.stdout, /--xyz-delay-calc/)
 	assert.match(result.stdout, /transform-origin: var\(--xyz-in-origin,/)
-	assert.match(result.stdout, /backface-visibility: visible;/)
+	// backface-visibility: visible was removed in v1 (it only re-forced the
+	// initial value; kept only for consumers who relied on the library forcing it).
+	assert.doesNotMatch(result.stdout, /backface-visibility/)
 	assert.match(result.stdout, /animation:\n?\s*var\(--xyz-in-duration,/)
 	assert.match(result.stdout, /animation-name: xyz-in-keyframes, var\(--xyz-in-keyframes,/)
 })
@@ -228,7 +230,7 @@ test('cascade output is wrapped in @layer with the documented order', () => {
 	assert.equal(result.status, 0, result.stderr)
 	assert.match(
 		result.stdout,
-		/@layer xyz\.defaults, xyz\.index, xyz\.utilities, xyz\.triggers\.in, xyz\.triggers\.out, xyz\.triggers\.appear, xyz\.overrides;/
+		/@layer xyz\.defaults, xyz\.index\.ladder, xyz\.index\.modern, xyz\.utilities, xyz\.triggers\.in, xyz\.triggers\.out, xyz\.triggers\.appear, xyz\.overrides;/
 	)
 	// No !important anywhere — precedence is by layer, not by force.
 	assert.doesNotMatch(result.stdout, /!important/)
@@ -253,4 +255,39 @@ test('@layer order is independent of $xyz-modes source order (appear stays last)
 		`appear must be declared after out: ${declaration}`
 	)
 	assert.equal(order[order.length - 1], 'xyz.overrides', `overrides must be last: ${declaration}`)
+})
+
+test('sibling-index() uses a real-property @supports test, not the always-true form', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// `@supports (--x: sibling-index())` is ALWAYS true — must feature-detect
+	// against a property that actually consumes the function.
+	assert.match(
+		result.stdout,
+		/@supports \(animation-delay: calc\(1s \* \(sibling-index\(\) - 1\)\)\)/
+	)
+	assert.doesNotMatch(result.stdout, /@supports \(--[\w-]+: sibling-index/)
+
+	// The enhancement sets both index vars from sibling-index()/sibling-count().
+	assert.match(result.stdout, /--xyz-index: calc\(sibling-index\(\) - 1\)/)
+	assert.match(result.stdout, /--xyz-index-rev: calc\(sibling-count\(\) - sibling-index\(\)\)/)
+
+	// index.modern is declared after index.ladder so it wins over the ladder's
+	// higher-specificity nth-child rules by layer order.
+	const declaration = result.stdout.match(/@layer ([^;]+);/)[1]
+	const order = declaration.split(',').map((name) => name.trim())
+	assert.ok(
+		order.indexOf('xyz.index.modern') > order.indexOf('xyz.index.ladder'),
+		`index.modern must be declared after index.ladder: ${declaration}`
+	)
+})
+
+test('$xyz-index-levels: 0 skips the nth-child ladder but keeps sibling-index()', () => {
+	const result = compileSass('test/fixtures/xyz-index-levels-zero.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /nth-child/)
+	assert.match(result.stdout, /sibling-index\(\)/)
 })

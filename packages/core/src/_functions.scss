@@ -72,7 +72,10 @@
 // order is: defaults < index < utilities < triggers.* < overrides.
 @mixin xyz-layer-declaration() {
   @if $xyz-layer != '' {
-    $sublayers: 'defaults', 'index', 'utilities';
+    // `index.modern` (sibling-index()) is declared after `index.ladder`
+    // (nth-child fallback) so the modern rule wins by layer order despite the
+    // ladder's higher selector specificity.
+    $sublayers: 'defaults', 'index.ladder', 'index.modern', 'utilities';
     @each $mode in xyz-trigger-modes() {
       $sublayers: list.append($sublayers, 'triggers.#{$mode}');
     }
@@ -293,7 +296,6 @@
   --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
   --xyz-total-delay: calc(var(--xyz-stagger-delay, 0s) + #{$delay});
   transform-origin: #{$origin};
-  backface-visibility: visible;
 
   animation:
     #{$duration}

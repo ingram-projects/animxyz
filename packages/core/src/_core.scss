@@ -57,15 +57,19 @@
       }
     }
 
-    @include xyz-layer('index') {
-      // gives elements an xyz-index based on nth child
+    @include xyz-layer('index.ladder') {
+      // gives elements an xyz-index based on nth child (fallback ladder).
+      // Set $xyz-index-levels: 0 to skip the ladder entirely (Chromium-only
+      // consumers relying solely on the sibling-index() enhancement below).
       %xyz-indexed {
-        @for $i from 1 through $xyz-index-levels {
-          &:nth-child(#{$i}) {
-            --xyz-index: #{$i - 1};
-          }
-          &:nth-last-child(#{$i}) {
-            --xyz-index-rev: #{$i - 1};
+        @if $xyz-index-levels > 0 {
+          @for $i from 1 through $xyz-index-levels {
+            &:nth-child(#{$i}) {
+              --xyz-index: #{$i - 1};
+            }
+            &:nth-last-child(#{$i}) {
+              --xyz-index-rev: #{$i - 1};
+            }
           }
         }
       }
@@ -85,6 +89,25 @@
       // all nested
       .xyz-nested {
         @extend %xyz-nested;
+      }
+    }
+
+    @include xyz-layer('index.modern') {
+      // Uncapped stagger indexing where supported. `@supports (--x: sibling-index())`
+      // is ALWAYS true (custom properties accept any value), so feature-detect
+      // against a real property that actually consumes the function. This layer
+      // is declared after `index.ladder`, so it wins over the higher-specificity
+      // nth-child rules without needing !important.
+      @supports (animation-delay: calc(1s * (sibling-index() - 1))) {
+        $index-selectors: '.xyz-nested';
+        @each $mode in $xyz-modes {
+          $index-selectors: '#{$index-selectors}, .xyz-#{$mode}, .xyz-#{$mode}-nested';
+        }
+
+        #{$index-selectors} {
+          --xyz-index: calc(sibling-index() - 1);
+          --xyz-index-rev: calc(sibling-count() - sibling-index());
+        }
       }
     }
 

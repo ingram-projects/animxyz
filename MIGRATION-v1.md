@@ -106,3 +106,21 @@ uses `!important` anywhere. This changes the override contract:
 
 Set `$xyz-layer: ''` (Sass) to emit unlayered CSS if you can't adopt cascade
 layers yet.
+
+## Uncapped stagger via `sibling-index()`
+
+Where the browser supports it, stagger indexing now comes from CSS
+`sibling-index()` / `sibling-count()` instead of the capped `nth-child` ladder,
+so staggers are no longer limited to `$xyz-index-levels` (default 20) siblings.
+The ladder still ships as the fallback, so there's nothing to change.
+
+- Chromium-only consumers can set `$xyz-index-levels: 0` (Sass) to drop the
+  ladder entirely and rely solely on `sibling-index()`.
+- `XyzTransitionGroup` (all frameworks) still sets `--xyz-index` inline, so the
+  ladder/sibling-index cap never applied when using the wrapper components.
+
+## Removed `backface-visibility: visible`
+
+The animation mixin no longer emits `backface-visibility: visible`. It only
+re-forced the CSS initial value; the only behavior change is for code that
+relied on AnimXYZ re-forcing it. Set it yourself if you need it.

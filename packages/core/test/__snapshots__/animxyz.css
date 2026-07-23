@@ -1,4 +1,4 @@
-@layer xyz.defaults,xyz.index,xyz.utilities,xyz.triggers.in,xyz.triggers.out,xyz.triggers.appear,xyz.overrides;
+@layer xyz.defaults,xyz.index.ladder,xyz.index.modern,xyz.utilities,xyz.triggers.in,xyz.triggers.out,xyz.triggers.appear,xyz.overrides;
 @layer xyz.defaults{
 @property --xyz-opacity{
 syntax:"<number>";
@@ -98,7 +98,7 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 --xyz-skew-default:30deg;
 }
 }
-@layer xyz.index{
+@layer xyz.index.ladder{
 .xyz-appear-nested:nth-child(1),.xyz-out-nested:nth-child(1),.xyz-in-nested:nth-child(1),.xyz-nested:nth-child(1),.xyz-appear:nth-child(1),.xyz-out:nth-child(1),.xyz-in:nth-child(1){
 --xyz-index:0;
 }
@@ -228,12 +228,19 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 --xyz-nested-stagger-delay:var(--xyz-root-stagger-delay,0s);
 }
 }
+@layer xyz.index.modern{
+@supports (animation-delay:calc(1s * (sibling-index() - 1))){
+.xyz-nested,.xyz-in,.xyz-in-nested,.xyz-out,.xyz-out-nested,.xyz-appear,.xyz-appear-nested{
+--xyz-index:calc(sibling-index() - 1);
+--xyz-index-rev:calc(sibling-count() - sibling-index());
+}
+}
+}
 @layer xyz.triggers.in{
 .xyz-in .xyz-nested,.xyz-in .xyz-in-nested,.xyz-in{
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-in-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-in-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-in-delay,var(--xyz-delay,var(--xyz-in-delay-default,var(--xyz-delay-default)))));
 transform-origin:var(--xyz-in-origin,var(--xyz-origin,var(--xyz-in-origin-default,var(--xyz-origin-default))));
-backface-visibility:visible;
 animation:var(--xyz-in-duration,var(--xyz-duration,var(--xyz-in-duration-default,var(--xyz-duration-default)))) var(--xyz-in-ease,var(--xyz-ease,var(--xyz-in-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-in-duration,var(--xyz-duration,var(--xyz-in-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-in-iterate,var(--xyz-iterate,var(--xyz-in-iterate-default,var(--xyz-iterate-default)))) var(--xyz-in-direction,var(--xyz-direction,var(--xyz-in-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-in-keyframes,var(--xyz-in-keyframes,var(--xyz-keyframes,var(--xyz-in-keyframes-default,var(--xyz-keyframes-default))));
 }
@@ -243,7 +250,6 @@ animation-name:xyz-in-keyframes,var(--xyz-in-keyframes,var(--xyz-keyframes,var(-
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-out-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-out-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-out-delay,var(--xyz-delay,var(--xyz-out-delay-default,var(--xyz-delay-default)))));
 transform-origin:var(--xyz-out-origin,var(--xyz-origin,var(--xyz-out-origin-default,var(--xyz-origin-default))));
-backface-visibility:visible;
 animation:var(--xyz-out-duration,var(--xyz-duration,var(--xyz-out-duration-default,var(--xyz-duration-default)))) var(--xyz-out-ease,var(--xyz-ease,var(--xyz-out-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-out-duration,var(--xyz-duration,var(--xyz-out-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-out-iterate,var(--xyz-iterate,var(--xyz-out-iterate-default,var(--xyz-iterate-default)))) var(--xyz-out-direction,var(--xyz-direction,var(--xyz-out-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-out-keyframes,var(--xyz-out-keyframes,var(--xyz-keyframes,var(--xyz-out-keyframes-default,var(--xyz-keyframes-default))));
 }
@@ -253,7 +259,6 @@ animation-name:xyz-out-keyframes,var(--xyz-out-keyframes,var(--xyz-keyframes,var
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-appear-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-appear-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-appear-delay,var(--xyz-delay,var(--xyz-appear-delay-default,var(--xyz-delay-default)))));
 transform-origin:var(--xyz-appear-origin,var(--xyz-origin,var(--xyz-appear-origin-default,var(--xyz-origin-default))));
-backface-visibility:visible;
 animation:var(--xyz-appear-duration,var(--xyz-duration,var(--xyz-appear-duration-default,var(--xyz-duration-default)))) var(--xyz-appear-ease,var(--xyz-ease,var(--xyz-appear-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-appear-duration,var(--xyz-duration,var(--xyz-appear-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-appear-iterate,var(--xyz-iterate,var(--xyz-appear-iterate-default,var(--xyz-iterate-default)))) var(--xyz-appear-direction,var(--xyz-direction,var(--xyz-appear-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-appear-keyframes,var(--xyz-appear-keyframes,var(--xyz-keyframes,var(--xyz-appear-keyframes-default,var(--xyz-keyframes-default))));
 }
