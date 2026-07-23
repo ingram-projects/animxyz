@@ -49,6 +49,61 @@
   }
 }
 
+// CASCADE LAYERS
+
+// Returns the trigger modes ordered for the cascade: every mode except
+// `appear`, then `appear` last. This encodes the fixed precedence "appear
+// beats in/out" in the layer order itself, so `$xyz-modes` can be authored in
+// any order (no more "appear must come last" source-order constraint).
+@function xyz-trigger-modes() {
+  $modes: ();
+  @each $mode in $xyz-modes {
+    @if $mode != 'appear' {
+      $modes: list.append($modes, $mode);
+    }
+  }
+  @if list.index($xyz-modes, 'appear') {
+    $modes: list.append($modes, 'appear');
+  }
+  @return $modes;
+}
+
+// Emits the up-front `@layer` order declaration. Later sublayers win, so the
+// order is: defaults < index < utilities < triggers.* < overrides.
+@mixin xyz-layer-declaration() {
+  @if $xyz-layer != '' {
+    $sublayers: 'defaults', 'index', 'utilities';
+    @each $mode in xyz-trigger-modes() {
+      $sublayers: list.append($sublayers, 'triggers.#{$mode}');
+    }
+    $sublayers: list.append($sublayers, 'overrides');
+
+    $declaration: '';
+    @each $sublayer in $sublayers {
+      @if $declaration == '' {
+        $declaration: '#{$xyz-layer}.#{$sublayer}';
+      } @else {
+        $declaration: '#{$declaration}, #{$xyz-layer}.#{$sublayer}';
+      }
+    }
+
+    @layer #{$declaration};
+  }
+}
+
+// Wraps @content in `@layer $xyz-layer.$sublayer`, or emits it unlayered when
+// the layer name is disabled ('' escape hatch).
+@mixin xyz-layer($sublayer) {
+  @if $xyz-layer == '' {
+    @content;
+  } @else {
+    @layer #{$xyz-layer}.#{$sublayer} {
+      @content;
+    }
+  }
+}
+
+
 // Registers the typed dial custom properties via @property. Only the
 // `all`-mode bottom-tier dials are registered (e.g. `--xyz-opacity`,
 // `--xyz-translate-x`) — never the mode-specific ones (`--xyz-in-opacity`).

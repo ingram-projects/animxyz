@@ -221,3 +221,36 @@ test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
 	assert.doesNotMatch(result.stdout, /@property --xyz-perspective\b/)
 	assert.doesNotMatch(result.stdout, /@property --xyz-transform\b/)
 })
+
+test('cascade output is wrapped in @layer with the documented order', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(
+		result.stdout,
+		/@layer xyz\.defaults, xyz\.index, xyz\.utilities, xyz\.triggers\.in, xyz\.triggers\.out, xyz\.triggers\.appear, xyz\.overrides;/
+	)
+	// No !important anywhere — precedence is by layer, not by force.
+	assert.doesNotMatch(result.stdout, /!important/)
+})
+
+test('@layer order is independent of $xyz-modes source order (appear stays last)', () => {
+	const result = compileSass('test/fixtures/xyz-layer-reorder.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// Even with $xyz-modes flipped to [appear, out, in], `appear` is pinned last
+	// among the trigger sublayers and `overrides` is last overall — so the
+	// rendered cascade behaves identically regardless of mode source order.
+	const declaration = result.stdout.match(/@layer ([^;]+);/)[1]
+	const order = declaration.split(',').map((name) => name.trim())
+	assert.ok(
+		order.indexOf('xyz.triggers.appear') > order.indexOf('xyz.triggers.in'),
+		`appear must be declared after in: ${declaration}`
+	)
+	assert.ok(
+		order.indexOf('xyz.triggers.appear') > order.indexOf('xyz.triggers.out'),
+		`appear must be declared after out: ${declaration}`
+	)
+	assert.equal(order[order.length - 1], 'xyz.overrides', `overrides must be last: ${declaration}`)
+})

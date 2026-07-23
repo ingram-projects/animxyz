@@ -6,163 +6,182 @@
 @mixin xyz-core() {
   @include xyz-include-once('core') {
 
-    // registers the typed dial custom properties (@property)
-    @include xyz-make-properties;
+    // declares the cascade layer order up front:
+    // defaults < index < utilities < triggers.* < overrides
+    @include xyz-layer-declaration;
 
-    // generates core keyframes
-    @include xyz-make-keyframes('keyframes', false) using ($mode) {
-      from {
-        $opacity: xyz-var('opacity', $mode, 1);
-        
-        $perspective: xyz-var('perspective', $mode, var(--xyz-perspective-none));
-        $translate-x: xyz-var('translate-x', $mode, 0);
-        $translate-y: xyz-var('translate-y', $mode, 0);
-        $translate-z: xyz-var('translate-z', $mode, 0);
-        $rotate-x: xyz-var('rotate-x', $mode, 0);
-        $rotate-y: xyz-var('rotate-y', $mode, 0);
-        $rotate-z: xyz-var('rotate-z', $mode, 0);
-        $scale-x: xyz-var('scale-x', $mode, 1);
-        $scale-y: xyz-var('scale-y', $mode, 1);
-        $scale-z: xyz-var('scale-z', $mode, 1);
-        $skew-x: xyz-var('skew-x', $mode, 0);
-        $skew-y: xyz-var('skew-y', $mode, 0);
+    @include xyz-layer('defaults') {
+      // registers the typed dial custom properties (@property)
+      @include xyz-make-properties;
 
-        $transform: xyz-var('transform', $mode,
-          perspective(#{$perspective})
-          translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
-          rotateX(#{$rotate-x}) rotateY(#{$rotate-y}) rotateZ(#{$rotate-z})
-          scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})
-          skew(#{$skew-x}, #{$skew-y})
-        );
+      // generates core keyframes
+      @include xyz-make-keyframes('keyframes', false) using ($mode) {
+        from {
+          $opacity: xyz-var('opacity', $mode, 1);
 
-        opacity: $opacity;
-        transform: $transform;
-      }
-    }
+          $perspective: xyz-var('perspective', $mode, var(--xyz-perspective-none));
+          $translate-x: xyz-var('translate-x', $mode, 0);
+          $translate-y: xyz-var('translate-y', $mode, 0);
+          $translate-z: xyz-var('translate-z', $mode, 0);
+          $rotate-x: xyz-var('rotate-x', $mode, 0);
+          $rotate-y: xyz-var('rotate-y', $mode, 0);
+          $rotate-z: xyz-var('rotate-z', $mode, 0);
+          $scale-x: xyz-var('scale-x', $mode, 1);
+          $scale-y: xyz-var('scale-y', $mode, 1);
+          $scale-z: xyz-var('scale-z', $mode, 1);
+          $skew-x: xyz-var('skew-x', $mode, 0);
+          $skew-y: xyz-var('skew-y', $mode, 0);
 
-    // sets defaults for xyz variables
-    :root {
-      // `perspective(none)` is universally supported at the v1 browser floor
-      // (Baseline 2024), so the old @supports feature-test is no longer needed.
-      --xyz-perspective-none: none;
+          $transform: xyz-var('transform', $mode,
+            perspective(#{$perspective})
+            translate3d(#{$translate-x}, #{$translate-y}, #{$translate-z})
+            rotateX(#{$rotate-x}) rotateY(#{$rotate-y}) rotateZ(#{$rotate-z})
+            scale3d(#{$scale-x}, #{$scale-y}, #{$scale-z})
+            skew(#{$skew-x}, #{$skew-y})
+          );
 
-      @each $name, $val in $xyz-defaults-map {
-        --xyz-#{$name}-default: #{$val};
-      }
-    }
-
-    // gives elements an xyz-index based on nth child
-    %xyz-indexed {
-      @for $i from 1 through $xyz-index-levels {
-        &:nth-child(#{$i}) {
-          --xyz-index: #{$i - 1};
+          opacity: $opacity;
+          transform: $transform;
         }
-        &:nth-last-child(#{$i}) {
-          --xyz-index-rev: #{$i - 1};
+      }
+
+      // sets defaults for xyz variables
+      :root {
+        // `perspective(none)` is universally supported at the v1 browser floor
+        // (Baseline 2024), so the old @supports feature-test is no longer needed.
+        --xyz-perspective-none: none;
+
+        @each $name, $val in $xyz-defaults-map {
+          --xyz-#{$name}-default: #{$val};
         }
       }
     }
 
-    %xyz-root {
-      @extend %xyz-indexed;
-      --xyz-root-stagger-delay: var(--xyz-stagger-delay, 0s);
-      --xyz-nested-stagger-delay: initial;
-      --xyz-start-offset: initial;
-    }
-
-    %xyz-nested {
-      @extend %xyz-indexed;
-      --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
-    }
-
-    @each $mode in $xyz-modes {
-      %xyz-active-#{$mode} {
-        @include xyz-animation($mode);
-
-        &.xyz-absolute, &.xyz-#{$mode}-absolute {
-          @extend %xyz-absolute;
-        }
-
-        &.xyz-paused, &.xyz-#{$mode}-paused {
-          @extend %xyz-paused;
-        }
-
-        &.xyz-none, &.xyz-#{$mode}-none {
-          @extend %xyz-none;
-        }
-      }
-
-      // active classes
-      .xyz-#{$mode} {
-        @extend %xyz-root;
-
-        @extend %xyz-active-#{$mode};
-        & .xyz-nested, .xyz-#{$mode}-nested {
-          @extend %xyz-active-#{$mode};
-        }
-
-        &.xyz-paused-all, &.xyz-#{$mode}-paused-all {
-          @extend %xyz-paused;
-          & .xyz-nested, .xyz-#{$mode}-nested {
-            @extend %xyz-paused;
+    @include xyz-layer('index') {
+      // gives elements an xyz-index based on nth child
+      %xyz-indexed {
+        @for $i from 1 through $xyz-index-levels {
+          &:nth-child(#{$i}) {
+            --xyz-index: #{$i - 1};
           }
-        }
-
-        &.xyz-none-all, &.xyz-#{$mode}-none-all {
-          @extend %xyz-none;
-          & .xyz-nested, .xyz-#{$mode}-nested {
-            @extend %xyz-none;
+          &:nth-last-child(#{$i}) {
+            --xyz-index-rev: #{$i - 1};
           }
         }
       }
 
-      // active classes nested
-      .xyz-#{$mode}-nested {
+      %xyz-root {
+        @extend %xyz-indexed;
+        --xyz-root-stagger-delay: var(--xyz-stagger-delay, 0s);
+        --xyz-nested-stagger-delay: initial;
+        --xyz-start-offset: initial;
+      }
+
+      %xyz-nested {
+        @extend %xyz-indexed;
+        --xyz-nested-stagger-delay: var(--xyz-root-stagger-delay, 0s);
+      }
+
+      // all nested
+      .xyz-nested {
         @extend %xyz-nested;
       }
     }
 
-    // all nested
-    .xyz-nested {
-      @extend %xyz-nested;
-    }
+    // trigger (active) classes — one sublayer per mode. Sublayer order (with
+    // `appear` pinned last, see xyz-layer-declaration) decides cross-mode
+    // precedence, replacing the old "appear must come last" source-order rule.
+    @each $mode in $xyz-modes {
+      @include xyz-layer('triggers.#{$mode}') {
+        %xyz-active-#{$mode} {
+          @include xyz-animation($mode);
 
-    // so elements don't take space during animation
-    %xyz-absolute {
-      position: absolute !important;
-    }
+          &.xyz-absolute, &.xyz-#{$mode}-absolute {
+            @extend %xyz-absolute;
+          }
 
-    // pauses animations
-    %xyz-paused {
-      animation-play-state: paused !important;
-    }
+          &.xyz-paused, &.xyz-#{$mode}-paused {
+            @extend %xyz-paused;
+          }
 
-    // turns off animations
-    %xyz-none {
-      animation: none !important;
-    }
+          &.xyz-none, &.xyz-#{$mode}-none {
+            @extend %xyz-none;
+          }
+        }
 
-    // for reduced motion users
-    @media (prefers-reduced-motion: reduce) {
-      %xyz-reduced-motion {
-        animation: none;
-      }
+        // active classes
+        .xyz-#{$mode} {
+          @extend %xyz-root;
 
-      @each $mode in $xyz-modes {
-        .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
-          @extend %xyz-reduced-motion;
+          @extend %xyz-active-#{$mode};
+          & .xyz-nested, .xyz-#{$mode}-nested {
+            @extend %xyz-active-#{$mode};
+          }
+
+          &.xyz-paused-all, &.xyz-#{$mode}-paused-all {
+            @extend %xyz-paused;
+            & .xyz-nested, .xyz-#{$mode}-nested {
+              @extend %xyz-paused;
+            }
+          }
+
+          &.xyz-none-all, &.xyz-#{$mode}-none-all {
+            @extend %xyz-none;
+            & .xyz-nested, .xyz-#{$mode}-nested {
+              @extend %xyz-none;
+            }
+          }
+        }
+
+        // active classes nested
+        .xyz-#{$mode}-nested {
+          @extend %xyz-nested;
         }
       }
     }
 
-    // resets all xyz variables
-    [#{$xyz-attribute}] {
-      @include xyz-set-all(initial);
+    @include xyz-layer('overrides') {
+      // so elements don't take space during animation
+      %xyz-absolute {
+        position: absolute;
+      }
+
+      // pauses animations
+      %xyz-paused {
+        animation-play-state: paused;
+      }
+
+      // turns off animations
+      %xyz-none {
+        animation: none;
+      }
     }
 
-    // inherits all xyz variables
-    [#{$xyz-attribute}~='inherit'] {
-      @include xyz-set-all(inherit);
+    // for reduced motion users
+    @media (prefers-reduced-motion: reduce) {
+      @include xyz-layer('overrides') {
+        %xyz-reduced-motion {
+          animation: none;
+        }
+
+        @each $mode in $xyz-modes {
+          .xyz-#{$mode}, .xyz-#{$mode} .xyz-nested, .xyz-#{$mode} .xyz-#{$mode}-nested {
+            @extend %xyz-reduced-motion;
+          }
+        }
+      }
+    }
+
+    @include xyz-layer('utilities') {
+      // resets all xyz variables
+      [#{$xyz-attribute}] {
+        @include xyz-set-all(initial);
+      }
+
+      // inherits all xyz variables
+      [#{$xyz-attribute}~='inherit'] {
+        @include xyz-set-all(inherit);
+      }
     }
   }
 }

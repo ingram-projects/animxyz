@@ -83,3 +83,25 @@ compiled output behaving exactly as before while adding type safety: a garbage
 value assigned to a registered dial (e.g. `--xyz-opacity: red`) is rejected at
 computed-value time and falls back to the typed initial value instead of
 poisoning the animation.
+
+## Cascade layers & the override contract
+
+v1.0 emits all output inside a single top-level `@layer xyz`, with sublayers
+declared in precedence order:
+
+```css
+@layer xyz.defaults, xyz.index, xyz.utilities,
+       xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
+```
+
+Precedence is now decided by **layer order**, not source order or `!important`
+(the compiled CSS contains zero `!important`). Two consequences:
+
+- **Your CSS wins by default.** Unlayered author styles beat anything AnimXYZ
+  emits, regardless of specificity. To *lose* to AnimXYZ on purpose, put your
+  styles in a layer declared before `xyz` (e.g. `@layer base, xyz;`).
+- **Mode precedence is fixed by layer order.** `appear` is pinned to the last
+  trigger sublayer, so it beats `in`/`out` no matter how `$xyz-modes` is
+  ordered — the old "appear must come last" source-order rule is gone.
+
+Set `$xyz-layer: ''` to emit unlayered CSS if you can't adopt cascade layers yet.

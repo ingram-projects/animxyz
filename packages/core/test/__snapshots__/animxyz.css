@@ -1,3 +1,5 @@
+@layer xyz.defaults,xyz.index,xyz.utilities,xyz.triggers.in,xyz.triggers.out,xyz.triggers.appear,xyz.overrides;
+@layer xyz.defaults{
 @property --xyz-opacity{
 syntax:"<number>";
 inherits:true;
@@ -95,124 +97,126 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 --xyz-scale-default:0.5;
 --xyz-skew-default:30deg;
 }
-.xyz-nested:nth-child(1),.xyz-appear-nested:nth-child(1),.xyz-out-nested:nth-child(1),.xyz-in-nested:nth-child(1),.xyz-appear:nth-child(1),.xyz-out:nth-child(1),.xyz-in:nth-child(1){
+}
+@layer xyz.index{
+.xyz-appear-nested:nth-child(1),.xyz-out-nested:nth-child(1),.xyz-in-nested:nth-child(1),.xyz-nested:nth-child(1),.xyz-appear:nth-child(1),.xyz-out:nth-child(1),.xyz-in:nth-child(1){
 --xyz-index:0;
 }
-.xyz-nested:nth-last-child(1),.xyz-appear-nested:nth-last-child(1),.xyz-out-nested:nth-last-child(1),.xyz-in-nested:nth-last-child(1),.xyz-appear:nth-last-child(1),.xyz-out:nth-last-child(1),.xyz-in:nth-last-child(1){
+.xyz-appear-nested:nth-last-child(1),.xyz-out-nested:nth-last-child(1),.xyz-in-nested:nth-last-child(1),.xyz-nested:nth-last-child(1),.xyz-appear:nth-last-child(1),.xyz-out:nth-last-child(1),.xyz-in:nth-last-child(1){
 --xyz-index-rev:0;
 }
-.xyz-nested:nth-child(2),.xyz-appear-nested:nth-child(2),.xyz-out-nested:nth-child(2),.xyz-in-nested:nth-child(2),.xyz-appear:nth-child(2),.xyz-out:nth-child(2),.xyz-in:nth-child(2){
+.xyz-appear-nested:nth-child(2),.xyz-out-nested:nth-child(2),.xyz-in-nested:nth-child(2),.xyz-nested:nth-child(2),.xyz-appear:nth-child(2),.xyz-out:nth-child(2),.xyz-in:nth-child(2){
 --xyz-index:1;
 }
-.xyz-nested:nth-last-child(2),.xyz-appear-nested:nth-last-child(2),.xyz-out-nested:nth-last-child(2),.xyz-in-nested:nth-last-child(2),.xyz-appear:nth-last-child(2),.xyz-out:nth-last-child(2),.xyz-in:nth-last-child(2){
+.xyz-appear-nested:nth-last-child(2),.xyz-out-nested:nth-last-child(2),.xyz-in-nested:nth-last-child(2),.xyz-nested:nth-last-child(2),.xyz-appear:nth-last-child(2),.xyz-out:nth-last-child(2),.xyz-in:nth-last-child(2){
 --xyz-index-rev:1;
 }
-.xyz-nested:nth-child(3),.xyz-appear-nested:nth-child(3),.xyz-out-nested:nth-child(3),.xyz-in-nested:nth-child(3),.xyz-appear:nth-child(3),.xyz-out:nth-child(3),.xyz-in:nth-child(3){
+.xyz-appear-nested:nth-child(3),.xyz-out-nested:nth-child(3),.xyz-in-nested:nth-child(3),.xyz-nested:nth-child(3),.xyz-appear:nth-child(3),.xyz-out:nth-child(3),.xyz-in:nth-child(3){
 --xyz-index:2;
 }
-.xyz-nested:nth-last-child(3),.xyz-appear-nested:nth-last-child(3),.xyz-out-nested:nth-last-child(3),.xyz-in-nested:nth-last-child(3),.xyz-appear:nth-last-child(3),.xyz-out:nth-last-child(3),.xyz-in:nth-last-child(3){
+.xyz-appear-nested:nth-last-child(3),.xyz-out-nested:nth-last-child(3),.xyz-in-nested:nth-last-child(3),.xyz-nested:nth-last-child(3),.xyz-appear:nth-last-child(3),.xyz-out:nth-last-child(3),.xyz-in:nth-last-child(3){
 --xyz-index-rev:2;
 }
-.xyz-nested:nth-child(4),.xyz-appear-nested:nth-child(4),.xyz-out-nested:nth-child(4),.xyz-in-nested:nth-child(4),.xyz-appear:nth-child(4),.xyz-out:nth-child(4),.xyz-in:nth-child(4){
+.xyz-appear-nested:nth-child(4),.xyz-out-nested:nth-child(4),.xyz-in-nested:nth-child(4),.xyz-nested:nth-child(4),.xyz-appear:nth-child(4),.xyz-out:nth-child(4),.xyz-in:nth-child(4){
 --xyz-index:3;
 }
-.xyz-nested:nth-last-child(4),.xyz-appear-nested:nth-last-child(4),.xyz-out-nested:nth-last-child(4),.xyz-in-nested:nth-last-child(4),.xyz-appear:nth-last-child(4),.xyz-out:nth-last-child(4),.xyz-in:nth-last-child(4){
+.xyz-appear-nested:nth-last-child(4),.xyz-out-nested:nth-last-child(4),.xyz-in-nested:nth-last-child(4),.xyz-nested:nth-last-child(4),.xyz-appear:nth-last-child(4),.xyz-out:nth-last-child(4),.xyz-in:nth-last-child(4){
 --xyz-index-rev:3;
 }
-.xyz-nested:nth-child(5),.xyz-appear-nested:nth-child(5),.xyz-out-nested:nth-child(5),.xyz-in-nested:nth-child(5),.xyz-appear:nth-child(5),.xyz-out:nth-child(5),.xyz-in:nth-child(5){
+.xyz-appear-nested:nth-child(5),.xyz-out-nested:nth-child(5),.xyz-in-nested:nth-child(5),.xyz-nested:nth-child(5),.xyz-appear:nth-child(5),.xyz-out:nth-child(5),.xyz-in:nth-child(5){
 --xyz-index:4;
 }
-.xyz-nested:nth-last-child(5),.xyz-appear-nested:nth-last-child(5),.xyz-out-nested:nth-last-child(5),.xyz-in-nested:nth-last-child(5),.xyz-appear:nth-last-child(5),.xyz-out:nth-last-child(5),.xyz-in:nth-last-child(5){
+.xyz-appear-nested:nth-last-child(5),.xyz-out-nested:nth-last-child(5),.xyz-in-nested:nth-last-child(5),.xyz-nested:nth-last-child(5),.xyz-appear:nth-last-child(5),.xyz-out:nth-last-child(5),.xyz-in:nth-last-child(5){
 --xyz-index-rev:4;
 }
-.xyz-nested:nth-child(6),.xyz-appear-nested:nth-child(6),.xyz-out-nested:nth-child(6),.xyz-in-nested:nth-child(6),.xyz-appear:nth-child(6),.xyz-out:nth-child(6),.xyz-in:nth-child(6){
+.xyz-appear-nested:nth-child(6),.xyz-out-nested:nth-child(6),.xyz-in-nested:nth-child(6),.xyz-nested:nth-child(6),.xyz-appear:nth-child(6),.xyz-out:nth-child(6),.xyz-in:nth-child(6){
 --xyz-index:5;
 }
-.xyz-nested:nth-last-child(6),.xyz-appear-nested:nth-last-child(6),.xyz-out-nested:nth-last-child(6),.xyz-in-nested:nth-last-child(6),.xyz-appear:nth-last-child(6),.xyz-out:nth-last-child(6),.xyz-in:nth-last-child(6){
+.xyz-appear-nested:nth-last-child(6),.xyz-out-nested:nth-last-child(6),.xyz-in-nested:nth-last-child(6),.xyz-nested:nth-last-child(6),.xyz-appear:nth-last-child(6),.xyz-out:nth-last-child(6),.xyz-in:nth-last-child(6){
 --xyz-index-rev:5;
 }
-.xyz-nested:nth-child(7),.xyz-appear-nested:nth-child(7),.xyz-out-nested:nth-child(7),.xyz-in-nested:nth-child(7),.xyz-appear:nth-child(7),.xyz-out:nth-child(7),.xyz-in:nth-child(7){
+.xyz-appear-nested:nth-child(7),.xyz-out-nested:nth-child(7),.xyz-in-nested:nth-child(7),.xyz-nested:nth-child(7),.xyz-appear:nth-child(7),.xyz-out:nth-child(7),.xyz-in:nth-child(7){
 --xyz-index:6;
 }
-.xyz-nested:nth-last-child(7),.xyz-appear-nested:nth-last-child(7),.xyz-out-nested:nth-last-child(7),.xyz-in-nested:nth-last-child(7),.xyz-appear:nth-last-child(7),.xyz-out:nth-last-child(7),.xyz-in:nth-last-child(7){
+.xyz-appear-nested:nth-last-child(7),.xyz-out-nested:nth-last-child(7),.xyz-in-nested:nth-last-child(7),.xyz-nested:nth-last-child(7),.xyz-appear:nth-last-child(7),.xyz-out:nth-last-child(7),.xyz-in:nth-last-child(7){
 --xyz-index-rev:6;
 }
-.xyz-nested:nth-child(8),.xyz-appear-nested:nth-child(8),.xyz-out-nested:nth-child(8),.xyz-in-nested:nth-child(8),.xyz-appear:nth-child(8),.xyz-out:nth-child(8),.xyz-in:nth-child(8){
+.xyz-appear-nested:nth-child(8),.xyz-out-nested:nth-child(8),.xyz-in-nested:nth-child(8),.xyz-nested:nth-child(8),.xyz-appear:nth-child(8),.xyz-out:nth-child(8),.xyz-in:nth-child(8){
 --xyz-index:7;
 }
-.xyz-nested:nth-last-child(8),.xyz-appear-nested:nth-last-child(8),.xyz-out-nested:nth-last-child(8),.xyz-in-nested:nth-last-child(8),.xyz-appear:nth-last-child(8),.xyz-out:nth-last-child(8),.xyz-in:nth-last-child(8){
+.xyz-appear-nested:nth-last-child(8),.xyz-out-nested:nth-last-child(8),.xyz-in-nested:nth-last-child(8),.xyz-nested:nth-last-child(8),.xyz-appear:nth-last-child(8),.xyz-out:nth-last-child(8),.xyz-in:nth-last-child(8){
 --xyz-index-rev:7;
 }
-.xyz-nested:nth-child(9),.xyz-appear-nested:nth-child(9),.xyz-out-nested:nth-child(9),.xyz-in-nested:nth-child(9),.xyz-appear:nth-child(9),.xyz-out:nth-child(9),.xyz-in:nth-child(9){
+.xyz-appear-nested:nth-child(9),.xyz-out-nested:nth-child(9),.xyz-in-nested:nth-child(9),.xyz-nested:nth-child(9),.xyz-appear:nth-child(9),.xyz-out:nth-child(9),.xyz-in:nth-child(9){
 --xyz-index:8;
 }
-.xyz-nested:nth-last-child(9),.xyz-appear-nested:nth-last-child(9),.xyz-out-nested:nth-last-child(9),.xyz-in-nested:nth-last-child(9),.xyz-appear:nth-last-child(9),.xyz-out:nth-last-child(9),.xyz-in:nth-last-child(9){
+.xyz-appear-nested:nth-last-child(9),.xyz-out-nested:nth-last-child(9),.xyz-in-nested:nth-last-child(9),.xyz-nested:nth-last-child(9),.xyz-appear:nth-last-child(9),.xyz-out:nth-last-child(9),.xyz-in:nth-last-child(9){
 --xyz-index-rev:8;
 }
-.xyz-nested:nth-child(10),.xyz-appear-nested:nth-child(10),.xyz-out-nested:nth-child(10),.xyz-in-nested:nth-child(10),.xyz-appear:nth-child(10),.xyz-out:nth-child(10),.xyz-in:nth-child(10){
+.xyz-appear-nested:nth-child(10),.xyz-out-nested:nth-child(10),.xyz-in-nested:nth-child(10),.xyz-nested:nth-child(10),.xyz-appear:nth-child(10),.xyz-out:nth-child(10),.xyz-in:nth-child(10){
 --xyz-index:9;
 }
-.xyz-nested:nth-last-child(10),.xyz-appear-nested:nth-last-child(10),.xyz-out-nested:nth-last-child(10),.xyz-in-nested:nth-last-child(10),.xyz-appear:nth-last-child(10),.xyz-out:nth-last-child(10),.xyz-in:nth-last-child(10){
+.xyz-appear-nested:nth-last-child(10),.xyz-out-nested:nth-last-child(10),.xyz-in-nested:nth-last-child(10),.xyz-nested:nth-last-child(10),.xyz-appear:nth-last-child(10),.xyz-out:nth-last-child(10),.xyz-in:nth-last-child(10){
 --xyz-index-rev:9;
 }
-.xyz-nested:nth-child(11),.xyz-appear-nested:nth-child(11),.xyz-out-nested:nth-child(11),.xyz-in-nested:nth-child(11),.xyz-appear:nth-child(11),.xyz-out:nth-child(11),.xyz-in:nth-child(11){
+.xyz-appear-nested:nth-child(11),.xyz-out-nested:nth-child(11),.xyz-in-nested:nth-child(11),.xyz-nested:nth-child(11),.xyz-appear:nth-child(11),.xyz-out:nth-child(11),.xyz-in:nth-child(11){
 --xyz-index:10;
 }
-.xyz-nested:nth-last-child(11),.xyz-appear-nested:nth-last-child(11),.xyz-out-nested:nth-last-child(11),.xyz-in-nested:nth-last-child(11),.xyz-appear:nth-last-child(11),.xyz-out:nth-last-child(11),.xyz-in:nth-last-child(11){
+.xyz-appear-nested:nth-last-child(11),.xyz-out-nested:nth-last-child(11),.xyz-in-nested:nth-last-child(11),.xyz-nested:nth-last-child(11),.xyz-appear:nth-last-child(11),.xyz-out:nth-last-child(11),.xyz-in:nth-last-child(11){
 --xyz-index-rev:10;
 }
-.xyz-nested:nth-child(12),.xyz-appear-nested:nth-child(12),.xyz-out-nested:nth-child(12),.xyz-in-nested:nth-child(12),.xyz-appear:nth-child(12),.xyz-out:nth-child(12),.xyz-in:nth-child(12){
+.xyz-appear-nested:nth-child(12),.xyz-out-nested:nth-child(12),.xyz-in-nested:nth-child(12),.xyz-nested:nth-child(12),.xyz-appear:nth-child(12),.xyz-out:nth-child(12),.xyz-in:nth-child(12){
 --xyz-index:11;
 }
-.xyz-nested:nth-last-child(12),.xyz-appear-nested:nth-last-child(12),.xyz-out-nested:nth-last-child(12),.xyz-in-nested:nth-last-child(12),.xyz-appear:nth-last-child(12),.xyz-out:nth-last-child(12),.xyz-in:nth-last-child(12){
+.xyz-appear-nested:nth-last-child(12),.xyz-out-nested:nth-last-child(12),.xyz-in-nested:nth-last-child(12),.xyz-nested:nth-last-child(12),.xyz-appear:nth-last-child(12),.xyz-out:nth-last-child(12),.xyz-in:nth-last-child(12){
 --xyz-index-rev:11;
 }
-.xyz-nested:nth-child(13),.xyz-appear-nested:nth-child(13),.xyz-out-nested:nth-child(13),.xyz-in-nested:nth-child(13),.xyz-appear:nth-child(13),.xyz-out:nth-child(13),.xyz-in:nth-child(13){
+.xyz-appear-nested:nth-child(13),.xyz-out-nested:nth-child(13),.xyz-in-nested:nth-child(13),.xyz-nested:nth-child(13),.xyz-appear:nth-child(13),.xyz-out:nth-child(13),.xyz-in:nth-child(13){
 --xyz-index:12;
 }
-.xyz-nested:nth-last-child(13),.xyz-appear-nested:nth-last-child(13),.xyz-out-nested:nth-last-child(13),.xyz-in-nested:nth-last-child(13),.xyz-appear:nth-last-child(13),.xyz-out:nth-last-child(13),.xyz-in:nth-last-child(13){
+.xyz-appear-nested:nth-last-child(13),.xyz-out-nested:nth-last-child(13),.xyz-in-nested:nth-last-child(13),.xyz-nested:nth-last-child(13),.xyz-appear:nth-last-child(13),.xyz-out:nth-last-child(13),.xyz-in:nth-last-child(13){
 --xyz-index-rev:12;
 }
-.xyz-nested:nth-child(14),.xyz-appear-nested:nth-child(14),.xyz-out-nested:nth-child(14),.xyz-in-nested:nth-child(14),.xyz-appear:nth-child(14),.xyz-out:nth-child(14),.xyz-in:nth-child(14){
+.xyz-appear-nested:nth-child(14),.xyz-out-nested:nth-child(14),.xyz-in-nested:nth-child(14),.xyz-nested:nth-child(14),.xyz-appear:nth-child(14),.xyz-out:nth-child(14),.xyz-in:nth-child(14){
 --xyz-index:13;
 }
-.xyz-nested:nth-last-child(14),.xyz-appear-nested:nth-last-child(14),.xyz-out-nested:nth-last-child(14),.xyz-in-nested:nth-last-child(14),.xyz-appear:nth-last-child(14),.xyz-out:nth-last-child(14),.xyz-in:nth-last-child(14){
+.xyz-appear-nested:nth-last-child(14),.xyz-out-nested:nth-last-child(14),.xyz-in-nested:nth-last-child(14),.xyz-nested:nth-last-child(14),.xyz-appear:nth-last-child(14),.xyz-out:nth-last-child(14),.xyz-in:nth-last-child(14){
 --xyz-index-rev:13;
 }
-.xyz-nested:nth-child(15),.xyz-appear-nested:nth-child(15),.xyz-out-nested:nth-child(15),.xyz-in-nested:nth-child(15),.xyz-appear:nth-child(15),.xyz-out:nth-child(15),.xyz-in:nth-child(15){
+.xyz-appear-nested:nth-child(15),.xyz-out-nested:nth-child(15),.xyz-in-nested:nth-child(15),.xyz-nested:nth-child(15),.xyz-appear:nth-child(15),.xyz-out:nth-child(15),.xyz-in:nth-child(15){
 --xyz-index:14;
 }
-.xyz-nested:nth-last-child(15),.xyz-appear-nested:nth-last-child(15),.xyz-out-nested:nth-last-child(15),.xyz-in-nested:nth-last-child(15),.xyz-appear:nth-last-child(15),.xyz-out:nth-last-child(15),.xyz-in:nth-last-child(15){
+.xyz-appear-nested:nth-last-child(15),.xyz-out-nested:nth-last-child(15),.xyz-in-nested:nth-last-child(15),.xyz-nested:nth-last-child(15),.xyz-appear:nth-last-child(15),.xyz-out:nth-last-child(15),.xyz-in:nth-last-child(15){
 --xyz-index-rev:14;
 }
-.xyz-nested:nth-child(16),.xyz-appear-nested:nth-child(16),.xyz-out-nested:nth-child(16),.xyz-in-nested:nth-child(16),.xyz-appear:nth-child(16),.xyz-out:nth-child(16),.xyz-in:nth-child(16){
+.xyz-appear-nested:nth-child(16),.xyz-out-nested:nth-child(16),.xyz-in-nested:nth-child(16),.xyz-nested:nth-child(16),.xyz-appear:nth-child(16),.xyz-out:nth-child(16),.xyz-in:nth-child(16){
 --xyz-index:15;
 }
-.xyz-nested:nth-last-child(16),.xyz-appear-nested:nth-last-child(16),.xyz-out-nested:nth-last-child(16),.xyz-in-nested:nth-last-child(16),.xyz-appear:nth-last-child(16),.xyz-out:nth-last-child(16),.xyz-in:nth-last-child(16){
+.xyz-appear-nested:nth-last-child(16),.xyz-out-nested:nth-last-child(16),.xyz-in-nested:nth-last-child(16),.xyz-nested:nth-last-child(16),.xyz-appear:nth-last-child(16),.xyz-out:nth-last-child(16),.xyz-in:nth-last-child(16){
 --xyz-index-rev:15;
 }
-.xyz-nested:nth-child(17),.xyz-appear-nested:nth-child(17),.xyz-out-nested:nth-child(17),.xyz-in-nested:nth-child(17),.xyz-appear:nth-child(17),.xyz-out:nth-child(17),.xyz-in:nth-child(17){
+.xyz-appear-nested:nth-child(17),.xyz-out-nested:nth-child(17),.xyz-in-nested:nth-child(17),.xyz-nested:nth-child(17),.xyz-appear:nth-child(17),.xyz-out:nth-child(17),.xyz-in:nth-child(17){
 --xyz-index:16;
 }
-.xyz-nested:nth-last-child(17),.xyz-appear-nested:nth-last-child(17),.xyz-out-nested:nth-last-child(17),.xyz-in-nested:nth-last-child(17),.xyz-appear:nth-last-child(17),.xyz-out:nth-last-child(17),.xyz-in:nth-last-child(17){
+.xyz-appear-nested:nth-last-child(17),.xyz-out-nested:nth-last-child(17),.xyz-in-nested:nth-last-child(17),.xyz-nested:nth-last-child(17),.xyz-appear:nth-last-child(17),.xyz-out:nth-last-child(17),.xyz-in:nth-last-child(17){
 --xyz-index-rev:16;
 }
-.xyz-nested:nth-child(18),.xyz-appear-nested:nth-child(18),.xyz-out-nested:nth-child(18),.xyz-in-nested:nth-child(18),.xyz-appear:nth-child(18),.xyz-out:nth-child(18),.xyz-in:nth-child(18){
+.xyz-appear-nested:nth-child(18),.xyz-out-nested:nth-child(18),.xyz-in-nested:nth-child(18),.xyz-nested:nth-child(18),.xyz-appear:nth-child(18),.xyz-out:nth-child(18),.xyz-in:nth-child(18){
 --xyz-index:17;
 }
-.xyz-nested:nth-last-child(18),.xyz-appear-nested:nth-last-child(18),.xyz-out-nested:nth-last-child(18),.xyz-in-nested:nth-last-child(18),.xyz-appear:nth-last-child(18),.xyz-out:nth-last-child(18),.xyz-in:nth-last-child(18){
+.xyz-appear-nested:nth-last-child(18),.xyz-out-nested:nth-last-child(18),.xyz-in-nested:nth-last-child(18),.xyz-nested:nth-last-child(18),.xyz-appear:nth-last-child(18),.xyz-out:nth-last-child(18),.xyz-in:nth-last-child(18){
 --xyz-index-rev:17;
 }
-.xyz-nested:nth-child(19),.xyz-appear-nested:nth-child(19),.xyz-out-nested:nth-child(19),.xyz-in-nested:nth-child(19),.xyz-appear:nth-child(19),.xyz-out:nth-child(19),.xyz-in:nth-child(19){
+.xyz-appear-nested:nth-child(19),.xyz-out-nested:nth-child(19),.xyz-in-nested:nth-child(19),.xyz-nested:nth-child(19),.xyz-appear:nth-child(19),.xyz-out:nth-child(19),.xyz-in:nth-child(19){
 --xyz-index:18;
 }
-.xyz-nested:nth-last-child(19),.xyz-appear-nested:nth-last-child(19),.xyz-out-nested:nth-last-child(19),.xyz-in-nested:nth-last-child(19),.xyz-appear:nth-last-child(19),.xyz-out:nth-last-child(19),.xyz-in:nth-last-child(19){
+.xyz-appear-nested:nth-last-child(19),.xyz-out-nested:nth-last-child(19),.xyz-in-nested:nth-last-child(19),.xyz-nested:nth-last-child(19),.xyz-appear:nth-last-child(19),.xyz-out:nth-last-child(19),.xyz-in:nth-last-child(19){
 --xyz-index-rev:18;
 }
-.xyz-nested:nth-child(20),.xyz-appear-nested:nth-child(20),.xyz-out-nested:nth-child(20),.xyz-in-nested:nth-child(20),.xyz-appear:nth-child(20),.xyz-out:nth-child(20),.xyz-in:nth-child(20){
+.xyz-appear-nested:nth-child(20),.xyz-out-nested:nth-child(20),.xyz-in-nested:nth-child(20),.xyz-nested:nth-child(20),.xyz-appear:nth-child(20),.xyz-out:nth-child(20),.xyz-in:nth-child(20){
 --xyz-index:19;
 }
-.xyz-nested:nth-last-child(20),.xyz-appear-nested:nth-last-child(20),.xyz-out-nested:nth-last-child(20),.xyz-in-nested:nth-last-child(20),.xyz-appear:nth-last-child(20),.xyz-out:nth-last-child(20),.xyz-in:nth-last-child(20){
+.xyz-appear-nested:nth-last-child(20),.xyz-out-nested:nth-last-child(20),.xyz-in-nested:nth-last-child(20),.xyz-nested:nth-last-child(20),.xyz-appear:nth-last-child(20),.xyz-out:nth-last-child(20),.xyz-in:nth-last-child(20){
 --xyz-index-rev:19;
 }
 .xyz-appear,.xyz-out,.xyz-in{
@@ -220,9 +224,11 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 --xyz-nested-stagger-delay:initial;
 --xyz-start-offset:initial;
 }
-.xyz-nested,.xyz-appear-nested,.xyz-out-nested,.xyz-in-nested{
+.xyz-appear-nested,.xyz-out-nested,.xyz-in-nested,.xyz-nested{
 --xyz-nested-stagger-delay:var(--xyz-root-stagger-delay,0s);
 }
+}
+@layer xyz.triggers.in{
 .xyz-in .xyz-nested,.xyz-in .xyz-in-nested,.xyz-in{
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-in-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-in-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-in-delay,var(--xyz-delay,var(--xyz-in-delay-default,var(--xyz-delay-default)))));
@@ -231,6 +237,8 @@ backface-visibility:visible;
 animation:var(--xyz-in-duration,var(--xyz-duration,var(--xyz-in-duration-default,var(--xyz-duration-default)))) var(--xyz-in-ease,var(--xyz-ease,var(--xyz-in-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-in-duration,var(--xyz-duration,var(--xyz-in-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-in-iterate,var(--xyz-iterate,var(--xyz-in-iterate-default,var(--xyz-iterate-default)))) var(--xyz-in-direction,var(--xyz-direction,var(--xyz-in-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-in-keyframes,var(--xyz-in-keyframes,var(--xyz-keyframes,var(--xyz-in-keyframes-default,var(--xyz-keyframes-default))));
 }
+}
+@layer xyz.triggers.out{
 .xyz-out .xyz-nested,.xyz-out .xyz-out-nested,.xyz-out{
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-out-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-out-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-out-delay,var(--xyz-delay,var(--xyz-out-delay-default,var(--xyz-delay-default)))));
@@ -239,6 +247,8 @@ backface-visibility:visible;
 animation:var(--xyz-out-duration,var(--xyz-duration,var(--xyz-out-duration-default,var(--xyz-duration-default)))) var(--xyz-out-ease,var(--xyz-ease,var(--xyz-out-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-out-duration,var(--xyz-duration,var(--xyz-out-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-out-iterate,var(--xyz-iterate,var(--xyz-out-iterate-default,var(--xyz-iterate-default)))) var(--xyz-out-direction,var(--xyz-direction,var(--xyz-out-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-out-keyframes,var(--xyz-out-keyframes,var(--xyz-keyframes,var(--xyz-out-keyframes-default,var(--xyz-keyframes-default))));
 }
+}
+@layer xyz.triggers.appear{
 .xyz-appear .xyz-nested,.xyz-appear .xyz-appear-nested,.xyz-appear{
 --xyz-stagger-delay:calc(var(--xyz-nested-stagger-delay,0s) + var(--xyz-appear-stagger,var(--xyz-stagger,0s)) * var(--xyz-index,0) + var(--xyz-appear-stagger-rev,var(--xyz-stagger-rev,0s)) * var(--xyz-index-rev,0));
 --xyz-total-delay:calc(var(--xyz-stagger-delay,0s) + var(--xyz-appear-delay,var(--xyz-delay,var(--xyz-appear-delay-default,var(--xyz-delay-default)))));
@@ -247,20 +257,26 @@ backface-visibility:visible;
 animation:var(--xyz-appear-duration,var(--xyz-duration,var(--xyz-appear-duration-default,var(--xyz-duration-default)))) var(--xyz-appear-ease,var(--xyz-ease,var(--xyz-appear-ease-default,var(--xyz-ease-default)))) calc(var(--xyz-total-delay,0s) + var(--xyz-start-offset,0) * (var(--xyz-total-delay,0s) + var(--xyz-appear-duration,var(--xyz-duration,var(--xyz-appear-duration-default,var(--xyz-duration-default))))) * -1) var(--xyz-appear-iterate,var(--xyz-iterate,var(--xyz-appear-iterate-default,var(--xyz-iterate-default)))) var(--xyz-appear-direction,var(--xyz-direction,var(--xyz-appear-direction-default,var(--xyz-direction-default)))) both;
 animation-name:xyz-appear-keyframes,var(--xyz-appear-keyframes,var(--xyz-keyframes,var(--xyz-appear-keyframes-default,var(--xyz-keyframes-default))));
 }
+}
+@layer xyz.overrides{
 .xyz-absolute.xyz-in,.xyz-in-absolute.xyz-in,.xyz-in .xyz-absolute.xyz-nested,.xyz-in .xyz-absolute.xyz-in-nested,.xyz-in .xyz-in-absolute.xyz-nested,.xyz-in .xyz-in-absolute.xyz-in-nested,.xyz-absolute.xyz-out,.xyz-out-absolute.xyz-out,.xyz-out .xyz-absolute.xyz-nested,.xyz-out .xyz-absolute.xyz-out-nested,.xyz-out .xyz-out-absolute.xyz-nested,.xyz-out .xyz-out-absolute.xyz-out-nested,.xyz-absolute.xyz-appear,.xyz-appear-absolute.xyz-appear,.xyz-appear .xyz-absolute.xyz-nested,.xyz-appear .xyz-absolute.xyz-appear-nested,.xyz-appear .xyz-appear-absolute.xyz-nested,.xyz-appear .xyz-appear-absolute.xyz-appear-nested{
-position:absolute !important;
+position:absolute;
 }
 .xyz-paused.xyz-in,.xyz-in-paused.xyz-in,.xyz-in .xyz-paused.xyz-nested,.xyz-in .xyz-paused.xyz-in-nested,.xyz-in .xyz-in-paused.xyz-nested,.xyz-in .xyz-in-paused.xyz-in-nested,.xyz-in.xyz-paused-all,.xyz-in.xyz-in-paused-all,.xyz-in.xyz-paused-all .xyz-nested,.xyz-in.xyz-paused-all .xyz-in-nested,.xyz-in.xyz-in-paused-all .xyz-nested,.xyz-in.xyz-in-paused-all .xyz-in-nested,.xyz-paused.xyz-out,.xyz-out-paused.xyz-out,.xyz-out .xyz-paused.xyz-nested,.xyz-out .xyz-paused.xyz-out-nested,.xyz-out .xyz-out-paused.xyz-nested,.xyz-out .xyz-out-paused.xyz-out-nested,.xyz-out.xyz-paused-all,.xyz-out.xyz-out-paused-all,.xyz-out.xyz-paused-all .xyz-nested,.xyz-out.xyz-paused-all .xyz-out-nested,.xyz-out.xyz-out-paused-all .xyz-nested,.xyz-out.xyz-out-paused-all .xyz-out-nested,.xyz-paused.xyz-appear,.xyz-appear-paused.xyz-appear,.xyz-appear .xyz-paused.xyz-nested,.xyz-appear .xyz-paused.xyz-appear-nested,.xyz-appear .xyz-appear-paused.xyz-nested,.xyz-appear .xyz-appear-paused.xyz-appear-nested,.xyz-appear.xyz-paused-all,.xyz-appear.xyz-appear-paused-all,.xyz-appear.xyz-paused-all .xyz-nested,.xyz-appear.xyz-paused-all .xyz-appear-nested,.xyz-appear.xyz-appear-paused-all .xyz-nested,.xyz-appear.xyz-appear-paused-all .xyz-appear-nested{
-animation-play-state:paused !important;
+animation-play-state:paused;
 }
 .xyz-none.xyz-in,.xyz-in-none.xyz-in,.xyz-in .xyz-none.xyz-nested,.xyz-in .xyz-none.xyz-in-nested,.xyz-in .xyz-in-none.xyz-nested,.xyz-in .xyz-in-none.xyz-in-nested,.xyz-in.xyz-none-all,.xyz-in.xyz-in-none-all,.xyz-in.xyz-none-all .xyz-nested,.xyz-in.xyz-none-all .xyz-in-nested,.xyz-in.xyz-in-none-all .xyz-nested,.xyz-in.xyz-in-none-all .xyz-in-nested,.xyz-none.xyz-out,.xyz-out-none.xyz-out,.xyz-out .xyz-none.xyz-nested,.xyz-out .xyz-none.xyz-out-nested,.xyz-out .xyz-out-none.xyz-nested,.xyz-out .xyz-out-none.xyz-out-nested,.xyz-out.xyz-none-all,.xyz-out.xyz-out-none-all,.xyz-out.xyz-none-all .xyz-nested,.xyz-out.xyz-none-all .xyz-out-nested,.xyz-out.xyz-out-none-all .xyz-nested,.xyz-out.xyz-out-none-all .xyz-out-nested,.xyz-none.xyz-appear,.xyz-appear-none.xyz-appear,.xyz-appear .xyz-none.xyz-nested,.xyz-appear .xyz-none.xyz-appear-nested,.xyz-appear .xyz-appear-none.xyz-nested,.xyz-appear .xyz-appear-none.xyz-appear-nested,.xyz-appear.xyz-none-all,.xyz-appear.xyz-appear-none-all,.xyz-appear.xyz-none-all .xyz-nested,.xyz-appear.xyz-none-all .xyz-appear-nested,.xyz-appear.xyz-appear-none-all .xyz-nested,.xyz-appear.xyz-appear-none-all .xyz-appear-nested{
-animation:none !important;
+animation:none;
+}
 }
 @media (prefers-reduced-motion:reduce){
+@layer xyz.overrides{
 .xyz-appear,.xyz-appear .xyz-nested,.xyz-appear .xyz-appear-nested,.xyz-out,.xyz-out .xyz-nested,.xyz-out .xyz-out-nested,.xyz-in,.xyz-in .xyz-nested,.xyz-in .xyz-in-nested{
 animation:none;
 }
 }
+}
+@layer xyz.utilities{
 [data-xyz]{
 --xyz-keyframes:initial;
 --xyz-in-keyframes:initial;
@@ -449,6 +465,8 @@ animation:none;
 --xyz-out-skew-y:inherit;
 --xyz-appear-skew-y:inherit;
 }
+}
+@layer xyz.utilities{
 [data-xyz~=ease]{
 --xyz-ease:var(--xyz-ease-default);
 }
@@ -4944,4 +4962,5 @@ animation:none;
 }
 [data-xyz~=appear-skew-down-5]{
 --xyz-appear-skew-y:calc(50deg * -1);
+}
 }

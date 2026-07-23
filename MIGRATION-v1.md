@@ -81,3 +81,28 @@ attribute (or use a custom attribute name), override `$xyz-attribute`:
 ```
 
 The variable defaults to `'data-xyz'`.
+
+## Browser floor: Baseline 2024
+
+v1.0 uses `@property` to register the typed dial custom properties, which moves
+the supported-browser floor to **Baseline 2024** (Chrome/Edge 111+, Safari
+16.4+, Firefox 128+). Older browsers that ran AnimXYZ 0.x will no longer get the
+typed dials (animations degrade rather than break). No action is needed if your
+support matrix already sits at or above this floor.
+
+## Cascade layers replace `!important`
+
+v1.0 emits all CSS inside `@layer xyz` (with ordered sublayers) and no longer
+uses `!important` anywhere. This changes the override contract:
+
+- **Unlayered author CSS now beats AnimXYZ by default.** If you previously
+  fought AnimXYZ's `!important` rules with your own `!important`, you can drop
+  it — plain author styles already win now.
+- **To lose to AnimXYZ on purpose**, declare your styles in a layer *before*
+  `xyz`: `@layer base, xyz;` then put the styles in `@layer base { … }`.
+- The `absolute` / `paused` / `none` classes and `prefers-reduced-motion`
+  behavior are unchanged in effect — they now win by layer position instead of
+  `!important`.
+
+Set `$xyz-layer: ''` (Sass) to emit unlayered CSS if you can't adopt cascade
+layers yet.

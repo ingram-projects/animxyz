@@ -9,9 +9,21 @@
 $xyz-attribute: 'data-xyz' !default;
 
 
+// CASCADE LAYER
+
+// Top-level cascade layer name. v1.0 emits all output inside an `@layer`
+// so precedence is decided by declaration, not source order or `!important`.
+// Set to '' (empty string) to emit unlayered CSS (the escape hatch for
+// consumers who cannot use cascade layers yet).
+$xyz-layer: 'xyz' !default;
+
+
 // MODES
 
-$xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity
+// Order no longer carries any cascade meaning: the `@layer` sublayer order
+// (with `appear` pinned last) decides trigger precedence, so `$xyz-modes`
+// may be listed in any order.
+$xyz-modes: ['in', 'out', 'appear',] !default;
 $xyz-modes-all: list.join('all', $xyz-modes);
 
 
