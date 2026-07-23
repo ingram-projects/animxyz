@@ -124,3 +124,12 @@ The ladder still ships as the fallback, so there's nothing to change.
 The animation mixin no longer emits `backface-visibility: visible`. It only
 re-forced the CSS initial value; the only behavior change is for code that
 relied on AnimXYZ re-forcing it. Set it yourself if you need it.
+
+## Removed internal `--xyz-*-calc` shim variables
+
+The undocumented `--xyz-stagger-delay-calc` / `--xyz-total-delay-calc` /
+`--xyz-*-calc` shim variables (a workaround for a long-fixed postcss-calc bug)
+are gone; the `calc()` expressions are written directly into
+`--xyz-stagger-delay`, `--xyz-total-delay`, and `animation-delay`. These names
+were never part of the public API, so this only affects code that read them
+directly.
