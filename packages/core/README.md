@@ -68,3 +68,18 @@ This package requires **Dart Sass** to compile `src/*.scss` (see `sass` in
 `string.split()`, which was added in Dart Sass 1.57. If you `@use` this
 package's `src/*.scss` directly (rather than consuming the prebuilt
 `dist/animxyz.css`), make sure your own Sass compiler is at least 1.57.
+
+## Browser support
+
+AnimXYZ v1.0 targets **Baseline 2024** (Chrome/Edge 111+, Safari 16.4+,
+Firefox 128+). This is the floor for `@property`, which v1 uses to register the
+typed dial custom properties (`--xyz-opacity`, `--xyz-translate-x`, `--xyz-rotate-z`,
+…). The registered dials are the `all`-mode bottom-tier variables only; the
+mode-specific dials (`--xyz-in-*`, `--xyz-out-*`, `--xyz-appear-*`) are left
+unregistered so the mode cascade's `var()` fallthrough keeps working.
+
+Registering with `inherits: true` and an identity `initial-value` keeps the
+compiled output behaving exactly as before while adding type safety: a garbage
+value assigned to a registered dial (e.g. `--xyz-opacity: red`) is rejected at
+computed-value time and falls back to the typed initial value instead of
+poisoning the animation.

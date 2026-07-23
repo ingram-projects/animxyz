@@ -218,6 +218,8 @@ $xyz-variables-map: (
   ),
   'opacity': (
     'type': 'opacity',
+    'syntax': '<number>',
+    'initial': 1,
   ),
   'transform': (
     'type': 'transform',
@@ -228,46 +230,68 @@ $xyz-variables-map: (
   'translate-x': (
     'type': 'translate',
     'axis': 'x',
+    'syntax': '<length-percentage>',
+    'initial': 0px,
   ),
   'translate-y': (
     'type': 'translate',
     'axis': 'y',
+    'syntax': '<length-percentage>',
+    'initial': 0px,
   ),
   'translate-z': (
     'type': 'translate',
     'axis': 'z',
+    'syntax': '<length>',
+    'initial': 0px,
   ),
   'rotate-x': (
     'type': 'rotate',
     'axis': 'x',
+    'syntax': '<angle>',
+    'initial': 0deg,
   ),
   'rotate-y': (
     'type': 'rotate',
     'axis': 'y',
+    'syntax': '<angle>',
+    'initial': 0deg,
   ),
   'rotate-z': (
     'type': 'rotate',
     'axis': 'z',
+    'syntax': '<angle>',
+    'initial': 0deg,
   ),
   'scale-x': (
     'type': 'scale',
     'axis': 'x',
+    'syntax': '<number>',
+    'initial': 1,
   ),
   'scale-y': (
     'type': 'scale',
     'axis': 'y',
+    'syntax': '<number>',
+    'initial': 1,
   ),
   'scale-z': (
     'type': 'scale',
     'axis': 'z',
+    'syntax': '<number>',
+    'initial': 1,
   ),
   'skew-x': (
     'type': 'skew',
     'axis': 'x',
+    'syntax': '<angle>',
+    'initial': 0deg,
   ),
   'skew-y': (
     'type': 'skew',
     'axis': 'y',
+    'syntax': '<angle>',
+    'initial': 0deg,
   ),
 );
 

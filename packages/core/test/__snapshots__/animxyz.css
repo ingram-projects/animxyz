@@ -1,3 +1,63 @@
+@property --xyz-opacity{
+syntax:"<number>";
+inherits:true;
+initial-value:1;
+}
+@property --xyz-translate-x{
+syntax:"<length-percentage>";
+inherits:true;
+initial-value:0px;
+}
+@property --xyz-translate-y{
+syntax:"<length-percentage>";
+inherits:true;
+initial-value:0px;
+}
+@property --xyz-translate-z{
+syntax:"<length>";
+inherits:true;
+initial-value:0px;
+}
+@property --xyz-rotate-x{
+syntax:"<angle>";
+inherits:true;
+initial-value:0deg;
+}
+@property --xyz-rotate-y{
+syntax:"<angle>";
+inherits:true;
+initial-value:0deg;
+}
+@property --xyz-rotate-z{
+syntax:"<angle>";
+inherits:true;
+initial-value:0deg;
+}
+@property --xyz-scale-x{
+syntax:"<number>";
+inherits:true;
+initial-value:1;
+}
+@property --xyz-scale-y{
+syntax:"<number>";
+inherits:true;
+initial-value:1;
+}
+@property --xyz-scale-z{
+syntax:"<number>";
+inherits:true;
+initial-value:1;
+}
+@property --xyz-skew-x{
+syntax:"<angle>";
+inherits:true;
+initial-value:0deg;
+}
+@property --xyz-skew-y{
+syntax:"<angle>";
+inherits:true;
+initial-value:0deg;
+}
 @keyframes xyz-in-keyframes{
 from{
 opacity:var(--xyz-in-opacity,var(--xyz-opacity,1));
@@ -17,14 +77,7 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 }
 }
 :root{
---xyz-perspective-none:0;
-}
-@supports (transform:perspective(none)){
-:root{
 --xyz-perspective-none:none;
-}
-}
-:root{
 --xyz-keyframes-default:none;
 --xyz-ease-default:ease;
 --xyz-duration-default:0.5s;

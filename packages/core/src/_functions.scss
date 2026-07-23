@@ -49,6 +49,37 @@
   }
 }
 
+// Registers the typed dial custom properties via @property. Only the
+// `all`-mode bottom-tier dials are registered (e.g. `--xyz-opacity`,
+// `--xyz-translate-x`) — never the mode-specific ones (`--xyz-in-opacity`).
+//
+// This is deliberate and load-bearing: `xyz-var()` builds a mode cascade of
+// the form `var(--xyz-<mode>-<name>, var(--xyz-<name>, <identity>))`, which
+// depends on the mode-specific var being *unset/guaranteed-invalid* so it
+// falls through to the all-mode dial. Giving a mode-specific var an
+// @property initial-value would make it always-valid, silently killing that
+// fallthrough (e.g. a plain `fade` would stop fading because `--xyz-in-opacity`
+// would resolve to its initial value instead of deferring to `--xyz-opacity`).
+//
+// The all-mode dials are the bottom tier — below them is only the hard-coded
+// identity fallback in the keyframes — so registering them with
+// `initial-value == identity` preserves behavior exactly while adding type
+// safety and (where the platform uses it) interpolation. `inherits: true` is
+// required so nested composition and the stagger relay keep inheriting dials.
+@mixin xyz-make-properties() {
+  @each $name, $variable in $xyz-variables-map {
+    $syntax: map.get($variable, 'syntax');
+
+    @if $syntax != null {
+      @property --xyz-#{$name} {
+        syntax: '#{$syntax}';
+        inherits: true;
+        initial-value: #{map.get($variable, 'initial')};
+      }
+    }
+  }
+}
+
 @mixin xyz-set-all($val) {
   // For every variable and mode set to val
   @each $name, $variable in $xyz-variables-map {

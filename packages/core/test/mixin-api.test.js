@@ -181,3 +181,43 @@ test('xyz-apply: unknown utility token raises a Sass @error', () => {
 	assert.notEqual(result.status, 0, 'expected an unknown utility token to fail to compile')
 	assert.match(result.stderr, /notautility is not a valid xyz utility\./)
 })
+
+test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
+	const result = compileSass('test/fixtures/xyz-make-properties.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// Registered with the correct type, inheritance, and identity initial-value.
+	// The initial-value MUST equal the keyframe identity fallback so registration
+	// stays behavior-preserving.
+	assert.match(
+		result.stdout,
+		/@property --xyz-opacity \{\s*syntax: "<number>";\s*inherits: true;\s*initial-value: 1;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-translate-x \{\s*syntax: "<length-percentage>";\s*inherits: true;\s*initial-value: 0px;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-rotate-z \{\s*syntax: "<angle>";\s*inherits: true;\s*initial-value: 0deg;\s*\}/
+	)
+
+	// A garbage value assigned to a registered dial (e.g. `--xyz-opacity: red`)
+	// is rejected at computed-value time and falls back to the typed
+	// initial-value instead of poisoning the animation — that is the type-safety
+	// this registration buys.
+
+	// CRITICAL INVARIANT: mode-specific dials are NEVER registered. Registering
+	// them with an initial-value would make them always-valid and kill the
+	// `var(--xyz-<mode>-<name>, var(--xyz-<name>, …))` fallthrough that the mode
+	// cascade depends on (a plain `fade` would stop fading).
+	assert.doesNotMatch(result.stdout, /@property --xyz-in-opacity\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-out-translate-x\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-appear-scale-y\b/)
+
+	// Freeform/keyword-bearing vars stay unregistered (registration buys nothing
+	// or cannot express the value, e.g. perspective's `none`).
+	assert.doesNotMatch(result.stdout, /@property --xyz-perspective\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-transform\b/)
+})

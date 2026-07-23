@@ -5,7 +5,10 @@
 
 @mixin xyz-core() {
   @include xyz-include-once('core') {
-    
+
+    // registers the typed dial custom properties (@property)
+    @include xyz-make-properties;
+
     // generates core keyframes
     @include xyz-make-keyframes('keyframes', false) using ($mode) {
       from {
@@ -39,11 +42,9 @@
 
     // sets defaults for xyz variables
     :root {
-      --xyz-perspective-none: 0;
-
-      @supports (transform: perspective(none)) {
-        --xyz-perspective-none: none;
-      }
+      // `perspective(none)` is universally supported at the v1 browser floor
+      // (Baseline 2024), so the old @supports feature-test is no longer needed.
+      --xyz-perspective-none: none;
 
       @each $name, $val in $xyz-defaults-map {
         --xyz-#{$name}-default: #{$val};
