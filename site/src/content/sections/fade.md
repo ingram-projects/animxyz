@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" ${data.utilitiesString && `xyz="${data.utilitiesString}"`}></div>
+          <div class="square ${data.mode}" ${data.utilitiesString && `data-xyz="${data.utilitiesString}"`}></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition ${data.utilitiesString && `xyz="${data.utilitiesString}"`}>
+          <XyzTransition ${data.utilitiesString && `data-xyz="${data.utilitiesString}"`}>
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -61,7 +61,7 @@ modifiers:
 
 Fade is one of the most commonly used animations and combines well other animations.
 
-Fade utilities and variables define the starting (`.xyz-in`) or ending (`.xyz-out`) [opacity](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity) of the animating element. Apply `xyz="fade"` to an element to use the default value, or use one of the utilities like `xyz="fade-50%"` to fade from and to a predefined value.
+Fade utilities and variables define the starting (`.xyz-in`) or ending (`.xyz-out`) [opacity](https://developer.mozilla.org/en-US/docs/Web/CSS/opacity) of the animating element. Apply `data-xyz="fade"` to an element to use the default value, or use one of the utilities like `data-xyz="fade-50%"` to fade from and to a predefined value.
 
 You can also override `--xyz-opacity` with a custom value in your CSS or with inline styling for more granular control.
 

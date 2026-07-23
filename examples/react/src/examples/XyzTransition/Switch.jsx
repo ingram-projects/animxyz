@@ -16,9 +16,9 @@ export default function Example() {
 	return (
 		<div className="example-wrap flex-col">
 			<XyzTransition appear mode="out-in">
-				{shapes[shapeIndex] === 'square' && <div className="square" xyz="fade left-100%" key="square" />}
-				{shapes[shapeIndex] === 'circle' && <div className="circle" xyz="fade up-100%" key="circle" />}
-				{shapes[shapeIndex] === 'triangle' && <div className="triangle" xyz="fade right-100%" key="triangle" />}
+				{shapes[shapeIndex] === 'square' && <div className="square" data-xyz="fade left-100%" key="square" />}
+				{shapes[shapeIndex] === 'circle' && <div className="circle" data-xyz="fade up-100%" key="circle" />}
+				{shapes[shapeIndex] === 'triangle' && <div className="triangle" data-xyz="fade right-100%" key="triangle" />}
 			</XyzTransition>
 			<button className="example-button mt-l" onClick={changeShape}>
 				Click to switch

@@ -30,14 +30,14 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       <section class="hero__wrap">
         <h1
           class="intro-text xyz-appear xyz-paused-all"
-          xyz="fade small-2 duration-7 ease-out delay-1"
+          data-xyz="fade small-2 duration-7 ease-out delay-1"
         >
           The first composable{" "}<br />CSS animation toolkit.
         </h1>
 
         <div
           class="tech-logos__wrap xyz-none xyz-appear xyz-paused-all"
-          xyz="fade down small-2 stagger-3 ease-out delay-2"
+          data-xyz="fade down small-2 stagger-3 ease-out delay-2"
         >
           <Fragment set:html={IconVue.replace('<svg', '<svg class="icon-svg icon-vue xyz-nested"')} />
           <Fragment set:html={IconReact.replace('<svg', '<svg class="icon-svg icon-react xyz-nested"')} />
@@ -46,7 +46,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
 
         <div
           class="links__wrap xyz-appear xyz-paused-all"
-          xyz="fade narrow-100% stagger-3 ease-out delay-3"
+          data-xyz="fade narrow-100% stagger-3 ease-out delay-3"
         >
           <a
             class="cta-button github-link xyz-nested"
@@ -54,19 +54,19 @@ import { indexSandboxProps } from '~/data/indexSandbox'
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+            <div class="cta-content xyz-nested" data-xyz="fade big-100% ease-out delay-5">
               <Fragment set:html={IconGithub} />
               <span>GitHub</span>
             </div>
           </a>
           <a class="cta-button sandbox-link xyz-nested" href="#sandbox">
-            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+            <div class="cta-content xyz-nested" data-xyz="fade big-100% ease-out delay-5">
               <Fragment set:html={IconSandbox} />
               <span>Try it out</span>
             </div>
           </a>
           <a class="cta-button docs-link xyz-nested" href="/docs">
-            <div class="cta-content xyz-nested" xyz="fade big-100% ease-out delay-5">
+            <div class="cta-content xyz-nested" data-xyz="fade big-100% ease-out delay-5">
               <Fragment set:html={IconDocs} />
               <span>Documentation</span>
             </div>
@@ -77,7 +77,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       <div class="copy__wrap copy-content">
         <section
           class="about-section xyz-appear xyz-paused-all"
-          xyz="fade down ease-out delay-2"
+          data-xyz="fade down ease-out delay-2"
         >
           <div class="about-text">
             <p>
@@ -91,13 +91,13 @@ import { indexSandboxProps } from '~/data/indexSandbox'
 
         <section
           class="features-section xyz-none xyz-appear xyz-paused-all"
-          xyz="fade front-1 stagger-2 ease-out delay-2"
+          data-xyz="fade front-1 stagger-2 ease-out delay-2"
         >
           <div class="feature feature-composable xyz-nested">
             <h3>Composable</h3>
             <p>
               Making an animation is as simple as describing it in words. Combine a fade with a scale and drop it
-              from the top! <code class="text--nowrap">xyz="fade small up"</code>
+              from the top! <code class="text--nowrap">data-xyz="fade small up"</code>
             </p>
             <div class="shine" data-shine></div>
           </div>
@@ -147,7 +147,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
 
     <section
       class="used-by copy-content xyz-appear xyz-paused-all"
-      xyz="fade down ease-out delay-2"
+      data-xyz="fade down ease-out delay-2"
     >
       <h3>AnimXYZ is used by:</h3>
       <ul class="used-by__list">
@@ -168,7 +168,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
 
     <footer
       class="created-by copy-content xyz-appear xyz-paused-all"
-      xyz="fade down ease-out delay-2"
+      data-xyz="fade down ease-out delay-2"
     >
       <p>
         Created by <a href="https://milesingram.me/" target="_blank" rel="noopener noreferrer">Miles Ingram</a>
@@ -190,7 +190,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       </p>
     </footer>
 
-    <div class="sandbox__wrap xyz-appear xyz-paused-all" xyz="fade duration-10 delay-2">
+    <div class="sandbox__wrap xyz-appear xyz-paused-all" data-xyz="fade duration-10 delay-2">
       <Sandbox
         client:visible
         id="sandbox"
@@ -200,7 +200,7 @@ import { indexSandboxProps } from '~/data/indexSandbox'
       />
     </div>
 
-    <div class="dark-mode-toggle__wrap xyz-appear xyz-paused-all" xyz="fade duration-10 delay-2">
+    <div class="dark-mode-toggle__wrap xyz-appear xyz-paused-all" data-xyz="fade duration-10 delay-2">
       <DarkModeToggle client:idle />
     </div>
   </main>

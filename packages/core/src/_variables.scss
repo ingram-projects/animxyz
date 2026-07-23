@@ -1,6 +1,14 @@
 @use 'sass:list';
 @use 'sass:map';
 
+// ATTRIBUTE
+
+// The HTML attribute AnimXYZ reads its configuration from. v1.0 emits
+// standards-conforming `data-xyz` selectors. Override to build the library
+// against the legacy `xyz` attribute (or any custom name) if needed.
+$xyz-attribute: 'data-xyz' !default;
+
+
 // MODES
 
 $xyz-modes: ['in', 'out', 'appear',]; // Appear must come last for specificity

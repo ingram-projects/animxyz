@@ -2,7 +2,7 @@
   <div class="code-examples">
     <TabBar :tabs="examples" v-if="examples.length > 1" v-model="activeExample"></TabBar>
 
-    <XyzTransition xyz="fade" mode="out-in">
+    <XyzTransition data-xyz="fade" mode="out-in">
       <div class="examples-sections" v-if="activeExample">
         <div class="example-template">
           <component

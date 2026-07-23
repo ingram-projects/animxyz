@@ -3,6 +3,7 @@ import { TransitionGroup } from 'react-transition-group'
 import XyzTransitionBase from './XyzTransitionBase'
 function XyzTransitionGroup(props) {
 	const {
+		xyz,
 		appearVisible,
 		duration,
 		mountOnEnter,
@@ -35,7 +36,7 @@ function XyzTransitionGroup(props) {
 	const childArray = Children.toArray(children).filter(isValidElement)
 
 	return (
-		<TransitionGroup {...rest}>
+		<TransitionGroup {...rest} data-xyz={xyz}>
 			{childArray.map((child, index) => (
 				<XyzTransitionBase
 					{...baseProps}

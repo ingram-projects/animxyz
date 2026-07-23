@@ -7,7 +7,7 @@ examples:
   - name: xyz-none
     template: |
       <div class="example-wrap">
-        <XyzTransition duration="auto" xyz="fade small-100%" v-on="data.listeners">
+        <XyzTransition duration="auto" data-xyz="fade small-100%" v-on="data.listeners">
           <div class="example-grid example-grid-2 xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
           </div>
@@ -18,7 +18,7 @@ examples:
         content: |
           ##html
           <div class="example-wrap">
-            <div xyz="fade small-100%">
+            <div data-xyz="fade small-100%">
               <div class="example-grid example-grid-2 xyz-none ${data.mode}">
                 <div class="square xyz-nested"></div>
                 <div class="square xyz-nested"></div>
@@ -31,7 +31,7 @@ examples:
         content: |
           ##vue
           <div class="example-wrap">
-            <XyzTransition duration="auto" xyz="fade small-100%">
+            <XyzTransition duration="auto" data-xyz="fade small-100%">
               <div class="example-grid example-grid-2 xyz-none" v-if="${data.toggled}">
                 <div class="square xyz-nested" v-for="index in 4" :key="index"></div>
               </div>
@@ -51,8 +51,8 @@ examples:
     template: |
       <div class="example-wrap">
         <XyzTransition v-on="data.listeners">
-          <div class="square xyz-absolute" xyz="fade up-100%" v-if="data.toggled" key="1"></div>
-          <div class="square xyz-absolute" xyz="fade down-100%" v-if="!data.toggled" key="2"></div>
+          <div class="square xyz-absolute" data-xyz="fade up-100%" v-if="data.toggled" key="1"></div>
+          <div class="square xyz-absolute" data-xyz="fade down-100%" v-if="!data.toggled" key="2"></div>
         </XyzTransition>
       </div>
     code:
@@ -60,16 +60,16 @@ examples:
         content: |
           ##html
           <div class="example-wrap">
-            <div class="square xyz-absolute ${data.toggled ? 'xyz-in' : 'xyz-out'}" xyz="fade up-100%"></div>
-            <div class="square xyz-absolute ${data.toggled ? 'xyz-out' : 'xyz-in'}" xyz="fade down-100%"></div>
+            <div class="square xyz-absolute ${data.toggled ? 'xyz-in' : 'xyz-out'}" data-xyz="fade up-100%"></div>
+            <div class="square xyz-absolute ${data.toggled ? 'xyz-out' : 'xyz-in'}" data-xyz="fade down-100%"></div>
           </div>
       - name: Vue
         content: |
           ##vue
           <div class="example-wrap">
             <XyzTransition>
-              <div class="square xyz-absolute" xyz="fade up-100%" v-if="${data.toggled}" key="1"></div>
-              <div class="square xyz-absolute" xyz="fade down-100%" v-if="${!data.toggled}" key="2"></div>
+              <div class="square xyz-absolute" data-xyz="fade up-100%" v-if="${data.toggled}" key="1"></div>
+              <div class="square xyz-absolute" data-xyz="fade down-100%" v-if="${!data.toggled}" key="2"></div>
             </XyzTransition>
           </div>
       - name: React
@@ -78,10 +78,10 @@ examples:
           <div className="example-wrap">
             <XyzTransition>
               {${data.toggled} && (
-                <div className="square xyz-absolute" xyz="fade up-100%" key="1"></div>
+                <div className="square xyz-absolute" data-xyz="fade up-100%" key="1"></div>
               )}
               {${!data.toggled} && (
-                <div className="square xyz-absolute" xyz="fade down-100%" key="2"></div>
+                <div className="square xyz-absolute" data-xyz="fade down-100%" key="2"></div>
               )}
             </XyzTransition>
           </div>
@@ -93,7 +93,7 @@ examples:
           ##html
           <div
             class="example-grid"
-            xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+            data-xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
           >
             <div
               class="square ${data.mode}${data.paused ? ' xyz-paused' : ''}"
@@ -115,7 +115,7 @@ examples:
             class="example-grid"
             appear
             duration="auto"
-            xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+            data-xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
           >
             <div
               class="square"

@@ -155,12 +155,12 @@
     }
 
     // resets all xyz variables
-    [xyz] {
+    [#{$xyz-attribute}] {
       @include xyz-set-all(initial);
     }
 
     // inherits all xyz variables
-    [xyz~='inherit'] {
+    [#{$xyz-attribute}~='inherit'] {
       @include xyz-set-all(inherit);
     }
   }

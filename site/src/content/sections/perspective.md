@@ -7,7 +7,7 @@ examples:
   - name: Perspective
     template: |
       <div class="example-wrap perspective-none">
-        <XyzTransition xyz="fade flip-left" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition data-xyz="fade flip-left" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" data-xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition data-xyz="fade flip-left${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 

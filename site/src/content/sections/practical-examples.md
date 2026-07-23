@@ -11,26 +11,26 @@ examples:
         content: |
           ##html
           <div class="page-wrap xyz-in">
-            <div class="page-hero" xyz="fade small stagger ease-out-back">
+            <div class="page-hero" data-xyz="fade small stagger ease-out-back">
               <div class="hero-logo xyz-nested"></div>
               <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
             </div>
-            <div class="page-features" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+            <div class="page-features" data-xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
               <div class="feature-item xyz-nested"></div>
               <div class="feature-item xyz-nested"></div>
               <div class="feature-item xyz-nested"></div>
             </div>
-            <div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
-              <div class="section-left" xyz="fade left stagger">
+            <div class="page-section" data-xyz="fade small stagger delay-4 ease-in-out">
+              <div class="section-left" data-xyz="fade left stagger">
                 <div class="section-item xyz-nested"></div>
                 <div class="section-item xyz-nested"></div>
                 <div class="section-item xyz-nested"></div>
               </div>
-              <div class="section-right xyz-nested" xyz="fade big delay-10"></div>
+              <div class="section-right xyz-nested" data-xyz="fade big delay-10"></div>
             </div>
-            <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
-              <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
-              <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+            <div class="page-footer" data-xyz="fade bottom ease-in-out delay-10">
+              <div class="footer-logo xyz-nested" data-xyz="fade left ease-in-out delay-10"></div>
+              <div class="footer-right" data-xyz="fade up stagger ease-in-out delay-10">
                 <div class="footer-item xyz-nested"></div>
                 <div class="footer-item xyz-nested"></div>
                 <div class="footer-item xyz-nested"></div>
@@ -42,26 +42,26 @@ examples:
           ##vue
           <XyzTransition appear duration="auto">
             <div class="page-wrap">
-              <div class="page-hero" xyz="fade small stagger ease-out-back">
+              <div class="page-hero" data-xyz="fade small stagger ease-out-back">
                 <div class="hero-logo xyz-nested"></div>
                 <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
               </div>
-              <div class="page-features" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+              <div class="page-features" data-xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
                 <div class="feature-item xyz-nested"></div>
                 <div class="feature-item xyz-nested"></div>
                 <div class="feature-item xyz-nested"></div>
               </div>
-              <div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
-                <div class="section-left" xyz="fade left stagger">
+              <div class="page-section" data-xyz="fade small stagger delay-4 ease-in-out">
+                <div class="section-left" data-xyz="fade left stagger">
                   <div class="section-item xyz-nested"></div>
                   <div class="section-item xyz-nested"></div>
                   <div class="section-item xyz-nested"></div>
                 </div>
-                <div class="section-right xyz-nested" xyz="fade big delay-10"></div>
+                <div class="section-right xyz-nested" data-xyz="fade big delay-10"></div>
               </div>
-              <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
-                <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
-                <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+              <div class="page-footer" data-xyz="fade bottom ease-in-out delay-10">
+                <div class="footer-logo xyz-nested" data-xyz="fade left ease-in-out delay-10"></div>
+                <div class="footer-right" data-xyz="fade up stagger ease-in-out delay-10">
                   <div class="footer-item xyz-nested"></div>
                   <div class="footer-item xyz-nested"></div>
                   <div class="footer-item xyz-nested"></div>
@@ -74,26 +74,26 @@ examples:
           ##jsx
           <XyzTransition appear duration="auto">
             <div class="page-wrap">
-              <div class="page-hero" xyz="fade small stagger ease-out-back">
+              <div class="page-hero" data-xyz="fade small stagger ease-out-back">
                 <div class="hero-logo xyz-nested"></div>
                 <p class="hero-text xyz-nested">Curabitur blandit tempus porttitor. Morbi leo risus.</p>
               </div>
-              <div class="page-features" xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
+              <div class="page-features" data-xyz="fade flip-down stagger duration-10 delay-2 ease-out-back">
                 <div class="feature-item xyz-nested"></div>
                 <div class="feature-item xyz-nested"></div>
                 <div class="feature-item xyz-nested"></div>
               </div>
-              <div class="page-section" xyz="fade small stagger delay-4 ease-in-out">
-                <div class="section-left" xyz="fade left stagger">
+              <div class="page-section" data-xyz="fade small stagger delay-4 ease-in-out">
+                <div class="section-left" data-xyz="fade left stagger">
                   <div class="section-item xyz-nested"></div>
                   <div class="section-item xyz-nested"></div>
                   <div class="section-item xyz-nested"></div>
                 </div>
-                <div class="section-right xyz-nested" xyz="fade big delay-10"></div>
+                <div class="section-right xyz-nested" data-xyz="fade big delay-10"></div>
               </div>
-              <div class="page-footer" xyz="fade bottom ease-in-out delay-10">
-                <div class="footer-logo xyz-nested" xyz="fade left ease-in-out delay-10"></div>
-                <div class="footer-right" xyz="fade up stagger ease-in-out delay-10">
+              <div class="page-footer" data-xyz="fade bottom ease-in-out delay-10">
+                <div class="footer-logo xyz-nested" data-xyz="fade left ease-in-out delay-10"></div>
+                <div class="footer-right" data-xyz="fade up stagger ease-in-out delay-10">
                   <div class="footer-item xyz-nested"></div>
                   <div class="footer-item xyz-nested"></div>
                   <div class="footer-item xyz-nested"></div>
@@ -107,7 +107,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup appear class="example-grid cat-grid" xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
+          <XyzTransitionGroup appear class="example-grid cat-grid" data-xyz="fade duration-5 appear-front-3 small-3 appear-small-0 stagger-2 out-stagger-0">
             <div class="square" v-for="index in numCats" :key="index">
               <img class="item-image" :src="\`https://cataas.com/cat?type=small&id=\${index}\`" alt="Picture of a cat"
               />
@@ -130,16 +130,16 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition duration="auto" xyz="fade out-delay-5">
+          <XyzTransition duration="auto" data-xyz="fade out-delay-5">
             <div class="modal-overlay" v-if="modalOpen" @click="modalOpen = false">
-              <div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
-                <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
-                  <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                  <button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="modalOpen = false"></button>
+              <div class="modal xyz-nested" data-xyz="fade short-100% delay-3 ease-out-back" @click.stop>
+                <div class="modal-header xyz-nested" data-xyz="up-100% in-delay-3">
+                  <h1 class="xyz-nested" data-xyz="fade left in-delay-6">I am a modal</h1>
+                  <button data-xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="modalOpen = false"></button>
                 </div>
                 <div class="modal-body"></div>
-                <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
-                  <button class="modal-button xyz-nested" xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
+                <div class="modal-footer xyz-nested" data-xyz="down-100% in-delay-3">
+                  <button class="modal-button xyz-nested" data-xyz="fade in-right in-delay-7" @click="modalOpen = false">Close</button>
                 </div>
               </div>
             </div>
@@ -150,14 +150,14 @@ examples:
           <XyzTransition duration="auto" xyz="fade out-delay-5">
             { modalOpen && (
               <div className="modal-overlay" onClick={closeModal}>
-                <div className="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back">
-                  <div className="modal-header xyz-nested" xyz="up-100% in-delay-3">
-                    <h1 className="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-                    <button xyz="fade small in-delay-7" className="modal-close xyz-nested" onClick={closeModal}></button>
+                <div className="modal xyz-nested" data-xyz="fade short-100% delay-3 ease-out-back">
+                  <div className="modal-header xyz-nested" data-xyz="up-100% in-delay-3">
+                    <h1 className="xyz-nested" data-xyz="fade left in-delay-6">I am a modal</h1>
+                    <button data-xyz="fade small in-delay-7" className="modal-close xyz-nested" onClick={closeModal}></button>
                   </div>
                   <div className="modal-body"></div>
-                  <div className="modal-footer xyz-nested" xyz="down-100% in-delay-3">
-                    <button className="modal-button xyz-nested" xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
+                  <div className="modal-footer xyz-nested" data-xyz="down-100% in-delay-3">
+                    <button className="modal-button xyz-nested" data-xyz="fade in-right in-delay-7" onClick={closeModal}>Close</button>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ examples:
               class="example-tabs"
               appear
               duration="auto"
-              xyz="fade flip-down origin-bottom stagger-1 delay-5"
+              data-xyz="fade flip-down origin-bottom stagger-1 delay-5"
             >
               <button
                 class="example-tab"
@@ -187,10 +187,10 @@ examples:
               </button>
             </XyzTransitionGroup>
 
-            <div xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="tabDirectionXyz">
+            <div data-xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="tabDirectionXyz">
               <XyzTransition appear>
                 <div class="example-tab-contents xyz-out-absolute" :key="activeTab">
-                  xyz="{{ tabDirectionXyz }}"
+                  data-xyz="{{ tabDirectionXyz }}"
                 </div>
               </XyzTransition>
             </div>
@@ -239,10 +239,10 @@ examples:
                 :class="{ 'chat-item--user': chatMessage.isUser }"
                 v-for="chatMessage in chatMessages"
                 :key="chatMessage.timestamp"
-                xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
+                data-xyz="duration-10 fade appear-front-3 ease-out-back appear-left-0"
                 v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
               >
-                <div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
+                <div class="chat-avatar xyz-nested" data-xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
                 {{ chatMessage.text }}
               </li>
             </XyzTransitionGroup>
@@ -267,7 +267,7 @@ examples:
                   key={chatMessage.timestamp}
                   xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
                 >
-                  <div className="chat-avatar xyz-nested" xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
+                  <div className="chat-avatar xyz-nested" data-xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
                   { chatMessage.text }
                 </li>
               ))}

@@ -62,7 +62,7 @@ examples:
             {[...Array(numElements)].map((_, index) => (
               <div className="item-block" key={index}>
                 {[...Array(4)].map((_, subIndex) => (
-                  <div className="square xyz-nested" xyz="fade small stagger" key={subIndex} />
+                  <div className="square xyz-nested" data-xyz="fade small stagger" key={subIndex} />
                 ))}
               </div>
             ))}

@@ -7,7 +7,7 @@ examples:
   - name: Transform
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition data-xyz="fade" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" data-xyz="fade${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition data-xyz="fade${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -66,12 +66,12 @@ modifiers:
 
 Translate, rotate, and scale your elements along any axis. We call it Anim**XYZ** for a reason!
 
-Transform utilities and variables define the starting (`.xyz-in`) or ending (`.xyz-out`) [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) of the animating element. For example `xyz="up"` will apply a `translateY()` to an element, translating it from above its normal position when animating in and to that same position when animating out.
+Transform utilities and variables define the starting (`.xyz-in`) or ending (`.xyz-out`) [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) of the animating element. For example `data-xyz="up"` will apply a `translateY()` to an element, translating it from above its normal position when animating in and to that same position when animating out.
 
 You can also override any of the provided transform variables with a custom value in your CSS or with inline styling for more granular control.
 
 ::: note
-If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
+If an element already has a transform applied to it that you want to maintain during the animation, pass it as custom values to the relevant CSS variables. For example if an element has `transform: translateX(-50%)` applied to it, and you want to use `data-xyz="up"`, you can set its `--xyz-translate-x` variable to `-50%` and it will maintain that translate through the entire up animation.
 :::
 
 ::: note [Warning]

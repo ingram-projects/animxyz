@@ -5,7 +5,7 @@
         class="example-tabs"
         appear
         duration="auto"
-        xyz="fade flip-down origin-bottom stagger-1 delay-5"
+        data-xyz="fade flip-down origin-bottom stagger-1 delay-5"
       >
         <button
           class="example-tab"
@@ -18,7 +18,7 @@
         </button>
       </XyzTransitionGroup>
 
-      <div xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="customData.tabDirectionXyz">
+      <div data-xyz="fade appear-short-100% origin-top ease-in-out duration-7" v-xyz="customData.tabDirectionXyz">
         <XyzTransition appear>
           <div class="example-tab-contents xyz-out-absolute" :key="customData.activeTab">
             {{ customData.tabDirectionXyz || 'Changes direction with tab index!' }}

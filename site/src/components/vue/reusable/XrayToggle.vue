@@ -21,7 +21,7 @@
 				<XyzTransition xyz duration="auto">
 					<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
 						<div class="xray-invert xyz-nested"></div>
-						<div class="xray-invert xyz-nested" xyz="inherit delay-4"></div>
+						<div class="xray-invert xyz-nested" data-xyz="inherit delay-4"></div>
 					</div>
 				</XyzTransition>
 			</button>

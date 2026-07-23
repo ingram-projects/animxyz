@@ -7,7 +7,7 @@ examples:
   - name: Stagger
     template: |
       <div class="example-wrap">
-        <XyzTransition duration="auto" xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition duration="auto" data-xyz="fade small" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="example-grid xyz-none" v-if="data.toggled">
             <div class="square xyz-nested" v-for="index in 8" :key="index"></div>
           </div>
@@ -17,7 +17,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="example-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <div class="example-grid" data-xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
             <div class="square ${data.mode}"></div>
@@ -36,7 +36,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="example-grid" xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransitionGroup class="example-grid" data-xyz="fade small${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}" v-for="index in 8" :key="index"></div>
           </XyzTransitionGroup>
 

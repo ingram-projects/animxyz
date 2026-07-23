@@ -100,11 +100,11 @@
   @each $mode in $utility-modes {
     @each $level in map.keys($levels) {
       @if $level == 'default' {
-        [xyz~='#{xyz-name($name, $mode)}'] {
+        [#{$xyz-attribute}~='#{xyz-name($name, $mode)}'] {
           @include xyz-utility($name, $mode, $level);
         }
       } @else {
-        [xyz~='#{xyz-name($name, $mode)}-#{$level}'] {
+        [#{$xyz-attribute}~='#{xyz-name($name, $mode)}-#{$level}'] {
           @include xyz-utility($name, $mode, $level);
         }
       }
@@ -121,7 +121,7 @@
 
   @if $make-utilities {
     @each $mode in $xyz-modes {
-      [xyz~=#{$name}], [xyz~=#{xyz-name($name, $mode)}] {
+      [#{$xyz-attribute}~=#{$name}], [#{$xyz-attribute}~=#{xyz-name($name, $mode)}] {
         --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{xyz-name($name, $mode)};
       }
     }

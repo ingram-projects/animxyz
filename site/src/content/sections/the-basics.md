@@ -7,7 +7,7 @@ examples:
   - name: Example 1
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade up big" v-on="data.listeners">
+        <XyzTransition data-xyz="fade up big" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,11 +15,11 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade up big"></div>
+          <div class="square ${data.mode}" data-xyz="fade up big"></div>
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade up big">
+          <XyzTransition data-xyz="fade up big">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
@@ -32,7 +32,7 @@ examples:
   - name: Example 2
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade down flip-up-50%" v-on="data.listeners">
+        <XyzTransition data-xyz="fade down flip-up-50%" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -40,11 +40,11 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade down flip-up-50%"></div>
+          <div class="square ${data.mode}" data-xyz="fade down flip-up-50%"></div>
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade down flip-up-50%">
+          <XyzTransition data-xyz="fade down flip-up-50%">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
       - name: React
@@ -60,12 +60,12 @@ AnimXYZ is an easy way to animate elements without all the boilerplate of writin
 For example here is how you make an element fade and shrink in from above:
 
 ```html
-<div class="xyz-in" xyz="fade up big">I will animate in!</div>
+<div class="xyz-in" data-xyz="fade up big">I will animate in!</div>
 ```
 Changing the class to `xyz-out` reverses the direction of the animation:
 
 ```html
-<div class="xyz-out" xyz="fade up big">I will animate out!</div>
+<div class="xyz-out" data-xyz="fade up big">I will animate out!</div>
 ```
 [See it in action here](<?tab=examples&example=Example 1#the-basics>)
 

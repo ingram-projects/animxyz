@@ -95,7 +95,7 @@ test('xyz-make-keyframes: emits per-mode @keyframes and utility selectors', () =
 	assert.match(result.stdout, /@keyframes xyz-in-fade \{/)
 	assert.match(result.stdout, /@keyframes xyz-out-fade \{/)
 	assert.match(result.stdout, /@keyframes xyz-appear-fade \{/)
-	assert.match(result.stdout, /\[xyz~=fade\], \[xyz~=in-fade\] \{/)
+	assert.match(result.stdout, /\[data-xyz~=fade\], \[data-xyz~=in-fade\] \{/)
 	assert.match(result.stdout, /--xyz-in-keyframes: xyz-in-fade;/)
 })
 

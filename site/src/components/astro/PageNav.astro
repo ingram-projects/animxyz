@@ -29,9 +29,9 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
     <span class="nav-button__text toggle-text">Menu</span>
   </button>
 
-  <nav class="page-nav" xyz="ease-in-out duration-3">
+  <nav class="page-nav" data-xyz="ease-in-out duration-3">
     <div class="nav-list__wrap">
-      <ul class="nav-list" xyz="fade left-3">
+      <ul class="nav-list" data-xyz="fade left-3">
         <li class="nav-item xyz-nested" style="--xyz-index: 0">
           <a class="nav-item__link link-home" href="/">
             <div class="link-dot__wrap">
@@ -64,7 +64,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
         }
       </ul>
     </div>
-    <div class="nav-extras" xyz="fade delay-3 small ease-out-back">
+    <div class="nav-extras" data-xyz="fade delay-3 small ease-out-back">
       <a class="github-link xyz-nested" href="https://github.com/ingram-projects/animxyz" target="_blank">
         <Fragment set:html={IconGithubSvg} />
         <span>GitHub</span>

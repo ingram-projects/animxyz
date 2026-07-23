@@ -2,7 +2,7 @@
   <div class="modifiers__wrap">
     <TabBar :tabs="computedGroups" v-if="computedGroups.length > 1" v-model="activeGroup"></TabBar>
 
-    <div class="modifiers-sections__wrap" xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
+    <div class="modifiers-sections__wrap" data-xyz="ease-in-out duration-3" v-xyz="tabDirectionXyz">
       <XyzTransition class="xyz-out-absolute">
         <div class="modifiers-sections" v-if="activeGroup && activeGroup.presets" key="Presets">
           <XyzModifiersPresets :presets="activeGroup.presets" @select-preset="onSelectPreset"></XyzModifiersPresets>
@@ -27,10 +27,10 @@
       </XyzTransition>
     </div>
 
-    <XyzTransition appear xyz="fade right skew-right-3 ease-out-back">
+    <XyzTransition appear data-xyz="fade right skew-right-3 ease-out-back">
       <button v-if="numActiveModifiers" class="clear-modifiers" @click="clearModifiers">
         Clear All
-        <XyzTransition mode="out-in" xyz="in-flip-right out-flip-left duration-1 ease-out">
+        <XyzTransition mode="out-in" data-xyz="in-flip-right out-flip-left duration-1 ease-out">
           <div class="num-active-modifiers" :key="numActiveModifiers">{{ numActiveModifiers }}</div>
         </XyzTransition>
       </button>
