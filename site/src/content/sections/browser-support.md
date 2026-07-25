@@ -12,6 +12,11 @@ which v1 uses to register its typed dial custom properties, and for
 Older browsers degrade gracefully — animations simply won't run rather than
 breaking the page.
 
+v1 also renamed the configuration attribute from `xyz` to the standards-conforming
+`data-xyz` (React's `xyz` prop and Vue's `v-xyz` directive keep their names and
+write `data-xyz` for you). See `MIGRATION-v1.md` in the repository for the full
+upgrade guide.
+
 ## Cascade layers & overrides
 
 All of AnimXYZ's CSS is emitted inside a single top-level `@layer xyz`, with

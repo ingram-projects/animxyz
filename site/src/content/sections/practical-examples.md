@@ -217,11 +217,11 @@ examples:
             </XyzTransitionGroup>
 
             <div
-              xyz={xyz('fade appear-short-100% origin-top ease-in-out duration-7', tabDirectionXyz)}
+              data-xyz={xyz('fade appear-short-100% origin-top ease-in-out duration-7', tabDirectionXyz)}
             >
               <XyzTransition appear>
                 <div className="example-tab-contents xyz-out-absolute" key={activeTab}>
-                  {\`xyz="\${tabDirectionXyz}"\`}
+                  {\`data-xyz="\${tabDirectionXyz}"\`}
                 </div>
               </XyzTransition>
             </div>
@@ -265,7 +265,7 @@ examples:
                 <li
                   className={\`chat-item \${chatMessage.isUser && 'chat-item--user'}\` }
                   key={chatMessage.timestamp}
-                  xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
+                  data-xyz={xyz('duration-10 fade appear-front-3 ease-out-back appear-left-0', { left: !chatMessage.isUser, right: chatMessage.isUser })}
                 >
                   <div className="chat-avatar xyz-nested" data-xyz="fade small in-delay-3">{ chatMessage.isUser ? '🐤' : '🐔' }</div>
                   { chatMessage.text }

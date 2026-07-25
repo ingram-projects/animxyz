@@ -27,10 +27,5 @@ declare module 'body-scroll-lock' {
   export function clearAllBodyScrollLocks(): void
 }
 
-// AnimXYZ uses an `xyz` attribute to declare animation utilities; allow it on
-// any HTML element so Astro's strict JSX types do not reject the markup.
-declare namespace astroHTML.JSX {
-  interface HTMLAttributes {
-    xyz?: string
-  }
-}
+// AnimXYZ uses a `data-xyz` attribute to declare animation utilities.
+// `data-*` is already valid on HTMLAttributes; keep this note for clarity.

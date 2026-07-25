@@ -4,7 +4,7 @@ id: sass-apply
 quote: "@include xyz-apply('fade up-100%')"
 ---
 
-If you author your styles in Sass you can compose AnimXYZ animations directly in your stylesheet with the `xyz-apply` mixin, instead of (or in addition to) putting `xyz` [utilities](#utilities) on your markup. It takes the same space-separated utility string you'd write in an `xyz` attribute and sets the corresponding CSS variables on the current selector.
+If you author your styles in Sass you can compose AnimXYZ animations directly in your stylesheet with the `xyz-apply` mixin, instead of (or in addition to) putting `data-xyz` [utilities](#utilities) on your markup. It takes the same space-separated utility string you'd write in a `data-xyz` attribute and sets the corresponding CSS variables on the current selector.
 
 ```scss
 @use '@animxyz/core' as *;
@@ -18,7 +18,7 @@ This is handy when the animation belongs to a component's styles rather than its
 
 ### Modes and levels
 
-Every [utility](#utilities) works, including [mode](#contexts) prefixes (`in-`, `out-`, `appear-`) and levels. Pass multiple utilities in one call just like an `xyz` attribute:
+Every [utility](#utilities) works, including [mode](#contexts) prefixes (`in-`, `out-`, `appear-`) and levels. Pass multiple utilities in one call just like a `data-xyz` attribute:
 
 ```scss
 .my-element {

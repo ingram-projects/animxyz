@@ -222,6 +222,26 @@ test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
 	// or cannot express the value, e.g. perspective's `none`).
 	assert.doesNotMatch(result.stdout, /@property --xyz-perspective\b/)
 	assert.doesNotMatch(result.stdout, /@property --xyz-transform\b/)
+
+	// Index vars are per-element (inherits: false). Stagger delay relays are
+	// registered as <time> so parent contributions compute before inheritance.
+	assert.match(
+		result.stdout,
+		/@property --xyz-index \{\s*syntax: "<number>";\s*inherits: false;\s*initial-value: 0;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-stagger-delay \{\s*syntax: "<time>";\s*inherits: true;\s*initial-value: 0s;\s*\}/
+	)
+})
+
+test('$xyz-attribute: remains overridable for legacy / custom attribute names', () => {
+	const result = compileSass('test/fixtures/xyz-attribute-override.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[xyz~=fade\]/)
+	assert.match(result.stdout, /(?<![\w-])\[xyz\]/)
+	assert.doesNotMatch(result.stdout, /\[data-xyz/)
 })
 
 test('cascade output is wrapped in @layer with the documented order', () => {

@@ -58,19 +58,19 @@ First-time setup needs at least one browser: `npx playwright install chromium`
   keyframes; utilities set variables for every category (fade, translate,
   rotate/flip, scale, skew, timing, origin, perspective) including levels and
   mode-scoped forms; stagger and stagger-rev delays by nth-child; nested
-  elements; variable scoping (`[xyz]` reset, `inherit`); `xyz-paused/none/absolute`
+  elements; variable scoping (`[data-xyz]` reset, `inherit`); `xyz-paused/none/absolute`
   toggles; animations run to completion; `prefers-reduced-motion`.
 - **Vue 3 / Vue 2**: `<XyzTransition>` enter/leave/appear completing (the
   `done()` callback firing is the historical hang regression), transition
   classes, `duration` prop (number and `auto` with nested elements, Vue 3),
   `mode="out-in"` ordering (Vue 3), `<XyzTransitionGroup>` tag/class
   passthrough, `--xyz-index(-rev)` stagger variables, add/remove animations,
-  and the `v-xyz` directive (composition with an existing `xyz` attribute +
+  and the `v-xyz` directive (composition with an existing `data-xyz` attribute +
   reactive updates).
 - **React**: `<XyzTransition>` enter/exit completing and unmounting,
-  `xyz`/`className`/`style` prop merging onto the child, `mode="out-in"`
-  ordering, `<XyzTransitionGroup>` index variables and add/remove, and
-  `appearVisible` (paused below the fold, animates on scroll into view).
+  `xyz` prop → rendered `data-xyz` / `className` / `style` merging onto the child,
+  `mode="out-in"` ordering, `<XyzTransitionGroup>` index variables and add/remove,
+  and `appearVisible` (paused below the fold, animates on scroll into view).
 
 ## Adding a test
 

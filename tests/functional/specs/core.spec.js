@@ -24,40 +24,42 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		})
 	})
 
-	test.describe('utilities via the xyz attribute', () => {
+	test.describe('utilities via the data-xyz attribute', () => {
+		// Typed @property dials compute calc() expressions; assertions use the
+		// computed values Chromium serializes (not the authored calc() strings).
 		test('fade sets the opacity variable', async ({ page }) => {
-			await expectVar(page, expect, '#u-fade', '--xyz-opacity', 'calc(1 - 1)')
-			await expectVar(page, expect, '#u-fade-level', '--xyz-opacity', 'calc(1 - 0.5)')
+			await expectVar(page, expect, '#u-fade', '--xyz-opacity', '0')
+			await expectVar(page, expect, '#u-fade-level', '--xyz-opacity', '0.5')
 		})
 
 		test('translate utilities set axis variables with direction sign', async ({ page }) => {
-			await expectVar(page, expect, '#u-translate', '--xyz-translate-y', 'calc(25% * -1)')
+			await expectVar(page, expect, '#u-translate', '--xyz-translate-y', '-25%')
 			await expectVar(page, expect, '#u-translate', '--xyz-translate-x', '20px')
-			await expectVar(page, expect, '#u-translate', '--xyz-translate-z', 'calc(400px * -1)')
+			await expectVar(page, expect, '#u-translate', '--xyz-translate-z', '-400px')
 			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-y', '30px')
-			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-x', 'calc(100% * -1)')
+			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-x', '-100%')
 			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-z', '200px')
 		})
 
 		test('rotate and flip utilities set rotation variables', async ({ page }) => {
 			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-x', '20deg')
-			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-y', 'calc(0.25turn * -1)')
-			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-z', '0.5turn')
+			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-y', '-90deg')
+			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-z', '180deg')
 		})
 
 		test('scale utilities set scale variables per axis', async ({ page }) => {
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-x', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-y', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-z', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale-small', '--xyz-scale-x', 'calc(1 - 0.25)')
-			await expectVar(page, expect, '#u-scale-x', '--xyz-scale-x', 'calc(1 + 0.075)')
-			await expectVar(page, expect, '#u-scale-y', '--xyz-scale-y', 'calc(1 + 1)')
-			await expectVar(page, expect, '#u-scale-z', '--xyz-scale-z', 'calc(1 + 0.05)')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-x', '1.5')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-y', '1.5')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-z', '1.5')
+			await expectVar(page, expect, '#u-scale-small', '--xyz-scale-x', '0.75')
+			await expectVar(page, expect, '#u-scale-x', '--xyz-scale-x', '1.075')
+			await expectVar(page, expect, '#u-scale-y', '--xyz-scale-y', '2')
+			await expectVar(page, expect, '#u-scale-z', '--xyz-scale-z', '1.05')
 		})
 
 		test('skew utilities set skew variables', async ({ page }) => {
 			await expectVar(page, expect, '#u-skew', '--xyz-skew-x', '30deg')
-			await expectVar(page, expect, '#u-skew', '--xyz-skew-y', 'calc(20deg * -1)')
+			await expectVar(page, expect, '#u-skew', '--xyz-skew-y', '-20deg')
 		})
 
 		test('timing, origin and perspective utilities set their variables', async ({ page }) => {
@@ -73,12 +75,13 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		})
 
 		test('mode-scoped utilities set mode-specific variables only', async ({ page }) => {
+			// Mode-specific vars are unregistered, so they keep authored calc() form.
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-in-opacity', 'calc(1 - 1)')
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-out-translate-y', 'calc(100% * -1)')
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-appear-duration', '2s')
-			// the unscoped variables must stay untouched
-			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-opacity')
-			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-translate-y')
+			// [data-xyz] resets registered dials to their typed identity initial-value
+			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-opacity', '1')
+			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-translate-y', '0px')
 		})
 	})
 
@@ -111,18 +114,19 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 	})
 
 	test.describe('variable scoping', () => {
-		test('children without an xyz attribute inherit variables', async ({ page }) => {
-			await expectVar(page, expect, '#scope-plain', '--xyz-opacity', 'calc(1 - 1)')
+		test('children without a data-xyz attribute inherit variables', async ({ page }) => {
+			await expectVar(page, expect, '#scope-plain', '--xyz-opacity', '0')
 		})
 
-		test('an xyz attribute resets inherited variables', async ({ page }) => {
-			await expectVarUnset(page, expect, '#scope-reset', '--xyz-opacity')
-			await expectVar(page, expect, '#scope-reset', '--xyz-translate-y', 'calc(25% * -1)')
+		test('a data-xyz attribute resets inherited variables', async ({ page }) => {
+			// Registered dials reset to typed identity (not guaranteed-invalid)
+			await expectVarUnset(page, expect, '#scope-reset', '--xyz-opacity', '1')
+			await expectVar(page, expect, '#scope-reset', '--xyz-translate-y', '-25%')
 		})
 
 		test('the inherit utility opts back into inherited variables', async ({ page }) => {
-			await expectVar(page, expect, '#scope-inherit', '--xyz-opacity', 'calc(1 - 1)')
-			await expectVar(page, expect, '#scope-inherit', '--xyz-translate-y', 'calc(25% * -1)')
+			await expectVar(page, expect, '#scope-inherit', '--xyz-opacity', '0')
+			await expectVar(page, expect, '#scope-inherit', '--xyz-translate-y', '-25%')
 		})
 	})
 

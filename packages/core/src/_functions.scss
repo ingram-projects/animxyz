@@ -136,6 +136,49 @@
       }
     }
   }
+
+  // Stagger index must not inherit — each element has its own place in the
+  // sibling list. `inherits: false` also keeps parent index out of any
+  // inherited calc() that still mentions var(--xyz-index).
+  @property --xyz-index {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --xyz-index-rev {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  // These relay variables must compute to concrete <time> values on the
+  // element that sets them. Without registration, a parent stagger-delay that
+  // contains sibling-index() is inherited as an unevaluated expression and
+  // re-resolves against each child's index — doubling nested stagger delays.
+  @property --xyz-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-root-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-nested-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-total-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
 }
 
 @mixin xyz-set-all($val) {

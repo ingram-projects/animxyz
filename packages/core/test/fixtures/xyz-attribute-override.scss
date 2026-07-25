@@ -1,0 +1,8 @@
+// Fixture proving $xyz-attribute remains overridable for Sass consumers who
+// need the legacy `xyz` attribute (or any custom name).
+@use '../../src/animxyz' as * with (
+  $xyz-attribute: 'xyz',
+);
+
+@include xyz-core;
+@include xyz-utilities;

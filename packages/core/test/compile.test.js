@@ -20,3 +20,15 @@ test('build.scss compiles without deprecation warnings', () => {
 	const result = compileSass('build.scss')
 	assert.doesNotMatch(result.stderr, /DEPRECATION WARNING/)
 })
+
+// v1 renamed the configuration attribute from `xyz` to `data-xyz`. The default
+// build must match only the standard data attribute — no dual-selector fallback.
+test('build.scss emits [data-xyz] selectors and not legacy [xyz]', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[data-xyz~=fade\]/)
+	assert.match(result.stdout, /\[data-xyz\]/)
+	// Avoid matching `[data-xyz~=` when asserting the legacy form is gone.
+	assert.doesNotMatch(result.stdout, /(?<![\w-])\[xyz(?:~|=|\])/)
+})

@@ -31,9 +31,10 @@ test.describe('@animxyz/vue3', () => {
 
 	test('XyzTransition applies xyz transition classes while animating', async ({ page }) => {
 		await page.click('#slow-toggle')
-		// active class present mid-flight with the xyz attr forwarded to the element
+		// active class present mid-flight with data-xyz forwarded to the element
 		await expect(page.locator('#slow-box')).toHaveClass(/xyz-in/)
-		expect(await page.getAttribute('#slow-box', 'xyz')).toBe('fade')
+		expect(await page.getAttribute('#slow-box', 'data-xyz')).toBe('fade')
+		expect(await page.getAttribute('#slow-box', 'xyz')).toBeNull()
 		expect(await page.$eval('#slow-box', (el) => window.getComputedStyle(el).animationName)).toContain(
 			'xyz-in-keyframes'
 		)
@@ -89,13 +90,13 @@ test.describe('@animxyz/vue3', () => {
 		expect(indexes).toEqual(['0', '1', '2'])
 	})
 
-	test('v-xyz directive sets the xyz attribute', async ({ page }) => {
-		expect(await page.getAttribute('#dir-plain', 'xyz')).toBe('fade up')
+	test('v-xyz directive sets the data-xyz attribute', async ({ page }) => {
+		expect(await page.getAttribute('#dir-plain', 'data-xyz')).toBe('fade up')
 	})
 
-	test('v-xyz composes with an existing xyz attribute and updates reactively', async ({ page }) => {
-		expect(await page.getAttribute('#dir-compose', 'xyz')).toBe('duration-5 fade up')
+	test('v-xyz composes with an existing data-xyz attribute and updates reactively', async ({ page }) => {
+		expect(await page.getAttribute('#dir-compose', 'data-xyz')).toBe('duration-5 fade up')
 		await page.click('#dir-update')
-		await expect(page.locator('#dir-compose')).toHaveAttribute('xyz', 'duration-5 left')
+		await expect(page.locator('#dir-compose')).toHaveAttribute('data-xyz', 'duration-5 left')
 	})
 })

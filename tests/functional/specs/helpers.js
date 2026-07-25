@@ -16,11 +16,14 @@ async function expectVar(page, expect, selector, property, expected) {
 	expect(normalizeCalc(value), `${selector} ${property} (raw: ${JSON.stringify(value)})`).toBe(expected)
 }
 
-// A custom property reset via `initial` computes to guaranteed-invalid; engines
-// serialize that as an empty string, but be lenient about the literal keyword.
-async function expectVarUnset(page, expect, selector, property) {
+// A custom property reset via `initial`:
+// - unregistered props → guaranteed-invalid (serialized as '' or 'initial')
+// - @property-registered dials → their typed initial-value (identity), which is
+//   the v1 equivalent of "no contribution" for that dial
+async function expectVarUnset(page, expect, selector, property, identity = null) {
 	const value = await computed(page, selector, property)
-	expect(['', 'initial'], `${selector} ${property} should be unset (raw: ${JSON.stringify(value)})`).toContain(
+	const allowed = identity == null ? ['', 'initial'] : ['', 'initial', identity]
+	expect(allowed, `${selector} ${property} should be unset/identity (raw: ${JSON.stringify(value)})`).toContain(
 		normalizeCalc(value)
 	)
 }

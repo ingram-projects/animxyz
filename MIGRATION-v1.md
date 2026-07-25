@@ -114,6 +114,11 @@ Where the browser supports it, stagger indexing now comes from CSS
 so staggers are no longer limited to `$xyz-index-levels` (default 20) siblings.
 The ladder still ships as the fallback, so there's nothing to change.
 
+Internally, `--xyz-index` / `--xyz-index-rev` and the stagger delay relay
+variables are registered via `@property` so parent stagger contributions compute
+to concrete times before inheritance (an unevaluated `sibling-index()` expression
+would otherwise re-resolve on each nested child and double delays).
+
 - Chromium-only consumers can set `$xyz-index-levels: 0` (Sass) to drop the
   ladder entirely and rely solely on `sibling-index()`.
 - `XyzTransitionGroup` (all frameworks) still sets `--xyz-index` inline, so the

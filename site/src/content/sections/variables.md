@@ -102,7 +102,7 @@ This gives you control over everything you need to animate an element, including
 [💫 Engage.](?tab=examples&variables=rotate-x:90deg;rotate-z:-180deg;origin:-200%;stagger:0.1s;duration:0.75s;perspective:100px;translate-z:100px;translate-y:10vh#variables)  
 
 ### Inheritance
-CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using an `xyz` attribute which overrides all AnimXYZ variables.
+CSS variables are inherited by child elements, so any element with an [active class](#active-classes) will animate with its parent's CSS variables unless specifically overridden or using a `data-xyz` attribute which overrides all AnimXYZ variables.
 
 <div class="variables-table table-wrap shadow-scroll">
   <table class="shadow-scroll-content">

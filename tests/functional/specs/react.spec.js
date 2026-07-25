@@ -28,9 +28,11 @@ test.describe('@animxyz/react', () => {
 		await expect(page.locator('#single-box')).toHaveCount(0)
 	})
 
-	test('xyz, className and style props are merged onto the child', async ({ page }) => {
+	test('xyz, className and style props are merged onto the child as data-xyz', async ({ page }) => {
 		await expect.poll(() => getLog(page)).toContain('merge:entered')
-		expect(await page.getAttribute('#merge-box', 'xyz')).toBe('fade up')
+		// React keeps the ergonomic `xyz` prop name but renders the standard data attribute
+		expect(await page.getAttribute('#merge-box', 'data-xyz')).toBe('fade up')
+		expect(await page.getAttribute('#merge-box', 'xyz')).toBeNull()
 		const classes = await page.getAttribute('#merge-box', 'class')
 		expect(classes).toContain('wrapper-class')
 		expect(classes).toContain('child-class')

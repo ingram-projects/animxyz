@@ -12,7 +12,7 @@ export default function Example() {
 					[...Array(81)].map((_, index) => (
 						<div
 							className="square"
-							xyz={xyz('fade out-small-50% out-duration-30', {
+							data-xyz={xyz('fade out-small-50% out-duration-30', {
 								'in-down-50% in-right-50% in-stagger-1': index <= 41,
 								'in-up-50% in-left-50% in-stagger-rev-1': index > 41,
 								'out-rotate-right-5': index % 2,
