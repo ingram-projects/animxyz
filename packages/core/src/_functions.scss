@@ -136,6 +136,58 @@
       }
     }
   }
+
+  // The stagger index MUST be registered so it computes to a concrete number on
+  // each element. `index.modern` sets it to `calc(sibling-index() - 1)`; left
+  // unregistered that stays an unresolved token stream, and
+  // `--xyz-root-stagger-delay` (which embeds `var(--xyz-index)`) would then
+  // re-resolve `sibling-index()` in each *descendant's* context as it inherits
+  // down — double-counting the index and doubling every nested stagger delay.
+  //
+  // `<number>`, not `<integer>`: 0.x passed fractional indexes through, so
+  // `<integer>` would silently snap a computed half-step index to the initial
+  // value. `inherits: false` because an element's position among its siblings
+  // is not its children's — every element that consumes the index is matched by
+  // %xyz-indexed and sets its own.
+  @property --xyz-index {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --xyz-index-rev {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  // Defense in depth for the same class of bug: these relay variables carry a
+  // parent's stagger contribution down to nested children, so they must compute
+  // to a concrete <time> on the element that sets them rather than inheriting as
+  // an unevaluated expression.
+  @property --xyz-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-root-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-nested-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-total-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
 }
 
 @mixin xyz-set-all($val) {

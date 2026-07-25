@@ -224,6 +224,31 @@ test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
 	assert.doesNotMatch(result.stdout, /@property --xyz-transform\b/)
 })
 
+// B1 (v1/data-xyz-attribute) renamed the configuration attribute. Everything —
+// the utility selectors, the variable reset, and the `inherit` opt-in — is
+// driven by $xyz-attribute, and there is deliberately NO dual-selector
+// fallback, so a stray `[xyz` in the output would be a bug.
+test('$xyz-attribute: defaults to data-xyz with no legacy fallback', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[data-xyz~=fade\]/)
+	assert.match(result.stdout, /\[data-xyz\] \{/)
+	assert.match(result.stdout, /\[data-xyz~=inherit\]/)
+	// No dual-selector fallback: nothing may match the bare `xyz` attribute.
+	assert.doesNotMatch(result.stdout, /\[xyz[\]~=]/)
+})
+
+test("$xyz-attribute: 'xyz' restores the legacy attribute selectors", () => {
+	const result = compileSass('test/fixtures/xyz-attribute-legacy.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[xyz~=fade\]/)
+	assert.match(result.stdout, /\[xyz\] \{/)
+	assert.match(result.stdout, /\[xyz~=inherit\]/)
+	assert.doesNotMatch(result.stdout, /\[data-xyz/)
+})
+
 test('cascade output is wrapped in @layer with the documented order', () => {
 	const result = compileSass('build.scss')
 
@@ -257,6 +282,20 @@ test('@layer order is independent of $xyz-modes source order (appear stays last)
 	assert.equal(order[order.length - 1], 'xyz.overrides', `overrides must be last: ${declaration}`)
 })
 
+// The documented escape hatch for consumers who cannot adopt cascade layers.
+// Crucially it must NOT quietly reintroduce !important to compensate.
+test("$xyz-layer: '' emits unlayered CSS without falling back to !important", () => {
+	const result = compileSass('test/fixtures/xyz-layer-none.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /@layer/)
+	assert.doesNotMatch(result.stdout, /!important/)
+	// still a complete stylesheet, just unlayered
+	assert.match(result.stdout, /@keyframes xyz-in-keyframes \{/)
+	assert.match(result.stdout, /\[data-xyz~=fade\]/)
+	assert.match(result.stdout, /\.xyz-absolute/)
+})
+
 test('sibling-index() uses a real-property @supports test, not the always-true form', () => {
 	const result = compileSass('build.scss')
 
@@ -264,10 +303,7 @@ test('sibling-index() uses a real-property @supports test, not the always-true f
 
 	// `@supports (--x: sibling-index())` is ALWAYS true — must feature-detect
 	// against a property that actually consumes the function.
-	assert.match(
-		result.stdout,
-		/@supports \(animation-delay: calc\(1s \* \(sibling-index\(\) - 1\)\)\)/
-	)
+	assert.match(result.stdout, /@supports \(animation-delay: calc\(1s \* \(sibling-index\(\) - 1\)\)\)/)
 	assert.doesNotMatch(result.stdout, /@supports \(--[\w-]+: sibling-index/)
 
 	// The enhancement sets both index vars from sibling-index()/sibling-count().
@@ -282,6 +318,37 @@ test('sibling-index() uses a real-property @supports test, not the always-true f
 		order.indexOf('xyz.index.modern') > order.indexOf('xyz.index.ladder'),
 		`index.modern must be declared after index.ladder: ${declaration}`
 	)
+})
+
+// REGRESSION GUARD. --xyz-index / --xyz-index-rev MUST be registered so that
+// `calc(sibling-index() - 1)` resolves to a concrete number per element.
+// Unregistered, they stay unresolved token streams; `--xyz-root-stagger-delay`
+// embeds `var(--xyz-index)` and inherits down to nested children, which would
+// re-resolve sibling-index() in each DESCENDANT's context — double-counting the
+// index and doubling every nested stagger delay (caught by the browser test
+// "nested children get increasing animation-delay").
+test('the stagger index custom properties are registered so sibling-index() resolves per element', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	// `<number>`, NOT `<integer>`: 0.x let a fractional --xyz-index through, and
+	// <integer> would snap it to the initial value instead.
+	assert.match(
+		result.stdout,
+		/@property --xyz-index \{\s*syntax: "<number>";\s*inherits: false;\s*initial-value: 0;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-index-rev \{\s*syntax: "<number>";\s*inherits: false;\s*initial-value: 0;\s*\}/
+	)
+	// The stagger delay relays must likewise compute to a concrete <time> on the
+	// element that sets them, rather than inheriting an unevaluated expression.
+	for (const name of ['stagger-delay', 'root-stagger-delay', 'nested-stagger-delay', 'total-delay']) {
+		assert.match(
+			result.stdout,
+			new RegExp(`@property --xyz-${name} \\{\\s*syntax: "<time>";\\s*inherits: true;\\s*initial-value: 0s;\\s*\\}`)
+		)
+	}
 })
 
 test('$xyz-index-levels: 0 skips the nth-child ladder but keeps sibling-index()', () => {

@@ -1,0 +1,9 @@
+// Fixture for the documented $xyz-layer: '' escape hatch: emit unlayered CSS
+// for consumers who cannot adopt cascade layers yet. The output must still be
+// complete and must NOT fall back to !important.
+@use '../../src/animxyz' as * with (
+  $xyz-layer: ''
+);
+
+@include xyz-core;
+@include xyz-utilities;

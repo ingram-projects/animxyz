@@ -28,9 +28,12 @@ test.describe('@animxyz/react', () => {
 		await expect(page.locator('#single-box')).toHaveCount(0)
 	})
 
-	test('xyz, className and style props are merged onto the child', async ({ page }) => {
+	test('the xyz prop renders as a data-xyz attribute, merged with className and style', async ({ page }) => {
 		await expect.poll(() => getLog(page)).toContain('merge:entered')
-		expect(await page.getAttribute('#merge-box', 'xyz')).toBe('fade up')
+		// v1: the ergonomic `xyz` PROP name is kept, but it renders as the
+		// standards-conforming `data-xyz` attribute the core CSS matches.
+		expect(await page.getAttribute('#merge-box', 'data-xyz')).toBe('fade up')
+		expect(await page.getAttribute('#merge-box', 'xyz')).toBeNull()
 		const classes = await page.getAttribute('#merge-box', 'class')
 		expect(classes).toContain('wrapper-class')
 		expect(classes).toContain('child-class')
@@ -51,6 +54,8 @@ test.describe('@animxyz/react', () => {
 
 	test('XyzTransitionGroup applies stagger index variables to children', async ({ page }) => {
 		expect(await page.getAttribute('#group', 'class')).toContain('group-class')
+		// the group's own xyz prop lands on the wrapper as data-xyz
+		expect(await page.getAttribute('#group', 'data-xyz')).toBe('fade')
 		const indexes = await page.$$eval('#group .item', (els) =>
 			els.map((el) => [el.style.getPropertyValue('--xyz-index'), el.style.getPropertyValue('--xyz-index-rev')])
 		)

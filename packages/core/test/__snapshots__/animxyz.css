@@ -60,6 +60,36 @@ syntax:"<angle>";
 inherits:true;
 initial-value:0deg;
 }
+@property --xyz-index{
+syntax:"<number>";
+inherits:false;
+initial-value:0;
+}
+@property --xyz-index-rev{
+syntax:"<number>";
+inherits:false;
+initial-value:0;
+}
+@property --xyz-stagger-delay{
+syntax:"<time>";
+inherits:true;
+initial-value:0s;
+}
+@property --xyz-root-stagger-delay{
+syntax:"<time>";
+inherits:true;
+initial-value:0s;
+}
+@property --xyz-nested-stagger-delay{
+syntax:"<time>";
+inherits:true;
+initial-value:0s;
+}
+@property --xyz-total-delay{
+syntax:"<time>";
+inherits:true;
+initial-value:0s;
+}
 @keyframes xyz-in-keyframes{
 from{
 opacity:var(--xyz-in-opacity,var(--xyz-opacity,1));

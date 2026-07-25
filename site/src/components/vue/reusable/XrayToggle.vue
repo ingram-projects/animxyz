@@ -18,7 +18,7 @@
 				<span class="screen-reader-only"
 					>Turn X-Ray {{ xRayToggled ? "Off" : "On" }}</span
 				>
-				<XyzTransition xyz duration="auto">
+				<XyzTransition data-xyz duration="auto">
 					<div class="xray-invert__wrap xyz-none" v-if="xRayToggled">
 						<div class="xray-invert xyz-nested"></div>
 						<div class="xray-invert xyz-nested" data-xyz="inherit delay-4"></div>

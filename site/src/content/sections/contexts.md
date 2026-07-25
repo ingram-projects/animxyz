@@ -112,8 +112,8 @@ examples:
           </XyzTransitionGroup>
 ---
 
-The `xyz` attribute creates an animation context where any AnimXYZ animations that take place within will use the animation variables it sets. This can be very useful when applying the same animation to lists or groups of elements without having to add them to each element. [Basic Example](?tab=examples&example=Basic#contexts)
+The `data-xyz` attribute creates an animation context where any AnimXYZ animations that take place within will use the animation variables it sets. This can be very useful when applying the same animation to lists or groups of elements without having to add them to each element. [Basic Example](?tab=examples&example=Basic#contexts)
 
-To have a child element animate differently than it's parent context, add an `xyz` attribute to the child to override it. This new XYZ context resets all utilities and variables. [Override Example](?tab=examples&example=Override#contexts)
+To have a child element animate differently than it's parent context, add a `data-xyz` attribute to the child to override it. This new XYZ context resets all utilities and variables. [Override Example](?tab=examples&example=Override#contexts)
 
-If you want to only override some of the parent context, add `inherit` along with the new `xyz` values. [Inherit Example](?tab=examples&example=Inherit#contexts)
+If you want to only override some of the parent context, add `inherit` along with the new `data-xyz` values. [Inherit Example](?tab=examples&example=Inherit#contexts)

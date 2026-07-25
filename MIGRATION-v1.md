@@ -43,6 +43,10 @@ content: attr(xyz);
 content: attr(data-xyz);
 ```
 
+Note that a *valueless* attribute is still meaningful — `<div data-xyz>` resets
+every inherited AnimXYZ variable — so `xyz` with no value must be renamed too,
+not dropped.
+
 ### Framework wrappers
 
 The wrapper packages handle the attribute name for you — **your component code
@@ -118,6 +122,13 @@ The ladder still ships as the fallback, so there's nothing to change.
   ladder entirely and rely solely on `sibling-index()`.
 - `XyzTransitionGroup` (all frameworks) still sets `--xyz-index` inline, so the
   ladder/sibling-index cap never applied when using the wrapper components.
+- Internally, `--xyz-index` / `--xyz-index-rev` and the stagger delay relay
+  variables are now registered with `@property` so a parent's stagger
+  contribution computes to a concrete time before it inherits. Without that, an
+  unevaluated `sibling-index()` expression re-resolves against each nested
+  child's own index and doubles the delays. `--xyz-index` stays a `<number>`, so
+  fractional values you set yourself still work as they did in 0.x; it no longer
+  inherits, since every element that uses it sets its own.
 
 ## Removed `backface-visibility: visible`
 

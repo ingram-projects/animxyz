@@ -58,19 +58,33 @@ First-time setup needs at least one browser: `npx playwright install chromium`
   keyframes; utilities set variables for every category (fade, translate,
   rotate/flip, scale, skew, timing, origin, perspective) including levels and
   mode-scoped forms; stagger and stagger-rev delays by nth-child; nested
-  elements; variable scoping (`[xyz]` reset, `inherit`); `xyz-paused/none/absolute`
-  toggles; animations run to completion; `prefers-reduced-motion`.
+  elements; variable scoping (`[data-xyz]` reset, `inherit`);
+  `xyz-paused/none/absolute` toggles; animations run to completion;
+  `prefers-reduced-motion`. Plus the v1 changes: the legacy bare `xyz`
+  attribute is **not** matched; `@property`-registered dials reject garbage
+  values while mode dials stay unregistered so the `var()` fallthrough works;
+  stagger keeps climbing past the `$xyz-index-levels` nth-child cap via
+  `sibling-index()`; and the cascade-layer override contract (unlayered author
+  CSS beats AnimXYZ, author CSS in a layer declared before `xyz` loses to it).
 - **Vue 3 / Vue 2**: `<XyzTransition>` enter/leave/appear completing (the
   `done()` callback firing is the historical hang regression), transition
   classes, `duration` prop (number and `auto` with nested elements, Vue 3),
-  `mode="out-in"` ordering (Vue 3), `<XyzTransitionGroup>` tag/class
+  `mode="out-in"` ordering (Vue 3), `<XyzTransitionGroup>` tag/class/`data-xyz`
   passthrough, `--xyz-index(-rev)` stagger variables, add/remove animations,
-  and the `v-xyz` directive (composition with an existing `xyz` attribute +
-  reactive updates).
-- **React**: `<XyzTransition>` enter/exit completing and unmounting,
-  `xyz`/`className`/`style` prop merging onto the child, `mode="out-in"`
-  ordering, `<XyzTransitionGroup>` index variables and add/remove, and
-  `appearVisible` (paused below the fold, animates on scroll into view).
+  and the `v-xyz` directive (composition with an existing `data-xyz` attribute
+  + reactive updates).
+- **React**: `<XyzTransition>` enter/exit completing and unmounting, the `xyz`
+  prop rendering as a `data-xyz` attribute and merging with `className`/`style`
+  on the child, `mode="out-in"` ordering, `<XyzTransitionGroup>` index
+  variables and add/remove, and `appearVisible` (paused below the fold,
+  animates on scroll into view).
+
+> Note on expected values: v1 registers the all-mode dials with `@property`, so
+> `getComputedStyle` returns the **resolved** value (`0`, `-25%`, `1.5`) rather
+> than the authored `calc(…)` token stream, and a dial that was never set reads
+> back as its identity initial-value instead of an empty string. Unregistered
+> properties (the `--xyz-<mode>-*` dials, `--xyz-duration`, …) still read back
+> literally.
 
 ## Adding a test
 

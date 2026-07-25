@@ -42,7 +42,7 @@ examples:
           </XyzTransitionGroup>
 ---
 
-If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `v-xyz` directive. The `v-xyz` directive allows you to dynamically set the `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings.
+If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `v-xyz` directive. The `v-xyz` directive allows you to dynamically set the `data-xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings.
 
 ```html
 <!-- Conditionally apply a transform on an element like so  -->
