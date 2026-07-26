@@ -83,8 +83,30 @@ gh auth status >/dev/null 2>&1 || die "gh is not authenticated — run: gh auth 
 
 $APPLY || log "DRY RUN — no tags pushed, no releases created. Re-run with --apply to commit.\n"
 
-log "Fetching tags from origin..."
-git fetch --tags --quiet origin
+log "Fetching from origin..."
+git fetch --quiet origin || die "could not reach origin"
+
+# `git fetch --tags` exits non-zero when a local tag points somewhere other than
+# origin's ("would clobber existing tag"), which under `set -e` would kill this
+# script with no explanation. Remote state is read via ls-remote below, so this
+# fetch is only a convenience for having tag objects locally — never fatal. Any
+# real disagreement is reported per-tag as DIVERGED.
+git fetch --tags --quiet origin 2>/dev/null ||
+	log "  note: one or more local tags disagree with origin (reported per-tag below)"
+
+# Tag presence MUST be judged against origin, not the local repo. The machine
+# that ran `changeset publish` still has the 0.6.9 tags locally even though they
+# were never pushed, and `git fetch --tags` above makes local a superset of
+# origin — so a local `rev-parse` cannot tell "synced" from "local only".
+remote_tag_sha() {
+	local out
+	out="$(git ls-remote --tags origin "refs/tags/${1}" "refs/tags/${1}^{}" 2>/dev/null || true)"
+	[[ -n "$out" ]] || return 0
+	# Annotated tags list both the tag object and its peeled commit; prefer peeled.
+	awk '/\^\{\}$/ { peeled = $1 } !/\^\{\}$/ { plain = $1 } END { print (peeled != "" ? peeled : plain) }' <<<"$out"
+}
+
+local_tag_sha() { git rev-parse -q --verify "refs/tags/${1}^{commit}" 2>/dev/null || true; }
 
 # Extract the changelog section for one version. Changesets-era headings are a
 # bare "## X.Y.Z"; Lerna-era ones are "## [X.Y.Z](compare-link) (date)", so an
@@ -118,16 +140,35 @@ for entry in "${RELEASES[@]}"; do
 	IFS='|' read -r pkg version anchor <<<"$entry"
 	tag="@animxyz/${pkg}@${version}"
 
-	if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
-		log "  exists   ${tag}"
+	remote_sha="$(remote_tag_sha "$tag")"
+	local_sha="$(local_tag_sha "$tag")"
+
+	# Already on origin — nothing to do, but flag a local/remote disagreement
+	# rather than silently trusting either side.
+	if [[ -n "$remote_sha" ]]; then
+		if [[ -n "$local_sha" && "$local_sha" != "$remote_sha" ]]; then
+			log "  DIVERGED  ${tag}: local ${local_sha:0:9} != origin ${remote_sha:0:9} (origin left as-is)"
+		else
+			log "  on origin ${tag}"
+		fi
 		continue
 	fi
 
-	[[ -n "$anchor" ]] || die "tag ${tag} is missing and no anchor commit is configured for it"
+	# Exists locally but was never pushed — this is the 0.6.9 case. Push the tag
+	# that `changeset publish` actually created rather than re-deriving it; the
+	# real publish commit is more authoritative than our configured anchor.
+	if [[ -n "$local_sha" ]]; then
+		log "  unpushed  ${tag} -> will push ($(git log -1 --format='%h %s' "$local_sha" 2>/dev/null))"
+		new_tags+=("$tag")
+		continue
+	fi
+
+	# Absent everywhere — create it at the configured anchor commit.
+	[[ -n "$anchor" ]] || die "tag ${tag} exists neither on origin nor locally, and no anchor commit is configured for it"
 	git rev-parse -q --verify "${anchor}^{commit}" >/dev/null ||
 		die "anchor commit ${anchor} for ${tag} not found locally — try: git fetch --unshallow"
 
-	log "  creating ${tag} at ${anchor}"
+	log "  creating  ${tag} at ${anchor} ($(git log -1 --format='%s' "$anchor"))"
 	run git tag "$tag" "$anchor"
 	new_tags+=("$tag")
 done
