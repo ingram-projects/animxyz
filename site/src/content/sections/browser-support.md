@@ -48,7 +48,7 @@ staggers read their index straight from the DOM and are no longer capped at
 | Feature | Support |
 | --- | --- |
 | `@property`, `@layer` (core v1 floor) | Baseline 2024 (Chrome/Edge 111+, Safari 16.4+, Firefox 128+) |
-| `sibling-index()` uncapped stagger | Progressive enhancement — Chromium 138+; ladder fallback elsewhere |
+| `sibling-index()` uncapped stagger | Progressive enhancement — Chromium 138+ and Safari 26+; `nth-child` ladder fallback elsewhere (Firefox as of 151) |
 
 > **Note:** `XyzTransitionGroup` (Vue, Vue 3, and React) sets `--xyz-index`
 > inline on each item, so the `sibling-index()`/ladder cap does not apply when

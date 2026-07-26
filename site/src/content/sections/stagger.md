@@ -71,7 +71,9 @@ modifiers:
 
 Staggering increases the `animation-delay` for each element in a list so that their animation is triggered one following the other, like dominoes.
 
-AnimXYZ will apply this staggered delay to the first 20 elements (or last 20 if using `stagger-rev`) based on their `nth-child` index. Alternatively you can pass your own index to each element with the `--xyz-index` or `--xyz-index-rev` variables if you want more than 20 elements to stagger or want to change the staggering order in other ways.
+AnimXYZ reads each element's position from CSS [`sibling-index()`](#browser-support) where the browser supports it, so any number of elements can stagger. Browsers without it fall back to an `nth-child` ladder that covers the first 20 elements (or last 20 if using `stagger-rev`); beyond that the remaining elements share the first delay.
+
+Either way you can pass your own index to each element with the `--xyz-index` or `--xyz-index-rev` variables — to lift the fallback's 20-element cap, or to change the staggering order in other ways. The value doesn't have to be a whole number, so `--xyz-index-rev: Math.random() * 81` will shuffle the order.
 
 You can also override the `--xyz-stagger` and `--xyz-stagger-rev` variables with a custom time value in your CSS or with inline styling for more granular control.
 

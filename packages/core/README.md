@@ -69,6 +69,33 @@ This package requires **Dart Sass** to compile `src/*.scss` (see `sass` in
 package's `src/*.scss` directly (rather than consuming the prebuilt
 `dist/animxyz.css`), make sure your own Sass compiler is at least 1.57.
 
+## Bundle size
+
+Minified + gzipped, as of v1.0:
+
+| Build | Sass entry | Gzipped |
+| --- | --- | --- |
+| Core only | `@include xyz-core` | ~3.4 kB |
+| Core + utilities | `@include xyz-all` | ~12.5 kB |
+
+`dist/animxyz.css` (what you get from npm or the CDN) is the **core + utilities**
+build — `build.scss` is `@include xyz-all`. The core-only figure applies when you
+compile from Sass and include just `xyz-core`, skipping the ~1,440 generated
+`[data-xyz~='…']` utility selectors.
+
+`npm run build` prints the core + utilities number via `buildStats.js`. To
+remeasure the core-only figure (there is no committed artifact for it):
+
+```sh
+printf "@use 'src/animxyz' as *;\n@include xyz-core;\n" > /tmp/core-only.scss
+npx sass --load-path=. --style=expanded /tmp/core-only.scss /tmp/core-only.css
+npx postcss --use autoprefixer --map false --output /tmp/core-only.css /tmp/core-only.css
+npx postcss --config .postcss-cssnano --map false --output /tmp/core-only.min.css /tmp/core-only.css
+node buildStats.js /tmp/core-only.min.css
+```
+
+The homepage on animxyz.com quotes both numbers — update it there when they move.
+
 ## Browser support
 
 AnimXYZ v1.0 targets **Baseline 2024** (Chrome/Edge 111+, Safari 16.4+,
