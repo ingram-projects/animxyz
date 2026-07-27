@@ -7,8 +7,25 @@
 # Release for each tag it pushes, which is what populates the "Releases" panel
 # on the repo page.
 #
-# Requires an NPM_TOKEN repository secret with publish access. GITHUB_TOKEN is
-# provided automatically and is what lets the action create Releases.
+# Requires an NPM_TOKEN repository secret holding a *granular access token* with
+# write access to the @animxyz packages and "Bypass 2FA" enabled (off by
+# default, and required for non-interactive CI). Classic/"automation" tokens were
+# permanently revoked on 2025-12-09 and cannot be recreated.
+#
+# Write-enabled granular tokens are capped at 90 days, so this secret has to be
+# rotated quarterly. When a release run fails to publish, an expired NPM_TOKEN is
+# the first thing to check.
+#
+# npm's trusted publishing (OIDC) removes the token entirely and is the intended
+# replacement — currently optional, with no deadline forcing the switch. It is
+# not used here yet because npm/cli#8976 returns E404 when publishing scoped
+# packages via OIDC from changesets/action, and every @animxyz package is scoped.
+# Switching later means: add `id-token: write` to permissions, upgrade npm to
+# >= 11.5.1 (node 22 still ships 10.9.x), drop NODE_AUTH_TOKEN below, and
+# register a trusted publisher per package pointing at this workflow filename.
+#
+# GITHUB_TOKEN is provided automatically and is what lets the action create
+# Releases.
 name: Release
 
 on:
