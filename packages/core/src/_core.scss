@@ -20,17 +20,21 @@
           $opacity: xyz-var('opacity', $mode, 1);
 
           $perspective: xyz-var('perspective', $mode, var(--xyz-perspective-none));
-          $translate-x: xyz-var('translate-x', $mode, 0);
-          $translate-y: xyz-var('translate-y', $mode, 0);
-          $translate-z: xyz-var('translate-z', $mode, 0);
-          $rotate-x: xyz-var('rotate-x', $mode, 0);
-          $rotate-y: xyz-var('rotate-y', $mode, 0);
-          $rotate-z: xyz-var('rotate-z', $mode, 0);
+          // Fallbacks must be valid for each dial's registered @property syntax:
+          // WebKit validates var() fallbacks against the registered syntax even
+          // when the fallback is unused, and a unitless 0 is not a valid <angle>
+          // (or <length>), which would invalidate the whole transform.
+          $translate-x: xyz-var('translate-x', $mode, 0px);
+          $translate-y: xyz-var('translate-y', $mode, 0px);
+          $translate-z: xyz-var('translate-z', $mode, 0px);
+          $rotate-x: xyz-var('rotate-x', $mode, 0deg);
+          $rotate-y: xyz-var('rotate-y', $mode, 0deg);
+          $rotate-z: xyz-var('rotate-z', $mode, 0deg);
           $scale-x: xyz-var('scale-x', $mode, 1);
           $scale-y: xyz-var('scale-y', $mode, 1);
           $scale-z: xyz-var('scale-z', $mode, 1);
-          $skew-x: xyz-var('skew-x', $mode, 0);
-          $skew-y: xyz-var('skew-y', $mode, 0);
+          $skew-x: xyz-var('skew-x', $mode, 0deg);
+          $skew-y: xyz-var('skew-y', $mode, 0deg);
 
           $transform: xyz-var('transform', $mode,
             perspective(#{$perspective})
