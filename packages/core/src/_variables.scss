@@ -229,10 +229,6 @@ $xyz-variables-map: (
     'type': 'origin',
   ),
   'opacity': (
-    // `<number> | <percentage>` — the CSS `opacity` property accepts both, and
-    // `--xyz-opacity: 50%` was a valid way to author half-opacity before these
-    // dials were registered. A bare `<number>` syntax would reject it at
-    // computed-value time and silently snap back to the `1` initial-value.
     'type': 'opacity',
     'syntax': '<number> | <percentage>',
     'initial': 1,
