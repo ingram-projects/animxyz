@@ -12,7 +12,7 @@ examples:
           const numElements = ${data.numElements}
           
           ##vue
-          <XyzTransitionGroup appear class="example-grid" xyz="fade small out-down out-rotate-right appear-stagger">
+          <XyzTransitionGroup appear class="example-grid" data-xyz="fade small out-down out-rotate-right appear-stagger">
             <div class="square" v-for="index in numElements" :key="index"></div>
           </XyzTransitionGroup>
   - name: Index
@@ -23,7 +23,7 @@ examples:
           ##vue
           <XyzTransitionGroup
             class="example-grid"
-            xyz="fade small out-back-3"
+            data-xyz="fade small out-back-3"
             :duration="2500"
             :style="{
               '--xyz-in-stagger': '0.025s',
@@ -47,9 +47,9 @@ examples:
           const numElements = ${data.numElements}
           
           ##vue
-          <XyzTransitionGroup appear duration="auto" class="example-grid" xyz="fade flip-left origin-left duration-3 appear-stagger">
+          <XyzTransitionGroup appear duration="auto" class="example-grid" data-xyz="fade flip-left origin-left duration-3 appear-stagger">
             <div class="item-block" v-for="index in numElements" :key="index">
-              <div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
+              <div class="square xyz-nested" data-xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
             </div>
           </XyzTransitionGroup>
   - name: Appear Visible
@@ -59,7 +59,7 @@ examples:
         content: |
           ##vue
           <div class="scroll-wrap">
-            <XyzTransitionGroup appear-visible class="example-grid" xyz="delay-2 fade small rotate-right">
+            <XyzTransitionGroup appear-visible class="example-grid" data-xyz="delay-2 fade small rotate-right">
               <div class="square" v-for="index in 200" :key="index"></div>
             </XyzTransitionGroup>
           </div>

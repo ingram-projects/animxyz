@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 function updateDirective(el, { value }) {
-	el.setAttribute('xyz', clsx(el._xyzOriginal, value))
+	el.setAttribute('data-xyz', clsx(el._xyzOriginal, value))
 }
 
 // NOTE: no `unmounted` cleanup here. Vue runs directive `unmounted` hooks in
@@ -11,7 +11,7 @@ function updateDirective(el, { value }) {
 // hangs forever. The hook cleans up after itself when the animation resolves.
 export default {
 	beforeMount(el) {
-		el._xyzOriginal = el.getAttribute('xyz')
+		el._xyzOriginal = el.getAttribute('data-xyz')
 		updateDirective(...arguments)
 	},
 	updated: updateDirective,

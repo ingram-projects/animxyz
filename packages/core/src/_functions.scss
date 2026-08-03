@@ -49,6 +49,147 @@
   }
 }
 
+// CASCADE LAYERS
+
+// Returns the trigger modes ordered for the cascade: every mode except
+// `appear`, then `appear` last. This encodes the fixed precedence "appear
+// beats in/out" in the layer order itself, so `$xyz-modes` can be authored in
+// any order (no more "appear must come last" source-order constraint).
+@function xyz-trigger-modes() {
+  $modes: ();
+  @each $mode in $xyz-modes {
+    @if $mode != 'appear' {
+      $modes: list.append($modes, $mode);
+    }
+  }
+  @if list.index($xyz-modes, 'appear') {
+    $modes: list.append($modes, 'appear');
+  }
+  @return $modes;
+}
+
+// Emits the up-front `@layer` order declaration. Later sublayers win, so the
+// order is: defaults < index < utilities < triggers.* < overrides.
+@mixin xyz-layer-declaration() {
+  @if $xyz-layer != '' {
+    // `index.modern` (sibling-index()) is declared after `index.ladder`
+    // (nth-child fallback) so the modern rule wins by layer order despite the
+    // ladder's higher selector specificity.
+    $sublayers: 'defaults', 'index.ladder', 'index.modern', 'utilities';
+    @each $mode in xyz-trigger-modes() {
+      $sublayers: list.append($sublayers, 'triggers.#{$mode}');
+    }
+    $sublayers: list.append($sublayers, 'overrides');
+
+    $declaration: '';
+    @each $sublayer in $sublayers {
+      @if $declaration == '' {
+        $declaration: '#{$xyz-layer}.#{$sublayer}';
+      } @else {
+        $declaration: '#{$declaration}, #{$xyz-layer}.#{$sublayer}';
+      }
+    }
+
+    @layer #{$declaration};
+  }
+}
+
+// Wraps @content in `@layer $xyz-layer.$sublayer`, or emits it unlayered when
+// the layer name is disabled ('' escape hatch).
+@mixin xyz-layer($sublayer) {
+  @if $xyz-layer == '' {
+    @content;
+  } @else {
+    @layer #{$xyz-layer}.#{$sublayer} {
+      @content;
+    }
+  }
+}
+
+
+// Registers the typed dial custom properties via @property. Only the
+// `all`-mode bottom-tier dials are registered (e.g. `--xyz-opacity`,
+// `--xyz-translate-x`) — never the mode-specific ones (`--xyz-in-opacity`).
+//
+// This is deliberate and load-bearing: `xyz-var()` builds a mode cascade of
+// the form `var(--xyz-<mode>-<name>, var(--xyz-<name>, <identity>))`, which
+// depends on the mode-specific var being *unset/guaranteed-invalid* so it
+// falls through to the all-mode dial. Giving a mode-specific var an
+// @property initial-value would make it always-valid, silently killing that
+// fallthrough (e.g. a plain `fade` would stop fading because `--xyz-in-opacity`
+// would resolve to its initial value instead of deferring to `--xyz-opacity`).
+//
+// The all-mode dials are the bottom tier — below them is only the hard-coded
+// identity fallback in the keyframes — so registering them with
+// `initial-value == identity` preserves behavior exactly while adding type
+// safety and (where the platform uses it) interpolation. `inherits: true` is
+// required so nested composition and the stagger relay keep inheriting dials.
+@mixin xyz-make-properties() {
+  @each $name, $variable in $xyz-variables-map {
+    $syntax: map.get($variable, 'syntax');
+
+    @if $syntax != null {
+      @property --xyz-#{$name} {
+        syntax: '#{$syntax}';
+        inherits: true;
+        initial-value: #{map.get($variable, 'initial')};
+      }
+    }
+  }
+
+  // The stagger index MUST be registered so it computes to a concrete number on
+  // each element. `index.modern` sets it to `calc(sibling-index() - 1)`; left
+  // unregistered that stays an unresolved token stream, and
+  // `--xyz-root-stagger-delay` (which embeds `var(--xyz-index)`) would then
+  // re-resolve `sibling-index()` in each *descendant's* context as it inherits
+  // down — double-counting the index and doubling every nested stagger delay.
+  //
+  // `<number>`, not `<integer>`: 0.x passed fractional indexes through, so
+  // `<integer>` would silently snap a computed half-step index to the initial
+  // value. `inherits: false` because an element's position among its siblings
+  // is not its children's — every element that consumes the index is matched by
+  // %xyz-indexed and sets its own.
+  @property --xyz-index {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --xyz-index-rev {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+  }
+
+  // Defense in depth for the same class of bug: these relay variables carry a
+  // parent's stagger contribution down to nested children, so they must compute
+  // to a concrete <time> on the element that sets them rather than inheriting as
+  // an unevaluated expression.
+  @property --xyz-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-root-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-nested-stagger-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+
+  @property --xyz-total-delay {
+    syntax: '<time>';
+    inherits: true;
+    initial-value: 0s;
+  }
+}
+
 @mixin xyz-set-all($val) {
   // For every variable and mode set to val
   @each $name, $variable in $xyz-variables-map {
@@ -100,11 +241,11 @@
   @each $mode in $utility-modes {
     @each $level in map.keys($levels) {
       @if $level == 'default' {
-        [xyz~='#{xyz-name($name, $mode)}'] {
+        [#{$xyz-attribute}~='#{xyz-name($name, $mode)}'] {
           @include xyz-utility($name, $mode, $level);
         }
       } @else {
-        [xyz~='#{xyz-name($name, $mode)}-#{$level}'] {
+        [#{$xyz-attribute}~='#{xyz-name($name, $mode)}-#{$level}'] {
           @include xyz-utility($name, $mode, $level);
         }
       }
@@ -121,7 +262,7 @@
 
   @if $make-utilities {
     @each $mode in $xyz-modes {
-      [xyz~=#{$name}], [xyz~=#{xyz-name($name, $mode)}] {
+      [#{$xyz-attribute}~=#{$name}], [#{$xyz-attribute}~=#{xyz-name($name, $mode)}] {
         --xyz-#{xyz-name('keyframes', $mode)}: xyz-#{xyz-name($name, $mode)};
       }
     }
@@ -207,7 +348,6 @@
   --xyz-stagger-delay: calc(var(--xyz-nested-stagger-delay, 0s) + #{$stagger} * #{$index} + #{$stagger-rev} * #{$index-rev});
   --xyz-total-delay: calc(var(--xyz-stagger-delay, 0s) + #{$delay});
   transform-origin: #{$origin};
-  backface-visibility: visible;
 
   animation:
     #{$duration}

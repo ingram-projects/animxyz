@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 function updateDirective(el, { value }) {
-	el.setAttribute('xyz', clsx(el._xyzOriginal, value))
+	el.setAttribute('data-xyz', clsx(el._xyzOriginal, value))
 }
 
 // NOTE: no `unbind` cleanup here. Vue runs directive `unbind` during the
@@ -11,7 +11,7 @@ function updateDirective(el, { value }) {
 // The hook cleans up after itself when the animation resolves.
 export default {
 	bind(el) {
-		el._xyzOriginal = el.getAttribute('xyz')
+		el._xyzOriginal = el.getAttribute('data-xyz')
 		updateDirective(...arguments)
 	},
 	update: updateDirective,

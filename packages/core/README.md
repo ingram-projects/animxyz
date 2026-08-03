@@ -68,3 +68,71 @@ This package requires **Dart Sass** to compile `src/*.scss` (see `sass` in
 `string.split()`, which was added in Dart Sass 1.57. If you `@use` this
 package's `src/*.scss` directly (rather than consuming the prebuilt
 `dist/animxyz.css`), make sure your own Sass compiler is at least 1.57.
+
+## Bundle size
+
+Minified + gzipped, as of v1.0:
+
+| Build | Sass entry | Gzipped |
+| --- | --- | --- |
+| Core only | `@include xyz-core` | ~3.4 kB |
+| Core + utilities | `@include xyz-all` | ~12.5 kB |
+
+`dist/animxyz.css` (what you get from npm or the CDN) is the **core + utilities**
+build — `build.scss` is `@include xyz-all`. The core-only figure applies when you
+compile from Sass and include just `xyz-core`, skipping the ~1,440 generated
+`[data-xyz~='…']` utility selectors.
+
+`npm run build` prints the core + utilities number via `buildStats.js`. To
+remeasure the core-only figure (there is no committed artifact for it):
+
+```sh
+printf "@use 'src/animxyz' as *;\n@include xyz-core;\n" > /tmp/core-only.scss
+npx sass --load-path=. --style=expanded /tmp/core-only.scss /tmp/core-only.css
+npx postcss --use autoprefixer --map false --output /tmp/core-only.css /tmp/core-only.css
+npx postcss --config .postcss-cssnano --map false --output /tmp/core-only.min.css /tmp/core-only.css
+node buildStats.js /tmp/core-only.min.css
+```
+
+The homepage on animxyz.com quotes both numbers — update it there when they move.
+
+## Browser support
+
+AnimXYZ v1.0 targets **Baseline 2024** (Chrome/Edge 111+, Safari 16.4+,
+Firefox 128+). This is the floor for `@property`, which v1 uses to register the
+typed dial custom properties (`--xyz-opacity`, `--xyz-translate-x`, `--xyz-rotate-z`,
+…). The registered dials are the `all`-mode bottom-tier variables only; the
+mode-specific dials (`--xyz-in-*`, `--xyz-out-*`, `--xyz-appear-*`) are left
+unregistered so the mode cascade's `var()` fallthrough keeps working.
+
+Registering with `inherits: true` and an identity `initial-value` keeps the
+compiled output behaving exactly as before while adding type safety: a garbage
+value assigned to a registered dial (e.g. `--xyz-opacity: red`) is rejected at
+computed-value time and falls back to the typed initial value instead of
+poisoning the animation.
+
+## Cascade layers & the override contract
+
+v1.0 emits all output inside a single top-level `@layer xyz`, with sublayers
+declared in precedence order:
+
+```css
+@layer xyz.defaults, xyz.index.ladder, xyz.index.modern, xyz.utilities,
+       xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
+```
+
+`index` is split in two: `index.ladder` holds the `:nth-child` stagger fallback
+and `index.modern` the `sibling-index()` enhancement, declared after it so the
+modern rule wins on layer order despite the ladder's higher specificity.
+
+Precedence is now decided by **layer order**, not source order or `!important`
+(the compiled CSS contains zero `!important`). Two consequences:
+
+- **Your CSS wins by default.** Unlayered author styles beat anything AnimXYZ
+  emits, regardless of specificity. To *lose* to AnimXYZ on purpose, put your
+  styles in a layer declared before `xyz` (e.g. `@layer base, xyz;`).
+- **Mode precedence is fixed by layer order.** `appear` is pinned to the last
+  trigger sublayer, so it beats `in`/`out` no matter how `$xyz-modes` is
+  ordered — the old "appear must come last" source-order rule is gone.
+
+Set `$xyz-layer: ''` to emit unlayered CSS if you can't adopt cascade layers yet.

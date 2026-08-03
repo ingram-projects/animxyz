@@ -6,8 +6,10 @@
 
 @mixin xyz-utilities () {
   @include xyz-include-once('utilities') {
-    @each $name, $utility in $xyz-utilities-map {
-      @include xyz-make-utilities($name, $utility);
+    @include xyz-layer('utilities') {
+      @each $name, $utility in $xyz-utilities-map {
+        @include xyz-make-utilities($name, $utility);
+      }
     }
   }
 }

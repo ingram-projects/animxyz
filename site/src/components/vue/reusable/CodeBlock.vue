@@ -2,7 +2,7 @@
   <div class="code-block">
     <TabBar class="code-block__tabs" :tabs="computedCode" v-if="computedCode.length > 1" v-model="activeCode"></TabBar>
 
-    <XyzTransition xyz="fade" mode="out-in">
+    <XyzTransition data-xyz="fade" mode="out-in">
       <div :key="activeCode && activeCode.name">
         <div class="code__wrap" v-if="activeCode">
           <pre

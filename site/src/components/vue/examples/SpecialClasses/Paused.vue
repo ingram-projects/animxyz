@@ -5,7 +5,7 @@
       appear
       duration="auto"
       v-on="data.listeners"
-      xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
+      data-xyz="in-duration-10 out-duration-3 fade rotate-right-3 flip-down origin-bottom stagger-1 out-stagger-rev"
     >
       <!-- eslint-disable -->
       <template v-if="data.toggled">

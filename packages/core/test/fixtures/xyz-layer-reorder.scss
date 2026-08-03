@@ -1,0 +1,10 @@
+// Fixture proving cascade precedence comes from @layer order, not $xyz-modes
+// source order. $xyz-modes is deliberately flipped; the emitted @layer
+// declaration must still pin `appear` last (so appear beats in/out) and put
+// `overrides` last of all.
+@use '../../src/animxyz' as * with (
+  $xyz-modes: ['appear', 'out', 'in',]
+);
+
+@include xyz-core;
+@include xyz-utilities;

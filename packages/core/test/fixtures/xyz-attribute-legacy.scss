@@ -1,0 +1,9 @@
+// Fixture for the documented $xyz-attribute escape hatch: consumers who build
+// from source can keep emitting the legacy `xyz` attribute (or any custom
+// name) instead of v1's standards-conforming `data-xyz`.
+@use '../../src/animxyz' as * with (
+  $xyz-attribute: 'xyz'
+);
+
+@include xyz-core;
+@include xyz-utilities;

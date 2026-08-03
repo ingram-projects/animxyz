@@ -1,0 +1,8 @@
+// Fixture: $xyz-index-levels: 0 skips the nth-child ladder entirely, leaving
+// only the sibling-index() enhancement (for Chromium-only consumers).
+@use '../../src/animxyz' as * with (
+  $xyz-index-levels: 0
+);
+
+@include xyz-core;
+@include xyz-utilities;

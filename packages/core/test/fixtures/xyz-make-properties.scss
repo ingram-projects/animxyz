@@ -1,0 +1,5 @@
+// Fixture for the xyz-make-properties() mixin: emits the typed @property
+// registrations for the all-mode dial custom properties.
+@use '../../src/functions' as *;
+
+@include xyz-make-properties;

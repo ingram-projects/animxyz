@@ -4,7 +4,7 @@
 			<!-- eslint-disable -->
 			<div
 				class="square"
-				xyz="fade out-small-50% out-duration-30"
+				data-xyz="fade out-small-50% out-duration-30"
 				v-xyz="{
 					'in-down-50% in-right-50% in-stagger-1': index <= 41,
 					'in-up-50% in-left-50% in-stagger-rev-1': index > 41,

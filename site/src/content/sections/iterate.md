@@ -7,7 +7,7 @@ examples:
   - name: Iterate
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="duration-20 ease-in-out-back flip-up-100%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition data-xyz="duration-20 ease-in-out-back flip-up-100%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="duration-20 ease-in-out-back flip-up-100%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" data-xyz="duration-20 ease-in-out-back flip-up-100%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="duration-20 ease-in-out-back flip-up-100%${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition data-xyz="duration-20 ease-in-out-back flip-up-100%${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 

@@ -7,7 +7,7 @@ examples:
   - name: Timing
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="fade rotate-right-50%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition data-xyz="fade rotate-right-50%" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" data-xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition data-xyz="fade rotate-right-50%${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -63,7 +63,7 @@ modifiers:
 
 Timing utilities let you set the [animation-duration](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration), [animation-delay](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay), and [animation-timing-function](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function) of an animation. AnimXYZ animations default to a duration of `0.5s`, a delay of `0s`, and a timing-function of `ease`.
 
-Changing the timing of an animation can have a large impact on how it feels. For example `xyz="ease-out-back"` will add a slight overshoot at the end of an animation.
+Changing the timing of an animation can have a large impact on how it feels. For example `data-xyz="ease-out-back"` will add a slight overshoot at the end of an animation.
 
 You can set your own custom duration, delay, and timing function using the `--xyz-duration`, `--xyz-delay`, and `--xyz-ease` variables respectively.
 

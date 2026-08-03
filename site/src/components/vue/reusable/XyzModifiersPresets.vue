@@ -6,7 +6,7 @@
 			body-scroll-lock-ignore
 			appear
 			duration="auto"
-			xyz="fade small stagger-1.5"
+			data-xyz="fade small stagger-1.5"
 		>
 			<li
 				class="preset-item__wrap"
