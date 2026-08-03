@@ -118,7 +118,16 @@
     // trigger (active) classes — one sublayer per mode. Sublayer order (with
     // `appear` pinned last, see xyz-layer-declaration) decides cross-mode
     // precedence, replacing the old "appear must come last" source-order rule.
-    @each $mode in $xyz-modes {
+    //
+    // Emit in xyz-trigger-modes() order, not raw $xyz-modes order: `.xyz-in`
+    // and `.xyz-appear` are both specificity (0,1,0), so under the
+    // `$xyz-layer: ''` escape hatch there is no layer order left and source
+    // order is the only tiebreaker. Iterating the raw list would let a
+    // reordered $xyz-modes (e.g. `appear` first) hand the win to in/out,
+    // breaking the documented "appear beats in/out regardless of $xyz-modes
+    // order" guarantee for unlayered consumers. Emitting in the same order the
+    // layers are declared keeps layered and unlayered output in agreement.
+    @each $mode in xyz-trigger-modes() {
       @include xyz-layer('triggers.#{$mode}') {
         %xyz-active-#{$mode} {
           @include xyz-animation($mode);

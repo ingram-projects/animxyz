@@ -194,7 +194,7 @@ test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
 	// stays behavior-preserving.
 	assert.match(
 		result.stdout,
-		/@property --xyz-opacity \{\s*syntax: "<number>";\s*inherits: true;\s*initial-value: 1;\s*\}/
+		/@property --xyz-opacity \{\s*syntax: "<number> \| <percentage>";\s*inherits: true;\s*initial-value: 1;\s*\}/
 	)
 	assert.match(
 		result.stdout,
@@ -294,6 +294,50 @@ test("$xyz-layer: '' emits unlayered CSS without falling back to !important", ()
 	assert.match(result.stdout, /@keyframes xyz-in-keyframes \{/)
 	assert.match(result.stdout, /\[data-xyz~=fade\]/)
 	assert.match(result.stdout, /\.xyz-absolute/)
+})
+
+// Regression: the two escape hatches compose. Unlayered output has no @layer
+// left to carry precedence, so the emission order of the trigger rules IS the
+// cascade — `.xyz-in` and `.xyz-appear` are both (0,1,0) and the later one wins.
+// Emitting from raw $xyz-modes instead of xyz-trigger-modes() let a reordered
+// mode list flip that, silently breaking "appear beats in/out" for unlayered
+// consumers.
+test("appear is emitted last even unlayered with a reordered \$xyz-modes", () => {
+	const result = compileSass('test/fixtures/xyz-layer-none-reorder.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /@layer/)
+	assert.doesNotMatch(result.stdout, /!important/)
+
+	// Locate each mode's trigger block by the animation-name shorthand it emits.
+	const positionOf = (mode) => {
+		const index = result.stdout.indexOf(`animation-name: xyz-${mode}-keyframes,`)
+		assert.notEqual(index, -1, `expected a trigger rule for the "${mode}" mode`)
+		return index
+	}
+
+	assert.ok(
+		positionOf('appear') > positionOf('in'),
+		'appear trigger rules must be emitted after in to win on source order'
+	)
+	assert.ok(
+		positionOf('appear') > positionOf('out'),
+		'appear trigger rules must be emitted after out to win on source order'
+	)
+})
+
+// Regression: `opacity: 50%` is valid CSS, and `--xyz-opacity: 50%` was a valid
+// way to author half-opacity before these dials were registered. A bare
+// `<number>` syntax rejects the percentage at computed-value time and snaps the
+// dial back to its `1` initial-value — a silent behavior change.
+test('--xyz-opacity accepts percentages as well as numbers', () => {
+	const result = compileSass('test/fixtures/xyz-opacity-percentage.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(
+		result.stdout,
+		/@property --xyz-opacity \{\s*syntax: "<number> \| <percentage>";\s*inherits: true;\s*initial-value: 1;\s*\}/
+	)
 })
 
 test('sibling-index() uses a real-property @supports test, not the always-true form', () => {

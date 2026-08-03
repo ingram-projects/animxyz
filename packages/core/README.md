@@ -117,9 +117,13 @@ v1.0 emits all output inside a single top-level `@layer xyz`, with sublayers
 declared in precedence order:
 
 ```css
-@layer xyz.defaults, xyz.index, xyz.utilities,
+@layer xyz.defaults, xyz.index.ladder, xyz.index.modern, xyz.utilities,
        xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
 ```
+
+`index` is split in two: `index.ladder` holds the `:nth-child` stagger fallback
+and `index.modern` the `sibling-index()` enhancement, declared after it so the
+modern rule wins on layer order despite the ladder's higher specificity.
 
 Precedence is now decided by **layer order**, not source order or `!important`
 (the compiled CSS contains zero `!important`). Two consequences:

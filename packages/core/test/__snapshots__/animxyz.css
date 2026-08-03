@@ -1,7 +1,7 @@
 @layer xyz.defaults,xyz.index.ladder,xyz.index.modern,xyz.utilities,xyz.triggers.in,xyz.triggers.out,xyz.triggers.appear,xyz.overrides;
 @layer xyz.defaults{
 @property --xyz-opacity{
-syntax:"<number>";
+syntax:"<number> | <percentage>";
 inherits:true;
 initial-value:1;
 }

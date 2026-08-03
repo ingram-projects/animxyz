@@ -8,7 +8,7 @@ Compiled CSS is now emitted inside a single top-level `@layer xyz` with
 sublayers declared in precedence order:
 
 ```css
-@layer xyz.defaults, xyz.index, xyz.utilities,
+@layer xyz.defaults, xyz.index.ladder, xyz.index.modern, xyz.utilities,
        xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
 ```
 
@@ -25,4 +25,6 @@ layer before `xyz` (e.g. `@layer base, xyz;`).
 regardless of `$xyz-modes` order — the "appear must come last" source-order
 constraint is removed and `$xyz-modes` may be listed in any order.
 
-Set `$xyz-layer: ''` to emit unlayered CSS as an escape hatch.
+Set `$xyz-layer: ''` to emit unlayered CSS as an escape hatch. The trigger rules
+are emitted in the same order the layers are declared, so `appear` still beats
+`in`/`out` — on source order — when there is no layer left to carry precedence.

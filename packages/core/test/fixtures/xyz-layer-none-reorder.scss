@@ -1,0 +1,12 @@
+// Fixture for the intersection of the two escape hatches: unlayered output
+// ($xyz-layer: '') AND a reordered $xyz-modes. With no @layer to carry
+// precedence, source order is the only tiebreaker between the equal-specificity
+// `.xyz-in` / `.xyz-out` / `.xyz-appear` trigger rules, so the emitted order
+// must still put `appear` last.
+@use '../../src/animxyz' as * with (
+  $xyz-modes: ['appear', 'out', 'in',],
+  $xyz-layer: ''
+);
+
+@include xyz-core;
+@include xyz-utilities;

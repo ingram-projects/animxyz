@@ -1,0 +1,8 @@
+// Fixture guarding the `--xyz-opacity` registered syntax. The CSS `opacity`
+// property accepts a percentage, and `--xyz-opacity: 50%` was valid authoring
+// before the dials were registered — the @property syntax must keep accepting it.
+@use '../../src/animxyz' as * with (
+  $xyz-layer: ''
+);
+
+@include xyz-make-properties;
