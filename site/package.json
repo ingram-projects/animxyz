@@ -22,6 +22,7 @@
     "@nanostores/vue": "^1.1.0",
     "astro": "^7.1.3",
     "body-scroll-lock": "^4.0.0-beta.0",
+    "cookie": "^2.0.1",
     "lodash": "^4.17.21",
     "nanostores": "^1.3.0",
     "prettier": "^2.3.1",
