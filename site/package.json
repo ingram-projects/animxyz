@@ -20,7 +20,7 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/inconsolata": "^5.1.0",
     "@nanostores/vue": "^1.1.0",
-    "astro": "^7.2.6",
+    "astro": "^7.2.8",
     "body-scroll-lock": "^4.0.0-beta.0",
     "cookie": "^2.0.1",
     "lodash": "^4.17.21",
