@@ -81,16 +81,12 @@
     }
     $sublayers: list.append($sublayers, 'overrides');
 
-    $declaration: '';
+    $names: ();
     @each $sublayer in $sublayers {
-      @if $declaration == '' {
-        $declaration: '#{$xyz-layer}.#{$sublayer}';
-      } @else {
-        $declaration: '#{$declaration}, #{$xyz-layer}.#{$sublayer}';
-      }
+      $names: list.append($names, '#{$xyz-layer}.#{$sublayer}', $separator: comma);
     }
 
-    @layer #{$declaration};
+    @layer #{$names};
   }
 }
 
@@ -125,68 +121,22 @@
 // safety and (where the platform uses it) interpolation. `inherits: true` is
 // required so nested composition and the stagger relay keep inheriting dials.
 @mixin xyz-make-properties() {
+  // Registered dials (those with a `syntax`) always inherit; the internal
+  // properties ($xyz-internal-properties) carry their own `inherits`.
+  $properties: ();
   @each $name, $variable in $xyz-variables-map {
-    $syntax: map.get($variable, 'syntax');
-
-    @if $syntax != null {
-      @property --xyz-#{$name} {
-        syntax: '#{$syntax}';
-        inherits: true;
-        initial-value: #{map.get($variable, 'initial')};
-      }
+    @if map.get($variable, 'syntax') != null {
+      $properties: map.set($properties, $name, map.merge(('inherits': true), $variable));
     }
   }
+  $properties: map.merge($properties, $xyz-internal-properties);
 
-  // The stagger index MUST be registered so it computes to a concrete number on
-  // each element. `index.modern` sets it to `calc(sibling-index() - 1)`; left
-  // unregistered that stays an unresolved token stream, and
-  // `--xyz-root-stagger-delay` (which embeds `var(--xyz-index)`) would then
-  // re-resolve `sibling-index()` in each *descendant's* context as it inherits
-  // down — double-counting the index and doubling every nested stagger delay.
-  //
-  // `<number>`, not `<integer>`: 0.x passed fractional indexes through, so
-  // `<integer>` would silently snap a computed half-step index to the initial
-  // value. `inherits: false` because an element's position among its siblings
-  // is not its children's — every element that consumes the index is matched by
-  // %xyz-indexed and sets its own.
-  @property --xyz-index {
-    syntax: '<number>';
-    inherits: false;
-    initial-value: 0;
-  }
-
-  @property --xyz-index-rev {
-    syntax: '<number>';
-    inherits: false;
-    initial-value: 0;
-  }
-
-  // Defense in depth for the same class of bug: these relay variables carry a
-  // parent's stagger contribution down to nested children, so they must compute
-  // to a concrete <time> on the element that sets them rather than inheriting as
-  // an unevaluated expression.
-  @property --xyz-stagger-delay {
-    syntax: '<time>';
-    inherits: true;
-    initial-value: 0s;
-  }
-
-  @property --xyz-root-stagger-delay {
-    syntax: '<time>';
-    inherits: true;
-    initial-value: 0s;
-  }
-
-  @property --xyz-nested-stagger-delay {
-    syntax: '<time>';
-    inherits: true;
-    initial-value: 0s;
-  }
-
-  @property --xyz-total-delay {
-    syntax: '<time>';
-    inherits: true;
-    initial-value: 0s;
+  @each $name, $property in $properties {
+    @property --xyz-#{$name} {
+      syntax: '#{map.get($property, 'syntax')}';
+      inherits: map.get($property, 'inherits');
+      initial-value: #{map.get($property, 'initial')};
+    }
   }
 }
 
