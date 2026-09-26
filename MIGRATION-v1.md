@@ -168,9 +168,15 @@ The ladder still ships as the fallback, so there's nothing to change.
 
 ## Removed `backface-visibility: visible`
 
-The animation mixin no longer emits `backface-visibility: visible`. It only
-re-forced the CSS initial value; the only behavior change is for code that
-relied on AnimXYZ re-forcing it. Set it yourself if you need it.
+The animation mixin no longer emits `backface-visibility: visible`. `visible`
+is the CSS initial value, so nothing changes unless your own CSS sets
+`backface-visibility: hidden` on an animated element. 0.x set `visible` on
+every animating element, which forced such elements visible; v1 does not, so
+**an element you style `backface-visibility: hidden` now disappears while it
+faces away from the viewer during flip animations** (any X/Y rotation past a
+quarter turn, for example `flip-up-50%` or a `--xyz-rotate-y` above 90deg). If
+you relied on the old behavior, set `backface-visibility: visible` on the
+animating element yourself, or drop the `hidden` rule.
 
 ## Removed internal `--xyz-*-calc` shim variables
 

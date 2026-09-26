@@ -25,4 +25,6 @@ siblings. The nth-child ladder still ships as the fallback.
   Chromium-only consumers relying solely on `sibling-index()`.
 
 **Breaking:** `backface-visibility: visible` is no longer emitted by the
-animation mixin (it only re-forced the CSS initial value).
+animation mixin. It is the CSS initial value, but 0.x used it to override an
+author `backface-visibility: hidden` while animating; such elements now vanish
+while facing away during flip / rotate animations.

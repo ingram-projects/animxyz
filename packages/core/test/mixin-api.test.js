@@ -100,8 +100,9 @@ test('xyz-animation: emits the delay chain, transform-origin, and animation shor
 	assert.doesNotMatch(result.stdout, /--xyz-total-delay-calc/)
 	assert.doesNotMatch(result.stdout, /--xyz-delay-calc/)
 	assert.match(result.stdout, /transform-origin: var\(--xyz-in-origin,/)
-	// backface-visibility: visible was removed in v1 (it only re-forced the
-	// initial value; kept only for consumers who relied on the library forcing it).
+	// backface-visibility: visible was removed in v1. It is the initial value,
+	// so this only matters for authors who set `hidden`: 0.x forced those
+	// elements visible while animating, v1 lets them vanish while back-facing.
 	assert.doesNotMatch(result.stdout, /backface-visibility/)
 	assert.match(result.stdout, /animation:\n?\s*var\(--xyz-in-duration,/)
 	assert.match(result.stdout, /animation-name: xyz-in-keyframes, var\(--xyz-in-keyframes,/)
