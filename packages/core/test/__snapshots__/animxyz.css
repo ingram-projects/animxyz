@@ -36,17 +36,17 @@ inherits:true;
 initial-value:0deg;
 }
 @property --xyz-scale-x{
-syntax:"<number>";
+syntax:"<number> | <percentage>";
 inherits:true;
 initial-value:1;
 }
 @property --xyz-scale-y{
-syntax:"<number>";
+syntax:"<number> | <percentage>";
 inherits:true;
 initial-value:1;
 }
 @property --xyz-scale-z{
-syntax:"<number>";
+syntax:"<number> | <percentage>";
 inherits:true;
 initial-value:1;
 }

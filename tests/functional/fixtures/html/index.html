@@ -123,9 +123,14 @@
 </section>
 
 <!-- @property registration: a garbage value on a registered dial is rejected at
-     computed-value time and falls back to the typed initial-value. -->
+     computed-value time and behaves as `unset`: it inherits the parent's value,
+     or gets the typed initial-value when no ancestor sets the dial. -->
 <section id="typed-dials">
 	<div id="prop-garbage" style="--xyz-opacity: red; --xyz-scale-x: nonsense; --xyz-rotate-z: 42"></div>
+	<div id="prop-parent" style="--xyz-opacity: 0.5; --xyz-scale-x: 2; --xyz-rotate-z: 10deg">
+		<div id="prop-garbage-child" style="--xyz-opacity: red; --xyz-scale-x: nonsense; --xyz-rotate-z: 0"></div>
+	</div>
+	<div id="prop-percentage" style="--xyz-opacity: 50%; --xyz-scale-x: 50%"></div>
 	<div id="prop-unregistered" style="--xyz-in-opacity: red"></div>
 </section>
 

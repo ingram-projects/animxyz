@@ -194,14 +194,30 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 	})
 
 	// v1 registers the all-mode dials with @property. The point of registration is
-	// type safety: an invalid value is rejected at computed-value time and falls
-	// back to the typed initial-value instead of poisoning the whole animation.
+	// type safety: an invalid value is rejected at computed-value time instead of
+	// poisoning the whole animation. With `inherits: true` the dial then behaves
+	// as `unset`: it inherits the parent's value, or gets the typed initial-value
+	// when no ancestor sets it.
 	test.describe('typed dial custom properties', () => {
-		test('an invalid value on a registered dial falls back to its initial value', async ({ page }) => {
+		test('an invalid value on a registered dial with no ancestor value gets its initial value', async ({ page }) => {
 			await expectVar(page, expect, '#prop-garbage', '--xyz-opacity', '1')
 			await expectVar(page, expect, '#prop-garbage', '--xyz-scale-x', '1')
-			// `42` is not an <angle>; the registered initial-value wins.
+			// `42` is not an <angle>; nothing above sets the dial, so the
+			// registered initial-value wins.
 			await expectVar(page, expect, '#prop-garbage', '--xyz-rotate-z', '0deg')
+		})
+
+		test("an invalid value on a registered dial inherits the parent's value", async ({ page }) => {
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-opacity', '0.5')
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-scale-x', '2')
+			// A unitless `0` is not an <angle> either (0.x accepted it), so the
+			// child inherits the parent's 10deg rather than getting 0deg.
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-rotate-z', '10deg')
+		})
+
+		test('opacity and scale dials accept percentages', async ({ page }) => {
+			await expectVar(page, expect, '#prop-percentage', '--xyz-opacity', '50%')
+			await expectVar(page, expect, '#prop-percentage', '--xyz-scale-x', '50%')
 		})
 
 		// CRITICAL INVARIANT: mode dials are deliberately left unregistered so the

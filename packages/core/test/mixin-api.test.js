@@ -223,9 +223,10 @@ test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
 	)
 
 	// A garbage value assigned to a registered dial (e.g. `--xyz-opacity: red`)
-	// is rejected at computed-value time and falls back to the typed
-	// initial-value instead of poisoning the animation — that is the type-safety
-	// this registration buys.
+	// is rejected at computed-value time instead of poisoning the animation.
+	// With `inherits: true` the dial then behaves as `unset`: it inherits the
+	// parent's value, and only gets the typed initial-value when no ancestor
+	// sets it. That is the type-safety this registration buys.
 
 	// CRITICAL INVARIANT: mode-specific dials are NEVER registered. Registering
 	// them with an initial-value would make them always-valid and kill the
@@ -347,8 +348,9 @@ test('appear is emitted last even unlayered with a reordered $xyz-modes', () => 
 
 // Regression: `opacity: 50%` is valid CSS, and `--xyz-opacity: 50%` was a valid
 // way to author half-opacity before these dials were registered. A bare
-// `<number>` syntax rejects the percentage at computed-value time and snaps the
-// dial back to its `1` initial-value — a silent behavior change.
+// `<number>` syntax rejects the percentage at computed-value time, and the dial
+// then behaves as `unset`: it inherits the parent's value (the `1`
+// initial-value when no ancestor sets it), a silent behavior change.
 test('--xyz-opacity accepts percentages as well as numbers', () => {
 	const result = compileSass('test/fixtures/xyz-opacity-percentage.scss')
 
@@ -357,6 +359,22 @@ test('--xyz-opacity accepts percentages as well as numbers', () => {
 		result.stdout,
 		/@property --xyz-opacity \{\s*syntax: "<number> \| <percentage>";\s*inherits: true;\s*initial-value: 1;\s*\}/
 	)
+})
+
+// Same regression for scale: scale3d() accepts percentages, so
+// `--xyz-scale-x: 50%` must stay valid on the registered dials.
+test('--xyz-scale-x/y/z accept percentages as well as numbers', () => {
+	const result = compileSass('test/fixtures/xyz-opacity-percentage.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	for (const axis of ['x', 'y', 'z']) {
+		assert.match(
+			result.stdout,
+			new RegExp(
+				`@property --xyz-scale-${axis} \\{\\s*syntax: "<number> \\| <percentage>";\\s*inherits: true;\\s*initial-value: 1;\\s*\\}`
+			)
+		)
+	}
 })
 
 test('sibling-index() uses a real-property @supports test, not the always-true form', () => {

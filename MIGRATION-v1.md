@@ -94,6 +94,29 @@ the supported-browser floor to **Baseline 2024** (Chrome/Edge 111+, Safari
 typed dials (animations degrade rather than break). No action is needed if your
 support matrix already sits at or above this floor.
 
+### Typed dials: angle dials need units
+
+The `all`-mode dials (`--xyz-opacity`, `--xyz-translate-*`, `--xyz-rotate-*`,
+`--xyz-scale-*`, `--xyz-skew-*`) are now registered with typed `@property`
+syntaxes. **Breaking:** the angle dials (`--xyz-rotate-x/y/z`,
+`--xyz-skew-x/y`) are `<angle>`, so they now need units. A unitless zero is not
+a valid `<angle>`:
+
+```css
+/* before: worked in 0.x */
+--xyz-rotate-z: 0;
+
+/* after */
+--xyz-rotate-z: 0deg;
+```
+
+A value that does not match a dial's type is rejected at computed-value time.
+Because the dials inherit, the rejected dial behaves as `unset`: it takes the
+parent's value, and only falls back to the identity (no transform, full
+opacity) when no ancestor sets that dial. `--xyz-opacity` and `--xyz-scale-*`
+accept both numbers and percentages; the mode-specific dials (`--xyz-in-*`,
+`--xyz-out-*`, `--xyz-appear-*`) are not registered and accept anything.
+
 ## Cascade layers replace `!important`
 
 v1.0 emits all CSS inside `@layer xyz` (with ordered sublayers), and precedence

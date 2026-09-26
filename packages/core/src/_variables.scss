@@ -279,19 +279,19 @@ $xyz-variables-map: (
   'scale-x': (
     'type': 'scale',
     'axis': 'x',
-    'syntax': '<number>',
+    'syntax': '<number> | <percentage>',
     'initial': 1,
   ),
   'scale-y': (
     'type': 'scale',
     'axis': 'y',
-    'syntax': '<number>',
+    'syntax': '<number> | <percentage>',
     'initial': 1,
   ),
   'scale-z': (
     'type': 'scale',
     'axis': 'z',
-    'syntax': '<number>',
+    'syntax': '<number> | <percentage>',
     'initial': 1,
   ),
   'skew-x': (

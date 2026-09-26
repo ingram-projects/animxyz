@@ -108,8 +108,12 @@ unregistered so the mode cascade's `var()` fallthrough keeps working.
 Registering with `inherits: true` and an identity `initial-value` keeps the
 compiled output behaving exactly as before while adding type safety: a garbage
 value assigned to a registered dial (e.g. `--xyz-opacity: red`) is rejected at
-computed-value time and falls back to the typed initial value instead of
-poisoning the animation.
+computed-value time instead of poisoning the animation. The dial then behaves
+as `unset`: it inherits the parent's value, and only gets the typed initial
+value (the identity) when no ancestor sets it.
+
+Angle dials (`--xyz-rotate-*`, `--xyz-skew-*`) are registered as `<angle>`, so
+they need units: `--xyz-rotate-z: 0` is invalid, use `0deg`.
 
 ## Cascade layers & the override contract
 
