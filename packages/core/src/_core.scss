@@ -110,13 +110,11 @@
       // against a real property that actually consumes the function. This layer
       // is declared after `index.ladder`, so it wins over the higher-specificity
       // nth-child rules without needing !important.
+      //
+      // Declared on the same %xyz-indexed placeholder as the ladder, so both
+      // match exactly the classes that @extend it (via %xyz-root/%xyz-nested).
       @supports (animation-delay: calc(1s * (sibling-index() - 1))) {
-        $index-selectors: '.xyz-nested';
-        @each $mode in $xyz-modes {
-          $index-selectors: '#{$index-selectors}, .xyz-#{$mode}, .xyz-#{$mode}-nested';
-        }
-
-        #{$index-selectors} {
+        %xyz-indexed {
           --xyz-index: calc(sibling-index() - 1);
           --xyz-index-rev: calc(sibling-count() - sibling-index());
         }

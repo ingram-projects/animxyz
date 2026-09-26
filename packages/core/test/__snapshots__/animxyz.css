@@ -267,7 +267,7 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 }
 @layer xyz.index.modern{
 @supports (animation-delay:calc(1s * (sibling-index() - 1))){
-.xyz-nested,.xyz-in,.xyz-in-nested,.xyz-out,.xyz-out-nested,.xyz-appear,.xyz-appear-nested{
+.xyz-appear,.xyz-out,.xyz-in,.xyz-appear-nested,.xyz-out-nested,.xyz-in-nested,.xyz-nested{
 --xyz-index:calc(sibling-index() - 1);
 --xyz-index-rev:calc(sibling-count() - sibling-index());
 }
