@@ -27,11 +27,15 @@ sublayers declared in precedence order:
        xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
 ```
 
-Precedence is decided by **layer order**, not source order or `!important` (the
-compiled CSS contains none). The practical upshot:
+Precedence is decided by **layer order**, not source order. The practical
+upshot:
 
-- **Your unlayered CSS beats AnimXYZ by default** — no specificity battles, no
-  `!important`.
+- **Your unlayered CSS beats AnimXYZ by default**, with no specificity battles
+  and no `!important`.
+- The exceptions are the special classes (`xyz-absolute`, `xyz-paused`,
+  `xyz-none`) and the `prefers-reduced-motion` override, which keep
+  `!important` inside the layer so they still beat your unlayered CSS. To
+  override one, use an `!important` inside a layer declared before `xyz`.
 - To deliberately *lose* to AnimXYZ, put your styles in a layer declared before
   `xyz`, e.g. `@layer base, xyz;`.
 

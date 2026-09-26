@@ -65,7 +65,8 @@ First-time setup needs at least one browser: `npx playwright install chromium`
   values while mode dials stay unregistered so the `var()` fallthrough works;
   stagger keeps climbing past the `$xyz-index-levels` nth-child cap via
   `sibling-index()`; and the cascade-layer override contract (unlayered author
-  CSS beats AnimXYZ, author CSS in a layer declared before `xyz` loses to it).
+  CSS beats AnimXYZ, author CSS in a layer declared before `xyz` loses to it,
+  and the special classes and reduced motion still beat unlayered author CSS).
 - **Vue 3 / Vue 2**: `<XyzTransition>` enter/leave/appear completing (the
   `done()` callback firing is the historical hang regression), transition
   classes, `duration` prop (number and `auto` with nested elements, Vue 3),

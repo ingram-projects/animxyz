@@ -183,28 +183,36 @@
       }
     }
 
+    // The special classes and the reduced-motion override are the only
+    // `!important` declarations in the output. Everything else is overridable
+    // by plain author CSS, but these must keep beating unlayered author CSS as
+    // they did in 0.x: a normal declaration inside a layer always loses to
+    // unlayered author CSS, while a layered `!important` beats every
+    // normal-priority author declaration.
     @include xyz-layer('overrides') {
       // so elements don't take space during animation
       %xyz-absolute {
-        position: absolute;
+        position: absolute !important;
       }
 
       // pauses animations
       %xyz-paused {
-        animation-play-state: paused;
+        animation-play-state: paused !important;
       }
 
       // turns off animations
       %xyz-none {
-        animation: none;
+        animation: none !important;
       }
     }
 
-    // for reduced motion users
+    // for reduced motion users. Same layer as the special classes, whose
+    // selectors are always more specific than these, so an explicit
+    // `xyz-paused` still wins the (moot) animation-play-state tie as in 0.x.
     @media (prefers-reduced-motion: reduce) {
       @include xyz-layer('overrides') {
         %xyz-reduced-motion {
-          animation: none;
+          animation: none !important;
         }
 
         @each $mode in $xyz-modes {

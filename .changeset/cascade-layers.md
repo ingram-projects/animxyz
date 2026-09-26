@@ -2,7 +2,7 @@
 '@animxyz/core': major
 ---
 
-Wrap all output in cascade `@layer`s and remove every `!important`
+Wrap all output in cascade `@layer`s and drop `!important` outside the special classes
 
 Compiled CSS is now emitted inside a single top-level `@layer xyz` with
 sublayers declared in precedence order:
@@ -12,14 +12,17 @@ sublayers declared in precedence order:
        xyz.triggers.in, xyz.triggers.out, xyz.triggers.appear, xyz.overrides;
 ```
 
-Precedence is decided by layer order instead of source order or `!important`
-(the output now contains zero `!important`). The `absolute` / `paused` / `none`
-special classes and the `prefers-reduced-motion` override win because they live
-in the last `overrides` sublayer, not because they are forced.
+Precedence is decided by layer order instead of source order or `!important`.
+The only `!important` declarations left are the `absolute` / `paused` / `none`
+special classes and the `prefers-reduced-motion` override, which live in the
+last `overrides` sublayer. A layered `!important` beats all normal-priority
+author CSS, so they keep beating unlayered author CSS as in 0.x.
 
-**Breaking — override contract changes:** unlayered author CSS now beats
-AnimXYZ by default. To lose to AnimXYZ deliberately, declare your styles in a
-layer before `xyz` (e.g. `@layer base, xyz;`).
+**Breaking: override contract changes.** Everything else is now overridable by
+plain unlayered author CSS. To lose to AnimXYZ deliberately, declare your
+styles in a layer before `xyz` (e.g. `@layer base, xyz;`). An unlayered
+`!important` no longer overrides the special classes or reduced motion; use an
+`!important` inside a layer declared before `xyz` instead.
 
 `appear` is pinned to the last trigger sublayer, so it beats `in`/`out`
 regardless of `$xyz-modes` order — the "appear must come last" source-order

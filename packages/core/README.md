@@ -125,12 +125,17 @@ declared in precedence order:
 and `index.modern` the `sibling-index()` enhancement, declared after it so the
 modern rule wins on layer order despite the ladder's higher specificity.
 
-Precedence is now decided by **layer order**, not source order or `!important`
-(the compiled CSS contains zero `!important`). Two consequences:
+Precedence is now decided by **layer order**, not source order. Consequences:
 
 - **Your CSS wins by default.** Unlayered author styles beat anything AnimXYZ
   emits, regardless of specificity. To *lose* to AnimXYZ on purpose, put your
   styles in a layer declared before `xyz` (e.g. `@layer base, xyz;`).
+- **Except the special classes and reduced motion.** `xyz-absolute`,
+  `xyz-paused`, `xyz-none` (and their per-mode variants) and the
+  `prefers-reduced-motion` override keep `!important` inside `xyz.overrides`,
+  so they still beat unlayered author CSS as in 0.x. They are the only
+  `!important` declarations in the output. To override one, use an
+  `!important` inside a layer declared before `xyz`.
 - **Mode precedence is fixed by layer order.** `appear` is pinned to the last
   trigger sublayer, so it beats `in`/`out` no matter how `$xyz-modes` is
   ordered — the old "appear must come last" source-order rule is gone.

@@ -3,21 +3,28 @@
 <head>
 <meta charset="utf-8">
 <title>AnimXYZ core fixture</title>
-<!-- Declared BEFORE the core stylesheet so `base` sorts before `xyz`: styles in
-     @layer base deliberately lose to AnimXYZ, unlayered styles beat it. -->
+<!-- Declared BEFORE the core stylesheet so `base` sorts before `xyz`: normal
+     styles in @layer base deliberately lose to AnimXYZ, unlayered styles beat
+     it, and an !important in @layer base beats AnimXYZ's layered !important. -->
 <style>@layer base, xyz;</style>
 <link rel="stylesheet" href="./animxyz.css">
 <style>
 	.box { width: 40px; height: 40px; background: #4d4dff; margin: 4px; }
 	.row { display: flex; }
 
-	/* Unlayered author CSS — must beat AnimXYZ (v1 removed every !important) */
-	#layer-unlayered { position: static; }
+	/* Unlayered author CSS: beats AnimXYZ's normal-priority declarations */
+	#layer-unlayered { transform-origin: 0px 0px; }
+	/* ...but not the special classes, which keep a layered !important */
+	#layer-special { position: static; }
+	/* ...nor the reduced-motion override */
+	#reduced-author { animation-name: author-anim; }
 </style>
 <style>
 	@layer base {
-		/* Author CSS that opts into losing by living in a layer before `xyz` */
-		#layer-base { position: static; }
+		/* Normal author CSS in a layer before `xyz` loses to AnimXYZ */
+		#layer-base { transform-origin: 0px 0px; }
+		/* An !important in an earlier layer beats xyz's layered !important */
+		#layer-base { position: static !important; }
 	}
 </style>
 </head>
@@ -129,10 +136,12 @@
 	<div id="toggle-absolute" class="box xyz-out xyz-paused xyz-absolute" data-xyz="fade"></div>
 </section>
 
-<!-- Cascade layers: who wins now that !important is gone -->
+<!-- Cascade layers: who wins against author CSS -->
 <section id="layers">
-	<div id="layer-unlayered" class="box xyz-out xyz-paused xyz-absolute" data-xyz="fade"></div>
+	<div id="layer-unlayered" class="box xyz-out xyz-paused" data-xyz="fade"></div>
+	<div id="layer-special" class="box xyz-out xyz-paused xyz-absolute" data-xyz="fade"></div>
 	<div id="layer-base" class="box xyz-out xyz-paused xyz-absolute" data-xyz="fade"></div>
+	<div id="reduced-author" class="box xyz-in xyz-paused" data-xyz="fade"></div>
 </section>
 
 <!-- Dynamically-triggered animations, driven from the spec -->

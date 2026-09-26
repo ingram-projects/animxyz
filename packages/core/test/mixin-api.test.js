@@ -5,6 +5,23 @@ const assert = require('node:assert/strict')
 
 const { compileSass } = require('./helpers/sass')
 
+// The `absolute` / `paused` / `none` special classes and the reduced-motion
+// override are the ONLY declarations allowed to carry !important: a layered
+// !important is what lets them keep beating unlayered author CSS as in 0.x.
+// Everything else must stay overridable by plain author CSS.
+const ALLOWED_IMPORTANT = new Set(['position: absolute', 'animation-play-state: paused', 'animation: none'])
+
+function assertOnlyOverridesImportant(css) {
+	const importants = [...css.matchAll(/([\w-]+:\s*[^;{}]*?)\s*!important/g)].map((match) => match[1])
+	assert.deepEqual(
+		[...new Set(importants)].sort(),
+		[...ALLOWED_IMPORTANT].sort(),
+		'only the special classes and reduced motion may use !important'
+	)
+	// Exactly one rule per special class plus one reduced-motion rule.
+	assert.equal(importants.length, 4, `unexpected !important count: ${importants.join(' | ')}`)
+}
+
 test('xyz-var: emits cascading var() chains', () => {
 	const result = compileSass('test/fixtures/xyz-var.scss')
 
@@ -257,8 +274,9 @@ test('cascade output is wrapped in @layer with the documented order', () => {
 		result.stdout,
 		/@layer xyz\.defaults, xyz\.index\.ladder, xyz\.index\.modern, xyz\.utilities, xyz\.triggers\.in, xyz\.triggers\.out, xyz\.triggers\.appear, xyz\.overrides;/
 	)
-	// No !important anywhere — precedence is by layer, not by force.
-	assert.doesNotMatch(result.stdout, /!important/)
+	// Precedence is by layer, not by force: only the special classes and the
+	// reduced-motion override keep !important (see assertOnlyOverridesImportant).
+	assertOnlyOverridesImportant(result.stdout)
 })
 
 test('@layer order is independent of $xyz-modes source order (appear stays last)', () => {
@@ -283,13 +301,14 @@ test('@layer order is independent of $xyz-modes source order (appear stays last)
 })
 
 // The documented escape hatch for consumers who cannot adopt cascade layers.
-// Crucially it must NOT quietly reintroduce !important to compensate.
-test("$xyz-layer: '' emits unlayered CSS without falling back to !important", () => {
+// Crucially it must NOT quietly reintroduce !important beyond the special
+// classes and reduced motion to compensate.
+test("$xyz-layer: '' emits unlayered CSS without adding more !important", () => {
 	const result = compileSass('test/fixtures/xyz-layer-none.scss')
 
 	assert.equal(result.status, 0, result.stderr)
 	assert.doesNotMatch(result.stdout, /@layer/)
-	assert.doesNotMatch(result.stdout, /!important/)
+	assertOnlyOverridesImportant(result.stdout)
 	// still a complete stylesheet, just unlayered
 	assert.match(result.stdout, /@keyframes xyz-in-keyframes \{/)
 	assert.match(result.stdout, /\[data-xyz~=fade\]/)
@@ -307,7 +326,7 @@ test('appear is emitted last even unlayered with a reordered $xyz-modes', () => 
 
 	assert.equal(result.status, 0, result.stderr)
 	assert.doesNotMatch(result.stdout, /@layer/)
-	assert.doesNotMatch(result.stdout, /!important/)
+	assertOnlyOverridesImportant(result.stdout)
 
 	// Locate each mode's trigger block by the animation-name shorthand it emits.
 	const positionOf = (mode) => {

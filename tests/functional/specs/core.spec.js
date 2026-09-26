@@ -218,20 +218,33 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		})
 	})
 
-	// v1 emits everything inside @layer xyz and contains zero !important, which
-	// inverts the override contract: author CSS wins unless it opts out.
+	// v1 emits everything inside @layer xyz, which inverts the override contract:
+	// author CSS wins unless it opts out. The exceptions are the special classes
+	// and reduced motion, which keep a layered !important so they still beat
+	// unlayered author CSS as in 0.x.
 	test.describe('cascade layers', () => {
 		test('unlayered author CSS beats AnimXYZ', async ({ page }) => {
-			// #layer-unlayered is .xyz-absolute (position: absolute in xyz.overrides);
-			// the unlayered author rule `position: static` must win. Under 0.x this
-			// was `position: absolute !important` and the author lost.
-			expect(await computed(page, '#layer-unlayered', 'position')).toBe('static')
+			// transform-origin is a normal-priority declaration in xyz.triggers.out;
+			// the unlayered author rule must win regardless of specificity.
+			expect(await computed(page, '#layer-unlayered', 'transform-origin')).toBe('0px 0px')
+		})
+
+		test('special classes still beat unlayered author CSS', async ({ page }) => {
+			// .xyz-absolute is `position: absolute !important` inside xyz.overrides;
+			// a layered !important beats the unlayered author `position: static`.
+			expect(await computed(page, '#layer-special', 'position')).toBe('absolute')
 		})
 
 		test('author CSS in a layer declared before xyz loses to AnimXYZ', async ({ page }) => {
-			// Same rule, but inside `@layer base` with `@layer base, xyz;` declared
-			// first — the documented way to deliberately lose to AnimXYZ.
-			expect(await computed(page, '#layer-base', 'position')).toBe('absolute')
+			// Inside `@layer base` with `@layer base, xyz;` declared first: a normal
+			// declaration loses to AnimXYZ (the element keeps the centered origin)...
+			expect(await computed(page, '#layer-base', 'transform-origin')).toBe('20px 20px')
+		})
+
+		test('an !important in a layer declared before xyz overrides a special class', async ({ page }) => {
+			// ...while an !important there beats xyz's layered !important, because
+			// earlier layers win among important declarations.
+			expect(await computed(page, '#layer-base', 'position')).toBe('static')
 		})
 	})
 
@@ -257,6 +270,14 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 			await page.emulateMedia({ reducedMotion: 'reduce' })
 			expect(await computed(page, '#mode-in', 'animation-name')).toBe('none')
 			expect(await computed(page, '#nested-child', 'animation-name')).toBe('none')
+		})
+
+		test('reduced motion beats unlayered author CSS', async ({ page }) => {
+			// Without reduced motion the unlayered author animation-name wins...
+			expect(await computed(page, '#reduced-author', 'animation-name')).toBe('author-anim')
+			// ...but the layered !important reduced-motion override beats it.
+			await page.emulateMedia({ reducedMotion: 'reduce' })
+			expect(await computed(page, '#reduced-author', 'animation-name')).toBe('none')
 		})
 	})
 })

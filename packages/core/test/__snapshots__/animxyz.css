@@ -302,19 +302,19 @@ animation-name:xyz-appear-keyframes,var(--xyz-appear-keyframes,var(--xyz-keyfram
 }
 @layer xyz.overrides{
 .xyz-absolute.xyz-in,.xyz-in-absolute.xyz-in,.xyz-in .xyz-absolute.xyz-nested,.xyz-in .xyz-absolute.xyz-in-nested,.xyz-in .xyz-in-absolute.xyz-nested,.xyz-in .xyz-in-absolute.xyz-in-nested,.xyz-absolute.xyz-out,.xyz-out-absolute.xyz-out,.xyz-out .xyz-absolute.xyz-nested,.xyz-out .xyz-absolute.xyz-out-nested,.xyz-out .xyz-out-absolute.xyz-nested,.xyz-out .xyz-out-absolute.xyz-out-nested,.xyz-absolute.xyz-appear,.xyz-appear-absolute.xyz-appear,.xyz-appear .xyz-absolute.xyz-nested,.xyz-appear .xyz-absolute.xyz-appear-nested,.xyz-appear .xyz-appear-absolute.xyz-nested,.xyz-appear .xyz-appear-absolute.xyz-appear-nested{
-position:absolute;
+position:absolute !important;
 }
 .xyz-paused.xyz-in,.xyz-in-paused.xyz-in,.xyz-in .xyz-paused.xyz-nested,.xyz-in .xyz-paused.xyz-in-nested,.xyz-in .xyz-in-paused.xyz-nested,.xyz-in .xyz-in-paused.xyz-in-nested,.xyz-in.xyz-paused-all,.xyz-in.xyz-in-paused-all,.xyz-in.xyz-paused-all .xyz-nested,.xyz-in.xyz-paused-all .xyz-in-nested,.xyz-in.xyz-in-paused-all .xyz-nested,.xyz-in.xyz-in-paused-all .xyz-in-nested,.xyz-paused.xyz-out,.xyz-out-paused.xyz-out,.xyz-out .xyz-paused.xyz-nested,.xyz-out .xyz-paused.xyz-out-nested,.xyz-out .xyz-out-paused.xyz-nested,.xyz-out .xyz-out-paused.xyz-out-nested,.xyz-out.xyz-paused-all,.xyz-out.xyz-out-paused-all,.xyz-out.xyz-paused-all .xyz-nested,.xyz-out.xyz-paused-all .xyz-out-nested,.xyz-out.xyz-out-paused-all .xyz-nested,.xyz-out.xyz-out-paused-all .xyz-out-nested,.xyz-paused.xyz-appear,.xyz-appear-paused.xyz-appear,.xyz-appear .xyz-paused.xyz-nested,.xyz-appear .xyz-paused.xyz-appear-nested,.xyz-appear .xyz-appear-paused.xyz-nested,.xyz-appear .xyz-appear-paused.xyz-appear-nested,.xyz-appear.xyz-paused-all,.xyz-appear.xyz-appear-paused-all,.xyz-appear.xyz-paused-all .xyz-nested,.xyz-appear.xyz-paused-all .xyz-appear-nested,.xyz-appear.xyz-appear-paused-all .xyz-nested,.xyz-appear.xyz-appear-paused-all .xyz-appear-nested{
-animation-play-state:paused;
+animation-play-state:paused !important;
 }
 .xyz-none.xyz-in,.xyz-in-none.xyz-in,.xyz-in .xyz-none.xyz-nested,.xyz-in .xyz-none.xyz-in-nested,.xyz-in .xyz-in-none.xyz-nested,.xyz-in .xyz-in-none.xyz-in-nested,.xyz-in.xyz-none-all,.xyz-in.xyz-in-none-all,.xyz-in.xyz-none-all .xyz-nested,.xyz-in.xyz-none-all .xyz-in-nested,.xyz-in.xyz-in-none-all .xyz-nested,.xyz-in.xyz-in-none-all .xyz-in-nested,.xyz-none.xyz-out,.xyz-out-none.xyz-out,.xyz-out .xyz-none.xyz-nested,.xyz-out .xyz-none.xyz-out-nested,.xyz-out .xyz-out-none.xyz-nested,.xyz-out .xyz-out-none.xyz-out-nested,.xyz-out.xyz-none-all,.xyz-out.xyz-out-none-all,.xyz-out.xyz-none-all .xyz-nested,.xyz-out.xyz-none-all .xyz-out-nested,.xyz-out.xyz-out-none-all .xyz-nested,.xyz-out.xyz-out-none-all .xyz-out-nested,.xyz-none.xyz-appear,.xyz-appear-none.xyz-appear,.xyz-appear .xyz-none.xyz-nested,.xyz-appear .xyz-none.xyz-appear-nested,.xyz-appear .xyz-appear-none.xyz-nested,.xyz-appear .xyz-appear-none.xyz-appear-nested,.xyz-appear.xyz-none-all,.xyz-appear.xyz-appear-none-all,.xyz-appear.xyz-none-all .xyz-nested,.xyz-appear.xyz-none-all .xyz-appear-nested,.xyz-appear.xyz-appear-none-all .xyz-nested,.xyz-appear.xyz-appear-none-all .xyz-appear-nested{
-animation:none;
+animation:none !important;
 }
 }
 @media (prefers-reduced-motion:reduce){
 @layer xyz.overrides{
 .xyz-appear,.xyz-appear .xyz-nested,.xyz-appear .xyz-appear-nested,.xyz-out,.xyz-out .xyz-nested,.xyz-out .xyz-out-nested,.xyz-in,.xyz-in .xyz-nested,.xyz-in .xyz-in-nested{
-animation:none;
+animation:none !important;
 }
 }
 }

@@ -1,6 +1,7 @@
 // Fixture for the documented $xyz-layer: '' escape hatch: emit unlayered CSS
 // for consumers who cannot adopt cascade layers yet. The output must still be
-// complete and must NOT fall back to !important.
+// complete and must NOT add !important beyond the special classes and reduced
+// motion (which carry it in layered output too).
 @use '../../src/animxyz' as * with (
   $xyz-layer: ''
 );

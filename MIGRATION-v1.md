@@ -96,17 +96,30 @@ support matrix already sits at or above this floor.
 
 ## Cascade layers replace `!important`
 
-v1.0 emits all CSS inside `@layer xyz` (with ordered sublayers) and no longer
-uses `!important` anywhere. This changes the override contract:
+v1.0 emits all CSS inside `@layer xyz` (with ordered sublayers), and precedence
+is decided by layer order instead of source order. This changes the override
+contract:
 
-- **Unlayered author CSS now beats AnimXYZ by default.** If you previously
-  fought AnimXYZ's `!important` rules with your own `!important`, you can drop
-  it — plain author styles already win now.
+- **Unlayered author CSS now beats AnimXYZ by default.** Plain author styles
+  win over everything AnimXYZ emits except the special classes and reduced
+  motion (below), regardless of specificity.
 - **To lose to AnimXYZ on purpose**, declare your styles in a layer *before*
   `xyz`: `@layer base, xyz;` then put the styles in `@layer base { … }`.
-- The `absolute` / `paused` / `none` classes and `prefers-reduced-motion`
-  behavior are unchanged in effect — they now win by layer position instead of
-  `!important`.
+- **The `absolute` / `paused` / `none` classes (and their per-mode variants)
+  and the `prefers-reduced-motion` override still use `!important`**, now
+  inside the `xyz.overrides` layer, so they keep beating unlayered author CSS
+  as in 0.x. These are the only `!important` declarations in the output.
+  Because a layered `!important` beats an unlayered one, an unlayered
+  `!important` no longer overrides them. To override one, put an `!important`
+  rule in a layer declared before `xyz` (earlier layers win among important
+  declarations):
+
+  ```css
+  @layer base, xyz;
+  @layer base {
+    .my-thing { position: relative !important; }
+  }
+  ```
 
 Set `$xyz-layer: ''` (Sass) to emit unlayered CSS if you can't adopt cascade
 layers yet.
