@@ -23,7 +23,8 @@
           // Fallbacks must be valid for each dial's registered @property syntax:
           // WebKit validates var() fallbacks against the registered syntax even
           // when the fallback is unused, and a unitless 0 is not a valid <angle>
-          // (or <length>), which would invalidate the whole transform.
+          // (or <length>), which would invalidate the whole transform. The
+          // minifier is configured to keep these units (.postcss-cssnano).
           $translate-x: xyz-var('translate-x', $mode, 0px);
           $translate-y: xyz-var('translate-y', $mode, 0px);
           $translate-z: xyz-var('translate-z', $mode, 0px);

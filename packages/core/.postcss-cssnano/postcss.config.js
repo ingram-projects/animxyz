@@ -11,6 +11,13 @@
 // full minification set, including calc() folding -- cssnano 8's bundled
 // postcss-calc@10.x parses xyz-var()'s nested var() fallback chains that the
 // old postcss-calc@7.x choked on.
+//
+// `convertValues` is off because it strips the unit from every zero length
+// (`0px` -> `0`) with no option to keep it (its `length: false` option only
+// stops px/pt/in conversions). The keyframe var() fallbacks and the
+// `@property` initial-values are written as `0px` / `0deg` on purpose (see
+// _core.scss): they must stay valid for each dial's registered syntax.
+// Disabling it costs ~20 bytes (nothing gzipped) and changes nothing else.
 module.exports = {
-  plugins: [require('cssnano')({ preset: 'default' })],
+  plugins: [require('cssnano')({ preset: ['default', { convertValues: false }] })],
 }
