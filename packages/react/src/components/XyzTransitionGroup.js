@@ -35,8 +35,12 @@ function XyzTransitionGroup(props) {
 
 	const childArray = Children.toArray(children).filter(isValidElement)
 
+	// Only pass data-xyz when set: `component={React.Fragment}` warns about any
+	// prop besides key and children, even an undefined one.
+	const groupProps = xyz === undefined ? rest : { ...rest, 'data-xyz': xyz }
+
 	return (
-		<TransitionGroup {...rest} data-xyz={xyz}>
+		<TransitionGroup {...groupProps}>
 			{childArray.map((child, index) => (
 				<XyzTransitionBase
 					{...baseProps}
