@@ -402,3 +402,18 @@ test('$xyz-index-levels: 0 skips the nth-child ladder but keeps sibling-index()'
 	assert.doesNotMatch(result.stdout, /nth-child/)
 	assert.match(result.stdout, /sibling-index\(\)/)
 })
+
+// `perspective(none)` is not supported everywhere at the v1 floor (e.g. Chrome
+// and Edge 111), and an unsupported value invalidates the whole keyframe
+// transform. The 0.x feature test must stay: default to `0`, switch to `none`
+// only where supported.
+test('--xyz-perspective-none keeps the perspective(none) feature test', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /:root \{\s*--xyz-perspective-none: 0;\s*\}/)
+	assert.match(
+		result.stdout,
+		/@supports \(transform: perspective\(none\)\) \{\s*:root \{\s*--xyz-perspective-none: none;\s*\}\s*\}/
+	)
+})

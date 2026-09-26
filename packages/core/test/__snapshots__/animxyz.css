@@ -109,7 +109,14 @@ transform:var(--xyz-appear-transform,var(--xyz-transform,perspective(var(--xyz-a
 }
 }
 :root{
+--xyz-perspective-none:0;
+}
+@supports (transform:perspective(none)){
+:root{
 --xyz-perspective-none:none;
+}
+}
+:root{
 --xyz-keyframes-default:none;
 --xyz-ease-default:ease;
 --xyz-duration-default:0.5s;

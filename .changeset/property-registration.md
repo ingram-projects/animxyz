@@ -17,9 +17,10 @@ behaves exactly as before. The mode-specific dials (`--xyz-in-*`, `--xyz-out-*`,
 `--xyz-appear-*`) are intentionally left unregistered so the mode cascade's
 `var()` fallthrough continues to work.
 
-The `--xyz-perspective-none` `@supports` feature test is removed —
-`perspective(none)` is universally supported at the new browser floor
-(Baseline 2024).
+The `--xyz-perspective-none` `@supports` feature test is kept:
+`perspective(none)` is not supported everywhere at the new browser floor (for
+example Chrome/Edge 111), so it still defaults to `0` and switches to `none`
+only where the browser supports it.
 
 **Breaking:** the browser floor moves to Baseline 2024 (Chrome/Edge 111+,
 Safari 16.4+, Firefox 128+) for `@property` support.

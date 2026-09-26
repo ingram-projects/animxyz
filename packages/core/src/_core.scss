@@ -51,9 +51,16 @@
 
       // sets defaults for xyz variables
       :root {
-        // `perspective(none)` is universally supported at the v1 browser floor
-        // (Baseline 2024), so the old @supports feature-test is no longer needed.
-        --xyz-perspective-none: none;
+        // `perspective(none)` is newer than the rest of the v1 floor (e.g. Chrome
+        // and Edge 111 may lack it), and an unsupported value would invalidate
+        // every keyframe transform. Default to `perspective(0)`, which browsers
+        // without `none` support treat as the identity, and only switch to
+        // `none` where it is supported (the same feature test as 0.x).
+        --xyz-perspective-none: 0;
+
+        @supports (transform: perspective(none)) {
+          --xyz-perspective-none: none;
+        }
 
         @each $name, $val in $xyz-defaults-map {
           --xyz-#{$name}-default: #{$val};
