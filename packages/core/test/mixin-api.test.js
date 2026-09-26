@@ -302,7 +302,7 @@ test("$xyz-layer: '' emits unlayered CSS without falling back to !important", ()
 // Emitting from raw $xyz-modes instead of xyz-trigger-modes() let a reordered
 // mode list flip that, silently breaking "appear beats in/out" for unlayered
 // consumers.
-test("appear is emitted last even unlayered with a reordered \$xyz-modes", () => {
+test('appear is emitted last even unlayered with a reordered $xyz-modes', () => {
 	const result = compileSass('test/fixtures/xyz-layer-none-reorder.scss')
 
 	assert.equal(result.status, 0, result.stderr)
