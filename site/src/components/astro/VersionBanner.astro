@@ -123,6 +123,8 @@ const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
     a {
       color: white;
       font-weight: 700;
+      // Wrap the link as a whole rather than breaking it across lines.
+      white-space: nowrap;
 
       &::before {
         --anchor-underline-color: white;
