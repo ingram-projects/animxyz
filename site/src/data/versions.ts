@@ -1,3 +1,5 @@
+import corePackage from '@animxyz/core/package.json'
+
 export interface DocsVersion {
   id: string
   label: string
@@ -17,3 +19,6 @@ export const currentVersionId = 'v0'
 export const currentVersion = docsVersions.find((v) => v.id === currentVersionId)!
 export const latestVersion = docsVersions[0]
 export const isLatestVersion = currentVersion === latestVersion
+
+// The published @animxyz/core version this branch's docs describe.
+export const packageVersion = corePackage.version

@@ -6,7 +6,8 @@ import 'prismjs/themes/prism-tomorrow.css'
 import '~/styles/core/_index.scss'
 
 import XrayToggle from '~/components/vue/reusable/XrayToggle.vue'
-import { currentVersion, isLatestVersion, latestVersion } from '~/data/versions'
+import VersionBanner from '~/components/astro/VersionBanner.astro'
+import { isLatestVersion } from '~/data/versions'
 
 interface Props {
   title?: string
@@ -63,16 +64,7 @@ const isProd = import.meta.env.PROD
   </head>
   <body class={bodyClass}>
     <div class="page__wrap">
-      {!isLatestVersion && (
-        <div class="version-alert__wrap">
-          <div class="alert version-alert">
-            <p>
-              You're viewing docs for AnimXYZ {currentVersion.label}.{" "}
-              <a href={`${latestVersion.url}${Astro.url.pathname}`}>View the latest {latestVersion.label} docs.</a>
-            </p>
-          </div>
-        </div>
-      )}
+      <VersionBanner />
       <div class="alerts__wrap copy-content">
         <div class="alert reduced-motion-alert">
           <p>
@@ -152,27 +144,6 @@ const isProd = import.meta.env.PROD
         color: white;
       }
     }
-  }
-
-  // Not fixed like the other alerts: it sits above the page content and
-  // scrolls away, so it never covers the docs nav button.
-  .version-alert__wrap {
-    position: absolute;
-    top: $sp-m;
-    left: 50%;
-    width: max-content;
-    max-width: calc(100% - #{$sp-s * 2});
-    transform: translateX(-50%);
-    z-index: 9;
-    text-align: center;
-
-    @media (width < $bp-tablet) {
-      top: $sp-s;
-    }
-  }
-
-  .version-alert {
-    background-color: primary-color(600);
   }
 
   .reduced-motion-alert {
