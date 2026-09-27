@@ -2,7 +2,7 @@
 import { currentVersionId, docsVersions } from '~/data/versions'
 ---
 
-<label class="version-switch">
+<label class="version-switch xyz-nested">
   <span class="screen-reader-only">Docs version</span>
   <select class="version-switch__select" autocomplete="off" data-version-switch>
     {
@@ -60,6 +60,11 @@ import { currentVersionId, docsVersions } from '~/data/versions'
       outline: none;
       color: primary-color(50);
       background-color: primary-color(500, 0.3);
+
+      + .version-switch__caret {
+        color: primary-color(50);
+        transform: translateY(0.125rem) scale(1.15);
+      }
     }
 
     &:focus-visible {
@@ -77,5 +82,8 @@ import { currentVersionId, docsVersions } from '~/data/versions'
     right: $sp-xs;
     color: primary-color(200);
     pointer-events: none;
+    transition:
+      color 0.2s $ease-in-out,
+      transform 0.3s $ease-out-back;
   }
 </style>
