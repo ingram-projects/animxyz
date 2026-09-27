@@ -18,7 +18,7 @@ const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
       </script>
       <div
         class="version-alert__wrap xyz-appear xyz-paused-all"
-        data-xyz="fade up small ease-out-back delay-2"
+        data-xyz="fade up small ease-out-back appear-delay-2"
         data-version-alert={storageKey}
       >
         <div class="version-alert">
@@ -50,7 +50,23 @@ const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
     // Force reflow so the out animation starts from the settled state.
     void wrap!.offsetWidth
     wrap!.classList.add('xyz-out')
-    waitForXyzAnimation(wrap!, 'xyz-out-keyframes', () => wrap!.remove())
+    waitForXyzAnimation(wrap!, 'xyz-out-keyframes', () => {
+      // On small screens the banner is in the page flow, so collapse the
+      // space it took up instead of letting the page jump.
+      const inFlow = getComputedStyle(wrap!).position !== 'absolute'
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (!inFlow || reduceMotion) {
+        wrap!.remove()
+        return
+      }
+      wrap!.style.visibility = 'hidden'
+      wrap!
+        .animate([{ height: `${wrap!.offsetHeight}px` }, { height: '0px' }], {
+          duration: 250,
+          easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+        })
+        .finished.then(() => wrap!.remove())
+    })
   })
 </script>
 
@@ -68,15 +84,13 @@ const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
     justify-content: center;
     pointer-events: none;
 
+    // On small screens it becomes a full-width bar in the page flow.
     @media (width < $bp-tablet) {
-      top: $sp-s;
-    }
-
-    // Clear the home page's version label and dark mode toggle.
-    :global(.page--index) & {
-      @media (width < $bp-tablet) {
-        top: calc(#{$sp-m} + 3rem);
-      }
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      overflow: hidden;
     }
 
     :global(.version-alert-dismissed) & {
@@ -94,6 +108,13 @@ const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
     border-radius: $br-m;
     background-color: primary-color(600);
     pointer-events: all;
+
+    @media (width < $bp-tablet) {
+      flex-grow: 1;
+      justify-content: space-between;
+      padding: $sp-xs $sp-xs $sp-xs $sp-s;
+      border-radius: 0;
+    }
 
     p {
       color: white;
