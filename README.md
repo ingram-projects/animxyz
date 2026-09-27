@@ -11,12 +11,12 @@ AnimXYZ helps you create, customize, and compose animations for your website. Po
 For example here is how you make an element fade and shrink in from above:
 
 ```html
-<div class="xyz-in" xyz="fade up big">I will animate in!</div>
+<div class="xyz-in" data-xyz="fade up big">I will animate in!</div>
 ```
 Changing the class to `xyz-out` reverses the direction of the animation:
 
 ```html
-<div class="xyz-out" xyz="fade up big">I will animate out!</div>
+<div class="xyz-out" data-xyz="fade up big">I will animate out!</div>
 ```
 [See it in action here](<https://animxyz.com/docs?tab=examples&example=Example 1#the-basics>)
 

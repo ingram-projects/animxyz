@@ -1,0 +1,189 @@
+---
+import { packageVersion, packages } from '~/data/versions'
+---
+
+<div class="version-menu xyz-appear xyz-paused-all" data-xyz="fade small-3 ease-out-back delay-2">
+  <button class="version-menu__trigger" type="button" aria-label={`AnimXYZ v${packageVersion} package versions`}>
+    v{packageVersion}
+  </button>
+  <ul class="version-menu__card" aria-label="Packages">
+    {
+      packages.map((pkg, index) => (
+        <li style={`--item-index: ${index}`}>
+          <a class="version-menu__link" href={pkg.url} target="_blank" rel="noopener noreferrer">
+            <span class="version-menu__name">{pkg.name}</span>
+            <span class="version-menu__version">{pkg.version}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style lang="scss">
+  .version-menu {
+    --menu-bg: #{primary-color(100)};
+    --menu-duration: 0.15s;
+    position: absolute;
+    top: $sp-m;
+    left: $sp-m;
+    z-index: 5;
+
+    @include dark-mode {
+      --menu-bg: #{primary-color(800)};
+    }
+
+    @media (width < $bp-phone) {
+      top: $sp-s;
+      left: $sp-s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      --menu-duration: 0s;
+    }
+  }
+
+  .version-menu__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2.25rem;
+    padding: 0 $sp-xs;
+    border-radius: $br-l;
+    font-family: $font-stack-mono;
+    font-size: $fs-m;
+    font-weight: bold;
+    color: primary-color(700);
+    transition: var(--menu-duration) $ease-in-out;
+    transition-property: color, background-color, border-radius, box-shadow;
+
+    @include dark-mode {
+      color: primary-color(200);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 4px primary-color(200, 0.5);
+    }
+
+    // Inverted corner joining the tab to the top edge of the wider card.
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -$br-l;
+      width: $br-l;
+      height: $br-l;
+      background: radial-gradient(circle at 100% 0, transparent $br-l, var(--menu-bg) calc(#{$br-l} + 0.5px));
+      opacity: 0;
+      transition: opacity var(--menu-duration) $ease-in-out;
+    }
+  }
+
+  .version-menu__card {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    margin: 0;
+    padding: $sp-xxxs $sp-xxs $sp-xxs;
+    list-style: none;
+    background-color: var(--menu-bg);
+    border-radius: 0 $br-l $br-l $br-l;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--menu-duration) $ease-in-out;
+
+    li {
+      opacity: 0;
+      transform: translateY(-0.125rem);
+      transition: var(--menu-duration) $ease-out;
+      transition-property: opacity, transform;
+    }
+  }
+
+  .version-menu__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $sp-l;
+    padding: $sp-xxs $sp-xs;
+    border-radius: $br-m;
+    font-family: $font-stack-mono;
+    font-size: $fs-s;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background-color 0.2s $ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      background-color: primary-color(500, 0.15);
+
+      .version-menu__name {
+        color: primary-color(950);
+
+        @include dark-mode {
+          color: primary-color(50);
+        }
+      }
+    }
+  }
+
+  .version-menu__name {
+    font-weight: bold;
+    color: primary-color(800);
+    transition: color 0.2s $ease-in-out;
+
+    @include dark-mode {
+      color: primary-color(100);
+    }
+  }
+
+  .version-menu__version {
+    color: primary-color(600);
+
+    @include dark-mode {
+      color: primary-color(300);
+    }
+  }
+
+  // Open while hovered or while anything inside has focus. Touch taps open it
+  // too: tapping the button focuses it (and applies :hover on iOS), and
+  // tapping elsewhere closes it.
+  @mixin open {
+    .version-menu__trigger {
+      color: primary-color(900);
+      background-color: var(--menu-bg);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      &::after {
+        opacity: 1;
+      }
+
+      @include dark-mode {
+        color: primary-color(50);
+      }
+    }
+
+    .version-menu__card {
+      opacity: 1;
+      pointer-events: auto;
+
+      li {
+        opacity: 1;
+        transform: none;
+        transition-delay: calc(var(--item-index) * 0.025s);
+      }
+    }
+  }
+
+  .version-menu:hover,
+  .version-menu:focus-within {
+    @include open;
+  }
+</style>

@@ -10,7 +10,7 @@ export default function Example() {
 				{buttonToggled && (
 					<div className="item-block">
 						{[...Array(4)].map((_, index) => (
-							<div className="square xyz-nested" xyz="fade small stagger" key={index} />
+							<div className="square xyz-nested" data-xyz="fade small stagger" key={index} />
 						))}
 					</div>
 				)}

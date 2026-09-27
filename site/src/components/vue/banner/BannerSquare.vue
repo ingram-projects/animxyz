@@ -1,5 +1,5 @@
 <template>
-  <div class="banner-square" xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
+  <div class="banner-square" data-xyz="appear-duration-20 appear-stagger-1 duration-10" v-xyz="xyzUtilityStrings">
     <div class="square-content">
       <slot></slot>
     </div>
@@ -8,7 +8,7 @@
         <p
           class="anim-name xyz-nested"
           :class="[`color-axis-${getUtilityAxis(xyzUtility)}`]"
-          xyz="fade in-left in-delay-5 in-stagger"
+          data-xyz="fade in-left in-delay-5 in-stagger"
           v-for="xyzUtility in xyzUtilities"
           :key="xyzUtility.string"
         >

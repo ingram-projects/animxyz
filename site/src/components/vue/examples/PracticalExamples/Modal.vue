@@ -1,19 +1,19 @@
 <template>
   <div class="example-wrap">
-    <XyzTransition duration="auto" xyz="fade out-delay-5">
+    <XyzTransition duration="auto" data-xyz="fade out-delay-5">
       <div class="modal-overlay" v-if="customData.modalOpen" @click="customData.modalOpen = false">
-        <div class="modal xyz-nested" xyz="fade short-100% delay-3 ease-out-back" @click.stop>
-          <div class="modal-header xyz-nested" xyz="up-100% in-delay-3">
-            <h1 class="xyz-nested" xyz="fade left in-delay-6">I am a modal</h1>
-            <button xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="customData.modalOpen = false">
+        <div class="modal xyz-nested" data-xyz="fade short-100% delay-3 ease-out-back" @click.stop>
+          <div class="modal-header xyz-nested" data-xyz="up-100% in-delay-3">
+            <h1 class="xyz-nested" data-xyz="fade left in-delay-6">I am a modal</h1>
+            <button data-xyz="fade small in-delay-7" class="modal-close xyz-nested" @click="customData.modalOpen = false">
               <IconClose></IconClose>
             </button>
           </div>
           <div class="modal-body"></div>
-          <div class="modal-footer xyz-nested" xyz="down-100% in-delay-3">
+          <div class="modal-footer xyz-nested" data-xyz="down-100% in-delay-3">
             <button
               class="modal-button xyz-nested"
-              xyz="fade in-right in-delay-7"
+              data-xyz="fade in-right in-delay-7"
               @click="customData.modalOpen = false"
             >
               Close

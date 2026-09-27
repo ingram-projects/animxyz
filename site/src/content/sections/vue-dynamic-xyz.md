@@ -16,7 +16,7 @@ examples:
           }
 
           ##vue
-          <XyzTransition xyz="fade duration-10" v-xyz="xyzUtilities">
+          <XyzTransition data-xyz="fade duration-10" v-xyz="xyzUtilities">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
   - name: By Index
@@ -28,7 +28,7 @@ examples:
           <XyzTransitionGroup class="example-grid">
             <div
               class="square"
-              xyz="fade out-small-50% out-duration-30"
+              data-xyz="fade out-small-50% out-duration-30"
               v-xyz="{
                 'in-down-50% in-right-50% in-stagger-1': index <= 41,
                 'in-up-50% in-left-50% in-stagger-rev-1': index > 41,
@@ -42,7 +42,7 @@ examples:
           </XyzTransitionGroup>
 ---
 
-If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `v-xyz` directive. The `v-xyz` directive allows you to dynamically set the `xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings.
+If you need to dynamically or conditionally set and combine `xyz` utilities you can use the `v-xyz` directive. The `v-xyz` directive allows you to dynamically set the `data-xyz` attribute using a similar syntax to the Vue dynamic [class and style](https://vuejs.org/v2/guide/class-and-style.html) bindings.
 
 ```html
 <!-- Conditionally apply a transform on an element like so  -->

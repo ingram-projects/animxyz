@@ -20,7 +20,7 @@
 }
 
 .xyz-xray {
-  [xyz] {
+  [data-xyz] {
     position: relative;
     --xyz-in-keyframes: xyz-xray-in;
     --xyz-out-keyframes: xyz-xray-out;
@@ -30,7 +30,7 @@
       box-shadow: inset 0 0 0 3px $cyan;
 
       &::after {
-        content: attr(xyz);
+        content: attr(data-xyz);
         position: absolute;
         top: 0;
         left: 0;
@@ -49,7 +49,7 @@
     }
   }
 
-  [xyz='']:hover::after {
+  [data-xyz='']:hover::after {
     padding: 0;
   }
 }

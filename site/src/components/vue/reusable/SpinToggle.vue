@@ -5,7 +5,7 @@
     </div>
 
     <div class="toggle-tooltip__wrap">
-      <XyzTransition xyz mode="out-in">
+      <XyzTransition data-xyz mode="out-in">
         <div class="toggle-tooltip" key="on" v-if="toggled">{{ onText }}</div>
         <div class="toggle-tooltip" key="off" v-if="!toggled">{{ offText }}</div>
       </XyzTransition>

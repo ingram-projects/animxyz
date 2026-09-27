@@ -29,9 +29,9 @@ examples:
 
           ##jsx
           <XyzTransition appear mode="out-in">
-            {shape === 'square' && <div className="square" xyz="fade left-100%" key="square" />}
-            {shape === 'circle' && <div className="circle" xyz="fade up-100%" key="circle" />}
-            {shape === 'triangle' && <div className="triangle" xyz="fade right-100%" key="triangle" />}
+            {shape === 'square' && <div className="square" data-xyz="fade left-100%" key="square" />}
+            {shape === 'circle' && <div className="circle" data-xyz="fade up-100%" key="circle" />}
+            {shape === 'triangle' && <div className="triangle" data-xyz="fade right-100%" key="triangle" />}
           </XyzTransition>
   - name: Key
     component: XyzTransition_Key
@@ -62,7 +62,7 @@ examples:
             {toggled && (
               <div className="item-block">
                 {[...Array(4)].map((_, index) => (
-                  <div className="square xyz-nested" xyz="fade small stagger" key={index} />
+                  <div className="square xyz-nested" data-xyz="fade small stagger" key={index} />
                 ))}
               </div>
             )}

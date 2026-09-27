@@ -1,0 +1,171 @@
+---
+import IconCloseSvg from '~/assets/icons/IconClose.svg?raw'
+import { currentVersion, isLatestVersion, latestVersion } from '~/data/versions'
+
+const storageKey = `animxyz-version-banner-dismissed:${currentVersion.id}`
+---
+
+{
+  !isLatestVersion && (
+    <Fragment>
+      {/* Runs before the banner is parsed so a dismissed banner never flashes. */}
+      <script is:inline define:vars={{ storageKey }}>
+        try {
+          if (localStorage.getItem(storageKey)) {
+            document.documentElement.classList.add('version-alert-dismissed')
+          }
+        } catch {}
+      </script>
+      <div
+        class="version-alert__wrap xyz-appear xyz-paused-all"
+        data-xyz="fade up small ease-out-back appear-delay-2"
+        data-version-alert={storageKey}
+      >
+        <div class="version-alert">
+          <p>
+            You're viewing docs for AnimXYZ {currentVersion.label}.{' '}
+            <a href={`${latestVersion.url}${Astro.url.pathname}`}>View the latest {latestVersion.label} docs.</a>
+          </p>
+          <button class="version-alert__close" type="button" aria-label="Dismiss" data-version-alert-close>
+            <Fragment set:html={IconCloseSvg} />
+          </button>
+        </div>
+      </div>
+    </Fragment>
+  )
+}
+
+<script>
+  import { waitForXyzAnimation } from '~/scripts/xyzAnimation'
+
+  const wrap = document.querySelector<HTMLElement>('[data-version-alert]')
+  const closeButton = wrap?.querySelector<HTMLButtonElement>('[data-version-alert-close]')
+
+  closeButton?.addEventListener('click', () => {
+    try {
+      localStorage.setItem(wrap!.dataset.versionAlert!, '1')
+    } catch {}
+
+    wrap!.classList.remove('xyz-appear', 'xyz-paused-all')
+    // Force reflow so the out animation starts from the settled state.
+    void wrap!.offsetWidth
+    wrap!.classList.add('xyz-out')
+    waitForXyzAnimation(wrap!, 'xyz-out-keyframes', () => {
+      // On small screens the banner is in the page flow, so collapse the
+      // space it took up instead of letting the page jump.
+      const inFlow = getComputedStyle(wrap!).position !== 'absolute'
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (!inFlow || reduceMotion) {
+        wrap!.remove()
+        return
+      }
+      wrap!.style.visibility = 'hidden'
+      wrap!
+        .animate([{ height: `${wrap!.offsetHeight}px` }, { height: '0px' }], {
+          duration: 250,
+          easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+        })
+        .finished.then(() => wrap!.remove())
+    })
+  })
+</script>
+
+<style lang="scss">
+  // Not fixed like the other alerts: it sits above the page content and
+  // scrolls away, so it never covers the docs nav button. Centered with
+  // flexbox rather than a transform, which the xyz keyframes would override.
+  .version-alert__wrap {
+    position: absolute;
+    top: $sp-m;
+    left: $sp-s;
+    right: $sp-s;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+
+    // On small screens it becomes a full-width bar in the page flow.
+    @media (width < $bp-tablet) {
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      overflow: hidden;
+    }
+
+    :global(.version-alert-dismissed) & {
+      display: none;
+    }
+  }
+
+  .version-alert {
+    display: flex;
+    align-items: center;
+    font-size: $fs-s;
+    line-height: 1.125rem;
+    font-weight: 500;
+    padding: $sp-xxs $sp-xxs $sp-xxs $sp-xs;
+    border-radius: $br-m;
+    background-color: primary-color(600);
+    pointer-events: all;
+
+    @media (width < $bp-tablet) {
+      flex-grow: 1;
+      justify-content: space-between;
+      padding: $sp-xs $sp-xs $sp-xs $sp-s;
+      border-radius: 0;
+    }
+
+    p {
+      color: white;
+    }
+
+    a {
+      color: white;
+      font-weight: 700;
+      // Wrap the link as a whole rather than breaking it across lines.
+      white-space: nowrap;
+
+      &::before {
+        --anchor-underline-color: white;
+      }
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    }
+  }
+
+  .version-alert__close {
+    --icon-color: white;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: $sp-xs;
+    border-radius: $br-m;
+    opacity: 0.75;
+    transition: 0.2s $ease-in-out;
+    transition-property: opacity, background-color;
+
+    :global(svg) {
+      width: 0.625rem;
+      height: 0.625rem;
+      transition: transform 0.3s $ease-out-back;
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      opacity: 1;
+      background-color: rgba(white, 0.15);
+
+      :global(svg) {
+        transform: rotate(90deg);
+      }
+    }
+  }
+</style>

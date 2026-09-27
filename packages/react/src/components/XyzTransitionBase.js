@@ -74,7 +74,7 @@ function XyzTransitionBase(props) {
 			{isFragment
 				? child
 				: cloneElement(child, {
-						xyz,
+						'data-xyz': xyz,
 						...child.props,
 						className: clsx(className, child.props.className),
 						style: {

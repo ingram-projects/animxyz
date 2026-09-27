@@ -11,6 +11,7 @@ export const sectionDefinitions: SectionDefinition[] = [
   'installation',
   'the-basics',
   'how-it-works',
+  'browser-support',
   'practical-examples',
   { header: true, title: 'Composing Animations', id: 'composing-animations' },
   'contexts',

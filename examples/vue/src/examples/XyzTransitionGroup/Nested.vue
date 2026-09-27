@@ -4,10 +4,10 @@
 			appear
 			duration="auto"
 			class="example-grid"
-			xyz="fade flip-left origin-left duration-3 appear-stagger"
+			data-xyz="fade flip-left origin-left duration-3 appear-stagger"
 		>
 			<div class="item-block" v-for="index in numElements" :key="index">
-				<div class="square xyz-nested" xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
+				<div class="square xyz-nested" data-xyz="fade small stagger" v-for="subIndex in 4" :key="subIndex"></div>
 			</div>
 		</XyzTransitionGroup>
 		<div class="flex-row">

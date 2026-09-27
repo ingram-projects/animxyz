@@ -39,7 +39,10 @@ declare module '@animxyz/react' {
 
 	/** Props common to every AnimXYZ transition component. */
 	export interface XyzTransitionCommonProps extends XyzTransitionLifecycleProps {
-		/** Space-separated AnimXYZ utility string, e.g. `"fade small stagger"`. */
+		/**
+		 * Space-separated AnimXYZ utility string, e.g. `"fade small stagger"`.
+		 * Rendered onto the child as a `data-xyz` attribute.
+		 */
 		xyz?: string
 		/** Per-mode or global animation duration. */
 		duration?: XyzDuration

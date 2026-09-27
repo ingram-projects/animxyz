@@ -36,7 +36,7 @@ export const XyzTransition: DefineComponent<XyzTransitionProps>
 
 export const XyzTransitionGroup: DefineComponent<XyzTransitionGroupProps>
 
-/** `v-xyz` directive: merges the bound value into the element's `xyz` attribute. */
+/** `v-xyz` directive: merges the bound value into the element's `data-xyz` attribute. */
 export const xyz: Directive<HTMLElement, string | string[] | undefined>
 
 declare const VueAnimXyz: Plugin

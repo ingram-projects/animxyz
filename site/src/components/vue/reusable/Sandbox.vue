@@ -1,6 +1,6 @@
 <template>
   <div class="sandbox">
-    <XyzTransition xyz="fade">
+    <XyzTransition data-xyz="fade">
       <XyzModifiersInput
         v-if="modifiers"
         v-model="xyzModifiers"

@@ -17,7 +17,7 @@ export const indexSandboxProps = {
           name: 'HTML',
           content: `
 ##html
-<div class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<div class="item-group" \${data.utilitiesString && \`data-xyz="\${data.utilitiesString}"\`}>
   <div class="square \${data.mode}"></div>
   <div class="square \${data.mode}"></div>
   <div class="square \${data.mode}"></div>
@@ -34,7 +34,7 @@ export const indexSandboxProps = {
           name: 'Vue',
           content: `
 ##vue
-<XyzTransitionGroup class="item-group" \${data.utilitiesString && \`xyz="\${data.utilitiesString}"\`}>
+<XyzTransitionGroup class="item-group" \${data.utilitiesString && \`data-xyz="\${data.utilitiesString}"\`}>
   <div class="square" v-if="\${data.toggled}"></div>
   <div class="square" v-if="\${data.toggled}"></div>
   <div class="square" v-if="\${data.toggled}"></div>

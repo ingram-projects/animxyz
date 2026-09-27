@@ -35,7 +35,7 @@ examples:
             [...Array(81)].map((_, index) => (
               <div
                 className="square"
-                xyz={xyz('fade out-small-50% out-duration-30', {
+                data-xyz={xyz('fade out-small-50% out-duration-30', {
                   'in-down-50% in-right-50% in-stagger-1': index <= 41,
                   'in-up-50% in-left-50% in-stagger-rev-1': index > 41,
                   'out-rotate-right-5': index % 2,
@@ -53,11 +53,13 @@ If you need to dynamically or conditionally set and combine `xyz` utilities you 
 import { xyz } from '@animxyz/react'
 
 // Conditionally apply a transform on an element like so:
-<div xyz={xyz({ 'left-5': isLeftTransformed, 'right-5': !isLeftTransformed })}></div>
+<div data-xyz={xyz({ 'left-5': isLeftTransformed, 'right-5': !isLeftTransformed })}></div>
 
 // Set the utility level dynamically
-<div xyz={xyz(`left-${leftTransformUtilityLevel}`)></div>
+<div data-xyz={xyz(`left-${leftTransformUtilityLevel}`)}></div>
 
 // To dynamically set XYZ variables simply use the `style` prop
 <div style={{ '--xyz-translate-x': translateXAmount }}></div>
 ```
+
+> On `<XyzTransition>` / `<XyzTransitionGroup>` keep the `xyz` prop — those components map it to `data-xyz` for you. On raw DOM elements, set `data-xyz` directly.

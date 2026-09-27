@@ -5,6 +5,23 @@ const assert = require('node:assert/strict')
 
 const { compileSass } = require('./helpers/sass')
 
+// The `absolute` / `paused` / `none` special classes and the reduced-motion
+// override are the ONLY declarations allowed to carry !important: a layered
+// !important is what lets them keep beating unlayered author CSS as in 0.x.
+// Everything else must stay overridable by plain author CSS.
+const ALLOWED_IMPORTANT = new Set(['position: absolute', 'animation-play-state: paused', 'animation: none'])
+
+function assertOnlyOverridesImportant(css) {
+	const importants = [...css.matchAll(/([\w-]+:\s*[^;{}]*?)\s*!important/g)].map((match) => match[1])
+	assert.deepEqual(
+		[...new Set(importants)].sort(),
+		[...ALLOWED_IMPORTANT].sort(),
+		'only the special classes and reduced motion may use !important'
+	)
+	// Exactly one rule per special class plus one reduced-motion rule.
+	assert.equal(importants.length, 4, `unexpected !important count: ${importants.join(' | ')}`)
+}
+
 test('xyz-var: emits cascading var() chains', () => {
 	const result = compileSass('test/fixtures/xyz-var.scss')
 
@@ -83,7 +100,10 @@ test('xyz-animation: emits the delay chain, transform-origin, and animation shor
 	assert.doesNotMatch(result.stdout, /--xyz-total-delay-calc/)
 	assert.doesNotMatch(result.stdout, /--xyz-delay-calc/)
 	assert.match(result.stdout, /transform-origin: var\(--xyz-in-origin,/)
-	assert.match(result.stdout, /backface-visibility: visible;/)
+	// backface-visibility: visible was removed in v1. It is the initial value,
+	// so this only matters for authors who set `hidden`: 0.x forced those
+	// elements visible while animating, v1 lets them vanish while back-facing.
+	assert.doesNotMatch(result.stdout, /backface-visibility/)
 	assert.match(result.stdout, /animation:\n?\s*var\(--xyz-in-duration,/)
 	assert.match(result.stdout, /animation-name: xyz-in-keyframes, var\(--xyz-in-keyframes,/)
 })
@@ -95,7 +115,7 @@ test('xyz-make-keyframes: emits per-mode @keyframes and utility selectors', () =
 	assert.match(result.stdout, /@keyframes xyz-in-fade \{/)
 	assert.match(result.stdout, /@keyframes xyz-out-fade \{/)
 	assert.match(result.stdout, /@keyframes xyz-appear-fade \{/)
-	assert.match(result.stdout, /\[xyz~=fade\], \[xyz~=in-fade\] \{/)
+	assert.match(result.stdout, /\[data-xyz~=fade\], \[data-xyz~=in-fade\] \{/)
 	assert.match(result.stdout, /--xyz-in-keyframes: xyz-in-fade;/)
 })
 
@@ -180,4 +200,258 @@ test('xyz-apply: unknown utility token raises a Sass @error', () => {
 
 	assert.notEqual(result.status, 0, 'expected an unknown utility token to fail to compile')
 	assert.match(result.stderr, /notautility is not a valid xyz utility\./)
+})
+
+test('xyz-make-properties: registers all-mode dials with typed syntax', () => {
+	const result = compileSass('test/fixtures/xyz-make-properties.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// Registered with the correct type, inheritance, and identity initial-value.
+	// The initial-value MUST equal the keyframe identity fallback so registration
+	// stays behavior-preserving.
+	assert.match(
+		result.stdout,
+		/@property --xyz-opacity \{\s*syntax: "<number> \| <percentage>";\s*inherits: true;\s*initial-value: 1;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-translate-x \{\s*syntax: "<length-percentage>";\s*inherits: true;\s*initial-value: 0px;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-rotate-z \{\s*syntax: "<angle>";\s*inherits: true;\s*initial-value: 0deg;\s*\}/
+	)
+
+	// A garbage value assigned to a registered dial (e.g. `--xyz-opacity: red`)
+	// is rejected at computed-value time instead of poisoning the animation.
+	// With `inherits: true` the dial then behaves as `unset`: it inherits the
+	// parent's value, and only gets the typed initial-value when no ancestor
+	// sets it. That is the type-safety this registration buys.
+
+	// CRITICAL INVARIANT: mode-specific dials are NEVER registered. Registering
+	// them with an initial-value would make them always-valid and kill the
+	// `var(--xyz-<mode>-<name>, var(--xyz-<name>, …))` fallthrough that the mode
+	// cascade depends on (a plain `fade` would stop fading).
+	assert.doesNotMatch(result.stdout, /@property --xyz-in-opacity\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-out-translate-x\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-appear-scale-y\b/)
+
+	// Freeform/keyword-bearing vars stay unregistered (registration buys nothing
+	// or cannot express the value, e.g. perspective's `none`).
+	assert.doesNotMatch(result.stdout, /@property --xyz-perspective\b/)
+	assert.doesNotMatch(result.stdout, /@property --xyz-transform\b/)
+})
+
+// B1 (v1/data-xyz-attribute) renamed the configuration attribute. Everything —
+// the utility selectors, the variable reset, and the `inherit` opt-in — is
+// driven by $xyz-attribute, and there is deliberately NO dual-selector
+// fallback, so a stray `[xyz` in the output would be a bug.
+test('$xyz-attribute: defaults to data-xyz with no legacy fallback', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[data-xyz~=fade\]/)
+	assert.match(result.stdout, /\[data-xyz\] \{/)
+	assert.match(result.stdout, /\[data-xyz~=inherit\]/)
+	// No dual-selector fallback: nothing may match the bare `xyz` attribute.
+	assert.doesNotMatch(result.stdout, /\[xyz[\]~=]/)
+})
+
+test("$xyz-attribute: 'xyz' restores the legacy attribute selectors", () => {
+	const result = compileSass('test/fixtures/xyz-attribute-legacy.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /\[xyz~=fade\]/)
+	assert.match(result.stdout, /\[xyz\] \{/)
+	assert.match(result.stdout, /\[xyz~=inherit\]/)
+	assert.doesNotMatch(result.stdout, /\[data-xyz/)
+})
+
+test('cascade output is wrapped in @layer with the documented order', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(
+		result.stdout,
+		/@layer xyz\.defaults, xyz\.index\.ladder, xyz\.index\.modern, xyz\.utilities, xyz\.triggers\.in, xyz\.triggers\.out, xyz\.triggers\.appear, xyz\.overrides;/
+	)
+	// Precedence is by layer, not by force: only the special classes and the
+	// reduced-motion override keep !important (see assertOnlyOverridesImportant).
+	assertOnlyOverridesImportant(result.stdout)
+})
+
+test('@layer order is independent of $xyz-modes source order (appear stays last)', () => {
+	const result = compileSass('test/fixtures/xyz-layer-reorder.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// Even with $xyz-modes flipped to [appear, out, in], `appear` is pinned last
+	// among the trigger sublayers and `overrides` is last overall — so the
+	// rendered cascade behaves identically regardless of mode source order.
+	const declaration = result.stdout.match(/@layer ([^;]+);/)[1]
+	const order = declaration.split(',').map((name) => name.trim())
+	assert.ok(
+		order.indexOf('xyz.triggers.appear') > order.indexOf('xyz.triggers.in'),
+		`appear must be declared after in: ${declaration}`
+	)
+	assert.ok(
+		order.indexOf('xyz.triggers.appear') > order.indexOf('xyz.triggers.out'),
+		`appear must be declared after out: ${declaration}`
+	)
+	assert.equal(order[order.length - 1], 'xyz.overrides', `overrides must be last: ${declaration}`)
+})
+
+// The documented escape hatch for consumers who cannot adopt cascade layers.
+// Crucially it must NOT quietly reintroduce !important beyond the special
+// classes and reduced motion to compensate.
+test("$xyz-layer: '' emits unlayered CSS without adding more !important", () => {
+	const result = compileSass('test/fixtures/xyz-layer-none.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /@layer/)
+	assertOnlyOverridesImportant(result.stdout)
+	// still a complete stylesheet, just unlayered
+	assert.match(result.stdout, /@keyframes xyz-in-keyframes \{/)
+	assert.match(result.stdout, /\[data-xyz~=fade\]/)
+	assert.match(result.stdout, /\.xyz-absolute/)
+})
+
+// Regression: the two escape hatches compose. Unlayered output has no @layer
+// left to carry precedence, so the emission order of the trigger rules IS the
+// cascade — `.xyz-in` and `.xyz-appear` are both (0,1,0) and the later one wins.
+// Emitting from raw $xyz-modes instead of xyz-trigger-modes() let a reordered
+// mode list flip that, silently breaking "appear beats in/out" for unlayered
+// consumers.
+test('appear is emitted last even unlayered with a reordered $xyz-modes', () => {
+	const result = compileSass('test/fixtures/xyz-layer-none-reorder.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /@layer/)
+	assertOnlyOverridesImportant(result.stdout)
+
+	// Locate each mode's trigger block by the animation-name shorthand it emits.
+	const positionOf = (mode) => {
+		const index = result.stdout.indexOf(`animation-name: xyz-${mode}-keyframes,`)
+		assert.notEqual(index, -1, `expected a trigger rule for the "${mode}" mode`)
+		return index
+	}
+
+	assert.ok(
+		positionOf('appear') > positionOf('in'),
+		'appear trigger rules must be emitted after in to win on source order'
+	)
+	assert.ok(
+		positionOf('appear') > positionOf('out'),
+		'appear trigger rules must be emitted after out to win on source order'
+	)
+})
+
+// Regression: `opacity: 50%` is valid CSS, and `--xyz-opacity: 50%` was a valid
+// way to author half-opacity before these dials were registered. A bare
+// `<number>` syntax rejects the percentage at computed-value time, and the dial
+// then behaves as `unset`: it inherits the parent's value (the `1`
+// initial-value when no ancestor sets it), a silent behavior change.
+test('--xyz-opacity accepts percentages as well as numbers', () => {
+	const result = compileSass('test/fixtures/xyz-opacity-percentage.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(
+		result.stdout,
+		/@property --xyz-opacity \{\s*syntax: "<number> \| <percentage>";\s*inherits: true;\s*initial-value: 1;\s*\}/
+	)
+})
+
+// Same regression for scale: scale3d() accepts percentages, so
+// `--xyz-scale-x: 50%` must stay valid on the registered dials.
+test('--xyz-scale-x/y/z accept percentages as well as numbers', () => {
+	const result = compileSass('test/fixtures/xyz-opacity-percentage.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	for (const axis of ['x', 'y', 'z']) {
+		assert.match(
+			result.stdout,
+			new RegExp(
+				`@property --xyz-scale-${axis} \\{\\s*syntax: "<number> \\| <percentage>";\\s*inherits: true;\\s*initial-value: 1;\\s*\\}`
+			)
+		)
+	}
+})
+
+test('sibling-index() uses a real-property @supports test, not the always-true form', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+
+	// `@supports (--x: sibling-index())` is ALWAYS true — must feature-detect
+	// against a property that actually consumes the function.
+	assert.match(result.stdout, /@supports \(animation-delay: calc\(1s \* \(sibling-index\(\) - 1\)\)\)/)
+	assert.doesNotMatch(result.stdout, /@supports \(--[\w-]+: sibling-index/)
+
+	// The enhancement sets both index vars from sibling-index()/sibling-count().
+	assert.match(result.stdout, /--xyz-index: calc\(sibling-index\(\) - 1\)/)
+	assert.match(result.stdout, /--xyz-index-rev: calc\(sibling-count\(\) - sibling-index\(\)\)/)
+
+	// index.modern is declared after index.ladder so it wins over the ladder's
+	// higher-specificity nth-child rules by layer order.
+	const declaration = result.stdout.match(/@layer ([^;]+);/)[1]
+	const order = declaration.split(',').map((name) => name.trim())
+	assert.ok(
+		order.indexOf('xyz.index.modern') > order.indexOf('xyz.index.ladder'),
+		`index.modern must be declared after index.ladder: ${declaration}`
+	)
+})
+
+// REGRESSION GUARD. --xyz-index / --xyz-index-rev MUST be registered so that
+// `calc(sibling-index() - 1)` resolves to a concrete number per element.
+// Unregistered, they stay unresolved token streams; `--xyz-root-stagger-delay`
+// embeds `var(--xyz-index)` and inherits down to nested children, which would
+// re-resolve sibling-index() in each DESCENDANT's context — double-counting the
+// index and doubling every nested stagger delay (caught by the browser test
+// "nested children get increasing animation-delay").
+test('the stagger index custom properties are registered so sibling-index() resolves per element', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	// `<number>`, NOT `<integer>`: 0.x let a fractional --xyz-index through, and
+	// <integer> would snap it to the initial value instead.
+	assert.match(
+		result.stdout,
+		/@property --xyz-index \{\s*syntax: "<number>";\s*inherits: false;\s*initial-value: 0;\s*\}/
+	)
+	assert.match(
+		result.stdout,
+		/@property --xyz-index-rev \{\s*syntax: "<number>";\s*inherits: false;\s*initial-value: 0;\s*\}/
+	)
+	// The stagger delay relays must likewise compute to a concrete <time> on the
+	// element that sets them, rather than inheriting an unevaluated expression.
+	for (const name of ['stagger-delay', 'root-stagger-delay', 'nested-stagger-delay', 'total-delay']) {
+		assert.match(
+			result.stdout,
+			new RegExp(`@property --xyz-${name} \\{\\s*syntax: "<time>";\\s*inherits: true;\\s*initial-value: 0s;\\s*\\}`)
+		)
+	}
+})
+
+test('$xyz-index-levels: 0 skips the nth-child ladder but keeps sibling-index()', () => {
+	const result = compileSass('test/fixtures/xyz-index-levels-zero.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.doesNotMatch(result.stdout, /nth-child/)
+	assert.match(result.stdout, /sibling-index\(\)/)
+})
+
+// `perspective(none)` is not supported everywhere at the v1 floor (e.g. Chrome
+// and Edge 111), and an unsupported value invalidates the whole keyframe
+// transform. The 0.x feature test must stay: default to `0`, switch to `none`
+// only where supported.
+test('--xyz-perspective-none keeps the perspective(none) feature test', () => {
+	const result = compileSass('build.scss')
+
+	assert.equal(result.status, 0, result.stderr)
+	assert.match(result.stdout, /:root \{\s*--xyz-perspective-none: 0;\s*\}/)
+	assert.match(
+		result.stdout,
+		/@supports \(transform: perspective\(none\)\) \{\s*:root \{\s*--xyz-perspective-none: none;\s*\}\s*\}/
+	)
 })

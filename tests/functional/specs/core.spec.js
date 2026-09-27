@@ -24,40 +24,47 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		})
 	})
 
-	test.describe('utilities via the xyz attribute', () => {
+	// NOTE ON EXPECTED VALUES: the all-mode dials are registered with @property in
+	// v1, so the browser resolves them at computed-value time — getComputedStyle
+	// returns the substituted value ("0", "-25%", "1.5") rather than the authored
+	// token stream ("calc(1 - 1)"). The mode-scoped dials below are deliberately
+	// left unregistered, so those still read back as the literal calc().
+	test.describe('utilities via the data-xyz attribute', () => {
 		test('fade sets the opacity variable', async ({ page }) => {
-			await expectVar(page, expect, '#u-fade', '--xyz-opacity', 'calc(1 - 1)')
-			await expectVar(page, expect, '#u-fade-level', '--xyz-opacity', 'calc(1 - 0.5)')
+			await expectVar(page, expect, '#u-fade', '--xyz-opacity', '0')
+			await expectVar(page, expect, '#u-fade-level', '--xyz-opacity', '0.5')
 		})
 
 		test('translate utilities set axis variables with direction sign', async ({ page }) => {
-			await expectVar(page, expect, '#u-translate', '--xyz-translate-y', 'calc(25% * -1)')
+			await expectVar(page, expect, '#u-translate', '--xyz-translate-y', '-25%')
 			await expectVar(page, expect, '#u-translate', '--xyz-translate-x', '20px')
-			await expectVar(page, expect, '#u-translate', '--xyz-translate-z', 'calc(400px * -1)')
+			await expectVar(page, expect, '#u-translate', '--xyz-translate-z', '-400px')
 			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-y', '30px')
-			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-x', 'calc(100% * -1)')
+			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-x', '-100%')
 			await expectVar(page, expect, '#u-translate-level', '--xyz-translate-z', '200px')
 		})
 
 		test('rotate and flip utilities set rotation variables', async ({ page }) => {
 			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-x', '20deg')
-			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-y', 'calc(0.25turn * -1)')
-			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-z', '0.5turn')
+			// authored as `calc(0.25turn * -1)` / `0.5turn`; <angle> registration
+			// normalizes turns to degrees
+			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-y', '-90deg')
+			await expectVar(page, expect, '#u-rotate', '--xyz-rotate-z', '180deg')
 		})
 
 		test('scale utilities set scale variables per axis', async ({ page }) => {
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-x', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-y', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale', '--xyz-scale-z', 'calc(1 + 0.5)')
-			await expectVar(page, expect, '#u-scale-small', '--xyz-scale-x', 'calc(1 - 0.25)')
-			await expectVar(page, expect, '#u-scale-x', '--xyz-scale-x', 'calc(1 + 0.075)')
-			await expectVar(page, expect, '#u-scale-y', '--xyz-scale-y', 'calc(1 + 1)')
-			await expectVar(page, expect, '#u-scale-z', '--xyz-scale-z', 'calc(1 + 0.05)')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-x', '1.5')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-y', '1.5')
+			await expectVar(page, expect, '#u-scale', '--xyz-scale-z', '1.5')
+			await expectVar(page, expect, '#u-scale-small', '--xyz-scale-x', '0.75')
+			await expectVar(page, expect, '#u-scale-x', '--xyz-scale-x', '1.075')
+			await expectVar(page, expect, '#u-scale-y', '--xyz-scale-y', '2')
+			await expectVar(page, expect, '#u-scale-z', '--xyz-scale-z', '1.05')
 		})
 
 		test('skew utilities set skew variables', async ({ page }) => {
 			await expectVar(page, expect, '#u-skew', '--xyz-skew-x', '30deg')
-			await expectVar(page, expect, '#u-skew', '--xyz-skew-y', 'calc(20deg * -1)')
+			await expectVar(page, expect, '#u-skew', '--xyz-skew-y', '-20deg')
 		})
 
 		test('timing, origin and perspective utilities set their variables', async ({ page }) => {
@@ -76,9 +83,20 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-in-opacity', 'calc(1 - 1)')
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-out-translate-y', 'calc(100% * -1)')
 			await expectVar(page, expect, '#u-mode-scoped', '--xyz-appear-duration', '2s')
-			// the unscoped variables must stay untouched
-			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-opacity')
-			await expectVarUnset(page, expect, '#u-mode-scoped', '--xyz-translate-y')
+			// The unscoped dials must stay untouched. They are registered, so an
+			// untouched dial reads back as its identity initial-value (fully
+			// opaque / no displacement) rather than as an empty string.
+			await expectVar(page, expect, '#u-mode-scoped', '--xyz-opacity', '1')
+			await expectVar(page, expect, '#u-mode-scoped', '--xyz-translate-y', '0px')
+		})
+
+		// v1 breaking change: the configuration attribute is `data-xyz`, and the
+		// compiled CSS matches `[data-xyz~='…']` ONLY — there is no dual-selector
+		// fallback for the legacy bare `xyz` attribute. Both dials read back as
+		// their registered identity values, i.e. nothing was applied.
+		test('the legacy bare xyz attribute is not matched', async ({ page }) => {
+			await expectVar(page, expect, '#legacy-xyz', '--xyz-opacity', '1')
+			await expectVar(page, expect, '#legacy-xyz', '--xyz-translate-y', '0px')
 		})
 	})
 
@@ -96,6 +114,33 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 			)
 			expect(delays).toEqual(['0.4s', '0.2s', '0s'])
 		})
+
+		// v1 lifts the $xyz-index-levels (20) cap by deriving the index from CSS
+		// sibling-index() where supported. The nth-child ladder still ships, so on
+		// engines without sibling-index() the 21st+ child correctly falls back to
+		// index 0 — assert the capped behavior there rather than skipping blind.
+		test('stagger continues past the nth-child ladder cap', async ({ page }) => {
+			const supportsSiblingIndex = await page.evaluate(() =>
+				CSS.supports('animation-delay', 'calc(1s * (sibling-index() - 1))')
+			)
+			const delays = await page.$$eval('#stagger-uncapped .xyz-nested', (els) =>
+				els.map((el) => window.getComputedStyle(el).getPropertyValue('animation-delay'))
+			)
+			expect(delays).toHaveLength(25)
+			// Inside the ladder's range both paths agree.
+			expect(delays[0]).toBe('0s')
+			expect(delays[19]).toBe('3.8s')
+
+			if (supportsSiblingIndex) {
+				expect(delays[20]).toBe('4s')
+				expect(delays[24]).toBe('4.8s')
+			} else {
+				// Ladder-only fallback: no rule matches child 21+, so --xyz-index
+				// falls back to 0.
+				expect(delays[20]).toBe('0s')
+				expect(delays[24]).toBe('0s')
+			}
+		})
 	})
 
 	test.describe('nested elements', () => {
@@ -111,18 +156,21 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 	})
 
 	test.describe('variable scoping', () => {
-		test('children without an xyz attribute inherit variables', async ({ page }) => {
-			await expectVar(page, expect, '#scope-plain', '--xyz-opacity', 'calc(1 - 1)')
+		test('children without a data-xyz attribute inherit variables', async ({ page }) => {
+			await expectVar(page, expect, '#scope-plain', '--xyz-opacity', '0')
 		})
 
-		test('an xyz attribute resets inherited variables', async ({ page }) => {
-			await expectVarUnset(page, expect, '#scope-reset', '--xyz-opacity')
-			await expectVar(page, expect, '#scope-reset', '--xyz-translate-y', 'calc(25% * -1)')
+		test('a data-xyz attribute resets inherited variables', async ({ page }) => {
+			// The reset returns --xyz-opacity to its registered identity value,
+			// dropping the `fade` inherited from #scope-root, while `up` from this
+			// element's own attribute still applies.
+			await expectVar(page, expect, '#scope-reset', '--xyz-opacity', '1')
+			await expectVar(page, expect, '#scope-reset', '--xyz-translate-y', '-25%')
 		})
 
 		test('the inherit utility opts back into inherited variables', async ({ page }) => {
-			await expectVar(page, expect, '#scope-inherit', '--xyz-opacity', 'calc(1 - 1)')
-			await expectVar(page, expect, '#scope-inherit', '--xyz-translate-y', 'calc(25% * -1)')
+			await expectVar(page, expect, '#scope-inherit', '--xyz-opacity', '0')
+			await expectVar(page, expect, '#scope-inherit', '--xyz-translate-y', '-25%')
 		})
 	})
 
@@ -142,6 +190,77 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 		test('xyz-paused-all pauses nested animations too', async ({ page }) => {
 			expect(await computed(page, '#nested-root', 'animation-play-state')).toBe('paused')
 			expect(await computed(page, '#nested-child', 'animation-play-state')).toBe('paused')
+		})
+	})
+
+	// v1 registers the all-mode dials with @property. The point of registration is
+	// type safety: an invalid value is rejected at computed-value time instead of
+	// poisoning the whole animation. With `inherits: true` the dial then behaves
+	// as `unset`: it inherits the parent's value, or gets the typed initial-value
+	// when no ancestor sets it.
+	test.describe('typed dial custom properties', () => {
+		test('an invalid value on a registered dial with no ancestor value gets its initial value', async ({ page }) => {
+			await expectVar(page, expect, '#prop-garbage', '--xyz-opacity', '1')
+			await expectVar(page, expect, '#prop-garbage', '--xyz-scale-x', '1')
+			// `42` is not an <angle>; nothing above sets the dial, so the
+			// registered initial-value wins.
+			await expectVar(page, expect, '#prop-garbage', '--xyz-rotate-z', '0deg')
+		})
+
+		test("an invalid value on a registered dial inherits the parent's value", async ({ page }) => {
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-opacity', '0.5')
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-scale-x', '2')
+			// A unitless `0` is not an <angle> either (0.x accepted it), so the
+			// child inherits the parent's 10deg rather than getting 0deg.
+			await expectVar(page, expect, '#prop-garbage-child', '--xyz-rotate-z', '10deg')
+		})
+
+		test('opacity and scale dials accept percentages', async ({ page }) => {
+			await expectVar(page, expect, '#prop-percentage', '--xyz-opacity', '50%')
+			await expectVar(page, expect, '#prop-percentage', '--xyz-scale-x', '50%')
+		})
+
+		// CRITICAL INVARIANT: mode dials are deliberately left unregistered so the
+		// `var(--xyz-in-*, var(--xyz-*, …))` mode cascade keeps falling through.
+		// An unregistered property accepts any token, so garbage survives here.
+		test('mode-specific dials stay unregistered', async ({ page }) => {
+			// An unregistered property accepts any token, so garbage survives here…
+			await expectVar(page, expect, '#prop-unregistered', '--xyz-in-opacity', 'red')
+			// …and, crucially, an untouched mode dial has NO value at all. If it had
+			// been registered it would report an initial-value instead, and
+			// `var(--xyz-in-opacity, var(--xyz-opacity, …))` would stop falling
+			// through to the all-mode dial — a plain `fade` would stop fading.
+			await expectVarUnset(page, expect, '#u-fade', '--xyz-in-opacity')
+		})
+	})
+
+	// v1 emits everything inside @layer xyz, which inverts the override contract:
+	// author CSS wins unless it opts out. The exceptions are the special classes
+	// and reduced motion, which keep a layered !important so they still beat
+	// unlayered author CSS as in 0.x.
+	test.describe('cascade layers', () => {
+		test('unlayered author CSS beats AnimXYZ', async ({ page }) => {
+			// transform-origin is a normal-priority declaration in xyz.triggers.out;
+			// the unlayered author rule must win regardless of specificity.
+			expect(await computed(page, '#layer-unlayered', 'transform-origin')).toBe('0px 0px')
+		})
+
+		test('special classes still beat unlayered author CSS', async ({ page }) => {
+			// .xyz-absolute is `position: absolute !important` inside xyz.overrides;
+			// a layered !important beats the unlayered author `position: static`.
+			expect(await computed(page, '#layer-special', 'position')).toBe('absolute')
+		})
+
+		test('author CSS in a layer declared before xyz loses to AnimXYZ', async ({ page }) => {
+			// Inside `@layer base` with `@layer base, xyz;` declared first: a normal
+			// declaration loses to AnimXYZ (the element keeps the centered origin)...
+			expect(await computed(page, '#layer-base', 'transform-origin')).toBe('20px 20px')
+		})
+
+		test('an !important in a layer declared before xyz overrides a special class', async ({ page }) => {
+			// ...while an !important there beats xyz's layered !important, because
+			// earlier layers win among important declarations.
+			expect(await computed(page, '#layer-base', 'position')).toBe('static')
 		})
 	})
 
@@ -167,6 +286,14 @@ test.describe('@animxyz/core in plain HTML/CSS', () => {
 			await page.emulateMedia({ reducedMotion: 'reduce' })
 			expect(await computed(page, '#mode-in', 'animation-name')).toBe('none')
 			expect(await computed(page, '#nested-child', 'animation-name')).toBe('none')
+		})
+
+		test('reduced motion beats unlayered author CSS', async ({ page }) => {
+			// Without reduced motion the unlayered author animation-name wins...
+			expect(await computed(page, '#reduced-author', 'animation-name')).toBe('author-anim')
+			// ...but the layered !important reduced-motion override beats it.
+			await page.emulateMedia({ reducedMotion: 'reduce' })
+			expect(await computed(page, '#reduced-author', 'animation-name')).toBe('none')
 		})
 	})
 })

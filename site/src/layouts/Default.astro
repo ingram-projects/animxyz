@@ -6,6 +6,8 @@ import 'prismjs/themes/prism-tomorrow.css'
 import '~/styles/core/_index.scss'
 
 import XrayToggle from '~/components/vue/reusable/XrayToggle.vue'
+import VersionBanner from '~/components/astro/VersionBanner.astro'
+import { isLatestVersion } from '~/data/versions'
 
 interface Props {
   title?: string
@@ -40,6 +42,7 @@ const isProd = import.meta.env.PROD
     <meta property="og:image" content={image} />
     <link rel="icon" type="image/png" href="/animxyz-logo.png" />
     <link rel="apple-touch-icon" href="/animxyz-logo-touch.png" />
+    {!isLatestVersion && <meta name="robots" content="noindex" />}
     {isProd && (
       <script
         src="https://cdn.visitors.now/v.js"
@@ -52,15 +55,23 @@ const isProd = import.meta.env.PROD
         /* Without JS, the appear-visible IntersectionObserver never removes
            xyz-paused-all, leaving content stuck at the start of the animation
            (opacity 0, transformed off-screen, etc.). Let the animations play
-           immediately so users with JS disabled still see the page. */
-        .xyz-paused-all {
-          animation-play-state: running !important;
+           immediately so users with JS disabled still see the page.
+           xyz-paused-all is a layered !important in xyz.overrides, which an
+           unlayered !important cannot beat; among important declarations the
+           earlier layer wins, so this lives in xyz.defaults (declared first
+           whichever stylesheet loads first). */
+        @layer xyz.defaults {
+          .xyz-paused-all,
+          .xyz-paused-all .xyz-nested {
+            animation-play-state: running !important;
+          }
         }
       </style>
     </noscript>
   </head>
   <body class={bodyClass}>
     <div class="page__wrap">
+      <VersionBanner />
       <div class="alerts__wrap copy-content">
         <div class="alert reduced-motion-alert">
           <p>

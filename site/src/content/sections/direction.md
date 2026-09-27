@@ -7,7 +7,7 @@ examples:
   - name: Direction
     template: |
       <div class="example-wrap">
-        <XyzTransition xyz="big iterate-infinite duration-10" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
+        <XyzTransition data-xyz="big iterate-infinite duration-10" v-xyz="data.utilities" :style="data.variables" v-on="data.listeners">
           <div class="square" v-if="data.toggled"></div>
         </XyzTransition>
       </div>
@@ -15,7 +15,7 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="square ${data.mode}" xyz="big iterate-infinite duration-10${data.utilitiesString && ' ' + data.utilitiesString}"></div>
+          <div class="square ${data.mode}" data-xyz="big iterate-infinite duration-10${data.utilitiesString && ' ' + data.utilitiesString}"></div>
 
           ${data.variablesString && `
           <style>
@@ -25,7 +25,7 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransition xyz="big iterate-infinite duration-10${data.utilitiesString && ' ' + data.utilitiesString}">
+          <XyzTransition data-xyz="big iterate-infinite duration-10${data.utilitiesString && ' ' + data.utilitiesString}">
             <div class="square" v-if="${data.toggled}"></div>
           </XyzTransition>
 
@@ -59,7 +59,7 @@ modifiers:
 
 ---
 
-The direction utilities and variables set the [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) of an animation. By default animations run `normal` for the **in** and **appear** variants and `reverse` for the **out** variant. While these defaults cover the majority of use-cases, there may be times you want to override them such as when using an animation that runs infinitely. For instance if you wanted to have an element grow and shrink indefinitely you could use `xyz="big iterate-infinite direction-alternate"`.
+The direction utilities and variables set the [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) of an animation. By default animations run `normal` for the **in** and **appear** variants and `reverse` for the **out** variant. While these defaults cover the majority of use-cases, there may be times you want to override them such as when using an animation that runs infinitely. For instance if you wanted to have an element grow and shrink indefinitely you could use `data-xyz="big iterate-infinite direction-alternate"`.
 
 ---
 ## Variables

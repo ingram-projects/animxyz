@@ -1,0 +1,9 @@
+// Fixture guarding the `--xyz-opacity` and `--xyz-scale-*` registered syntax.
+// `opacity` and `scale3d()` accept percentages, and `--xyz-opacity: 50%` /
+// `--xyz-scale-x: 50%` were valid authoring before the dials were registered,
+// so the @property syntax must keep accepting them.
+@use '../../src/animxyz' as * with (
+  $xyz-layer: ''
+);
+
+@include xyz-make-properties;

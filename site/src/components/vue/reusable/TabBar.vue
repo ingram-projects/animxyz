@@ -4,7 +4,7 @@
     body-scroll-lock-ignore
     appear
     duration="auto"
-    xyz="fade flip-down origin-bottom"
+    data-xyz="fade flip-down origin-bottom"
     style="--xyz-stagger: 0.075s"
   >
     <button

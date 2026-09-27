@@ -1,0 +1,89 @@
+---
+import { currentVersionId, docsVersions } from '~/data/versions'
+---
+
+<label class="version-switch xyz-nested">
+  <span class="screen-reader-only">Docs version</span>
+  <select class="version-switch__select" autocomplete="off" data-version-switch>
+    {
+      docsVersions.map((version) => (
+        <option value={version.url} selected={version.id === currentVersionId}>
+          {version.label}
+        </option>
+      ))
+    }
+  </select>
+  <span class="version-switch__caret" aria-hidden="true">▾</span>
+</label>
+
+<script>
+  // Keep the path and section hash so readers land on the same section in
+  // the other version (falls back to the top when the section doesn't exist).
+  document.querySelectorAll<HTMLSelectElement>('[data-version-switch]').forEach((select) => {
+    const current = select.value
+    select.addEventListener('change', () => {
+      window.location.href = `${select.value}${window.location.pathname}${window.location.hash}`
+    })
+    // Coming back via the back/forward cache would otherwise show the other version.
+    window.addEventListener('pageshow', () => {
+      select.value = current
+    })
+  })
+</script>
+
+<style lang="scss">
+  .version-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    margin-left: $sp-xxs;
+    flex-shrink: 0;
+  }
+
+  .version-switch__select {
+    height: 100%;
+    padding: 0 1.5rem 0 $sp-xs;
+    border-radius: $br-l;
+    appearance: none;
+    background-color: primary-color(500, 0.2);
+    color: primary-color(200);
+    font-family: $font-stack-mono;
+    font-size: $fs-m;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s $ease-in-out;
+    transition-property: background-color, box-shadow, color;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      color: primary-color(50);
+      background-color: primary-color(500, 0.3);
+
+      + .version-switch__caret {
+        color: primary-color(50);
+        transform: translateY(0.125rem) scale(1.15);
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 4px primary-color(200, 0.5);
+    }
+
+    option {
+      color: initial;
+      background-color: initial;
+    }
+  }
+
+  .version-switch__caret {
+    position: absolute;
+    right: $sp-xs;
+    color: primary-color(200);
+    pointer-events: none;
+    transition:
+      color 0.2s $ease-in-out,
+      transform 0.3s $ease-out-back;
+  }
+</style>

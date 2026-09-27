@@ -12,7 +12,7 @@ examples:
           const toggled = ${data.buttonToggled}
           
           ##vue
-          <XyzTransition appear xyz="fade rotate-right ease-out-back">
+          <XyzTransition appear data-xyz="fade rotate-right ease-out-back">
             <div class="square" v-if="toggled"></div>
           </XyzTransition>
   - name: Switch
@@ -25,9 +25,9 @@ examples:
           
           ##vue
           <XyzTransition appear mode="out-in">
-            <div class="square" xyz="fade left-100%" v-if="shape === 'square'" key="square"></div>
-            <div class="circle" xyz="fade up-100%" v-else-if="shape === 'circle'" key="circle"></div>
-            <div class="triangle" xyz="fade right-100%" v-else-if="shape === 'triangle'" key="triangle"></div>
+            <div class="square" data-xyz="fade left-100%" v-if="shape === 'square'" key="square"></div>
+            <div class="circle" data-xyz="fade up-100%" v-else-if="shape === 'circle'" key="circle"></div>
+            <div class="triangle" data-xyz="fade right-100%" v-else-if="shape === 'triangle'" key="triangle"></div>
           </XyzTransition>
   - name: Key
     component: XyzTransition_Key
@@ -38,7 +38,7 @@ examples:
           const key = ${data.key}
           
           ##vue
-          <XyzTransition appear mode="out-in" xyz="flip-up out-flip-down duration-3 ease-out">
+          <XyzTransition appear mode="out-in" data-xyz="flip-up out-flip-down duration-3 ease-out">
             <div class="square" :key="key">{{ key }}</div>
           </XyzTransition>
   - name: Nested
@@ -50,9 +50,9 @@ examples:
           const toggled = ${data.buttonToggled}
           
           ##vue
-          <XyzTransition appear duration="auto" xyz="fade up-100% duration-10">
+          <XyzTransition appear duration="auto" data-xyz="fade up-100% duration-10">
             <div class="item-block" v-if="toggled">
-              <div class="square xyz-nested" xyz="fade small stagger" v-for="index in 4" :key="index"></div>
+              <div class="square xyz-nested" data-xyz="fade small stagger" v-for="index in 4" :key="index"></div>
             </div>
           </XyzTransition>
 

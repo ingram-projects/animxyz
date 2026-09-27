@@ -3,6 +3,7 @@ import { TransitionGroup } from 'react-transition-group'
 import XyzTransitionBase from './XyzTransitionBase'
 function XyzTransitionGroup(props) {
 	const {
+		xyz,
 		appearVisible,
 		duration,
 		mountOnEnter,
@@ -34,8 +35,12 @@ function XyzTransitionGroup(props) {
 
 	const childArray = Children.toArray(children).filter(isValidElement)
 
+	// Only pass data-xyz when set: `component={React.Fragment}` warns about any
+	// prop besides key and children, even an undefined one.
+	const groupProps = xyz === undefined ? rest : { ...rest, 'data-xyz': xyz }
+
 	return (
-		<TransitionGroup {...rest}>
+		<TransitionGroup {...groupProps}>
 			{childArray.map((child, index) => (
 				<XyzTransitionBase
 					{...baseProps}

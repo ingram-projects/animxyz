@@ -18,7 +18,7 @@
 				class="utilities-table__body"
 				appear
 				duration="auto"
-				xyz="fade down-3 stagger-0.5"
+				data-xyz="fade down-3 stagger-0.5"
 			>
 				<tr
 					class="utility xyz-none"

@@ -7,11 +7,11 @@ examples:
   - name: Defaults
     template: |
       <div class="example-wrap" style="--xyz-translate-default: 300%; --xyz-ease-default: cubic-bezier(0.175, 0.885, 0.320, 1.275); --xyz-stagger-default: 0.1s;">
-        <XyzTransition duration="auto" xyz="fade stagger" v-on="data.listeners">
+        <XyzTransition duration="auto" data-xyz="fade stagger" v-on="data.listeners">
           <div class="item-group xyz-none" v-if="data.toggled">
-            <div class="square xyz-nested" xyz="inherit left"></div>
-            <div class="square xyz-nested" xyz="inherit up"></div>
-            <div class="square xyz-nested" xyz="inherit down"></div>
+            <div class="square xyz-nested" data-xyz="inherit left"></div>
+            <div class="square xyz-nested" data-xyz="inherit up"></div>
+            <div class="square xyz-nested" data-xyz="inherit down"></div>
           </div>
         </XyzTransition>
       </div>
@@ -19,10 +19,10 @@ examples:
       - name: HTML
         content: |
           ##html
-          <div class="item-group" xyz="fade stagger">
-            <div class="square ${data.mode}" xyz="inherit left"></div>
-            <div class="square ${data.mode}" xyz="inherit up"></div>
-            <div class="square ${data.mode}" xyz="inherit down"></div>
+          <div class="item-group" data-xyz="fade stagger">
+            <div class="square ${data.mode}" data-xyz="inherit left"></div>
+            <div class="square ${data.mode}" data-xyz="inherit up"></div>
+            <div class="square ${data.mode}" data-xyz="inherit down"></div>
           </div>
 
           <style>
@@ -35,10 +35,10 @@ examples:
       - name: Vue
         content: |
           ##vue
-          <XyzTransitionGroup class="item-group" xyz="fade stagger">
-            <div class="square" v-if="${data.toggled}" xyz="inherit left"></div>
-            <div class="square" v-if="${data.toggled}" xyz="inherit up"></div>
-            <div class="square" v-if="${data.toggled}" xyz="inherit down"></div>
+          <XyzTransitionGroup class="item-group" data-xyz="fade stagger">
+            <div class="square" v-if="${data.toggled}" data-xyz="inherit left"></div>
+            <div class="square" v-if="${data.toggled}" data-xyz="inherit up"></div>
+            <div class="square" v-if="${data.toggled}" data-xyz="inherit down"></div>
           </XyzTransitionGroup>
 
           ##html
@@ -53,9 +53,9 @@ examples:
         content: |
           ##jsx
           <XyzTransitionGroup className="item-group" xyz="fade stagger">
-            {${data.toggled} && <div className="square" xyz="inherit left" />}
-            {${data.toggled} && <div className="square" xyz="inherit up" />}
-            {${data.toggled} && <div className="square" xyz="inherit down" />}
+            {${data.toggled} && <div className="square" data-xyz="inherit left" />}
+            {${data.toggled} && <div className="square" data-xyz="inherit up" />}
+            {${data.toggled} && <div className="square" data-xyz="inherit down" />}
           </XyzTransitionGroup>
 
           ##html

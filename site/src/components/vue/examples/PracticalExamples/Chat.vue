@@ -6,10 +6,10 @@
         :class="{ 'chat-item--user': chatMessage.isUser }"
         v-for="chatMessage in customData.chatMessages"
         :key="chatMessage.timestamp"
-        xyz="duration-10 fade ease-out-back appear-stagger"
+        data-xyz="duration-10 fade ease-out-back appear-stagger"
         v-xyz="{ left: !chatMessage.isUser, right: chatMessage.isUser }"
       >
-        <div class="chat-avatar xyz-nested" xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
+        <div class="chat-avatar xyz-nested" data-xyz="fade small in-delay-3">{{ chatMessage.isUser ? '🐤' : '🐔' }}</div>
         {{ chatMessage.text }}
       </li>
     </XyzTransitionGroup>
