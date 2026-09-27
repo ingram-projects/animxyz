@@ -2,17 +2,11 @@
 import { packageVersion, packages } from '~/data/versions'
 ---
 
-<div class="version-menu xyz-appear xyz-paused-all" xyz="fade small-3 ease-out-back delay-2" data-version-menu>
-  <button
-    class="version-menu__trigger"
-    type="button"
-    aria-expanded="false"
-    aria-controls="version-menu-packages"
-    aria-label={`AnimXYZ v${packageVersion}, show package versions`}
-  >
+<div class="version-menu xyz-appear xyz-paused-all" xyz="fade small-3 ease-out-back delay-2">
+  <button class="version-menu__trigger" type="button" aria-label={`AnimXYZ v${packageVersion} package versions`}>
     v{packageVersion}
   </button>
-  <ul class="version-menu__card" id="version-menu-packages">
+  <ul class="version-menu__card" aria-label="Packages">
     {
       packages.map((pkg, index) => (
         <li style={`--item-index: ${index}`}>
@@ -25,40 +19,6 @@ import { packageVersion, packages } from '~/data/versions'
     }
   </ul>
 </div>
-
-<script>
-  // Hover and keyboard focus open the card in CSS; clicks toggle it so it
-  // also works on touch screens.
-  const menu = document.querySelector<HTMLElement>('[data-version-menu]')
-  const trigger = menu?.querySelector<HTMLButtonElement>('.version-menu__trigger')
-
-  function setOpen(open: boolean) {
-    menu!.classList.toggle('open', open)
-    if (open) menu!.classList.remove('suppressed')
-    trigger!.setAttribute('aria-expanded', String(open))
-  }
-
-  if (menu && trigger) {
-    trigger.addEventListener('click', () => setOpen(!menu.classList.contains('open')))
-    menu.addEventListener('mouseleave', () => {
-      setOpen(false)
-      menu.classList.remove('suppressed')
-    })
-    menu.addEventListener('focusout', (event) => {
-      if (!menu.contains(event.relatedTarget as Node)) menu.classList.remove('suppressed')
-    })
-    document.addEventListener('click', (event) => {
-      if (!menu.contains(event.target as Node)) setOpen(false)
-    })
-    menu.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        setOpen(false)
-        menu.classList.add('suppressed')
-        trigger.focus()
-      }
-    })
-  }
-</script>
 
 <style lang="scss">
   .version-menu {
@@ -133,11 +93,9 @@ import { packageVersion, packages } from '~/data/versions'
     list-style: none;
     background-color: var(--menu-bg);
     border-radius: 0 $br-l $br-l $br-l;
-    visibility: hidden;
     opacity: 0;
-    transition:
-      opacity var(--menu-duration) $ease-in-out,
-      visibility 0s linear var(--menu-duration);
+    pointer-events: none;
+    transition: opacity var(--menu-duration) $ease-in-out;
 
     li {
       opacity: 0;
@@ -193,7 +151,9 @@ import { packageVersion, packages } from '~/data/versions'
     }
   }
 
-  // Open: hover (on devices that can hover), keyboard focus, or a click/tap.
+  // Open while hovered or while anything inside has focus. Touch taps open it
+  // too: tapping the button focuses it (and applies :hover on iOS), and
+  // tapping elsewhere closes it.
   @mixin open {
     .version-menu__trigger {
       color: primary-color(900);
@@ -211,11 +171,8 @@ import { packageVersion, packages } from '~/data/versions'
     }
 
     .version-menu__card {
-      visibility: visible;
       opacity: 1;
-      transition:
-        opacity var(--menu-duration) $ease-in-out,
-        visibility 0s;
+      pointer-events: auto;
 
       li {
         opacity: 1;
@@ -225,15 +182,8 @@ import { packageVersion, packages } from '~/data/versions'
     }
   }
 
-  // `.suppressed` keeps it closed after Escape until the pointer or focus leaves.
-  @media (hover: hover) {
-    .version-menu:not(.suppressed):hover {
-      @include open;
-    }
-  }
-
-  .version-menu:not(.suppressed):has(:focus-visible),
-  .version-menu.open {
+  .version-menu:hover,
+  .version-menu:focus-within {
     @include open;
   }
 </style>
