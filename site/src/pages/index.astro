@@ -11,7 +11,7 @@ import IconSandbox from '~/assets/icons/IconSandbox.svg?raw'
 import IconDocs from '~/assets/icons/IconDocs.svg?raw'
 import IconTwitter from '~/assets/icons/IconTwitter.svg?raw'
 import { indexSandboxProps } from '~/data/indexSandbox'
-import { packageVersion } from '~/data/versions'
+import VersionMenu from '~/components/astro/VersionMenu.astro'
 ---
 
 <Default
@@ -201,16 +201,7 @@ import { packageVersion } from '~/data/versions'
       />
     </div>
 
-    <a
-      class="version-label xyz-appear xyz-paused-all"
-      xyz="fade small-3 ease-out-back delay-2"
-      href="https://github.com/ingram-projects/animxyz/releases"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`AnimXYZ v${packageVersion} release notes`}
-    >
-      v{packageVersion}
-    </a>
+    <VersionMenu />
 
     <div class="dark-mode-toggle__wrap xyz-appear xyz-paused-all" xyz="fade duration-10 delay-2">
       <DarkModeToggle client:idle />
@@ -594,51 +585,6 @@ import { packageVersion } from '~/data/versions'
 
   .sandbox__wrap :global(.sandbox) {
     min-height: 100vh;
-  }
-
-  .version-label {
-    position: absolute;
-    top: $sp-m;
-    left: $sp-m;
-    display: flex;
-    align-items: center;
-    height: 2.25rem;
-    padding: 0 $sp-xs;
-    border-radius: $br-l;
-    font-family: $font-stack-mono;
-    font-size: $fs-m;
-    font-weight: bold;
-    color: primary-color(700);
-    background-color: primary-color(500, 0.1);
-    text-decoration: none;
-    transition: 0.2s $ease-in-out;
-    transition-property: color, background-color, box-shadow;
-
-    @include dark-mode {
-      color: primary-color(200);
-      background-color: primary-color(500, 0.2);
-    }
-
-    &:hover,
-    &:focus {
-      outline: none;
-      color: primary-color(900);
-      background-color: primary-color(500, 0.2);
-
-      @include dark-mode {
-        color: primary-color(50);
-        background-color: primary-color(500, 0.3);
-      }
-    }
-
-    &:focus-visible {
-      box-shadow: 0 0 0 4px primary-color(200, 0.5);
-    }
-
-    @media (width < $bp-phone) {
-      top: $sp-s;
-      left: $sp-s;
-    }
   }
 
   .dark-mode-toggle__wrap {

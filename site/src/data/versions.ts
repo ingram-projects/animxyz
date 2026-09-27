@@ -1,4 +1,7 @@
 import corePackage from '@animxyz/core/package.json'
+import reactPackage from '@animxyz/react/package.json'
+import vuePackage from '@animxyz/vue/package.json'
+import vue3Package from '@animxyz/vue3/package.json'
 
 export interface DocsVersion {
   id: string
@@ -22,3 +25,10 @@ export const isLatestVersion = currentVersion === latestVersion
 
 // The published @animxyz/core version this branch's docs describe.
 export const packageVersion = corePackage.version
+
+// Every published package with its version, linking to that version on npm.
+export const packages = [corePackage, vue3Package, vuePackage, reactPackage].map(({ name, version }) => ({
+  name,
+  version,
+  url: `https://www.npmjs.com/package/${name}/v/${version}`,
+}))
