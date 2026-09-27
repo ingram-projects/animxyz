@@ -1,5 +1,6 @@
 ---
 import AnimXyzLogo from '~/components/astro/AnimXyzLogo.astro'
+import VersionSwitch from '~/components/astro/VersionSwitch.astro'
 import DarkModeToggle from '~/components/vue/reusable/DarkModeToggle.vue'
 import IconGithubSvg from '~/assets/icons/IconGithub.svg?raw'
 import type { SectionDefinition } from '~/data/sectionDefinitions'
@@ -69,6 +70,7 @@ function isHeader(s: any): s is { header: true; title: string; id: string } {
         <Fragment set:html={IconGithubSvg} />
         <span>GitHub</span>
       </a>
+      <VersionSwitch />
       <DarkModeToggle class="xyz-nested" client:idle />
     </div>
   </nav>
